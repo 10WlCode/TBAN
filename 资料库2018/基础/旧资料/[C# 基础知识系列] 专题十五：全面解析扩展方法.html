@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[C# 基础知识系列] 专题十五：全面解析扩展方法 - Learning hard - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/bundle-Custom.css">
+<link type="text/css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/111157.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/bundle-Custom-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhili/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhili/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhili/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/encoder.js.下载"></script><script src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'zhili', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/blog-common.js.下载" type="text/javascript"></script>
+<link id="http://common.cnblogs.com/scripts/artDialog/ui-dialog.css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/ui-dialog.css"><script id="http://common.cnblogs.com/scripts/artDialog/dialog-min.js" type="text/javascript" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/dialog-min.js.下载"></script><script id="http://common.cnblogs.com/scripts/artDialog/dialog-plus-min.js" type="text/javascript" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/dialog-plus-min.js.下载"></script></head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"><!-- JiaThis Button BEGIN -->
+<!--<div style="display: none" id="__document_write_ajax_div-1"></div><script type="text/javascript"  charset="utf-8">window['__document_write_ajax_callbacks__']['1']();</script> -->
+<!-- JiaThis Button END -->
+
+
+</div><script>load_page_begin_html();</script>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/zhili/"><img id="blogLogo" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhili/">Learning hard</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/zhili/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Learning%20hard">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/zhili/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/zhili/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 159&nbsp; </span>
+<span id="stats_article_count">文章 - 43&nbsp; </span>
+<span id="stats-comment_count">评论 - 2654</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html">[C# 基础知识系列] 专题十五：全面解析扩展方法</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><strong><span style="font-size: 18px;">引言：</span></strong></p>
+<p>&nbsp;　　C# 3中所有特性的提出都是更好地为Linq服务的， 充分理解这些基础特性后。对于更深层次地去理解Linq的架构方面会更加简单，从而就可以自己去实现一个简单的ORM框架的，对于Linq的学习在下一个专题中将会简单和大家介绍下，这个专题还是先来介绍服务于Linq的基础特性——扩展方法</p>
+<p><span style="font-size: 18px;"><strong>一、扩展方法的介绍</strong></span></p>
+<p>　我一般理解一个知识点喜欢拆分去理解,所以对于扩展方法的理解可以拆分为——首先它肯定是一个方法，然而方法又是对于一个类型而言的，所以扩展方法可以理解为<span style="color: #ff0000;"><strong>现有的类型(现有类型可以为自定义的类型和.Net 类库中的类型)扩展(添加)应该附加到该类型中的方法</strong></span>。</p>
+<p>　　在没有扩展方法之前,如果我们想为一个已有类型自定义自己逻辑的方法时,我们<span style="color: #ff0000;">必须自定义一个新的类型来继承已有类型的方式来添加方法,使用这种继承方式来添加方法时,我们必须自定义一个新的派生类型,如果基类有抽象方法还需要重新去实现抽象方法,这样为了扩展一个方法却会导致因继承而带来的其他的开销(指的是又要去自定义一个派生类，还要覆盖基类的抽象方法等)，所以使用继承来为现有类型扩展方法时就有点大才小用的感觉了，并且当我们需要为值类型和密封类（不能被继承的类）这些不能被继承的类型扩展方法时，此时继承就不能被我们所用了， 所以在C#3 中提出了用扩展方法来实现为现有类型添加方法。使用扩展方法来实现扩展可以解决使用继承中所带来的所有的弊端</span>,下面通过一个例子来演示下扩展方法的使用：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">class</span><span style="color: #000000;"> Program
+    {
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">  扩展方法演示
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="args"&gt;&lt;/param&gt;</span>
+        <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+        {
+            </span><span style="color: #0000ff;">#region</span> 演示扩展方法的使用
+
+            <span style="color: #008000;">//</span><span style="color: #008000;"> 调用扩展方法</span>
+            WebRequest request = WebRequest.Create(<span style="color: #800000;">"</span><span style="color: #800000;">http://www.cnblogs.com</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">using</span> (WebResponse response =<span style="color: #000000;"> request.GetResponse())
+            {
+                </span><span style="color: #0000ff;">using</span>(Stream responsestream =<span style="color: #000000;">response.GetResponseStream())
+                {
+                    </span><span style="color: #0000ff;">using</span> (FileStream output = File.Create(<span style="color: #800000;">"</span><span style="color: #800000;">response.htm</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+                    {
+                        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 调用扩展方法</span>
+<span style="color: #000000;">                        responsestream.CopyToNewStream(output);
+                        Console.Read();
+                    }
+                }
+            }
+            </span><span style="color: #0000ff;">#endregion</span> <span style="color: #000000;">
+
+          }
+    }
+
+    </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+    <span style="color: #808080;">///</span><span style="color: #008000;"> 扩展方法必须在非泛型静态类中定义
+    </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> StreamExten
+    {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 定义扩展方法
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 该扩展方法实现从一个流中内容复制到另一个流中</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> CopyToNewStream(<span style="color: #0000ff;">this</span><span style="color: #000000;"> Stream inputstream, Stream outputstream)
+        {
+            </span><span style="color: #0000ff;">byte</span>[] buffer = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">8192</span><span style="color: #000000;">];
+            </span><span style="color: #0000ff;">int</span><span style="color: #000000;"> read;
+            </span><span style="color: #0000ff;">while</span> ((read = inputstream.Read(buffer, <span style="color: #800080;">0</span>, buffer.Length)) &gt; <span style="color: #800080;">0</span><span style="color: #000000;">)
+            {
+                outputstream.Write(buffer, </span><span style="color: #800080;">0</span><span style="color: #000000;">, read);
+            }
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>　　上面程序中为Stream类型扩展了一个CopyToNewStream()的方法，然而从上面扩展方法的定义中大家可以知道扩展方法定义的一些规则，然而并不是所有方法都可以作为扩展方法来使用的, 此时朋友们就会问,我如何去分辨代码中定义的是扩展方法还是普通的方法呢? 对于这个疑问,扩展方法的定义是要符合一些规则的,当看到定义的方法是符合这个规则,则就可以确定定义方法是扩展方法还是普通方法了。扩展方法必须具备下面的规则：</p>
+<ul>
+<li>它必须在一个<span style="color: #ff0000;">非嵌套、非泛型的静态类</span>中</li>
+<li>它至少要有<span style="color: #ff0000;">一个参数</span></li>
+<li>第一个参数必须加上<span style="color: #ff0000;">this关键字作为前缀</span>（第一个参数类型也称为扩展类型，即指方法对这个类型进行扩展）</li>
+<li>第一个参数不能用其他任何修饰符（如不能使用ref out等修饰符）</li>
+<li>第一个参数的类型不能是指针类型</li>
+</ul>
+<p>　　对于上面的规则大家可以在代码中试验下就会很容易明白,这些规则是一些硬性的规定,如果违反了这些规则,编译器可能会报错或者说编译器将不会认为定义的方法为扩展方法,下面简单演示下扩展方法必须在非嵌套类型的静态类中这个规则（其他规则同样大家可以在代码中进行测试），当我们把上面代码中<strong>StreamExten </strong>类定义为<strong>Program</strong>嵌套类型时,编译器此时就会出现"<span style="color: #ff0000;">扩展方法必须在顶级静态类中定义;STreamExten是嵌套类"的编译时错误，演示代码如下：</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;8b70dbe3-9bf4-4361-9fe1-7afa267ff80e&#39;)"><img id="code_img_closed_8b70dbe3-9bf4-4361-9fe1-7afa267ff80e" class="code_img_closed" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/ContractedBlock.gif" alt=""><img id="code_img_opened_8b70dbe3-9bf4-4361-9fe1-7afa267ff80e" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;8b70dbe3-9bf4-4361-9fe1-7afa267ff80e&#39;,event)" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/ExpandedBlockStart.gif" alt=""><span class="cnblogs_code_collapse">View Code </span>
+<div id="cnblogs_code_open_8b70dbe3-9bf4-4361-9fe1-7afa267ff80e" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">class</span><span style="color: #000000;"> Program
+    {
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 扩展方法必须在非泛型静态类中定义
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> StreamExten
+        {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 定义扩展方法
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 该扩展方法实现从一个流中内容复制到另一个流中</span>
+            <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> CopyToNewStream(<span style="color: #0000ff;">this</span><span style="color: #000000;"> Stream inputstream, Stream outputstream)
+            {
+                </span><span style="color: #0000ff;">byte</span>[] buffer = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[<span style="color: #800080;">8192</span><span style="color: #000000;">];
+                </span><span style="color: #0000ff;">int</span><span style="color: #000000;"> read;
+                </span><span style="color: #0000ff;">while</span> ((read = inputstream.Read(buffer, <span style="color: #800080;">0</span>, buffer.Length)) &gt; <span style="color: #800080;">0</span><span style="color: #000000;">)
+                {
+                    outputstream.Write(buffer, </span><span style="color: #800080;">0</span><span style="color: #000000;">, read);
+                }
+            }
+        }
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">  扩展方法演示
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="args"&gt;&lt;/param&gt;</span>
+        <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+        {
+            </span><span style="color: #0000ff;">#region</span> 演示扩展方法的使用
+
+            <span style="color: #008000;">//</span><span style="color: #008000;"> 调用扩展方法</span>
+            WebRequest request = WebRequest.Create(<span style="color: #800000;">"</span><span style="color: #800000;">http://www.cnblogs.com</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">using</span> (WebResponse response =<span style="color: #000000;"> request.GetResponse())
+            {
+                </span><span style="color: #0000ff;">using</span>(Stream responsestream =<span style="color: #000000;">response.GetResponseStream())
+                {
+                    </span><span style="color: #0000ff;">using</span> (FileStream output = File.Create(<span style="color: #800000;">"</span><span style="color: #800000;">response.htm</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+                    {
+                        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 调用扩展方法</span>
+<span style="color: #000000;">                        responsestream.CopyToNewStream(output);
+                        Console.Read();
+                    }
+                }
+            }
+            </span><span style="color: #0000ff;">#endregion</span>          <span style="color: #000000;">
+        }
+    }</span></pre>
+</div>
+</div>
+<p><span style="color: #ff0000;">下面是出现编译时错误截图：</span></p>
+<p><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/2012121614453082.png" alt=""></p>
+<p><span style="font-size: 18px;"><strong>二、扩展方法是如何被发现的？</strong></span></p>
+<p>　　从上面部分的介绍,朋友们应该知道了如何定义和使用一个扩展方法，并且从我们定义的规则中可以帮助我们开发人员更好地去识别扩展方法，知道程序中调用的是一个实例方法还是一个扩展方法，然而相信大家此时会有这样一个疑问——编译器是如何知道我调用的是一个扩展方法而不是一个该类中的一个实例方法呢？对于这个问题，将在这部分和大家分析下。</p>
+<p>　　首先讨论下程序员是如何去识别调用的是一个扩展方法而不是一个实例方法的,当我们看到调用方法的代码时,首先我们会去找该方法是否是该类(如上面程序中的Stream类)的一个实例方法，进入<strong>Stream</strong>类(按F12进去查看)的定义中却发现该类中没有一个名为<strong>CopyToNewStream</strong>的方法，此时我们就会查看程序中是否定义了这样的扩展方法，当找到一个为名CopyToNewStream这样的方法时，然后再根据定义的规则来判断找到的方法是否是为Stream类扩展的方法，这样的一个过程就是我们程序员去发现一个扩展方法的过程，然而对于编译器而言，它也是这么去发现扩展方法的（从而可以看出C#编译器还是非常智能的，完全按照人的思路去思考问题，因为它也是人实现出来的，就当然是尽可能地去以人的思考方式去实现的了），下面就介绍下编译器是如何去发现扩展方法的，这样也可以与程序员们的思路进行对比下。</p>
+<p>　　当编译器看到变量调用的是一个方法时，它首先会去该对象中实例方法中去查看，一旦没有找到与调用方法同名的实例方法时，编译器就会去查找一个合适的扩展方法，它会检查导入的所有命名空间和当前的命名空间中的所有扩展方法，并匹配变量类型到扩展类型存在一个隐式转换的扩展方法。然而对于这个发现过程，可能有些人会问：编译器如何知道某个方法是扩展方法而不是实例方法呢？ 编译器是根据System.Runtime.CompilerServices.ExtensionAttribute属性来绑定方法是是否为扩展方法的， 当我们定义的方法是扩展方法时，该属性会自动应用到方法上,编译器还会将该特性应用到包含扩展方法的程序集上,对于这个两点并不是我的推断,下面给出反编译截图来证明下:</p>
+<p><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/2012121615382431.png" alt="" width="1112" height="330"></p>
+<p>　　从上面编译器发现扩展方法的过程可以得到方法调用的优先级的结论:现有的实例方法——&gt;当前命名空间下的扩展方法——&gt;导入命名空间的扩展方法。下面通过一个例子来演示编译器的发现过程：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> 扩展方法如何被发现Demo
+{
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 要使用不同命名空间的扩展方法首先要添加该命名空间的引用</span>
+    <span style="color: #0000ff;">using</span><span style="color: #000000;"> CustomNamesapce;
+    </span><span style="color: #0000ff;">class</span><span style="color: #000000;"> Program
+    {
+        </span><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+        {
+            Person p </span>= <span style="color: #0000ff;">new</span> Person { Name = <span style="color: #800000;">"</span><span style="color: #800000;">Learning hard</span><span style="color: #800000;">"</span><span style="color: #000000;"> };
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 当类型中包含了实例方法时，VS中的智能提示就只会列出实例方法，而不会列出扩展方法
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 当把实例方法注释掉之后，VS的智能提示中才会列出扩展方法，此时编译器在Person类型中找不到实例方法
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 所以首先从当前命名空间下查找是否有该名字的扩展方法，如果找到不会去其他命名空间中查找了
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 如果在当前命名空间中没有找到，则会到导入的命名空间中再进行查找</span>
+<span style="color: #000000;">            p.Print();
+            p.Print(</span><span style="color: #800000;">"</span><span style="color: #800000;">Hello</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            Console.Read();
+        }  
+    }
+
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 自定义类型</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Person
+    {
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Name { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+         </span><span style="color: #008000;">//</span><span style="color: #008000;"> 当类型中的实例方法</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">/public void Print()
+        </span><span style="color: #808080;">///</span><span style="color: #008000;">/{
+        </span><span style="color: #808080;">///</span><span style="color: #008000;">/    Console.WriteLine("调用实例方法输出，姓名为: {0}", Name);
+        </span><span style="color: #808080;">///</span><span style="color: #008000;">/}</span>
+<span style="color: #000000;">    }
+
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 当前命名空间下的扩展方法定义</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Extensionclass
+    {
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">  扩展方法定义
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="per"&gt;&lt;/param&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Print(<span style="color: #0000ff;">this</span><span style="color: #000000;"> Person per)
+        {
+            Console.WriteLine(</span><span style="color: #800000;">"</span><span style="color: #800000;">调用的是同一命名空间下的扩展方法输出，姓名为: {0}</span><span style="color: #800000;">"</span><span style="color: #000000;">, per.Name);
+        }
+    }
+}
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> CustomNamesapce
+{
+    </span><span style="color: #0000ff;">using</span><span style="color: #000000;"> 扩展方法如何被发现Demo;
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> CustomExtensionClass
+    {
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">  扩展方法定义
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="per"&gt;&lt;/param&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Print(<span style="color: #0000ff;">this</span><span style="color: #000000;"> Person per)
+        {
+            Console.WriteLine(</span><span style="color: #800000;">"</span><span style="color: #800000;">调用的是不同命名空间下扩展方法输出，姓名为: {0}</span><span style="color: #800000;">"</span><span style="color: #000000;">, per.Name);
+        }
+
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;">  扩展方法定义
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="per"&gt;&lt;/param&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Print(<span style="color: #0000ff;">this</span> Person per,<span style="color: #0000ff;">string</span><span style="color: #000000;"> s)
+        {
+            Console.WriteLine(</span><span style="color: #800000;">"</span><span style="color: #800000;">调用的是不同命名空间下扩展方法输出，姓名为: {0}, 附加字符串为{1}</span><span style="color: #800000;">"</span><span style="color: #000000;">, per.Name, s);
+        }
+
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>运行结果:</p>
+<p><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/2012121616331978.png" alt=""></p>
+<p>　　当没有注释掉Person类中的实例方法Print时,此时在p后面键入.运算符时，智能提示将不会出现扩展方法（扩展方法前面有一个向下的箭头标示出来的），下面是没有注释实例方法时智能提示的截图(此时智能提示不会反射扩展方法出来)：</p>
+<p><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/2012121616313258.png" alt=""></p>
+<p>　　并且从上面运行结果可以看出,当调用p.Print()方法时，此时调用的是离该调用较近的命名空间下的Print方法(尽管在CustomNamesapce命名空间下也定义了扩展方法Print)。、然而<span style="color: #ff0000;">使用扩展方法还是存在一些问题的，如果同一个命名空间下的两个类都含有扩展类型相同的方法时，此时编译器就没有办法知道调用哪个方法了(这里标示出来引起大家的注意)</span>。</p>
+<p><span style="font-size: 18px;"><strong>三、在空引用上调用方法</strong></span></p>
+<p>&nbsp;大家都知道在C#中，在空引用上调用实例方法是会引发NullReferenceException异常的，但是可以在空引用上调用扩展方法，下面看一段演示代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> 在空引用上调用方法Demo
+{
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 必须引入扩展方法定义的命名空间</span>
+    <span style="color: #0000ff;">using</span><span style="color: #000000;"> ExtensionDefine;
+
+    </span><span style="color: #0000ff;">class</span><span style="color: #000000;"> Program
+    {
+        </span><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+        {
+            Console.WriteLine(</span><span style="color: #800000;">"</span><span style="color: #800000;">空引用上调用扩展方法演示：</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">string</span> s = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 在该程序中要使用扩展方法必须通过using来引用
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 在空引用上调用扩展方法不会发生NullReferenceException异常
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 之所以不会出现异常，是因为在空引用上调用扩展方法，对于编译器而言只是把空引用s当成参数传入静态方法中而已
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 对于编译器来说，s.IsNull()的调用等效于下面的代码
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">Console.WriteLine("字符串S为空字符串：{0}", NullExten.IsNull(s));</span>
+<span style="color: #000000;">
+            Console.WriteLine(</span><span style="color: #800000;">"</span><span style="color: #800000;">字符串S为空字符串：{0}</span><span style="color: #800000;">"</span><span style="color: #000000;">, s.IsNull());
+            Console.ReadKey();
+        }
+    }
+}
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> ExtensionDefine
+{
+    </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+    <span style="color: #808080;">///</span><span style="color: #008000;"> 扩展方法定义
+    </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> NullExten
+    {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 此时扩展的类型为object，这里我是故意用object类型的
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 如果是为了演示，当我们为一个类型定义扩展方法时，应尽量扩展具体类型，如果扩展其基类的话
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 则所有继承于基类的类型都将具有该扩展方法，这样对其他类型来说就进行了“污染
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 子所以形成了污染，是因为我们定义的扩展方法的意图本来只想扩展某个子类。
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 其实下面这个方法我的意图只是想扩展string类型的，所以更好的定义方法如下：
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">public static bool isNull(this string str)
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">{
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">    return str == null;
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">}
+        
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 不规范定义扩展方法的方式</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">bool</span> IsNull(<span style="color: #0000ff;">this</span> <span style="color: #0000ff;">object</span><span style="color: #000000;"> obj)
+        {
+            </span><span style="color: #0000ff;">return</span> obj == <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+        }
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>运行结果为:</p>
+<p><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/2012121616574574.png" alt=""></p>
+<p>　　在注释中解释了为什么在空引用中调用扩展方法不会抛出异常的原因,对于这个原因的解释也不是我个人的猜测的,而是确实如此,其实用IL反汇编程序看看程序生成的中间代码就可以证明了,下面Main函数中生成的中间代码即IL(代码中标注红色的地方就是s.IsNull()的生成的IL代码，代码意思即是调用静态类NullExten的静态方法IsNull,此时只是把空引用s传递给该方法作为传入参数，并不是真真在空引用中调用了方法。所以就不存在抛出异常了)：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>.method <span style="color: #0000ff;">private</span> hidebysig <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span>  Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args) cil managed
+{
+  .entrypoint
+  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 代码大小       43 (0x2b)</span>
+  .maxstack  <span style="color: #800080;">2</span><span style="color: #000000;">
+  .locals init ([</span><span style="color: #800080;">0</span>] <span style="color: #0000ff;">string</span><span style="color: #000000;"> s)
+  IL_0000:  nop
+  IL_0001:  ldstr      bytearray (7A 7A </span><span style="color: #800080;">15</span> 5F <span style="color: #800080;">28</span> <span style="color: #800080;">75</span> 0A 4E <span style="color: #800080;">03</span> 8C <span style="color: #800080;">28</span> <span style="color: #800080;">75</span> <span style="color: #800080;">69</span> <span style="color: #800080;">62</span> <span style="color: #800080;">55</span> 5C   <span style="color: #008000;">//</span><span style="color: #008000;"> zz._(u.N..(uibU\</span>
+                                  B9 <span style="color: #800080;">65</span> D5 6C <span style="color: #800080;">14</span> 6F 3A <span style="color: #800080;">79</span> 1A FF )                   <span style="color: #008000;">//</span><span style="color: #008000;"> .e.l.o:y..</span>
+  IL_0006:  call       <span style="color: #0000ff;">void</span> [mscorlib]System.Console::WriteLine(<span style="color: #0000ff;">string</span><span style="color: #000000;">)
+  IL_000b:  nop
+  IL_000c:  ldnull
+  IL_000d:  stloc.</span><span style="color: #800080;">0</span><span style="color: #000000;">
+  IL_000e:  ldstr      bytearray (</span><span style="color: #800080;">57</span> 5B <span style="color: #800080;">26</span> 7B <span style="color: #800080;">32</span> 4E <span style="color: #800080;">53</span> <span style="color: #800080;">00</span> 3A 4E 7A 7A <span style="color: #800080;">57</span> 5B <span style="color: #800080;">26</span> 7B   <span style="color: #008000;">//</span><span style="color: #008000;"> W[&amp;{2NS.:NzzW[&amp;{</span>
+                                  <span style="color: #800080;">32</span> 4E 1A FF 7B <span style="color: #800080;">00</span> <span style="color: #800080;">30</span> <span style="color: #800080;">00</span> 7D <span style="color: #800080;">00</span> )                   <span style="color: #008000;">//</span><span style="color: #008000;"> 2N..{.0.}.</span>
+  IL_0013:  ldloc.<span style="color: #800080;">0</span><span style="color: #000000;">
+  IL_0014:  call       </span><strong><span style="color: #ff0000;">bool ExtensionDefine.NullExten::IsNull(object</span></strong><span style="color: #000000;"><strong><span style="color: #ff0000;">)
+</span></strong>  IL_0019:  box        [mscorlib]System.Boolean
+  IL_001e:  call       </span><span style="color: #0000ff;">void</span> [mscorlib]System.Console::WriteLine(<span style="color: #0000ff;">string</span><span style="color: #000000;">,
+                                                                </span><span style="color: #0000ff;">object</span><span style="color: #000000;">)
+  IL_0023:  nop
+  IL_0024:  call       valuetype [mscorlib]System.ConsoleKeyInfo [mscorlib]System.Console::ReadKey()
+  IL_0029:  pop
+  IL_002a:  ret
+} </span><span style="color: #008000;">//</span><span style="color: #008000;"> end of method Program::Main</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong><span style="font-size: 18px;">&nbsp;</span></strong><strong><span style="font-size: 18px;">四、小结</span></strong></p>
+<p>到这里本专题的内容就介绍完了，这里总结下该专题介绍的内容：</p>
+<ol>
+<li><span style="color: #ff0000;">&nbsp;介绍了扩展方法的定义和使用，以及扩展方法定义的规则，具体可以参照第一部分</span></li>
+<li><span style="color: #ff0000;">介绍了编译器是如何去发现扩展方法的，以及写了一些例子进行测试，具体可以参照第二部分</span></li>
+<li><span style="color: #ff0000;">解释了为什么在空引用中可以调用扩展方法的原因，具体可以参照第三部分</span></li>
+</ol>
+<p>在下一个专题将和大家介绍下C# 3中最重要的一个特性——Linq。</p>
+<p>&nbsp;附上：程序中演示源码：<a href="http://files.cnblogs.com/zhili/%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95Demo.zip">http://files.cnblogs.com/zhili/%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95Demo.zip</a></p>
+<p>&nbsp;</p></div><div id="MySignature" style="display: block;"><div id="container">
+<h3>如果您认为这篇文章还不错或者有所收获，您可以通过<strong style="color: red">右边的“打赏”功能</strong> 打赏我一杯咖啡【物质支持】，也可以点击右下角的<strong style="color: red">【店长推荐】</strong>按钮【精神支持】，因为这两种支持都是我继续写作，分享的最大动力</h3><br>
+    <img style="display: inline-block" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/o_alipay_lizhi.jpg" width="300" height="300">
+       <img style="display: inline-block" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/o_weixin.png" width="300" height="300">
+</div></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhili/category/421637.html" target="_blank">C#基础知识梳理系列</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/zhili/tag/%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/">扩展方法</a>, <a href="http://www.cnblogs.com/zhili/tag/C%23%20%E7%89%B9%E6%80%A7/">C# 特性</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2808490,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <span style="color:red">关注成功</span>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhili/" target="_blank"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/u383187.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhili/">Learning hard</a><br>
+            <a href="http://home.cnblogs.com/u/zhili/followees">关注 - 169</a><br>
+            <a href="http://home.cnblogs.com/u/zhili/followers">粉丝 - 2979</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+    <div id="author_profile_follow"><span style="color:red">关注成功</span></div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2808490,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">9</span>
+    </div>
+    <div class="buryit" onclick="votePost(2808490,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhili/archive/2012/12/12/LambdaExpression.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhili/archive/2012/12/12/LambdaExpression.html" title="发布于2012-12-12 10:19">[C# 基础知识系列]专题十四：深入理解Lambda表达式</a><br><a href="http://www.cnblogs.com/zhili/archive/2012/12/24/Linq.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhili/archive/2012/12/24/Linq.html" title="发布于2012-12-24 00:20">[C# 基础知识系列]专题十六：Linq介绍</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-12-17 14:30</span> <a href="http://www.cnblogs.com/zhili/">Learning hard</a> 阅读(<span id="post_view_count">3647</span>) 评论(<span id="post_comment_count">12</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2808490" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#" onclick="AddToWz(2808490);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=111157,cb_entryId=2808490,cb_blogApp=currentBlogApp,cb_blogUserGuid='5a927e20-6a68-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/12/17 14:30:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579538,&#39;09lKp6nG9nel+aU99r5uIhbq2He+tMmShoBL9DAyoX/x+Gc1GCQaxA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579538,&#39;09lKp6nG9nel+aU99r5uIhbq2He+tMmShoBL9DAyoX/x+Gc1GCQaxA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579538" class="layer">#1楼</a><a name="2579538" id="comment_anchor_2579538"></a>  <span class="comment_date">2012-12-17 14:58</span> <a id="a_comment_author_2579538" href="http://www.cnblogs.com/jirigala/" target="_blank">通用C#系统架构</a> <a href="http://msg.cnblogs.com/send/%E9%80%9A%E7%94%A8C%23%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579538" class="blog_comment_body">文章写得好仔细啊，顶一下。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579538,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579538,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579538_avatar" style="display:none;">http://pic.cnblogs.com/face/u35584.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579552,&#39;kJZua4j86A3sDlWVlhh//FOkQwlTlicAW/IFSic3YMBoBC2RJ/FqoA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579552,&#39;kJZua4j86A3sDlWVlhh//FOkQwlTlicAW/IFSic3YMBoBC2RJ/FqoA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579552" class="layer">#2楼</a><a name="2579552" id="comment_anchor_2579552"></a>  <span class="comment_date">2012-12-17 15:07</span> <a id="a_comment_author_2579552" href="http://www.cnblogs.com/Nobel/" target="_blank">诺贝尔</a> <a href="http://msg.cnblogs.com/send/%E8%AF%BA%E8%B4%9D%E5%B0%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579552" class="blog_comment_body">扩展方法只是一个语法糖。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579552,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579552,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579552_avatar" style="display:none;">http://pic.cnblogs.com/face/u109469.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579602,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579602,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579602" class="layer">#3楼</a><a name="2579602" id="comment_anchor_2579602"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2012-12-17 15:41</span> <a id="a_comment_author_2579602" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579602" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579538" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579538);">@</a>
+通用信息化建设平台<br>谢谢支持</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579602,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579602,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579602_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579603,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579603,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579603" class="layer">#4楼</a><a name="2579603" id="comment_anchor_2579603"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2012-12-17 15:42</span> <a id="a_comment_author_2579603" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579603" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579552" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579552);">@</a>
+诺贝尔<br>对的，C#3中提出的新特性大部分都是语法糖</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579603,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579603,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579603_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579660,&#39;EZNBEGB+VIo1qlJWGGbsTH4Aa9MLPW8hXnZHUYQgRRtwVZLMD6eRBQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579660,&#39;EZNBEGB+VIo1qlJWGGbsTH4Aa9MLPW8hXnZHUYQgRRtwVZLMD6eRBQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579660" class="layer">#5楼</a><a name="2579660" id="comment_anchor_2579660"></a>  <span class="comment_date">2012-12-17 16:28</span> <a id="a_comment_author_2579660" href="http://home.cnblogs.com/u/227254/" target="_blank">玉菜园</a> <a href="http://msg.cnblogs.com/send/%E7%8E%89%E8%8F%9C%E5%9B%AD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579660" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579660,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579660,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579687,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579687,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579687" class="layer">#6楼</a><a name="2579687" id="comment_anchor_2579687"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2012-12-17 16:49</span> <a id="a_comment_author_2579687" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579687" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579660" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579660);">@</a>
+玉菜园<br>谢谢支持</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579687,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579687,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579687_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579756,&#39;nKqRrgsyfyaTpDH/wonxlI/mkQfaLvk8cY0AFABpQ7gp0nV8qi6SKA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579756,&#39;nKqRrgsyfyaTpDH/wonxlI/mkQfaLvk8cY0AFABpQ7gp0nV8qi6SKA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579756" class="layer">#7楼</a><a name="2579756" id="comment_anchor_2579756"></a>  <span class="comment_date">2012-12-17 17:51</span> <a id="a_comment_author_2579756" href="http://www.cnblogs.com/wangiqngpei557/" target="_blank">王清培</a> <a href="http://msg.cnblogs.com/send/%E7%8E%8B%E6%B8%85%E5%9F%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579756" class="blog_comment_body">兄弟来迟，还望谅解；呵呵 支持兄弟好文章。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579756,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579756,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579756_avatar" style="display:none;">http://pic.cnblogs.com/face/u202205.jpg?id=13105403</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579772,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579772,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579772" class="layer">#8楼</a><a name="2579772" id="comment_anchor_2579772"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2012-12-17 18:15</span> <a id="a_comment_author_2579772" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579772" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579756" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579756);">@</a>
+王清培<br>呵呵，非常感谢，还不是一般的感谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579772,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579772,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579772_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579799,&#39;kJZua4j86A3sDlWVlhh//FOkQwlTlicAW/IFSic3YMBoBC2RJ/FqoA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579799,&#39;kJZua4j86A3sDlWVlhh//FOkQwlTlicAW/IFSic3YMBoBC2RJ/FqoA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579799" class="layer">#9楼</a><a name="2579799" id="comment_anchor_2579799"></a>  <span class="comment_date">2012-12-17 18:44</span> <a id="a_comment_author_2579799" href="http://www.cnblogs.com/Nobel/" target="_blank">诺贝尔</a> <a href="http://msg.cnblogs.com/send/%E8%AF%BA%E8%B4%9D%E5%B0%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579799" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579603" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579603);">@</a>
+Learning hard<br>期待你后续啊。<br>希望在你写原理的时候，能够补充一些例子，作为示范。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579799,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579799,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579799_avatar" style="display:none;">http://pic.cnblogs.com/face/u109469.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579829,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579829,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579829" class="layer">#10楼</a><a name="2579829" id="comment_anchor_2579829"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2012-12-17 19:42</span> <a id="a_comment_author_2579829" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579829" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579799" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579799);">@</a>
+诺贝尔<br>后面会注意这点, 谢谢指出</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579829,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579829,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579829_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579912,&#39;QyqnrjpiJqGROvfiv5Myy5++51st2rwIyJ8dHHfNDeLCddVJy6TZ3w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579912,&#39;QyqnrjpiJqGROvfiv5Myy5++51st2rwIyJ8dHHfNDeLCddVJy6TZ3w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579912" class="layer">#11楼</a><a name="2579912" id="comment_anchor_2579912"></a>  <span class="comment_date">2012-12-17 21:41</span> <a id="a_comment_author_2579912" href="http://www.cnblogs.com/tangmingjun/" target="_blank">堂堂88</a> <a href="http://msg.cnblogs.com/send/%E5%A0%82%E5%A0%8288" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579912" class="blog_comment_body">扩展方法之所以不抛异常 是因为他是static啊。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579912,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579912,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579912_avatar" style="display:none;">http://pic.cnblogs.com/face/u89102.png?id=23112621</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2579915,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2579915,&#39;KSk95EurVWlCg2IjjP2jUyivPqSxFphQJ2pWLGko9W5JdYF0ONHn+Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579915" class="layer">#12楼</a><a name="2579915" id="comment_anchor_2579915"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">2579915</span><span id="comment-maxDate" style="display:none;">2012/12/17 21:50:33</span>  <span class="comment_date">2012-12-17 21:50</span> <a id="a_comment_author_2579915" href="http://www.cnblogs.com/zhili/" target="_blank">Learning hard</a> <a href="http://msg.cnblogs.com/send/Learning%20hard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2579915" class="blog_comment_body"><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#2579912" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2579912);">@</a>
+堂堂88<br>调用扩展方法,确实是调用另外类的静态方法的,但是我的理解也是没有错的,出发点不一样</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2579915,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2579915,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2579915_avatar" style="display:none;">http://pic.cnblogs.com/face/u383187.png?id=22203343</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585057/" target="_blank">宣亚国际29亿收购映客直播交易告吹</a><br> ·  <a href="https://news.cnblogs.com/n/585065/" target="_blank">英国金融行为监管局发严重警告：投资比特币小心血本无归</a><br> ·  <a href="https://news.cnblogs.com/n/585058/" target="_blank">苹果新专利：当你小声问的时候Siri就会小声回答你</a><br> ·  <a href="https://news.cnblogs.com/n/585063/" target="_blank">百度与中国人寿成立140亿投资基金 主投泛互联网领域</a><br> ·  <a href="https://news.cnblogs.com/n/585067/" target="_blank">让员工参与公司战略，SaaS平台Workboard获微软领投900万美元</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="blog-news" style="font-size: 14pt;"><hr>
+《Learning hard C#学习笔记》
+<li><a target="_blank" href="http://product.china-pub.com/4581218"><img id="ViewPicture1_GalleryImage" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/shupi.jpg" style="border-width:1px;height:200px;width:180px;"></a></li>
+<br>
+
+<li><a target="_blank" href="http://product.china-pub.com/4581218">[1] 互动网</a></li>
+<li><a target="_blank" href="http://item.jd.com/11657095.html">[2] 京东</a></li>
+
+<li><a target="_blank" href="http://product.dangdang.com/23655422.html#ddclick?act=click&amp;pos=23655422_0_0_q&amp;cat=&amp;key=C%23+%D1%A7%CF%B0%B1%CA%BC%C7&amp;qinfo=2_1_60&amp;pinfo=&amp;minfo=&amp;ninfo=&amp;custid=&amp;permid=20140730170137461239791258197847847&amp;ref=http%3A%2F%2Fbook.dangdang.com%2F&amp;rcount=&amp;type=&amp;t=1424957035000&amp;ver=A">[3] 当当</a></li>
+<li><a href="http://www.amazon.cn/Learning-hard-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%BF%97/dp/B00TKLJ31M/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1425194836&amp;sr=1-1&amp;keywords=C%23%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">[4]亚马逊</a></li>
+<li><a href="http://detail.tmall.com/item.htm?spm=a1z10.3-b.w4011-10017777404.28.riJxeh&amp;id=43771250079&amp;rn=d9e4d39e9b4ebd05c3de139916973234&amp;abbucket=14">[5]天猫</a></li>
+<br>
+</div>
+<div id="My-QQ"><span style="font-weight:bold">.NET高级交流群: </span>
+<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=b78db3dac59ed342e432046427cc4c24e1db7d7e47ae250f41cdc03c0f439e93"><img border="0" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/group.png" alt=".NET高级交流群" title=".NET高级交流群"></a></div>
+<div id="qq2"><span style="font-weight:bold;font-size:8pt;">程序员内推群: </span>
+<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=e6dc672e67f4290802404ff5070892ad30af3b0daa90265385a63d6c2427a2cf"><img border="0" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/group.png" alt="程序员内推群" title="程序员内推群"></a></div>
+<div id="weiboIframe">
+<iframe width="100%" height="110" class="share_self" frameborder="0" scrolling="no" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/index.html"></iframe>
+</div>
+<div id="webChat"><span style="font-weight:bold">程序员俱乐部公众号: </span>
+<img border="0" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/o_2.png" alt="程序员俱乐部" title="程序员俱乐部"></div><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/zhili/">Learning hard</a><br>园龄：<a href="http://home.cnblogs.com/u/zhili/" title="入园时间：2012-03-07">5年9个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/zhili/followers/">2979</a><br>关注：<a href="http://home.cnblogs.com/u/zhili/followees/">169</a><div id="p_b_follow"><span style="color:red">关注成功</span></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhili/tag/DDD/">DDD</a>(9)</li><li><a href="http://www.cnblogs.com/zhili/tag/WPF/">WPF</a>(8)</li><li><a href="http://www.cnblogs.com/zhili/tag/SignalR/">SignalR</a>(4)</li><li><a href="http://www.cnblogs.com/zhili/tag/KnockoutJs/">KnockoutJs</a>(3)</li><li><a href="http://www.cnblogs.com/zhili/tag/Asp.net%20MVC/">Asp.net MVC</a>(3)</li><li><a href="http://www.cnblogs.com/zhili/tag/Bootstrap/">Bootstrap</a>(3)</li><li><a href="http://www.cnblogs.com/zhili/tag/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>(3)</li><li><a href="http://www.cnblogs.com/zhili/tag/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>(2)</li><li><a href="http://www.cnblogs.com/zhili/tag/Owin/">Owin</a>(2)</li><li><a href="http://www.cnblogs.com/zhili/tag/Asp.net%20SignalR/">Asp.net SignalR</a>(2)</li><li><a href="http://www.cnblogs.com/zhili/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(176)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhili/category/603514.html">.NET领域驱动设计系列(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhili/category/385036.html">Asp.net(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zhili/category/604706.html">Asp.net MVC(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/zhili/category/710561.html">Asp.net Web API</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/zhili/category/438267.html">C# 互操作入门系列(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/zhili/category/398603.html">C#多线程处理系列(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/zhili/category/421637.html">C#基础知识梳理系列(23)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/zhili/category/671303.html">C#进阶系列(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/zhili/category/482787.html">C#开发技巧篇(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/zhili/category/397082.html">C#网络编程系列(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/zhili/category/385032.html">CLR(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/zhili/category/421346.html">Index文章索引(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/zhili/category/390915.html">Javascript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/zhili/category/592143.html">Lua+Cocos2d-x 3.1.1脚本游戏开发系列(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/zhili/category/703399.html">No-Sql(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/zhili/category/610656.html">SQL Server</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/zhili/category/528161.html">Unity3D</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/zhili/category/399400.html">VSTO之旅系列(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/zhili/category/610655.html">WCF(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/zhili/category/710564.html">Windows Azure</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/zhili/category/624221.html">WPF(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/zhili/category/453245.html">编程之美学习笔记</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/zhili/category/392128.html">程序人生(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/zhili/category/461632.html">跟我学Asp.net开发(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/zhili/category/496417.html">跟我一起学C# 设计模式(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/zhili/category/543805.html">跟我一起学STL(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/zhili/category/825891.html">构建高性能应用系列</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/zhili/category/742761.html">好文摘录(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/zhili/category/610657.html">开源代码</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/zhili/category/475337.html">你必须知道的并行编程系列</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/zhili/category/475336.html">你必须知道的异步编程系列(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/zhili/category/764022.html">前端(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/zhili/category/528160.html">深入浅出话VC++(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/zhili/category/392120.html">算法与数据结构</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/zhili/category/825892.html">微服务&amp;SOA</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(159)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/zhili/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/zhili/archive/2016/04.html">2016年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/zhili/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/zhili/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/zhili/archive/2015/08.html">2015年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/zhili/archive/2015/07.html">2015年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/zhili/archive/2015/06.html">2015年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/zhili/archive/2015/05.html">2015年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/zhili/archive/2015/04.html">2015年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/zhili/archive/2015/03.html">2015年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/zhili/archive/2014/12.html">2014年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/zhili/archive/2014/11.html">2014年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/zhili/archive/2014/10.html">2014年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/zhili/archive/2014/09.html">2014年9月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/zhili/archive/2014/07.html">2014年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/zhili/archive/2014/02.html">2014年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/zhili/archive/2014/01.html">2014年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/zhili/archive/2013/12.html">2013年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/zhili/archive/2013/10.html">2013年10月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/zhili/archive/2013/09.html">2013年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/zhili/archive/2013/08.html">2013年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/zhili/archive/2013/07.html">2013年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/zhili/archive/2013/06.html">2013年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/zhili/archive/2013/05.html">2013年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/zhili/archive/2013/03.html">2013年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/zhili/archive/2013/02.html">2013年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/zhili/archive/2013/01.html">2013年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/zhili/archive/2012/12.html">2012年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/zhili/archive/2012/11.html">2012年11月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/zhili/archive/2012/10.html">2012年10月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/zhili/archive/2012/09.html">2012年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/zhili/archive/2012/08.html">2012年8月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/zhili/archive/2012/07.html">2012年7月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/zhili/archive/2012/06.html">2012年6月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+<h3 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(9)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/zhili/archives/2016/08.html" rel="nofollow">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/zhili/archives/2016/03.html" rel="nofollow">2016年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/zhili/archives/2015/08.html" rel="nofollow">2015年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/zhili/archives/2014/10.html" rel="nofollow">2014年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/zhili/archives/2014/09.html" rel="nofollow">2014年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/zhili/archives/2013/08.html" rel="nofollow">2013年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/zhili/archives/2013/05.html" rel="nofollow">2013年5月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links523046" class="catList sidebar-block">
+<h3 class="catListTitle">友情链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.cnblogs.com/fish-li/" rel="nofollow">Asp.net MVC</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://www.cnblogs.com/downmoon/category/294617.html">SQL Server Study 1</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://www.cnblogs.com/CareySon/" rel="nofollow">SQL Server Study 2</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://www.cnblogs.com/biwork/" rel="nofollow">SQL Server Study 3</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.vckbase.com/" rel="nofollow">VC 知识库</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.cnblogs.com/artech/" rel="nofollow">WCF </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://www.cnblogs.com/gnielee/" rel="nofollow">WPF </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_7" href="http://www.cnblogs.com/zhouyinhui/" rel="nofollow">WPF 2</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_8" href="http://www.cnblogs.com/hegezhou_hot/category/260429.html">WPF 3</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_9" href="http://www.cnblogs.com/peterzb/" rel="nofollow">个人开发历程知识库</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_10" href="http://www.cnblogs.com/yanyangtian/tag/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/" rel="nofollow">框架设计 </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_11" href="http://www.cnblogs.com/leslies2/category/281488.html">框架设计2</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	468677
+	</li>
+	<li class="liRank">
+		排名 -	278
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhili/p/SingletonPatterm.html#3867151">1. Re:C#设计模式(1)——单例模式</a></li>
+        <li class="recent_comment_body">@Learning hard 你好，经典理论总不会过时，13年的东西即使现在看依然没有太大变化。楼主写的很简单清晰，会持续学习后面的文章。有一个问题，为什么大家会讨论下面这个问题？因为要对外提供一个获......</li>
+        <li class="recent_comment_author">--下一秒天空</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhili/archive/2013/06/02/PictureView.html#3865459">2. Re:[C# 开发技巧系列]C#如何实现图片查看器</a></li>
+        <li class="recent_comment_body">赞一个</li>
+        <li class="recent_comment_author">--年轻的老魏</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhili/archive/2013/03/04/CustomExcelUI.html#3863841">3. Re:VSTO之旅系列(三)：自定义Excel UI</a></li>
+        <li class="recent_comment_body">写得非常好,迟来的点赞!</li>
+        <li class="recent_comment_author">--dingxianghuan</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhili/p/PrototypePattern.html#3853240">4. Re:C#设计模式(6)——原型模式（Prototype Pattern）</a></li>
+        <li class="recent_comment_body">@子牙05是这样的，new和clone从内存占用上来说没有改变都少，我做过测试，循环一百万次，结果都甚至是相同的。...</li>
+        <li class="recent_comment_author">--wall-ee</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhili/p/FlyweightPattern.html#3849043">5. Re:C#设计模式(12)——享元模式（Flyweight Pattern）</a></li>
+        <li class="recent_comment_body">牛逼 看不懂</li>
+        <li class="recent_comment_author">--李世林11</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhili/p/DesignPatternSummery.html">1. C#设计模式总结(51509)</a></li><li><a href="http://www.cnblogs.com/zhili/p/SingletonPatterm.html">2. C#设计模式(1)——单例模式(43643)</a></li><li><a href="http://www.cnblogs.com/zhili/p/SimpleFactory.html">3. C#设计模式(2)——简单工厂模式(28233)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/03/VSTO.html">4. VSTO之旅系列(一)：VSTO入门(27728)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/05/15/Csharp5asyncandawait.html">5. [你必须知道的异步编程]C# 5.0 新特性——Async和Await使异步编程更简单(27454)</a></li><li><a href="http://www.cnblogs.com/zhili/p/FactoryMethod.html">6. C#设计模式(3)——工厂方法模式(23913)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/08/25/TCP.html">7. [C# 网络编程系列]专题五：TCP编程(22220)</a></li><li><a href="http://www.cnblogs.com/zhili/p/AbstractFactory.html">8. C#设计模式(4)——抽象工厂模式(20672)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/11/04/WP8_SLAT.html">9. 如何知道自己的CPU支持SLAT(19352)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/23/QQ_P2P.html">10. [C# 网络编程系列]专题九：实现类似QQ的即时通信程序(17669)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/10/22/Delegate.html">11. [C# 基础知识系列]专题一：深入解析委托——C#中为什么要引入委托(17375)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/01/UDP_Multicast.html">12. [C# 网络编程系列]专题六：UDP编程(17354)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/14/P2P_PNPR.html">13. [C# 网络编程系列]专题八：P2P编程(17200)</a></li><li><a href="http://www.cnblogs.com/zhili/p/BuilderPattern.html">14. C#设计模式(5)——建造者模式（Builder Pattern）(15963)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/01/08/CsharpIndex.html">15. C# 基础知识系列文章索引(13905)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhili/p/CsharpNote.html">1. 《Learninghard C#学习笔记》回馈网友，免费送书5本(179)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/05/15/Csharp5asyncandawait.html">2. [你必须知道的异步编程]C# 5.0 新特性——Async和Await使异步编程更简单(97)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/14/P2P_PNPR.html">3. [C# 网络编程系列]专题八：P2P编程(87)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/23/QQ_P2P.html">4. [C# 网络编程系列]专题九：实现类似QQ的即时通信程序(86)</a></li><li><a href="http://www.cnblogs.com/zhili/p/OnlineStorewithDDD.html">5. [.NET领域驱动设计实战系列]专题二：结合领域驱动设计的面向服务架构来搭建网上书店(82)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhili/p/DesignPatternSummery.html">1. C#设计模式总结(99)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/10/22/Delegate.html">2. [C# 基础知识系列]专题一：深入解析委托——C#中为什么要引入委托(92)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/05/15/Csharp5asyncandawait.html">3. [你必须知道的异步编程]C# 5.0 新特性——Async和Await使异步编程更简单(88)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/14/P2P_PNPR.html">4. [C# 网络编程系列]专题八：P2P编程(82)</a></li><li><a href="http://www.cnblogs.com/zhili/p/SingletonPatterm.html">5. C#设计模式(1)——单例模式(80)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/23/QQ_P2P.html">6. [C# 网络编程系列]专题九：实现类似QQ的即时通信程序(75)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/01/08/CsharpIndex.html">7. C# 基础知识系列文章索引(75)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/08/11/NetWorkProgramming.html">8. [C#网络编程系列]专题一：网络协议简介(73)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/08/18/HTTP.html">9. [C#]网络编程系列专题二：HTTP协议详解(56)</a></li><li><a href="http://www.cnblogs.com/zhili/p/MyMVP.html">10. 我的微软最有价值专家(Microsoft MVP)之路(54)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/09/24/MailSend_POP3_SMTP.html">11. [C# 网络编程系列]专题十：实现简单的邮件收发器(52)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/01/07/DynamicType.html">12. [C#基础知识系列]专题十七：深入理解动态类型(49)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2013/05/10/APM.html">13. [你必须知道的异步编程]——异步编程模型(APM)(44)</a></li><li><a href="http://www.cnblogs.com/zhili/archive/2012/10/25/DeepDelegate.html">14. [C# 基础知识系列]专题二：委托的本质论(43)</a></li><li><a href="http://www.cnblogs.com/zhili/p/OnlineStorewithDDD.html">15. [.NET领域驱动设计实战系列]专题二：结合领域驱动设计的面向服务架构来搭建网上书店(42)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 Learning hard
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+<link type="text/css" rel="stylesheet" href="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/myRewards.css"><div id="myRewards" class="myRewards"><a class="btn-myRewards" href="javascript:;"><img class="png" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/tab_1.png"></a><div class="myRewards-main"><h1 class="myR-h">喜欢请打赏</h1><div class="myRewardsbox"><div class="myRewards-list"><ul class="not-full"><li class="myR-on"><a href="javascript:;">支付宝<img class="png" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/alipay.png" alt="支付宝"></a></li><li class=""><a href="javascript:;">微信<img class="png" src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/weixin.png" alt="微信"></a></li></ul></div><div class="myRewards-detail"><div class="myRewards-ubox"><p class="myRewards-code-tit">扫描二维码打赏</p><div class="myRewards-code"><img src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/o_alipay_lizhi.jpg"></div><p class="myRewards-account">支付宝打赏</p></div></div></div><p class="myR-bot"><a href="https://github.com/greedying/tctip" target="_blank">了解更多</a></p></div></div><script src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/index"></script><iframe src="./[C# 基础知识系列] 专题十五：全面解析扩展方法_files/saved_resource.html" name="1513404214734" width="100%" height="100%" allowtransparency="yes" frameborder="no" scrolling="no" style="display: none;"></iframe></body></html>

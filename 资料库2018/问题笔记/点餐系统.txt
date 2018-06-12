@@ -1,0 +1,91 @@
+数据库SQLite，不需要安装，拷过来，直接打开SQLitestudio.exe 然后把文件拖进去，右键connect to database就行。
+文件-其它项目类型-vs解决方案-空白解决方案
+搭建分层框架，
+CaterUI(Winform实现),CaterBll(类库.NETFrameWork 实现，别选成类库.NET Standard了),CaterDal,CaterModel,CaterCommon 
+然后添加各层引用,在Dal层引用Sqlite,注意 这里还得需要把CaterDal点属性,生成,平台目标写成x86,因为下载的SQLite程序集是32位版本的,所以如果生成64位程序会出错.
+先封装SQLitehelper,封装的时候注意几点
+1.封装工具类方法和类都是静态的
+2.要引用System.Configuration才能使用ConfigurationManager
+3.SqlConnection需要使用using括起来,其它的可用可不用
+4.记得一定要写conn.open连接,再进行操作,记不住的话,那就每次都写,不行再删了.
+5.ExcuteScalar方法要写成泛型生明的时候要加上 T ExcuteScalar<T>,返回的时候要强转一下return (T)cmd.ExecuteScalar();
+6.ExcuteReader返回的是SqlDataReader,然后这个方法因为要返回指针,所以不能断开连接,要在返回的时候断开,所以要这样返回,
+ return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+创建数据库链接字符串，先添加引用System.Configuration,然后在App.config里面添加链接字符串
+  <connectionstrings>
+    <add name="Cater" connectionString="data Source=C:\Users\Hank\Desktop\ItcastCater.db;Version=3;"/>
+  </connectionstrings>
+因为添加了引用，所以就可以把字符串拿来用。
+
+想让窗体加载的时候直接load列表,直接双击窗体的标签栏,就会生成事件.
+
+想把0在list里面显示成"经理" 就用cellformating这个属性,在加上switch case或者二元表达式
+
+在写Dal层的时候如果我们选择拼接带参数的SQL字符串,需要想好用什么方法存放参数,如下例
+
+        public List<ManagerInfo> GetList()
+        {
+            string sql = "select * from ManagerInfo";
+            DataTable dt = SqliteHelper.GetDataTable(sql);
+            List<ManagerInfo> list = new List<ManagerInfo>();
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new ManagerInfo()
+                {
+                    Mid = Convert.ToInt32(row["Mid"]),
+                    MName = (row["MName"]).ToString(),
+                    MPwd = (row["MPwd"]).ToString(),
+                    MType = Convert.ToInt32(row["MType"]),
+                });
+            }
+            return list;
+        }
+
+        public int Insert(ManagerInfo mi)
+        {
+            string sql = "insert into ManagerInfo(mname,mpwd,mtype) values(@name,@pwd,@type)";
+            SQLiteParameter[] ps =
+            {
+                new SQLiteParameter("@name", mi.MName),
+                new SQLiteParameter("@pwd",mi.MPwd),
+                new SQLiteParameter("@type", mi.MType)
+            };
+            return SqliteHelper.ExecuteNonQuery(sql,ps);
+        }
+
+        public int Update(ManagerInfo mi)
+        {
+            List<SQLiteParameter> listPs = new List<SQLiteParameter>();
+            string sql = "update ManagerInfo set mname=@name";
+            listPs.Add(new SQLiteParameter("@name", mi.MName));
+            if (!mi.MPwd.Equals("这是原来的密码"))
+            {
+                sql += ",mpwd=@pwd";
+                listPs.Add(new SQLiteParameter("pwd", Md5Helper.EncryptString(mi.MPwd)));
+            }
+            sql += ",mtype=@type where mid = @id";
+            listPs.Add(new SQLiteParameter("@type", mi.MType));
+            listPs.Add(new SQLiteParameter("@id", mi.Mid));
+
+            return SqliteHelper.ExecuteNonQuery(sql, listPs.ToArray());
+        }
+
+        public int Delete(int id)
+        {
+            string sql = "delete from ManagerInfo where mid=@id";
+            SQLiteParameter p = new SQLiteParameter("@id", id);
+            return SqliteHelper.ExecuteNonQuery(sql, p);
+        }
+getlist方法我们不用参数化,传递给bll层的时候我们需要把datatable装进一个集合里(因为集合长度可变)
+insert方法我们使用的是参数化,我们用的是数组传递值,然后使用的集合初始化器,给每个参数赋值.
+update方法我们用的是拼接字符串,因为需要判断密码变了没有,所以我们手动去add每一个值,并且用集合传递.
+delete因为就一个值,所以直接用对象传递.
+
+登陆窗体主窗体,登陆窗体验证完用户以后,不能关闭,因为主窗体是根据登陆窗体打开的,只能把登陆窗体隐藏掉,但是在推出程序的时候就需要把整个程序关掉application.exit,因为登陆窗体被隐藏了,没机会关了.
+
+winform做权限控制,只要在login的时候查一下登陆权限,然后把权限值用out传给tag里面,然后在住窗体load时候check如果tag == 0, menuManagerinfo.visible = false,就不会出现了
+
+dgvList.AutoGenerateColumns = false;不让他自动产生列
+
+如果用ShowDialog()显示表单,而且又想传递值得话,可以把值存在变量里,然后等closing时间触发,然后再传值.

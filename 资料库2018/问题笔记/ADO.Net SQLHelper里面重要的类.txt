@@ -1,0 +1,229 @@
+	->SqlConnection
+		->连接池：可以通过连接字符串配置连接池。
+		->对象池技术：HttpApplication :Asp.Net
+		->生产者     消费者。   线程。
+		->应用程序跟数据连接非常耗时，而且连接使用非常频繁，使用连接池可以提高连接对象重用效率
+	->SqlCommand
+		->ExcuteNonQuery() 执行非查询类的sql脚本，返回影响的行数
+		->ExcuteScalar() 执行sql，返回第一行第一列的值
+		->ExcuteReader() 返回SqlDataReader，数据还是在表里，连接还是一直打开的，只返回一个指针。
+			->Reader默认指向 数据行
+			->Read()方法执行一次，指针向下走一次。
+	->DataSet 内存数据集，包括多个DataTable
+	->DataTable 内存数据表，包括多个DataColumn，再分多个DataRow。
+        ->SqlDataAdapter数据访问适配器。建立好连接以后，一次性把所有数据加载到内存中，然后连接就关闭了。
+		->电源适配器：把220v  转成 12v笔记本的电压电源。
+		->适配器模式：
+		->适配了数据库和应用程序之间的隔阂。
+		->SqlServer表   →适配器（SqlDataAdapter)  →  DataSet、DataTable
+		->案例 ：
+			->Fill()填充方法
+			->填充表格
+			->填充DataSet
+
+执行一条语句的话，就往DataTable中填充，不要去用DataSet，DataSet是用在多条SQL的场合的，填充时可以指定往DataSet中那个表里填充数据，也可以先创建好并填充了数据的DataTable后，再加入到DataSet，推荐使用后者。
+实际使用时往往只用到DataTable，几乎不会去考虑使用DataSet，只有在打印报表制作的时候，为了传递一个带外键关系的多DataTable组合，这是才会用到DataSet
+
+如果执行不同的查询语句，那么在dateset   中的数据是不一样的，是最新的数据，
+DataSet：数据集。一般包含多个DataTable，用的时候，dataset["表名"]得到DataTable   
+DataTable：数据表。   
+SqlDataAdapter   da=new   SqlDataAdapter(cmd);   
+DataTable   dt=new   DataTable();   
+da.Fill(dt);   
+DataSet：
+SqlDataAdapter   da=new   SqlDataAdapter(cmd);   
+DataSet   ds=new   DataSet();   
+da.Fill(ds,"table1");   
+
+
+C#开发学习——ADO.NET几个重要对象
+ADO.NET包括多个对象模型，有Connection/Command/DataReader/DataAdapter/DataSet/DataTable/DataView等。
+
+命名空间System.Data.SqlClient      用于SQL SERVER数据库
+
+命名空间System.Data.Odbc    
+
+命名空间System.Data.OracleClient  用于Oracle数据库
+
+Connection对象
+
+用于连接到数据库和管理对数据库的事务。
+
+连接的串一般是：
+
+connectionString="Data Source=;
+Initial Catalog=;
+Integrated Security=false;
+User ID=;
+password="
+常用方法：
+open（）；
+close（）；
+dispose();//释放由Connection使用的所有资源。
+ 
+Command对象
+ 
+用来对数据源执行CRUD等操作，也可以是存储过程。
+　　
+常用方法：
+executeNonQuery();执行非select的命令，返回所影响的行数
+executeScalar();执行select，返回第一行第一列的值。count/sum等集函数
+executeReader();执行select,返回dataReader对象。
+ 
+DataReader对象
+ 使用时始终用sqlconnection在线操作数据库，每次在内存中加载一条数据，开销很小
+
+常用方法：
+
+read();
+
+NextResult();
+
+close();不使用时关闭它
+
+ 
+
+DataAdapter对象在DataSet和实际数据源之间的桥梁，专门为DataSet所服务。
+
+两种工作步骤：
+
+1:通过Command对象执行sql语句从数据源中检索数据，将检索的数据填充到DataSet表中
+
+2:把用户对dataset对象做出的更改填写到数据源中
+
+ 
+
+常用方法：
+
+fill（）；//从数据源中提取数据以填充数据集
+
+update();更新数据源
+
+常用属性：
+
+SelectCommand();
+
+InsertCommand();
+
+UpdateCommand();
+
+DeletCommand();
+
+ 
+
+DataSet对象
+
+创建在内存中的集合对象，使用必须设置主键
+
+DataTable对象用于表示DataSet中的表
+
+DataView对象
+
+用于排序/筛选/搜索/编辑和导航
+
+
+
+ 
+第一种：
+String connectionString="";
+SqlConnection con = new SqlConnection(connectionString);
+con.open();
+SqlCommand cmd = new SqlCommand("select/等CRUD语句....";con);
+SqlDataReader reader = cmd.ExecuteReader();
+ 
+while(reader.Reader()){
+Response.Write(reader["列名"]);
+.....
+ 
+}
+reader.close();
+con.close();
+ 
+展示可以借用GirdView实现：
+GirdView.DataSource=reader;
+GirdView.DataBind();
+ 
+第二种：
+String connectionString="";
+SqlConnection con = new SqlConnection(connectionString);
+con.open();
+SqlDataAdapter da = new SqlDataAdapter("CRUD语句"，con);
+DataSet ds = new DataSet();
+da.Fill(ds);
+ 
+或
+String connectionString="";
+SqlConnection con = new SqlConnection(connectionString);
+con.open();
+SqlCommand cmd = new SqlCommand("select/等CRUD语句....";con);
+SqlDataAdapter da = new SqlDataAdapter(cmd);
+DataSet ds = new DataSet();
+da.Fill(ds);
+ 
+或
+String connectionString="";
+SqlConnection con = new SqlConnection(connectionString);
+con.open();
+SqlDataAdapter da = new SqlDataAdapter();
+da.SelectCommand = new SqlCommand("select/等CRUD语句....";con);
+DataSet ds = new DataSet();
+da.Fill(ds);
+ 
+GirdView.DataSource = ds;
+GirdView.DataBind();
+
+
+
+
+
+
+            string connStr = ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string strSql = "select UserId, UserName, UserAge, DelFlag, CreateDate, UserPwd, LastErrorDateTime, ErrorTimes from userinfo ";
+
+                //创建一个 适配器类。
+                using (SqlDataAdapter adapter = new SqlDataAdapter(strSql,conn))
+                {
+                    //adapter：  一个连接， cmd.CommandText(Sql)
+                    //fill:填充。
+                    DataTable dt =new DataTable();
+                     
+                    //把数据库中的数据填充到内存表Dt中。
+                    //填充之前不需要打开数据库连接，Adapter会自动打开连接，并执行sql。
+                    //Fill方法内部：
+                        //-------SqlDataAdapter(strSql,conn)初始化后：
+                        //1、先判断SqlConnection是否初始化，如果没有打开连接，那么打开连接。
+                        //2、初始化一个Select：sql  SqlCommand对象。
+                        //----------
+                        //3、通过cmd对象执行以下，然后返回一个SqlDataReader对象。
+                        //4、读取数据库中的数据，然后填充到DataTable上去
+                    adapter.Fill(dt);
+
+                    //把内存表显示到DataGridView上去。
+                    //this.dgvUserInfo.DataSource = dt;
+                    //dt.Rows[0][1]
+                    //dt.Rows[0][1];
+                    List<UserInfo> userList =new List<UserInfo>();
+                    foreach (DataRow dataRow in dt.Rows)
+                    {
+                        Console.WriteLine(dataRow["UserId"] +"   "+dataRow[1]);
+                        //把每一行数据封装成 UesrInfo对象。
+                        userList.Add(new UserInfo()
+                        {
+                            Id=int.Parse(dataRow["UserId"].ToString()),
+                            UserName = dataRow["UserName"].ToString(),
+                            UserAge =int.Parse(dataRow["UserAge"].ToString())
+                        });
+                    }
+
+                    //把dt的数据转换成List<UserInfo> 
+                    this.dgvUserInfo.DataSource = userList;
+                }
+            }
+        }
+
+上面是传至20150428，主要思想是体会直接显示内存表和显示封装成UserInfo对象的映射的区别。
+
+下面是CSDN的帖子，解释了为什么不用databind（）
+webform只接触了2个项目，大部分都是winform。感觉来说大体语法，功能等都是一样的，sqlHelper更是可以直接拿来用。只不过细节上有点不一样。例如winform 中的datagridview与webform中有些属性，事件上的小不同，winform的datagrdview绑定时也不用datagridview.DataBind()，直接.datasource = 就行了。界面间传值winform我一直用delegate委托（不知道大家有啥好方法），没有webform那么方便。多添水吧，俺总有机会在水里找都鱼，呵呵。。。。

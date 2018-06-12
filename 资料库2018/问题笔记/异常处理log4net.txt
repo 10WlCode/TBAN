@@ -1,0 +1,152 @@
+1：捕获异常
+在Asp.net MVC中提供了一个全局的异常处理的过滤器：HandleErrorAttribute，可以通过该过滤器捕获异常信息。
+
+需要在Global文件中调用的RegisterGlobalFilters方法中完成自己定义异常处理过滤的注册。
+
+在App_Start文件夹下面吧原来的HanleErrorAttribute注掉，换成自己的MyexceptionAttribute
+public class FilterConfig
+    {
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+           // filters.Add(new HandleErrorAttribute());
+            filters.Add(new MyExceptionAttribute());
+        }
+    }
+在Model下面创建类MyExceptionAttribute
+	捕获异常信息。
+	 public class MyExceptionAttribute : HandleErrorAttribute
+    {
+        /// <summary>
+        /// 可以捕获异常数据
+        /// </summary>
+        /// <param name="filterContext"></param>
+        public override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+            Exception ex = filterContext.Exception;
+            //写到日志中.多个线程同时操作一个文件，造成文件的并发。所以不能直接写到日志当中
+        }
+    }
+思考：怎样解决？加线程锁？	
+	
+2：将异常信息写到日志。修改MyExceptionAttribute类
+    public class MyExceptionAttribute : HandleErrorAttribute
+    {
+        public static Queue<Exception> ExecptionQueue = new Queue<Exception>();//改成Static这样不用每次过来就New一个
+        /// <summary>
+        /// 可以捕获异常数据
+        /// </summary>
+        /// <param name="filterContext"></param>
+        public override void OnException(ExceptionContext filterContext)
+        {
+          
+            base.OnException(filterContext);
+            Exception ex = filterContext.Exception;
+            //写到队列
+            ExecptionQueue.Enqueue(ex);
+            //跳转到错误页面.
+            filterContext.HttpContext.Response.Redirect("/Error.html");
+        }
+    }
+		
+   注意在Global文件中的Application_Start方法中开启一个线程，把如下黏贴到Global里
+		
+            //开启一个线程，扫描异常信息队列。
+            string filePath = Server.MapPath("/Log/");//把文件写在log文件夹里，声明一个路径
+            ThreadPool.QueueUserWorkItem((a) => {//ThreadPool.QueueUserWorkItem(WaitCallBack)是用来把方法放在WaitCallBack队列里面，等待执行。这里重载掉了WaitCallBack，用while(true)让这个循环一直跑，然后一直看队列里面有没有东西，有的话就写在日志文件中。
+                while (true)
+                {
+                    //判断一下队列中是否有数据
+                    if (MyExceptionAttribute.ExecptionQueue.Count() > 0)
+                    {
+                        Exception ex=MyExceptionAttribute.ExecptionQueue.Dequeue();
+                        if (ex != null)
+                        {
+                            //将异常信息写到日志文件中。
+                            string fileName = DateTime.Now.ToString("yyyy-MM-dd");
+                            File.AppendAllText(filePath+fileName+".txt",ex.ToString(),System.Text.Encoding.UTF8);
+                            //ILog logger = LogManager.GetLogger("errorMsg");
+                            //logger.Error(ex.ToString());
+                        }
+                        else
+                        {
+                            //如果队列中没有数据，休息
+                            Thread.Sleep(3000);
+                        }
+                    }
+                    else
+                    {
+                        //如果队列中没有数据，休息
+                        Thread.Sleep(3000);
+                    }
+                }
+            
+            
+            },filePath);
+
+
+修改文件，配置log4net
+先把上面被注掉的两行代码logger 写上然后把自己写的File.appendalltext那两行注了
+添加log4net引用
+在<configSections>标签下面
+    <!--Log4Net配置-->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
+在<configuration>标签下面
+
+  <!--Log4NetDemo配置-->
+  <!--<log4net>
+    --><!-- Define some output appenders --><!--
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="test.txt"/>
+      <appendToFile value="true"/>
+      <maxSizeRollBackups value="10"/>
+      <maximumFileSize value="1024KB"/>
+      <rollingStyle value="Size"/>
+      <staticLogFileName value="true"/>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%thread] %-5level %logger - %message%newline"/>
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG"/>
+      <appender-ref ref="RollingLogFileAppender"/>
+    </root>
+  </log4net>-->
+
+  <!--Log4Net公司项目配置-->
+  <log4net>
+    <!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL -->
+    <!-- Set root logger level to ERROR and its appenders -->
+    <root>
+      <level value="ERROR"/>
+      <appender-ref ref="SysAppender"/>
+    </root>
+
+    <!-- Print only messages of level DEBUG or above in the packages -->
+    <logger name="WebLogger">
+      <level value="ERROR"/>
+    </logger>
+    <appender name="SysAppender" type="log4net.Appender.RollingFileAppender,log4net" >
+      <param name="File" value="App_Data/" />
+      <param name="AppendToFile" value="true" />
+      <param name="RollingStyle" value="Date" />
+      <param name="DatePattern" value="&quot;Logs_&quot;yyyyMMdd&quot;.txt&quot;" />
+      <param name="StaticLogFileName" value="false" />
+      <layout type="log4net.Layout.PatternLayout,log4net">
+        <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+        <param name="Header" value="&#13;&#10;----------------------header--------------------------&#13;&#10;" />
+        <param name="Footer" value="&#13;&#10;----------------------footer--------------------------&#13;&#10;" />
+      </layout>
+    </appender>
+    <appender name="consoleApp" type="log4net.Appender.ConsoleAppender,log4net">
+      <layout type="log4net.Layout.PatternLayout,log4net">
+        <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+      </layout>
+    </appender>
+  </log4net>
+  <!--Log4Net配置结束-->
+
+在程序的最开始也就是Global文件里面的Application_Start方法第一行
+log4net.Config.XmlConfigurator.Configure();//读取了配置文件中关于Log4Net配置信息.
+
+想测试log4net配置好了没有，目前的理解是，在MVC项目里面新建一个test控制器，然后随便写点错误的东西。然后部署到IIS上，用自己的浏览器，不要用VS上的Google浏览器访问，就能看到日志了。

@@ -1,0 +1,441 @@
+	一：Asp.Net MVC请求处理原理（Asp.Net mvc 是怎样进入请求管道的。）
+请求-->IIS--->ISAPIRuntime-->HttpWorkRequest-->HttpRuntime-->HttpContext-->找到Global文件，并且编译该文件-->确保Global文件中Application_Start被调用-->创建HttpApplication(池 栈)如果池中没有根据Global文件编译的类型通过反射的形式创建出HttpApplication-->获取所有的在配置文件中的HttpModues,这时System.Web.Routing下的UrlRoutingModule也获取了，执行每个Modules下的Init方法，那么UrlRoutingModule中的Init方法完成了请求管道第7个事件的注册。--->进入管道-->第7个事件触发了，执行相应的方法.--->完成了MVCHanlder的创建。---》请求管道的11与12事件之间执行MvcHandler中的ProcessRequest方法。那么该方法中去找控制器，找方法，执行方法中的代码，然后找视图最后渲染视图。
+
+
+
+二：框架搭建
+        
+	基本框架
+        先添加空白解决方案 
+	在解决方案中添加类库项目（右键新建项目-选择类库.NET Framework 因为我们不需要跨平台，只需要DLL文件就行 ）：
+	Itcast.OA.Common:基础公共类库
+	Itcast.OA.Model：基础业务模型
+        Itcast.OA.DALFactory；工厂类用来创建对象
+	Itcast.OA.DAL：数据库访问
+	Itcast.OA.IDAL：数据库访问接口
+	Itcast.OA.BLL：业务层：业务处理
+	Itcast.OA.IBLL：业务层接口：约束业务接口或者是服务接口
+	Itcast.OA.Services：服务层：此层使用WebService或者WCF将业务封装对外暴露成服务，也就是SOA化。
+	Itcast.OA.WorkFlow：工作流层，放所有的工作流相关东西
+	在解决方案中添加AspNet MVC4项目（在web下面选择ASP.NET web应用程序）：Itcast.OA.Port
+
+        创建完成以后把MVC设成启动项目，生成一下。
+	
+	1:先创建Model（右键创建ADO.NET实体模型。设置生成ADO.Net实体模型的时候就把密码写在里面这样Copy到MVC层的时候就会比较方便。
+）.
+	2:创建数据访问接口层。IDAL里添加接口IUserInfoDAL
+	在该接口中定义了常见的方法查询分页CURD以及分页方法。
+	public interface IUserInfoDal
+    {
+      IQueryable<UserInfo> LoadEntities(System.Linq.Expressions.Expression<Func<UserInfo, bool>> whereLambda);
+
+       IQueryable<UserInfo> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<UserInfo, bool>> whereLambda, System.Linq.Expressions.Expression<Func<UserInfo, s>> orderbyLambda, bool isAsc);
+       //这里用Out 是因为需要返回一个总得记录数，用方法的泛型<S>是因为不知道用什么进行排序，如果是ID就是int，如果是DateTime就是DateTime.
+       bool DeleteEntity(UserInfo entity);
+       //这里传过来一个UserInfo不是ID因为我们要把UserInfo传到EF上下文里面打上一个删除标记。
+       bool EditEntity(UserInfo entity);
+       UserInfo AddEntity(UserInfo entity);
+      
+    }
+	3:每个接口中都需要CURD以及分页方法的定义，而且这些方法的定义基本上是一致的，所以封装。封装到IBaseDal
+	 public interface IBaseDal<T>where T:class,new()//注意该泛型的使用 <T>where T:class,new()这里用Where是给T加一个约束
+    {
+       IQueryable<T> LoadEntities(System.Linq.Expressions.Expression<Func<T, bool>> whereLambda);
+
+       IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<T, bool>> whereLambda, System.Linq.Expressions.Expression<Func<T, s>> orderbyLambda, bool isAsc);
+       bool DeleteEntity(T entity);
+       bool EditEntity(T entity);
+       T AddEntity(T entity);
+    }
+	
+	4:让IUserInfoDal继承IBaseDal
+	 public interface IUserInfoDal:IBaseDal<UserInfo>
+    {
+     //定义自己特有的方法。
+      
+    }
+	5:让具体的数据操作类UserInfoDal去实现IUserInfoDal接口中的方法。
+	 public class UserInfoDal :IUserInfoDal
+    {
+       OAEntities Db = new OAEntities();//先找到这个上下文类，new一下，之后我们再把它封装成线程内唯一
+        /// <summary>
+        /// 查询过滤
+        /// </summary>
+        /// <param name="whereLambda"></param>
+        /// <returns></returns>
+        public IQueryable<UserInfo> LoadEntities(System.Linq.Expressions.Expression<Func<UserInfo, bool>> whereLambda)
+        {
+            return Db.UserInfo.Where<UserInfo>(whereLambda);//注意这里如果没有引用EF，或者引用EF版本错误的话就找不到Where，EF版本引用错了很麻烦。
+        }
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="whereLambda"></param>
+        /// <param name="orderbyLambda"></param>
+        /// <param name="isAsc"></param>
+        /// <returns></returns>
+        public IQueryable<UserInfo> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<UserInfo, bool>> whereLambda, System.Linq.Expressions.Expression<Func<UserInfo, s>> orderbyLambda, bool isAsc)
+        {
+            //思路：把数据取到Temp里，然后查询数据，判断是升序（orderby）还是降序(orderbyDescending)，然后用.Skip<>().Take<>()取出具体数据。
+            var temp = Db.UserInfo.Where<UserInfo>(whereLambda);
+            totalCount = temp.Count();
+            if (isAsc)//升序
+            {
+                temp = temp.OrderBy<UserInfo, s>(orderbyLambda).Skip<UserInfo>((pageIndex - 1) * pageSize).Take<UserInfo>(pageSize);
+            }
+            else
+            {
+                temp = temp.OrderByDescending<UserInfo, s>(orderbyLambda).Skip<UserInfo>((pageIndex - 1) * pageSize).Take<UserInfo>(pageSize);
+            }
+            return temp;
+
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool DeleteEntity(UserInfo entity)
+        {
+            Db.Entry<UserInfo>(entity).State = System.Data.EntityState.Deleted;
+            return Db.SaveChanges() > 0;//返回的是受影响的行数，>0就是True.
+        
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool EditEntity(UserInfo entity)
+        {
+            Db.Entry<UserInfo>(entity).State = System.Data.EntityState.Modified;
+            return Db.SaveChanges() > 0;
+        }
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public UserInfo AddEntity(UserInfo entity)
+        {
+
+            Db。UserInfo.Add(entity);
+            Db.SaveChanges();
+            return entity;
+
+        }
+    }
+	
+	6:由于每个数据操作类都要实现自己的接口（每一个接口都继承了IBaseDal）,所以每个数据操作类中都要重复实现CURD以及分页的方法，所以把具体的实现封装到了BaseDal中。
+	public class BaseDal<T>where T:class,new()
+    {
+        OAEntities Db = new OAEntities();
+        /// <summary>
+        /// 查询过滤
+        /// </summary>
+        /// <param name="whereLambda"></param>
+        /// <returns></returns>
+        public IQueryable<T> LoadEntities(System.Linq.Expressions.Expression<Func<T, bool>> whereLambda)
+        {
+            return Db.Set <T>().Where<T>(whereLambda);//
+        }
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <typeparam name="s"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="whereLambda"></param>
+        /// <param name="orderbyLambda"></param>
+        /// <param name="isAsc"></param>
+        /// <returns></returns>
+        public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, System.Linq.Expressions.Expression<Func<T, bool>> whereLambda, System.Linq.Expressions.Expression<Func<T, s>> orderbyLambda, bool isAsc)
+        {
+            var temp = Db.Set<T>().Where<T>(whereLambda);
+            totalCount = temp.Count();
+            if (isAsc)//升序
+            {
+                temp = temp.OrderBy<T, s>(orderbyLambda).Skip<T>((pageIndex - 1) * pageSize).Take<T>(pageSize);
+            }
+            else
+            {
+                temp = temp.OrderByDescending<T, s>(orderbyLambda).Skip<T>((pageIndex - 1) * pageSize).Take<T>(pageSize);
+            }
+            return temp;
+
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool DeleteEntity(T entity)
+        {
+            Db.Entry<T>(entity).State = System.Data.EntityState.Deleted;
+            return Db.SaveChanges() > 0;
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public bool EditEntity(T entity)
+        {
+            Db.Entry<T>(entity).State = System.Data.EntityState.Modified;
+            return Db.SaveChanges() > 0;
+        }
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public T AddEntity(T entity)
+        {
+
+            Db.Set <T>().Add(entity);
+            Db.SaveChanges();
+            return entity;
+
+        }
+		
+  7:让UserInfoDal继承BaseDal.
+ public class UserInfoDal : BaseDal<UserInfo>,IUserInfoDal //先继承后实现
+    {
+      
+    }  
+	
+8:创建DBSession(数据会话层：就是一个工厂类，负责完成所有数据操作类实例的创建，然后业务层通过数据会话层来获取要操作数据类的实例。所以数据会话层将业务层与数据层解耦。
+    /// 在数据会话层中提供一个方法：完成所有数据的保存。)
+	
+	 private IUserInfoDal _UserInfoDal;
+       public IUserInfoDal UserInfoDal
+       {
+           get {
+               if (_UserInfoDal == null)
+               {
+                   _UserInfoDal = new UserInfoDal();
+               }
+               return _UserInfoDal;
+           }
+           set
+           {
+               _UserInfoDal = value;
+           }
+       }
+	   
+9: /// <summary>
+       /// 一个业务中经常涉及到对多张操作，我们希望链接一次数据库，完成对张表数据的操作。提高性能。 工作单元模式。
+       /// </summary>
+       /// <returns></returns>
+       public bool SaveChanges()
+       {
+           return Db.SaveChanges() > 0;
+       }
+
+
+10:将数据层中的所有的保存数据的SaveChanges注释掉。
+
+11：在数据层中用到了EF的实例，数据会话层中也用到了，所以在一个请求中只能创建一个EF实例（线程内唯一对象）
+为了避免DALFactory和DAL循环引用，我们把DBContextFactory放在DAL层	   
+
+	/// <summary>
+    /// 负责创建EF数据操作上下文实例，必须保证线程内唯一.
+    /// </summary>
+   public class DBContextFactory
+    {
+       public static DbContext CreateDbContext()
+       {
+           DbContext dbContext = (DbContext)CallContext.GetData("dbContext");
+           if (dbContext == null)
+           {
+               dbContext = new OAEntities();
+               CallContext.SetData("dbContext", dbContext);
+           }
+           return dbContext;
+       }
+    }
+	
+12：在DBSession和BaseDal中调用上面的方法（CreateDbContext）完成EF实例的创建。
+DBSession获取EF实例
+ public DbContext Db
+       {
+           get
+           {
+               return DBContextFactory.CreateDbContext(); 
+           }
+       }
+	   
+	   BaseDal中获取EF的实例
+	   
+	     DbContext Db = DAL.DBContextFactory.CreateDbContext();
+	
+	
+	13：抽象抽象工厂封装数据操作类实例创建，然后DBSession调用抽象工厂。因为DBSession 现在是直接New 出来的UserInfo 这样别的表就很麻烦。
+        先修改WebConfig文件，在MVC里找到appsetting,
+        <!--配置程序集和命名空间的名称-->
+        <add key="AssemblyPath" Value="CZBK.ItCastOA.DAL"> //TODO:为什么要配置？？
+	<add key="NameSpace" Value="CZBK.ItCastOA.DAL">
+    在DALFactory上面添加引用System.configuration
+    /// <summary>
+    /// 通过反射的形式创建类的实例 TODO:看下通过反射创建实例
+    /// </summary>
+   public class AbstractFactory
+    {
+       private static readonly string AssemblyPath = ConfigurationManager.AppSettings["AssemblyPath"];
+       private static readonly string NameSpace = ConfigurationManager.AppSettings["NameSpace"];
+       public static IUserInfoDal CreateUserInfoDal()
+       {
+           string fullClassName = NameSpace + ".UserInfoDal";
+          return CreateInstance(fullClassName) as IUserInfoDal;
+       }
+       private static object CreateInstance(string className)
+       {
+          var assembly= Assembly.Load(AssemblyPath);
+          return assembly.CreateInstance(className);
+       }
+    }
+	
+	然后修改DBSession
+	
+	 private IUserInfoDal _UserInfoDal;
+       public IUserInfoDal UserInfoDal
+       {
+           get {
+               if (_UserInfoDal == null)
+               {
+                   //_UserInfoDal = new UserInfoDal();
+                   _UserInfoDal = AbstractFactory.CreateUserInfoDal();//通过抽象工厂封装了类的实例的创建
+               }
+               return _UserInfoDal;
+           }
+           set
+           {
+               _UserInfoDal = value;
+           }
+       }
+	
+	14:定义DBSession的接口
+	 /// <summary>
+    /// 业务层调用的是数据会话层的接口。
+    /// </summary>
+   public interface IDBSession
+    {
+       DbContext Db { get; }
+       IUserInfoDal UserInfoDal { get; set; }//TODO:什么时候加（）什么时候加{}
+       bool SaveChanges();
+    }
+	
+	然后让DBSession实现该接口。
+	
+	15：定义具体的业务基类
+        //这里用到多态
+        //在DAL层创建BaseService和UserInfoService
+	
+	//在业务基类中完成DBSession的调用，然后将业务层中公共的方法定义在基类中，但是这些方法不知道通过DBSession来获取哪个数据操作类的实例。所以将该业务基类定义成抽象类，加上一个抽象方法，加上一个IBaseDal属性，并且让基类的构造方法调用抽象方法目的是在表现层new具体的业务子类，父类的构造方法被调用，这些执行抽象方法，但是执行的的是子类中具体的实现。业务子类知道通过DBSession获取哪个数据操作类的实例。
+	public abstract class BaseService<T> where T:class,new() //把类改成一个抽象类
+    {
+       public IDBSession CurrentDBSession
+       {
+           get
+           {
+               return new DBSession();//暂时
+           }
+       }
+       public IDAL.IBaseDal<T> CurrentDal { get; set; } //定义一个属性
+       public abstract void SetCurrentDal();//定义一个抽象方法
+       public BaseService()//定义一个构造方法
+       {
+           SetCurrentDal();//子类一定要实现抽象方法。
+       }
+       public IQueryable<T> LoadEntities(System.Linq.Expressions.Expression<Func<T, bool>> whereLambda)
+       {
+
+           
+           return CurrentDal.LoadEntities(whereLambda);
+       }
+
+    }
+//UserInfoService
+namespace DotNetOA.BLL
+{
+    public class UserInfoService : BaseService<UserInfo>
+    {
+        public override void SetCurrentDAL()
+        {
+            CurrentDAL = this.CurrentDBSession.UserInfoDAL;
+        }
+    }
+}
+	
+在BaseService里面补全
+
+       public IQueryable<T> LoadPageEntities<s>(int pageIndex, int pageSize, out int totalCount, Expression<Func<T, bool>> whereLambda, Expression<Func<T, s>> orderByLambda, bool isASC)
+        {
+            return CurrentDAL.LoadPageEntities<s>( pageIndex,  pageSize, out  totalCount, whereLambda, orderByLambda, isASC);
+        }
+        public bool DeleteEntity(T Entity)
+        {
+            CurrentDAL.DeleteEntity(Entity);
+            return CurrentDBSession.SaveChanges();
+        }
+
+        public bool EditEntity(T Entity)
+        {
+            CurrentDAL.EditEntity(Entity);
+            return CurrentDBSession.SaveChanges();
+        }
+        public T AddEntity(T Entity)
+        {
+            CurrentDAL.AddEntity(Entity);
+            CurrentDBSession.SaveChanges();
+            return Entity;
+        }
+	16：定义业务层的接口。
+        和数据层思想一样定义一个IUserInfoService,IBaseService,然后BLL层引用IBLL层，然后具体的业务类要实现接口，先继承在实现。
+
+        17.BaseService里的DBSession实现线程内唯一。创建一个DBSessionFactory
+namespace DotNetOA.DALFactory
+{
+    public class DBSessionFactory
+    {
+        public static IDAL.IDBSession CreatDBSession()
+        {
+            IDAL.IDBSession DBSession = (IDAL.IDBSession)CallContext.GetData("DBSession");
+            if(DBSession == null)
+            {
+                DBSession = new DALFactory.DBSession();
+                CallContext.SetData("DBSession", DBSession);
+            }
+            return DBSession;
+        }
+    }
+}
+
+修改BaseService里的                //return new DBSession();
+                return DBSessionFactory.CreatDBSession();
+	17：将数据库链接字符串拷贝到MVC的web.config文件中。
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <connectionStrings>
+    <add name="MYDBEntities" connectionString="metadata=res://*/OAModel.csdl|res://*/OAModel.ssdl|res://*/OAModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=HANK-PC;initial catalog=MYDB;user id=Hank;password=123456;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+  </entityFramework>
+	

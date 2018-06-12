@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.cnblogs.com/wangjiming/p/8111977.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【ASP.NET系列】详解Views - Alan_beijing - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./详解Views_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./详解Views_files/bundle-darkgreentrip.css">
+<link type="text/css" rel="stylesheet" href="./详解Views_files/319178.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./详解Views_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wangjiming/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wangjiming/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wangjiming/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./详解Views_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'wangjiming', cb_enable_mathjax=true;var isLogined=true;</script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'blogpost-body', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+            'HTML-CSS': { linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./详解Views_files/MathJax.js.下载"></script>
+<script src="./详解Views_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--设置自己的GitHub-->
+<a href="http://www.cnblogs.com/wangjiming/p/6105084.html" target="_blank">
+　　<img style="position: fixed; top: 0; right: 0; border: 0;" src="./详解Views_files/o_github.png">
+</a>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/wangjiming/"><img id="blogLogo" src="./详解Views_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wangjiming/">Alan_beijing</a></h1>
+<h2>今天对我最有意义的事;
+我今天体验到的巧合、预感和重要新发现;
+我今天的新想法;
+我今天的思绪、感觉..;</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/wangjiming/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Alan_beijing">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/wangjiming/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/wangjiming/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 69&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 417</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wangjiming/p/8111977.html">【ASP.NET系列】详解Views</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p>
+<p><img src="./详解Views_files/1066923-20171030193946105-1934547197.png" alt="" width="62" height="76">描述</p>
+<p>本片文章内容属于ASP.NET MVC系列视图篇，主要讲解View，大致内容如下：</p>
+<p>1.Views文件夹讲解</p>
+<p>2.View种类</p>
+<p>3.Razor语法</p>
+<p>4.对视图的基本操作</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #0000ff;">一&nbsp; &nbsp;Views文件夹</span></p>
+<p><span style="font-size: 16px; color: #ff00ff;">（一） Views文件夹下常用文件种类</span></p>
+<p><img src="./详解Views_files/1066923-20180101024811440-1375735225.png" alt=""></p>
+<p>&nbsp;分析：</p>
+<p>1.ASP.NET MVC页面基本被放在Views文件夹下；</p>
+<p>2.利用APS.NET MVC模板生成框架，Views文件夹下的默认页面为.cshtml页面；</p>
+<p>3.ASP.NET MVC默认页面为Razor格式的页面，因此默认页面为.cshtml页面；</p>
+<p>4.ASP.NET MVC中，支持WebForm页面，即.aspx页面；</p>
+<p>5.ASP.NET MVC中，支持静态html页面；</p>
+<p><span style="color: #ff00ff; font-size: 16px;">（二） 默认Views文件夹包含内容</span></p>
+<p><img src="./详解Views_files/1066923-20171229165740335-436420126.png" alt=""></p>
+<p>&nbsp;分析：</p>
+<p>1.这里没添加Account控制器；</p>
+<p>2).默认约定：在Controllers新增一个控制器，就会默认地在Views文件夹下新增一个视图问价，用来存放该控制器添加的视图，如上图中增加Home控制器，</p>
+<p>在Views下就自动新增加Home文件，用来存放是Home控制器视图；&nbsp;</p>
+<p><span style="color: #0000ff; font-size: 18px;">二 视图种类</span></p>
+<p><span style="color: #ff00ff; font-size: 16px;">（一） 起始视图——_ViewStart.cshtml</span></p>
+<p><img src="./详解Views_files/1066923-20171229173032710-760981828.png" alt=""></p>
+<p>分析：</p>
+<p>1.打开_ViewStart.cshtml文件，我们发现该文件是引用Shared文件夹下的_Layout.cshtml文件，_Layout.cshtml是什么文件？布局页，稍后将分析；</p>
+<p>2.我们来做如下动作</p>
+<p>(1)将_ViewStart.cshtml内容注释掉，且添加一个div内容</p>
+<p><img src="./详解Views_files/1066923-20171229174015070-332886439.png" alt=""></p>
+<p>(2)添加控制器_ViewStartDemoController和Index.cshtml视图</p>
+<p><img src="./详解Views_files/1066923-20171229174446257-561192757.png" alt=""></p>
+<p>(3)运行程序，访问视图：http://localhost:2016/_ViewStartDemo/Index</p>
+<p><img src="./详解Views_files/1066923-20171229174957976-848825731.png" alt=""></p>
+<p>&nbsp;分析：</p>
+<p>查看html</p>
+<p><img src="./详解Views_files/1066923-20171229175407882-1199138744.png" alt=""></p>
+<p><span style="color: #ff00ff; font-size: 16px;">（二）布局视图</span></p>
+<p>如上，我们分析了_VeiwStart.cshtml文件，我们发现里面有一段代码</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_760289" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@{</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">Layout = "~/Views/Shared/_Layout.cshtml";</code></div><div class="line number3 index2 alt2"><code class="html plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>不理解这局话不要紧，它采用的Razor语法格式，将稍后与大家分享Razor，但我们看到了_Layout.cshtml文件，该文件即是Views文件夹下，Shared文件夹下的_Layout.cshtml视图</p>
+<p><img src="./详解Views_files/1066923-20171229180322757-855167291.png" alt=""></p>
+<p>1.查看_Layout.cshtml视图</p>
+<p>&nbsp;<img src="./详解Views_files/1066923-20171229182137460-261553446.png" alt=""></p>
+<p>分析：</p>
+<p>(1)_Layout.cshtml基本结构就是HTML基本结构(其实，.aspx和.cshtml结构，均是html结构);</p>
+<p>(2)我们发现在&lt;body&gt;&lt;/body&gt;区域，有两个后台代码：@RenderBody()和@RenderSection()。@RenderBody()表示视图体，@RenderSection()表示部分视图和节点；</p>
+<p>(3)我们将程序运行起来，看看</p>
+<p><img src="./详解Views_files/1066923-20171229183834492-1995384549.png" alt=""></p>
+<p>分析：</p>
+<p>(1)我们发现最终呈现的页面由两部分组成：Layout.cshtml页面(由_ViewStart.cshtml页面引用_Layout.cshtml页面实现)和Home控制器下的Index页面;</p>
+<p>(2)_Layout.cshtml到底是什么？布局页，相当于WebForm的模板页面；</p>
+<p>(3)下面我们来定义一个模板页</p>
+<p><img src="./详解Views_files/1066923-20171229190211945-1778746345.png" alt=""></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff00ff; font-size: 16px;">（三）强类型视图</span></p>
+<p>&nbsp;何为“强类型视图”？Controller向View传递少量数据，一般情况，我们可以归为两大类别：弱类别传递（ViewBag，ViewData，TempData）和强类别传递（强类型视图）。然而，在实际操作中，当涉及大量数据时，</p>
+<p>弱类别就显得不是那么方便，此时，一般采用强类型视图。强类型视图一般由三部分构成，即控制器层，视图层和模型层，三者之间调用关系可表示为：</p>
+<p><img src="./详解Views_files/1066923-20180101024624893-1130450379.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;1.创建一个强类型视图</p>
+<p>(1)在Model文件夹添加一个UserInfo类</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_714674" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp keyword">public</code> <code class="csharp keyword">class</code> <code class="csharp plain">UserInfo</code></div><div class="line number2 index1 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">string</code> <code class="csharp plain">UserName { </code><code class="csharp keyword">get</code><code class="csharp plain">; </code><code class="csharp keyword">set</code><code class="csharp plain">; }</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">string</code> <code class="csharp plain">UserAddress { </code><code class="csharp keyword">get</code><code class="csharp plain">; </code><code class="csharp keyword">set</code><code class="csharp plain">; }</code></div><div class="line number5 index4 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>(2)在控制器PartialViewDemo中添加一个方法QiangLeiXing()，并添加视图</p>
+<p>(3)强类型视图分析</p>
+<p>使用强类型视图，从控制器向视图传递一个在两端都是强类型的模型对象，从那个人获得智能感知、编译检查等好处。在Controller方法中，可以通过向重载的View方法中传递模型实例来指定模型。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_351563" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp keyword">public</code> <code class="csharp plain">ActionResult QiangLeiXingView()</code></div><div class="line number2 index1 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">List&lt;UserInfo&gt; List_UserInfo = </code><code class="csharp keyword">new</code> <code class="csharp plain">List&lt;UserInfo&gt;();</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">for</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i = 0; i &lt; 2; i++)</code></div><div class="line number5 index4 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number6 index5 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">List_UserInfo.Add(</code><code class="csharp keyword">new</code> <code class="csharp plain">UserInfo() { UserName = </code><code class="csharp string">"Alan_beijing"</code> <code class="csharp plain">+ i, UserAddress = </code><code class="csharp string">"上海"</code> <code class="csharp plain">+ (i++) });</code></div><div class="line number7 index6 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div><div class="line number8 index7 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">ViewBag.List_UserInfo = List_UserInfo;</code></div><div class="line number9 index8 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">View(List_UserInfo);</code></div><div class="line number10 index9 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>下一步是告知视图哪种类型的模型正在使用@model声明。注意，这里需要输入模型的完全限定名(名称空间和类型名称)</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_95216" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">@model IEnumerable&lt;ViewDemo.Models.UserInfo&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>对应View</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_227622" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@model IEnumerable&lt;</code><code class="html keyword">ViewDemo.Models.UserInfo</code><code class="html plain">&gt;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="html plain">@{</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">Layout = null;</code></div><div class="line number5 index4 alt2"><code class="html plain">}</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="html plain">&lt;!</code><code class="html keyword">DOCTYPE</code> <code class="html plain">html&gt;</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="html plain">&lt;</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">meta</code> <code class="html plain">name="viewport" content="width=device-width" /&gt;</code></div><div class="line number12 index11 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;QiangLeiXingView&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number14 index13 alt1"><code class="html plain">&lt;</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt; </code></div><div class="line number16 index15 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(ViewDemo.Models.UserInfo V_UserInfo in Model)</code></div><div class="line number18 index17 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number19 index18 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserName</code></div><div class="line number20 index19 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserAddress</code></div><div class="line number21 index20 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code><code class="html plain">/&gt;</code></div><div class="line number22 index21 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number23 index22 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number24 index23 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number25 index24 alt2"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number26 index25 alt1"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>当然你也可以采用如下限定</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_312656" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">@</code><code class="csharp keyword">using</code> <code class="csharp plain">ViewDemo.Models</code></div><div class="line number2 index1 alt1"><code class="csharp plain">@model IEnumerable&lt;UserInfo&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>对应的View</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_342170" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@using ViewDemo.Models</code></div><div class="line number2 index1 alt1"><code class="html plain">@model IEnumerable&lt;</code><code class="html keyword">UserInfo</code><code class="html plain">&gt;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="html plain">@{</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">Layout = null;</code></div><div class="line number6 index5 alt1"><code class="html plain">}</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="html plain">&lt;!</code><code class="html keyword">DOCTYPE</code> <code class="html plain">html&gt;</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="html plain">&lt;</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">meta</code> <code class="html plain">name="viewport" content="width=device-width" /&gt;</code></div><div class="line number13 index12 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;QiangLeiXingView&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number14 index13 alt1"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="html plain">&lt;</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number16 index15 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt; </code></div><div class="line number17 index16 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number18 index17 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(UserInfo V_UserInfo in Model)</code></div><div class="line number19 index18 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number20 index19 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserName</code></div><div class="line number21 index20 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserAddress</code></div><div class="line number22 index21 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code><code class="html plain">/&gt;</code></div><div class="line number23 index22 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number24 index23 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number25 index24 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number26 index25 alt1"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number27 index26 alt2"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>2.关于Controller和View之间传值，请参考我的另一篇文章：<a style="text-decoration: none;" href="http://www.cnblogs.com/wangjiming/p/7496313.html">【ASP.NET MVC】View与Controller之间传递数据</a></p>
+<p>由于本篇文章关于页面之间传值讲得比较详细，因此这里就不分析了。</p>
+<p>3.我们来分析一下，为什么使用弱型别来传递不是很方便的原因</p>
+<p>关于这个例子，只举例ViewBag(ViewData和TempData差不多原理)</p>
+<p>&nbsp;(1)在控制器PartialViewDemo中添加方法</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_450714" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp color1">/// &lt;summary&gt;</code></div><div class="line number2 index1 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp color1">/// 弱类型视图，使用ViewBag来传递数据</code></div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp color1">/// &lt;/summary&gt;</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp color1">/// &lt;returns&gt;&lt;/returns&gt;</code></div><div class="line number5 index4 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">public</code> <code class="csharp plain">ActionResult RuoLeiXingView()</code></div><div class="line number6 index5 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number7 index6 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">List&lt;UserInfo&gt; List_UserInfo = </code><code class="csharp keyword">new</code> <code class="csharp plain">List&lt;UserInfo&gt;();</code></div><div class="line number8 index7 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">for</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i = 0; i &lt; 2; i++)</code></div><div class="line number9 index8 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number10 index9 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">List_UserInfo.Add(</code><code class="csharp keyword">new</code> <code class="csharp plain">UserInfo() { UserName = </code><code class="csharp string">"Alan_beijing"</code> <code class="csharp plain">+ i, UserAddress = </code><code class="csharp string">"上海"</code> <code class="csharp plain">});</code></div><div class="line number11 index10 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div><div class="line number12 index11 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">ViewBag.List_UserInfo = List_UserInfo;</code></div><div class="line number13 index12 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">View();</code></div><div class="line number14 index13 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>(2)在视图中接收数据</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_483967" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@{</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">Layout = null;</code></div><div class="line number3 index2 alt2"><code class="html plain">}</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="html plain">&lt;!</code><code class="html keyword">DOCTYPE</code> <code class="html plain">html&gt;</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="html plain">&lt;</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">meta</code> <code class="html plain">name="viewport" content="width=device-width" /&gt;</code></div><div class="line number10 index9 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;RuoLeiXingView&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="html plain">&lt;</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number14 index13 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(ViewDemo.Models.UserInfo V_UserInfo in (ViewBag.List_UserInfo as IEnumerable&lt;</code><code class="html keyword">ViewDemo.Models.UserInfo</code><code class="html plain">&gt;))</code></div><div class="line number15 index14 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number16 index15 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserName</code></div><div class="line number17 index16 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserAddress</code></div><div class="line number18 index17 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code> <code class="html plain">/&gt;</code></div><div class="line number19 index18 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number20 index19 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number21 index20 alt2"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number22 index21 alt1"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>我们发现在枚举之前，需要将动态的ViewBag.List_UserInf 转化为IEnumerable&lt;UserInfo&gt;类型，比较麻烦，当然，你可以使用Dynamic代替</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_43866" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;!</code><code class="html keyword">DOCTYPE</code> <code class="html plain">html&gt;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="html plain">&lt;</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">meta</code> <code class="html plain">name="viewport" content="width=device-width" /&gt;</code></div><div class="line number6 index5 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;RuoLeiXingView&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="html plain">&lt;</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(dynamic D_UserInfo in ViewBag.List_UserInfo)</code></div><div class="line number11 index10 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number12 index11 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@D_UserInfo.UserName</code></div><div class="line number13 index12 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@D_UserInfo.UserAddress</code></div><div class="line number14 index13 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code> <code class="html plain">/&gt;</code></div><div class="line number15 index14 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number16 index15 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number18 index17 alt1"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;　　</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>使用Dynamic似乎方便了许多，但细心的你可能已经发现，变量没有了智能感应功能。</p>
+<p>到此，大家应该明白了ViewBag的不方便性了，当然，细心的你又会发现，强类型视图，刚好具备如上两个优势。</p>
+<p><span style="color: #ff00ff; font-size: 16px;">（四）部分视图</span></p>
+<p>&nbsp;何为“分布视图”？在WebForm开发中，我们经常用到用户自定义控件，其作用是提高代码的复用性，减少代码的冗余，使程序更加模块化，那么，在ASP.NET MVC中，对应地引入了基于Razor结构的分布页，其作用与</p>
+<p>WebForm开发中的用户自定义控件差不多。</p>
+<p>1. 创建分布页</p>
+<p>我们在/Views/Shared文件夹下创建一个分布页_PartialPageDemo.cshtml，并向该页面中添加一段代码：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_466412" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">h1</code> <code class="html plain">style="color:red"&gt;我是分布页&lt;/</code><code class="html keyword">h1</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>创建过程如下:</p>
+<p><img src="./详解Views_files/1066923-20171231235908742-1312342419.png" alt=""></p>
+<p>2.调用分布页</p>
+<p>(1) 添加控制器PartialViewDemo和视图Index.cshtml</p>
+<p>(2)在Index.cshtml页面中调用_PartialPageDemo.cshtml</p>
+<p>&nbsp;<img src="./详解Views_files/1066923-20180101001531429-1321298821.png" alt=""></p>
+<p>3.调用分布页的几种方式</p>
+<p>方式一：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_699835" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@Html.Partial()</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>方式二：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_25805" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">@Html.Action()</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>方式三：</p>
+<p>&nbsp;通过Ajax方式调用；</p>
+<p>&nbsp;</p>
+<p><span style="color: #0000ff; font-size: 18px;">&nbsp;三&nbsp; Razor语法</span></p>
+<p>&nbsp;Razor视图引擎是ASP.NET MVC3中新扩展的内容，并且也是他的默认视图引擎，其设计理念是：简单直观。Razor视图引擎可分为MVC和WebForm视图引擎，基于篇幅限制，本文只分析MVC Razor视图引擎。Razor中的核心转</p>
+<p>换符"@",代表：标记-代码或代码-标记的意思。一般有两种基本转换，即代码表达式和代码块。</p>
+<p><span style="color: #ff00ff; font-size: 16px;">（一）代码表达式</span></p>
+<p>1.支持隐式代码表达式求解</p>
+<p>这个特性，在强类型视图中，体现得很明显。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_21174" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt; </code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(UserInfo V_UserInfo in Model)</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserName</code></div><div class="line number6 index5 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserAddress</code></div><div class="line number7 index6 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code><code class="html plain">/&gt;</code></div><div class="line number8 index7 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number9 index8 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>2.支持显示代码表达式</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_900739" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt;1+2=@(1+2)&lt;</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;3.Razor十分智能，可以知道表达后面的空格字符不是一个有效的标识符，所以它可以顺畅地转回到标记语言。</p>
+<p>4.自动识别邮件格式</p>
+<p>会自动识别邮件，而并不是当作变量。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_453994" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">&lt;div&gt;@www.qq.com&lt;/div&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>5.支持文本量</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_722059" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">@{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">string</code>&nbsp; <code class="csharp plain">BlogName=</code><code class="csharp string">"Alan_beijing"</code><code class="csharp plain">;</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;</code><code class="csharp plain">}</code></div><div class="line number5 index4 alt2"><code class="csharp plain">&lt;div&gt;@BlogName.Views&lt;/div&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>这段代码回提示错误，提示string没有Views属性。</p>
+<p>其实我们想要输出的结果：Alan_beijing.Views，但@BlogName.Views&nbsp; ，View被解析为BlogName的一个属性，因此出错，此时，应用字面量</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_564353" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">@{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">string</code>&nbsp; <code class="csharp plain">BlogName=</code><code class="csharp string">"Alan_beijing"</code><code class="csharp plain">;</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;</code><code class="csharp plain">}</code></div><div class="line number5 index4 alt2"><code class="csharp plain">&lt;div&gt;@(BlogName).Views&lt;/div&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>6.支持转义字符</p>
+<p>如我想输出:@Alan_beijing</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_444820" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">&lt;div&gt;@@Alan_beijing&lt;/div&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;</p>
+<p><span style="color: #ff00ff; font-size: 16px;">（二）支持HTML编码</span></p>
+<p>我们知道，在防止XSS攻击时了(跨站脚本注入攻击)　，首先要做到HTML编码，Razor刚好是HTML编码的。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_303500" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">@{</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">string</code> <code class="csharp plain">message=</code><code class="csharp string">"&lt;script&gt;alert('haacked!')&lt;/script&gt;"</code><code class="csharp plain">;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="csharp plain">}</code></div><div class="line number6 index5 alt1"><code class="csharp plain">&lt;span&gt;@message&lt;span&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;这段代码不会弹出警告框而只会呈现编码的HTML</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_224237" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">span</code><code class="html plain">&gt;&amp;alt;script&gt;alert('haacked!');&amp;alt;/script&gt;&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>这里不论述这个，后在【ASP.NET MVC系列】的后续篇幅中，专门讲解。</p>
+<p><span style="color: #ff00ff; font-size: 16px;">(三) 代码块</span></p>
+<p>这个大家应该用的比较多，foreach</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_655500" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code><code class="html plain">&gt; </code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@foreach(UserInfo V_UserInfo in Model)</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">{</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserName</code></div><div class="line number6 index5 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">@V_UserInfo.UserAddress</code></div><div class="line number7 index6 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">br</code><code class="html plain">/&gt;</code></div><div class="line number8 index7 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">}</code></div><div class="line number9 index8 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">ul</code><code class="html plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px; color: #0000ff;">四&nbsp; 对视图的基本操作</span></p>
+<p>&nbsp;ASP.NET MVC 提供的模板中，当创建View时，提供了六种模型，分别为Create,Delete,Detail,Edit,Empty,Empty(不具有模型),List。基于该模型，我们可以轻松地创建具体实体的增删改查。由于比较简单，本例只</p>
+<p>简单结合UserInfo实体演示Create，其他操作，请读者自行操作，原理思路一样，这里不一 一论述。</p>
+<p><img src="./详解Views_files/1066923-20180101025558237-1224312043.png" alt=""></p>
+<p>&nbsp;我们创建一个基础UserInfo实体的Create</p>
+<p><img src="./详解Views_files/1066923-20180101025810878-835659455.png" alt=""></p>
+<p>测试结果</p>
+<p><img src="./详解Views_files/1066923-20180101030136659-207627543.png" alt=""></p>
+<p><span style="color: #0000ff; font-size: 18px;">四&nbsp; &nbsp;参考文献</span></p>
+<p>【01】【01】ASP.NET MVC5 高级编程(Jon Galloway,Brad Wilson,K.Scott Allen,David Matson ,孙远帅 译)</p>
+<p>【02】APS.NET MVC4</p>
+<p><span style="color: #0000ff; font-size: 18px;">五&nbsp; 版权区</span></p>
+<div style="background-color: #dee7de; height: 180px; width: 700px;">
+<ul>
+<li><span style="font-size: 14px;">感谢您的阅读，若有不足之处，欢迎指教，共同学习、共同进步。</span></li>
+<li><span style="font-size: 14px;">博主网址：http://www.cnblogs.com/wangjiming/。</span></li>
+<li><span style="font-size: 14px;">极少部分文章利用读书、参考、引用、抄袭、复制和粘贴等多种方式整合而成的，大部分为原创。</span></li>
+<li><span style="font-size: 14px;">如您喜欢，麻烦推荐一下；如您有新想法，欢迎提出，邮箱：2016177728@qq.com。</span></li>
+<li><span style="font-size: 14px;">可以转载该博客，但必须著名博客来源。</span></li>
+</ul>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/wangjiming/tag/ASP.NET%20MVC/">ASP.NET MVC</a>, <a href="http://www.cnblogs.com/wangjiming/tag/View/">View</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(8111977,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;c13ea44c-58af-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./详解Views_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./详解Views_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangjiming/" target="_blank"><img src="./详解Views_files/20170622125119.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangjiming/">Alan_beijing</a><br>
+            <a href="http://home.cnblogs.com/u/wangjiming/followees">关注 - 25</a><br>
+            <a href="http://home.cnblogs.com/u/wangjiming/followers">粉丝 - 257</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;c13ea44c-58af-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(8111977,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">5</span>
+    </div>
+    <div class="buryit" onclick="votePost(8111977,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wangjiming/p/8109555.html" title="发布于2017-12-25 19:52">【ASP.NET MVC系列】浅谈MVC</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2018-01-01 04:12</span> <a href="http://www.cnblogs.com/wangjiming/">Alan_beijing</a> 阅读(<span id="post_view_count">13</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=8111977" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" onclick="AddToWz(8111977);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=319178,cb_entryId=8111977,cb_blogApp=currentBlogApp,cb_blogUserGuid='c13ea44c-58af-e611-845c-ac853d9f53ac',cb_entryCreatedDate='2018/1/1 4:12:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/wangjiming/p/8111977.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./详解Views_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./详解Views_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./详解Views_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./详解Views_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./详解Views_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./详解Views_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586143/" target="_blank">被清屏的今日头条，只因跑得太快</a><br> ·  <a href="https://news.cnblogs.com/n/586142/" target="_blank">育碧开源“冲突世界”的在线后端服务器 Massgate</a><br> ·  <a href="https://news.cnblogs.com/n/586141/" target="_blank">Netcraft12月Web服务器排名，微软连续暴跌近20%</a><br> ·  <a href="https://news.cnblogs.com/n/586140/" target="_blank">存活率不足一成，92%的开源区块链项目已不再活跃</a><br> ·  <a href="https://news.cnblogs.com/n/586138/" target="_blank">图解：贾跃亭出走180天 他和乐视都经历了什么？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2098469527&amp;site=qq&amp;menu=yes">
+　　<img align="absmiddle" border="0" src="./详解Views_files/pa" alt="欢迎与我联系" title="欢迎与我联系">
+</a><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/wangjiming/">Alan_beijing</a><br>园龄：<a href="https://home.cnblogs.com/u/wangjiming/" title="入园时间：2016-11-21">1年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/wangjiming/followers/">257</a><br>关注：<a href="https://home.cnblogs.com/u/wangjiming/followees/">25</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;c13ea44c-58af-e611-845c-ac853d9f53ac&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&lt;</a></td><td align="center">2018年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center"><a href="http://www.cnblogs.com/wangjiming/archive/2018/01/01.html"><u>1</u></a></td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wangjiming/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/wangjiming/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/wangjiming/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/wangjiming/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/wangjiming/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wangjiming/p/8111977.html">1. 【ASP.NET系列】详解Views</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8109555.html">2. 【ASP.NET MVC系列】浅谈MVC</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8007620.html">3. 【Java系列】Eclipse与Tomcat</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8006731.html">4. 【java系列】java开发环境搭建</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7989931.html">5. 【设计模式篇】工厂模式</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7878882.html">6. 【架构篇】OCP和依赖注入</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7782144.html">7. 【资源篇】常用博客网站</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7546119.html">8. 【ASP.NET】DataTable序列化</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7756492.html">9. 【Jquery系列】prop和attr区别</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7756364.html">10. 【Jquery系列】详解Jquery对象和Dom对象</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wangjiming/tag/Asp.net/">Asp.net</a>(6)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/SqlServer/">SqlServer</a>(6)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/C%23/">C#</a>(5)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/Jquery/">Jquery</a>(4)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(3)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/ASP.NET%20MVC/">ASP.NET MVC</a>(3)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/Javascript/">Javascript</a>(3)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/DevTools/">DevTools</a>(3)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">java开发环境搭建</a>(2)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/.NET/">.NET</a>(2)</li><li><a href="http://www.cnblogs.com/wangjiming/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/wangjiming/archive/2017/12.html">2017年12月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/wangjiming/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/wangjiming/archive/2017/10.html">2017年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/wangjiming/archive/2017/09.html">2017年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/wangjiming/archive/2017/08.html">2017年8月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/wangjiming/archive/2017/07.html">2017年7月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/wangjiming/archive/2017/06.html">2017年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/wangjiming/archive/2017/05.html">2017年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/wangjiming/archive/2017/02.html">2017年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/wangjiming/archive/2017/01.html">2017年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/wangjiming/archive/2016/12.html">2016年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/wangjiming/archive/2016/11.html">2016年11月 (7)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+<h3 class="catListTitle">相册</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/wangjiming/gallery/938981.html" rel="nofollow">weixin(1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/wangjiming/gallery/938975.html" rel="nofollow">zhifubao(1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/wangjiming/gallery/1050884.html" rel="nofollow">博客内容图片(2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/wangjiming/gallery/1045317.html" rel="nofollow">博客园主目录图片(18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/wangjiming/gallery/1090213.html" rel="nofollow">动态图片(2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	56276
+	</li>
+	<li class="liRank">
+		排名 -	6063
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3875170">1. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@Alan_beijing好吧~那Model层 就不是存取 数据的了项目里面model 都只是用做成一个实体用来调用的 真正的逻辑都在其它层里面...</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3875131">2. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@纵一苇之所如-引用希望能一直写下去 这是肯定的，后期会陆续的把每个系列写完与大家共同分享，共同进步。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3875125">3. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">希望能一直写下去</li>
+        <li class="recent_comment_author">--纵一苇之所如-</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3875119">4. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@~雨落忧伤~引用@Alan_beijing难道是我们的框架不标准吗？ 好像没有三层架构 C+V+数据库实体层(对应数据库字段的)+页面实体层(对应页面显示字段的)+Service(处理一些l逻辑的)......</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874943">5. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@Alan_beijing难道是我们的框架不标准吗？ 好像没有三层架构 C+V+数据库实体层(对应数据库字段的)+页面实体层(对应页面显示字段的)+Service(处理一些l逻辑的)数据库查询 添加.......</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874712">6. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@~雨落忧伤~引用@Alan_beijing问一个问题，经常把三层架构和MVC在一起说，你能说说它们的区别是什么吗？ 你也可以关注一下，后期我会写架构系......</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874709">7. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@~雨落忧伤~引用@Alan_beijing问一个问题，经常把三层架构和MVC在一起说，你能说说它们的区别是什么吗？ 仔细看看这张图片哟，左右对比的。1......</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874651">8. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@Alan_beijing问一个问题，经常把三层架构和MVC在一起说，你能说说它们的区别是什么吗？...</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874361">9. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">@~雨落忧伤~引用写的很好 哈哈，一般般吧，谢谢...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/8109555.html#3874357">10. Re:【ASP.NET MVC系列】浅谈MVC</a></li>
+        <li class="recent_comment_body">写的很好</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7782144.html#3833873">11. Re:【资源篇】常用博客网站</a></li>
+        <li class="recent_comment_body">@~雨落忧伤~引用排名分先后吗？ 不分，只是简单的收集列举，但若想长久涉及博客，可以用Github搭建个人博客，是主流。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7782144.html#3833812">12. Re:【资源篇】常用博客网站</a></li>
+        <li class="recent_comment_body">排名分先后吗？</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3826486">13. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主求发一份,楼主辛苦了！475616048@qq.com</li>
+        <li class="recent_comment_author">--hello&gt;world</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7604460.html#3826408">14. Re:[C#]关于DBNULL的解释</a></li>
+        <li class="recent_comment_body">@20121221引用这种要写个公用的函数转换，比较好 是的，在后台抽象为一个模块是比较好的做法。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7648500.html#3826201">15. Re:将博客搬至CSDN</a></li>
+        <li class="recent_comment_body">@``炯``引用不宣传一下新的博客地址吗？ csdn博客收费的，因此没宣传。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3815704">16. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@daley_d @hins @郑寒松 @ZengJH8203 @最爱晴天 @Sunny_su1008 各位不好意思，最近电脑崩溃了，现在才修好，源码没了。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3813965">17. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主，能发一份给我吗，正在学习MVC，非常感谢！<br>243539048@qq.com</li>
+        <li class="recent_comment_author">--Daley_dp</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3813528">18. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主辛苦了 ~ 谢谢 ~  ipod_nano@qq.com~</li>
+        <li class="recent_comment_author">--hins</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/6259027.html#3813467">19. Re:C#   破解 Reflector8.5</a></li>
+        <li class="recent_comment_body">大神，粘贴到注册机 注册机并没有返回任何东西是什么原因 -&gt;第七步</li>
+        <li class="recent_comment_author">--知识就是欲望</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3813129">20. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主，好久没做了，方便给份源码学习下么？谢谢~~~954838550@qq.com</li>
+        <li class="recent_comment_author">--郑寒松</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3809874">21. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主，能发一份给我吗，正在学习MVC，非常感谢！278334642@qq.com</li>
+        <li class="recent_comment_author">--ZengJH8203</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3808861">22. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">楼主，方便给份源码学习下么？谢谢~~~1206676756@qq.com</li>
+        <li class="recent_comment_author">--最爱晴天</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7648500.html#3807992">23. Re:将博客搬至CSDN</a></li>
+        <li class="recent_comment_body">不宣传一下新的博客地址吗？</li>
+        <li class="recent_comment_author">--``炯``</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3807963">24. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">可以发给我一份demo源码吗？多谢多谢,邮箱：36310763@qq.com</li>
+        <li class="recent_comment_author">--Sunny_su1008</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3807426">25. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@碧海云烟 <br>已发，请查收。</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3807424">26. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@系统工程 <br>已发。</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3807254">27. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">国庆有闲，照葫芦画瓢，没成。hfnet815@foxmail.com ,感谢你的这篇文章。</li>
+        <li class="recent_comment_author">--碧海云烟</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3807110">28. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">490406916@qq.com,谢谢了</li>
+        <li class="recent_comment_author">--系统工程</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3806663">29. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@乌拉拉S引用谢谢，很受用，刚学习MVC 刚学MVC吧？...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3806662">30. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@hins引用博主, 您好 ,方便分享Demo源码么 ~O(∩_∩)O感谢 我github目前有点问题，源码怎么发给你？...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3806661">31. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@QYCMS引用我也喜欢用ADO.NET。现在在用Dapper，方便好多。 Dapper轻量级，有了Dapper，就不用SqlHelper了...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7604460.html#3802961">32. Re:[C#]关于DBNULL的解释</a></li>
+        <li class="recent_comment_body">这种要写个公用的函数转换，比较好</li>
+        <li class="recent_comment_author">--20121221</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802669">33. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">谢谢，很受用，刚学习MVC</li>
+        <li class="recent_comment_author">--乌拉拉S</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802417">34. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">我也喜欢用ADO.NET。现在在用Dapper，方便好多。</li>
+        <li class="recent_comment_author">--QYCMS</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802402">35. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@KaneChan引用也不要过分神化bootstrap boot只适合做一些相对较少列的表格 如果像某些财务报表 有几十列 boot的展示效果 并没有传统的好 ......</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802168">36. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">也不要过分神化bootstrap boot只适合做一些相对较少列的表格 如果像某些财务报表 有几十列 boot的展示效果 并没有传统的好</li>
+        <li class="recent_comment_author">--KaneChan</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802159">37. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@weixiao520引用很不错 忙度假去了，写得有点匆忙。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802158">38. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">很不错</li>
+        <li class="recent_comment_author">--weixiao520</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802124">39. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">@hins引用博主, 您好 ,方便分享Demo源码么 ~O(∩_∩)O感谢 度假了，国庆回来上传到github,你去下载即可。...</li>
+        <li class="recent_comment_author">--Alan_beijing</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangjiming/p/7613160.html#3802112">40. Re:【ASP.NET MVC】jqGrid 增删改查详解</a></li>
+        <li class="recent_comment_body">博主, 您好 ,方便分享Demo源码么 ~O(∩_∩)O感谢</li>
+        <li class="recent_comment_author">--hins</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangjiming/p/6286045.html">1. ASP.NET 程序发布详细过程(9784)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6267387.html">2. C#   文件上传(8290)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7047903.html">3. .NET 开发环境搭建(7580)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6359000.html">4. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（上）(5986)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6357306.html">5. 【Google浏览器系列】之google Chrome浏览器（理论篇）(5157)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6801937.html">6. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（下）(5142)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6275854.html">7. ASP.NET 页面之间传值的几种方式(4378)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6259027.html">8. C#   破解 Reflector8.5(2893)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7040843.html">9. 【ASP.NET系列】之ASP.NET  MVC  路由(2745)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7153533.html">10. 【SqlServer系列】表连接(2105)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7496313.html">11. 【ASP.NET MVC】View与Controller之间传递数据(1719)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105084.html">12. 博客目录(1698)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6123066.html">13. 【SqlServer系列】数据库三大范式(1657)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7193737.html">14. 【软件架构系列】一步一步构建大型网站(1533)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7142203.html">15. 【SqlServer系列】表单查询(1515)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6246780.html">16. C# salt+hash 加密(1271)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7613160.html">17. 【ASP.NET MVC】jqGrid 增删改查详解(1140)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105089.html">18. ASP.NET Web.config(1103)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7173117.html">19. 【SqlServer系列】子查询(1004)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6169939.html">20. out和ref详解(904)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7101175.html">21. 【ASP.NET系列】之ASP.NET MVC 控制器(836)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7182639.html">22. 【SqlServer系列】远程访问(611)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6136127.html">23. is和as(601)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7248369.html">24. 【SqlServer系列】集合运算(588)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7604460.html">25. [C#]关于DBNULL的解释(561)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7119309.html">26. 【Jquery系列】之Jquery 选择器(521)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8109555.html">27. 【ASP.NET MVC系列】浅谈MVC(515)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105856.html">28. Javascript之函数模型(462)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105191.html">29. 【设计模式系列】之设计模式概述(453)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105239.html">30. 【设计模式系列】之单利模式(446)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105872.html">31. Javascript之匿名函数(425)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105847.html">32. 【Javascript系列】变量作用域(418)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7545084.html">33. 【VS2017新特性】在VS中调试javascript脚本(362)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7615618.html">34. 【SqlServer】【问题收集】必须声明标量变量(284)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7546119.html">35. 【ASP.NET】DataTable序列化(282)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7782144.html">36. 【资源篇】常用博客网站(236)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6880363.html">37. 勒索安全防护(230)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7407555.html">38. 【SqlServer系列】JSON数据(224)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7878882.html">39. 【架构篇】OCP和依赖注入(217)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7400387.html">40. 【SqlServer系列】表达式(expression)(208)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangjiming/p/6275854.html">1. ASP.NET 页面之间传值的几种方式(93)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6286045.html">2. ASP.NET 程序发布详细过程(53)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7047903.html">3. .NET 开发环境搭建(41)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6357306.html">4. 【Google浏览器系列】之google Chrome浏览器（理论篇）(38)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7613160.html">5. 【ASP.NET MVC】jqGrid 增删改查详解(25)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6801937.html">6. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（下）(24)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7040843.html">7. 【ASP.NET系列】之ASP.NET  MVC  路由(18)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7153533.html">8. 【SqlServer系列】表连接(18)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7496313.html">9. 【ASP.NET MVC】View与Controller之间传递数据(18)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6259027.html">10. C#   破解 Reflector8.5(14)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6359000.html">11. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（上）(12)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7173117.html">12. 【SqlServer系列】子查询(10)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8109555.html">13. 【ASP.NET MVC系列】浅谈MVC(10)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6267387.html">14. C#   文件上传(8)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7604460.html">15. [C#]关于DBNULL的解释(6)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7182639.html">16. 【SqlServer系列】远程访问(5)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7119309.html">17. 【Jquery系列】之Jquery 选择器(4)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7101175.html">18. 【ASP.NET系列】之ASP.NET MVC 控制器(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7142203.html">19. 【SqlServer系列】表单查询(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6246780.html">20. C# salt+hash 加密(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6169939.html">21. out和ref详解(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7193737.html">22. 【软件架构系列】一步一步构建大型网站(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7782144.html">23. 【资源篇】常用博客网站(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7648500.html">24. 将博客搬至CSDN(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6880363.html">25. 勒索安全防护(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangjiming/p/6801937.html">1. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（下）(64)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6275854.html">2. ASP.NET 页面之间传值的几种方式(61)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6357306.html">3. 【Google浏览器系列】之google Chrome浏览器（理论篇）(60)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6359000.html">4. 【Google浏览器系列】之Google Chrome浏览器（操作篇）（上）(51)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7047903.html">5. .NET 开发环境搭建(38)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6286045.html">6. ASP.NET 程序发布详细过程(32)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7153533.html">7. 【SqlServer系列】表连接(32)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7040843.html">8. 【ASP.NET系列】之ASP.NET  MVC  路由(29)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7496313.html">9. 【ASP.NET MVC】View与Controller之间传递数据(27)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7193737.html">10. 【软件架构系列】一步一步构建大型网站(23)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7173117.html">11. 【SqlServer系列】子查询(14)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8109555.html">12. 【ASP.NET MVC系列】浅谈MVC(14)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7142203.html">13. 【SqlServer系列】表单查询(13)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7101175.html">14. 【ASP.NET系列】之ASP.NET MVC 控制器(10)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7613160.html">15. 【ASP.NET MVC】jqGrid 增删改查详解(10)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7119309.html">16. 【Jquery系列】之Jquery 选择器(8)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7182639.html">17. 【SqlServer系列】远程访问(8)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6267387.html">18. C#   文件上传(7)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105089.html">19. ASP.NET Web.config(6)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6246780.html">20. C# salt+hash 加密(6)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6169939.html">21. out和ref详解(6)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8111977.html">22. 【ASP.NET系列】详解Views(5)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6136127.html">23. is和as(5)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105084.html">24. 博客目录(5)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6259027.html">25. C#   破解 Reflector8.5(5)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6880363.html">26. 勒索安全防护(4)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6123066.html">27. 【SqlServer系列】数据库三大范式(4)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105239.html">28. 【设计模式系列】之单利模式(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7407574.html">29. 【Sqlserver系列】【转载】事物与锁(3)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7248369.html">30. 【SqlServer系列】集合运算(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105856.html">31. Javascript之函数模型(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/6105191.html">32. 【设计模式系列】之设计模式概述(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7604460.html">33. [C#]关于DBNULL的解释(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/8007620.html">34. 【Java系列】Eclipse与Tomcat(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7989931.html">35. 【设计模式篇】工厂模式(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7878882.html">36. 【架构篇】OCP和依赖注入(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7782144.html">37. 【资源篇】常用博客网站(2)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7546119.html">38. 【ASP.NET】DataTable序列化(1)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7756492.html">39. 【Jquery系列】prop和attr区别(1)</a></li><li><a href="http://www.cnblogs.com/wangjiming/p/7756364.html">40. 【Jquery系列】详解Jquery对象和Dom对象(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 Alan_beijing
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!--显示评论者头像-->
+<script type="text/javascript">function customTimer(inpId, fn) {
+    if ($(inpId).length) {
+        fn();
+    }
+    else {
+        var intervalId = setInterval(function () {
+            if ($(inpId).length) {  //如果存在了
+                clearInterval(intervalId);  // 则关闭定时器
+                customTimer(inpId, fn);              //执行自身
+            }
+        }, 100);
+    }
+}
+//添加 评论区的 形象照
+function addImage() {
+    var spen_html = "<span class='bot' ></span>\
+                         <span class='top'></span>";
+    $(".blog_comment_body").append(spen_html);
+
+    $(".blog_comment_body").before("<div class='body_right' style='float: left;'><a target='_blank'><img  /></a></div>");
+    var feedbackCon = $(".feedbackCon").addClass("clearfix");
+    for (var i = 0; i < feedbackCon.length; i++) {
+        var span = $(feedbackCon[i]).find("span:last")[0].innerHTML || "http://pic.cnitblog.com/face/sample_face.gif";
+        $(feedbackCon[i]).find(".body_right img").attr("src", span);
+        var href = $(feedbackCon[i]).parent().find(".comment_date").next().attr("href");
+        $(feedbackCon[i]).find(".body_right a").attr("href", href);
+
+    }
+}
+
+//页面加载完成是执行
+$(function () {
+
+ //添加 评论区的 形象照
+    customTimer(".blog_comment_body", addImage);
+
+    });</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

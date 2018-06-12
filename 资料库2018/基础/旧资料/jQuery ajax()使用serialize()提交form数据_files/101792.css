@@ -1,0 +1,7 @@
+body{font-family:"Monaco"}
+::selection { background-color: #669900; color: #ffffff; text-shadow: none; }
+::-moz-selection {
+background-color:#669900;
+color:#ffffff;
+text-shadow:none;
+}

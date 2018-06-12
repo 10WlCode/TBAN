@@ -1,0 +1,86 @@
+.headerSocialLinks a:hover {color: #3c8ce4;}
+.mainMenu li.current-post-ancestor > a,
+.mainMenu li.current-menu-item > a, .mainMenu li:hover > a {color: #3c8ce4;}
+.postTime {background: #3c8ce4;}
+.singlePostTime, .archivePostTime, .blogPostTime, .blogPostListTime {}
+
+.singlePostCategory, .archivePostCategory  {color: #222;}
+.archivePostItemShareLinks a:hover {background: #3c8ce4;}
+.archivePostReadMore:hover {border-color: #3c8ce4; background: #3c8ce4;color: #fff;}
+.postPagination ul li.current {color: #3c8ce4;}
+.postPagination ul li a:hover {color: #3c8ce4;border-color: #ecf2f2;}
+.followMeSocialLinks a:hover {color: #3c8ce4;}
+.popularPostsWidgetItem time {color: #3c8ce4;}
+.twitterWidget .fa {color: #3c8ce4;}
+.left-quote, .right-quote {color: #3c8ce4;}
+.twitterWidget .bx-wrapper .bx-pager.bx-default-pager a {border: 1px solid #3c8ce4;}
+.twitterWidget .bx-wrapper .bx-pager.bx-default-pager a.active {background: #3c8ce4;}
+.tagcloud a:hover {border-color: #3c8ce4;color: #3c8ce4;}
+.sidebar-widget > ul > li > a:hover {color: #3c8ce4;}
+.sidebar-widget > ul > li > span.comment-author-link,
+.sidebar-widget > ul > li > span a {color: #3c8ce4;}
+.homePageLink, .homePageLink:visited {border: 1px solid #3c8ce4;color: #3c8ce4;}
+.homePageLink:hover {background: #3c8ce4;color: #fff;}
+.pageAboutDesc .locationDesc {color: #3c8ce4;}
+.pageSocialWrapper a:hover {background: #3c8ce4;}
+.submitContactFormBtn {border: 1px solid #3c8ce4;color: #3c8ce4;}
+.submitContactFormBtn:hover {background: #3c8ce4;}
+.wpcf7-form input[type="submit"] {border: 1px solid #3c8ce4;color: #3c8ce4;}
+.wpcf7-form input[type="submit"]:hover {background: #3c8ce4;}
+.singlePostWrap blockquote:before {color: #3c8ce4;}
+.singlePostWrap blockquote p a, .singlePostWrap blockquote p a:visited {color: #3c8ce4;}
+.singlePostWrap blockquote p cite {color: #3c8ce4;}
+.singlePostWrap table th a, .singlePostWrap table th a:visited {color: #3c8ce4;}
+.singlePostWrap table td a, .singlePostWrap table td a:visited {color: #3c8ce4;}
+.singlePostWrap dd a, .singlePostWrap dd a:visited, .singlePostWrap dt a, .singlePostWrap dt a:visited {color: #3c8ce4;}
+.singlePostWrap ul li:before {background: #3c8ce4;}
+.singlePostWrap ol li:before {color: #3c8ce4;}
+.singlePostWrap ol li a, .singlePostWrap ol li a:visited {color: #3c8ce4;}
+.singlePostWrap ins {background: #3c8ce4;}
+.singleLinkPages a {color: #3c8ce4;}
+.singlePostTags a:hover {color: #3c8ce4;}
+.postNavigationItem a:hover {color: #3c8ce4;}
+.comment-edit-link:hover, .comment-reply-link:hover {color: #3c8ce4;}
+.logged-in-as a, .logged-in-as a:visited {color: #3c8ce4;}
+.comment-wrapper span.uni-post-author {background: #3c8ce4;}
+.comment-metadata time {color: #3c8ce4;}
+.comment-content p a, .comment-content p a:visited {color: #3c8ce4;}
+.comment-content blockquote {border-left: 2px solid #3c8ce4;}
+.comment-content blockquote p cite {color: #3c8ce4!important;}
+.comment-content blockquote p a, .singlePostWrap blockquote p a:visited {color: #3c8ce4;}
+.comment-content table th a, .comment-content table th a:visited {color: #3c8ce4;}
+.comment-content table td a, .comment-content table td a:visited {color: #3c8ce4;}
+.comment-content dd a, .comment-content dd a:visited, .comment-content dt a, .comment-content dt a:visited {color: #3c8ce4;}
+.comment-content ul li:before {background: #3c8ce4;}
+.comment-content ol li:before {color: #3c8ce4;}
+.comment-content ol li a, .comment-content ol li a:visited {color: #3c8ce4;}
+.comment-content ins {background: #3c8ce4;}
+#commentform #submit {border: 1px solid #3c8ce4;color: #3c8ce4;}
+#commentform #submit:hover {background: #3c8ce4;color: #fff;}
+
+/*#header {background: url("../images/banner.jpg")  50% 68px no-repeat; height: 568px;}*/
+
+.banner { position: relative;  background:#459dff url("../images/banner.jpg")  center top no-repeat; padding-top: 245px;}
+.banner-img {
+    display: none; }
+
+.banner-info {
+    margin: 30px auto 0;
+    width: 1140px;
+    font-size:25px;
+    line-height:35px;
+
+}
+.archivePostItemShareLinks a, .archivePostItemShareLinks a:visited {background: #acdde0;}
+.pageSocialWrapper a, .pageSocialWrapper a:visited {background: #acdde0;}
+
+/* Sprite */
+.searchIcon:hover {background-position: -20px 0;}
+.sidebar-widget .search-form .search-submit:hover {background-position: 0 -140px;}
+.subscribeWidget .subscribeWidgetSubmit:hover {background-position: -60px 0;}
+.postPagination ul li.newPosts a:hover {background-position: 0 -80px;}
+.postPagination ul li.olderPosts a:hover {background-position: 88px -40px;}
+.postNavigationItem a.previousPostLink:hover {background-position: 0 -80px;}
+.postNavigationItem a.newerPostLink:hover {background-position: 87px -40px;}
+.iconLocation {background-position: -80px 0;}
+.mainMenu li ul li.menu-item-has-children > a {background-image: url(../images/arrow.svg);}

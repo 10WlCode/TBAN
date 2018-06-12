@@ -1,0 +1,1048 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+    
+
+<html lang="en-US" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	
+    AllMargins 2012 - Visual Studio Marketplace
+
+</title>
+    <meta name="description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;-&#32;This&#32;extension&#32;contains&#32;the&#32;OverviewMargin&#32;and&#32;several&#32;other&#32;extensions&#32;of&#32;that&#32;margin." /><meta name="keywords" content="AllMargins" /><meta property="og:title" content="AllMargins&#32;2012&#32;-&#32;Visual&#32;Studio&#32;Marketplace" /><meta property="og:type" content="website" /><meta property="og:url" content="https://marketplace.visualstudio.com/items?itemName=fourpastmidnight.AllMargins2012" /><meta property="og:image" content="https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Icons.Default" /><meta property="og:description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;-&#32;This&#32;extension&#32;contains&#32;the&#32;OverviewMargin&#32;and&#32;several&#32;other&#32;extensions&#32;of&#32;that&#32;margin." /><meta property="twitter:card" content="summary" /><meta property="twitter:site" content="@VisualStudio" /><link rel="canonical" href="https://marketplace.visualstudio.com/items?itemName=fourpastmidnight.AllMargins2012" />
+<meta http-equiv="X-UA-Compatible" content="IE=11;&#32;IE=10;&#32;IE=9;&#32;IE=8" />
+    <link rel="SHORTCUT ICON" href="/favicon.ico" />
+
+    
+    <link data-bundlelength="392061" data-bundlename="commoncss" data-highcontrast="https://cdn.vsassets.io/v/20180222T055954/_cssbundles/HighContrast/vss-bundle-commoncss-v4XiPdjles_aQ_xrYwuJ-YtOSpX-y99lBScZ8mqCfq68=" data-includedstyles="Gallery3rdParty;Gallery;fabric" href="https://cdn.vsassets.io/v/20180222T055954/_cssbundles/Default/vss-bundle-commoncss-vLzeKa003yaYO47KTdPi4EQ7cCiXSPBLj7PbbfNmvOjo=" rel="stylesheet" />
+<link data-bundlelength="135425" data-bundlename="viewcss" data-highcontrast="https://cdn.vsassets.io/v/20180222T055954/_cssbundles/HighContrast/vss-bundle-viewcss-v2Lis2HKCcBnqw7_0LfAoRtsZkGL0qzTNPncgeXHuvw4=" data-includedstyles="jQueryUI-Modified;QnA/AskQuestionDialog;Shared/ReadMoreText;Shared/LinkAsButton;QnA/ReadMoreContent;QnA/QnAContainer;QnA/AnswerContent;Shared/FlagControl;QnA/QnAItemRow;ItemDetails/QnAAndRnRContainer;ItemDetails/ItemDetailsMarkdown;Shared/Carousel;ItemDetails/ScreenshotsCarousel;ItemDetails/MetadataListContainer;ItemDetails/CapabilitiesContainer;ItemDetails/ResourcesContainer;ItemDetails/MoreInfoContainer;ItemDetails/GithubDetails;ItemDetails/ItemDetails;ItemDetails/PricingCalculator;ItemDetails/Pricing;Acquisition/Steps/BuyCustomizationEditControl;ItemDetails/NewPricingCalculator;RnR/ReviewReply;RnR/RnRRow;RnR/ReviewDialog;RnR/RnRContainer;ItemDetails/ItemDetailsTabContainer;ItemDetails/OneClickInstallDialog;Shared/OptInBar;VSS.Controls" href="https://cdn.vsassets.io/v/20180222T055954/_cssbundles/Default/vss-bundle-viewcss-vSxzJ80O072rjKtXIcaKCycdoZJRiEaJri7DUjLx73IQ=" rel="stylesheet" />
+<script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('startLoadBundleOuter-basejs'); }</script>
+<script crossorigin="anonymous" data-bundlelength="111993" data-bundlename="basejs" integrity="sha256-fjHOD0+mSkJ6XxEANonar8pXy5cpNEndAnb5SkmoJ40=" src="https://cdn.vsassets.io/bundles/vss-bundle-basejs-vI1IxAQ10AVWwEoAF6E9t0idR3ZSaZnasnpanuPQzGJ0=" type="text/javascript"></script>
+<script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('endLoadBundleOuter-basejs'); }</script>
+
+
+    
+    <!-- JSLL script -->
+    
+            <script type="text/javascript" defer src="https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE1r2ij"></script>
+    
+    <!-- End JSLL script -->
+
+</head>
+<body class="platform gallery gallery-page-item-details">    
+    
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WT9XBK"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WT9XBK');</script>
+    <!-- End Google Tag Manager -->
+    <!-- GreenId -->
+    <iframe  style="color:rgb(0,0,0);  float:left; position:absolute; top:-200px; left:-200px; border:0px" src="https://fpt.microsoft.com/tags?session_id=9fd50a13-43f2-45f0-8682-a53f0f328be3" height=100  width=100></iframe>
+    <!-- End GreenId -->
+    
+    <script type="text/javascript"> var __vssPageContext = {"webContext":{"host":{"id":"2663b13f-50e3-a655-a159-22f6f4725fab","name":"TEAM FOUNDATION","uri":"https://marketplace.visualstudio.com/","relativeUri":"/","hostType":"deployment","scheme":"https","authority":"marketplace.visualstudio.com"}},"moduleLoaderConfig":{"baseUrl":"https://cdn.vsassets.io/v/20180222T055954/_scripts/TFS/min/","paths":{"Charts/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","VSSUI/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","Engagement/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","Gallery/Scripts/Gallery/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","ContentRendering/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","VSSPreview/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","VSS/Resources":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","highcharts":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v6.0.4.min","highcharts-more":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v6.0.4.min","highcharts-heatmap":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v6.0.4.min","highcharts-funnel":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v6.0.4.min","highcharts-accessibility":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v6.0.4.min"},"contributionPaths":{"VSS":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/VSS","pathType":"default"},"VSS/Resources":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","pathType":"resource"},"q":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/q","pathType":"default"},"knockout":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/knockout","pathType":"default"},"mousetrap":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/mousetrap","pathType":"default"},"mustache":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/mustache","pathType":"default"},"react":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/react","pathType":"default"},"react-dom":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/react-dom","pathType":"default"},"react-transition-group":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/react-transition-group","pathType":"default"},"jQueryUI":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/jQueryUI","pathType":"default"},"jquery":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/jquery","pathType":"default"},"OfficeFabric":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/OfficeFabric","pathType":"default"},"@uifabric":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/@uifabric","pathType":"default"},"VSSUI":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/VSSUI","pathType":"default"},"Charts":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/Charts","pathType":"default"},"Charts/Resources":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","pathType":"resource"},"ContentRendering":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/ContentRendering","pathType":"default"},"ContentRendering/Resources":{"value":"/_static/tfs/20180222T055954/_scripts/TFS/min/en-NZ","pathType":"resource"},"highcharts":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v6.0.4.min","pathType":"thirdParty"},"highcharts-more":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v6.0.4.min","pathType":"thirdParty"},"highcharts-heatmap":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v6.0.4.min","pathType":"thirdParty"},"highcharts-funnel":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v6.0.4.min","pathType":"thirdParty"},"highcharts-accessibility":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v6.0.4.min","pathType":"thirdParty"}},"shim":{"jquery":{"deps":[],"exports":"jQuery"},"highcharts":{"deps":[],"exports":"Highcharts"},"highcharts-more":{"deps":["highcharts"]},"highcharts-heatmap":{"deps":["highcharts"]},"highcharts-funnel":{"deps":["highcharts"]},"highcharts-accessibility":{"deps":["highcharts"]}},"waitSeconds":30},"coreReferences":{"stylesheets":[{"url":"/_static/tfs/20180222T055954/_cssbundles/Default/vss-bundle-ext-core-css-vxv1fNgV1Q9p5-cZQVnjjFvtOm-jPN5NBLOLuzXjKTGA=","highContrastUrl":null,"isCoreStylesheet":true}],"scripts":[{"identifier":"JQuery","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery-2.1.1.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"JQueryXDomain","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery.xdomainrequest.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"Promise","url":"https://cdn.vsassets.io/v/20180222T055954/_scripts/TFS/min/promise.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/20180222T055954/_scripts/TFS/pre-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false},{"identifier":"AMDLoader","url":"https://cdn.vsassets.io/3rdParty/_scripts/require.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/20180222T055954/_scripts/TFS/post-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false}],"coreScriptsBundle":{"identifier":"CoreBundle","url":"/_public/_Bundling/Content?bundle=vss-bundle-basejs-vI1IxAQ10AVWwEoAF6E9t0idR3ZSaZnasnpanuPQzGJ0=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},"extensionCoreReferences":{"identifier":"CoreBundle","url":"https://cdn.vsassets.io/bundles/vss-bundle-ext-core-vX1ecVJuaqj2odcFRZUYNZd6ULPwX5QNXclLBYFeKh8U=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true}},"webAccessConfiguration":{"isHosted":true,"paths":{"rootPath":"/","staticContentRootPath":"/","staticContentVersion":"20180222T055954","resourcesPath":"https://cdn.vsassets.io/v/20180222T055954/_content/","staticRootTfs":"https://cdn.vsassets.io/v/20180222T055954/","cdnFallbackStaticRootTfs":"/_static/tfs/20180222T055954/","staticRoot3rdParty":"https://cdn.vsassets.io/3rdParty/"},"api":{"webApiVersion":"1","areaPrefix":"_","controllerPrefix":"_"},"mailSettings":{"enabled":true}},"microsoftAjaxConfig":{"cultureInfo":{"name":"en-NZ","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"$","NaNSymbol":"NaN","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"0001-01-01T00:00:00","MaxSupportedDateTime":"9999-12-31T23:59:59.9999999","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"dddd, d MMMM yyyy h:mm:ss tt","LongDatePattern":"dddd, d MMMM yyyy","LongTimePattern":"h:mm:ss tt","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"d/MM/yyyy","ShortTimePattern":"h:mm tt","SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"numberShortForm":{"QuantitySymbols":["K","M","B"],"NumberGroupSize":1000,"ThousandSymbol":"K"},"eras":null}},"timeZonesConfiguration":{},"featureAvailability":{"featureStates":{"VisualStudio.Services.Contribution.EnableOnPremUnsecureBrowsers":false,"VisualStudio.Service.WebPlatform.ClientErrorReporting":true,"Microsoft.VisualStudio.Services.Gallery.Client.UseCdnAssetUri":false,"VisualStudio.Services.ExtensionManagement.QueryContributionNodes":true,"VisualStudio.Services.WebAccess.SubresourceIntegrity":true,"VisualStudio.Services.IdentityPicker.ReactProfileCard":true,"Microsoft.VisualStudio.Services.Gallery.PublisherReply":true,"Microsoft.VisualStudio.Services.Gallery.ShowVSItemLink":false,"Microsoft.VisualStudio.Services.Gallery.ShowLargeThumbnailAsBrandingIcon":false,"Microsoft.VisualStudio.Services.Gallery.BuyWorkflowChangesForReadOnlyQuantity":true,"Microsoft.VisualStudio.Services.Gallery.VSCodeOneClickInstall":true,"Microsoft.VisualStudio.Services.Gallery.AllowNewAccountAPI":false,"Microsoft.VisualStudio.Services.Gallery.EnableWriteVSExtensionReview":true,"Microsoft.VisualStudio.Services.Gallery.ShowPricingCalculatorForAllUserBased":false,"Microsoft.VisualStudio.Services.Gallery.Publisher360.LogWebPageView":true,"Microsoft.VisualStudio.Services.Gallery.Publisher360.LogGetStartedCount":true,"Microsoft.VisualStudio.Services.Gallery.ShowQnA":true,"Microsoft.VisualStudio.Services.Gallery.EnableQnABypass":true,"Microsoft.VisualStudio.Services.Gallery.EnableQnABypassForVSTS":true,"Microsoft.VisualStudio.Services.Gallery.PrivacyPage":true,"Microsoft.VisualStudio.Services.Gallery.RememberAccountSelection":true,"Microsoft.VisualStudio.Services.Gallery.Publisher360.EnableReportsLinkForVSTS":true,"Microsoft.VisualStudio.Services.Gallery.Publisher360.EnableReportsLinkForVSCode":false,"Microsoft.VisualStudio.Services.Gallery.ShowNewPricingCalculator":true,"Microsoft.VisualStudio.Services.Gallery.Publisher360.EnableReportsLinkForVSIde":true,"Microsoft.VisualStudio.Services.Gallery.LogVSTSGetStartedExtensionStatistic":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewAcquisitionExperienceForResources":true,"Microsoft.VisualStudio.Services.Gallery.ShowNewAcquisitionOptInExperienceForResources":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewAcqExpForFirstPartyPaidExtensions":true,"Microsoft.VisualStudio.Services.Gallery.ShowNewAcqOptInExpForFirstPartyPaidExtensions":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewAcquisitionExperienceForOffers":true,"Microsoft.VisualStudio.Services.Gallery.ShowNewAcquisitionOptInExperienceForThirdPartyPaidExtensions":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewAcquisitionExperienceForThirdPartyPaidExtensions":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewAcquisitionExperienceForFreeExtensions":true,"Microsoft.VisualStudio.Services.Gallery.ShowNewAcquisitionOptInExperienceForOffers":true,"Microsoft.VisualStudio.Services.Gallery.ItemDetailsReact":true,"Microsoft.VisualStudio.Services.Gallery.EnableCspChanges":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewTokenAcquisitionExperience":false,"Microsoft.VisualStudio.Services.Gallery.EnableNewTokenAcquisitionExperienceForOffers":true,"Microsoft.VisualStudio.Services.Gallery.EnableNewTokenAcquisitionExperienceForTestManager":false,"Microsoft.VisualStudio.Services.Gallery.VSCodeFullyQualifiedCopyCommand":true,"Microsoft.VisualStudio.Services.Gallery.RatingReview":true,"Microsoft.VisualStudio.Services.Gallery.EnableStickyBannerOnDetailsPage":true}},"appInsightsConfiguration":{"enabled":false,"instrumentationKey":"00000000-0000-0000-0000-000000000000","insightsScriptUrl":null},"diagnostics":{"sessionId":"9fd50a13-43f2-45f0-8682-a53f0f328be3","activityId":"9fd50a13-43f2-45f0-8682-a53f0f328be3","bundlingEnabled":true,"cdnAvailable":true,"cdnEnabled":true,"webPlatformVersion":"M130"},"navigation":{"topMostLevel":"deployment","area":"","currentController":"Gallery","currentAction":"Details","commandName":"Gallery.Details","routeId":"LegacyWebAccessRoute","routeValues":{}},"globalization":{"explicitTheme":"","theme":"Default","culture":"en-NZ","timezoneOffset":0,"timeZoneId":"UTC"},"serviceInstanceId":"00000029-0000-8888-8000-000000000000","hubsContext":{},"serviceLocations":{"locations":{"951917ac-a960-4999-8464-e3f0aa25b381":{"Application":"https://app.vssps.visualstudio.com/","Deployment":"https://app.vssps.visualstudio.com/"}}}};</script><script type="text/javascript"> var __cultureInfo = __vssPageContext.microsoftAjaxConfig.cultureInfo;</script>
+<script type="text/javascript"> (function(){
+var unloadStarted = false;
+function onRequireError(e) {
+    var msg = 'There was an error loading a required file. Would you like to reload the page to try to load again?';
+    function reload(prompted) {
+        document.cookie = 'TFS-CDN=disabled;max-age=28800;path=/;secure';
+        document.cookie = 'TFS-CDNTRACE=report-'+prompted+'-'+(e.requireType === 'requirenotloaded' ? 'require' : encodeURIComponent(JSON.stringify(e.requireModules)))+';path=/;secure';
+        document.location.reload(true);
+    }
+    if (!e || !e.requireType || (e.requireType !== 'scripterror' && e.requireType !== 'requirenotloaded')) {
+        throw e;
+    }
+    if (unloadStarted) {
+        return;
+    }
+    if (!window.requiredModulesLoaded) {
+        reload(false);
+    }
+    else if (window.require && require.defined('VSS/Controls/Dialogs')) {
+        require(['VSS/Controls/Dialogs'], function(d) {
+            d.showMessageDialog(msg, { title: 'Network Error', buttons: [d.MessageDialog.buttons.yes, d.MessageDialog.buttons.no] }).then(function() { reload(true) });
+        });
+    }
+    else {
+        if (confirm(msg)) {
+            reload(true);
+        }
+    }
+}
+window.addEventListener('beforeunload', function() {
+    unloadStarted = true;
+});
+if (window.requirejs) {
+    requirejs.onError = onRequireError;
+}
+else {
+    onRequireError({requireType:'requirenotloaded'});
+}
+})();require.config(__vssPageContext.moduleLoaderConfig);</script>
+
+    <input name="__RequestVerificationToken" type="hidden" value="taPRrbtupcKO1epPlNJf9djDFgz94KXSWjZxPaudr5nlDTaRhc7vD2J3Mn8tojdSTvm5G-R4T8ApANk5d6SNom2EUjDHjFRg1bi6SCLcK9OTV88K0_A7uy9fmJEZdsPCHrhfqs-F1YHO1XPbvPOk2GhsrvIJwTOtyXjE5pLJHqo1" />  
+    <script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('startLoadBundleOuter-common'); }</script>
+<script crossorigin="anonymous" data-bundlelength="947963" data-bundlename="common" data-includedscripts="VSS/Fonts/TextFonts;VSS/Fonts/IconFonts;Gallery/Client/Pages/Common/Base.View;Gallery/Client/Common/Telemetry;Gallery/Client/Controls/ErrorControl/ErrorControl.View;Gallery/Client/Service/VSSGallery/VSSGallery;Gallery/Client/Service/VSGallery/VSGallery;VSS/FeatureAvailability/RestClient;VSS/Error;VSS/Bundling" integrity="sha256-EKuk9rbLwd8wAq21xkht1IB6gJRVyUYGEBc8IxYZn5Q=" src="https://cdn.vsassets.io/bundles/vss-bundle-common-v_5l3jKJvDj3FIQ9LkEVu7i2u_gIBsuMptBGo5865xOw=" type="text/javascript"></script>
+<script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('endLoadBundleOuter-common'); }</script>
+<script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('startLoadBundleOuter-view'); }</script>
+<script crossorigin="anonymous" data-bundlelength="2246408" data-bundlename="view" data-includedscripts="Gallery/Client/Pages/VSSItemDetails/VSSItemDetails.View;VSS/Error" integrity="sha256-RKZ7VHnf76dvioWkKHurU6YJ1B00ZH2S3HGmrNMJ/30=" src="https://cdn.vsassets.io/bundles/vss-bundle-view-vn_jCf6zCAUr1fLewbEHkf_TeZlxzGed2YWcvK-mpRR0=" type="text/javascript"></script>
+<script type="text/javascript">if (window.performance && window.performance.mark) { window.performance.mark('endLoadBundleOuter-view'); }</script>
+
+<script type="text/javascript"> if (window.performance && window.performance.mark) { window.performance.mark('requireStart'); }
+require(["VSS/Fonts/TextFonts","VSS/Fonts/IconFonts","Gallery/Client/Pages/VSSItemDetails/VSSItemDetails.View","Gallery/Client/Pages/Common/Base.View","Gallery/Client/Common/Telemetry","Gallery/Client/Controls/ErrorControl/ErrorControl.View","Gallery/Client/Service/VSSGallery/VSSGallery","Gallery/Client/Service/VSGallery/VSGallery","VSS/FeatureAvailability/RestClient","VSS/Error"], function(){  if (window.performance && window.performance.mark) { window.performance.mark('requireEnd'); } window.requiredModulesLoaded=true;  });
+</script>
+
+
+    
+    <div class="page-content">
+        <div class="header-section">
+            
+            <div class="uxservices-header" role="banner">
+                <div id="ux-header">
+                <div class="upperBand">
+                    <div class="upperBandContent marketplace-header">
+                        <a href="/" title="Marketplace" class="left" >  
+                            <div class="marketPlaceLogoLink bowtie-icon bowtie-brand-visualstudio vs-brand-icon menu-item-icon"></div>
+                            <div class="visualStudioLogoLink"> Visual Studio  </div>
+                            <div id="marketPlaceLogoLink" class="marketPlaceLogoLink">|   Marketplace</div>
+                        </a>
+                        <div class="right">
+                             
+                            <div id="signIn">
+                                
+                                    <a href="https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com&amp;reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dfourpastmidnight.AllMargins2012&amp;redirect=1&amp;context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90&amp;workflowId=marketplace&amp;wt.mc_id=o~msft~marketplace~signIn#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01" class="scarabLink" style="float:left;margin-left:23px;padding-top:1px;color:#fff;font-weight:400;">
+                                        Sign in
+                                    </a>
+                                
+                            </div>                            
+                            <div data-fragmentname="SearchBox" id="Fragment_SearchBox">
+                              <div class="SearchBox" role="search">
+                                <form id="HeaderSearchForm" name="HeaderSearchForm" method="get">
+                                  <input id="HeaderSearchTextBox" aria-label="search" name="query" type="text" maxlength="200" autocomplete="off">
+                                  <input id="RefinementId" name="refinement" type="hidden" value="198">
+                                  <button class="bowtie-icon bowtie-search header-search-button" id="HeaderSearchButton" value="" type="submit"></button>
+                                </form>
+                                <a class="bowtie-icon bowtie-search metroSearchButton" tabindex="0" title="Search here"></a>
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            </div>
+            
+        </div>
+        <div id="gallery-content">
+            
+    <script id="item-details-view-template" type="text/html">
+    <div class="item-details-control-root">
+        <!-- ko if: !showMinimalView -->
+        <div class="breadcrumb" role="navigation">
+            <div class="gallery-centered-content">
+                <span data-bind="template: { name: 'bread-crumb-template', data: breadCrumbViewModel}"></span>
+                <!--ko if: vscodeEditorDownloadLink-->
+                <span class="vsCodeDownloadLinkContainer">
+                    <span data-bind="text: vscodeIntroText"></span>
+                    <a class="vsCodeDownloadLink" data-bind="attr: { href: vscodeEditorDownloadLink, target: '_blank', rel: 'noreferrer noopener', 'aria-label': vscodeDownloadDescription }, text: vscodeEditorDownloadText, click: function(data, event) {return $data.onVSCodeDownloadClick(event);}"></a>
+                </span>
+                <!--/ko -->
+            </div>
+        </div>
+        <div class="optIn-bar-container">
+            <div class="gallery-centered-content react-new-acquisition-container" role="complementary">
+                <div data-bind="galleryReactElem: acquisitionExperienceOptInBar"></div>
+            </div>
+        </div>        
+        <!-- /ko -->
+        <div class="ux-item-details" role="main">
+            <div class="ux-section-banner" id="section-banner" data-bind="style: { 'background-color': brandingColor!=null ? brandingColor : '' }">
+                <div class="ux-section-core gallery-centered-content">
+                    <table role="presentation">
+                        <tr>
+                            <td class="item-img" data-bind='template: { name: "image-template", data: imageViewModel }'></td>
+                            <td class="item-header">
+                                <div class="item-header-content" data-bind="css: brandingTheme">
+                                    <h1><span class="ux-item-name" data-bind="text: itemName"></span></h1>
+                                    <!-- ko if: titleTag !== null && titleTag !== undefined && !isNewAcquisitionExperienceEnabled() -->
+                                    <span class="ux-item-titleTag" data-bind="text: titleTag, css: brandingTheme"></span>
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.showReportsLink -->
+                                    <span class="divider"> | </span>
+                                    <a class="ux-gallery-item-reports-link" data-bind="attr: { href: $data.reportsLink, target:'_blank'}, style: {color: brandingTheme == 'light' ? '#000000':'#ffffff'}, click: _publishTelemetryEventDetailsPageReportsClicked">
+                                        <i class="bowtie-icon bowtie-file-content"></i>
+                                        <span data-bind="text: $data.reportsLinkDisplayName"></span>
+                                    </a>
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.showGalleryItemEditLink -->
+                                    <span class="divider"> | </span>
+                                    <a class="ux-gallery-item-edit-link" data-bind="attr: { href: $data.galleryItemEditLink, target:'_blank'}, style: {color: brandingTheme == 'light' ? '#000000':'#ffffff'}">
+                                        <i class="bowtie-icon bowtie-edit-outline"></i>
+                                        <span data-bind="text: $data.galleryItemEditLinkDisplayName"></span>
+                                    </a>
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.galleryItemLink -->
+                                    <span class="ux-gallery-item-preview">
+                                        <a data-bind="text: $data.galleryItemLinkDisplayName, attr: { href: $data.galleryItemLink, target:'_blank'}"></a>
+                                    </span>
+                                    <!-- /ko -->
+                                    <div class="ux-item-second-row-wrapper">
+                                        <!--ko if: $data.publisherLink -->
+                                        <div class="ux-item-publisher">
+                                            <h2 role="presentation"><a class="ux-item-publisher-link item-banner-focussable-child-item" data-bind="text: $data.publisherDisplayName, attr: { href: $data.publisherLink, 'aria-label': $data.publisherPageLinkDescription }, style: {color: brandingTheme == 'light' ? '#000000':'#ffffff'}"></a></h2>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!--ko if: !$data.publisherLink -->
+                                        <div class="ux-item-publisher">
+                                            <h2 role="presentation"><span class="ux-item-publisher-link" data-bind="text: $data.publisherDisplayName, style: {color: brandingTheme == 'light' ? '#000000':'#ffffff'}"></span></h2>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: !showMinimalView -->
+                                        <!-- ko if: showDownloads -->
+                                        <span class="divider"> | </span>
+                                        <div class="ux-item-rating">
+                                            <div class="bowtie-icon bowtie-install"></div>
+                                            <!-- ko if: !isGetStartedType -->
+                                            <span data-bind="text: downloadsText"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: isGetStartedType -->
+                                            <span data-bind="text: clicksText"></span>
+                                            <!-- /ko -->
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: showRatingReview && reviewResultsLoaded() -->
+                                        <a href='#review-details' class="ux-item-review-rating-wrapper" data-bind="attr: {'aria-label': $data.ratingsScreenReaderText }">
+                                            <span class="ux-item-review-rating" data-bind="attr: { title: bannerAverageRatingText }">
+                                                <span class="divider"> | </span>
+                                                <span class="ux-item-rating-control" data-bind="template: { name: 'rating-control-page-template', data: avgRatingDetailsOnBanner }"></span>
+                                                <span class="ux-item-rating-count"> (<span data-bind="{text: bannerTotalReviewCount }"></span>) </span>
+                                            </span>
+                                        </a>
+                                        <!-- /ko -->
+                                        <!-- ko if: isNewAcquisitionExperienceEnabled() -->
+                                        <span class="divider"> | </span>
+                                        <span class="item-price-category" data-bind="text: itemPriceCategory"></span>
+                                        <!-- /ko -->
+                                        <div class="ux-vsippartner" data-bind="visible: isVSIPPartner">
+                                            <span class="divider"> | </span>
+                                            <img class="ux-item-vsippartner" data-bind="attr: { src: vsipPartnerImgPath }" />
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                    <div class="ux-item-shortdesc" data-bind="text: itemDescription"></div>
+                                    <!-- ko if: !isUnpublished -->
+                                    <div class="ux-item-action">
+                                        <!-- ko if: !isVSCode && !isVSExtension-->
+                                        <!-- ko if: !showMinimalView -->
+                                        <!-- ko if: !isNewAcquisitionExperienceEnabled() -->
+                                        <!-- ko if: trialButtonVisible -->
+                                        <a class="trial-button-container" data-bind="attr: { 'data-toggle': _isInstallLinkModalType(trialLink) ? 'modal' : null, href: trialLink, target: trialLinkNewTab ? '_blank' : '_self', rel: 'noreferrer noopener' }" tabindex="-1">
+                                            <button class="ux-button install" data-bind="text: trialButtonText, click: function(data, event) {return $data.onClick(event);}"></button>
+                                        </a>
+                                        <!-- /ko-->
+                                        <a class="install-button-container" data-bind="attr: { 'data-toggle': _isInstallLinkModalType(actionLink) ? 'modal' : null, href: actionLink, target: actionLinkNewTab ? '_blank' : '_self',rel: 'noreferrer noopener', title: actionButtonTitle }, css: {linkDisabled: actionButtonDisabled}, visible: actionButtonVisible" tabindex="-1">
+                                            <button class="ux-button install" data-bind="text: actionButtonText, css: {buttonDisabled: actionButtonDisabled, showDropdown: installForPaidUsersSupported}, click: function(data, event) {return $data.onClick(event);}, disable: actionButtonDisabled"></button>
+                                        </a>
+                                        <!-- ko if: installForPaidUsersSupported -->
+                                        <span role="button" aria-label="dropdown" aria-haspopup="true" class="action-button-dropdown bowtie-icon bowtie-chevron-down-light" data-bind="click: function(event) { return onClickActionButtonsDropdownIcon() }, onOpenDropdown: function(event) { return onClickActionButtonsDropdownIcon() }, css: brandingTheme" tabindex="0"></span>
+                                        <!-- /ko-->
+                                        <!-- /ko -->
+                                        <!-- ko if: isNewAcquisitionExperienceEnabled() -->
+                                        <a class="install-button-container" data-bind="attr:{href: acquisitionLink, target: actionLinkNewTab ? '_blank' : '_self', rel: 'noreferrer noopener'}" tabindex="-1">
+                                            <button class="ux-button install" data-bind="text: acquisitionButtonText, click: function(data, event) {return $data.onClick(event);}"></button>
+                                        </a>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                        <!-- ko if : showOfferPlans && !isNewAcquisitionExperienceEnabled()-->
+                                        <a href="#plan-details" class="ux-item-meter-pricing-wrapper item-banner-focussable-child-item" data-bind="click: function(data, event) {return $data.onBannerPricingClick();}">
+                                            <span class="ux-item-meter-start-plan" data-bind="text: startPlanInfoText, style: {color: brandingTheme == 'light' ? '#000000':'#ffffff'}"></span>
+                                        </a>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                        <!-- ko if: downloadLink !== null &&  downloadLink !== undefined -->
+                                        <!-- ko if: !showMinimalView -->
+                                        <a class="download-button-container" data-bind="attr: { 'data-toggle': _isDownloadLinkModalType(downloadLink) ? 'modal' : null, href: downloadLink }, click: startDownload" tabindex="-1">
+                                            <button class="ux-button install" data-bind="text: downloadButtonText"></button>
+                                        </a>
+                                        <div class="modal" id="download-pop-up" tabindex="-1" role="dialog" data-bind="if: itemDownloadViewModel, css: {'show-on-load': initiateDownloadonPageLoad}">
+                                            <div class="download-control-container gallery-centered-content">
+                                                <span class="bowtie-icon bowtie-navigate-close dialog-close-icon" data-dismiss="modal" data-bind="click: onDownloadDialogClose"></span>
+                                                <div class="modal-content">
+                                                    <div data-bind="template: {name: 'vssItem-download-template', data: itemDownloadViewModel }"></div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="text: closeDialogText, click: onDownloadDialogClose"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                        <!-- ko if: clickLink !== null &&  clickLink !== undefined -->
+                                        <a class="download-button-container" data-bind="attr: { href: downloadLink }, click: startDownload" tabindex="-1">
+                                            <button class="ux-button install" data-bind="text: clickButtonText"></button>
+                                        </a>
+                                        <!-- /ko -->
+                                        <!-- ko if: isVSCode -->
+                                        <!--ko if: isOneClickInstallExperienceVisible -->
+                                        <div class="one-click-install-container">
+                                            <div data-bind="galleryReactElem: installButtonContainer"></div>
+                                            <div class="installHelpInfo">
+                                                <a data-bind="attr: { href: vscodeInstallHelpLink, target: '_blank', rel: 'noreferrer noopener'}, css: brandingTheme, html: vscodeInstallHelpText, click:onVSCodeTroubleInstallingLinkClick">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko ifnot: isOneClickInstallExperienceVisible -->
+                                        <div class="vscode-copy-command-wrapper" data-bind="renderRegisteredTemplate: { templateName: 'vscode-copy-command-template', data: VSCodeCopyCommandOptions() }">
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                        <!-- ko if : !isNewAcquisitionExperienceEnabled() -->
+                                        <span data-bind="html: offersCost, visible: offersCost !== null"></span>
+                                        <!-- /ko -->
+                                        <!-- ko if: previewString !== null && previewString !== undefined && !isNewAcquisitionExperienceEnabled() -->
+                                        <span class="ux-item-previewString" data-bind="text: previewString"></span>
+                                        <!-- /ko -->
+                                    </div>
+                                    <!--  /ko -->
+                                    <div class="ux-item-free-install" data-bind="visible: !isUnpublished && actionDescriptionHtml != null, html: actionDescriptionHtml"></div>
+                                    <div class="ux-item-offers-cost-text" data-bind="visible: offersCostText != null, html: offersCostText"></div>
+                                    <div class="ux-item-unpublished-text" data-bind="visible: unpublishedText != null">
+                                        <span class="ux-item-unpublished-status-icon bowtie-icon bowtie-status-info"></span>
+                                        <span data-bind="text: unpublishedText"></span>
+                                    </div>
+                                    <!-- /ko -->
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="gallery-centered-content">
+                <div class="ux-section-details">
+                    <!-- ko if : isReactItemDetailsEnabled -->
+                    <div data-bind="galleryReactElem: ItemDetailsComponent"></div>
+                    <!-- /ko -->
+                    <!-- ko ifnot : isReactItemDetailsEnabled -->
+                    <table class="ux-section-details-table">
+                        <tr>
+                            <td class="ux-itemdetails-left">
+                                <div class="markdown" data-bind="html: itemDetailsContent"></div>
+                                <br />
+                                <!-- ko if : showItemPricing -->
+                                <div class="ux-section-pricing" id="plan-details">
+                                    <div class="ux-section-h2">
+                                        <h2 data-bind="text: itemPricingString"></h2>
+                                    </div>
+                                    <!-- ko if : showOfferPlans && planBasedPricing -->
+                                    <!-- ko if : teamSizePlansMessage-->
+                                    <div class="team-size-plan-msg" data-bind="text: teamSizePlansMessage"></div>
+                                    <!-- /ko -->
+                                    <div class="item-offer-plan">
+                                        <table class="item-offer-plan-table">
+                                            <tbody>
+                                                <tr class="item-offer-plan-header">
+                                                    <th data-bind="text: usersText"></th>
+                                                    <th data-bind="text: pricePerMonthText"></th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody class="item-offer-plans" data-bind="foreach: itemPricePlanDetails">
+                                                <tr class="item-offer-plan-rows">
+                                                    <td data-bind="text: noOfUsers"></td>
+                                                    <td data-bind="text: price"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /ko-->
+                                    <!-- ko if : !planBasedPricing && itemPricingContent !== null && itemPricingContent !== undefined -->
+                                    <div class="markdown" data-bind="html: itemPricingContent"></div>
+                                    <!-- /ko -->
+                                    <!-- ko if : showPriceCalculator() && !showPriceCalculatorInMarkdown-->
+                                    <div data-bind="template: { name: 'price-calculator-view-template', data: itemPriceCalculator }"></div>
+                                    <!-- /ko -->
+                                </div>
+                                <!-- /ko -->
+                            </td>
+                            <td class="ux-itemdetails-right" role="complementary">
+                                <div class="ux-section-media">
+                                    <div class="item-carousel-container">
+                                        <div class="item-carousel images"></div>
+                                    </div>
+                                </div>
+                                <div class="meta-data-list-holder" data-bind="template: {name: 'meta-data-list-control-template', data: metaDataListViewModel}"></div>
+                                <!-- ko if : showCapabilitiesInfo -->
+                                <div class="ux-section-capabilities">
+                                    <h3 class="itemdetails-section-header right" data-bind="text: capabilitiesHeader"></h3>
+                                    <!-- ko if : isWorksWithExpanded() -->
+                                    <div data-bind="foreach: capabilities">
+                                        <div class="capabilities-list-item" data-bind="text: $data.name"></div>
+                                    </div>
+                                    <!-- /ko -->
+                                    <!-- ko if : !isWorksWithExpanded() -->
+                                    <div data-bind="foreach: minimumSetCapabilities">
+                                        <div class="capabilities-list-item" data-bind="text: $data.name"></div>
+                                    </div>
+                                    <a role="button" class="see-more-text-link" aria-label="Works with see more link" data-bind="text: seeMoreText, click: setWorksWithExpanded, enterkey: setWorksWithExpanded, spacekey: setWorksWithExpanded" tabindex="0"></a>
+                                    <!-- /ko -->
+                                </div>
+                                <!-- /ko -->
+                                <div class="ux-section-resources" data-bind="if:hasResourceLinks">
+                                    <h3 class="itemdetails-section-header right" data-bind="text: itemResourcesText"></h3>
+                                    <div>
+                                        <ul>
+                                            <!-- ko if: itemDetailsSupportLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsSupportLink, target: _isSamePageLink(itemDetailsSupportLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text:itemDetailsSupportString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsSupportLink, itemDetailsSupportString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsBillingSupportLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsBillingSupportLink, target: '_blank', rel: 'noreferrer noopener' }, text:itemDetailsBillingSupportString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsBillingSupportLink, itemDetailsBillingSupportString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: getStartedLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: getStartedLink, target: _isSamePageLink(getStartedLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemGetStartedKey, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, getStartedLink, itemGetStartedKey)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsLearnLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsLearnLink, target: _isSamePageLink(itemDetailsLearnLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemDetailsLearnString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsLearnLink, itemDetailsLearnString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsFeedbackLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsFeedbackLink, target: _isSamePageLink(itemDetailsFeedbackLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemDetailsFeedbackString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsFeedbackLink, itemDetailsFeedbackString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsLicenseLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsLicenseLink, target: _isSamePageLink(itemDetailsLicenseLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemDetailsLicenseString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsLicenseLink, itemDetailsLicenseString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsChangelogLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsChangelogLink, target: _isSamePageLink(itemDetailsChangelogLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemDetailsChangelogString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsChangelogLink, itemDetailsChangelogString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: itemDetailsPrivacyLink -->
+                                            <li>
+                                                <a data-bind="attr: { href: itemDetailsPrivacyLink, target: _isSamePageLink(itemDetailsPrivacyLink) ? '_self' : '_blank', rel: 'noreferrer noopener' }, text: itemDetailsPrivacyString, click: _publishTelemetryEventDetailsPageResourceClicked.bind($data, itemDetailsPrivacyLink, itemDetailsPrivacyString)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <!-- ko if: showVSCodeDownloadLink -->
+                                            <li>
+                                                <a data-bind="attr: {rel: 'noreferrer noopener' }, text: itemDetailsDownloadVSIXString, click: startDownload"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- ko if: ( itemDetailsGitHubLink() !== null || itemBadgesViewModel() !== null) -->
+                                <div class="ux-section-project-details">
+                                    <!-- ko if: shouldShowProjectDetails() -->
+                                    <h3 class="itemdetails-section-header right" data-bind="text: itemProjectDetailsText"></h3>
+                                    <!-- /ko -->
+                                    <!-- ko if: itemDetailsGitHubLink() !== null-->
+                                    <div class="github-details">
+                                        <!-- ko ifnot: githubDetailsAvailable()  -->
+                                        <div class="ux-section-project-details-spinner" data-bind="template: { name: 'spinner-template', data: null }"></div>
+                                        <!-- /ko -->
+                                        <!-- ko if: githubDetailsAvailable() -->
+                                        <div>
+                                            <ul>
+                                                <li>
+                                                    <a class="githubLinks" data-bind="attr: { href: itemDetailsGitHubLink, target: 'blank', rel: 'noreferrer noopener'}, click: function(data, event) {return _logExternalMetaDataTelemetry('Repository')} "><span class="api-github-response bowtie-icon bowtie-brand-github"></span><span class="api-github-response github-string" data-bind="text: itemDetailsGitHubString"></span></a>
+                                                </li>
+                                                <li>
+                                                    <a class="githubLinks" data-bind="attr: { href: itemDetailsPullRequestLink, target: 'blank', rel: 'noreferrer noopener'}, click: function(data, event) {return _logExternalMetaDataTelemetry('PullRequest')} "><span class="api-github-response bowtie-icon bowtie-tfvc-pull-request"></span><span class="api-github-response pull-request-string" data-bind="text: itemDetailsPullRequestString"></span></a>
+                                                </li>
+                                                <li>
+                                                    <a class="githubLinks" data-bind="attr: { href: itemDetailsOpenIssuesLink, target: 'blank', rel: 'noreferrer noopener'}, click: function(data, event) {return _logExternalMetaDataTelemetry('OpenIssues')} "><span class="api-github-response bowtie-icon bowtie-status-error"></span><span class="api-github-response open-issues-string" data-bind="text: itemDetailsOpenIssuesString"></span></a>
+                                                </li>
+                                                <li>
+                                                    <a class="githubLinks" data-bind="attr: { href: itemDetailsLastCommitLink, target: 'blank', rel: 'noreferrer noopener'}, click: function(data, event) {return _logExternalMetaDataTelemetry('Commits')} "><span class="api-github-response bowtie-icon bowtie-status-waiting-fill"></span><span class="api-github-response last-commit-string" data-bind="text: itemDetailsLastCommitString"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                    <!-- /ko -->
+                                    <!-- ko if: itemBadgesViewModel() !== null -->
+                                    <div class="badges" data-bind="visible: shouldShowBadges">
+                                        <div class="ux-section-badges" data-bind="template: { name: 'badges-template', data: itemBadgesViewModel }"></div>
+                                    </div>
+                                    <!-- /ko -->
+                                </div>
+                                <!-- /ko -->
+                                <div class="ux-section-other">
+                                    <h3 class="itemdetails-section-header right" data-bind="text: itemMoreInfoText"></h3>
+                                    <div>
+                                        <table class="ux-table-metadata">
+                                            <tr>
+                                                <td>
+                                                    <div data-bind="text: itemVersionKey"></div>
+                                                </td>
+                                                <td>
+                                                    <div data-bind="text: version"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div data-bind="text: itemUpdateDateKey"></div>
+                                                </td>
+                                                <td>
+                                                    <div data-bind="text: itemUpdatedDate"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div data-bind="text: itemPublisherKey"></div>
+                                                </td>
+                                                <td>
+                                                    <div data-bind="text: publisherDisplayName"></div>
+                                                </td>
+                                            </tr>
+                                            <!-- ko if: itemIdentifier -->
+                                            <tr>
+                                                <td>
+                                                    <div data-bind="text: itemIdentifierKey"></div>
+                                                </td>
+
+                                                <td>
+                                                    <div data-bind="text: itemIdentifier"></div>
+                                                </td>
+                                            </tr>
+                                            <!-- /ko -->
+                                            <tr data-bind="visible: showReportAbuseLink">
+                                                <td>
+                                                    <div>Report</div>
+                                                </td>
+                                                <td>
+                                                    <div><a data-bind="attr: { href: reportAbuseLink }">Report Abuse</a></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- ko if: itemShareDetails -->
+                                    <span class="ux-social-icons">
+                                        <span data-bind="template: { name: 'item-share-template', data: itemShareDetails }"></span>
+                                    </span>
+                                    <!-- /ko -->
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="modal install-page" data-backdrop="static" id="install-pop-up" data-keyboard="true" tabindex="-1" role="dialog" aria-labelledby="item-banner-container">
+                <div class="install-page-content gallery-centered-content">
+                    <div class="item-banner-container" id="item-banner-container" role="presentation">
+                        <div class="install-page-item-banner"></div>
+                    </div>
+                    <div class="acquire-item-workflow-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ko if: showQnAAndRnRContainer-->
+    <div class="gallery-centered-content react-qna-container" id="qna-details" role="complementary" data-bind="attr: {'aria-label': qnaHeadingText}">
+       <div data-bind="galleryReactElem: qnaAndRnRContainer"></div>
+    </div>
+    <!-- /ko -->
+</script>
+<script id="vscode-copy-command-template" type="text/html">
+    <div class="vscode-item-action">
+        <!--ko if: isOneClickInstallExperienceVisible -->
+        <a class="install-button-container" data-bind="attr: { href: actionLinkInstall}" tabindex="-1">
+            <button class="ux-button install" data-bind="text: actionInstallButtonText, click: onVSCodeInstallClick"></button>
+        </a>
+        <span class="installHelpText">
+            <a data-bind="attr: { href: installHelpLink, target: '_blank', rel: 'noreferrer noopener'}, css: brandingTheme, text: installHelpText"></a>
+            <i class="bowtie-icon bowtie-navigate-external"></i>
+        </span>
+        <div class="newExpVSCodeEditorDownload">
+            <span data-bind="text: newExpVSCodeEditorInstallText"></span>
+            <a class="vsCodeEditorDownloadLink" data-bind="attr: { href: vscodeEditorDownloadLink, target: '_blank', rel: 'noreferrer noopener', 'aria-label': vscodeDownloadDescription }, text: vscodeEditorDownloadText, css: brandingTheme, click: function(data, event) {return $data.onVSCodeDownloadClick(event);}"></a>
+            <i class="bowtie-icon bowtie-navigate-external"></i>
+        </div>
+        <!--<div class="vscode-version">
+            <div class="vscode-version-info" data-bind="text: versionSupportedText"></div>
+            <a class="vscode-version-info-link" data-bind="attr: { href: versionLink, target: actionLinkNewTab ? '_blank' : '_self' }, text: findVersionText, css: brandingTheme, click: logVersionTelemetry"></a>
+        </div>-->
+        <!--<div class="vscode-copy">
+            <a class="vscode-copy-link" tabindex="0" data-toggle="modal" data-bind="click: function(event) { return openCopyModal() }, enterkey: function(event) { return openCopyModal() }, css: brandingTheme, text: clickHere"></a>
+            <div class="vscode-copy-info" data-bind="text: copyInfoText"></div>
+        </div>-->
+        <!--<div class="vscode-copy-insiders">
+            <a class="vscode-insiders-install" data-bind="attr: { href: insidersInstallLink}, text: clickHere, css: brandingTheme, click: logInstallInsidersTelemetry"></a>
+            <div class="vscode-insiders-install-info" data-bind="text: insidersInstallInfoText"></div>
+        </div>-->
+        <!--<div class="modal" id="modal-copy-command-container" tabindex="-1" role="dialog">
+            <div class="modal-copy-command">
+                <div class="copy-modal-header">
+                    <div class="vscode-install-title" data-bind="text: installTitle"></div>
+                    <div id="vscode-install-instructions" class="vscode-install-instructions" data-bind="html: installInstructions"></div>
+                    <div class="vscode-install-info-container">
+                        <div class="vscode-command-container">
+                            <input type="text" class="vscode-command-input" readonly="" aria-labelledby="vscode-install-instructions" data-bind="attr: { value: copyCommand, id:textAreaID, size: copyCommandLength }, click: selectTextOnClick"> -->
+                            <!-- ko if: iscopySupported || isFlashSupported -->
+                            <!--<button class="copy-to-clipboard-button" data-bind="attr: {title: copyButtonTooltip, id: copyButtonID, 'data-clipboard-target': iscopySupported ? null : textAreaID} , click: iscopySupported ? copyOnClick : null, text: copyButtonText, event:{keypress: copyOnEnter}"></button>
+                            <div class="copied-result-display" data-bind="text: displayCopyResultText"></div>-->
+                            <!-- /ko -->
+                        <!--</div>                        
+                    </div>
+                </div>
+                    <div class="copy-modal-footer">
+                        <button class="cancel-copy-modal-button" data-dismiss="modal" data-bind="text: cancelButtonText, click: closeCopyModal"></button>
+                    </div>
+                </div>
+        </div>-->
+        <!-- /ko -->
+        <!--ko ifnot: isOneClickInstallExperienceVisible -->
+        <div class="vscode-install-title" data-bind="text: installTitle"></div>
+        <div id="vscode-install-instructions" class="vscode-install-instructions" data-bind="html: installInstructions"></div>
+        <div class="vscode-install-info-container">
+            <div class="vscode-command-container">
+                <input type="text" class="vscode-command-input" readonly="" aria-labelledby="vscode-install-instructions" data-bind="attr: { value: copyCommand, id:textAreaID, size: copyCommandLength }, click: selectTextOnClick">
+                <!-- ko if: iscopySupported || isFlashSupported -->
+                <button class="copy-to-clipboard-button" data-bind="attr: {title: copyButtonTooltip, id: copyButtonID, 'data-clipboard-target': iscopySupported ? null : textAreaID} , click: iscopySupported ? copyOnClick : null, text: copyButtonText, event:{keypress: copyOnEnter}"></button>
+                <!-- /ko -->
+            </div>
+            <div class="copied-display-container">
+                <div class="copied-display-div" data-bind="attr: {  id: copiedAnimationID }, text: copiedAnimationText"></div>
+            </div>
+            <a class="vscode-moreinformation" data-bind="text: actionButtonText, attr: { href: actionLink, target: actionLinkNewTab ? '_blank' : '_self' }, css: brandingTheme, click: publishTelemetryEvent_MoreInfo">
+            </a>
+        </div>
+        <!-- /ko -->
+    </div>
+</script><script id="item-tile-screenshot-template" type="text/html">
+    <div class="item-screenshot" data-bind='template: { name: "image-template", data: imageViewModel }' />
+</script><script id="image-template" type="text/html">
+    <img alt="" data-bind="attr: { src: imageSrc }, css: imageStyle, visible: imageVisible, event:{error: imageOnError, onload: centerImage($element) }" />
+    <div class="bowtie-icon" data-bind="visible: (!imageVisible && bowtieStyle !== null), css: bowtieStyle"></div>
+</script><script id="item-share-template" type="text/html">
+    <div class="item-share-container">
+        <a data-bind="attr: { href: linkTwitter, target: '_blank'}" aria-label="share extension on twitter">
+            <img alt="" data-bind="attr: { src: imgTwitter }" class="social-link share-twitter-button"></img>
+        </a>
+        <a data-bind="attr: { href: linkFacebook, target: '_blank'}" aria-label="share extension on facebook">
+            <img alt="" data-bind="attr: { src: imgFacebook }" class="social-link share-facebook-button"></img>
+        </a>
+        <a data-bind="attr: { href: linkEmail, target: '_blank'}"  aria-label="share extension on email">
+            <img alt="" data-bind="attr: { src: imgEmail }" class="social-link share-email-button"></img>
+        </a>
+    </div>
+</script>
+<script id="carousel-template" type="text/html">
+       <div class="carousel-wrapper">    
+           <div class="carousel" role="listbox" aria-orientation="horizontal" data-bind='foreach: items, scroll: viewPortStartIndex'>
+               <!-- ko if: $index() < $parent.numberOfItemsToRender() -->
+               <div class="carousel-item" data-bind='enterkey: function(data, event){ event.target.click()}, template: { name: $parent.itemsDisplayTemplate }, attr:{tabindex: $index() === $parent.selectedIndicatorIndex() ? 0: -1}'></div>
+               <!-- /ko -->
+           </div>
+        </div>
+        <div class="carousel-indicators" data-bind="foreach: indicators, event: { keydown: carouselIndicatorKeyHandler }">
+            <span class="indicator" role="button" tabindex="0" aria-label="indicator" data-bind="css: { active: $index() === $parent.selectedIndicatorIndex() }, 
+                click: function (data, event) { $parent.selectIndicator($index()) },
+                enterkey: function (data, event) { $parent.selectIndicator($index()) },
+                spacekey: function (data, event) { $parent.selectIndicator($index()) }"></span>
+        </div>
+        <div class="carousel-nav" data-bind="if: items().length > numberOfItemsToDisplay">
+            <a href="" title="next" class="carousel-next gallery-element-focus-style-light" data-bind="click: scrollRight, css: { disabled: viewPortStartIndex() + numberOfItemsToDisplay >= items().length }"><i class="bowtie-icon bowtie-chevron-right"></i></a>
+            <a href="" title="previous" class="carousel-prev gallery-element-focus-style-light" data-bind="click: scrollLeft, css: { disabled: viewPortStartIndex() === 0 }"><i class="bowtie-icon bowtie-chevron-left"></i></a>
+        </div>
+</script>
+<script id="gallery-item-card-template" type="text/html">
+    <a class="gallery-item-card-container" data-bind="attr: { href: link, target: linkTarget, 'aria-label': getScreenReaderText(), tabindex: $data.haveTabIndex ? '0' : '-1' }, click: function(data, event) { return $data.onItemTileClick(event)}">
+        <div class="gallery-item-card" data-bind="attr: { link: itemClassName, title: title}">
+            <div class="cover">
+                <div class="icon-cell" data-bind="template: { name: 'image-template', data: imageViewModel}, attr: { title: title }"></div>
+                <div class="core-info-cell">
+                    <div class="name">
+                        <span class="item-title" data-bind="text: title" />
+                        <!-- TextFadeout based on extension title. MaxWidth of title: 158px and Fadeout width: 30px -->
+                        <span class="text-fadeout" data-bind="style: {width: calculateWidthBasedOnSibling($element, 'item-title', 158, '30px')}" />
+                    </div>
+                    <!--ko ifnot: showDownloadCount -->
+                    <div class="publisher">
+                        <span data-bind="text: publisher, attr: { title: publisher }"> </span>
+                    </div>
+                    <!-- /ko -->
+                    <!--ko ifnot: showDownloadCount -->
+                    <span class="text-fadeout"></span>
+                    <!-- /ko -->
+                    <!--ko if: showDownloadCount -->
+                    <div class="core-info-second-row">
+                        <span class="installs" data-bind="visible: installCount !== '0'">
+                            <span class="install-icon" ></span>
+                            <span class="install-count" data-bind="text: installCount"></span>
+                        </span>
+                        <div class="publisher">
+                            <span data-bind="text: publisher, attr: { title: publisher }" />
+                            <span class="text-fadeout" />
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="details">
+                <div class="description" data-bind="text: description, attr: { title: description }" />
+            </div>
+            <div class="stats-and-offer">
+                <!-- ko if: showRatingReview -->
+                <div class="rating-and-price">
+                    <div role="img" class="rating" data-bind="template: { name: 'rating-control-page-template', data: ratingViewModel }, attr: { 'alt': averageRatingText, title: averageRatingText }"></div>
+                    <div class="pricing-tag" data-bind="text: pricingTag, attr: { title: pricingTag }"></div>
+                    <span class="text-fadeout" />
+                </div>
+                <!-- /ko -->
+                <!-- ko ifnot: showRatingReview -->
+                <div class="pricing-tag" data-bind="text: pricingTag, attr: { title: pricingTag }"></div>
+                <span class="text-fadeout" />
+                <!-- /ko -->
+            </div>
+        </div>
+    </a>
+</script>
+<script id="rating-control-page-template" type="text/html">
+    <span class="rating-control">
+        <!-- ko foreach: new Array(fullStars()) -->
+        <img class="star full-star" alt="" data-bind="event: {click: $parent.isReadOnly ? null : function (data, event) {$parent.onClickRatingFullStars($index()+1)},
+                                                       mouseover: $parent.isReadOnly ? null : function (data, event) {$parent.mouseOverRatingFullStars($index()+1)}, 
+                                                       mouseout: $parent.isReadOnly ? null : $parent.mouseOutRatingFullStars.bind($parent),
+                                                       keypress: function(data, event) { $parent.onKeyDown({index: $index() + 1, isFullStar: true}, event); return true; }},
+                                                       attr: {tabindex: $parent.isReadOnly? null : 0, src: $parent.fullStarPath, 'aria-label': $index()+1+' star' }" />
+        <!-- /ko -->
+
+        <!-- ko if: isReadOnly-->
+        <!-- ko foreach: new Array(halfStars()) -->
+        <img class="star half-star" alt="" data-bind="attr: {tabindex: $parent.isReadOnly? null : 0, src: $parent.halfStarPath}" />
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <!-- ko foreach: new Array(emptyStars()) -->
+        <img class="star empty-star" alt="" data-bind="event: {click: $parent.isReadOnly ? null : function(data, event) {$parent.onClickRatingEmptyStars($index()+1)},
+                                                        mouseover: $parent.isReadOnly ? null : function(data, event) {$parent.mouseOverRatingEmptyStars($index()+1)},
+                                                        keypress: function(data, event) { $parent.onKeyDown({index: $index() + 1, isEmptyStar: true}, event); return true; }},
+                                                        attr: {tabindex: $parent.isReadOnly? null : 0, src: $parent.emptyStarPath, 'aria-label': $index()+1+$parent.fixedFullStars()+' star'}" />
+        <!-- /ko -->
+    </span>
+
+</script><script id="item-banner-template" type="text/html">
+    <div class="item-banner-root" data-bind="css: itemCss">
+        <table class="item-banner" role="presentation">
+            <tr>
+                <td class="item-header" data-bind="style: { 'background-color': brandingColor!=null ? brandingColor : '' }, css: brandingTheme">
+                    <div class="item-header-content">
+                        <div class="ux-item-name" data-bind="text: title"></div>
+                        <div class="ux-item-description" data-bind="text: publisherDisplay"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script><script id="bread-crumb-template" type="text/html">
+    <span class="bread-crumb-container" data-bind="foreach: members, event: { keydown: breadcrumbKeyHandler}">
+        <!-- ko if: url -->
+        <a class="member" data-bind="text: text, attr: {href: url}"></a>
+        <!-- /ko -->
+        <!-- ko if: !url -->
+        <span class="member" data-bind="text: text"></span>
+        <!-- /ko -->  
+        <!-- Do not draw seprarator after the last member -->
+        <span class="separator" data-bind="if: $index() < $parent.members.length-1">></span>
+    </span>
+</script>
+<script id="error-control-template" type="text/html">
+    <div class="gallery-error-control">
+        <div class="error-text" data-bind="text: errorText"></div>
+        <div class="tips-header" data-bind="text: tipsText"></div>
+        <div class="error-diagnosis" data-bind="html: errorDiagnosisHtml"></div>
+        <div class="report-issue" data-bind="html: contactUsHtml, visible: isHosted"></div>
+    </div>
+</script><script id="vssItem-download-template" type="text/html">
+    <div class="download-control">
+        <!--The iframe serves as the 'downloader', since its 'src' attribute is set to vsix resource-->
+        <div data-bind="if: _startDownload">
+            <iframe id="downloader-iframe" style="display:none" data-bind="attr: {src: _downloadLink}"></iframe>
+        </div>
+        <div class="post-download-instructions">
+            <div class="title" data-bind="text: _downloadStarted"></div>
+            <div>
+                <div class="instructions-title" data-bind="text: _instructionSetTitleHtml"></div>
+                <ul class="instructions-list">
+                    <li>
+                        <div data-bind="text: _instructionNavigateToServerString"></div>
+                        <div class="example-server" data-bind="text: _managePageExampleUrlString"></div>
+                    </li>
+                    <li data-bind="html: _instructionUploadFileHtml"></li>
+                    <li data-bind="html: _instructionInstallHtml"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</script><script id="meta-data-list-control-template" type="text/html">
+    <div class="meta-data-list-container">
+        <div data-bind="foreach: metaDataListGroups">
+            <div class="ux-section-meta-data-list" data-bind="if: $data.metaDataList.length > 0">
+                <h3 class="ux-section-header right" data-bind="text: $data.headerName"></h3>
+                <div class="meta-data-list">
+                    <!-- ko foreach: $data.metaDataList -->
+                    <!-- ko if: $data.link -->
+                    <a class="meta-data-list-link gallery-element-focus-style-light" data-bind="text: $data.name, attr: { href: $data.link, target: $data.openInNewTab ? '_blank':'' }"></a>
+                    <!-- /ko -->
+                    <!-- ko if: !$data.link -->
+                    <span class="meta-data-list-link" data-bind="text: $data.name, attr: { href: $data.link, target: $data.openInNewTab ? '_blank':'' }"></span>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="price-calculator-view-template" type="text/html">
+    <div class="price-calculator-container">
+        <!-- ko if: itemPriceTuples().length > 0 -->
+        <div class="display-table">
+            <table>
+                <tbody>
+                    <tr class="pricecalculator-table-header">
+                        <!-- ko if: freeUsersCount() > 0 -->
+                        <th class="free-paid-users-header" data-bind="text: freeLabel "></th>
+                        <!-- /ko -->
+                        <th class="free-paid-users-header" colspan="3" data-bind="text: paidLabel"></th>
+                        <th class="free-paid-users-header" data-bind="text: totalPriceHeader"></th>
+                    </tr>
+                    <tr class="quantityselection-section">
+                        <!-- ko if: freeUsersCount() > 0 -->
+                        <td class="free-users-count" data-bind="text: freeUsersCount"></td>
+                        <!-- /ko -->
+                        <td class="paid-users-input">
+                            <input aria-label="user count" class="input-box" type="number" step="1" data-bind="value: selectedQuantity, valueUpdate:  'afterkeydown',attr: {min: minAllowedQuantity, max: maxAllowedQuantity}, event: { blur: onBlur, keydown: onKeyPress}" />
+                        </td>
+                        <td class="users-label sub-text" data-bind="text: resourceName"></td>
+                        <td class="equal-symbol-column" data-bind="text: equaltoSymbol"></td>
+                        <td aria-live="polite" aria-relevant="all" aria-atomic="true" class="total-price-section"><span class='visually-hidden' data-bind="text: totalPriceHeader"></span><span class="price-number" data-bind="text: selectedQuantityPrice()"></span><span class="per-month sub-text" data-bind="text: perMonthLabel"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /ko -->
+        <!-- ko ifnot: itemPriceTuples().length > 0 -->
+        <div class="pricecalculator-error-message" data-bind="text: priceCalculatorErrorMessage"></div>
+        <!-- /ko -->
+    </div>
+</script><script id="publisher-reply-template" type="text/html">
+    <table class="publisher-reply-table">
+        <tbody>
+            <tr>
+                <td class="publisher-image">
+                    <img aria-hidden="true" data-bind="attr:{src: imageUrl}" />
+                </td>
+                <td class="publisher-reply-content">
+                    <div class="publisher-reply-firstrow">
+                        <div class="ux-publisher-name" data-bind="text: displayName"></div>
+                    </div>
+                    <!-- ko if: hasEditPermission -->
+                    <a class="publisher-reply-edit-button" href="" data-bind="text: editButtonText, click: function(data, event) {onEditButtonClick($index())}"></a>
+                    <!-- /ko -->
+                    <div class="publisher-reply-date-time" data-bind="text: friendlyDate"></div>
+                    <div class="read-more-control" data-bind="template: {name: 'read-more-control-template', data: readMoreData }"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script><script id="read-more-control-template" type="text/html">
+    <div class="read-more-container">
+        <span class="review-text" data-bind="text: $data._isExpanded() ? $data.fullText : $data._lessText"></span>
+        <a role="button" class="read-more-text-link" data-bind="visible: (!$data._isExpanded()), text: readMoreText, click: setExpanded, enterkey: setExpanded, spacekey: setExpanded" tabindex="0"></a>
+    </div>
+</script>
+<script id="spinner-template" type="text/html">
+    <table class="spinner-control-root">
+        <tr>
+            <td class="spinner-icon">
+                <i class="bowtie-icon bowtie-spinner"></i>
+            </td>
+            <!-- ko if: $data -->  
+            <td class="spinner-message" data-bind="text: $data"></td>
+             <!-- /ko -->
+        </tr>
+    </table>
+</script>
+
+<script id="spinner-template-accessible" type="text/html">
+    <!-- ko if: showSpinner() -->  
+    <table class="spinner-control-root">
+        <tr>
+            <td class="spinner-icon">
+                <i class="bowtie-icon bowtie-spinner"></i>
+            </td>
+            <!-- ko if: spinnerMessage  -->  
+            <td class="spinner-message" data-bind="text: spinnerMessage"></td>
+             <!-- /ko -->
+        </tr>
+    </table>
+    <!-- /ko -->
+</script>
+<script id="badges-template" type="text/html">
+    <div class="badges-container">
+        <ul data-bind="foreach: _koBadges">
+            <li>
+                <a class="badge" data-bind="attr: { href: link, target: 'blank', rel: 'noreferrer noopener' }, click: function(data, event) {return $parent._logExternalMetaDataTelemetry(link, true)} "><img data-bind="attr: { src: imgUri, title: description, alt: link }" /></a>
+            </li>
+        </ul>
+    </div>
+</script>
+    <script type="text/javascript" src="https://cdn.vsassets.io/3rdParty/_scripts/bootstrap.min.js"></script>
+    
+    <div class="main-content item-details-main-content">
+        <i class="centered big-spinner bowtie-icon bowtie-spinner"></i>
+    </div>
+    <div class="vss-item-data">
+        <script class="vss-extension" defer="defer" type="application/json">{"publisher":{"publisherId":"0fd273ea-1de9-4b43-b0a0-5e103a6f1d49","publisherName":"fourpastmidnight","displayName":"fourpastmidnight","flags":"none"},"extensionId":"43bc4a3a-0182-4c36-8159-a0a4cdfd04bd","extensionName":"AllMargins2012","displayName":"AllMargins 2012","flags":"validated, public","lastUpdated":"2013-10-27T18:35:24.25Z","publishedDate":"2013-01-19T22:08:56.71Z","releaseDate":"2013-01-20T00:31:18.207Z","shortDescription":"This extension contains the OverviewMargin and several other extensions of that margin.","versions":[{"version":"2.8.2","flags":"validated","lastUpdated":"2016-11-08T10:32:38.27Z","files":[{"assetType":"92578/6/screenshot.png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92578/6/screenshot.png"},{"assetType":"92579/6/AllMargins2012.vsix","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92579/6/AllMargins2012.vsix"},{"assetType":"92580/1/AllMargins (Light - Partial FS).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92580/1/AllMargins%20(Light%20-%20Partial%20FS).png"},{"assetType":"92581/1/AllMargins (Dark - Partial FS).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92581/1/AllMargins%20(Dark%20-%20Partial%20FS).png"},{"assetType":"92582/1/OverviewMargin Tooltip (Light).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92582/1/OverviewMargin%20Tooltip%20(Light).png"},{"assetType":"92583/1/OverviewMargin Tooltip (Dark).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92583/1/OverviewMargin%20Tooltip%20(Dark).png"},{"assetType":"92584/1/MarkerToMarks (Dark).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92584/1/MarkerToMarks%20(Dark).png"},{"assetType":"92585/1/StructureMargin Tooltip (Light).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92585/1/StructureMargin%20Tooltip%20(Light).png"},{"assetType":"92586/1/StructureMargin Tooltip (Dark).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92586/1/StructureMargin%20Tooltip%20(Dark).png"},{"assetType":"92587/1/StructureAdornment (Light).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92587/1/StructureAdornment%20(Light).png"},{"assetType":"92588/1/StructureAdornment (Dark).png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92588/1/StructureAdornment%20(Dark).png"},{"assetType":"92591/6/screenshot.png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92591/6/screenshot.png"},{"assetType":"92592/0/screenshot.png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92592/0/screenshot.png"},{"assetType":"92593/1/screenshot.png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92593/1/screenshot.png"},{"assetType":"92594/1/screenshot.png","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/92594/1/screenshot.png"},{"assetType":"Microsoft.VisualStudio.Ide.Payload","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Ide.Payload"},{"assetType":"Microsoft.VisualStudio.Services.Content.Details","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Content.Details"},{"assetType":"Microsoft.VisualStudio.Services.Content.License","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Content.License"},{"assetType":"Microsoft.VisualStudio.Services.Icons.Branding","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Icons.Branding"},{"assetType":"Microsoft.VisualStudio.Services.Icons.Default","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Icons.Default"},{"assetType":"Microsoft.VisualStudio.Services.Image.Preview","source":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308/Microsoft.VisualStudio.Services.Image.Preview"}],"assetUri":"https://fourpastmidnight.gallerycdn.vsassets.io/extensions/fourpastmidnight/allmargins2012/2.8.2/1482138515308","fallbackAssetUri":"https://fourpastmidnight.gallery.vsassets.io/_apis/public/gallery/publisher/fourpastmidnight/extension/AllMargins2012/2.8.2/assetbyname"}],"categories":["Tools","Tools/Coding","Tools/Programming Languages"],"tags":["AllMargins"],"statistics":[{"statisticName":"install","value":2687.0},{"statisticName":"averagerating","value":4.6875},{"statisticName":"ratingcount","value":16.0},{"statisticName":"trendingdaily","value":0.18635855385762207},{"statisticName":"trendingmonthly","value":6.7461796496459181},{"statisticName":"trendingweekly","value":1.9008572493477451},{"statisticName":"migratedInstallCount","value":23590.0},{"statisticName":"updateCount","value":3.0}],"installationTargets":[{"target":"Microsoft.VisualStudio.Ide","targetVersion":"[0.0,0.0]"},{"target":"Microsoft.VisualStudio.Premium","targetVersion":"[10.0]"},{"target":"Microsoft.VisualStudio.Premium","targetVersion":"[11.0]"},{"target":"Microsoft.VisualStudio.Premium","targetVersion":"[12.0]"},{"target":"Microsoft.VisualStudio.Pro","targetVersion":"[10.0]"},{"target":"Microsoft.VisualStudio.Pro","targetVersion":"[11.0]"},{"target":"Microsoft.VisualStudio.Pro","targetVersion":"[12.0]"},{"target":"Microsoft.VisualStudio.Ultimate","targetVersion":"[10.0]"},{"target":"Microsoft.VisualStudio.Ultimate","targetVersion":"[11.0]"},{"target":"Microsoft.VisualStudio.Ultimate","targetVersion":"[12.0]"}],"deploymentType":"vsix"}</script>
+    </div>
+    <div class="vss-item-token">
+        <script class="vss-extension-token" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="vss-item-offer">
+        <script class="vss-extension-offer" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="vss-item-offer-meter-price-data">
+        <script class="vss-extension-offer-meter-price" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="vss-item-offer-meter-price-details-data">
+        <script class="vss-extension-offer-meter-price-currency" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="vss-item-overview-data">
+        <script class="vss-item-overview" defer="defer" type="application/json">"\u003ch1\u003eAllMargins 2012\u003c/h1\u003e\u003cp\u003e\u003cstrong\u003eNote:\u003c/strong\u003e If you like this extension, I\u0027d appreciate if you could take a few seconds and give a quick review. Thanks!!\u003c/p\u003e\u003ch2\u003eUpdate Release 2.8.2 (10/24/2013)\u003c/h2\u003e\u003cp\u003eThis release is for Visual Studio 2013 users. If you\u0027re not using Visual Studio 2013, feel free to skip this update. Fixes an installation issue with the StructureMargin extension in Visual Studio 2013 RTM.\u003c/p\u003e\u003cp\u003eThanks to SpinDisc, Martijn Carol, and Markus Springweiler for pointing this out.\u003c/p\u003e\u003cp\u003eAs always, if you encounter any problems, please contact me on the Q\u0026amp;A tab. Thank you all for your support, feedback, and ratings.\u003c/p\u003e\u003ch2\u003eUpdate Release 2.8.1 (09/06/2013)\u003c/h2\u003e\u003cp\u003eThis release is for C/C\u0026#43;\u0026#43; users. The original AllMargins extension had no support in the C\u0026#43;\u0026#43; parser for the\u003ccode\u003eunion\u003c/code\u003e keyword. This had two side-effects: 1) C/C\u0026#43;\u0026#43; \u003ccode\u003eunion\u003c/code\u003es would have a line drawn next to them denoting an \u0027Unknown\u0027 block type; 2) and if a non-transparent MethodSeparatorLine color is set, then method separator lines appear underneath C/C\u0026#43;\u0026#43; \u003ccode\u003eunion\u003c/code\u003es. This release adds support for recognizing C/C\u0026#43;\u0026#43; \u003ccode\u003eunion\u003c/code\u003es.\u003c/p\u003e\u003cp\u003eIf you are not a C/C\u0026#43;\u0026#43; user of this extension and/or do not use method separator lines, it is not necessary that you update to this latest version.\u003c/p\u003e\u003cp\u003eThanks to Martin for pointing this out!\u003c/p\u003e\u003ch2\u003eUpdate Release 2.8 (09/01/2013)\u003c/h2\u003e\u003cp\u003eI\u0027ve finally released a new version of this extension. This update adds preliminary support for the upcoming Visual Studio 2013. What\u0027s most notable about this release however, is that it\u0027s mostly a bug-fix release that many of you have been waiting on for a long time now. Here\u0027s what\u0027s been fixed:\u003c/p\u003e\u003cdl\u003e\u003cdt\u003e\u003cstrong\u003eExtension option name clashes with Visual Studio 2012 Productivity Power Tools\u003c/strong\u003e\u003c/dt\u003e\u003cdd\u003e\u003cp\u003eWhen I saw that David Pugh\u0027s original AllMargins extension was removed from the Visual Studio Gallery, I was really disappointed. What I didn\u0027t know is that many of the features of that extension were ported to the Visual Studio 2012 Productivity Power Tools.\u003c/p\u003e\u003cp\u003eWhen the original extension was migrated to the VSPPT, the option names were kept the same. Consequently. when I released AllMargins 2012 as a re-release of the original AllMargins with support for Visual Studio 2012, the option names with the two extensions are exactly the same.\u003c/p\u003e\u003cp\u003e(As an aside, two of my most favorite features of AllMargins that weren\u0027t ported to the VSPPT are: the StructureMargin (showing the structure of your code via lines in the scrollbar\u0026mdash;there\u0027s a map feature in VSPPT, but I like the more minimalistic style of the StructureMargin); and the StructureAdornment, which draws different colored lines in the editor for namespaces, classes, methods, conditionals, and loops\u0026mdash;makes visualizing your code a breeze!)\u003c/p\u003e\u003cp\u003eIn this release, I\u0027ve renamed all the names used for storing and retrieving the settings to be used with this extension.\u003cstrong\u003eThis has one major implication: You will want to take note of all the settings in the Registry under HKLM\\Software\\Microsoft\\Visual Studio\\{version}\\Text Editor. Installing this update will cause new settings to be written into the registry at that key with their default values (the old settings WILL NOT be overwritten).\u003c/strong\u003e\u003c/p\u003e\u003c/dd\u003e\u003cdt\u003e\u003cstrong\u003eDefining a Method Separator Color now works as expected.\u003c/strong\u003e \u003c/dt\u003e\u003cdd\u003e\u003cp\u003eOne issue was that the option name that is in the registry was mis-typed (though this is more cosmetic than an issue). I\u0027ve corrected the option name. See the table below.\u003c/p\u003e\u003cp\u003eThe root of the issue was that even if you defined a non-transparent color for the method separator line, the line was always drawn using the color used for adorning Method blocks. This has been corrected in version 2.8.\u003c/p\u003e\u003c/dd\u003e\u003cdt\u003e\u003cstrong\u003eClosing an ASPX document while using this extension no longer causes Visual Studio 2012 to crash.\u003c/strong\u003e\u003c/dt\u003e\u003cdd\u003eThis was only an issue with this extension on Visual Studio 2012. This issue has been resolved.\u003c/dd\u003e\u003c/dl\u003e\u003cp\u003e\u003cstrong\u003eNOTE: Please see the table below for updated registry key value names, as they have changed in this version. The table now shows the old value name versus the new value name and its default value.\u003c/strong\u003e\u003c/p\u003e\u003cp\u003e\u003cstrong style=\"color:red\"\u003eNOTE: New default values will be used the first time this extension starts. If you have customized the colors used, you will need to manually edit the registry according to the table below to restore your customizations.\u003c/strong\u003e\u003c/p\u003e\u003cp\u003eI plan on taking a look into creating a Visual Studio Tools Options page so that options can be customized from within Visual Studio, including enabling/disabling features and customizing the colors used.\u003c/p\u003e\u003cp\u003eI hope you all enjoy using this extension.\u003c/p\u003e\u003ch2 id=\"futureDirections\"\u003eFuture Directions Request (02/2013)\u003c/h2\u003e\u003cp\u003eI re-released David Pugh\u0027s AllMargins extension about a month ago. I was motivated to release an update of the extension that works on Visual Studio 2012 because the implementation of the original enhanced scrollbar in the Visual Studio Productivity Power Tools for Visual Studio 2010 was lacking and AllMargins fit the bill; but with the release of Visual Studio 2012, AllMargins was no longer being maintained on its own nor being updated.\u003c/p\u003e\u003cp\u003eBecause of the original poor implementation of the VSPPT enhanced scrollbar, I never even tried it in the VSPPT for Visual Studio 2012 until a user of AllMargins 2012 reported that some of the VSPPT settings clashed with AllMargins 2012 settings. This prompted me to revisit the VSPPT enhanced scrollbar. David Pugh has indeed ported much of the original AllMargins scrollbar implementation to the Enhanced Scrollbar in VSPPT; and it even has a few nice extras.\u003c/p\u003e\u003cp\u003eAs users of VSPPT will know, many options for the VSPPT can be changed within the Visual Studio Options dialog, and this is true for the enhanced scrollbar. This largely negates the need for many of the AllMargins (and AllMargins 2012) extensions--hence why David Pugh is no longer maintaning the original AllMargins extension.\u003c/p\u003e\u003cp\u003eTwo\u0026nbsp;missing features of the VSPPT enhanced scrollbar\u0026nbsp;are the Structure Margin and, though not a margin but still extremely helpful, the Structure Adornment extension (this extension draws the lines in the editor for methods, classes, loops, etc.).\u003c/p\u003e\u003cp\u003eI\u0027m considering pulling AllMargins 2012 off of Visual Studio Gallery, but releasing\u0026nbsp;the Structure Margin and Structure Adornment features as\u0026nbsp;a stand-alone\u0026nbsp;extension. I\u0027d appreciate any feedback you may have. Please leave any comments on the Q and A tab.\u003c/p\u003e\u003ch2\u003eAllMargins is Back! (01/16/2013)\u003c/h2\u003e\u003cp\u003eI\u0026rsquo;m pleased to announce to the Visual Studio community that \u003cstrong\u003eAllMargins\u003c/strong\u003e is back (as\u003cstrong\u003eAllMargins 2012\u003c/strong\u003e) and has full Visual Studio 2012 support!\u003c/p\u003e\u003cp\u003eAs many users of \u003cstrong\u003eAllMargins \u003c/strong\u003emay know, David Pugh at Microsoft originally published this extension to Visual Studio Gallery for Visual Studio 2010. This extension has personnally been one of my most favorite, indispensible extensions.\u003c/p\u003e\u003cp\u003eSome time ago after the release of version 2.6, David Pugh pulled the \u003cstrong\u003eAllMargins\u003c/strong\u003e extension off of Visual Studio Gallery. It\u0026rsquo;s been reported that he ported much of this functionality into the Visual Studio Productivity Power Tools (VSPPT). While I love the VSPPT and have it installed, I am not a huge fan of that extension\u0026rsquo;s implementation of the \u0026ldquo;enhanced scrollbar\u0026rdquo;. I find it too cramped and less useful than David Pugh\u0026rsquo;s original\u003cstrong\u003eAllMargins \u003c/strong\u003eextension.\u003c/p\u003e\u003cp\u003eDavid Pugh always had the source code for \u003cstrong\u003eAllMargins\u003c/strong\u003e available for download. I updated the last available source code release to conform with version 2.6 of\u003cstrong\u003eAllMargins\u003c/strong\u003e (the last available release of \u003cstrong\u003eAllMargins\u003c/strong\u003e that was on Visual Studio Gallery) and upped the version to 2.7.\u003c/p\u003e\u003ch3\u003eImportant Information for Visual Studio 2010 Users\u003c/h3\u003e\u003cp\u003eIn order to upgrade to this new release of \u003cstrong\u003eAllMargins\u003c/strong\u003e on Visual Studio 2010, you will need to uninstall the original\u003cstrong\u003eAllMargins \u003c/strong\u003eextension. This is because the unique identifier for \u003cstrong\u003eAllMargins 2012\u003c/strong\u003e is different than the one for the original \u003cstrong\u003eAllMargins\u003c/strong\u003e, so it will not show up as simply an updated version of\u003cstrong\u003eAllMargins \u003c/strong\u003eand I don\u0026rsquo;t know what would happen if you tried to run both side-by-side. I know it\u0026rsquo;s a bit of a pain to have to uninstall the original, but trust me; this is a good thing for your safety! (You wouldn\u0026rsquo;t want just anybody to hijack someone else\u0026rsquo;s extension and possibly replace it with malicious code on your machine, would you? Especially given the fact that many developers run Visual Studio as Administrator from time-to-time!)\u003c/p\u003e\u003ch2\u003eWhat is AllMargins 2012?\u003c/h2\u003e\u003cp\u003eFor those of you who have never used the original \u003cstrong\u003eAllMargins\u003c/strong\u003e\u0026nbsp;extension, this is where you find out what all the buzz is about!\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eAllMargins 2012 \u003c/strong\u003eis a wonderfully new way to view your source code documents\u0026nbsp;allowing you to\u0026nbsp;quickly and easily move about (i.e. scroll) within them.\u003cstrong\u003eAllMargins 2012 \u003c/strong\u003egives you an at-a-glance view of the structure of your document, highlighting source code document errors, warnings, breakpoints, and much, much more.\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92580\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92580/1/AllMargins (Light - Partial FS).png\" alt=\"A partial full screen view of AllMargins 2012 running in Visual Studio 2012 with the Light theme.\" width=\"658\" height=\"235\"\u003e\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92581\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92581/1/AllMargins (Dark - Partial FS).png\" alt=\"A partial full screen view of AllMargins 2012 running in Visual Studio 2012 with the Dark theme.\" width=\"658\" height=\"293\"\u003e\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003eThe original \u003cstrong\u003eAllMargins \u003c/strong\u003ewas composed of several sub-extensions, each of which you could install separately (all of the sub-extensions were also available as separate extensions for download on Visual Studio Gallery). This is not an option for \u003cstrong\u003eAllMargins 2012 \u003c/strong\u003e(for Visual Studio 2012 users), however, individual features of\u003cstrong\u003eAllMargins 2012\u003c/strong\u003e can be disabled. Each of the sub-extensions will be briefly described below. Please note that the names of the sub-extensions, while maybe not pretty, are the original names used by David Pugh. I can\u0026rsquo;t stress enough that this is a re-release of his extension updated so that it can be used with Visual Studio 2012 (but still maintains support for Visual Studio 2010).\u003c/p\u003e\u003ch3\u003eSettingsStore and SettingsStoreImpl\u003c/h3\u003e\u003cp\u003eThis extension is part of every other extension included with \u003cstrong\u003eAllMargins 2012\u003c/strong\u003e and is responsible for getting the settings used by all of the other extensions.\u003c/p\u003e\u003ch3\u003eBlockTagger and BlockTaggerImpl\u003c/h3\u003e\u003cp\u003eThis extension is used by other extensions that help in determining the structure of a code file.\u003c/p\u003e\u003ch3\u003eOverviewMargin and OverviewMarginImpl\u003c/h3\u003e\u003cp\u003eThese extensions create a scrollbar type margin on the right-hand side similar to the standard Visual Studio vertical scrollbar, except that it maps to the entire document, optionally including collapsed (elided) code blocks. When the option\u003cem\u003eExpand Elisions\u003c/em\u003e is turned on (the default setting), collapsed sections of code are shown in a translucent red color in the overview margin. When placing your cursor over the\u003cstrong\u003eOverviewMargin\u003c/strong\u003e, a tooltip window appears showing the code at that place in the code document. You only need to click the\u003cstrong\u003eOverviewMargin\u003c/strong\u003e and your code document will scroll to center itself on that region of the document! You could turn off the default Visual Studio vertical scrollbar using this extension in its place! Clicking on the\u003cstrong\u003eOverviewMargin \u003c/strong\u003eon a collapsed section of code causes the collapsed section to be scrolled into view. Double-clicking the collapsed section of code scrolls the collapsed code into view\u003cem\u003eand\u003c/em\u003e expands it. Right-clicking the \u003cstrong\u003eOverviewMargin \u003c/strong\u003eallows you to turn off showing collapsed code blocks and the tooltips.\u003c/p\u003e\u003cp\u003eThe \u003cstrong\u003eOverviewMargin \u003c/strong\u003ealso acts as a container for other margins that display information for a code file. The\u003cstrong\u003eOverviewMargin\u003c/strong\u003e extension contains two such margins: the \u003cstrong\u003eOverviewChangeTracking Margin\u003c/strong\u003e and the \u003cstrong\u003eOverviewMarks Margin\u003c/strong\u003e.\u003c/p\u003e\u003ch3\u003eOverviewChangeTracking Margin\u003c/h3\u003e\u003cp\u003eThis margin is much like the change tracking margin shown on the left-side of the editor that tracks changes to the code document. The difference is that the\u003cstrong\u003eOverviewChangeTracking Margin\u003c/strong\u003e maps to the entire document whereas the left-side margin maps only to the current viewport.\u003c/p\u003e\u003ch3\u003eOverviewMark Margin\u003c/h3\u003e\u003cp\u003eThis allows 3\u003csup\u003erd\u003c/sup\u003e parties to draw colored marks on the margin to indicate positions of interest within the document. (See the\u003cstrong\u003eErrorsToMarks\u003c/strong\u003e, \u003cstrong\u003eCaretMargin\u003c/strong\u003e, \u003cstrong\u003eStructureMargin\u003c/strong\u003e, and\u003cstrong\u003eMarkersToMarks\u003c/strong\u003e extensions below.)\u003c/p\u003e\u003ch3\u003eCaretMargin\u003c/h3\u003e\u003cp\u003eThis margin utilizes the \u003cstrong\u003eOverviewMarks Margin\u003c/strong\u003e to draw marks in the margin that correspond to the current caret (i.e. text cursor) location, additionally highlighting all words that match the word the caret is on.\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92582\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92582/1/OverviewMargin Tooltip (Light).png\" alt=\"The OverviewMargin tooltip, along with the CaretMargin, ErrorsToMarks margin, and StructureMargin running in Visual Studio 2012 with the Light theme.\" width=\"654\" height=\"138\"\u003e\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92583\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92583/1/OverviewMargin Tooltip (Dark).png\" alt=\"The OverviewMargin tooltip, along with the CaretMargin, ErrorsToMarks margin, and StructureMargin running in Visual Studio 2012 with the Dark theme.\" width=\"664\" height=\"160\"\u003e\u003c/p\u003e\u003ch3\u003eErrorToMarks\u003c/h3\u003e\u003cp\u003eThis extension also utilizes the \u003cstrong\u003eOverviewMarks Margin\u003c/strong\u003e to display indicators that correspond to errors and warnings in your code document. This makes finding coding errors and warnings a breeze! See a code error, simply click the margin near the error mark and scroll it into view.\u003c/p\u003e\u003ch3\u003eMarkerToMarks\u003c/h3\u003e\u003cp\u003ePersonally one of my favorite \u003cstrong\u003eOverviewMarks Margin\u003c/strong\u003e, this margin displays marks at locations corresponding to bookmarks and breakpoints in the editor. All legacy Visual Studio\u003cem\u003eVsTextMarker\u003c/em\u003es that have a specified glyph and background color are displayed in this margin when it is enabled (the default).\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92584\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92584/1/MarkerToMarks (Dark).png\" alt=\"The OverviewChangeTracking Margin with also the CaretMargin, ErrorsToMarks margin, MarkersToMarks Margin and StructureMargin running in Visual Studio 2012.\" width=\"665\" height=\"281\"\u003e\u003c/p\u003e\u003ch3\u003eStructureMargin\u003c/h3\u003e\u003cp\u003eThis margin once again utilizes the \u003cstrong\u003eOverviewMarks Margin\u003c/strong\u003e and shows the structure of the code document by using variously colored lines. For example, green lines denote conditional statements while red lines denote loop construct statements. The colors used in this margin match the colors used by the \u003cstrong\u003eStructureAdornment\u003c/strong\u003e extension (by default, but this can be changed; see below for more on the\u003cstrong\u003eStructureAdornment\u003c/strong\u003e extension) and give you an at-a-glance view of the overall structure of your code document! In addition, placing your mouse cursor over the structure margin also displays a tooltip of the current structure of the document at that position.\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92585\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92585/1/StructureMargin Tooltip (Light).png\" alt=\"StructureMargin tooltip running in Visual Studio 2012 with the Light theme.\" width=\"662\" height=\"202\"\u003e\u003cimg id=\"92586\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92586/1/StructureMargin Tooltip (Dark).png\" alt=\"StructureMargin tooltip running in Visual Studio 2012 with the Dark theme.\" width=\"659\" height=\"218\"\u003e\u003c/p\u003e\u003ch3\u003eStructureAdornment\u003c/h3\u003e\u003cp\u003eThis extension enhances the text editor by displaying differently colored vertical lines beside various blocks of code. For instance, a green line is drawn beside conditional blocks, while a red line is drawn beside loop construct blocks.\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003cimg id=\"92587\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92587/1/StructureAdornment (Light).png\" alt=\"StructureAdornment running in Visual Studio 2012 with the Light theme.\" width=\"330\" height=\"296\" style=\"float:left\"\u003e\u0026nbsp;\u003cimg id=\"92588\" src=\"{CURRENT_EXTENSION_ASSET_BASE_PATH}92588/1/StructureAdornment (Dark).png\" alt=\"StructureAdornment running in Visual Studio 2012 with the Dark theme.\" width=\"330\" height=\"296\" style=\"float:left\"\u003e\u003c/p\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003ch2 style=\"clear:left; margin-top:.5em\"\u003eCustomizing AllMargins 2012\u003c/h2\u003e\u003cp\u003eSince this is a re-release of the original \u003cstrong\u003eAllMargins\u003c/strong\u003e extension with Visual Studio 2012 support, the customization options remain the same as with the original extension. Unfortunately, the original extension did not provide any means of changing the options from within Visual Studio, but required changes to be made to values in the Windows registry. I hope to change this in a future release. The values used to customize the extension(s) are outlined below. All options are located under the following registry key: \u003cstrong style=\"font-family:Consolas,\u0026quot;Lucida Console\u0026quot;,\u0026quot;Courier New\u0026quot;,Courier,Monospace\"\u003eHKEY_CURRENT_USER\\Software\\Microsoft\\VisualStudio\\{version}\\Text Editor\u003c/strong\u003e, where\u003cstrong style=\"font-family:Consolas,\u0026quot;Lucida Console\u0026quot;,\u0026quot;Courier New\u0026quot;,Courier,Monospace\"\u003e{version}\u003c/strong\u003e is the major version number of Visual Studio where the extension is installed. If any of the values shown in the table below are changed while Visual Studio is running, currently open text editors will not update with the new values. However, code documents that are opened after changing any of the values below will display with the updated values. So, if you close a text editor that was open prior to making a change to one of the values below, reopening the document will result in the text editor displaying the extensions with the modified values.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003e09/01/2013 NOTE: This table has been updated for version 2.8. See the release notes above.\u003c/strong\u003e\u003c/p\u003e\u003ctable title=\"AllMargins 2012 Options\" style=\"overflow-x:scroll\"\u003e\u003ccolgroup\u003e\u003ccol style=\"text-align:left\"\u003e\u003ccol\u003e\u003ccol style=\"text-align:center\"\u003e\u003c/colgroup\u003e\u003cthead\u003e\u003ctr\u003e\u003cth id=\"hdrValue\" scope=\"col\"\u003eOption Registry Value Name\u003c/th\u003e\u003cth id=\"hdrDesc\" scope=\"col\"\u003eDescription\u003c/th\u003e\u003cth id=\"hdrDefaultValue\" scope=\"col\"\u003eDefault Value\u003c/th\u003e\u003c/tr\u003e\u003c/thead\u003e\u003ctbody\u003e\u003ctr\u003e\u003cth id=\"hdrOverviewMargin\" colspan=\"3\" scope=\"colgroup\"\u003eOverviewMargin Options\u003c/th\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrChangeTrackingMarginEnabled\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.Overviewmargin.ChangeTrackingMarginEnabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMargin/ChangeTrackingMarginEnabled\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether the change tracking margin is displayed.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrMarkMarginEnabled\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMargin.MarkMarginEnabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMargin/MarkMarginEnabled\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether the mark margin is displayed.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrExpandElisions\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMargin.ExpandElisionsInOverviewMargin\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMargin/ExpandElisionsInOverviewMargin\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether collapsed code blocks are shown as expanded in the overview margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrPreviewSize\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMargin.OverviewMarginPreviewSize\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMargin/OverviewMarginPreviewSize\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the number of lines to show in the tooltip for the overview margin. If 0, the tooltip will not be displayed when hovering the mouse cursor over the OverviewMargin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e7\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrChangeTrackingMarginWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMarginImpl.ChangeTrackingMarginWidth\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMarginImpl/ChangeTrackingMarginWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the ChangeTrackingMargin (in pixels).\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e6\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrMarkMarginWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMarginImpl.MarkMarginWidth\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMarginImpl/MarkMarginWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the MarkMargin (in pixels).\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e6\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrElisionColor\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMarginImpl.ElisionColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMarginImpl/ElisionColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to highlight elided text (i.e. collapsed code blocks). If the Alpha channel is set to 0, then collapsed code regions are not highlighted in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#40FF4F4F\u003cdiv style=\"padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrOffScreenColor\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMarginImpl.OffScreenColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMarginImpl/OffScreenColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to highlight portions of the file not shown in the editor. If the Alpha channel is set to 0 then off screen portions of the file are not highlighted differently in any way.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#30000000\u003cdiv style=\"padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrVisibleColor\" scope=\"row\" style=\"text-align:left\"\u003ev2.8\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.OverviewMarginImpl.VisibleColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eOverviewMarginImpl/VisibleColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to highlight portions of the file shown in the editor. If the Alpha channel is set to 0, then the visible portion of the document is not highlighted in the editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#00FFFFFF\u003cdiv style=\"border:1px solid #A0A0A0; padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMargin\" colspan=\"3\" scope=\"colgroup\"\u003eCaretMargin Options\u003c/th\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMarginEnabled\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.CaretMargin.MarginEnabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eCaretMargin/MarginEnabled\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether the CaretMargin should be displayed.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMarginWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.CaretMargin.MarginEnabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eCaretMargin/MarginWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the CaretMargin (in pixels).\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e5\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMarginColor\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.CaretMargin.CaretColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eCaretMargin/CaretColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to draw the location of the caret (i.e. text cursor). If the Alpha channel is set to 0, then the text cursor is not highlighted in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF0000CD\u003cdiv style=\"color:white; padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMarginMatchColor\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.CaretMargin.MatchColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eCaretMargin/MatchColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to draw the location of matching words in the Caret Margin. If the Alpha channel is 0 then matching words are not displayed in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF9370DB\u003cdiv style=\"padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrCaretMarginAdornment\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.CaretMargin.AdornmentMatchColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eCaretMargin/AdornmentMatchColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to highlight matching words in the text editor. If the Alpha channel is 0 then matching words are not highlighted.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#409370DB\u003cdiv style=\"padding:4px 2px\"\u003eExample\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSM\" colspan=\"3\" scope=\"colgroup\"\u003eStructureMargin Options\u003c/th\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrGapWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins.StructureMargin.GapWidth\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/GapWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the gap between the lines used to show the various code block scopes.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e1\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMLineWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.LineWidth\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/LineWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the lines used to show the various code block scopes.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e2\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMClass\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.ClassColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/ClassColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the code block scope of class definitions (and in C#, namespace). If the Alpha channel is set to 0, then class-scoped blocks are not displayed in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF000000\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMCond\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.ConditionalColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/ConditionalColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of conditional code block scopes. If the Alpha channel is set to 0, then conditional code block scopes are not displayed in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF008000\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMLoop\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.LoopColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/LoopColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of loop construct code blocks. If the Alpha channel is set to 0 then loop construct code block scopes are not displayed in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FFFF0000\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMMethod\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.MethodColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/MethodColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of method code blocks. If the Alpha channel is set to 0, then method code block scopes will not be shown in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF0000FF\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMUnknown\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.UnknownColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/UnknownColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of unknown code blocks. If the Alpha channel is set to 0, then unknown code block scopes will not be shown in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF808080\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMEnabled\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.MarginEnabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/MarginEnabled\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether the StructureMargin should be displayed.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.MarginWidth\u003c/span\u003e\u003cbr\u003e2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/MarginWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the StructureMargin (in pixels).\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e25\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSMEllipse\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureMargin.MethodEllipseColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureMargin/MethodEllipseColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to draw the ellipse that shows the scope of method bodies. If the Alpha channel is set to 0, then the ellipse is not shown.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#150000FF\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSA\" colspan=\"3\" scope=\"colgroup\"\u003eStructureAdornment Options\u003c/th\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSALineWidth\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.LineWidth\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/LineWidth\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eSets the width of the lines used to show the various code block scopes in the text editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e1\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSAClass\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.ClassColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/ClassColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the code block scope of class definitions (and in C#, namespace definitions). If the Alpha channel is set to 0, then class-scoped blocks are not displayed in the text editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF000000\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSACond\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.ConditionalColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/ConditionalColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of conditional code block scopes. If the Alpha channel is set to 0, then conditional code block scopes are not displayed in the text editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF008000\u003cdiv style=\"display:inline-block; width:8px; height:8px\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSALoop\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.LoopColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/LoopColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of loop construct code blocks. If the Alpha channel is set to 0 then loop construct code block scopes are not displayed in the text editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FFFF0000\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSAMethod\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.MethodColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/MethodColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of method code blocks. If the Alpha channel is set to 0, then method code block scopes will not be shown in the text editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF0000FF\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSAUnknown\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.UnknownColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/UnknownColor\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to show the scope of unknown code blocks. If the Alpha channel is set to 0, then unknown code block scopes will not be shown in the margin.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#FF808080\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSASep\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.MethodSeparatorColor\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/MethodSeparatorColorId\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eAn ARGB color value that sets the color to be used to draw a horizontal separator line at the end of a method. If the Alpha channel is set to 0, then method separator lines are not drawn in the text editor. This feature of the extension is turned off by default (i.e. the Alpha channel is 0).\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003e#000000FF\u003cdiv style=\"display:inline-block; width:8px; height:8px; vertical-align:middle\"\u003e\u003c/div\u003e\u003cbr\u003e\u003cbr\u003e\u003cspan style=\"font-size:8pt\"\u003e(when transparency is 0%; the default is 100% transparent, i.e. off)\u003c/span\u003e\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003cth id=\"hdrSAEnabled\" scope=\"row\" style=\"text-align:left\"\u003ev2.8:\u0026nbsp;\u003cspan style=\"font-weight:normal\"\u003eAllMargins2012.StructureAdornment.Enabled\u003c/span\u003e\u003cbr\u003ev2.7: \u003cspan style=\"font-weight:normal\"\u003eStructureAdornment/Enabled\u003c/span\u003e\u003c/th\u003e\u003ctd\u003eDetermines whether structure adornments are displayed in the code editor.\u003c/td\u003e\u003ctd style=\"text-align:center\"\u003eTrue\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cp\u003e\u0026nbsp;\u003c/p\u003e\u003ch2\u003eSome Notes About AllMargins 2012\u003c/h2\u003e\u003cp\u003eWhen installing this extension in Visual Studio 2012, you will only see the \u003cstrong\u003eAllMargins 2012 \u003c/strong\u003eextension listed in the Visual Studio 2012 Extension Manager. This is different than the experience in Visual Studio 2010 and is expected. It appears Microsoft may have fixed a \u0026quot;bug\u0026quot; with extensions that contain other extensions so that only the main/parent extension is listed in the Extension Manager.\u003c/p\u003e\u003cp\u003eUsers of Visual Studio 2010 who install \u003cstrong\u003eAllMargins 2012 \u003c/strong\u003ewill get the same experience as if they had installed the original\u003cstrong\u003eAllMargins\u003c/strong\u003e extension: namely, all the \u0026quot;sub-extensions\u0026quot; (i.e. CaretMargin, SettingsStore, SettingsStoreImpl, etc.) will appear as installed in the Extension Manager, and again, is to be expected.\u003c/p\u003e\u003ch2\u003ePlanned Enhancements\u003c/h2\u003e\u003cp\u003eAs has been stressed throughout this expos\u0026eacute; on \u003cstrong\u003eAllMargins 2012\u003c/strong\u003e, this is a simple update of the original\u003cstrong\u003eAllMargins \u003c/strong\u003eextension to support Visual Studio 2012. While the extension is great just as it is, there are some planned enhancements to the extension to make the overall user experience even more pleasurable. The following list, while not exhaustive, contains the enhancements I think would have an immediate impact on the user experience of this extension. If you can think of more, please leave a comment.\u003c/p\u003e\u003cul\u003e\u003cli\u003eProvide a means to change the extension options from the Visual Studio Options dialog.\u003c/li\u003e\u003cli\u003eProvide options for the StructureMargin and StructureAdornment extensions to highlight other types of code regions, including:\u003cul\u003e\u003cli\u003eFor C# users, providing a different color for namespace code blocks \u003c/li\u003e\u003cli\u003eTry/Catch/Finally code blocks (they currently show up as Unknown) \u003c/li\u003e\u003cli\u003eAnonymous Method/Inline Delegate code blocks (should they be the same color as normal mehods?)\u003c/li\u003e\u003cli\u003eFor C# users, using code blocks \u003c/li\u003e\u003cli\u003eProviding different colors for \u003cspan style=\"font-family:Consolas,\u0027Lucida Console\u0027,\u0027Courier New\u0027,Courier,Monospace\"\u003efor\u003c/span\u003e, \u003cspan style=\"font-family:Consolas,\u0027Lucida Console\u0027,\u0027Courier New\u0027,Courier,Monospace\"\u003eforeach\u003c/span\u003e, \u003cspan style=\"font-family:Consolas,\u0027Lucida Console\u0027,\u0027Courier New\u0027,Courier,Monospace\"\u003ewhile\u003c/span\u003e, and \u003cspan style=\"font-family:Consolas,\u0027Lucida Console\u0027,\u0027Courier New\u0027,Courier,Monospace\"\u003edo\u0026hellip;while\u003c/span\u003e loops\u003cul\u003e\u003cli\u003eLet me know if there\u0026rsquo;s interest in this. Of course, you could set them all to the same color to achieve the same behavior as the current extension.\u003c/li\u003e\u003c/ul\u003e\u003c/li\u003e\u003c/ul\u003e\u003c/li\u003e\u003cli\u003eIf current VB and C/C\u0026#43;\u0026#43; users can think of additional features they\u0026rsquo;d like to see in this extension, please let me know.\u003c/li\u003e\u003cli\u003eWould F# users find any of this functionality useful? \u003c/li\u003e\u003cli\u003eOf course, if there\u0026rsquo;s anything else you\u0026rsquo;d like to see, drop me a line!\u003c/li\u003e\u003c/ul\u003e"</script>
+    </div>
+    <div class="vss-item-pricing-data">
+        <script class="vss-item-pricing" defer="defer" type="application/json">""</script>
+    </div>
+    <div class="vss-item-properties-container">
+        <script class="vss-item-properties" defer="defer" type="application/json">{}</script>
+    </div>
+    <div class="is-migrated-container">
+        <script class="is-migrated" defer="defer" type="application/json">true</script>
+    </div>
+    <div class="vss-item-badges-container">
+        <script class="vss-item-badges" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="user-login-url-data">
+        <script class="user-login-url" defer="defer" type="application/json">"https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com\u0026reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dfourpastmidnight.AllMargins2012\u0026redirect=1\u0026context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01"</script>
+    </div>
+    <div class="is-connected-server-data">
+        <script class="is-connected-server" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="pinned-user-review-data">
+        <script class="pinned-user-review" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="csp-user">
+        <script class="is-csp-user" defer="defer" type="application/json">null</script>
+    </div>
+    <div class="vss-item-scope-data">
+        <script class="vss-item-scope" defer="defer" type="application/json">null</script>
+    </div>
+    
+    <div class="CreateNewSubscription">
+        <script class="vss-subscription-creation" defer="defer" type="application/json">null</script>
+    </div>
+    
+        <div class="needs-aad-auth-data">
+            <script class="needs-aad-auth" defer="defer" type="application/json">false</script>
+        </div>
+    
+    <div class="can-update-extension-data">
+        <script class="can-update-extension" defer="defer" type="application/json">null</script>
+    </div>
+     <div class="has-publisher-role-reader-data">
+        <script class="has-publisher-role-reader" defer="defer" type="application/json">false</script>
+    </div>
+    
+        <div class="market-url">
+            <script class="gallery-browse-url" defer="defer" type="application/json">"https://visualstudiogallery.msdn.microsoft.com/"</script>
+        </div>
+    
+        <div class="msdn-browse-url">
+            <script class="msdn-url" defer="defer" type="application/json">null</script>
+        </div>
+    
+
+    <div class="vss-install-target-id">
+        <script class="vss-target-id" defer="defer" type="application/json">null</script>
+    </div>
+     <div >
+        <script class="vss-install-context" defer="defer" type="application/json">null</script>
+    </div>
+    
+        <div class="worksWithStrings">
+        <script class="worksWith" defer="defer" type="application/json">["Visual Studio 2010, 2012, 2013"]</script>
+        </div>
+    
+            <div class="general-info">
+                <script class="general-info-data" defer="defer" type="application/json">{"galleryUrl":"/","resourcesPath":"https://cdn.vsassets.io/v/20180222T055954/_content/","isHosted":true}</script>
+            </div>
+        </div>
+        
+        <div id="gallery-footer">
+            
+<footer>
+    
+    <div id="ux-footer" class="ltr" role="contentinfo">
+    
+        <div id="baseFooter">
+            <div data-fragmentname="BaseFooterLinks" id="Fragment_BaseFooterLinks" xmlns="http://www.w3.org/1999/xhtml">
+
+                <div class="linkList">
+                    <ul class="links horizontal">
+                        <!-- EU Cookie Consent: Do not consider user consent on clicking any of the links, by setting data-mscc-ic attribute to false -->
+                        <li>
+                            <a href="https://www.visualstudio.com/support/support-overview-vs" data-mscc-ic="false">Contact us</a>
+                        </li>
+                        <li>
+                            <a href="https://www.visualstudio.com/news/visual-studio-hiring-overview-vs" data-mscc-ic="false">Jobs</a>
+                        </li>
+                        <li>
+                            <a href="https://go.microsoft.com/fwlink/?LinkID=264782" data-mscc-ic="false">Privacy</a>
+                        </li>
+                        <li>
+                            <a href="https://go.microsoft.com/fwlink/?LinkID=266231" data-mscc-ic="false">Terms of use</a>
+                        </li>
+                        <li>
+                            <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-mscc-ic="false">Trademarks</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="rightBaseFooter">
+                &copy; 2018 Microsoft
+                <span class="microsoftLogo" title="Microsoft"></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</footer>
+
+        </div>
+        
+    </div>
+
+    
+    
+    <div id="utils-accessibility-announce-polite" class="visually-hidden" aria-live="polite"></div>
+    <div id="utils-accessibility-announce-assertive" class="visually-hidden" aria-live="assertive"></div>
+</body>
+</html>

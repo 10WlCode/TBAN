@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.cnblogs.com/handsomehan/p/7102346.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redux-Saga学习心得 - HandsomeHan - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Redux-Saga学习心得_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Redux-Saga学习心得_files/bundle-Banlieue13.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Redux-Saga学习心得_files/bundle-Banlieue13-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/handsomehan/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/handsomehan/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/handsomehan/wlwmanifest.xml">
+<script async="" src="./Redux-Saga学习心得_files/analytics.js.下载"></script><script src="./Redux-Saga学习心得_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'handsomehan', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./Redux-Saga学习心得_files/blog-common.js.下载" type="text/javascript"></script>
+</head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/handsomehan/"><img id="blogLogo" src="./Redux-Saga学习心得_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/handsomehan/">HandsomeHan</a></h1>
+<h2>无意颠覆，却在不经意中成就传奇！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/handsomehan/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/HandsomeHan">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/handsomehan/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/handsomehan/rss"><img src="./Redux-Saga学习心得_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 93&nbsp;
+文章- 0&nbsp;
+评论- 0&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/handsomehan/p/7102346.html">Redux-Saga学习心得</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p># Redux Saga</p>
+<p>## 简述<br>- Reducers负责处理action的state更新；<br>- Sagas负责协调那些复杂或异步的操作。</p>
+<p>## 安装</p>
+<p>    npm install --save redux-saga</p>
+<p>```<br>// ...<br>import { createStore, applyMiddleware } from 'redux'<br>import createSagaMiddleware from 'redux-saga'</p>
+<p>// ...<br>import { rootSaga } from './sagas'</p>
+<p>const sagaMiddleware = createSagaMiddleware()<br>const store = createStore(<br>  reducer,<br>  applyMiddleware(sagaMiddleware)<br>)<br>sagaMiddleware.run(rootSaga)</p>
+<p>const action = type =&gt; store.dispatch({type})</p>
+<p>```<br>## 辅助函数<br>    <br>    用来在一些特定的action被发起到Store时派生任务。<br>    <br>1. takeEvery<br>2. put: 用于创建dispatch Effect<br>3. take: 通过全面控制action观察进程来构建复杂的控制流<br>4. fork: 无阻塞调用</p>
+<p>---</p>
+<p>```<br>yield fetch(url) =&gt; yield call(fetch, url)</p>
+<p>```<br>### take<br>    等待dispatch匹配某个action<br>```<br>while(true) {<br>    yield take('Click_Action')<br>    yield fork(clickButtonSaga)<br>}<br>```</p>
+<p>### put <br>    触发某个action,作用和dispatch相同<br>```<br>yield put({type: 'CLICK'})<br>```<br>   <br>```<br>//具体例子<br>import { call, put } from 'redux-saga/effects'</p>
+<p>export function* fetchData(action) {<br>    try {<br>        const data = yield call(fetch, url)<br>        yield put({type: 'FETCH_SUCCESS', data})<br>    } catch (error) {<br>        yield put({type: 'FETCH_FAILED', error})<br>    }<br>}<br>```<br>### call<br>    有阻塞的调用saga或者返回promise的函数，只在触发某个动作<br>    <br>### takeEvery<br>    循环监听某个触发动作，通常会使用while循环替代<br>```<br>import {takeEvery} from 'redux-saga/effects'</p>
+<p>function* watchFetchData() {<br>  yield takeEvery('FETCH_REQUESTED', fetchData)<br>}<br>```<br>### takeLatest<br>    对于触发多个action的时候，只执行最后一个，其他的会自动取消<br>```<br>import { takeLatest } from 'redux-saga/effects'</p>
+<p>function* watchFetchData() {<br>  yield takeLatest('FETCH_REQUESTED', fetchData)<br>}<br>```<br>### fork和cancel<br>    通常fork和cancel配合使用，实现非阻塞任务，take是阻塞状态，也就是实现执行take的时候，无法继续向下执行，fork是非阻塞的，同样可以使用cancel取消一个fork任务<br>```<br>function* authorize(user, password) {<br>  try {<br>    const token = yield call(Api.authorize, user, password)<br>    yield put({type: 'LOGIN_SUCCESS', token})<br>  } catch(error) {<br>    yield put({type: 'LOGIN_ERROR', error})<br>  }<br>}</p>
+<p>function* loginFlow() {<br>  while(true) {<br>    const {user, password} = yield take('LOGIN_REQUEST')<br>    yield fork(authorize, user, password)<br>    yield take(['LOGOUT', 'LOGIN_ERROR'])<br>    yield call(Api.clearItem('token'))<br>  }<br>}<br>```<br>    当执行yield fork(authorize, user, password),同时执行yield take(['LOGOUT', 'LOGIN_ERROR'])<br>    <br>### 错误处理<br>    我们假设远程数据读取因为某些原因失败了，API函数API.fetch返回一个被拒绝(rejected)的Promise<br>```<br>import Api from './Api'<br>import { call, put } from 'redux-saga/effects'</p>
+<p>// ...<br>function* fetchProducts() {<br>    try {<br>        const products = yield call(Api.fetch, '/products')<br>        yield put({ type: 'PRODUCTS_RECEIVED', products })<br>    } catch (err) {<br>        yield put({ type: 'PRODUCTS_REQUEST_FAILED', err)<br>    }<br>}<br>```</p>
+<p>### takeEvery的使用<br>    saga中的take并不支持action的循环调用，即遍历数组执行action，为解决该问题，可以使用takeEvery来执行action，此时即可实现遍历数组执行action。<br>    <br>```<br>import { call, put, takeEvery } from 'redux-saga/effects'</p>
+<p>function* fetchUsr(action) {<br>    const payload = action<br>    try {<br>        const user = yield call(api.getUser, payload)<br>        yield put({ type: GET_ENTITIES_USER, user })<br>    } catch (err) {<br>        console.log('err: %o', err)<br>    }<br>}</p>
+<p>function* mySaga() {<br>    //在每个 'GET_USER' action 被发起时调用 fetchUser<br>    //允许并发（译注：即同时处理多个相同的 action）<br>    takeEvery(actions.GET_USER, fecthUser)<br>}<br>```</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/handsomehan/category/798758.html" target="_blank">JavaScript</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/handsomehan/tag/Saga/">Saga</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7102346,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;ee4d1733-18e7-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Redux-Saga学习心得_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Redux-Saga学习心得_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/handsomehan/" target="_blank"><img src="./Redux-Saga学习心得_files/20161119182502.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/handsomehan/">HandsomeHan</a><br>
+            <a href="http://home.cnblogs.com/u/handsomehan/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/handsomehan/followers">粉丝 - 6</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;ee4d1733-18e7-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7102346,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(7102346,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/handsomehan/p/6163426.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/handsomehan/p/6163426.html" title="发布于2016-12-12 10:18">JavaScript中的排序</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-07-01 14:40</span> <a href="http://www.cnblogs.com/handsomehan/">HandsomeHan</a> 阅读(<span id="post_view_count">1066</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7102346" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/handsomehan/p/7102346.html#" onclick="AddToWz(7102346);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=272266,cb_entryId=7102346,cb_blogApp=currentBlogApp,cb_blogUserGuid='ee4d1733-18e7-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/7/1 14:40:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/handsomehan/p/7102346.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/handsomehan/p/7102346.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./Redux-Saga学习心得_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./Redux-Saga学习心得_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./Redux-Saga学习心得_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./Redux-Saga学习心得_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./Redux-Saga学习心得_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./Redux-Saga学习心得_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./Redux-Saga学习心得_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/598163/" target="_blank">美团打车推出垫付功能 未付款订单平台7日内自动垫付</a><br> ·  <a href="https://news.cnblogs.com/n/598162/" target="_blank">争议EOS：超级节点 ，平民玩不起的游戏</a><br> ·  <a href="https://news.cnblogs.com/n/598161/" target="_blank">有多少iOS应用能年入百万美元？去年共有2857款</a><br> ·  <a href="https://news.cnblogs.com/n/598158/" target="_blank">“你好好享受童年，我负责改变世界”大佬们正在努力</a><br> ·  <a href="https://news.cnblogs.com/n/598160/" target="_blank">爱立信获欧盟2.5亿欧元贷款研发5G</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/576411/" target="_blank">你可以把编程当做一项托付终身的职业</a><br> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/handsomehan/">HandsomeHan</a><br>园龄：<a href="https://home.cnblogs.com/u/handsomehan/" title="入园时间：2016-03-11">2年2个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/handsomehan/followers/">6</a><br>关注：<a href="https://home.cnblogs.com/u/handsomehan/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;ee4d1733-18e7-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('ee4d1733-18e7-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/05/01&#39;);return false;">&lt;</a></td><td align="center">2018年6月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/07/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/handsomehan/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/handsomehan/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/handsomehan/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/handsomehan/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/handsomehan/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/handsomehan/p/7102346.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/handsomehan/tag/JavaScript/">JavaScript</a>(35)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/jQuery/">jQuery</a>(13)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/AJAX/">AJAX</a>(12)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/AngularJS/">AngularJS</a>(8)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/STUDY/">STUDY</a>(8)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/HTML%2BCSS/">HTML+CSS</a>(6)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/%E6%80%BB%E7%BB%93/">总结</a>(3)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/Sublime/">Sublime</a>(1)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/Sublime%20Text3/">Sublime Text3</a>(1)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/Wamp/">Wamp</a>(1)</li><li><a href="http://www.cnblogs.com/handsomehan/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/handsomehan/category/920642.html">AngularJS(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/handsomehan/category/798758.html">JavaScript(48)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/handsomehan/category/816121.html">jQuery(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/handsomehan/category/886311.html">Sass(1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/handsomehan/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/handsomehan/archive/2016/12.html">2016年12月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/handsomehan/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/handsomehan/archive/2016/10.html">2016年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/handsomehan/archive/2016/09.html">2016年9月 (35)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/handsomehan/archive/2016/08.html">2016年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/handsomehan/archive/2016/07.html">2016年7月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/handsomehan/archive/2016/06.html">2016年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/handsomehan/archive/2016/05.html">2016年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/handsomehan/archive/2016/04.html">2016年4月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/handsomehan/archive/2016/03.html">2016年3月 (16)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/handsomehan/p/5893655.html">1. JQuery实现tab切换(22372)</a></li><li><a href="https://www.cnblogs.com/handsomehan/p/5896429.html">2. jq与原生js实现收起展开效果(4304)</a></li><li><a href="https://www.cnblogs.com/handsomehan/p/5868596.html">3. ajax同步请求JS代码(2447)</a></li><li><a href="https://www.cnblogs.com/handsomehan/p/5829974.html">4. js原生获取className&amp;多选一(1518)</a></li><li><a href="https://www.cnblogs.com/handsomehan/p/6148980.html">5. JS常用方法（获取Class、获取元素样式、事件监听、cookie、ajax等）(1335)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 HandsomeHan
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

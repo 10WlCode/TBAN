@@ -1,0 +1,24 @@
+Application
+Application基本不用，因为Application要加一个线程锁，再用，然后再解锁。
+
+Cache 或者 分布式缓存
+Cache对并发做了处理不需要加锁。
+就像每页查询显示的行数，经常查询，不经常变Cache["pagesSize"] = pageSize
+
+Application和Cache相同
+1.都存在内存上
+2.都是共享的
+
+
+Cookie
+不是共享的，用文件或者内存形式存储。
+存在浏览器端。
+
+Session
+不是共享的
+
+
+全局类
+在Global.asax里面配置的全局变量，比方说每次登陆完后台，需要测试一下是否以前登陆过，要不然就返回登录页，就写在Application Start里面
+
+静态类

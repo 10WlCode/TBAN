@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/suizhikuo/p/4739388.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/mention.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C#中的static、readonly与const的比较 - 故宫博物院 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/bundle-coffee.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/bundle-coffee-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/suizhikuo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/suizhikuo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/suizhikuo/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root .footer > #box[style="width:100%;height:100%;position:fixed;top:0"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'suizhikuo', cb_enable_mathjax=true;var isLogined=true;</script>
+<script src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+  'HTML-CSS': { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } }});</script><script type="text/javascript" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/MathJax.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">我愿意 http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">生命力  http://shop148612228.taobao.com</a>
+<hr>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/suizhikuo/"><img id="blogLogo" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/suizhikuo/"></a><a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">吾外地人农民工</a> <a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">你点啊</a></h1>
+<h2><a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">吾外地人农民工</a>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">你点啊</a></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/suizhikuo/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%95%85%E5%AE%AB%E5%8D%9A%E7%89%A9%E9%99%A2">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/suizhikuo/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/suizhikuo/rss"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 1320&nbsp;
+文章- 33&nbsp;
+评论- 38&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/suizhikuo/p/4739388.html">C#中的static、readonly与const的比较</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>C#中有两种常量类型，分别为readonly(运行时常量)与const(编译时常量)，本文将就这两种类型的不同特性进行比较并说明各自的适用场景。    <br>工作原理     <br>&nbsp;&nbsp;&nbsp; readonly为运行时常量，程序运行时进行赋值，赋值完成后便无法更改，因此也有人称其为只读变量。     <br>&nbsp;&nbsp;&nbsp; const为编译时常量，程序编译时将对常量值进行解析，并将所有常量引用替换为相应值。     <br>&nbsp;&nbsp;&nbsp; 下面声明两个常量：</p>  <p>public static readonly int A = 2; //A为运行时常量    <br>public const int B = 3; //B为编译时常量     <br>下面的表达式：</p>  <p>int C = A + B;    <br>经过编译后与下面的形式等价：</p>  <p>int C = A + 3;    <br>可以看到，其中的const常量B被替换成字面量3，而readonly常量A则保持引用方式。     <br>声明及初始化     <br>&nbsp;&nbsp;&nbsp; readonly常量只能声明为类字段，支持实例类型或静态类型，可以在声明的同时初始化或者在构造函数中进行初始化，初始化完成后便无法更改。     <br>&nbsp;&nbsp;&nbsp; const常量除了可以声明为类字段之外，还可以声明为方法中的局部常量，默认为静态类型(无需用static修饰，否则将导致编译错误)，但必须在声明的同时完成初始化。</p>  <p>数据类型支持    <br>&nbsp;&nbsp;&nbsp; 由于const常量在编译时将被替换为字面量，使得其取值类型受到了一定限制。const常量只能被赋予数字(整数、浮点数)、字符串以及枚举类型。下面的代码无法通过编译：</p>  <p>public const DateTime D = DateTime.MinValue;    <br>改成readonly就可以正常编译：</p>  <p>public readonly DateTime D = DateTime.MinValue;    <br>可维护性     <br>&nbsp;&nbsp;&nbsp; readonly以引用方式进行工作，某个常量更新后，所有引用该常量的地方均能得到更新后的值。     <br>&nbsp;&nbsp;&nbsp; const的情况要稍稍复杂些，特别是跨程序集调用：</p>  <p>public class Class1    <br>{     <br>&nbsp;&nbsp;&nbsp; public static readonly int A = 2; //A为运行时常量     <br>&nbsp;&nbsp;&nbsp; public const int B = 3; //B为编译时常量     <br>}</p>  <p>public class Class2    <br>{     <br>&nbsp;&nbsp;&nbsp; public static int C = Class1.A + Class1.B; //变量C的值为A、B之和     <br>}</p>  <p>Console.WriteLine(Class2.C); //输出"5"    <br>假设Class1与Class2位于两个不同的程序集，现在更改Class1中的常量值：</p>  <p>public class Class1    <br>{     <br>&nbsp;&nbsp;&nbsp; public static readonly int A = 4; //A为运行时常量     <br>&nbsp;&nbsp;&nbsp; public const int B = 5; //B为编译时常量     <br>}     <br>编译Class1并部署（注意：这时并没有重新编译Class2），再次查看变量C的值：</p>  <p>Console.WriteLine(Class2.C); //输出"7"    <br>结果可能有点出乎意料，让我们来仔细观察变量C的赋值表达式：</p>  <p>public static int C = Class1.A + Class1.B;    <br>编译后与下面的形式等价： </p>  <p>&nbsp;</p>  <p>public static int C = Class1.A + 3;    <br>&nbsp;&nbsp;&nbsp;&nbsp; 因此不管常量B的值如何变，对最终结果都不会产生影响。虽说重新编译Class2即可解决这个问题，但至少让我们看到了const可能带来的维护问题。</p>  <p>性能比较    <br>&nbsp;&nbsp;&nbsp; const直接以字面量形式参与运算，性能要略高于readonly，但对于一般应用而言，这种性能上的差别可以说是微乎其微。</p>  <p>适用场景    <br>&nbsp;&nbsp;&nbsp; 在下面两种情况下：     <br>&nbsp;&nbsp;&nbsp; a.取值永久不变(比如圆周率、一天包含的小时数、地球的半径等)     <br>&nbsp;&nbsp;&nbsp; b.对程序性能要求非常苛刻     <br>&nbsp;&nbsp;&nbsp; 可以使用const常量，除此之外的其他情况都应该优先采用readonly常量。     </p></div><div id="MySignature" style="display: block;"><hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">象牙塔 http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">神奇工坊 http://shop148612228.taobao.com</a>
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">http://shop148612228.taobao.com</a>
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">赏根辣条吃吧</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://xiangai.taobao.com">赏包辣条吃吧</a>
+<hr>
+<a href="http://www.cnblogs.com/suizhikuo/gallery/image/195151.html" target="_blank" title="微信打赏"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/o_微信.png" alt="微信打赏" width="400px" height="600px"></a>
+<a href="http://www.cnblogs.com/suizhikuo/gallery/image/195152.html" target="_blank" title="支付宝打赏"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/o_支付宝.jpg" alt="支付宝打赏" width="400px" height="600px"></a>
+<hr></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4739388,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;43291d63-3395-df11-ba8f-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/suizhikuo/" target="_blank"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/20170715151521.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/suizhikuo/">故宫博物院</a><br>
+            <a href="http://home.cnblogs.com/u/suizhikuo/followees">关注 - 315</a><br>
+            <a href="http://home.cnblogs.com/u/suizhikuo/followers">粉丝 - 48</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;43291d63-3395-df11-ba8f-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4739388,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(4739388,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/suizhikuo/p/4739361.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/suizhikuo/p/4739361.html" title="发布于2015-08-18 14:39">未能加载文件或程序集“XXX”或它的某一个依赖项。试图加载格式不正确的程序。</a><br><a href="http://www.cnblogs.com/suizhikuo/p/4739408.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/suizhikuo/p/4739408.html" title="发布于2015-08-18 14:54">System.Threading.ThreadAbortException: 正在中止线程。</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-08-18 14:47</span> <a href="http://www.cnblogs.com/suizhikuo/">故宫博物院</a> 阅读(<span id="post_view_count">1955</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4739388" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/suizhikuo/p/4739388.html#" onclick="AddToWz(4739388);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=89776,cb_entryId=4739388,cb_blogApp=currentBlogApp,cb_blogUserGuid='43291d63-3395-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2015/8/18 14:47:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/suizhikuo/p/4739388.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/suizhikuo/p/4739388.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/583990/" target="_blank">Spotify死磕苹果音乐推出99美元包年 或明年春季IPO</a><br> ·  <a href="https://news.cnblogs.com/n/583985/" target="_blank">DeepMind 16篇NIPS 2017论文，全部信息都在这里了</a><br> ·  <a href="https://news.cnblogs.com/n/583986/" target="_blank">微软在测试新的Outlook.com广告形式</a><br> ·  <a href="https://news.cnblogs.com/n/583984/" target="_blank">Mozilla 2016年收入增长24%</a><br> ·  <a href="https://news.cnblogs.com/n/583983/" target="_blank">Facebook产品设计副总裁：产品从0到1，能否成功我只看这4点</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">我愿意 http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">生命力 http://shop148612228.taobao.com</a>
+<hr><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/suizhikuo/">故宫博物院</a><br>园龄：<a href="http://home.cnblogs.com/u/suizhikuo/" title="入园时间：2010-07-22">7年4个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/suizhikuo/followers/">48</a><br>关注：<a href="http://home.cnblogs.com/u/suizhikuo/followees/">315</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;43291d63-3395-df11-ba8f-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalTodayDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/suizhikuo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/suizhikuo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/suizhikuo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/suizhikuo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/suizhikuo/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/suizhikuo/p/4739388.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/suizhikuo/p/7921393.html">1. 十进制转三十六进制,10进制转36进制</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7886043.html">2. sqlserver 中WITH NOLOCK、HOLDLOCK、UPDLOCK、TABLOCK、TABLOCKX</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7844444.html">3. delete method not allowed 405错误</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7843588.html">4. 未能加载文件或程序集“Newtonsoft.Json”或它的某一个依赖项。找到的程序集清单定义与程序集引用不匹配。 (异常来自 HRESULT:0x80131040)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7808195.html">5. SQL Server 函数 LEN 与 DATALENGTH的区别</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7794473.html">6. Visual Studio 2013中引入Web Service的简单方法visual studio 引用 wsdl</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7762713.html">7. 不知道哪里alert undefined 用下面的语句是js报错.F12能提示报错的地方window.alert=function(aa){ if (typeof (aa)"undefined"){ throw "就是这";}};</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7744723.html">8. 什么是 Event Loop？</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7743901.html">9. jQuery的deferred对象详解  jquery回调函数</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/7716308.html">10. Table   does not have the identity property. Cannot perform SET operation.</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/suizhikuo/tag/OVER%28PARTITION%20BY%29%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/">OVER(PARTITION BY)函数用法</a>(1)</li><li><a href="http://www.cnblogs.com/suizhikuo/tag/over%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0/">over开窗函数</a>(1)</li><li><a href="http://www.cnblogs.com/suizhikuo/tag/over%E5%AD%90%E5%8F%A5/">over子句</a>(1)</li><li><a href="http://www.cnblogs.com/suizhikuo/tag/sql%20server/">sql server</a>(1)</li><li><a href="http://www.cnblogs.com/suizhikuo/tag/%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0/">开窗函数</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(396)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/suizhikuo/category/344976.html">.NET编程和sQL server(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/suizhikuo/category/360258.html">ASP.NET(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/suizhikuo/category/302073.html">ASP.NET MVC(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/suizhikuo/category/302074.html">ASP.NET WebForm(72)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/suizhikuo/category/302077.html">C#(58)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/suizhikuo/category/329301.html">CSS(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/suizhikuo/category/329691.html">Entity Framework(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/suizhikuo/category/345780.html">html(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/suizhikuo/category/302076.html">Javascript, JQuery, Ajax, Unobtrusive (56)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/suizhikuo/category/360256.html">net framework(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/suizhikuo/category/360263.html">ORM, LINQ, lambda</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/suizhikuo/category/352045.html">photoshop(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/suizhikuo/category/336542.html">silverlight(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/suizhikuo/category/304155.html">web(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/suizhikuo/category/308634.html">安全性(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/suizhikuo/category/342471.html">备忘(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/suizhikuo/category/304019.html">编程百科(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/suizhikuo/category/306076.html">编程基础知识(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/suizhikuo/category/360265.html">编程资源(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/suizhikuo/category/334905.html">答疑解惑(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/suizhikuo/category/323020.html">电脑使用技巧(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/suizhikuo/category/336205.html">工具使用(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/suizhikuo/category/340860.html">工作生活(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/suizhikuo/category/339976.html">技巧收藏(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/suizhikuo/category/573691.html">技术索引(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/suizhikuo/category/353944.html">软件资源(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/suizhikuo/category/310723.html">数据库(51)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/suizhikuo/category/303287.html">微软技术大杂烩(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/suizhikuo/category/343290.html">微软企业库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/suizhikuo/category/302078.html">问题积累解决(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/suizhikuo/category/328316.html">项目管理(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/suizhikuo/category/345527.html">业务流程(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(1319)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/suizhikuo/archive/2017/11.html">2017年11月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/suizhikuo/archive/2017/10.html">2017年10月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/suizhikuo/archive/2017/09.html">2017年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/suizhikuo/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/suizhikuo/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/suizhikuo/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/suizhikuo/archive/2017/01.html">2017年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/suizhikuo/archive/2016/12.html">2016年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/suizhikuo/archive/2016/11.html">2016年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/suizhikuo/archive/2016/10.html">2016年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/suizhikuo/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/suizhikuo/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/suizhikuo/archive/2016/04.html">2016年4月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/suizhikuo/archive/2016/02.html">2016年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/suizhikuo/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/suizhikuo/archive/2015/12.html">2015年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/suizhikuo/archive/2015/11.html">2015年11月 (35)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/suizhikuo/archive/2015/10.html">2015年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/suizhikuo/archive/2015/09.html">2015年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/suizhikuo/archive/2015/08.html">2015年8月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/suizhikuo/archive/2015/07.html">2015年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/suizhikuo/archive/2015/06.html">2015年6月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/suizhikuo/archive/2015/05.html">2015年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/suizhikuo/archive/2015/04.html">2015年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/suizhikuo/archive/2015/03.html">2015年3月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/suizhikuo/archive/2015/02.html">2015年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/suizhikuo/archive/2015/01.html">2015年1月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/suizhikuo/archive/2014/12.html">2014年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/suizhikuo/archive/2014/10.html">2014年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/suizhikuo/archive/2014/09.html">2014年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/suizhikuo/archive/2014/08.html">2014年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/suizhikuo/archive/2014/07.html">2014年7月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/suizhikuo/archive/2014/06.html">2014年6月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/suizhikuo/archive/2014/05.html">2014年5月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/suizhikuo/archive/2014/04.html">2014年4月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/suizhikuo/archive/2014/03.html">2014年3月 (54)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/suizhikuo/archive/2013/12.html">2013年12月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/suizhikuo/archive/2013/11.html">2013年11月 (51)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/suizhikuo/archive/2013/10.html">2013年10月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/suizhikuo/archive/2013/09.html">2013年9月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/suizhikuo/archive/2013/08.html">2013年8月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/suizhikuo/archive/2013/07.html">2013年7月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/suizhikuo/archive/2013/06.html">2013年6月 (41)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/suizhikuo/archive/2013/05.html">2013年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/suizhikuo/archive/2013/04.html">2013年4月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/suizhikuo/archive/2013/03.html">2013年3月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/suizhikuo/archive/2013/02.html">2013年2月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/suizhikuo/archive/2013/01.html">2013年1月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/suizhikuo/archive/2012/12.html">2012年12月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_49" href="http://www.cnblogs.com/suizhikuo/archive/2012/11.html">2012年11月 (46)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_50" href="http://www.cnblogs.com/suizhikuo/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_51" href="http://www.cnblogs.com/suizhikuo/archive/2012/08.html">2012年8月 (24)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_52" href="http://www.cnblogs.com/suizhikuo/archive/2012/07.html">2012年7月 (37)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_53" href="http://www.cnblogs.com/suizhikuo/archive/2012/06.html">2012年6月 (44)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_54" href="http://www.cnblogs.com/suizhikuo/archive/2012/05.html">2012年5月 (67)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_55" href="http://www.cnblogs.com/suizhikuo/archive/2012/04.html">2012年4月 (74)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_56" href="http://www.cnblogs.com/suizhikuo/archive/2012/03.html">2012年3月 (60)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_57" href="http://www.cnblogs.com/suizhikuo/archive/2012/02.html">2012年2月 (87)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_58" href="http://www.cnblogs.com/suizhikuo/archive/2012/01.html">2012年1月 (46)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_59" href="http://www.cnblogs.com/suizhikuo/archive/2011/12.html">2011年12月 (95)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_60" href="http://www.cnblogs.com/suizhikuo/archive/2011/11.html">2011年11月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_61" href="http://www.cnblogs.com/suizhikuo/archive/2011/10.html">2011年10月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_62" href="http://www.cnblogs.com/suizhikuo/archive/2011/09.html">2011年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_63" href="http://www.cnblogs.com/suizhikuo/archive/2011/08.html">2011年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_64" href="http://www.cnblogs.com/suizhikuo/archive/2011/07.html">2011年7月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_65" href="http://www.cnblogs.com/suizhikuo/archive/2011/06.html">2011年6月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_66" href="http://www.cnblogs.com/suizhikuo/archive/2011/05.html">2011年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_67" href="http://www.cnblogs.com/suizhikuo/archive/2011/04.html">2011年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_68" href="http://www.cnblogs.com/suizhikuo/archive/2011/01.html">2011年1月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_69" href="http://www.cnblogs.com/suizhikuo/archive/2010/12.html">2010年12月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleCategory">
+<h3 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(44)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/suizhikuo/category/302079.html">ASP.NET MVC (4)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/suizhikuo/category/302080.html">ASP.NET WebForm (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/suizhikuo/category/302081.html">C#(4)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/suizhikuo/category/304158.html">client</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/suizhikuo/category/349251.html">EntityFramework(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/suizhikuo/category/302600.html">HTML 5(7)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/suizhikuo/category/302064.html">Javascript, JQuery, Ajax, Unobtrusive (6)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/suizhikuo/category/302792.html">Razor(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_8" href="http://www.cnblogs.com/suizhikuo/category/304157.html">web(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_9" href="http://www.cnblogs.com/suizhikuo/category/306010.html">Web Site(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_10" href="http://www.cnblogs.com/suizhikuo/category/311833.html">Windows Workflow Foundation(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_11" href="http://www.cnblogs.com/suizhikuo/category/303352.html">WPF</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_12" href="http://www.cnblogs.com/suizhikuo/category/303061.html">编程百科(7)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_13" href="http://www.cnblogs.com/suizhikuo/category/310982.html">编程基础知识(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_14" href="http://www.cnblogs.com/suizhikuo/category/312222.html">计算机常识(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_15" href="http://www.cnblogs.com/suizhikuo/category/312208.html">技巧备用</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_16" href="http://www.cnblogs.com/suizhikuo/category/302627.html">数据库(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_17" href="http://www.cnblogs.com/suizhikuo/category/302083.html">问题积累解决(1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleArchive">
+<h3 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(33)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.cnblogs.com/suizhikuo/archives/2012/01.html" rel="nofollow">2012年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://www.cnblogs.com/suizhikuo/archives/2011/12.html" rel="nofollow">2011年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://www.cnblogs.com/suizhikuo/archives/2011/10.html" rel="nofollow">2011年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://www.cnblogs.com/suizhikuo/archives/2011/09.html" rel="nofollow">2011年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.cnblogs.com/suizhikuo/archives/2011/07.html" rel="nofollow">2011年7月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.cnblogs.com/suizhikuo/archives/2011/06.html" rel="nofollow">2011年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://www.cnblogs.com/suizhikuo/archives/2011/05.html" rel="nofollow">2011年5月 (10)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListImageCategory">
+<h3 class="catListTitle">相册<span style="font-size:11px;font-weight:normal">(2)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://www.cnblogs.com/suizhikuo/gallery/1095753.html" rel="nofollow">打赏(2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	249890
+	</li><li class="liRank">
+		排名 -	784
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4959733.html#3703162">1. Re:Resharper的使用</a></li>
+        <li class="recent_comment_body">不错</li>
+        <li class="recent_comment_author">--yuandong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3443932.html#3664505">2. Re:jquery.inputmask 输入框input输入内容格式限制插件</a></li>
+        <li class="recent_comment_body">@骑着蜗牛去散步纯抄袭...</li>
+        <li class="recent_comment_author">--国产码农</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3443932.html#3663901">3. Re:jquery.inputmask 输入框input输入内容格式限制插件</a></li>
+        <li class="recent_comment_body">还整个英文,是你自己写的真懂还是抄袭的,一点解释没有,借鉴也看不懂</li>
+        <li class="recent_comment_author">--骑着蜗牛去散步</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3384963.html#3586249">4. Re:对象的当前状态使该操作无效 说明: 执行当前 Web 请求期间，出现未处理的异常。</a></li>
+        <li class="recent_comment_body">博主在吗，这种问题测试的时候未发生但是生产环境会发生</li>
+        <li class="recent_comment_author">--小奉手</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4226337.html#3548142">5. Re:asp.net系统过滤器、自定义过滤器</a></li>
+        <li class="recent_comment_body">@bwlang我这是纯转载...本博客全部转载,如有原创纯属巧合....</li>
+        <li class="recent_comment_author">--国产码农</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4226337.html#3547249">6. Re:asp.net系统过滤器、自定义过滤器</a></li>
+        <li class="recent_comment_body">写的太棒了，撸主威武</li>
+        <li class="recent_comment_author">--bwlang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3641649.html#3524047">7. Re:什么是Spring的命名空间及使用Spring 的命名空间p 装配属性</a></li>
+        <li class="recent_comment_body">不错，谢谢博主，对于新手的我，有很好的启发作用</li>
+        <li class="recent_comment_author">--门前葡萄树的蜗牛</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4839028.html#3325338">8. Re:输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</a></li>
+        <li class="recent_comment_body">@我想火火火删除空格...</li>
+        <li class="recent_comment_author">--随智阔的博客园</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4839028.html#3325337">9. Re:输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</a></li>
+        <li class="recent_comment_body">删除空格</li>
+        <li class="recent_comment_author">--随智阔的博客园</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/4839028.html#3325302">10. Re:输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</a></li>
+        <li class="recent_comment_body">大神我也出现了这个问题怎么解决啊？</li>
+        <li class="recent_comment_author">--我想火火火</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3178716.html#3272570">11. Re:JQuery when</a></li>
+        <li class="recent_comment_body">Here<br><br><a href="https://www.cnblogs.com/suizhikuo/p/4739388.html" target="_blank"></a><br><br><br>when.then 有三个参数，老师可以讲下吗？</li>
+        <li class="recent_comment_author">--张生抛了崔莺莺</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/09/2317529.html#3094926">12. Re:Linq延迟执行（转）</a></li>
+        <li class="recent_comment_body">IEnumerable query = "How are you, friend."; foreach(char vowel in "aeiou") .........</li>
+        <li class="recent_comment_author">--lctk</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3422139.html#3094854">13. Re:SQL Server Profiler使用方法</a></li>
+        <li class="recent_comment_body">楼主威武</li>
+        <li class="recent_comment_author">--网站制作大师</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3196960.html#3068238">14. Re:Linq:Group By用法</a></li>
+        <li class="recent_comment_body">@谷仁儿现在都更新到 ef7 了..又落后了....</li>
+        <li class="recent_comment_author">--网站制作大师</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/p/3196960.html#3068235">15. Re:Linq:Group By用法</a></li>
+        <li class="recent_comment_body">看了后，受益颇多，谢了</li>
+        <li class="recent_comment_author">--谷仁儿</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/09/2317529.html#2866831">16. Re:Linq延迟执行（转）</a></li>
+        <li class="recent_comment_body">IEnumerable query = "How are you, friend."; foreach(char vowel in "aeiou") .........</li>
+        <li class="recent_comment_author">--CrayonCode</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/06/2340665.html#2843517">17. Re:ASP.NET MVC的全球化方案</a></li>
+        <li class="recent_comment_body">学习</li>
+        <li class="recent_comment_author">--黑峰</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2013/06/07/3125225.html#2838100">18. Re:asp.net mvc 将Enum绑定在DropDownList了</a></li>
+        <li class="recent_comment_body">楼主 这里写错了 static public</li>
+        <li class="recent_comment_author">--黑峰</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/06/17/2083294.html#2646445">19. Re:C#中in,out,ref的作用</a></li>
+        <li class="recent_comment_body">赞 总结的很好。<br>例子也能很好的说明：作为关键字的ref，out弥补了函数只有一个返回值的缺陷。</li>
+        <li class="recent_comment_author">--williamwindy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/05/30/2527032.html#2422274">20. Re:seo 黑链</a></li>
+        <li class="recent_comment_body">黑链不是SEO，而是SEC了。</li>
+        <li class="recent_comment_author">--卓酷</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/04/19/2457784.html#2409152">21. Re:让wordpress博客首页、分类页 显示文章标题列表或摘要</a></li>
+        <li class="recent_comment_body">你熟悉WordPress插件开发吗？请联系QQ：88152977，MSN：hhzqq@21cn.com，EMail：pipihzq@qq.com</li>
+        <li class="recent_comment_author">--www.ithr.org.cn</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/03/13/2394807.html#2385754">22. Re:关闭EF4.x Code First的级联删除Cascade Delete</a></li>
+        <li class="recent_comment_body">@MissLV....................................</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/03/13/2394807.html#2385748">23. Re:关闭EF4.x Code First的级联删除Cascade Delete</a></li>
+        <li class="recent_comment_body">..............</li>
+        <li class="recent_comment_author">--MissLV</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/02/2272417.html#2362473">24. Re:怎么把radioButtonList跟他一起的内容放在一行显示</a></li>
+        <li class="recent_comment_body">原来要设置repeatDirection 和 RepeatLayout两个属性才行.</li>
+        <li class="recent_comment_author">--十二月的雪</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/04/2311890.html#2358126">25. Re:ASP.NET 中TextBox设置ReadOnly="true" 无法取到值的做法</a></li>
+        <li class="recent_comment_body">在aspx页面postback以后的某个预处理事件中，asp.net 底层代码会将客户端的TextBox值（非ReadOnly）赋给对应的TextBox.Value属性，而ReadOnly的TextB......</li>
+        <li class="recent_comment_author">--新七点</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html#2353255">26. Re:谈谈C# 4.0新特性“缺省参数”的实现</a></li>
+        <li class="recent_comment_body">@随智阔低调啊...</li>
+        <li class="recent_comment_author">--胡小易</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html#2353247">27. Re:谈谈C# 4.0新特性“缺省参数”的实现</a></li>
+        <li class="recent_comment_body">@胡小易唉....希望不要封....</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html#2353191">28. Re:谈谈C# 4.0新特性“缺省参数”的实现</a></li>
+        <li class="recent_comment_body">小心封你账号引用随智阔：@胡小易是啊.下边是广告.&lt;a target="_blank" href="&lt;a target="_blank" href=" &lt;.........</li>
+        <li class="recent_comment_author">--胡小易</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html#2353178">29. Re:谈谈C# 4.0新特性“缺省参数”的实现</a></li>
+        <li class="recent_comment_body">@胡小易是啊.下边是广告.微博:软件开发大师微博:北京淘宝联盟 广告位招商网站跑运输网站...</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/06/01/2065513.html#2353165">30. Re:ASP.NET MVC 3和Razor中的@helper 语法</a></li>
+        <li class="recent_comment_body">@胡小易谢谢...</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/06/01/2065513.html#2353160">31. Re:ASP.NET MVC 3和Razor中的@helper 语法</a></li>
+        <li class="recent_comment_body">真不错</li>
+        <li class="recent_comment_author">--胡小易</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html#2353153">32. Re:谈谈C# 4.0新特性“缺省参数”的实现</a></li>
+        <li class="recent_comment_body">更强大了啊</li>
+        <li class="recent_comment_author">--胡小易</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/03/30/2425942.html#2344239">33. Re:javascript 从一个数组中 删除 一个数组</a></li>
+        <li class="recent_comment_body">var a =["1","2","4","5"];var b=["1","2","3"];alert(a.filter(function(i){return !(i in b)}))alert($.g......</li>
+        <li class="recent_comment_author">--紫云飞</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/17/2356509.html#2312525">34. Re:CSS 控制打印样式</a></li>
+        <li class="recent_comment_body">print.css共享啊，看不到</li>
+        <li class="recent_comment_author">--游龙踏雪</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2282739.html#2274926">35. Re:在.net 中,ajax 如何调用本页数据源</a></li>
+        <li class="recent_comment_body">@吃西瓜最快好像是HTML在线编辑器的原因....</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2282739.html#2274912">36. Re:在.net 中,ajax 如何调用本页数据源</a></li>
+        <li class="recent_comment_body">木有改哈 搜狗浏览器</li>
+        <li class="recent_comment_author">--吃西瓜最快</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2282739.html#2267117">37. Re:在.net 中,ajax 如何调用本页数据源</a></li>
+        <li class="recent_comment_body">@开始测试改了.......</li>
+        <li class="recent_comment_author">--随智阔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2282739.html#2266529">38. Re:在.net 中,ajax 如何调用本页数据源</a></li>
+        <li class="recent_comment_body">能不能把格式调整下，看起来累</li>
+        <li class="recent_comment_author">--开始测试</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/suizhikuo/p/4960205.html">1. MySQL存储过程调试工具-dbForge Studio for MySQL(10510)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4961780.html">2. javascript获取iframe框架中页面document对象,获取子页面里面的内容,iframe获取父页面的元素,(10038)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3443932.html">3. jquery.inputmask 输入框input输入内容格式限制插件(9046)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4925086.html">4. form表单回车提交问题,JS监听回车事件(6980)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3627035.html">5. java 中的断言assert的使用(6262)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/6350212.html">6. java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest(6103)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3292463.html">7. jquery ajax 中不能给变量赋值的原因及解决办法(4923)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3641649.html">8. 什么是Spring的命名空间及使用Spring 的命名空间p 装配属性(4284)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/10/2283251.html">9. SQL各种Join用法(Full,Left,Out,Inner)(4230)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/5999517.html">10. SQLServer 数据库查看死锁、堵塞的SQL语句(4229)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3750311.html">11. asp.net web api [FromBody]参数(4152)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/5559093.html">12. 总是弹出visual studio 实时调试器 三种解决办法(3919)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4963560.html">13. mysql事务,START TRANSACTION, COMMIT和ROLLBACK,SET AUTOCOMMIT语法(3816)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/6056733.html">14. SQLServer 自增主键创建, 指定自增主键列值插入数据,插入主键(3662)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/5176009.html">15. 未能加载文件或程序集 Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad(3105)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/5175996.html">16. sql server 怎么实现mysql中group_concat,列转行,列用分隔符拼接字符串(2813)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4742372.html">17. EF里一对一、一对多、多对多关系的配置和级联删除(2744)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4758905.html">18. 基于window.onerror事件 建立前端错误日志(2676)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2013/03/21/2973002.html">19. CSS实现 全屏 遮罩(2405)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2013/03/19/2969620.html">20. jquery的ajax全局事件和AJAX 请求正在进行时显示“正在加载”(2317)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3384963.html">21. 对象的当前状态使该操作无效 说明: 执行当前 Web 请求期间，出现未处理的异常。(2220)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/05/03/2481396.html">22. 一个神奇的Javascript运行方式--URL中的JavaScript(2065)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/10/2283430.html">23. JS操作日期，获取当前日期，加一天，减一天(2045)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/09/2317529.html">24. Linq延迟执行（转）(2026)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/6076772.html">25. Sql server 备份还原后出现“受限制用户”问题(2011)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4739388.html">26. C#中的static、readonly与const的比较(1955)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/08/2342415.html">27. SQL 的转义字符是：'（单引号）(1917)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3343600.html">28. Clone()方法C#(1863)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/22/2362525.html">29. 无法连接到 visual studio 开发服务器(1776)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3641665.html">30. Druid是什么和用StatViewServlet用于展示Druid的统计信息(1695)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3224087.html">31. asp.net Mvc Area 找到多个与名为相同的控制器匹配的类型 请通过调用含有“namespaces”参数(1474)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/11/26/2264294.html">32. SQL Server类型与C#类型对应关系(1361)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/11/30/2795953.html">33. URL的重写规则(1279)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/08/2342436.html">34. HTML字符实体（Character Entities），转义字符串（Escape Sequence）(1260)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/17/2356072.html">35. window.top.location.href  和 window.location.href 的区别(1206)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/31/2332699.html">36. C# 集合类 ：（Array、 Arraylist、List、Hashtable、Dictionary、Stack、Queue）(1167)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/05/25/2518720.html">37. 国外可绑定域名的免费空间（精选）(1143)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4322969.html">38. 哈希索引(1117)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2013/01/26/2877437.html">39. JS 异常： Uncaught RangeError: Maximum call stack size exceeded(1108)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/20/2218748.html">40. Listview控件获取当前行的行号和主键(1071)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2281823.html">1. 谈谈C# 4.0新特性“缺省参数”的实现(5)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/09/2282739.html">2. 在.net 中,ajax 如何调用本页数据源(4)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4839028.html">3. 输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符(3)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4226337.html">4. asp.net系统过滤器、自定义过滤器(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3443932.html">5. jquery.inputmask 输入框input输入内容格式限制插件(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3196960.html">6. Linq:Group By用法(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/03/13/2394807.html">7. 关闭EF4.x Code First的级联删除Cascade Delete(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/09/2317529.html">8. Linq延迟执行（转）(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/04/2311890.html">9. ASP.NET 中TextBox设置ReadOnly="true" 无法取到值的做法(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/02/2272417.html">10. 怎么把radioButtonList跟他一起的内容放在一行显示(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/06/2340665.html">11. ASP.NET MVC的全球化方案(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/17/2356509.html">12. CSS 控制打印样式(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3641649.html">13. 什么是Spring的命名空间及使用Spring 的命名空间p 装配属性(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/04/19/2457784.html">14. 让wordpress博客首页、分类页 显示文章标题列表或摘要(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/03/30/2425942.html">15. javascript 从一个数组中 删除 一个数组(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3178716.html">16. JQuery when(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2013/06/07/3125225.html">17. asp.net mvc 将Enum绑定在DropDownList了(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/05/30/2527032.html">18. seo 黑链(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4959733.html">19. Resharper的使用(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3422139.html">20. SQL Server Profiler使用方法(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3384963.html">21. 对象的当前状态使该操作无效 说明: 执行当前 Web 请求期间，出现未处理的异常。(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/06/17/2083294.html">22. C#中in,out,ref的作用(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/suizhikuo/p/3978713.html">1. MVC5 - ASP.NET Identity登录原理 - Claims-based认证和OWIN(3)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/20/2219444.html">2. aspx  页面数据绑定 前台数据绑定(2)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/15/2212999.html">3. Ajax ToolKit --- ModelPopupExtender报错:Sys.InvalidOperationException: Handler was not added through the Sys.UI.DomE(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/15/2212825.html">4. CheckedListBox控件如何删除用户选择的多项Item？(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/02/2272417.html">5. 怎么把radioButtonList跟他一起的内容放在一行显示(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/11/26/2264072.html">6. 线程同步（C# 编程指南）(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/01/02/2310040.html">7. 饥饿会让人更聪明(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/12/28/2304557.html">8. C#中var的用法(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/04/09/2439662.html">9. javascript textarea字数限制(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/27/2369938.html">10. sql server中bit类型在数据库和C#中的表示(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/21/2361359.html">11. C# struct的陷阱：无法修改“...”的返回值，因为它不是变量(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/02/11/2346751.html">12. 你必须知道的ADO.NET（一） 初识ADO.NET(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3629478.html">13. mvc:view-controller(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3443932.html">14. jquery.inputmask 输入框input输入内容格式限制插件(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3343711.html">15. jQuery中的动画与效果(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/3196960.html">16. Linq:Group By用法(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2012/07/25/2608889.html">17. Asp.Net MVC路由调试的好帮手RouteDebugger(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4925086.html">18. form表单回车提交问题,JS监听回车事件(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4546596.html">19. Visual Studio 调试技巧(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4279182.html">20. 写window应用程序日志System.Diagnostics.EventLog.WriteEntry(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/p/4226337.html">21. asp.net系统过滤器、自定义过滤器(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/22/2221320.html">22. sql   like N'%%',N  是代表什么意思  及Like语句详解(1)</a></li><li><a href="http://www.cnblogs.com/suizhikuo/archive/2011/10/21/2219795.html">23. CSS选择器(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 故宫博物院
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">我愿意 http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">生命力 http://shop148612228.taobao.com</a>
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">http://xiangai.taobao.com</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://shop148612228.taobao.com">http://shop148612228.taobao.com</a>
+<hr>
+<a href="http://xiangai.taobao.com/" target="_blank" title="http://xiangai.taobao.com">赏根辣条吃吧</a>
+<hr>
+<a href="http://shop148612228.taobao.com/" target="_blank" title="http://xiangai.taobao.com">赏包辣条吃吧</a>
+<hr>
+<a href="http://www.cnblogs.com/suizhikuo/gallery/image/195151.html" target="_blank" title="微信打赏"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/o_微信.png" alt="微信打赏" width="400px" height="600px"></a>
+<a href="http://www.cnblogs.com/suizhikuo/gallery/image/195152.html" target="_blank" title="支付宝打赏"><img src="./C#中的static、readonly与const的比较 - 故宫博物院 - 博客园_files/o_支付宝.jpg" alt="支付宝打赏" width="400px" height="600px"></a>
+<hr>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

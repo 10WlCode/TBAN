@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://s.codepen.io/dcorb/fullembedgrid/mVGVOL?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Debouncing keystrokes Example</title>
+  
+  
+  
+  
+      <style>
+      body {
+   background: #444444;
+   color: white;
+   font: 15px/1.51 system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+   margin:0 auto;
+   max-width:800px;
+   padding:20px;
+}
+
+form {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+  margin: 5px 0 0 0;
+}
+
+input {
+  padding:8px 20px;
+  border-radius: 2px;
+  border:0;
+  font-size:20px;
+}
+.status-key,
+.status-ajax {
+  margin:10px 0;
+}
+.status-ajax {
+  color:#99FF7E;
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style type="text/css">:root .ad
+{display:none !important;}</style></head>
+
+<body translate="no">
+
+  
+  <form>
+    <div class="status-key">Type here. I will detect when you stop typing</div>
+    <input type="text" class="autocomplete">
+    <div class="status-ajax"></div>
+  </form>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  <script src="./jquery.min.js(1).下载"></script>
+<script src="./lodash.min.js(2).下载"></script>
+
+  
+
+    <script>
+      $(document).ready(function(){
+
+  var $statusKey = $('.status-key');
+  var $statusAjax = $('.status-ajax');
+  var intervalId;
+  
+  // Fake ajax request. Just for demo
+  function make_ajax_request(e){
+      var that = this;
+      $statusAjax.html('That\'s enough waiting. Making now the ajax request');
+     
+      intervalId = setTimeout(function(){
+         $statusKey.html('Type here. I will detect when you stop typing');
+         $statusAjax.html('');
+         $(that).val(''); // empty field
+      },2000);
+    }
+  
+  // Event handlers to show information when events are being emitted
+    $('.autocomplete')
+      .on('keydown', function (){  
+      
+        $statusKey.html('Waiting for more keystrokes... ');
+      clearInterval(intervalId);             
+      })
+     
+  
+  // Display when the ajax request will happen (after user stops typing)
+    // Exagerated value of 1.2 seconds for demo purposes, but in a real example would be better from 50ms to 200ms
+  $('.autocomplete').on('keydown',
+       _.debounce(make_ajax_request, 1300));
+  });
+      //# sourceURL=pen.js
+    </script>
+
+
+
+  
+  
+
+
+
+
+ </body></html>

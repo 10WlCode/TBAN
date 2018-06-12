@@ -1,0 +1,166 @@
+测试Spring.Net
+
+按照手册上面一步一步来
+通过Nuget把Spring.net引用进来，搜索spring core.
+#实现IoC
+在VS里面创建一个窗体程序。然后copy以下代码到app.config文件里，这里是声明IoC容器，声明IoC容器的方法有很多种，这里是通过配置文件的方式声明。
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="spring">
+      <section name="context" type="Spring.Context.Support.ContextHandler, Spring.Core"/>
+      <section name="objects" type="Spring.Context.Support.DefaultSectionHandler, Spring.Core" />
+    </sectionGroup>
+  </configSections>
+  <spring>
+    <context>
+      <resource uri="config://spring/objects"/>
+    </context>
+    <objects xmlns="http://www.springframework.net">
+      <description>An  example that demonstrates simple IoC features.</description>
+    </objects>
+  </spring>
+</configuration>
+先添加一个接口，如IUserInfoService
+namespace Sping.NetDemo
+{
+    public interface IUserInfoService
+    {
+        string showMsg();
+    }
+}
+再定义一个类UserInfoSerivce
+namespace Sping.NetDemo
+{
+    public class UserInfoSerivce : IUserInfoService
+    {
+        public string showMsg()
+        {
+            return "Hello World";
+        }
+    }
+}
+
+然后在app.config里面完善objects这个节点。
+<object name="UserInfoService"      type="CZBK.ItcastOA.SpringNet.UserInfoService,CZBK.ItcastOA.SpringNet"></object>//name代表类名，type(命名空间+类名，程序集名称)，type里面需要添加的可以右键项目在属性里面会有写。
+往窗体里面拖一个控件，然后把创建容器的代码粘进去，整个过程中我们没有new userinfoservice就得到了结果，体会IoC!!!
+        private void button1_Click(object sender, EventArgs e)
+        {
+            IApplicationContext ctx = ContextRegistry.GetContext();
+            IUserInfoService lister = (IUserInfoService)ctx.GetObject("UserInfoService");//定义接口IUserInfoService的意义就在这里，调用的是接口，为了解耦。例如我们要是想修改，换另外一个命名空间下的UserInfo，我们直接写好，然后修改app.config里面的配置文件就行了，程序里面的代码不用改。重点体会！！！
+            MessageBox.Show(lister.ShowMsg());
+        }
+#实现DI
+就是属性注入，实质就是在object下面在增加一个property这个子节点，使用IoC容器在实例化对象的时候给一些属性赋值。
+用法一
+首先在UserInfoService这里声明一个属性
+public string UserName { get; set; }
+然后把它打印出来
+        public string ShowMsg()
+        {
+            return "Hello World:"+UserName;
+        }
+把这条黏在object下面<property name="UserName" value="zhangsan"/>就可以打印了
+用法二
+创建一个Person类
+    public class Person
+    {
+        public int Age { get; set; }
+    }
+然后在UserInfoSerivce下面再声明一个属性。
+public Person Person { get; set; }
+这样我们就必须给Person属性下面的.get这个属性赋值才可以打印
+        public string ShowMsg()
+        {
+            return "Hello World:"+UserName+":年龄是:"+Person.Age;
+        }
+这想给Age赋值那只能把person用ref关联到另外一个object下面的person然后在加一个property的value赋值
+          <object name="UserInfoService"      type="CZBK.ItcastOA.SpringNet.UserInfoService,CZBK.ItcastOA.SpringNet"> 
+            <property name="UserName" value="zhangsan"/>
+           <property name="Person" ref="Person"/>
+          </object>
+       <object name="Person"        type="CZBK.ItcastOA.SpringNet.Person, CZBK.ItcastOA.SpringNet">   
+   <property name="Age" value="16"/>
+       </object>
+
+继续完善App.config文件，现在这样写的话，时间长了类多了文件会显得比较臃肿，现在做文件的分离。
+首先创建一个XML文件Service.xml,然后把objects下面的代码都拷过去。但是objects这个标签最好给他留着，就是连个objects,app.config里面一个，xml里面也一个。
+<objects xmlns="http://www.springframework.net">
+  <description>An  example that demonstrates simple IoC features.</description>
+  <object name="UserInfoService" type="Sping.NetDemo.UserInfoService,Sping.NetDemo">
+      <property name="UserName" value="zhangsan"/>
+      <property name="Person" ref="Person"/>
+      </object>
+      <object name="Person"        type="Sping.NetDemo.UserInfoService,Sping.NetDemo">
+        <property name="Age" value="16"/>
+  </object>
+</objects>
+然后在content标签下面加入下面这行
+<resource uri="file://Service.xml"/>
+然后在service.xml上面右键-属性-复制到输出目录-选择始终复制，这样就可以在bin/debug下面找到这个文件了。
+
+//本次出现问题，由于是晚上写的代码，查了半天才发现“就是你的web里面配置的type和你的类的命名空间的名字不匹配 我找了半天才发现，”创建UserInfoService时候写成了UserinfoSerives
+Error creating context 'spring.root'
+内部异常 1:
+CannotLoadObjectTypeException: Cannot resolve type [Sping.NetDemo.UserInfoService,Sping.NetDemo] for object with name 'UserInfoService' defined in file [C:\Users\Hank\source\repos\Spring.NetDemo\Sping.NetDemo\bin\Debug\Service.xml] line 4
+
+内部异常 2:
+TypeLoadException: 未能从程序集“Sping.NetDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”中加载类型“Sping.NetDemo.UserInfoService”。
+
+#在Asp.net MVC中应该怎样使用Spring.Net?
+1:先导入dll文件。
+先导入命名空间Spring.Core,Spring.Web,Spring.web.extension,MVC 5(想看MVC版本可以在项目下packages.config文件里面找)
+2:将案例中的Config文件夹拷贝到项目中。
+如果有quick start那就拷贝文件夹，如果没有那就建立一个config文件夹，然后在下面创建一个controllers.xml,然后右键属性选择始终拷贝。
+3：修改Config文件夹中的相关的配置信息。
+先把控制器UserInfoController里面的获得实例的语句改成声明一个属性然后把属性注入容器IBLL.IUserInfoService UserInfoService = new BLL.UserInfoService();变成IBLL.IUserInfoService UserInfoService { get; set; }
+修改controllers.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object  type="DotNetOA.MVC.Controllers.UserInfoController, DotNetOA.MVC" singleton="false" ><!--因为建了一个文件夹，所以命名空间和程序集不一样了，最好每次找到具体类，Copy过来不要自己写，这里我们找到UserInfoController的NameSpace拷过来，然后再把程序集名称拷过来-->
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+  <object  type="DotNetOA.BLL.UserInfoService, DotNetOA.BLL" singleton="false" name="UserInfoService">
+  </object>
+</objects>
+4：修改Web.config文件中的配置。
+在configSections标签下面加入
+    <sectionGroup name="spring"><!--Spring.Net配置-->
+      <section name="context" type="Spring.Context.Support.MvcContextHandler, Spring.Web.Mvc5"/>
+    </sectionGroup>
+在configSections标签下面，configuration标签里面加入
+  <spring><!--Spring.Net配置-->
+    <context>
+      <resource uri="file://~/Config/controllers.xml"/>
+      <!--<resource uri="file://~/Config/services.xml"/> 第五步分离时候把注释去掉-->
+    </context>
+  </spring>
+5：可以将Config/controllers.xml文件中的配置信息分离（可以将控制器的配置与业务类的配置分离。）注意web.config文件中也要修改一下。
+先把上面的注释去掉，然后把controllers.xml里面的业务分离到services.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object  type="DotNetOA.BLL.UserInfoService, DotNetOA.BLL" singleton="false" name="UserInfoService">
+  </object>
+</objects>
+6：修改Global文件.继承SpringMvcApplication
+    public class MvcApplication : SpringMvcApplication//System.Web.HttpApplication
+这次出现问题
+1.未能加载文件或程序集“System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35”或它的某一个依赖项。系统找不到指定的文件。
+用NuGet安装System.Web.Http，到MVC就行了
+2.spring.net no context registered，Use the 'RegisterContext' method or the 'spring/context' section from your configuration file.
+忘记copy这句
+  <spring><!--Spring.Net配置-->
+    <context>
+      <resource uri="file://~/Config/controllers.xml"/>
+      <!--<resource uri="file://~/Config/services.xml"/> 第五步分离时候把注释去掉-->
+    </context>
+  </spring>
+Could not load type from string value 
+<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object  type="DotNetOA.MVC.Controllers.UserInfoController, DotNetOA.MVC.Controllers" singleton="false" ><!--因为建了一个文件夹，所以命名空间和程序集不一样了，最好每次找到具体类，Copy过来不要自己写，这里我们找到UserInfoController的NameSpace拷过来，然后再把程序集名称拷过来-->
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+  <object  type="DotNetOA.BLL.UserInfoService, DotNetOA.BLL" singleton="false" name="UserInfoService">
+  </object>
+</objects><!--做到第四步的时候，程序集后面多加了一个controller-->

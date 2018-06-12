@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://bbs.mallol.cn/?thread-112.htm -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+		
+	
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<meta name="description" content="手把手教你创建magento2插件">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+	<title>手把手教你创建magento2插件-插件-Magento2专业中文社区</title>
+	
+	
+	
+	<link rel="shortcut icon" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	<link rel="icon" sizes="32x32" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	<link rel="Bookmark" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	
+	<style>
+table.nav_tag_list {margin-bottom: 0.2rem;}
+table.nav_tag_list td {padding: 0.3rem;}
+table.nav_tag_list td a{margin-right: 0.2rem;}
+.nav_tag_list .active {font-weight: normal}
+.tag_option {
+        border: 1px solid #bbb; padding: 1px 10px; border-radius: 10px; text-decoration: none;
+}
+.tag_option:active, .tag_option.active {
+        border: 1px solid #000; background: #000; color: #fff; text-decoration: none;
+}
+</style>
+		<link rel="stylesheet" href="./手把手教你创建magento2插件_files/bootstrap.css">
+	
+	
+	
+		<link rel="stylesheet" href="./手把手教你创建magento2插件_files/bootstrap-bbs.css">
+	<link rel="stylesheet" href="./手把手教你创建magento2插件_files/huux-notice.css" name="huux_notice">
+	
+	<style>
+/*
+box-shadow: 0 0 5px red;
+*/
+@keyframes xndigest {
+	0% { color: red; text-shadow: 0 0 3px #FF8D8D;} 
+	20% { color: orange; text-shadow: 0 0 3px #FFE1AD;} 
+	40% { color: green; text-shadow: 0 0 3px #B3FFAF;} 
+	65% { color: blue; text-shadow: 0 0 3px #AFE4FF;} 
+	80% { color: purple; text-shadow: 0 0 3px #FFC9F3;} 
+	100% { color: red; text-shadow: 0 0 3px #FF8D8D;} 
+}
+
+/*水晶闪烁效果 占内存*/
+i.icon-diamond.flash{color: #D53D38;  /*animation: xndigest 5s linear infinite;*/ }
+
+i.icon-digest-1 {  text-shadow: 0 0 3px #AFE4FF; }
+i.icon-digest-2 {  text-shadow: 0 0 3px #FFF177; }
+i.icon-digest-3 {  text-shadow: 0 0 3px #FF8D8D; }
+.icon-digest-1:before { content: "\f219";  color: #5BC0DE;} /* "\f0a5" */
+.icon-digest-2:before { content: "\f219";  color: #ECA541;}
+.icon-digest-3:before { content: "\f219"; color: #D53D38;}
+.icon-digest-3:afteer { content: "精"; color: #D53D38;}
+</style><style>
+/*
+.toggle_more {
+	max-height: 100px;
+}
+*/
+.update_log_list a.update_log_history, 
+.update_log_list a.update_log_delete {
+	display: none;
+}
+
+.update_log_list > li:hover {
+	background: var(--gray-300);
+}
+.update_log_list > li:hover > a.update_log_history, 
+.update_log_list > li:hover > a.update_log_delete {
+	display: inline-block;
+}
+
+</style><style>
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family:"SF Pro SC","SF Pro Text","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #656D78;
+  background-color: #f7f7f7;
+  font-weight: 400;
+}
+
+a {
+  color: #1a1d20;
+  text-decoration: none;
+  transition:.2s;
+}
+
+a:hover {
+  color: #31C177;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: #1a1d20;
+}
+
+.container {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+
+
+/**  头部 **/
+
+.logo-2 {
+  width: auto;
+  height: 24px;
+}
+
+.bg-dark {
+  background: #fff !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.navbar-dark .navbar-brand {
+  color: #1a1d20;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background: url(plugin/xn_theme_lioves/img/menu.svg) no-repeat;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #1a1d20;
+}
+
+.card-header-tabs > .nav-item > .nav-link:hover:not(.active) {
+    border: 1px solid rgba(255,255,255,0);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: #31C177;
+}
+
+.navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+  color: #31C177 !important;
+}
+
+/**  头部 end **/
+
+
+.card {
+  background: #fff;
+  border:none;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+}
+
+.card > .card-header {
+  color: #1a1d20;
+  font-size: 14px;
+  border-bottom: 1px solid #f7f7f7;
+  background: #fff;
+}
+
+.card-header-tabs > .nav-item > .nav-link {
+  padding: 0 10px 10px 10px;
+}
+
+.card-header-tabs > .nav-item > .nav-link.active {
+  background: #fff;
+  border-color: #fff;
+  border-bottom-color: #31C177;
+  color: #31C177;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.thread, .post {
+  padding: 0px 0 20px;
+  border-color: #f7f7f7;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: #fff;
+    border-top: 1px solid #f7f7f7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+.aside .btn {
+  padding: 10px;
+}
+
+
+.breadcrumb {
+  background: #fff !important;
+  border:none;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+}
+
+
+.avatar-3 {
+  border-radius: 3px;
+}
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #31C177;
+  border-color: #31C177;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #33CC7D;
+  border-color: #33CC7D;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #2DB36D;
+  border-color: #2DB36D;
+}
+
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #33CC7D;
+    border-color: #33CC7D;
+}
+
+
+
+@media (min-width: 576px) {
+  #body {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  #body {
+    padding-top: 10px;
+  }
+
+
+  #body > .container > .row > div {
+      padding: 0;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+
+</style>
+	
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left,
+:root .container > .ads:first-child
+{ display: none !important; }</style><link rel="stylesheet" type="text/css" href="./手把手教你创建magento2插件_files/syntax.css"><script src="./手把手教你创建magento2插件_files/syntax.js.下载"></script></head>
+
+<body>
+	
+	<script src="./手把手教你创建magento2插件_files/push.js.下载"></script><script src="./手把手教你创建magento2插件_files/hm.js.下载"></script><script src="./手把手教你创建magento2插件_files/push.js.下载"></script><script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+	
+	
+	<!-- 
+		轻论坛导航：默认头部
+		Bootstrap 4.0 推荐的 PC/Mobile 公共写法 
+		优点：公用性强
+		缺点：结构稍微有点复杂
+	-->
+	
+	
+	<header class="navbar navbar-expand-lg navbar-dark bg-dark" id="header">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbar_collapse" aria-expanded="false" aria-label="展开菜单">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			
+			
+			<a class="navbar-brand text-truncate" href="http://bbs.mallol.cn/?forum-9.htm">
+				<img src="./手把手教你创建magento2插件_files/logo.png" class="logo-2">
+									<span class="hidden-lg">插件</span>
+							</a>
+			
+			
+			
+							<a class="navbar-brand hidden-lg" href="http://bbs.mallol.cn/?user-login.htm" aria-label="登录"> <i class="icon-user icon"></i></a>
+						
+			
+			
+			<div class="collapse navbar-collapse" id="nav">
+				<!-- 左侧：版块 -->
+				<ul class="navbar-nav mr-auto">
+					
+					<li class="nav-item home" fid="0" data-active="fid-0"><a class="nav-link" href="http://bbs.mallol.cn/"><i class="icon-home d-md-none"></i> 首页</a></li>
+								
+							
+													
+									
+					<li class="nav-item" fid="1" data-active="fid-1">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-1.htm"><i class="icon-circle-o d-md-none"></i> 动态</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="2" data-active="fid-2">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-2.htm"><i class="icon-circle-o d-md-none"></i> 求助</a>
+					</li>
+					
+													
+									
+					<li class="nav-item active" fid="9" data-active="fid-9">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-9.htm"><i class="icon-circle-o d-md-none"></i> 插件</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="7" data-active="fid-7">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-7.htm"><i class="icon-circle-o d-md-none"></i> 开发</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="6" data-active="fid-6">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-6.htm"><i class="icon-circle-o d-md-none"></i> 主题</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="5" data-active="fid-5">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-5.htm"><i class="icon-circle-o d-md-none"></i> 生活</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="11" data-active="fid-11">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-11.htm"><i class="icon-circle-o d-md-none"></i> FAQ</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="4" data-active="fid-4">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-4.htm"><i class="icon-circle-o d-md-none"></i> 酷工作</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="3" data-active="fid-3">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-3.htm"><i class="icon-circle-o d-md-none"></i> 资源</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="13" data-active="fid-13">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-13.htm"><i class="icon-circle-o d-md-none"></i> 公告</a>
+					</li>
+					
+													
+											
+				</ul>
+				<!-- 右侧：用户 -->
+				<ul class="navbar-nav">
+								<li class="nav-item hidden-lg">
+	<a class="nav-link" href="http://bbs.mallol.cn/?search.htm"><i class="icon-search"></i> 搜索</a>
+</li>
+									<li class="nav-item"><a class="nav-link" href="http://bbs.mallol.cn/?user-login.htm"><i class="icon-user"></i> 登录</a></li>
+					<!--<li class="nav-item"><a class="nav-link" href="?user-create.htm">注册</a></li>-->
+									
+				</ul>
+			</div>
+		</div>
+	</header>
+	
+	<main id="body">
+		<div class="container">
+	
+		
+
+
+<div class="row">
+	<div class="col-lg-9 main">
+		
+				<ol class="breadcrumb d-none d-md-flex">
+			<li class="breadcrumb-item"><a href="http://bbs.mallol.cn/" aria-label="首页"><i class="icon-home"></i></a></li>
+			<li class="breadcrumb-item"><a href="http://bbs.mallol.cn/?forum-9.htm">插件</a></li>
+			<li class="breadcrumb-item active"><a href="http://bbs.mallol.cn/?thread-112.htm" title="首页返回主题第一页">手把手教你创建magento2插件</a></li>
+			
+		</ol>
+				
+		
+		<div class="card card-thread">
+			<div class="card-body">
+				<div class="media">
+					<a href="http://bbs.mallol.cn/?user-1.htm" tabindex="-1">
+						<img class="avatar-3 mr-3" src="./手把手教你创建magento2插件_files/1.png">
+					</a>
+					<div class="media-body">
+						
+						<h4 class="break-all">
+							
+							手把手教你创建magento2插件							
+			<i class="icon-digest-1" aria-hidden="true" title="一级精华"></i>
+							
+												</h4>
+						
+						<div class="d-flex justify-content-between small">
+							<div>
+								
+								<span class="username">
+									<a href="http://bbs.mallol.cn/?user-1.htm" class="text-muted font-weight-bold">admin</a>
+								</span>
+								<span class="date text-grey ml-2">27天前</span>
+								<span class="text-grey ml-2"><i class="icon-eye"></i> 148</span>
+								
+							</div>
+							<div>
+								
+																
+																
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="message break-all" isfirst="1">
+								
+					
+					<p>
+    m2的插件写法跟m1结构大体有点像，但是还是有很大不同。<br>插件都放在app/code下，如果没有code目录，就手动创建一个app/code。<br>跟m1一样，比如插件为Zou_HelloWorld, Zou是供应商名，HelloWorld是其插件名。
+</p>
+<p>
+    要创建HelloWorld插件，您需要完成以下步骤：
+</p>
+<ul>
+    <li>
+        第1步：创建HelloWorld插件的文件夹
+    </li>
+    <li>
+        第2步：创建etc/module.xml文件
+    </li>
+    <li>
+        第3步：创建registration.php文件
+    </li>
+    <li>
+        第4步：启用该插件
+    </li>
+</ul>
+<h2>
+    第一步：创建HelloWorld插件的文件夹
+</h2>
+
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">app/code/Zou/HelloWorld</code></div></div></td></tr></tbody></table>
+<h2>
+    第2步：创建etc/module.xml文件。
+</h2>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">app/code/Zou/HelloWorld/etc/module.xml</code></div></div></td></tr></tbody></table>
+<p>
+    内容是
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">&lt;?xml version=</code><code class="php string">"1.0"</code><code class="php plain">?&gt;</code></div><div class="line number2 index1 alt1"><code class="php plain">&lt;config xmlns:xsi=</code><code class="php string">"http://www.w3.org/2001/XMLSchema-instance"</code> <code class="php plain">xsi:noNamespaceSchemaLocation=</code><code class="php string">"urn:magento:framework:Module/etc/module.xsd"</code><code class="php plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;module name=</code><code class="php string">"Zou_HelloWorld"</code> <code class="php plain">setup_version=</code><code class="php string">"1.0.0"</code><code class="php plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;/module&gt;</code></div><div class="line number5 index4 alt2"><code class="php plain">&lt;/config&gt;</code></div></div></td></tr></tbody></table>
+<h2>
+    第3步：创建registration.php文件
+</h2>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">app/code/Zou/HelloWorld/registration.php</code></div></div></td></tr></tbody></table>
+<p>
+    内容是：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">&lt;?php</code></div><div class="line number2 index1 alt1"><code class="php plain">\Magento\Framework\Component\ComponentRegistrar::register(</code></div><div class="line number3 index2 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">\Magento\Framework\Component\ComponentRegistrar::MODULE,</code></div><div class="line number4 index3 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php string">'Zou_HelloWorld'</code><code class="php plain">,</code></div><div class="line number5 index4 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">__DIR__</code></div><div class="line number6 index5 alt1"><code class="php plain">);</code></div></div></td></tr></tbody></table>
+<h2>
+    第4步：启用该模块
+</h2>
+<p>
+    在根目录下执行命令
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">php bin/magento module:status</code></div></div></td></tr></tbody></table>
+<p>
+    应该看到该模块现在被禁用<br>List of disabled modules： Zou_HelloWorld
+</p>
+<p>
+    执行命令 启用该模块
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">php bin/magento module:enable Zou_HelloWorld</code></div></div></td></tr></tbody></table>
+<p>
+    或者直接修改config.php文件
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">vim app/etc/config.php</code></div></div></td></tr></tbody></table>
+<p>
+    找到Zou_HelloWorld 并设为1
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php string">'Zou_HelloWorld'</code> <code class="php plain">=&gt; 1,</code></div></div></td></tr></tbody></table>
+<p>
+    这样模块就可用了
+</p>
+<p>
+    然后前台打开浏览器，发现报错：<br>Please upgrade your database: Run “bin/magento setup:upgrade” from the Magento root directory.
+</p>
+<p>
+    执行下面的命令即可
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">php bin/magento setup:upgrade</code></div></div></td></tr></tbody></table>
+<p>
+    完成后，再次打开浏览器 发现样式都乱了 什么鬼？
+</p>
+<p>
+    <img src="./手把手教你创建magento2插件_files/1-6goQ4I59jWEdJiuN.png" title="" alt="image http://bbs.mallol.cn/assets/images/1-6goQ4I59jWEdJiuN.png">
+</p>
+<p>
+    别怕，执行如下命令即可
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">php bin/magento setup:</code><code class="php keyword">static</code><code class="php plain">-content:deploy</code></div></div></td></tr></tbody></table>
+<p>
+    ok,我们可以在后台System Configuration -&gt; Advanced -&gt; Disable Modules Output.看到你的插件已经启用了。
+</p>
+<p>
+    接下来，我们定义一个控制器来测试
+</p>
+<p>
+    首先得创建一个路由<br>在magento的路由分为3个部分：路由名称，控制器和action如下例：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">http:</code><code class="php comments">//test.mallol.cn/index.php/frontname/controller/action</code></div></div></td></tr></tbody></table>
+<p>
+    要添加路由，需要创建routes.xml文件
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">vim app/code/Zou/HelloWorld/etc/frontend/routes.xml</code></div></div></td></tr></tbody></table>
+<p>
+    由于这是一个前端路由，我们将其添加到frontend/下面，如果是后端路由,我们需要将其添加到adminhtml/下面<br>这个前端路由routes.xml的内容为:
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">&lt;?xml version=</code><code class="php string">"1.0"</code> <code class="php plain">?&gt;</code></div><div class="line number2 index1 alt1"><code class="php plain">&lt;config xmlns:xsi=</code><code class="php string">"http://www.w3.org/2001/XMLSchema-instance"</code> <code class="php plain">xsi:noNamespaceSchemaLocation=</code><code class="php string">"urn:magento:framework:App/etc/routes.xsd"</code><code class="php plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;router id=</code><code class="php string">"standard"</code><code class="php plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;route frontName=</code><code class="php string">"helloworld"</code> <code class="php plain">id=</code><code class="php string">"helloworld"</code><code class="php plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;module name=</code><code class="php string">"Zou_HelloWorld"</code><code class="php plain">/&gt;</code></div><div class="line number6 index5 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;/route&gt;</code></div><div class="line number7 index6 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">&lt;/router&gt;</code></div><div class="line number8 index7 alt1"><code class="php plain">&lt;/config&gt;</code></div></div></td></tr></tbody></table>
+<p>
+    定义路由的第一部分后，URL将显示为：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">http:</code><code class="php comments">//&lt;yourhost.com&gt;/helloworld/*</code></div></div></td></tr></tbody></table>
+<p>
+    那么，我们将继续Controller和action
+</p>
+<p>
+    您需要创建的文件夹和文件是：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">app/code/Zou/HelloWorld/Controller/Index/Test.php</code></div></div></td></tr></tbody></table>
+<p>
+    内容将是：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">&lt;?php</code></div><div class="line number2 index1 alt1"><code class="php keyword">namespace</code> <code class="php plain">Zou\HelloWorld\Controller\Index;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="php keyword">class</code> <code class="php plain">Test </code><code class="php keyword">extends</code> <code class="php plain">\Magento\Framework\App\Action\Action</code></div><div class="line number5 index4 alt2"><code class="php plain">{</code></div><div class="line number6 index5 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">protected</code> <code class="php variable">$_pageFactory</code><code class="php plain">;</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">public</code> <code class="php keyword">function</code> <code class="php plain">__construct(</code></div><div class="line number9 index8 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">\Magento\Framework\App\Action\Context </code><code class="php variable">$context</code><code class="php plain">,</code></div><div class="line number10 index9 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">\Magento\Framework\View\Result\PageFactory </code><code class="php variable">$pageFactory</code><code class="php plain">)</code></div><div class="line number11 index10 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">{</code></div><div class="line number12 index11 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;_pageFactory = </code><code class="php variable">$pageFactory</code><code class="php plain">;</code></div><div class="line number13 index12 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code> <code class="php plain">parent::__construct(</code><code class="php variable">$context</code><code class="php plain">);</code></div><div class="line number14 index13 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">public</code> <code class="php keyword">function</code> <code class="php plain">execute()</code></div><div class="line number17 index16 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">{</code></div><div class="line number18 index17 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php functions">echo</code> <code class="php string">"Hello World"</code><code class="php plain">;</code></div><div class="line number19 index18 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php functions">exit</code><code class="php plain">;</code></div><div class="line number20 index19 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number21 index20 alt2"><code class="php plain">}</code></div></div></td></tr></tbody></table>
+<p>
+    <mark>
+        熟悉m1的童鞋会有点纳闷，怎么action不是写在控制器文件里面，而是单独分开呢？<br>对，没错，m2就是这么设计的，把action都独立分成单独的文件了，这样更清晰，有效的避免了控制器文件内容太长的问题。
+    </mark>
+</p>
+<p>
+    完成后，运行<code>php bin/magento cache:clean</code>检查结果。
+</p>
+<p>
+    你的网址现在应该是：
+</p>
+<table border="0" cellpadding="0" cellspacing="0" class="syntaxhighlighter  php"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php plain">http:</code><code class="php comments">//&lt;yourhost.com&gt;/helloworld/index/test</code></div></div></td></tr></tbody></table>
+<p>
+    完成所有步骤后，当你打开URL时，浏览器上会显示'Hello World'。<br>这样 一个最简单的插件就完成了。
+</p>
+<p>
+    当然一个完整的插件 包括Block,etc,Helper,Model,Setup,view,i18n。我们下次再讲。
+</p>
+<h2>
+    插件demo源码下载
+</h2>
+<p>
+    <a href="https://github.com/zouhongzhao/magento2-extension-demo" target="_blank" rel="nofollow noreferrer" _href="https://github.com/zouhongzhao/magento2-extension-demo">https://github.com/zouhongzhao/magento2-extension-demo</a>
+</p>					
+
+		<div class="text-right text-muted my-3 small font-italic">
+		最后于 <span class="icon-clock-o ml-2"> </span>9天前		
+				被admin编辑
+				
+		，原因： 		
+	</div>
+					
+										
+					
+								</div>
+
+				
+				<div class="plugin d-flex justify-content-center mt-3">
+							
+		<div class="haya-post-like px-2">
+			<span class="btn-group" role="group">
+									<button class="btn btn-outline-secondary js-haya-post-like-thread-tip" data-pid="112" title="点赞本帖">
+						<i class="icon icon-thumbs-o-up" aria-label="点赞本帖"></i>
+						<span class="haya-post-like-thread-btn">点赞</span>
+					</button>
+				
+				<button class="btn btn-outline-secondary" title="点赞数量" data-tid="112">
+					<span class="haya-post-like-thread-user-count">0</span>
+				</button>
+			</span>
+		</div>
+	
+
+				</div>
+				
+
+			</div>
+		</div>
+		
+		
+	
+		
+		<div class="card card-postlist">
+			<div class="card-body">
+				<div class="card-title">
+					<div class="d-flex justify-content-between">
+						<div>
+							<b>最新回复</b> (<span class="posts">0</span>)
+						</div>
+						
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<ul class="list-unstyled postlist">
+													
+
+								
+									
+												
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="d-none threadlist"><input type="checkbox" name="modtid" value="112" checked=""></div>
+				
+				
+		
+		
+		<a role="button" class="btn btn-secondary btn-block xn-back col-lg-6 mx-auto mb-3" href="javascript:history.back();">返回</a>
+		
+	</div>
+	<div class="col-lg-3 d-none d-lg-block aside">
+	
+		<a role="button" class="btn btn-primary btn-block mb-3" href="http://bbs.mallol.cn/?thread-create-9.htm">发新帖</a>
+		
+		<div class="card card-user-info">
+			<div class="m-3 text-center">
+				<a href="http://bbs.mallol.cn/?user-1.htm" tabindex="-1">
+					<img class="avatar-5" src="./手把手教你创建magento2插件_files/1.png">
+				</a>
+				<h5><a href="http://bbs.mallol.cn/?user-1.htm">admin</a></h5>
+				
+			</div>
+			<div class="card-footer p-2">
+				<table class="w-100 small">
+					<tbody><tr align="center">
+						<td>
+							<span class="text-muted">主题数</span><br>
+							<b>19</b>
+						</td>
+						
+						<td>
+							<span class="text-muted">帖子数</span><br>
+							<b>1</b>
+						</td>
+												<td>
+							<span class="text-muted">精华数</span><br>
+							<b>7</b>
+						</td>
+						<td>
+							<span class="text-muted">注册排名</span><br>
+							<b>1</b>
+						</td>
+						
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+		
+		<div class="form-group">
+	<form action="http://bbs.mallol.cn/?search.htm" id="search_form">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="关键词" name="keyword">
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="submit">搜索</button>
+			</div>
+		</div>
+	</form>
+</div>				<div class="card">
+			<div class="card-body">
+				<h6 class="card-title">作者最近主题：</h6>
+				<ul class="small break-all">
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-150.htm">
+							M2开启前台模版调试路径						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-149.htm">
+							Magento2 BuyNow立即购买插件						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-148.htm">
+							M2开发中的调试方法						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-147.htm">
+							magento2配置cron计划任务						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-146.htm">
+							M2 禁用修改管理员密码(It’s time to change your password)						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-145.htm">
+							Magento2开发人员认证考试						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-144.htm">
+							m2获取国家列表(country list)/通过国家code得到name						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-143.htm">
+							HandArt – Magento2 手工艺品商城主题						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-142.htm">
+							Thebell – 多用途响应 Magento2主题						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-141.htm">
+							[高高手]造像之术-Photoshop商业人像精修_附课程配套资源_价值780元						</a>
+					</li>
+									</ul>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+				
+					
+				
+		</div>
+	</main>
+	
+	
+	
+	<footer class="text-muted small bg-dark py-4 mt-3" id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				
+				Powered by <a href="http://bbs.xiuno.com/" target="_blank" class="text-muted"><b>Xiuno BBS <span>4.0.4</span></b></a>
+							</div>
+			<div class="col text-right">
+				
+				Processed: <b>0.012</b>, SQL: <b>18</b>
+							</div>
+		</div>
+	</div>
+</footer>	
+	
+	
+	<!--[if ltg IE 9]>
+	<script>window.location = '?browser.htm';</script>
+	<![endif]-->
+	
+	
+	
+			<script src="./手把手教你创建magento2插件_files/bbs.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/jquery-3.1.0.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/popper.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/bootstrap.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/xiuno.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/bootstrap-plugin.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/async.js.下载"></script>
+	<script src="./手把手教你创建magento2插件_files/form.js.下载"></script>
+	<script>
+	var debug = DEBUG = 1;
+	var url_rewrite_on = 0;
+	var forumarr = {
+    "1": "动态",
+    "2": "求助",
+    "9": "插件",
+    "7": "开发",
+    "6": "主题",
+    "5": "生活",
+    "11": "FAQ",
+    "4": "酷工作",
+    "3": "资源",
+    "13": "公告",
+    "10": "翻译",
+    "12": "需求",
+    "16": "意见反馈",
+    "15": "UX"
+};
+	var fid = 9;
+	var uid = 0;
+	var gid = 0;
+	xn.options.water_image_url = 'view/img/water-small.png';	// 水印图片 / watermark image
+	</script>
+	<script src="./手把手教你创建magento2插件_files/bbs.js(1).下载"></script>
+	<script>
+// 版主管理：精华
+/*
+$('.mod-button button.digest').on('click', function() {
+	var modtid = $('input[name="modtid"]').checked();
+	if(modtid.length == 0) return $.alert(lang.please_choose_thread);
+	var radios = xn.form_radio('digest', {"0": "取消精华", "1": "一级精华","2": "二级精华", "3": "三级精华"});
+	$.confirm("设置主题为精华", function() {
+		var tids = xn.implode('_', modtid);
+		var digest = $('input[name="digest"]').checked();
+		var postdata = {digest: digest};
+		$.xpost(xn.url('mod-digest-'+tids), postdata, function(code, message) {
+			if(code != 0) return $.alert(message);
+			$.alert(message).delay(1000).location('');
+		});
+	}, {'body': '<p>'+"精华等级"+'：'+radios+'</p>'});
+})*/
+</script><script>
+function xn_read_unread(tids, tid) {
+	
+	// 当前时间
+	var time = xn.time();
+	
+	// 多长时间内的主题为最新主题
+	var time_range = 86400 * 3;
+	
+	// 三天内的 tids
+	var recent_tids = $.pdata('recent_tids') || {};
+	
+	// 已读的 tids
+	var view_tids = $.pdata('view_tids') || {};
+	// 提取列表页的 tid
+	function fetch_recent_tids(tids) {
+		var changed = false;
+		$.each(tids, function(tid, last_date) {
+			if(time - last_date < time_range) {
+				recent_tids[tid] = last_date;
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('recent_tids', recent_tids);
+	}
+	
+	// 清理最近的 tid
+	function gc_recent_tids() {
+		var changed = false;
+		$.each(recent_tids, function(tid, last_date) {
+			if(time - last_date > time_range) {
+				delete recent_tids[tid];
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('recent_tids', recent_tids);
+	}
+	
+	function gc_view_tids() {
+		var changed = false;
+		$.each(view_tids, function(tid, last_date) {
+			if(!recent_tids[tid]) {
+				delete view_tids[tid];
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('view_tids', view_tids);
+	}
+	
+	function save_view_tid(tid) {
+		if(!recent_tids[tid]) return;
+		view_tids[tid] = time;
+		$.pdata('view_tids', view_tids);
+	}
+	
+	if(tids) {
+		fetch_recent_tids(tids);
+		gc_recent_tids();
+		//gc_view_tids();
+	}
+	if(tid) save_view_tid(tid);
+	
+	// 三天内的主题标记为已读
+	
+	// 遍历主题列表，标记最近的，并且未读的为加粗
+
+	$('.thread').each(function() {
+		var jthis = $(this);
+		var tid = jthis.attr('tid') || jthis.data('tid');
+		if(recent_tids[tid] && recent_tids[tid] > xn.intval(view_tids[tid])) {
+			jthis.find('.subject').addClass('font-weight-bold');
+		}
+	});
+}
+
+</script>
+	
+
+
+
+
+<div id="scroll_to_top" class="d-fixed" style="position: fixed; bottom: 80px; right: 10px; width: 70px; height: 70px; display: none;">
+	<a href="javascript:void(0);" style="width: 70px; height: 70px; display: inline-block; background: url(plugin/xn_top/scroll_top.png) no-repeat; outline: none;" title="返回顶部"></a>
+</div>
+	
+<script>
+// 返回顶部
+var jscroll_to_top = $('#scroll_to_top');
+$(window).scroll(function() {
+	if ($(window).scrollTop() >= 500) {
+	   jscroll_to_top.fadeIn(300);
+	} else {
+		jscroll_to_top.fadeOut(300);
+	}
+});
+
+jscroll_to_top.on('click', function() {
+	$('html,body').animate({scrollTop: '0px' }, 100);
+});
+</script><!--Meta代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?56bd8566395632c59d89dca19e9233e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+<script>
+var jform = $('#quick_reply_form');
+var jsubmit = $('#submit');
+jform.on('submit', function() {
+	jform.reset();
+	jsubmit.button('loading');
+	var postdata = jform.serialize();
+	$.xpost(jform.attr('action'), postdata, function(code, message) {
+		if(code == 0) {
+			var s = '<ul>'+message+'</ul>';
+			var jli = $(s).find('li');
+			jli.insertBefore($('.postlist > .post').last());
+			jsubmit.button('reset');
+			$('#message').val('');
+			
+			// 楼层 +1
+			var jfloor = $('#newfloor');
+			jfloor.html(xn.intval(jfloor.html()) + 1);
+			
+			// 回复数 +1
+			var jposts = $('.posts');
+			jposts.html(xn.intval(jposts.html()) + 1);
+			
+		} else if(code < 0) {
+			$.alert(message);
+			jsubmit.button('reset');
+		} else {
+			jform.find('[name="'+code+'"]').alert(message).focus();
+			jsubmit.button('reset');
+		}
+	});
+	return false;
+});
+
+
+// 缩放图片，适应屏幕大小。
+function resize_image() {
+	var jmessagelist = $('div.message');
+	var first_width = jmessagelist.width(); // 815 : 746; //  734 746
+	jmessagelist.each(function() {
+		var jdiv = $(this);
+		var maxwidth = jdiv.attr('isfirst') ? first_width : jdiv.width(); //  734 746
+		var jmessage_width = Math.min(jdiv.width(), maxwidth);
+		jdiv.find('img, embed, iframe, video').each(function() {
+			var jimg = $(this);
+			var img_width = this.org_width;
+			var img_height = this.org_height;
+			if(!img_width) {
+				var img_width = jimg.attr('width');
+				var img_height = jimg.attr('height');
+				this.org_width = img_width;
+				this.org_height = img_height;
+			}
+			//var percent = xn.min(100, xn.ceil((img_width / jmessage_width) * 100));
+			if(img_width > jmessage_width) {
+				if(this.tagName == 'IMG') {
+					jimg.width(jmessage_width);
+					jimg.css('height', 'auto');
+					jimg.css('cursor', 'pointer');
+					jimg.on('click', function() {
+						//window.open(jimg.attr('src'));
+					});
+				} else {
+					jimg.width(jmessage_width);
+					var height = (img_height / img_width) * jimg.width();
+					jimg.height(height);
+				}
+			}
+		});
+	});
+}
+
+// 对于超宽的表格，加上响应式
+function resize_table() {
+	$('div.message').each(function() {
+		var jdiv = $(this);
+		jdiv.find('table').addClass('table').wrap('<div class="table-responsive"></div>'); 
+	});
+}
+
+$(function() {
+	resize_image();
+	resize_table();
+	$(window).on('resize', resize_image);
+});
+
+// 输入框自动伸缩
+
+var jmessage = $('#message');
+jmessage.on('focus', function() {if(jmessage.t) { clearTimeout(jmessage.t); jmessage.t = null; } jmessage.css('height', '8rem'); });
+jmessage.on('blur', function() {jmessage.t = setTimeout(function() { jmessage.css('height', '2.5rem');}, 1000); });
+
+$('li[data-active="fid-9"]').addClass('active');
+
+</script>
+
+<script>
+		$(document).on('click', '.js-haya-post-like-thread-tip', function() {
+		$.confirm('点赞提示', function() {
+			window.location = "?user-login.htm";
+		}, {'body': '登录后才可以点赞本帖！点击 <b class="text-primary">确定</b> 登录。'});		
+	});
+	
+		$(document).on('click', '.js-haya-post-like-post-tip', function() {	
+		$.confirm('点赞提示', function() {
+			window.location = "?user-login.htm";
+		}, {'body': '登录后才可以点赞该回复！点击 <b class="text-primary">确定</b> 登录。'});		
+	});
+	</script>
+<script>
+        $(function(){
+                // 消息：地址栏传参实现内页跳转[分页无效]
+                var notice_postid = window.location.hash.split("#")[1];
+                var notice_domid = $('.postlist .post[data-pid="'+notice_postid+'"]');
+                if(notice_domid.length > 0){
+                    notice_domid.addClass('current');//
+                    var scroll_offset = notice_domid.offset().top;
+                    $("html, body").animate({scrollTop:scroll_offset}, {duration:500, easing:"swing"});
+                    notice_domid.on('click', function(){
+                        $(this).removeClass('current');
+                    })
+                }
+        }); 
+</script><script>
+xn_read_unread({"112": "1523972514"}, 112);
+</script><script>
+jsearch_form = $('#search_form');
+jsearch_form.on('submit', function() {
+	var keyword = jsearch_form.find('input[name="keyword"]').val();
+	var url = xn.url('search-'+xn.urlencode(keyword));
+	window.location = url;
+	return false;
+});
+</script><script>
+// 语法高亮
+if($('div.message pre').length > 0) {
+	$.require_css('plugin/xn_syntax_hightlighter/syntax_hightlighter/syntax.css');
+	$.require('plugin/xn_syntax_hightlighter/syntax_hightlighter/syntax.js', function() {
+		SyntaxHighlighter.all();
+	});
+}
+</script></body><div style="display: block; opacity: 1;"></div></html>

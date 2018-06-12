@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://s.codepen.io/dcorb/fullembedgrid/PZOZgB?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Scroll events counter</title>
+  
+  
+  
+  
+      <style>
+      body {
+   background: #444444;
+   color: white;
+    font: 15px/1.51 system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+   margin:0 auto;
+   max-width:600px;
+   padding:20px;
+   min-height:1000vh; /* 100 times viewport height */
+}
+#counter {
+  position:fixed;
+  top:100px;
+  left:40%;
+  font-size:50px;
+}
+.reset {
+  color:white;
+  text-decoration:none;
+  border:1px solid white;
+  padding:10px 20px;
+  background:rgba(0,0,0,0.1);
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style type="text/css">:root .ad
+{display:none !important;}</style></head>
+
+<body translate="no">
+
+  <h1>Number of scroll events </h1>
+<a href="https://s.codepen.io/dcorb/fullembedgrid/PZOZgB?type=embed&amp;animations=run#" class="reset">Reset</a>
+<div id="counter">243</div>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  <script src="./jquery.min.js.下载"></script>
+
+  
+
+    <script>
+      var i = 0;
+var $counter = $('#counter');
+$(document).ready(function(){
+  $(document).on('scroll', function(){
+    $counter.html(i);
+    i++; 
+  });
+});
+
+$('.reset').on('click', function(){
+  $counter.html('');
+  i = 0;
+})
+      //# sourceURL=pen.js
+    </script>
+
+
+
+  
+  
+
+
+
+
+ </body></html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="GNvdsbNFPS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    
+      <title>渲染列表数据 | React.js 小书</title>
+      <meta name="keywords" content="React.js,React.js 小书,教程,列表数据,JSX" />
+      <meta name="description" content="React.js 小书是一个开源、免费、专业、简单的 React.js 教程。列表数据在前端开发中非常常见，一个前端工程师几乎每天都需要跟列表数据打交道。本文介绍如何渲染列表数据。" />
+    
+
+    
+
+    <link rel="icon" href="https://huzidaha.github.io/static/assets/img/favicon.ico">
+    <link rel="stylesheet"
+href="../../../fonts.googleapis.com/css-family=Inconsolata-400,700.css" tppabs="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" tppabs="http://huziketang.com/books/react/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- <div class='float-wechat' id='float-wechat'>
+    	<img src='https://huzidaha.github.io/static/assets/img/wechat-user.jpeg' />
+      <p>加入《React.js 小书》读者交流群，一起讨论、交流、学习前端技术。</p>
+    </div> -->
+    <div class="wrapper" id='wrapper'>
+      <style media="screen">
+@media (max-width: 1335px) and (min-width: 900px) {
+	.wrapper {
+		margin-left: 329px;
+	}
+}
+@media (max-width: 900px) {
+	#table-of-content {
+		margin-left: -350px;
+	}
+}
+</style>
+<h1 style='position: relative; top: -15px;'>React.js 小书</h1>
+
+<link ref='prefetch' href="/books/react/lesson14" />
+
+
+<nav class='table-of-content' id='table-of-content'>
+	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 首页</a>
+	<h3>第一阶段</h3>
+  
+  
+		<a  href="lesson1.htm" tppabs="http://huziketang.com/books/react/lesson1" title="React.js 简介">1. React.js 简介</a>
+  
+  
+  
+		<a  href="lesson2.htm" tppabs="http://huziketang.com/books/react/lesson2" title="前端组件化（一）：从一个简单的例子讲起">2. 前端组件化（一）：从一个简单的例子讲起</a>
+  
+  
+  
+		<a  href="lesson3.htm" tppabs="http://huziketang.com/books/react/lesson3" title="前端组件化（二）：优化 DOM 操作">3. 前端组件化（二）：优化 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson4.htm" tppabs="http://huziketang.com/books/react/lesson4" title="前端组件化（三）：抽象出公共组件类">4. 前端组件化（三）：抽象出公共组件类</a>
+  
+  
+  
+		<a  href="lesson5.htm" tppabs="http://huziketang.com/books/react/lesson5" title="React.js 基本环境安装">5. React.js 基本环境安装</a>
+  
+  
+  
+		<a  href="lesson6.htm" tppabs="http://huziketang.com/books/react/lesson6" title="使用 JSX 描述 UI 信息">6. 使用 JSX 描述 UI 信息</a>
+  
+  
+  
+		<a  href="lesson7.htm" tppabs="http://huziketang.com/books/react/lesson7" title="组件的 render 方法">7. 组件的 render 方法</a>
+  
+  
+  
+		<a  href="lesson8.htm" tppabs="http://huziketang.com/books/react/lesson8" title="组件的组合、嵌套和组件树">8. 组件的组合、嵌套和组件树</a>
+  
+  
+  
+		<a  href="lesson9.htm" tppabs="http://huziketang.com/books/react/lesson9" title="事件监听">9. 事件监听</a>
+  
+  
+  
+		<a  href="lesson10.htm" tppabs="http://huziketang.com/books/react/lesson10" title="组件的 state 和 setState">10. 组件的 state 和 setState</a>
+  
+  
+  
+		<a  href="lesson11.htm" tppabs="http://huziketang.com/books/react/lesson11" title="配置组件的 props">11. 配置组件的 props</a>
+  
+  
+  
+		<a  href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12" title="state vs props">12. state vs props</a>
+  
+  
+  
+		<a  class='active'  href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13" title="渲染列表数据">13. 渲染列表数据</a>
+  
+  
+  
+		<a  href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14" title="实战分析：评论功能（一）">14. 实战分析：评论功能（一）</a>
+  
+  
+  
+		<a  href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15" title="实战分析：评论功能（二）">15. 实战分析：评论功能（二）</a>
+  
+  
+  
+		<a  href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16" title="实战分析：评论功能（三）">16. 实战分析：评论功能（三）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第二阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17" title="前端应用状态管理 —— 状态提升">17. 前端应用状态管理 —— 状态提升</a>
+  
+  
+  
+		<a  href="lesson18.htm" tppabs="http://huziketang.com/books/react/lesson18" title="挂载阶段的组件生命周期（一）">18. 挂载阶段的组件生命周期（一）</a>
+  
+  
+  
+		<a  href="lesson19.htm" tppabs="http://huziketang.com/books/react/lesson19" title="挂载阶段的组件生命周期（二）">19. 挂载阶段的组件生命周期（二）</a>
+  
+  
+  
+		<a  href="lesson20.htm" tppabs="http://huziketang.com/books/react/lesson20" title="更新阶段的组件生命周期">20. 更新阶段的组件生命周期</a>
+  
+  
+  
+		<a  href="lesson21.htm" tppabs="http://huziketang.com/books/react/lesson21" title="ref 和 React.js 中的 DOM 操作">21. ref 和 React.js 中的 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson22.htm" tppabs="http://huziketang.com/books/react/lesson22" title="props.children 和容器类组件">22. props.children 和容器类组件</a>
+  
+  
+  
+		<a  href="lesson23.htm" tppabs="http://huziketang.com/books/react/lesson23" title="dangerouslySetHTML 和 style 属性">23. dangerouslySetHTML 和 style 属性</a>
+  
+  
+  
+		<a  href="lesson24.htm" tppabs="http://huziketang.com/books/react/lesson24" title="PropTypes 和组件参数验证">24. PropTypes 和组件参数验证</a>
+  
+  
+  
+		<a  href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25" title="实战分析：评论功能（四）">25. 实战分析：评论功能（四）</a>
+  
+  
+  
+		<a  href="lesson26.htm" tppabs="http://huziketang.com/books/react/lesson26" title="实战分析：评论功能（五）">26. 实战分析：评论功能（五）</a>
+  
+  
+  
+		<a  href="lesson27.htm" tppabs="http://huziketang.com/books/react/lesson27" title="实战分析：评论功能（六）">27. 实战分析：评论功能（六）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第三阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson28.htm" tppabs="http://huziketang.com/books/react/lesson28" title="高阶组件（Higher-Order Components）">28. 高阶组件（Higher-Order Components）</a>
+  
+  
+  
+		<a  href="lesson29.htm" tppabs="http://huziketang.com/books/react/lesson29" title="React.js 的 context">29. React.js 的 context</a>
+  
+  
+  
+		<a  href="lesson30.htm" tppabs="http://huziketang.com/books/react/lesson30" title="动手实现 Redux（一）：优雅地修改共享状态">30. 动手实现 Redux（一）：优雅地修改共享状态</a>
+  
+  
+  
+		<a  href="lesson31.htm" tppabs="http://huziketang.com/books/react/lesson31" title="动手实现 Redux（二）：抽离 store 和监控数据变化">31. 动手实现 Redux（二）：抽离 store 和监控数据变化</a>
+  
+  
+  
+		<a  href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32" title="动手实现 Redux（三）：纯函数（Pure Function）简介">32. 动手实现 Redux（三）：纯函数（Pure Function）简介</a>
+  
+  
+  
+		<a  href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33" title="动手实现 Redux（四）：共享结构的对象提高性能">33. 动手实现 Redux（四）：共享结构的对象提高性能</a>
+  
+  
+  
+		<a  href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34" title="动手实现 Redux（五）：不要问为什么的 reducer">34. 动手实现 Redux（五）：不要问为什么的 reducer</a>
+  
+  
+  
+		<a  href="lesson35.htm" tppabs="http://huziketang.com/books/react/lesson35" title="动手实现 Redux（六）：Redux 总结">35. 动手实现 Redux（六）：Redux 总结</a>
+  
+  
+  
+		<a  href="lesson36.htm" tppabs="http://huziketang.com/books/react/lesson36" title="动手实现 React-redux（一）：初始化工程">36. 动手实现 React-redux（一）：初始化工程</a>
+  
+  
+  
+		<a  href="lesson37.htm" tppabs="http://huziketang.com/books/react/lesson37" title="动手实现 React-redux（二）：结合 context 和 store">37. 动手实现 React-redux（二）：结合 context 和 store</a>
+  
+  
+  
+		<a  href="lesson38.htm" tppabs="http://huziketang.com/books/react/lesson38" title="动手实现 React-redux（三）：connect 和 mapStateToProps">38. 动手实现 React-redux（三）：connect 和 mapStateToProps</a>
+  
+  
+  
+		<a  href="lesson39.htm" tppabs="http://huziketang.com/books/react/lesson39" title="动手实现 React-redux（四）：mapDispatchToProps">39. 动手实现 React-redux（四）：mapDispatchToProps</a>
+  
+  
+  
+		<a  href="lesson40.htm" tppabs="http://huziketang.com/books/react/lesson40" title="动手实现 React-redux（五）：Provider">40. 动手实现 React-redux（五）：Provider</a>
+  
+  
+  
+		<a  href="lesson41.htm" tppabs="http://huziketang.com/books/react/lesson41" title="动手实现 React-redux（六）：React-redux 总结">41. 动手实现 React-redux（六）：React-redux 总结</a>
+  
+  
+  
+		<a  href="lesson42.htm" tppabs="http://huziketang.com/books/react/lesson42" title="使用真正的 Redux 和 React-redux">42. 使用真正的 Redux 和 React-redux</a>
+  
+  
+  
+		<a  href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43" title="Smart 组件 vs Dumb 组件">43. Smart 组件 vs Dumb 组件</a>
+  
+  
+  
+		<a  href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44" title="实战分析：评论功能（七）">44. 实战分析：评论功能（七）</a>
+  
+  
+  
+		<a  href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45" title="实战分析：评论功能（八）">45. 实战分析：评论功能（八）</a>
+  
+  
+  
+		<a  href="lesson46.htm" tppabs="http://huziketang.com/books/react/lesson46" title="实战分析：评论功能（九）">46. 实战分析：评论功能（九）</a>
+  
+  
+</nav>
+<div id="mask-template">
+	<div></div>
+</div>
+<style>
+	#granted-modal {
+		display: none;
+		position: fixed;
+		margin: auto;
+		left: 100px;
+		top: 0;
+		bottom: 100px;
+		right: 0;
+		width: 500px;
+		height: 300px;
+		background: #fff;
+		z-index: 100;
+		border-radius: 5px;
+	}
+	#try-to-buy {
+		display: none;
+	}
+	.error-message {
+    position: absolute;
+    bottom: 7px;
+    right: -30px;
+    font-size: 12px;
+    color: rgb(211, 53, 62);
+  }
+	.field {
+		position: relative;
+		margin-top: 25px;
+	}
+	.modal-head {
+		font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+	}
+	.granted-footer {
+		text-align: center;
+	}
+	#back-to-input {
+		font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+	}
+	.hover {
+		cursor: pointer;
+	}
+	.granted-footer {
+		position: absolute;
+    margin: auto;
+		padding-top: 15px;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+		border-top: 1px solid #eee;
+	}
+	#buy-now {
+		color: #00a854;
+	}
+	.field label {
+		display: inline-block;
+		width: 90px;
+		text-align: right;
+	}
+	.field label::after {
+		content: "："
+	}
+	.granted-form {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 25px;
+	}
+	.submit {
+		display: inline-block;
+		float: right;
+	}
+	.button {
+		background: #f7f7f7;
+		border: 1px solid #ccc;
+		padding: 5px 20px;
+		border-radius: 3px;
+		outline: none;
+	}
+	.button:hover {
+		background: #fff;
+	}
+	.field input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #e0dbdb;
+    width: 166px;
+	}
+</style>
+<div id="granted-modal">
+	<div style="padding: 10px;">
+		<div id="readcode-input-area">
+			<h2 class="modal-head">阅读第三阶段，请输入你的阅读码 </h2>
+			<form class="granted-form" id="read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="email">
+				</div>
+				<div class="field">
+					<label>阅读码</label>
+					<input type="text" id="read-code">
+				</div>
+				<button id="check-granted" class="button hover submit">确认</button>
+			</form>
+			<div class="granted-footer">
+				还没有阅读码？<b>¥10</b> 元即可阅读所有章节
+				<p style="margin-top: 10px;"><a class="hover" id="buy-now">马上获取阅读码</a></p>
+			</div>
+		</div>
+		<div id="try-to-buy">
+			<div id="back-to-input" class="hover">&lt;&lt; 返回</div>
+			<h2 class="modal-head">输入你的邮箱，系统会给你发送邮件</h2>
+			<form class="granted-form" id="get-read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="reader-email">
+				</div>
+				<button id="alipay" style="margin-top: 20px;" class="hover submit button">获取阅读码</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="assets/js/jquery-3.2.1.min.js" tppabs="http://huziketang.com/books/react/assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/pay.min.js" tppabs="http://huziketang.com/books/react/assets/js/pay.min.js"></script>
+<script type="text/javascript">
+var tableOfContent = document.getElementById('table-of-content')
+var timer = null
+function resetTableOfContent (rect) {
+  scrollTop = localStorage.getItem('scrollTop') * 1
+  scrollTop = scrollTop || 0
+  tableOfContent.scrollTop = scrollTop
+}
+tableOfContent.addEventListener('scroll', function (event) {
+  clearTimeout(timer)
+  timer = setTimeout(function() {
+    localStorage.setItem('scrollTop', tableOfContent.scrollTop)
+  }, 50)
+}, false)
+resetTableOfContent()
+</script>
+<div class="post">
+	<div class="post__back">
+  	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 返回首页</a>
+    <div class="post__title">
+    	<h1>渲染列表数据</h1>
+    </div>
+    <div class="post__meta">
+    	<p></p>
+    </div>
+    <div class="post__content"?>
+      <ul style="font-size: 14px; margin-top: -10px;">
+  <li>
+    作者：<a href="javascript:if(confirm('https://www.zhihu.com/people/hu-zi-da-ha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.zhihu.com/people/hu-zi-da-ha'" tppabs="https://www.zhihu.com/people/hu-zi-da-ha" target="_blank">胡子大哈</a>
+  </li>
+  <li>
+    原文链接：<a href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13"> http://huziketang.com/books/react/lesson13 </a>
+  </li>
+  <li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+
+<p>列表数据在前端非常常见，我们经常要处理这种类型的数据，例如文章列表、评论列表、用户列表…一个前端工程师几乎每天都需要跟列表数据打交道。</p>
+
+<p>React.js 当然也允许我们处理列表数据，但在使用 React.js 处理列表数据的时候，需要掌握一些规则。我们这一节会专门讨论这方面的知识。</p>
+
+<h2 id="渲染存放-jsx-元素的数组">渲染存放 JSX 元素的数组</h2>
+<p>假设现在我们有这么一个用户列表数据，存放在一个数组当中：</p>
+
+<pre><code class="language-javascript">const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+</code></pre>
+
+<p>如果现在要把这个数组里面的数据渲染页面上要怎么做？开始之前要补充一个知识。之前说过 JSX 的表达式插入 <code>{}</code> 里面可以放任何数据，如果我们往 <code>{}</code> 里面放一个存放 JSX 元素的数组会怎么样？</p>
+
+<pre><code class="language-javascript">...
+
+class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        {[
+          &lt;span&gt;React.js &lt;/span&gt;,
+          &lt;span&gt;is &lt;/span&gt;,
+          &lt;span&gt;good&lt;/span&gt;
+        ]}
+      &lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  &lt;Index /&gt;,
+  document.getElementById('root')
+)
+</code></pre>
+
+<p>我们往 JSX 里面塞了一个数组，这个数组里面放了一些 JSX 元素（其实就是 JavaScript 对象）。到浏览器中，你在页面上会看到：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/3ADE3817-7D91-4462-830D-1802D8345326.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/3ADE3817-7D91-4462-830D-1802D8345326.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/3ADE3817-7D91-4462-830D-1802D8345326.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/3ADE3817-7D91-4462-830D-1802D8345326.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/3ADE3817-7D91-4462-830D-1802D8345326.png" alt="React.js 小书渲染列表数据图片" /></a></p>
+
+<p>审查一下元素，看看会发现什么：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/05FD6746-FEF5-4253-9802-EB563643DEDC.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/05FD6746-FEF5-4253-9802-EB563643DEDC.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/05FD6746-FEF5-4253-9802-EB563643DEDC.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/05FD6746-FEF5-4253-9802-EB563643DEDC.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/05FD6746-FEF5-4253-9802-EB563643DEDC.png" alt="React.js 小书渲染列表数据图片" /></a></p>
+
+<p>React.js 把插入表达式数组里面的每一个 JSX 元素一个个罗列下来，渲染到页面上。所以这里有个关键点：<em>如果你往 <code>{}</code> 放一个数组，React.js 会帮你把数组里面一个个元素罗列并且渲染出来</em>。</p>
+
+<h2 id="使用-map-渲染列表数据">使用 map 渲染列表数据</h2>
+<p>知道这一点以后你就可以知道怎么用循环把元素渲染到页面上：循环上面用户数组里面的每一个用户，为每个用户数据构建一个 JSX，然后把 JSX 放到一个新的数组里面，再把新的数组插入 <code>render</code> 方法的 JSX 里面。看看代码怎么写：</p>
+
+<pre><code class="language-javascript">const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
+class Index extends Component {
+  render () {
+    const usersElements = [] // 保存每个用户渲染以后 JSX 的数组
+    for (let user of users) {
+      usersElements.push( // 循环每个用户，构建 JSX，push 到数组中
+        &lt;div&gt;
+          &lt;div&gt;姓名：{user.username}&lt;/div&gt;
+          &lt;div&gt;年龄：{user.age}&lt;/div&gt;
+          &lt;div&gt;性别：{user.gender}&lt;/div&gt;
+          &lt;hr /&gt;
+        &lt;/div&gt;
+      )
+    }
+
+    return (
+      &lt;div&gt;{usersElements}&lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  &lt;Index /&gt;,
+  document.getElementById('root')
+)
+</code></pre>
+
+<p>这里用了一个新的数组 <code>usersElements</code>，然后循环 <code>users</code> 数组，为每个 <code>user</code> 构建一个 JSX 结构，然后 push 到 <code>usersElements</code> 中。然后直接用表达式插入，把这个 <code>userElements</code> 插到 return 的 JSX 当中。因为 React.js 会自动化帮我们把数组当中的 JSX 罗列渲染出来，所以可以看到页面上显示：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/AABC1755-55EA-4E42-8763-A15234DB1F02.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/AABC1755-55EA-4E42-8763-A15234DB1F02.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/AABC1755-55EA-4E42-8763-A15234DB1F02.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/AABC1755-55EA-4E42-8763-A15234DB1F02.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/AABC1755-55EA-4E42-8763-A15234DB1F02.png" alt="React.js 小书渲染列表数据图片" /></a></p>
+
+<p>但我们一般不会手动写循环来构建列表的 JSX 结构，可以直接用 ES6 自带的 <code>map</code>（不了解 <code>map</code> 函数的同学可以先了解相关的知识再来回顾这里），代码可以简化成：</p>
+
+<pre><code class="language-javascript">class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        {users.map((user) =&gt; {
+          return (
+            &lt;div&gt;
+              &lt;div&gt;姓名：{user.username}&lt;/div&gt;
+              &lt;div&gt;年龄：{user.age}&lt;/div&gt;
+              &lt;div&gt;性别：{user.gender}&lt;/div&gt;
+              &lt;hr /&gt;
+            &lt;/div&gt;
+          )
+        })}
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+
+<p>这样的模式在 JavaScript 中非常常见，一般来说，在 React.js 处理列表就是用 <code>map</code> 来处理、渲染的。现在进一步把渲染单独一个用户的结构抽离出来作为一个组件，继续优化代码：</p>
+
+<pre><code class="language-javascript">const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
+class User extends Component {
+  render () {
+    const { user } = this.props
+    return (
+      &lt;div&gt;
+        &lt;div&gt;姓名：{user.username}&lt;/div&gt;
+        &lt;div&gt;年龄：{user.age}&lt;/div&gt;
+        &lt;div&gt;性别：{user.gender}&lt;/div&gt;
+        &lt;hr /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        {users.map((user) =&gt; &lt;User user={user} /&gt;)}
+      &lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  &lt;Index /&gt;,
+  document.getElementById('root')
+)
+</code></pre>
+
+<p>这里把负责展示用户数据的 JSX 结构抽离成一个组件 <code>User</code> ，并且通过 <code>props</code> 把 <code>user</code> 数据作为组件的配置参数传进去；这样改写 <code>Index</code> 就非常清晰了，看一眼就知道负责渲染 <code>users</code> 列表，而用的组件是 <code>User</code>。</p>
+
+<h2 id="key-key-key">key! key! key!</h2>
+<p>现在代码运作正常，好像没什么问题。打开控制台看看：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/85CA5037-99C1-422C-99A4-AADA978C6801.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/85CA5037-99C1-422C-99A4-AADA978C6801.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/85CA5037-99C1-422C-99A4-AADA978C6801.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/85CA5037-99C1-422C-99A4-AADA978C6801.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/85CA5037-99C1-422C-99A4-AADA978C6801.png" alt="React.js 小书渲染列表数据图片" /></a></p>
+
+<p>React.js 报错了。如果需要详细解释这里报错的原因，估计要单独写半本书。但可以简单解释一下。</p>
+
+<p>React.js 的是非常高效的，它高效依赖于所谓的 Virtual-DOM 策略。简单来说，能复用的话 React.js 就会尽量复用，没有必要的话绝对不碰 DOM。对于列表元素来说也是这样，但是处理列表元素的复用性会有一个问题：元素可能会在一个列表中改变位置。例如：</p>
+
+<pre><code class="language-html">&lt;div&gt;a&lt;/div&gt;
+&lt;div&gt;b&lt;/div&gt;
+&lt;div&gt;c&lt;/div&gt;
+</code></pre>
+
+<p>假设页面上有这么3个列表元素，现在改变一下位置：</p>
+
+<pre><code class="language-html">&lt;div&gt;a&lt;/div&gt;
+&lt;div&gt;c&lt;/div&gt;
+&lt;div&gt;b&lt;/div&gt;
+</code></pre>
+
+<p><code>c</code> 和 <code>b</code> 的位置互换了。但其实 React.js 只需要交换一下 DOM 位置就行了，但是它并不知道其实我们只是改变了元素的位置，所以它会重新渲染后面两个元素（再执行 Virtual-DOM 策略），这样会大大增加 DOM 操作。但如果给每个元素加上唯一的标识，React.js 就可以知道这两个元素只是交换了位置：</p>
+
+<pre><code class="language-html">&lt;div key='a'&gt;a&lt;/div&gt;
+&lt;div key='b'&gt;b&lt;/div&gt;
+&lt;div key='c'&gt;c&lt;/div&gt;
+</code></pre>
+
+<p>这样 React.js 就简单的通过 <code>key</code> 来判断出来，这两个列表元素只是交换了位置，可以尽量复用元素内部的结构。</p>
+
+<p>这里没听懂没有关系，后面有机会会继续讲解这部分内容。现在只需要记住一个简单的规则：<em>对于用表达式套数组罗列到页面上的元素，都要为每个元素加上 <code>key</code>  属性，这个 <code>key</code> 必须是每个元素唯一的标识</em>。一般来说，<code>key</code> 的值可以直接后台数据返回的 <code>id</code>，因为后台的 <code>id</code> 都是唯一的。</p>
+
+<p>在上面的例子当中，每个 <code>user</code> 没有 <code>id</code> 可以用，可以直接用循环计数器 <code>i</code> 作为 <code>key</code>：</p>
+
+<pre><code class="language-javascript">...
+class Index extends Component {
+  render () {
+    return (
+      &lt;div&gt;
+        {users.map((user, i) =&gt; &lt;User key={i} user={user} /&gt;)}
+      &lt;/div&gt;
+    )
+  }
+}
+...
+</code></pre>
+
+<p>再看看，控制台已经没有错误信息了。但这是不好的做法，这只是掩耳盗铃（具体原因大家可以自己思考一下）。记住一点：在实际项目当中，如果你的数据顺序可能发生变化，标准做法是最好是后台数据返回的 <code>id</code> 作为列表元素的 <code>key</code>。</p>
+
+<h2 id="课后练习">课后练习</h2>
+<ul>
+  <li><a target="_blank" href="javascript:if(confirm('http://scriptoj.com/problems/8  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://scriptoj.com/problems/8'" tppabs="http://scriptoj.com/problems/8">打印章节标题</a></li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>因为第三方评论工具有问题，对本章节有任何疑问的朋友可以移步到 <a target="_blank" href="javascript:if(confirm('http://scriptoj.com/category/4/react-js-小书交流区  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://scriptoj.com/category/4/react-js-小书交流区'" tppabs="http://scriptoj.com/category/4/react-js-小书交流区">React.js 小书的论坛</a> 发帖，我会回答大家的疑问。</p>
+</blockquote>
+
+    </div>
+		<br/>
+		<hr />
+		<br />
+		<div class="PageNavigation">
+			
+			<p>
+				<a class="next" href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14">下一节：实战分析：评论功能（一）</a>
+			</p>
+			
+			<br/>
+			
+			<p>
+				<a class="prev" href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12">上一节：state vs props</a>
+			</p>
+			
+		</div>
+		<!-- <a class="ad" href="https://aonaotu.com" target="_blank"> -->
+			<!-- <div class="ad-logo">
+				<img src="/books/react/assets/img/ad-logo.svg">
+				<p class="ad-title">凹脑图</p>
+			</div>
+			<p class="ad-wording">迄今为止最简单好用的在线思维导图工具</p>
+			<span class="ad-indicator">广告</span>
+			<img src="/books/react/assets/img/ad-bg-2.svg" class="ad-bg-2">
+		</a> -->
+		<!-- <div class='share-block margin-top-gap'>
+			<p>如果你觉得小书写得还不错，可以请胡子大哈喝杯茶 :)</p>
+			<button class='donate-button' id='donate-button' type="button">赞赏</button>
+		</div> -->
+		<div class='share-block margin-bottom-gap'>
+			<p>传播一下知识也是一个很好的选择</p>
+			<div class="share-block-inner">
+				<div class="jiathis_style_24x24">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a href="javascript:if(confirm('http://www.jiathis.com/share?uid=2127727  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jiathis.com/share?uid=2127727'" tppabs="http://www.jiathis.com/share?uid=2127727" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				</div>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'};
+				</script>
+				<script type="text/javascript" src="../../../v3.jiathis.com/code/jia.js-uid=2127727" tppabs="http://v3.jiathis.com/code/jia.js?uid=2127727" charset="utf-8"></script>
+			</div>
+		</div>
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript">
+		var paths = window.location.pathname.split('/')
+		var lessonName = paths[paths.length - 1]
+		var uyan_config = {
+			// 'url': 'http://react.huziketang.com/blog/' + lessonName,
+			'du': 'http://huziketang.com/books/react/react.huziketang.com'
+		}
+		</script>
+		<script type="text/javascript" src="../../../v2.uyan.cc/code/uyan.js-uid=2127727" tppabs="http://v2.uyan.cc/code/uyan.js?uid=2127727"></script>
+		<!-- UY END -->
+		<!--wechat donate-->
+		<div class='donate-mask' id='donate-mask'>
+			<img src="../../../huzidaha.github.io/static/assets/img/wechat-pay.png" tppabs="https://huzidaha.github.io/static/assets/img/wechat-pay.png" id='wechat-pay' />
+		</div>
+		<script type="text/javascript">
+			// var donateMask = document.getElementById('donate-mask')
+			// var donateButton = document.getElementById('donate-button')
+			// var wechatPay = document.getElementById('wechat-pay')
+			// donateButton.addEventListener('click', function () {
+			// 	donateMask.style.display = 'flex'
+			// }, false)
+			// donateMask.addEventListener('click', function () {
+			// 	donateMask.style.display = 'none'
+			// }, false)
+			// wechatPay.addEventListener('click', function (event) {
+			// 	event.stopPropagation()
+			// }, false)
+		</script>
+	</div>
+
+    </div>
+    <script src="assets/js/highlight.js" tppabs="http://huziketang.com/books/react/assets/js/highlight.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      if (window.location.origin.match(/localhost/)) return
+      var hm = document.createElement("script");
+      hm.src = "../../../hm.baidu.com/hm.js-f08b5240ef2d1692572ce0f7756b325e"/*tpa=https://hm.baidu.com/hm.js?f08b5240ef2d1692572ce0f7756b325e*/;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      var bp = document.createElement('script');
+      // push baidu.com
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = '../../../zz.bdstatic.com/linksubmit/push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/;
+      }
+      else {
+        bp.src = '../../../push.zhanzhang.baidu.com/push.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/;
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+    // var wrapper = document.getElementById('wrapper')
+    // var floatWechat = document.getElementById('float-wechat')
+
+    // function resetAll (event) {
+    //   var rect = wrapper.getBoundingClientRect()
+    //   resetFloatWechat(rect)
+    // }
+    // function resetFloatWechat(rect) {
+    //   var left = rect.left + rect.width
+    //   floatWechat.style.left = left + 'px'
+    //   floatWechat.style.display = 'block'
+    // }
+    // window.addEventListener('resize', resetAll)
+    // resetAll()
+    </script>
+
+</body>
+
+</html>

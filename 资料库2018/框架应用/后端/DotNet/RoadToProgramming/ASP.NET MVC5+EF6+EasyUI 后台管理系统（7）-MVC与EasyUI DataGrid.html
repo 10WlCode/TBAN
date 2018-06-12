@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/ymnets/p/3424945.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/mention.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid - ymnets - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/bundle-SimpleBlue.css">
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/168383.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ymnets/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ymnets/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ymnets/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/encoder.js.下载"></script><script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style><style>img[src="https://cc.amazingcounters.com/counter.php?i=3213285&c=9640168"],
+img[src="https://cc.amazingcounters.com/counter.php?i=3213287&c=9640174"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'ymnets', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ymnets/">编橙之路</a></div>
+<div class="subtitle">人总是要选择一条路,有人选择了编香蕉，有人选择了编苹果，我却选择了编橙！</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/ymnets/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/ymnets">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/ymnets/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/ymnets/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-125&nbsp;
+文章-0&nbsp;
+评论-1986&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ymnets/p/3424945.html">ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><a href="http://www.cnblogs.com/ymnets/p/3424309.html">系列目录</a></p>
+<h1>本节知识点</h1>
+<blockquote>
+<p><span style="color: #ff0000;">为了符合后面更新后的重构系统，文章于2016-11-1日重写</span></p>
+<p>EasyUI读取MVC后台Json数据</p>
+</blockquote>
+<h1>开始实现</h1>
+<p>我们的系统似乎越来越有趣了</p>
+<p>首先从前端入手，开打View下面的Shared创建一个视图模版（母版页）</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;67061560-1361-4390-9ce7-620057c0ffe7&#39;)"><img id="code_img_closed_67061560-1361-4390-9ce7-620057c0ffe7" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_67061560-1361-4390-9ce7-620057c0ffe7" class="code_img_opened" style="display: inline;" onclick="cnblogs_code_hide(&#39;67061560-1361-4390-9ce7-620057c0ffe7&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_67061560-1361-4390-9ce7-620057c0ffe7" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Main&lt;/title&gt;
+
+    &lt;script src=<span style="color: #800000;">"</span><span style="color: #800000;">@Url.Content(</span><span style="color: #800000;">"</span>~/Scripts/jquery.min.js<span style="color: #800000;">"</span><span style="color: #800000;">)</span><span style="color: #800000;">"</span> type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;
+     &lt;script src=<span style="color: #800000;">"</span><span style="color: #800000;">@Url.Content(</span><span style="color: #800000;">"</span>~/Scripts/jquery.easyui.min.js<span style="color: #800000;">"</span><span style="color: #800000;">)</span><span style="color: #800000;">"</span> type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;<span style="color: #000000;">
+    @Styles.Render(</span><span style="color: #800000;">"</span><span style="color: #800000;">~/Content/css</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+    @Styles.Render(</span><span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/blue/css</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span>&lt;/head&gt;
+&lt;body&gt;
+    &lt;div style=<span style="color: #800000;">"</span><span style="color: #800000;">padding:5px 5px 0px 5px;</span><span style="color: #800000;">"</span>&gt;<span style="color: #000000;">
+        @RenderBody()
+    </span>&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">_Index_Layout.cshtml</span></div>
+<p>以后我们系统用到的index视图基本要引用这个模版</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;5e761a3b-350a-490d-8065-24dbfa6051ee&#39;)"><img id="code_img_closed_5e761a3b-350a-490d-8065-24dbfa6051ee" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_5e761a3b-350a-490d-8065-24dbfa6051ee" class="code_img_opened" style="display: inline;" onclick="cnblogs_code_hide(&#39;5e761a3b-350a-490d-8065-24dbfa6051ee&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_5e761a3b-350a-490d-8065-24dbfa6051ee" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@using App.Admin;
+@using App.Common;
+@{
+    ViewBag.Title </span>= <span style="color: #800000;">"</span><span style="color: #800000;">Index</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+    Layout </span>= <span style="color: #800000;">"</span><span style="color: #800000;">~/Views/Shared/_Index_Layout.cshtml</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+    
+  
+}
+
+</span>&lt;table id=<span style="color: #800000;">"</span><span style="color: #800000;">List</span><span style="color: #800000;">"</span>&gt;&lt;/table&gt;
+&lt;script type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span>&gt;<span style="color: #000000;">
+    $(function () {
+        $(</span><span style="color: #800000;">'</span><span style="color: #800000;">#List</span><span style="color: #800000;">'</span><span style="color: #000000;">).datagrid({
+            url: </span><span style="color: #800000;">'</span><span style="color: #800000;">/SysSample/GetList</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            width: $(window).width() </span>- <span style="color: #800080;">10</span><span style="color: #000000;">,
+            methord: </span><span style="color: #800000;">'</span><span style="color: #800000;">post</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            height: $(window).height() </span>-<span style="color: #800080;">35</span><span style="color: #000000;">,
+            fitColumns: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+            sortName: </span><span style="color: #800000;">'</span><span style="color: #800000;">Id</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            sortOrder: </span><span style="color: #800000;">'</span><span style="color: #800000;">desc</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            idField: </span><span style="color: #800000;">'</span><span style="color: #800000;">Id</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+            striped: </span><span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;">奇偶行是否区分</span>
+            singleSelect: <span style="color: #0000ff;">true</span>,<span style="color: #008000;">//</span><span style="color: #008000;">单选模式</span>
+            rownumbers: <span style="color: #0000ff;">true</span>,<span style="color: #008000;">//</span><span style="color: #008000;">行号</span>
+<span style="color: #000000;">            columns: [[
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Id</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">ID</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">80</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Name</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">名称</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">120</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Age</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">年龄</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">80</span>, align: <span style="color: #800000;">'</span><span style="color: #800000;">right</span><span style="color: #800000;">'</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Bir</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">生日</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">80</span>, align: <span style="color: #800000;">'</span><span style="color: #800000;">right</span><span style="color: #800000;">'</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Photo</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">照片</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">250</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">Note</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">说明</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">60</span>, align: <span style="color: #800000;">'</span><span style="color: #800000;">center</span><span style="color: #800000;">'</span><span style="color: #000000;"> },
+                { field: </span><span style="color: #800000;">'</span><span style="color: #800000;">CreateTime</span><span style="color: #800000;">'</span>, title: <span style="color: #800000;">'</span><span style="color: #800000;">创建时间</span><span style="color: #800000;">'</span>, width: <span style="color: #800080;">60</span>, align: <span style="color: #800000;">'</span><span style="color: #800000;">center</span><span style="color: #800000;">'</span><span style="color: #000000;"> }
+            ]]
+        });
+    });
+</span>&lt;/script&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">index.cshtml</span></div>
+<p>在SysSampleController添加GetList方法给视图的AJAX使用</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;b6dc23fb-7d37-448f-b692-b81282c477f0&#39;)"><img id="code_img_closed_b6dc23fb-7d37-448f-b692-b81282c477f0" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_b6dc23fb-7d37-448f-b692-b81282c477f0" class="code_img_opened" style="display: inline;" onclick="cnblogs_code_hide(&#39;b6dc23fb-7d37-448f-b692-b81282c477f0&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_b6dc23fb-7d37-448f-b692-b81282c477f0" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"> [HttpPost]
+        </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> JsonResult GetList()
+        {
+            List</span>&lt;SysSampleModel&gt; list = m_BLL.GetList(<span style="color: #800000;">""</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">var</span> json = <span style="color: #0000ff;">new</span><span style="color: #000000;">
+            {
+                total </span>=<span style="color: #000000;"> list.Count,
+                rows </span>= (<span style="color: #0000ff;">from</span> r <span style="color: #0000ff;">in</span><span style="color: #000000;"> list
+                        </span><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> SysSampleModel()
+                        {
+
+                            Id </span>=<span style="color: #000000;"> r.Id,
+                            Name </span>=<span style="color: #000000;"> r.Name,
+                            Age </span>=<span style="color: #000000;"> r.Age,
+                            Bir </span>=<span style="color: #000000;"> r.Bir,
+                            Photo </span>=<span style="color: #000000;"> r.Photo,
+                            Note </span>=<span style="color: #000000;"> r.Note,
+                            CreateTime </span>=<span style="color: #000000;"> r.CreateTime,
+
+                        }).ToArray()
+            };
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> Json(json, JsonRequestBehavior.AllowGet);
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">View Code </span></div>
+<p>预览一下效果</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/16211455-3328b75a17f04f4aa9f68657bb78d4c7.png" alt="" width="889" height="446"></p>
+<h1>Json的格式</h1>
+<p>其实有心的童鞋会发现下载的easyui包里面有个demo文件，我们打开datagrid样例的文件夹找到</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>{<span style="color: #800000;">"</span><span style="color: #800000;">total</span><span style="color: #800000;">"</span>:<span style="color: #800080;">28</span>,<span style="color: #800000;">"</span><span style="color: #800000;">rows</span><span style="color: #800000;">"</span><span style="color: #000000;">:[
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">FI-SW-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Koi</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">10.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">36.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Large</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-1</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">K9-DL-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Dalmation</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">18.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Spotted Adult Female</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-10</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">RP-SN-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Rattlesnake</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">38.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Venomless</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-11</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">RP-SN-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Rattlesnake</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">26.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Rattleless</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-12</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">RP-LI-02</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Iguana</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">35.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Green Adult</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-13</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">FL-DSH-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Manx</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">158.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Tailless</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-14</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">FL-DSH-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Manx</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">83.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">With tail</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-15</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">FL-DLH-02</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Persian</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">23.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Adult Female</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-16</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">FL-DLH-02</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Persian</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">12.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">89.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Adult Male</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-17</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+    {</span><span style="color: #800000;">"</span><span style="color: #800000;">productid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">AV-CB-01</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">productname</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Amazon Parrot</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">unitcost</span><span style="color: #800000;">"</span>:<span style="color: #800080;">92.00</span>,<span style="color: #800000;">"</span><span style="color: #800000;">status</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">P</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">listprice</span><span style="color: #800000;">"</span>:<span style="color: #800080;">63.50</span>,<span style="color: #800000;">"</span><span style="color: #800000;">attr1</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">Adult Male</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">itemid</span><span style="color: #800000;">"</span>:<span style="color: #800000;">"</span><span style="color: #800000;">EST-18</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+]}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>我们看到示例中的Demo Json格式，后台必须返回符合Easyui读取的Json格式数</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/16212605-bee572eb15a44e7f8a2f89bd34a8aea3.png" alt=""></p></div><div id="MySignature" style="display: block;">
+作者：<a href="http://ymnets.cnblogs.com/" target="_blank">YmNets</a><br>出处：<a href="http://ymnets.cnblogs.com/" target="_blank">http://ymnets.cnblogs.com/</a><br>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ymnets/category/532237.html" target="_blank">[02]Asp.Net MVC</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ymnets/tag/ASP.NET/">ASP.NET</a>, <a href="http://www.cnblogs.com/ymnets/tag/MVC4/">MVC4</a>, <a href="http://www.cnblogs.com/ymnets/tag/EF5/">EF5</a>, <a href="http://www.cnblogs.com/ymnets/tag/EasyUI/">EasyUI</a>, <a href="http://www.cnblogs.com/ymnets/tag/Unity2.x/">Unity2.x</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3424945,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/" target="_blank"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/20161202100642.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/">ymnets</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followees">关注 - 14</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followers">粉丝 - 1575</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3424945,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">12</span>
+    </div>
+    <div class="buryit" onclick="votePost(3424945,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">2</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ymnets/p/3424943.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ymnets/p/3424943.html" title="发布于2013-11-16 20:42">ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入</a><br><a href="http://www.cnblogs.com/ymnets/p/3428740.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ymnets/p/3428740.html" title="发布于2013-11-18 21:31">构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（8）-MVC与EasyUI DataGrid 分页</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-11-17 10:29</span> <a href="http://www.cnblogs.com/ymnets/">ymnets</a> 阅读(<span id="post_view_count">23577</span>) 评论(<span id="post_comment_count">18</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3424945" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/ymnets/p/3424945.html#" onclick="AddToWz(3424945);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=168383,cb_entryId=3424945,cb_blogApp=currentBlogApp,cb_blogUserGuid='26ae7302-41eb-e111-aa3f-842b2b196315',cb_entryCreatedDate='2013/11/17 10:29:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2818040,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2818040,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2818040" class="layer">#1楼</a><a name="2818040" id="comment_anchor_2818040"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2013-11-17 10:33</span> <a id="a_comment_author_2818040" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2818040" class="blog_comment_body">自己板凳先坐了，下一节是，用Datagrid分页获取数据</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2818040,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2818040,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2818040_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2818078,&#39;+OOCFLEcPSY768fqtNgfSUaT3OJaAFuK0yKhYX/xa0uVcBwRlD/+8w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2818078,&#39;+OOCFLEcPSY768fqtNgfSUaT3OJaAFuK0yKhYX/xa0uVcBwRlD/+8w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2818078" class="layer">#2楼</a><a name="2818078" id="comment_anchor_2818078"></a>  <span class="comment_date">2013-11-17 12:15</span> <a id="a_comment_author_2818078" href="http://www.cnblogs.com/wosinren/" target="_blank">天涯我行</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E6%B6%AF%E6%88%91%E8%A1%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2818078" class="blog_comment_body">沙发占了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2818078,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2818078,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2818149,&#39;Rx6jshwRAgUPH3sQSxaTrR6lc1XCdgDu8zAqJSRYFkK+ZR2fc8tijA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2818149,&#39;Rx6jshwRAgUPH3sQSxaTrR6lc1XCdgDu8zAqJSRYFkK+ZR2fc8tijA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2818149" class="layer">#3楼</a><a name="2818149" id="comment_anchor_2818149"></a>  <span class="comment_date">2013-11-17 15:40</span> <a id="a_comment_author_2818149" href="http://home.cnblogs.com/u/221571/" target="_blank">编程 浪子</a> <a href="http://msg.cnblogs.com/send/%E7%BC%96%E7%A8%8B%20%E6%B5%AA%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2818149" class="blog_comment_body">学习学习了。哈哈</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2818149,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2818149,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2818364,&#39;c65YmdPF9GB9ueAJFOa73TSxDdEx54YyfXtQc+cLH46PQDkzyv3yFA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2818364,&#39;c65YmdPF9GB9ueAJFOa73TSxDdEx54YyfXtQc+cLH46PQDkzyv3yFA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2818364" class="layer">#4楼</a><a name="2818364" id="comment_anchor_2818364"></a>  <span class="comment_date">2013-11-18 09:34</span> <a id="a_comment_author_2818364" href="http://www.cnblogs.com/wxpnet/" target="_blank">1109351409</a> <a href="http://msg.cnblogs.com/send/1109351409" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2818364" class="blog_comment_body">跟着楼主的例子做完了,正好可以学习MVC了.LZ继续哇.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2818364,&#39;Digg&#39;,this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2818364,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2850652,&#39;8kmduNGq+YcthmQZN8IC3y6gH3OypUmUSDtiWTdcT4cyuDGv+He0tg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2850652,&#39;8kmduNGq+YcthmQZN8IC3y6gH3OypUmUSDtiWTdcT4cyuDGv+He0tg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2850652" class="layer">#5楼</a><a name="2850652" id="comment_anchor_2850652"></a>  <span class="comment_date">2014-01-03 11:05</span> <a id="a_comment_author_2850652" href="http://www.cnblogs.com/ttrjba/" target="_blank">IT农民！</a> <a href="http://msg.cnblogs.com/send/IT%E5%86%9C%E6%B0%91%EF%BC%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2850652" class="blog_comment_body">json中吧datetime 转换成/Date(1386777600000)/  如何把<br>/Date(1386777600000)/ 怎么能转换成 2013-01-02</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2850652,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2850652,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2850652_avatar" style="display:none;">http://pic.cnblogs.com/face/u323119.jpg?id=11151210</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2852045,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2852045,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2852045" class="layer">#6楼</a><a name="2852045" id="comment_anchor_2852045"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-01-05 12:25</span> <a id="a_comment_author_2852045" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2852045" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424945.html#2850652" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2850652);">@</a>
+IT农民！<br>后面有讲到啊。你看过去就有了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2852045,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2852045,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2852045_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2924659,&#39;P/W8ljAKYVBRk0dsKWQpgM3vDClEWa3iaoiui5+Se4aK6IRftspUpg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2924659,&#39;P/W8ljAKYVBRk0dsKWQpgM3vDClEWa3iaoiui5+Se4aK6IRftspUpg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2924659" class="layer">#7楼</a><a name="2924659" id="comment_anchor_2924659"></a>  <span class="comment_date">2014-04-24 16:22</span> <a id="a_comment_author_2924659" href="http://home.cnblogs.com/u/131726/" target="_blank">飞鹰008</a> <a href="http://msg.cnblogs.com/send/%E9%A3%9E%E9%B9%B0008" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2924659" class="blog_comment_body">楼主，你好，我按照你的格式试验了下，为什么我的只显示为JSON格式，而不是一行一行的数据呢，期待楼主解答。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924659,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924659,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2924756,&#39;P/W8ljAKYVBRk0dsKWQpgM3vDClEWa3iaoiui5+Se4aK6IRftspUpg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2924756,&#39;P/W8ljAKYVBRk0dsKWQpgM3vDClEWa3iaoiui5+Se4aK6IRftspUpg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#2924756" class="layer">#8楼</a><a name="2924756" id="comment_anchor_2924756"></a>  <span class="comment_date">2014-04-24 17:47</span> <a id="a_comment_author_2924756" href="http://home.cnblogs.com/u/131726/" target="_blank">飞鹰008</a> <a href="http://msg.cnblogs.com/send/%E9%A3%9E%E9%B9%B0008" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2924756" class="blog_comment_body">楼主人很好，加了楼主QQ后，问题给解决了。对于刚入门的我，给楼主学到了很多东西。很是感谢！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924756,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924756,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3065602,&#39;Sj0vUxv3+xCf4S9fBaCA9nOH/tJ/mtcqodHKGoMLh0RvuVFn9I+8CQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3065602,&#39;Sj0vUxv3+xCf4S9fBaCA9nOH/tJ/mtcqodHKGoMLh0RvuVFn9I+8CQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3065602" class="layer">#9楼</a><a name="3065602" id="comment_anchor_3065602"></a>  <span class="comment_date">2014-11-17 11:12</span> <a id="a_comment_author_3065602" href="http://home.cnblogs.com/u/693460/" target="_blank">不做英雄做狗熊</a> <a href="http://msg.cnblogs.com/send/%E4%B8%8D%E5%81%9A%E8%8B%B1%E9%9B%84%E5%81%9A%E7%8B%97%E7%86%8A" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3065602" class="blog_comment_body">初学MVC和EASYUI，楼主的文章对我帮助很大，谢谢。<br>在跟着楼主做练习时，<br>－－－－<br>&lt;table id="List"&gt;&lt;/table&gt;<br>&lt;script type="text/javascript"&gt;<br>    $(function () {<br>        $('#List').datagrid({<br>          .....<br>&lt;/script&gt;<br>－－－－<br>这段显示表格的代码显示不出来，我只把script里面的url改成了我自己view视图里的那个页面名，其他都是复制粘贴的，<br>（我的view和controller启名叫TestGrid,url写成<br>url: '/TestGrid/GetList',）<br>但用firebug调试时，显示<br>TypeError: $(...).datagrid is not a function<br>$('#List').datagrid({<br>数据总是出不来呢，不知道是什么原因……望好心人解达一下。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3065602,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3065602,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3065629,&#39;Sj0vUxv3+xCf4S9fBaCA9nOH/tJ/mtcqodHKGoMLh0RvuVFn9I+8CQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3065629,&#39;Sj0vUxv3+xCf4S9fBaCA9nOH/tJ/mtcqodHKGoMLh0RvuVFn9I+8CQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3065629" class="layer">#10楼</a><a name="3065629" id="comment_anchor_3065629"></a>  <span class="comment_date">2014-11-17 11:37</span> <a id="a_comment_author_3065629" href="http://home.cnblogs.com/u/693460/" target="_blank">不做英雄做狗熊</a> <a href="http://msg.cnblogs.com/send/%E4%B8%8D%E5%81%9A%E8%8B%B1%E9%9B%84%E5%81%9A%E7%8B%97%E7%86%8A" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3065629" class="blog_comment_body">@<br>研究了半天发现导错包了……一开始引用的easyloader以为是可以的，后来发现如果只是显示界面的easyui控件用这个就没问题，但是加&lt;script&gt;用代码控制就出问题了，还是得导入easyui.min.js，另外，带.min的好像不能在app_start中的bundles绑定，只能在页面添加&lt;script url=xx&gt;这样的引用。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3065629,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3065629,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3071320,&#39;pxBeq4vk5Lid0DRntsPYQg27JzaXS+QOIcL+lwp4Hqxm5fy8IHQAFg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3071320,&#39;pxBeq4vk5Lid0DRntsPYQg27JzaXS+QOIcL+lwp4Hqxm5fy8IHQAFg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3071320" class="layer">#11楼</a><a name="3071320" id="comment_anchor_3071320"></a>  <span class="comment_date">2014-11-25 14:22</span> <a id="a_comment_author_3071320" href="http://home.cnblogs.com/u/535068/" target="_blank">白文辉</a> <a href="http://msg.cnblogs.com/send/%E7%99%BD%E6%96%87%E8%BE%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3071320" class="blog_comment_body">@using App.Common;为什么引入进去报错？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3071320,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3071320,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3135242,&#39;TvHwhA04vk8dVm0wlfaFpmRB7rzUaP1Nd5cda4BnzCudiKbrF4aUrA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3135242,&#39;TvHwhA04vk8dVm0wlfaFpmRB7rzUaP1Nd5cda4BnzCudiKbrF4aUrA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3135242" class="layer">#12楼</a><a name="3135242" id="comment_anchor_3135242"></a>  <span class="comment_date">2015-03-04 17:26</span> <a id="a_comment_author_3135242" href="http://home.cnblogs.com/u/217335/" target="_blank">冷样看人生</a> <a href="http://msg.cnblogs.com/send/%E5%86%B7%E6%A0%B7%E7%9C%8B%E4%BA%BA%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3135242" class="blog_comment_body">IE9下报jquery远吗里面  Microsoft JScript 运行时错误: “Object”未定义<br>谷歌下没问题<br>怎么解决啊？百度了半天没找到<br>请帮忙 谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3135242,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3135242,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3135444,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3135444,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3135444" class="layer">#13楼</a><a name="3135444" id="comment_anchor_3135444"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-03-05 08:57</span> <a id="a_comment_author_3135444" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3135444" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424945.html#3135242" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3135242);">@</a>
+冷样看人生<br>升级jquery 到1.8.0</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3135444,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3135444,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3135444_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3327453,&#39;jYzsMSntw0qp85CLkXR/dnqp3a29Yp3ULU4qnV/NaLEQhKL86RgDDg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3327453,&#39;jYzsMSntw0qp85CLkXR/dnqp3a29Yp3ULU4qnV/NaLEQhKL86RgDDg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3327453" class="layer">#14楼</a><a name="3327453" id="comment_anchor_3327453"></a>  <span class="comment_date">2015-12-15 13:38</span> <a id="a_comment_author_3327453" href="http://www.cnblogs.com/boyzi/" target="_blank">boyzi007</a> <a href="http://msg.cnblogs.com/send/boyzi007" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3327453" class="blog_comment_body"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/673771-20151215133847427-1745776908.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3327453,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3327453,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3564952,&#39;0rD1gPDeuFs1xxb4N8wLRFYjL/HtKKf12y4EZv+3fonzkHHl6wGuRQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3564952,&#39;0rD1gPDeuFs1xxb4N8wLRFYjL/HtKKf12y4EZv+3fonzkHHl6wGuRQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3564952" class="layer">#15楼</a><a name="3564952" id="comment_anchor_3564952"></a>  <span class="comment_date">2016-11-25 10:56</span> <a id="a_comment_author_3564952" href="http://home.cnblogs.com/u/1068375/" target="_blank">小猫阿尤2</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E7%8C%AB%E9%98%BF%E5%B0%A42" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3564952" class="blog_comment_body">谢谢楼主 这一节是过的最轻松的 复制 粘贴  运行 第一次没出现问题</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3564952,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3564952,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3597309,&#39;0c1m7iIhn5a9uKBpsqYJhqSrQBMW4s4pMifXi9ULGWIRVN3O5myygg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3597309,&#39;0c1m7iIhn5a9uKBpsqYJhqSrQBMW4s4pMifXi9ULGWIRVN3O5myygg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3597309" class="layer">#16楼</a><a name="3597309" id="comment_anchor_3597309"></a>  <span class="comment_date">2017-01-05 20:42</span> <a id="a_comment_author_3597309" href="http://www.cnblogs.com/wyh19941210/" target="_blank">StrugglingDave</a> <a href="http://msg.cnblogs.com/send/StrugglingDave" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3597309" class="blog_comment_body">视图模板一直没有用怎么办，一直没有样式，LZ求解</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3597309,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3597309,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3597309_avatar" style="display:none;">http://pic.cnblogs.com/face/811103/20170819205527.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3597320,&#39;0c1m7iIhn5a9uKBpsqYJhqSrQBMW4s4pMifXi9ULGWIRVN3O5myygg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3597320,&#39;0c1m7iIhn5a9uKBpsqYJhqSrQBMW4s4pMifXi9ULGWIRVN3O5myygg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3597320" class="layer">#17楼</a><a name="3597320" id="comment_anchor_3597320"></a>  <span class="comment_date">2017-01-05 20:52</span> <a id="a_comment_author_3597320" href="http://www.cnblogs.com/wyh19941210/" target="_blank">StrugglingDave</a> <a href="http://msg.cnblogs.com/send/StrugglingDave" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3597320" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424945.html#3564952" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3564952);">@</a>
+小猫阿尤2<br>@小猫阿尤2<br>这节的视图模板页正确吗，大侠，我的怎么一直不可以。求解，谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3597320,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3597320,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3597320_avatar" style="display:none;">http://pic.cnblogs.com/face/811103/20170819205527.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3634038,&#39;I7Rj1IQrpuODjakCB85YtGzXNVr6N9xix66aH4VnMzJjPggHesD/zg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3634038,&#39;I7Rj1IQrpuODjakCB85YtGzXNVr6N9xix66aH4VnMzJjPggHesD/zg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424945.html#3634038" class="layer">#18楼</a><a name="3634038" id="comment_anchor_3634038"></a><span id="comment-maxId" style="display:none;">3634038</span><span id="comment-maxDate" style="display:none;">2017/3/7 16:32:13</span>  <span class="comment_date">2017-03-07 16:32</span> <a id="a_comment_author_3634038" href="http://www.cnblogs.com/alongnew/" target="_blank">微新科技</a> <a href="http://msg.cnblogs.com/send/%E5%BE%AE%E6%96%B0%E7%A7%91%E6%8A%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3634038" class="blog_comment_body">SysSampleController 增加：using System.Linq;</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3634038,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3634038,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/ymnets/p/3424945.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/ymnets/p/3424945.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586040/" target="_blank">诺基亚新机入网：搭载YunOS系统 支持移动4G</a><br> ·  <a href="https://news.cnblogs.com/n/586039/" target="_blank">你们昨天刷屏玩得"跳一跳"，其实是微信团队"抄"的</a><br> ·  <a href="https://news.cnblogs.com/n/585994/" target="_blank">探访iRobot：一家非典型机器人公司的27年成长史</a><br> ·  <a href="https://news.cnblogs.com/n/586038/" target="_blank">假如6年前买了1万块钱比特币，相当于我在阿里工作了1.6万年</a><br> ·  <a href="https://news.cnblogs.com/n/586007/" target="_blank">最全盘点：2017年，深度学习领域有哪些成就？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><span style="color:red">有问题,或者购买框架可以通过QQ:729994997联系我</span><br><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/ymnets/">ymnets</a><br>园龄：<a href="https://home.cnblogs.com/u/ymnets/" title="入园时间：2012-08-21">5年4个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/ymnets/followers/">1575</a><br>关注：<a href="https://home.cnblogs.com/u/ymnets/followees/">14</a><div id="p_b_follow">已关注 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;)">-取消</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ymnets/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/ymnets/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/ymnets/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/ymnets/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/ymnets/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(137)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ymnets/category/532236.html">[01].Net(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ymnets/category/532237.html">[02]Asp.Net MVC(94)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ymnets/category/532238.html">[03]Web前端(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ymnets/category/532240.html">[04]数据库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ymnets/category/532241.html">[05]JQuery&amp;JavaScript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ymnets/category/535669.html">[06]EasyUI(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ymnets/category/576780.html">[07]Android(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ymnets/category/1021286.html">[08]fullCalendar(2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	363419
+	</li>
+	<li class="liRank">
+		排名 -	420
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/6737779.html#3874731">1. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（83）-Easyui Datagrid 行内编辑扩展</a></li>
+        <li class="recent_comment_body">1.扩展tree，使其支持平滑数据格式<br><br>2.扩展combotree，使其支持平滑数据格式<br>---------------------------请问什么事平滑数据格式</li>
+        <li class="recent_comment_author">--fuckstars</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5025197.html#3867631">2. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（52）-美化EasyUI皮肤和图标</a></li>
+        <li class="recent_comment_body">@ymnets你好，请问你的tree中的图标是如何处理的，css如何利用优先原则的？谢谢...</li>
+        <li class="recent_comment_author">--路过1024</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5306935.html#3865693">3. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（58）-DAL层重构</a></li>
+        <li class="recent_comment_body">请问楼主，DAL重构后所有系统注入都报错了，需要如何修改？container.RegisterType();...</li>
+        <li class="recent_comment_author">--walkbylake</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/3484658.html#3865675">4. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（22）-权限管理系统-模块导航制作</a></li>
+        <li class="recent_comment_body">楼主，这个getUserId是在哪里定义的啊？<br></li>
+        <li class="recent_comment_author">--北冥有鱼没有水</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/7977189.html#3863901">5. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（88）-Excel导入和导出-主从表结构导出</a></li>
+        <li class="recent_comment_body">非常不错。最低是fx4.5.2改动两个地方就可以支持fx4.0了。不需要安装excel来操作vba了，确实好。也可以抛开accessdatabaseegine...</li>
+        <li class="recent_comment_author">--Ender.Lu</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(88844)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](43924)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(26906)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424936.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（3）-漂亮系统登陆界面(26729)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424939.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（4）-创建项目解决方案(25664)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">1. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](114)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(113)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](83)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424950.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（9）-MVC与EasyUI结合增删改查(81)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(62)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(140)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3569328.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（28）-系统小结(67)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">3. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](39)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">4. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](38)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3456677.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（20）-权限管理系统-根据权限获取菜单(33)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 ymnets
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

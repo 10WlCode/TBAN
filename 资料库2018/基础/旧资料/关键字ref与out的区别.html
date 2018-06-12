@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html -->
+<html lang="zh-cn" class="gr__cnblogs_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C#中关键字ref与out的区别（原创） - InSky - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./关键字ref与out的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./关键字ref与out的区别_files/bundle-iMetro_HD.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./关键字ref与out的区别_files/bundle-iMetro_HD-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/windinsky/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/windinsky/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/windinsky/wlwmanifest.xml">
+<script type="text/javascript" src="./关键字ref与out的区别_files/encoder.js.下载"></script><script src="./关键字ref与out的区别_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'windinsky', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./关键字ref与out的区别_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/windinsky/"><img id="blogLogo" src="./关键字ref与out的区别_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/windinsky/">InSky</a></h1>
+<h2>We love what we do because we do what we love!</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/windinsky/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/InSky">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/windinsky/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/windinsky/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 28&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 70</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html">C#中关键字ref与out的区别（原创）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p style="margin-bottom: 0pt; margin-top: 0pt; text-align: center; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: bold; font-size: 12pt; font-family: &#39;微软雅黑&#39;;">C#中关键字ref与out的区别</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">在C#中，ref与out是很特殊的两个关键字。使用它们，可以使参数按照引用来传递。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: justify; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">总的来说，</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">通常我们向方法中传递的是值.方法获得的是这些值的一个拷贝,然后使用这些拷贝,当方法运行完毕后,这些拷贝将被丢弃,而原来的值不将受到影响.此外我们还有其他向方法传递参数的形式,引用(ref)和输出(out).</span></p>
+<p style="margin-bottom: 0pt; margin-top: 0pt; text-align: justify; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">	</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">有时,我们需要改变原来变量中的值,这时,我们可以向方法传递变量的引用,而不是变量的值.引用是一个变量,他可以访问原来变量的值,修改引用将修改原来变量的值.变量的值存储在内存中,可以创建一个引用,他指向变量在内存中的位置.当引用被修改时,修改的是内存中的值,因此变量的值可以将被修改.当我们调用一个含有引用参数的方法时,方法中的参数将指向被传递给方法的相应变量,因此,我们会明白,为什么当修改参数变量的修改也将导致原来变量的值.</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">通俗的从功能上来讲，使用这两个关键字，可以使一个方法返回多个参数。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">MSDN中的定义：</span></p>
+<table style="border-collapse: collapse;">
+    <tbody><tr>
+        <td style="padding: 0pt 5.4pt; width: 426.1pt;" valign="top" width="568">
+        <p style="margin-bottom: 5pt; margin-top: 5pt; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;关键字使参数按引用传递。其效果是，当控制权传递回调用方法时，在方法中对参数所做的任何更改都将反映在该变量中。若要使用&nbsp;</span><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;参数，则方法定义和调用方法都必须显式使用&nbsp;</span><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;关键字。</span></p>
+        </td>
+    </tr>
+</tbody></table>
+<table style="border-collapse: collapse;">
+    <tbody><tr>
+        <td style="padding: 0pt 5.4pt; width: 426.1pt;" valign="top" width="568">
+        <p style="margin-bottom: 5pt; margin-top: 5pt; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;关键字会导致参数通过引用来传递。这与</span>&nbsp;<span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;关键字类似，不同之处在于&nbsp;</span><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref&nbsp;</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">要求变量必须在传递之前进行初始化。若要使用&nbsp;</span><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;参数，方法定义和调用方法都必须显式使用&nbsp;</span><span style="font-weight: bold; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;关键字。</span></p>
+        </td>
+    </tr>
+</tbody></table>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">首先，我们来看一个简单的例子：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><img src="./关键字ref与out的区别_files/None.gif" align="top" alt=""><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+<img id="Codehighlighter1_44_179_Open_Image" src="./关键字ref与out的区别_files/ExpandedBlockStart.gif" onclick="code_collapse_toggle(this);" align="top"><img id="Codehighlighter1_44_179_Closed_Image" src="./关键字ref与out的区别_files/ContractedBlock.gif" style="display: none;" onclick="code_collapse_toggle(this);" align="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="Codehighlighter1_44_179_Closed_Text" style="border: 1px solid #808080; background-color: #ffffff; display: none;"><img src="./关键字ref与out的区别_files/dot.gif" alt="" style=""></span><span id="Codehighlighter1_44_179_Open_Text"><span style="color: #000000;">{<br>
+<img src="./关键字ref与out的区别_files/InBlock.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Good&nbsp;Luck!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+<img src="./关键字ref与out的区别_files/InBlock.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;s1);<br>
+<img src="./关键字ref与out的区别_files/InBlock.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(s1);</span><span style="color: #008000;">//</span><span style="color: #008000;">output:&nbsp;Hello&nbsp;World!</span><span style="color: #008000;"><br>
+<img src="./关键字ref与out的区别_files/ExpandedBlockEnd.gif" align="top" alt=""></span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span><span style="color: #000000;"><br>
+<img src="./关键字ref与out的区别_files/None.gif" align="top" alt=""><br>
+<img src="./关键字ref与out的区别_files/None.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+<img id="Codehighlighter1_233_278_Open_Image" src="./关键字ref与out的区别_files/ExpandedBlockStart.gif" onclick="code_collapse_toggle(this);" align="top"><img id="Codehighlighter1_233_278_Closed_Image" src="./关键字ref与out的区别_files/ContractedBlock.gif" style="display: none;" onclick="code_collapse_toggle(this);" align="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="Codehighlighter1_233_278_Closed_Text" style="border: 1px solid #808080; background-color: #ffffff; display: none;"><img src="./关键字ref与out的区别_files/dot.gif" alt="" style=""></span><span id="Codehighlighter1_233_278_Open_Text"><span style="color: #000000;">{<br>
+<img src="./关键字ref与out的区别_files/InBlock.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Hello&nbsp;World!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+<img src="./关键字ref与out的区别_files/ExpandedBlockEnd.gif" align="top" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">在</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">TestRefAndOut()</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">中将字符串s1以ref关键字的方式传到方法</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">TestRef(</span><span style="color: #0000ff; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref</span>&nbsp;<span style="color: #0000ff; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">string</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">&nbsp;str)</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">中，在这个方法中，我们改变了s1的引用变量str的值，最后，回到</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">TestRefAndOut()</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">方法后输出s1的值，发现其值已被改变。</span></p>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">将上例中的ref换成out，代码如下：</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Good&nbsp;Luck!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">TestRef(ref&nbsp;s1);</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(s1);</span><span style="color: #008000;">//</span><span style="color: #008000;">output:&nbsp;Hello&nbsp;World!</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Hello&nbsp;World!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">同样，在将ref换成out后，会发现最后的输出仍然是相同的，那这两个关键字的区别是什么呢？</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">进一步测试：</span></p>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref:</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Good&nbsp;Luck!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(str);</span><span style="color: #008000;">//</span><span style="color: #008000;">output:&nbsp;Good&nbsp;Lick!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p style="margin-bottom: 0pt; margin-top: 0pt;">&nbsp;<span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Good&nbsp;Luck!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(str);</span><span style="color: #008000;">//</span><span style="color: #008000;">compile&nbsp;does&nbsp;not&nbsp;pass</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref的那段代码顺利编译，输出</span><span style="color: #a31515; font-size: 9pt; font-family: &#39;Times New Roman&#39;;">"Good&nbsp;Luck!"</span><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">，而</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out那段代码却无法通过编译，提示“Use&nbsp;of&nbsp;unassigned&nbsp;out&nbsp;parameter&nbsp;'str'</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">	</span><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">”,即使用了未分配地址的out参数str。怎么回事呢？</span></p>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">原来out参数在进入方法的时候，C#会自动清空它的一切引用和指向，所以在上面的out例子中，必需先要为str参数赋值。如以下程序。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Good&nbsp;Luck!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Hello&nbsp;World!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(str);</span><span style="color: #008000;">//</span><span style="color: #008000;">output:&nbsp;Hello&nbsp;World!</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">Ok，得到</span><span style="color: #ff0000; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">第一个区别：&nbsp;out&nbsp;参数在进入方法（函数）时后清空自己，使自己变成一个干净的参数，也因为这个原因必须在方法返回之前或再使用out参数前为&nbsp;out&nbsp;参数赋值（只有地址没有值的参数是不能被.net接受的）；而ref参数是不需要在被调用方法使用前先赋值的，甚至也可以被调用方法中不改变ref参数的值，这都不会引起编译错误。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">在继续看一段代码：</span></p>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">ref:</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div><!--<br />
+<br />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br />
+http://www.CodeHighlighter.com/<br />
+<br />
+--><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(s1);</span><span style="color: #008000;">//</span><span style="color: #008000;">compile&nbsp;does&nbsp;not&nbsp;pass!</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRef(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;Hello&nbsp;World</span><span style="color: #000000;">!</span><span style="color: #800000;">"</span><span style="color: #800000;">;</span><span style="color: #800000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;<br>
+<br>
+</span><span style="color: #0000ff;">out</span><span style="color: #000000;">：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestRefAndOut()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;s1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;s1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(s1);</span><span style="color: #008000;">//</span><span style="color: #008000;">output:&nbsp;Hello&nbsp;World!</span><span style="color: #008000;"><br>
+</span><span style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff;">static</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">void</span><span style="color: #000000;">&nbsp;TestOut(</span><span style="color: #0000ff;">out</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000;">=</span><span style="color: #000000;">&nbsp;</span><span style="color: #800000;">"</span><span style="color: #800000;">Hello&nbsp;World!</span><span style="color: #800000;">"</span><span style="color: #000000;">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp; <br>
+</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./关键字ref与out的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">这回发现，ref这段代码无法编译了，s1是一个空引用，所以无法使用。而out参数则因为上述的那个原因，它不在乎s1是不是空引用，因为就算s1不是空引用，它也会把s1变成空引用的。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">Ok，第二个区别：ref参数在使用前必需初始化，而out不需要。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">嗯，由上边两个区别可以引申一下，out参数只进不出，ref参数有进有出。在用法上概括一下就是：</span><span style="color: #ff0000; font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">out适合用在需要retrun多个返回值的地方，而ref则用在需要被调用的方法修改调用者的引用的时候。</span></p>
+<p style="text-indent: 21pt; margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">一点资料：</span></p>
+<table style="border-collapse: collapse;">
+    <tbody><tr>
+        <td style="padding: 0pt 5.4pt; width: 426.1pt;" valign="top" width="568">
+        <p style="margin-bottom: 0pt; margin-top: 0pt; text-align: left; line-height: 15pt; vertical-align: baseline;"><span style="font-weight: normal; font-size: 10.5pt; font-family: &#39;Times New Roman&#39;;">注：在C#中，方法的参数传递有四种类型：传值（by&nbsp;value），传址（by&nbsp;reference），输出参数（by&nbsp;output），数组参数（by&nbsp;array）。传值参数无需额外的修饰符，传址参数需要修饰符ref，输出参数需要修饰符out，数组参数需要修饰符params。传值参数在方法调用过&nbsp;程中如果改变了参数的值，那么传入方法的参数在方法调用完成以后并不因此而改变，而是保留原来传入时的值。传址参数恰恰相反，如果方法调用过程改变了参数&nbsp;的值，那么传入方法的参数在调用完成以后也随之改变。实际上从名称上我们可以清楚地看出两者的含义--传值参数传递的是调用参数的一份拷贝，而传址参数传&nbsp;递的是调用参数的内存地址，该参数在方法内外指向的是同一个存储位置。</span></p>
+        </td>
+    </tr>
+</tbody></table>
+<p style="margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 10.5pt; font-family: &#39;微软雅黑&#39;;">上边的就是这两个参数在应用上的区别，希望对大家有用！</span></p>
+<p>&nbsp;</p>
+<p></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/windinsky/category/174190.html" target="_blank">C#</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1390071,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;82fd460b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./关键字ref与out的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./关键字ref与out的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/windinsky/" target="_blank"><img src="./关键字ref与out的区别_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/windinsky/">InSky</a><br>
+            <a href="http://home.cnblogs.com/u/windinsky/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/windinsky/followers">粉丝 - 37</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;82fd460b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1390071,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">4</span>
+    </div>
+    <div class="buryit" onclick="votePost(1390071,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/03/1382905.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/windinsky/archive/2009/02/03/1382905.html" title="发布于2009-02-03 10:17">javascript this详解（转）</a><br><a href="http://www.cnblogs.com/windinsky/archive/2009/04/03/1428900.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/windinsky/archive/2009/04/03/1428900.html" title="发布于2009-04-03 13:00">在visual studio中随意更改中文字体的方法</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2009-02-13 15:12</span> <a href="http://www.cnblogs.com/windinsky/">InSky</a> 阅读(<span id="post_view_count">2341</span>) 评论(<span id="post_comment_count">7</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1390071" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#" onclick="AddToWz(1390071);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=46779,cb_entryId=1390071,cb_blogApp=currentBlogApp,cb_blogUserGuid='82fd460b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2009/2/13 15:12:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1481609,&#39;&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1481609,&#39;&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#1481609" class="layer">#1楼</a><a name="1481609" id="comment_anchor_1481609"></a>  <span class="comment_date">2009-03-19 18:56</span> <a id="ctl00_CommentList_NameLink_0" title="未注册用户" target="_blank">莫扎特想念毛主席</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1481609" class="blog_comment_body">弱弱的问一句，参数传递的四种类型有没有传引用阿？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1481609,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1481609,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1723914,&#39;&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1723914,&#39;&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#1723914" class="layer">#2楼</a><a name="1723914" id="comment_anchor_1723914"></a>  <span class="comment_date">2009-12-14 21:49</span> <a id="ctl00_CommentList_NameLink_1" title="未注册用户" target="_blank">zr.Xex0r</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1723914" class="blog_comment_body">我还想写一个学习ref和out的心得呢，学习了，看你的文章真的长了很多知识，谢谢分享：）</div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1749961,&#39;ktCZF0KC46v4VC18SpLUq4pCGYvOKtZZBRIbQ5D4h34sXL18OWNc7Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1749961,&#39;ktCZF0KC46v4VC18SpLUq4pCGYvOKtZZBRIbQ5D4h34sXL18OWNc7Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#1749961" class="layer">#3楼</a><a name="1749961" id="comment_anchor_1749961"></a>  <span class="comment_date">2010-01-19 14:40</span> <a id="a_comment_author_1749961" href="http://www.cnblogs.com/idragonet/" target="_blank">小龙3</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E9%BE%993" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1749961" class="blog_comment_body">简单易懂！谢谢。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1749961,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1749961,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2271496,&#39;LcKbNb49JyXL+iBay5bIJjslmS6M+MdaTlmSvCpvEJ0pTw12/9RgUA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2271496,&#39;LcKbNb49JyXL+iBay5bIJjslmS6M+MdaTlmSvCpvEJ0pTw12/9RgUA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2271496" class="layer">#4楼</a><a name="2271496" id="comment_anchor_2271496"></a>  <span class="comment_date">2011-12-16 09:30</span> <a id="a_comment_author_2271496" href="http://www.cnblogs.com/artwl/" target="_blank">artwl</a> <a href="http://msg.cnblogs.com/send/artwl" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2271496" class="blog_comment_body">讲的很清楚，谢谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2271496,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2271496,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2271496_avatar" style="display:none;">http://pic.cnblogs.com/face/u112805.png?id=201209274142</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2646446,&#39;f7fwegHeoUpg1WOHY6P7QVxaXUXNh8IqmAhniAba63CWLIRJJV3tWw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2646446,&#39;f7fwegHeoUpg1WOHY6P7QVxaXUXNh8IqmAhniAba63CWLIRJJV3tWw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2646446" class="layer">#5楼</a><a name="2646446" id="comment_anchor_2646446"></a>  <span class="comment_date">2013-03-30 23:12</span> <a id="a_comment_author_2646446" href="http://www.cnblogs.com/williamwindy/" target="_blank">williamwindy</a> <a href="http://msg.cnblogs.com/send/williamwindy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2646446" class="blog_comment_body">很详细。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2646446,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2646446,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2729034,&#39;RGiQjPXxKitJ0q0NyuEwH3QGA/NZD/J4aotN4lz/8XavngDNYoZR1w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2729034,&#39;RGiQjPXxKitJ0q0NyuEwH3QGA/NZD/J4aotN4lz/8XavngDNYoZR1w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2729034" class="layer">#6楼</a><a name="2729034" id="comment_anchor_2729034"></a>  <span class="comment_date">2013-07-17 11:03</span> <a id="a_comment_author_2729034" href="http://www.cnblogs.com/KingsWang/" target="_blank">wangxiaowang</a> <a href="http://msg.cnblogs.com/send/wangxiaowang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2729034" class="blog_comment_body">学习了...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2729034,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2729034,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2729034_avatar" style="display:none;">http://pic.cnblogs.com/face/500901/20131121141713.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3645892,&#39;ARCmLafTih/JLhQ3Z+fpAPdCpJzRD+hCErnW0rfl241S6X7fw6a5Wg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3645892,&#39;ARCmLafTih/JLhQ3Z+fpAPdCpJzRD+hCErnW0rfl241S6X7fw6a5Wg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#3645892" class="layer">#7楼</a><a name="3645892" id="comment_anchor_3645892"></a><span id="comment-maxId" style="display:none;">3645892</span><span id="comment-maxDate" style="display:none;">2017/3/20 12:30:13</span>  <span class="comment_date">2017-03-20 12:30</span> <a id="a_comment_author_3645892" href="http://www.cnblogs.com/lychee/" target="_blank">暖丘</a> <a href="http://msg.cnblogs.com/send/%E6%9A%96%E4%B8%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3645892" class="blog_comment_body">讲的很到位，学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3645892,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3645892,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3645892_avatar" style="display:none;">http://pic.cnblogs.com/face/873487/20160725233804.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./关键字ref与out的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./关键字ref与out的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./关键字ref与out的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./关键字ref与out的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./关键字ref与out的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./关键字ref与out的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.436846.436846.436846" target="_blank">【推荐】搭建微信小程序 就选腾讯云</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://www.mtyun.com/promote/69f73a72-f46d-4103-88e5-94ed2f81259d/" target="_blank"><img width="300" height="250" src="./关键字ref与out的区别_files/24442-20170921101521025-1845913848.jpg" alt="美团云0921"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/579498/" target="_blank">全球数据库排名：MySQL三连跌，PostgreSQL最稳</a><br> ·  <a href="http://news.cnblogs.com/n/579497/" target="_blank">谷歌也将推出7吋屏智能音箱：产品代号“曼哈顿”</a><br> ·  <a href="http://news.cnblogs.com/n/579496/" target="_blank">贾跃亭向美法院申请的临时禁令威力如何</a><br> ·  <a href="http://news.cnblogs.com/n/579495/" target="_blank">阿里抄袭事件：被抄袭者回应称阿里行为是诈骗</a><br> ·  <a href="http://news.cnblogs.com/n/579494/" target="_blank">中国快递分拣有多牛：画面太逆天我不敢看</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./关键字ref与out的区别_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/windinsky/">InSky</a><br>园龄：<a href="http://home.cnblogs.com/u/windinsky/" title="入园时间：2008-11-03">8年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/windinsky/followers/">37</a><br>关注：<a href="http://home.cnblogs.com/u/windinsky/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;82fd460b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(16)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/windinsky/category/174187.html">Asp.Net(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/windinsky/category/174190.html">C#(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/windinsky/category/174188.html">DataBase(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/windinsky/category/932205.html">SpringMvc</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/windinsky/category/174189.html">Web(5)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(28)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/windinsky/archive/2017/01.html">2017年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/windinsky/archive/2012/10.html">2012年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/windinsky/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/windinsky/archive/2012/06.html">2012年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/windinsky/archive/2011/01.html">2011年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/windinsky/archive/2010/09.html">2010年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/windinsky/archive/2010/08.html">2010年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/windinsky/archive/2010/07.html">2010年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/windinsky/archive/2009/08.html">2009年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/windinsky/archive/2009/07.html">2009年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/windinsky/archive/2009/06.html">2009年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/windinsky/archive/2009/04.html">2009年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/windinsky/archive/2009/02.html">2009年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/windinsky/archive/2009/01.html">2009年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/windinsky/archive/2008/11.html">2008年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/windinsky/category/171526.html">.Net</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/windinsky/category/173338.html">Ado.Net</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/windinsky/category/171524.html">Ajax</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/windinsky/category/171523.html">Asp.Net</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/windinsky/category/171525.html">C#</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/windinsky/category/173842.html">data structure</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/windinsky/category/171528.html">Framework</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/windinsky/category/171527.html">SqlServer</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	27761
+	</li>
+	<li class="liRank">
+		排名 -	12063
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2012/09/25/2701851.html#3717866">1. Re:在Ubuntu中安装Python3</a></li>
+        <li class="recent_comment_body">还不错</li>
+        <li class="recent_comment_author">--vslyu</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#3645892">2. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">讲的很到位，学习了</li>
+        <li class="recent_comment_author">--遇见蓝匣子</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/p/6250101.html#3596403">3. Re:Eclipse下配置javaweb项目快速部署到tomcat</a></li>
+        <li class="recent_comment_body">据我所知，eclipse已经没有维护了</li>
+        <li class="recent_comment_author">--知乎知乎</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/p/6250101.html#3596400">4. Re:Eclipse下配置javaweb项目快速部署到tomcat</a></li>
+        <li class="recent_comment_body">我刚好有用</li>
+        <li class="recent_comment_author">--Kiva</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#3528832">5. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">@damfool大为为什么我的不行...</li>
+        <li class="recent_comment_author">--1721638053</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695530.html#3481637">6. Re:利用Word来发布博客到博客园</a></li>
+        <li class="recent_comment_body">我试试了下 发现图片不会显示啊</li>
+        <li class="recent_comment_author">--西厢书生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695520.html#3442151">7. Re:windows系统下Python环境的搭建</a></li>
+        <li class="recent_comment_body">我用的是sublime test工具，初学者，呵呵</li>
+        <li class="recent_comment_author">--流年亦醉</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695530.html#2842584">8. Re:利用Word来发布博客到博客园</a></li>
+        <li class="recent_comment_body">这下方便了</li>
+        <li class="recent_comment_author">--good90</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/07/09/1774354.html#2777818">9. Re:延时加载图片（原创）</a></li>
+        <li class="recent_comment_body">请直接使用这个 <a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--InSky</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2729034">10. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">学习了...</li>
+        <li class="recent_comment_author">--风卷</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html#2674760">11. Re:(原创)ROW_NUMBER()函数的使用</a></li>
+        <li class="recent_comment_body">ROW_NUMBER() OVER(ORDER BY OrderID DESC) AS 字段编号，这里的orderid如果生成的一个字段（根据相关条件生成的一个值），应该怎么写呢？</li>
+        <li class="recent_comment_author">--戢俊建</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2646446">12. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">很详细。</li>
+        <li class="recent_comment_author">--williamwindy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#2271496">13. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">讲的很清楚，谢谢分享</li>
+        <li class="recent_comment_author">--artwl</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#2248170">14. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">用宏的话，是不是每次打开vs都要手动启动宏呢</li>
+        <li class="recent_comment_author">--dapao</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html#2227661">15. Re:(原创)ROW_NUMBER()函数的使用</a></li>
+        <li class="recent_comment_body">分页可以使用这个函数而不必使用拼接sql语句的存储过程</li>
+        <li class="recent_comment_author">--dreamhappy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/07/12/1775582.html#2129990">16. Re:延时加载图片(优化版)</a></li>
+        <li class="recent_comment_body">你好，我在测试时发现，如果一行里有多张图片就只加载这一行里的第一张。</li>
+        <li class="recent_comment_author">--谷子壳儿</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/07/12/1775582.html#2113555">17. Re:延时加载图片(优化版)</a></li>
+        <li class="recent_comment_body">请问一下，在栏目切换时和在后台输出时，怎么做。<br>在这两点下面没有效果，急盼回复</li>
+        <li class="recent_comment_author">--王振高</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/07/09/1774354.html#2063546">18. Re:延时加载图片（原创）</a></li>
+        <li class="recent_comment_body">你好，尝试用了你的代码，发现并不是延时载入图片，打开页面滚动条还没到的地方都在加载了。你看看这里吧，这才是真正的即时加载：，当滚动条向下移动，可以看到浏览器左下方状态栏提示正在下载图片大概看了那个网站......</li>
+        <li class="recent_comment_author">--咖啡023</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html#2060387">19. Re:(原创)ROW_NUMBER()函数的使用</a></li>
+        <li class="recent_comment_body">1 floor means: row_number() will return only one value,right?</li>
+        <li class="recent_comment_author">--Dannier</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/03/1791117.html#2029166">20. Re:里里外外详解URL编码(zt)</a></li>
+        <li class="recent_comment_body">引用这里的“\314\324\261\246”是一种我也不知道是什么东西的编码，甚至连wireshark都不 知道，因为“\314\324\261\246”明显是一个错误的请求。这样说有点出入，实际上......</li>
+        <li class="recent_comment_author">--勤勉的种子</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#1893313">21. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">Dim lastLeftIndex As Integer = 1 Dim lastLineCountAtLastLeftIndex As Integer = 1 Dim lastR......</li>
+        <li class="recent_comment_author">--damfool大为</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#1893312">22. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">Sub 折叠所有代码块() Const REGION_START As Char = "{"c Const REGION_END As Char = "}"c ......</li>
+        <li class="recent_comment_author">--damfool大为</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#1893309">23. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">Sub 折叠当前块() Const REGION_START As Char = "{"c Const REGION_END As Char = "}"c ......</li>
+        <li class="recent_comment_author">--damfool大为</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html#1893308">24. Re:VS 2010中JS代码折叠插件</a></li>
+        <li class="recent_comment_body">也可以直接用宏来实现Imports SystemImports EnvDTEImports EnvDTE80Imports EnvDTE90Imports EnvDTE90aImports EnvDT......</li>
+        <li class="recent_comment_author">--damfool大为</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#1749961">25. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">简单易懂！谢谢。</li>
+        <li class="recent_comment_author">--小龙3</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html#1723914">26. Re:C#中关键字ref与out的区别（原创）</a></li>
+        <li class="recent_comment_body">我还想写一个学习ref和out的心得呢，学习了，看你的文章真的长了很多知识，谢谢分享：）</li>
+        <li class="recent_comment_author">--zr.Xex0r</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/08/12/1544614.html#1613154">27. Re:将制定内容输出为压缩后的xls文件</a></li>
+        <li class="recent_comment_body">呵呵,不错</li>
+        <li class="recent_comment_author">--温景良(Jason)</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html#1612455">28. Re:无框架Ajax分页(原创)</a></li>
+        <li class="recent_comment_body">对于初学者来讲还是很不错了！<br><br>PS：如果仅仅是作为Demo的话，MyAjaxPager.aspx上的那个Repeater控件貌似可以不要，反正都是为div的innerHTML属性赋值</li>
+        <li class="recent_comment_author">--Selfocus</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html#1608739">29. Re:无框架Ajax分页(原创)</a></li>
+        <li class="recent_comment_body">@落叶潇潇雨引用落叶潇潇雨：1)你这个有通用性吗，每个查询列表是不是都得写个要提交的aspx页面啊。2）aspx页面呈现的周期你清楚吗，用ashx页面也不会用aspx，说你外行还不要脸。3）要实现无刷......</li>
+        <li class="recent_comment_author">--无名....</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html#1608621">30. Re:无框架Ajax分页(原创)</a></li>
+        <li class="recent_comment_body">这年头，再用自己创建xmlHttp是不是有点那个了?啊？<br><br></li>
+        <li class="recent_comment_author">--niming</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695520.html">1. windows系统下Python环境的搭建(301892)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/25/2701851.html">2. 在Ubuntu中安装Python3(24206)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html">3. (原创)ROW_NUMBER()函数的使用(11144)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html">4. 无框架Ajax分页(原创)(4705)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html">5. VS 2010中JS代码折叠插件(3422)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/10/08/2714673.html">6. 在Ubuntu下开始搭建Python开发平台(3316)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/04/23/1441860.html">7. 如何赋予TRUNCATE权限(原创)(2711)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html">8. C#中关键字ref与out的区别（原创）(2342)</a></li><li><a href="http://www.cnblogs.com/windinsky/p/6250101.html">9. Eclipse下配置javaweb项目快速部署到tomcat(2074)</a></li><li><a href="http://www.cnblogs.com/windinsky/p/6248777.html">10. SpringMVC中如何在网站启动、结束时执行代码（详细，确保可用）(1296)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695530.html">11. 利用Word来发布博客到博客园(1030)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/25/1808187.html">12. 判断某个元素是否使用jquery绑定方法(962)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/03/1791117.html">13. 里里外外详解URL编码(zt)(816)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/12/1775582.html">14. 延时加载图片(优化版)(734)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/04/03/1428900.html">15. 在visual studio中随意更改中文字体的方法(696)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/09/1774354.html">16. 延时加载图片（原创）(557)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381862.html">17. Sql中对大数据量的判断(498)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/06/06/2538524.html">18. 延时加载图片(终极版，解决一行多张图片无法显示的问题)(335)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/07/22/1528387.html">19. (原创)利用HttpModule非侵入式的显示异常信息(307)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/12/1544614.html">20. 将制定内容输出为压缩后的xls文件(305)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html">1. 无框架Ajax分页(原创)(37)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html">2. C#中关键字ref与out的区别（原创）(7)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html">3. VS 2010中JS代码折叠插件(6)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html">4. (原创)ROW_NUMBER()函数的使用(5)</a></li><li><a href="http://www.cnblogs.com/windinsky/p/6250101.html">5. Eclipse下配置javaweb项目快速部署到tomcat(2)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695530.html">6. 利用Word来发布博客到博客园(2)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/12/1775582.html">7. 延时加载图片(优化版)(2)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/09/1774354.html">8. 延时加载图片（原创）(2)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2008/11/03/1325323.html">9. 测试(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695520.html">10. windows系统下Python环境的搭建(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/03/1791117.html">11. 里里外外详解URL编码(zt)(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/25/2701851.html">12. 在Ubuntu中安装Python3(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381862.html">13. Sql中对大数据量的判断(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/12/1544614.html">14. 将制定内容输出为压缩后的xls文件(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/04/16/1437066.html">15. (原创)对DateTime进行强制约束(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/06/1540637.html">1. 无框架Ajax分页(原创)(13)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695520.html">2. windows系统下Python环境的搭建(10)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/01/1381886.html">3. (原创)ROW_NUMBER()函数的使用(6)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/02/13/1390071.html">4. C#中关键字ref与out的区别（原创）(4)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/08/02/1790326.html">5. VS 2010中JS代码折叠插件(2)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/12/1775582.html">6. 延时加载图片(优化版)(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2010/07/09/1774354.html">7. 延时加载图片（原创）(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/25/2701851.html">8. 在Ubuntu中安装Python3(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2012/09/20/2695530.html">9. 利用Word来发布博客到博客园(1)</a></li><li><a href="http://www.cnblogs.com/windinsky/archive/2009/08/12/1544614.html">10. 将制定内容输出为压缩后的xls文件(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 InSky
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

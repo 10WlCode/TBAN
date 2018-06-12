@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/kuangwu/p/3311952.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C# 数组，ArrayList与List对象的区别 - 韦斯利yx - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C# 数组，ArrayList与List对象的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C# 数组，ArrayList与List对象的区别_files/bundle-fighting.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./C# 数组，ArrayList与List对象的区别_files/bundle-fighting-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/kuangwu/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/kuangwu/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/kuangwu/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./C# 数组，ArrayList与List对象的区别_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'kuangwu', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./C# 数组，ArrayList与List对象的区别_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/kuangwu/"><img id="blogLogo" src="./C# 数组，ArrayList与List对象的区别_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/kuangwu/">韦斯利yx</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+				<li><a href="http://q.cnblogs.com/" target="_blank">博问</a></li>
+                <li><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/kuangwu/">首页</a></li>
+				<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A6%E6%96%AF%E5%88%A9yx">联系</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/kuangwu/rss">订阅</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/kuangwu/rss"><img src="./C# 数组，ArrayList与List对象的区别_files/xml.gif" alt="订阅"></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 58&nbsp;
+文章- 0&nbsp;
+评论- 2&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/kuangwu/p/3311952.html">C# 数组，ArrayList与List对象的区别</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span>在C#中，当我们想要存储一组对象的时候，就会想到用数组，ArrayList,List这三个对象了。那么这三者到底有什么样的区别呢？</span><br><br><span>我们先来了解一下数组，因为数组在C#中是最早出现的。</span></p>
+<h3>数组</h3>
+<p>
+<br><span>数组有很多的优点，比如说数组在内存中是连续存储的，所以它的索引速度是非常的快，而且赋值与修改元素也很简单，比如：</span></p>
+<div class="code">string[]&nbsp;s=new&nbsp;string[3];<br><br>//赋值<br>s[0]="a";<br>s[1]="b";<br>s[2]="c";<br><br>//修改<br>s[1]="b1";</div>
+<p>
+<br><span>但是，数组也存在一些不足的地方。比如在数组的两个数据间插入数据也是很麻烦的。还有我们在声明数组的时候，必须同时指明数组的长度，数组的长度过长，会造成内存浪费，数组和长度过短，会造成数据溢出的错误。这样如果在声明数组时我们并不清楚数组的长度，就变的很棘手了。</span><br><br><span>针对于数组的这些缺点，C#中最先提供了ArrayList对象来克服这些缺点。</span><br><br></p>
+<h3>ArrayList</h3>
+<p>
+<br><span>ArrayList是.Net&nbsp;Framework提供的用于数据存储和检索的专用类，它是命名空间System.Collections下的一部分。它的大小是按照其中存储的数据来动态扩充与收缩的。所以，我们在声明ArrayList对象时并不需要指定它的长度。</span><br><br><span>ArrayList继承了IList</span><a class="content_href" href="http://www.lmwlove.com/ac/ID369" target="_blank">接口</a><span>，所以它可以很方便的进行数据的添加，插入和移除.比如：</span></p>
+<div class="code">ArrayList&nbsp;list&nbsp;=&nbsp;new&nbsp;ArrayList();<br><br>//新增数据<br>list.Add("abc");<br>list.Add(123);<br><br>//修改数据<br>list[2]&nbsp;=&nbsp;345;<br><br>//移除数据<br>list.RemoveAt(0);<br><br>//插入数据<br>list.Insert(0,&nbsp;"hello&nbsp;world");</div>
+<p>
+<br><span>从上面示例看，ArrayList好像是解决了数组中所有的缺点，那么它应该就是完美的了，为什么在C#2.0后又会出现List呢？</span><br><br><span>还是从上面的示例看，在list中，我们不仅插入了字符串"abc"，而且又插入了数字123。这样在ArrayList中插入不同类型的数据是允许的。因为ArrayList会把所有插入其中的数据都当作为object类型来处理。这样，在我们使用ArrayList中的数据来处理问题的时候，很可能会报类型不匹配的错误，也就是说</span><strong>ArrayList不是类型安全的</strong><span>。既使我们保证在插入数据的时候都很小心，都有插入了同一类型的数据，但在使用的时候，我们也需要将它们转化为对应的原类型来处理。这就存在了</span><strong>装箱与拆箱</strong><span>的操作，会带来很大的性能损耗。</span><br><br><span>穿插一下装箱与拆箱的概念：</span><br><span>简单的来讲:</span><br><strong>装箱：就是将值类型的数据打包到引用类型的实例中</strong><br><span>比如将int类型的值123赋给object对象o</span></p>
+<div class="code">int&nbsp;i=123;<br>object&nbsp;o=(object)i;</div>
+<p>
+<br><strong>拆箱：就是从引用数据中提取值类型</strong><br><span>比如将object对象o的值赋给int类型的变量i</span></p>
+<div class="code">object&nbsp;o=123;<br>int&nbsp;i=(int)o;</div>
+<p>
+<br><strong>装箱与拆箱的过程是很损耗性能的</strong><span>。</span><br><br></p>
+<h3>泛型List</h3>
+<p>
+<br><span>正是因为ArrayList存在不安全类型与装箱拆箱的缺点，所以在C#2.0后出现了泛型的概念。而List类是ArrayList类的泛型等效类。它的大部分用法都与ArrayList相似，因为List类也继承了IList接口。最关键的区别在于，在声明List集合时，我们同时需要为其声明List集合内数据的对象类型。</span><br><span>比如：</span></p>
+<div class="code">List&lt;int&gt;&nbsp;list&nbsp;=&nbsp;new&nbsp;List&lt;int&gt;();<br><br>//新增数据<br>list.Add(123);<br><br>//修改数据<br>list[0]&nbsp;=&nbsp;345;<br><br>//移除数据<br>list.RemoveAt(0);</div>
+<p>
+<br><span>上例中，如果我们往List集合中插入string字符"hello&nbsp;world"，IDE就会报错，且不能通过编译。这样就避免了前面讲的类型安全问题与装箱拆箱的性能问题了。</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/kuangwu/category/489271.html" target="_blank">C#</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/kuangwu/tag/%E6%95%B0%E7%BB%84/">数组</a>, <a href="http://www.cnblogs.com/kuangwu/tag/ArrayList/">ArrayList</a>, <a href="http://www.cnblogs.com/kuangwu/tag/List/">List</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3311952,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;27672c13-2a86-e211-9984-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C# 数组，ArrayList与List对象的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./C# 数组，ArrayList与List对象的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/kuangwu/" target="_blank"><img src="./C# 数组，ArrayList与List对象的区别_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/kuangwu/">韦斯利yx</a><br>
+            <a href="http://home.cnblogs.com/u/kuangwu/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/kuangwu/followers">粉丝 - 20</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;27672c13-2a86-e211-9984-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3311952,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(3311952,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/kuangwu/p/3311818.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/kuangwu/p/3311818.html" title="发布于2013-09-10 11:19">Object-c 语言</a><br><a href="http://www.cnblogs.com/kuangwu/p/3314231.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/kuangwu/p/3314231.html" title="发布于2013-09-11 11:43">Unity3d NGUI 地图</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-09-10 12:42</span> <a href="http://www.cnblogs.com/kuangwu/">韦斯利yx</a> 阅读(<span id="post_view_count">1988</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3311952" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/kuangwu/p/3311952.html#" onclick="AddToWz(3311952);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=143680,cb_entryId=3311952,cb_blogApp=currentBlogApp,cb_blogUserGuid='27672c13-2a86-e211-9984-842b2b196315',cb_entryCreatedDate='2013/9/10 12:42:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">发表评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2863054,&#39;ag1VfKOtv/93GgrurRNy7sFvQ4uxUTgowPZVxow7+uyA4pE/CeuX+A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2863054,&#39;ag1VfKOtv/93GgrurRNy7sFvQ4uxUTgowPZVxow7+uyA4pE/CeuX+A==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/kuangwu/p/3311952.html#2863054" class="layer">#1楼</a><a name="2863054" id="comment_anchor_2863054"></a><span id="comment-maxId" style="display:none;">2863054</span><span id="comment-maxDate" style="display:none;">2014/1/17 9:29:24</span> <span class="comment_date">2014-01-17 09:29</span> | <a id="a_comment_author_2863054" href="http://www.cnblogs.com/xiao-wei-wei/" target="_blank">小薇林</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E8%96%87%E6%9E%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2863054" class="blog_comment_body">unity 中无list    用arraylist怎么获取单一索引 如1对应的值</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2863054,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2863054,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/kuangwu/p/3311952.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/kuangwu/p/3311952.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./C# 数组，ArrayList与List对象的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585473/" target="_blank">“杀死”那个中年人的，也终将“杀死”朱啸虎</a><br> ·  <a href="https://news.cnblogs.com/n/585472/" target="_blank">Magic Leap：新发头显产品互动性强 不让人被动娱乐</a><br> ·  <a href="https://news.cnblogs.com/n/585471/" target="_blank">回顾iPhone这十年：供应链有人赚的盆满钵满有人破产倒闭</a><br> ·  <a href="https://news.cnblogs.com/n/585470/" target="_blank">乐信路演PPT曝光：预计12月21日IPO 已缩减融资规模</a><br> ·  <a href="https://news.cnblogs.com/n/585469/" target="_blank">王学宗向创业黑马缴十万认识朱啸虎 微信已被对方拉黑</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/kuangwu/">韦斯利yx</a><br>园龄：<a href="http://home.cnblogs.com/u/kuangwu/" title="入园时间：2013-03-06">4年9个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/kuangwu/followers/">20</a><br>关注：<a href="http://home.cnblogs.com/u/kuangwu/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;27672c13-2a86-e211-9984-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalTodayDay" align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/kuangwu/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/kuangwu/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/kuangwu/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/kuangwu/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/kuangwu/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/kuangwu/p/3311952.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/kuangwu/tag/Unity3d/">Unity3d</a>(27)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/NGUI/">NGUI</a>(8)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/C%23/">C#</a>(5)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/Unity/">Unity</a>(3)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/UICheckbox/">UICheckbox</a>(2)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/%E8%8F%9C%E5%8D%95/">菜单</a>(2)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/%E5%9C%BA%E6%99%AF/">场景</a>(1)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/%E5%9C%B0%E5%9B%BE/">地图</a>(1)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/%E5%A4%9A%E6%AC%A1%E6%98%BE%E7%A4%BA%E5%85%B3%E9%97%AD%E4%B8%80%E4%B8%AAUI/">多次显示关闭一个UI</a>(1)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/%E6%A0%B9%E6%8D%AE%E9%87%8D%E5%8A%9B%E8%87%AA%E5%8A%A8%E7%BF%BB%E8%BD%AC/">根据重力自动翻转</a>(1)</li><li><a href="http://www.cnblogs.com/kuangwu/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/kuangwu/category/489271.html">C#(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/kuangwu/category/515159.html">Objective-c(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/kuangwu/category/457890.html">Unity3d(33)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/kuangwu/archive/2013/09.html">2013年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/kuangwu/archive/2013/08.html">2013年8月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/kuangwu/archive/2013/07.html">2013年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/kuangwu/archive/2013/06.html">2013年6月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/kuangwu/archive/2013/05.html">2013年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/kuangwu/archive/2013/04.html">2013年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/kuangwu/archive/2013/03.html">2013年3月 (12)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/kuangwu/p/3280647.html#3410749">1. Re:C# websocket Server  加密 76号协议</a></li>
+        <li class="recent_comment_body"><a href="https://www.cnblogs.com/kuangwu/p/3311952.html" target="_blank"></a> 在线WebSocket测试，客户端完美兼容IE6及以上浏览器，服务端采用【C#.NET】异步socket开发，支持多个客户同时在线。</li>
+        <li class="recent_comment_author">--阿煌</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/kuangwu/p/3311952.html#2863054">2. Re:C# 数组，ArrayList与List对象的区别</a></li>
+        <li class="recent_comment_body">unity 中无list    用arraylist怎么获取单一索引 如1对应的值</li>
+        <li class="recent_comment_author">--小薇林</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/06/14/3135994.html">1. c# [System.Serializable](7527)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/06/07/3124007.html">2. c# 宏定义(5927)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/06/14/3135546.html">3. Unity3d OnApplicationPause与OnApplicationFocus(4943)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/06/14/3135981.html">4. c# [HideInInspector] 属性(3235)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/03/11/2954280.html">5. Unity 保存游戏效果图片，并显示；(2521)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/kuangwu/p/3311952.html">1. C# 数组，ArrayList与List对象的区别(1)</a></li><li><a href="http://www.cnblogs.com/kuangwu/p/3280647.html">2. C# websocket Server  加密 76号协议(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/kuangwu/p/3256892.html">1. Unity3d优化(1)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/03/29/2988782.html">2. Unity3d NGUI 动态显示字体(1)</a></li><li><a href="http://www.cnblogs.com/kuangwu/archive/2013/03/11/2953739.html">3. Unity3d 手机屏幕自动适配(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+		<div class="clear"></div>
+<div id="footer">
+	
+<!--done-->
+Copyright ©2017 韦斯利yx
+</div><!--end: footer -->
+</center>
+
+
+</body></html>

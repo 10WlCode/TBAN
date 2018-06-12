@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/chengxs/p/8109993.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>js原生的轮播，原理以及实践 - saucxs - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./js原生的轮播，原理以及实践_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./js原生的轮播，原理以及实践_files/269396.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./js原生的轮播，原理以及实践_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/chengxs/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/chengxs/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/chengxs/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./js原生的轮播，原理以及实践_files/encoder.js.下载"></script><script src="./js原生的轮播，原理以及实践_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style><style>img[src="https://gw.alicdn.com/tfs/TB181KVgvBNTKJjSszeXXcu2VXa-468-60.png"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'chengxs', cb_enable_mathjax=true;var isLogined=true;</script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'blogpost-body', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+            'HTML-CSS': { linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./js原生的轮播，原理以及实践_files/MathJax.js.下载"></script>
+<script src="./js原生的轮播，原理以及实践_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link id="https://common.cnblogs.com/scripts/artDialog/ui-dialog.css" rel="stylesheet" href="./js原生的轮播，原理以及实践_files/ui-dialog.css"><script id="https://common.cnblogs.com/scripts/artDialog/dialog-min.js" type="text/javascript" src="./js原生的轮播，原理以及实践_files/dialog-min.js.下载"></script><script id="https://common.cnblogs.com/scripts/artDialog/dialog-plus-min.js" type="text/javascript" src="./js原生的轮播，原理以及实践_files/dialog-plus-min.js.下载"></script></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/chengxs/"><img id="blogLogo" src="./js原生的轮播，原理以及实践_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/chengxs/">safeguardEagle</a></h1>
+<h2>高凳子低板凳都是木头</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/chengxs/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/chengxs/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/chengxs/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 99&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 97</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/chengxs/p/8109993.html">js原生的轮播，原理以及实践</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p>
+<p>轮播，无论是文字轮播还是图片轮播，他们的原理是一样的，都是通过定时器执行循环展示和影藏。</p>
+<p><strong>一、手动轮播</strong></p>
+<p><strong>（1）原理</strong></p>
+<p>一系列的大小相等的图片平铺，利用CSS布局只显示一张图片，其余隐藏。通过计算偏移量利用定时器实现自动播放，或通过手动点击事件切换图片。</p>
+<p><strong>（2）实现</strong></p>
+<p>如何利用css实现布局显示一张图片？主要的属性是over-follow:hidden。首先给容器一个固定的长和宽，然后设置over-flow:hidden。</p>
+<p><strong>1、html结构</strong></p>
+<p>&nbsp;首先父容器container存放所有内容，子容器list存在图片。子容器buttons存放按钮小圆点。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="container"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="list"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="left: -600px;"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/5.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="1"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/1.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="1"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/2.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="2"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/3.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="3"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/4.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="4"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/5.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="5"</span> <span style="color: #0000ff;">/&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="img/1.png"</span><span style="color: #ff0000;"> alt</span><span style="color: #0000ff;">="5"</span> <span style="color: #0000ff;">/&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="buttons"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">index</span><span style="color: #0000ff;">="1"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="on"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">index</span><span style="color: #0000ff;">="2"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">index</span><span style="color: #0000ff;">="3"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">index</span><span style="color: #0000ff;">="4"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">index</span><span style="color: #0000ff;">="5"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="javascript:;"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="prev"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="arrow"</span><span style="color: #0000ff;">&gt;</span><span style="color: #ff0000;">&amp;lt;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="javascript:;"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="next"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="arrow"</span><span style="color: #0000ff;">&gt;</span><span style="color: #ff0000;">&amp;gt;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>优化，无缝滚动。</strong></p>
+<p>当你从最后一张图切换回第一张图时，有很大空白，利用两张辅助图来填补这个空白。</p>
+<p>这里补充下无缝滚动，直接看代码，复制最后一张图片放置第一张图片前，同时复制第一张图片放置最后一张图片的后面。并且，将第一张图片辅助图（实际上是实际显示的第5张图片隐藏起来，故设置style="left: -600px;"）</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>2、css样式</strong></p>
+<p>1、对盒子模型，文档流的理解，绝对定位问题。</p>
+<p class="p">2、注意list的overflow:hidden;只显示窗口的一张图片，把左右两边的都隐藏起来。</p>
+<p class="p">3、确保buttons中每个span所在层置顶，将其设置为最顶端。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800000;">            * </span>{<span style="color: #ff0000;">
+                margin</span>:<span style="color: #0000ff;"> 0</span>;<span style="color: #ff0000;">
+                padding</span>:<span style="color: #0000ff;"> 0</span>;<span style="color: #ff0000;">
+                text-decoration</span>:<span style="color: #0000ff;"> none</span>;
+            }<span style="color: #800000;">
+            
+            body </span>{<span style="color: #ff0000;">
+                padding</span>:<span style="color: #0000ff;"> 20px</span>;
+            }<span style="color: #800000;">
+            
+            #container </span>{<span style="color: #ff0000;">
+                position</span>:<span style="color: #0000ff;"> relative</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 600px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 400px</span>;<span style="color: #ff0000;">
+                border</span>:<span style="color: #0000ff;"> 3px solid #333</span>;<span style="color: #ff0000;">
+                overflow</span>:<span style="color: #0000ff;"> hidden</span>;
+            }<span style="color: #800000;">
+            
+            #list </span>{<span style="color: #ff0000;">
+                position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+                z-index</span>:<span style="color: #0000ff;"> 1</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 4200px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 400px</span>;
+            }<span style="color: #800000;">
+            
+            #list img </span>{<span style="color: #ff0000;">
+                float</span>:<span style="color: #0000ff;"> left</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 600px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 400px</span>;
+            }<span style="color: #800000;">
+            
+            #buttons </span>{<span style="color: #ff0000;">
+                position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+                left</span>:<span style="color: #0000ff;"> 250px</span>;<span style="color: #ff0000;">
+                bottom</span>:<span style="color: #0000ff;"> 20px</span>;<span style="color: #ff0000;">
+                z-index</span>:<span style="color: #0000ff;"> 2</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 10px</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 100px</span>;
+            }<span style="color: #800000;">
+            
+            #buttons span </span>{<span style="color: #ff0000;">
+                float</span>:<span style="color: #0000ff;"> left</span>;<span style="color: #ff0000;">
+                margin-right</span>:<span style="color: #0000ff;"> 5px</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 10px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 10px</span>;<span style="color: #ff0000;">
+                border</span>:<span style="color: #0000ff;"> 1px solid #fff</span>;<span style="color: #ff0000;">
+                border-radius</span>:<span style="color: #0000ff;"> 50%</span>;<span style="color: #ff0000;">
+                background</span>:<span style="color: #0000ff;"> #333</span>;<span style="color: #ff0000;">
+                cursor</span>:<span style="color: #0000ff;"> pointer</span>;
+            }<span style="color: #800000;">
+            
+            #buttons .on </span>{<span style="color: #ff0000;">
+                background</span>:<span style="color: #0000ff;"> orangered</span>;
+            }<span style="color: #800000;">
+            
+            .arrow </span>{<span style="color: #ff0000;">
+                position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+                top</span>:<span style="color: #0000ff;"> 180px</span>;<span style="color: #ff0000;">
+                z-index</span>:<span style="color: #0000ff;"> 2</span>;<span style="color: #ff0000;">
+                display</span>:<span style="color: #0000ff;"> none</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 40px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 40px</span>;<span style="color: #ff0000;">
+                font-size</span>:<span style="color: #0000ff;"> 36px</span>;<span style="color: #ff0000;">
+                font-weight</span>:<span style="color: #0000ff;"> bold</span>;<span style="color: #ff0000;">
+                line-height</span>:<span style="color: #0000ff;"> 35px</span>;<span style="color: #ff0000;">
+                text-align</span>:<span style="color: #0000ff;"> center</span>;<span style="color: #ff0000;">
+                color</span>:<span style="color: #0000ff;"> #fff</span>;<span style="color: #ff0000;">
+                background-color</span>:<span style="color: #0000ff;"> RGBA(0, 0, 0, .3)</span>;<span style="color: #ff0000;">
+                cursor</span>:<span style="color: #0000ff;"> pointer</span>;
+            }<span style="color: #800000;">
+            
+            .arrow:hover </span>{<span style="color: #ff0000;">
+                background-color</span>:<span style="color: #0000ff;"> RGBA(0, 0, 0, .7)</span>;
+            }<span style="color: #800000;">
+            
+            #container:hover .arrow </span>{<span style="color: #ff0000;">
+                display</span>:<span style="color: #0000ff;"> block</span>;
+            }<span style="color: #800000;">
+            
+            #prev </span>{<span style="color: #ff0000;">
+                left</span>:<span style="color: #0000ff;"> 20px</span>;
+            }<span style="color: #800000;">
+            
+            #next </span>{<span style="color: #ff0000;">
+                right</span>:<span style="color: #0000ff;"> 20px</span>;
+            }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>3、JS实现</strong></p>
+<p>首先我们先实现出手动点击左右两个箭头切换图片的效果：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>window.onload = <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+        </span><span style="color: #0000ff;">var</span> list = document.getElementById('list'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">var</span> prev = document.getElementById('prev'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">var</span> next = document.getElementById('next'<span style="color: #000000;">);
+
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> animate(offset) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，</span>
+            <span style="color: #008000;">//</span><span style="color: #008000;">且style.left获取的是字符串，需要用parseInt()取整转化为数字。</span>
+            <span style="color: #0000ff;">var</span> newLeft = parseInt(list.style.left) +<span style="color: #000000;"> offset;
+            list.style.left </span>= newLeft + 'px'<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">if</span>(newLeft&lt;-3000<span style="color: #000000;">){
+                list.style.left </span>= -600 + 'px'<span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">if</span>(newLeft&gt;-600<span style="color: #000000;">){
+                list.style.left </span>= -3000 + 'px'<span style="color: #000000;">;
+            }
+        }
+
+        prev.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            animate(</span>600<span style="color: #000000;">);
+        }
+        next.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            animate(</span>-600<span style="color: #000000;">);
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>效果如下图所示</p>
+<p><img src="./js原生的轮播，原理以及实践_files/900740-20171225163847431-426944047.gif" alt=""></p>
+<p>&nbsp;</p>
+<p><strong>运行后我们会发现，一直点击右箭头 ，会出现空白，而且，不能回到第一张图片。要点击左箭头才能回到第一张图片。</strong></p>
+<p>&nbsp;原因是我们利用偏移量left来获取图片，当看到left值小于3600时，因为没有第8张图片就出现空白，所以这里我们需要对偏移量做一个判断。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">if</span>(newLeft&lt;-3000<span style="color: #000000;">){
+                list.style.left </span>= -600 + 'px'<span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">if</span>(newLeft&gt;-600<span style="color: #000000;">){
+                list.style.left </span>= -3000 + 'px'<span style="color: #000000;">;
+            }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>加了这个判断就是说，在实时的left值在小于-3000的时候，通过操作dom元素直接把left值给到-600，回到初始化的状态。</p>
+<p>&nbsp;</p>
+<p><strong>但是轮播有自动轮播和手动轮播。上面基本实现的是手动点击进行轮播（手动轮播）。</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>二、自动轮播</strong></p>
+<p>要实现自动，必须有定时器进行计时。</p>
+<p><strong>对于定时器，有必要说明一下setInterval()跟setTimeout的区别了。</strong></p>
+<p>简单来说，setInterval()执行多次，setTimeout()只执行一次。</p>
+<p><strong>所以自动轮播需要我们每隔一段时间执行一次，选择setInterval()函数。</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">自动循环播放</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">var</span><span style="color: #000000;"> timer;
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> play(){
+            timer </span>= setInterval(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+                prev.onclick();
+            },</span>1500<span style="color: #000000;">)
+        }
+        play();</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img src="./js原生的轮播，原理以及实践_files/900740-20171225170946853-543452867.gif" alt=""></p>
+<p>&nbsp;</p>
+<p>完美实现了自动轮播</p>
+<p>但是，当我们想仔细看某一张图片时候，要把图片停住，我们清楚定时器就可以</p>
+<p>&nbsp;</p>
+<p><strong>三、手动可以干预轮播</strong></p>
+<p>我想仔细看某一张照片时候，要图片停住，需要用到<a title="window.clearInterval" href="https://developer.mozilla.org/zh-CN/docs/Web/API/window/clearInterval" target="_blank">window.clearInterval</a>&nbsp;这个方法。</p>
+<p>这里，我们需要对其DOM操作，需要获取整个轮播图区域，鼠标进入到容器区域就清空计时器。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">鼠标放上（离开）对应轮播暂停（播放）</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">var</span> container = document.getElementById('container'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> stop() {
+           <strong> clearInterval(timer);</strong>
+        }
+        container.onmouseover </span>=<span style="color: #000000;"> stop;
+        container.onmouseout </span>= play;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>效果，如下图所示：</p>
+<p><img src="./js原生的轮播，原理以及实践_files/900740-20171225172112275-855799589.gif" alt=""></p>
+<p>一个鼠标放上轮播暂停的实现就完美实现了。</p>
+<p>&nbsp;</p>
+<p>现在回顾一下，的确很简单，不是很难，并不是必须要用插件实现，原生的js也可以实现，你可以优化一下封装成自己的轮播插件。</p>
+<p>（1）容器的css布局。</p>
+<p>（2）每一次轮播通过偏移量left实现，手动轮播的按钮绑定每一次偏移量增加还是减少一张照片宽度的偏移量。</p>
+<p>（3）自动轮播，通过setInterval()方法实现定时器，执行下一张的点击函数</p>
+<p>（4）鼠标控制轮播的暂停和继续。通过onmouseover为暂停，onmouseout为继续。</p>
+<p>完整代码：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;db0eba8a-dbe6-475e-9f55-9c292994c273&#39;)"><img id="code_img_closed_db0eba8a-dbe6-475e-9f55-9c292994c273" class="code_img_closed" src="./js原生的轮播，原理以及实践_files/ContractedBlock.gif" alt=""><img id="code_img_opened_db0eba8a-dbe6-475e-9f55-9c292994c273" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;db0eba8a-dbe6-475e-9f55-9c292994c273&#39;,event)" src="./js原生的轮播，原理以及实践_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_db0eba8a-dbe6-475e-9f55-9c292994c273" class="cnblogs_code_hide">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+    &lt;head&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;style type="text/css"&gt;
+            *<span style="color: #000000;"> {
+                margin: </span>0<span style="color: #000000;">;
+                padding: </span>0<span style="color: #000000;">;
+                text</span>-<span style="color: #000000;">decoration: none;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            #container {
+                position: relative;
+                width: 600px;
+                height: 400px;
+                border: 3px solid #</span>333<span style="color: #000000;">;
+                overflow: hidden;
+            }
+            
+            #list {
+                position: absolute;
+                z</span>-index: 1<span style="color: #000000;">;
+                width: 4200px;
+                height: 400px;
+            }
+            
+            #list img {
+                </span><span style="color: #0000ff;">float</span><span style="color: #000000;">: left;
+                width: 600px;
+                height: 400px;
+            }
+            
+            #buttons {
+                position: absolute;
+                left: 250px;
+                bottom: 20px;
+                z</span>-index: 2<span style="color: #000000;">;
+                height: 10px;
+                width: 100px;
+            }
+            
+            #buttons span {
+                </span><span style="color: #0000ff;">float</span><span style="color: #000000;">: left;
+                margin</span>-<span style="color: #000000;">right: 5px;
+                width: 10px;
+                height: 10px;
+                border: 1px solid #fff;
+                border</span>-radius: 50%<span style="color: #000000;">;
+                background: #</span>333<span style="color: #000000;">;
+                cursor: pointer;
+            }
+            
+            #buttons .on {
+                background: orangered;
+            }
+            
+            .arrow {
+                position: absolute;
+                top: 180px;
+                z</span>-index: 2<span style="color: #000000;">;
+                display: none;
+                width: 40px;
+                height: 40px;
+                font</span>-<span style="color: #000000;">size: 36px;
+                font</span>-<span style="color: #000000;">weight: bold;
+                line</span>-<span style="color: #000000;">height: 35px;
+                text</span>-<span style="color: #000000;">align: center;
+                color: #fff;
+                background</span>-color: RGBA(0, 0, 0, .3<span style="color: #000000;">);
+                cursor: pointer;
+            }
+            
+            .arrow:hover {
+                background</span>-color: RGBA(0, 0, 0, .7<span style="color: #000000;">);
+            }
+            
+            #container:hover .arrow {
+                display: block;
+            }
+            
+            #prev {
+                left: 20px;
+            }
+            
+            #next {
+                right: 20px;
+            }
+        </span>&lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;div id="container"&gt;
+            &lt;div id="list" style="left: -600px;"&gt;
+                &lt;img src="img/5.png" alt="1" /&gt;
+                &lt;img src="img/1.png" alt="1" /&gt;
+                &lt;img src="img/2.png" alt="2" /&gt;
+                &lt;img src="img/3.png" alt="3" /&gt;
+                &lt;img src="img/4.png" alt="4" /&gt;
+                &lt;img src="img/5.png" alt="5" /&gt;
+                &lt;img src="img/1.png" alt="5" /&gt;
+            &lt;/div&gt;
+            &lt;div id="buttons"&gt;
+                &lt;span index="1" class="on"&gt;&lt;/span&gt;
+                &lt;span index="2"&gt;&lt;/span&gt;
+                &lt;span index="3"&gt;&lt;/span&gt;
+                &lt;span index="4"&gt;&lt;/span&gt;
+                &lt;span index="5"&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;a href="javascript:;" id="prev" class="arrow"&gt;&amp;lt;&lt;/a&gt;
+            &lt;a href="javascript:;" id="next" class="arrow"&gt;&amp;gt;&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/body&gt;
+
+&lt;/html&gt;
+
+&lt;script&gt;<span style="color: #000000;">
+    window.onload </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+        </span><span style="color: #0000ff;">var</span> list = document.getElementById('list'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">var</span> prev = document.getElementById('prev'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">var</span> next = document.getElementById('next'<span style="color: #000000;">);
+
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> animate(offset) {
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
+            且style.left获取的是字符串，需要用parseInt()取整转化为数字。</span><span style="color: #008000;">*/</span>
+            <span style="color: #0000ff;">var</span> newLeft = parseInt(list.style.left) +<span style="color: #000000;"> offset;
+            list.style.left </span>= newLeft + 'px'<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">if</span>(newLeft &lt; -3000<span style="color: #000000;">) {
+                list.style.left </span>= -600 + 'px'<span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">if</span>(newLeft &gt; -600<span style="color: #000000;">) {
+                list.style.left </span>= -3000 + 'px'<span style="color: #000000;">;
+            }
+        }
+        </span><span style="color: #008000;">/*</span><span style="color: #008000;">上一步</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        prev.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                animate(</span>600<span style="color: #000000;">);
+            }
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">下一步</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        next.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                animate(</span>-600<span style="color: #000000;">);
+            }
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">自动循环播放</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">var</span><span style="color: #000000;"> timer;
+
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> play() {
+            timer </span>= setInterval(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                prev.onclick();
+            }, </span>1500<span style="color: #000000;">)
+        }
+        play();
+        </span><span style="color: #008000;">/*</span><span style="color: #008000;">鼠标放上（离开）对应轮播暂停（播放）</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">var</span> container = document.getElementById('container'<span style="color: #000000;">);
+        </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> stop() {
+            clearInterval(timer);
+        }
+        container.onmouseover </span>=<span style="color: #000000;"> stop;
+        container.onmouseout </span>=<span style="color: #000000;"> play;
+    }
+</span>&lt;/script&gt;</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;</p>
+<p><strong>四、小点也随着图片进行轮播</strong></p>
+<p>首先要能拿到有多少个小点的数组，然后每一次的下一步的时候判断一下当前的小圆点的标志位。</p>
+<p>（1）当标志位大于数组的长度时候，需要把标志位赋值为初始值</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">上一步</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        prev.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                index </span>= index -1<span style="color: #000000;">;
+                </span><span style="color: #0000ff;">if</span>(index &lt; 1<span style="color: #000000;">) {
+                    index </span>= 5<span style="color: #000000;">;
+                }
+                buttonShow();
+                animate(</span>600<span style="color: #000000;">);
+            }
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">下一步</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        next.onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                index </span>= index + 1<span style="color: #000000;">;
+                </span><span style="color: #0000ff;">if</span>(index &gt; 5<span style="color: #000000;">) {
+                    index </span>= 1<span style="color: #000000;">;
+                }
+                buttonShow();
+                animate(</span>-600<span style="color: #000000;">);
+            }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>（2）每执行一次下一步，标志位temp+1，同时将圆点的上一个样式清除，下一个显示选中样式。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">function</span><span style="color: #000000;"> buttonShow() {
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">console.log(buttons.length);</span><span style="color: #008000;">*/</span>
+            <span style="color: #008000;">/*</span><span style="color: #008000;">清除之前的样式</span><span style="color: #008000;">*/</span>
+            <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0; i &lt; buttons.length; i++<span style="color: #000000;">) {
+                </span><span style="color: #0000ff;">if</span>(buttons[i].className === 'on'<span style="color: #000000;">) {
+                    buttons[i].className </span>= ''<span style="color: #000000;">;
+                }
+            }
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">数组从0开始，temp从-1开始</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+            buttons[index </span>- 1].className = 'on'<span style="color: #000000;">;
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>最后效果如下图所示：</p>
+<p><img src="./js原生的轮播，原理以及实践_files/900740-20171225194853556-1969942855.gif" alt=""></p>
+<p>&nbsp;</p>
+<p><strong>五、小点可以点击到对应的图片上</strong></p>
+<p>突然发现图片下边还有一堆小点，需要给增加点击事件，点击哪一个点，就到哪一张图片上。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">小圆点的点击事件</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i =0;i&lt;buttons.length;i++<span style="color: #000000;">){
+            buttons[i].onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;"> (){
+                console.log(i);
+                </span><span style="color: #008000;">/*</span><span style="color: #008000;">偏移量的获取：获取鼠标的小圆点的位置，用this把index绑定到对象buttons[i]上</span><span style="color: #008000;">*/</span>
+                <span style="color: #008000;">/*</span><span style="color: #008000;">由于index是自定义属性，需要用到getAttribute()这个dom的2级方法，去获取自定义的index属性</span><span style="color: #008000;">*/</span>
+                <span style="color: #0000ff;">var</span> clickIndex = parseInt(<span style="color: #0000ff;">this</span>.getAttribute('index'<span style="color: #000000;">));
+                </span><span style="color: #0000ff;">var</span> offset = 600*(index-<span style="color: #000000;">clickIndex);
+                animate(offset);
+                index </span>=<span style="color: #000000;"> clickIndex;
+                buttonShow();
+            }
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img src="./js原生的轮播，原理以及实践_files/900740-20171225201337900-64780090.gif" alt=""></p>
+<p>要大功告成了，但是发现控制台会发现打印出来的永远的是i=5。</p>
+<p><em><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;“对javascript来说</strong><strong>，由for语句创建的变量i即使在for循环执行结束后，也依旧会存在于循环外部的执行环境中。”</strong></em></p>
+<p>就是说，js没有块级作用域这东西，（可能我C写多了，混淆了）。在第一次循环（从 i=0 到 4 这一过程）结束后，最后的 i 获取到的为&nbsp;<em id="__mceDel">buttons.length&nbsp;</em>的值被</p>
+<p>保存在for循环之外，最后鼠标点击任何一个小圆点时，自然访问的一直是 i=5 了。</p>
+<p><strong>使用立即函数</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">小圆点的点击事件</span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0; i &lt; buttons.length; i++<span style="color: #000000;">) {
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">使用立即函数</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+            (</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(i) {
+                buttons[i].onclick </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+                    console.log(i);
+                    </span><span style="color: #008000;">/*</span><span style="color: #008000;">偏移量的获取：获取鼠标的小圆点的位置，用this把index绑定到对象buttons[i]上</span><span style="color: #008000;">*/</span>
+                    <span style="color: #008000;">/*</span><span style="color: #008000;">由于index是自定义属性，需要用到getAttribute()这个dom的2级方法，去获取自定义的index属性</span><span style="color: #008000;">*/</span>
+                    <span style="color: #0000ff;">var</span> clickIndex = parseInt(<span style="color: #0000ff;">this</span>.getAttribute('index'<span style="color: #000000;">));
+                    </span><span style="color: #0000ff;">var</span> offset = 600 * (index -<span style="color: #000000;"> clickIndex);
+                    animate(offset);
+                    index </span>=<span style="color: #000000;"> clickIndex;
+                    buttonShow();
+                }
+            })(i)
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js原生的轮播，原理以及实践_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这里涉及到js的闭包问题。</p>
+<p>&nbsp;</p>
+<p>完美原生js实现轮播，原理以及实践。总结一下：</p>
+<p>原理：（1）使用的是css只显示一张图片，其余隐藏。通过计算偏移量利用定时器实现自动播放，或通过手动点击事件切换图片。</p>
+<p>实践：<a href="http://www.mwcxs.top/%E8%BD%AE%E6%92%AD/index.html" target="_blank">http://www.mwcxs.top/%E8%BD%AE%E6%92%AD/index.html</a></p>
+<p>&nbsp;</p>
+<p>欢迎访问：</p>
+<p>1、云商城isv系统<a href="http://isv.suningcloud.com/mpisv-web/index" target="_blank">http://isv.suningcloud.com/mpisv-web/index</a></p>
+<p>&nbsp;2、云商城消费者门户<a href="http://www.suningcloud.com/promotion/index/experience_center.html" target="_blank">http://www.suningcloud.com/promotion/index/experience_center.html</a></p></div><div id="MySignature" style="display: block;">文中有错误的地方希望指出，共同进步</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/chengxs/category/994202.html" target="_blank">各种demo</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/chengxs/tag/demo/">demo</a>, <a href="http://www.cnblogs.com/chengxs/tag/%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">前端基本知识</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(8109993,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <span style="color:red">关注成功</span>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./js原生的轮播，原理以及实践_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./js原生的轮播，原理以及实践_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/chengxs/" target="_blank"><img src="./js原生的轮播，原理以及实践_files/20170911172045.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/chengxs/">saucxs</a><br>
+            <a href="http://home.cnblogs.com/u/chengxs/followees">关注 - 10</a><br>
+            <a href="http://home.cnblogs.com/u/chengxs/followers">粉丝 - 46</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow"><span style="color:red">关注成功</span></div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(8109993,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(8109993,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/chengxs/p/8067908.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/chengxs/p/8067908.html" title="发布于2017-12-20 14:13">css3的动画特效--动画序列（animation）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-12-25 21:01</span> <a href="http://www.cnblogs.com/chengxs/">saucxs</a> 阅读(<span id="post_view_count">51</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=8109993" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/chengxs/p/8109993.html#" onclick="AddToWz(8109993);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=269396,cb_entryId=8109993,cb_blogApp=currentBlogApp,cb_blogUserGuid='5a3a132a-6edf-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/12/25 21:01:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/chengxs/p/8109993.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/chengxs/p/8109993.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./js原生的轮播，原理以及实践_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./js原生的轮播，原理以及实践_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./js原生的轮播，原理以及实践_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./js原生的轮播，原理以及实践_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./js原生的轮播，原理以及实践_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./js原生的轮播，原理以及实践_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585754/" target="_blank">人民日报评论同天生日募捐：慈善不能有新意而无心意</a><br> ·  <a href="https://news.cnblogs.com/n/585753/" target="_blank">火绒回应拦截腾讯程序：QQ推广产品和病毒行为一致</a><br> ·  <a href="https://news.cnblogs.com/n/585752/" target="_blank">《王者荣耀》全新模式：五军对决 每局8分钟</a><br> ·  <a href="https://news.cnblogs.com/n/585751/" target="_blank">Ruby 2.5.0发布</a><br> ·  <a href="https://news.cnblogs.com/n/585749/" target="_blank">iPhone X砍单四成？相关公司集体否认，但苹果概念股已大跌</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div class="newsItem">
+    <div id="profile_block">
+        个人博客网站：<a href="http://www.chengxinsong.cn/" target="_blank">www.chengxinsong.cn</a><br>
+        hexo搭建博客：<a href="https://saucxs.github.io/" target="_blank">saucxs.github.io</a><br>
+         github： <a href="https://github.com/saucxs" target="_blank">https://github.com/saucxs</a><br>       
+        CSDN博客：<a href="http://blog.csdn.net/chengxin123456789" target="_blank">CSDN博客</a><br>  
+    </div>
+ <div id="profile_block" style="margin-top:10px">
+
+      <span id="busuanzi_container_site_pv" style="display: inline;">
+    本站总访问量<span id="busuanzi_value_site_pv" style="color:#e40202">149617</span>次
+  </span>
+      <span id="busuanzi_container_site_uv" style="display: inline;">
+  总访客数<span id="busuanzi_value_site_uv" style="color:#e40202">123438</span>人次
+  </span>
+</div>
+</div><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/chengxs/">saucxs</a><br>园龄：<a href="https://home.cnblogs.com/u/chengxs/" title="入园时间：2016-03-01">1年9个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/chengxs/followers/">46</a><br>关注：<a href="https://home.cnblogs.com/u/chengxs/followees/">10</a><div id="p_b_follow"><span style="color:red">关注成功</span></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center"><a href="http://www.cnblogs.com/chengxs/archive/2017/12/19.html"><u>19</u></a></td><td align="center"><a href="http://www.cnblogs.com/chengxs/archive/2017/12/20.html"><u>20</u></a></td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center"><a href="http://www.cnblogs.com/chengxs/archive/2017/12/25.html"><u>25</u></a></td><td class="CalTodayDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/chengxs/p/8109993.html">1. js原生的轮播，原理以及实践</a></li><li><a href="http://www.cnblogs.com/chengxs/p/8067908.html">2. css3的动画特效--动画序列（animation）</a></li><li><a href="http://www.cnblogs.com/chengxs/p/8066819.html">3. css3的动画特效--元素旋转（transition，animation）</a></li><li><a href="http://www.cnblogs.com/chengxs/p/8059889.html">4. 页面的新开页，window.open的hacker</a></li><li><a href="http://www.cnblogs.com/chengxs/p/8065837.html">5. 通过路由url携带参数进行参数传递</a></li><li><a href="http://www.cnblogs.com/chengxs/p/8065805.html">6. 前端实现下拉框联动，数组封装成树形结构实现下拉框联动</a></li><li><a href="http://www.cnblogs.com/chengxs/p/7857481.html">7. JavaScript数据可视化编程学习（二）Flotr2，雷达图</a></li><li><a href="http://www.cnblogs.com/chengxs/p/7857233.html">8. JavaScript数据可视化编程学习（一）Flotr2，包含简单的，柱状图，折线图，饼图，散点图</a></li><li><a href="http://www.cnblogs.com/chengxs/p/7712332.html">9. 前端（各种demo）三：优惠券，热区，等模块的实现（css方式）</a></li><li><a href="http://www.cnblogs.com/chengxs/p/7711752.html">10. 前端（各种demo）二：左侧导航栏的折叠和打开（不使用js）基础版和升级版</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(120)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/chengxs/category/798414.html">acm/hdu(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/chengxs/category/798415.html">acm/poj(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/chengxs/category/798418.html">Android学习(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/chengxs/category/994267.html">AngularJS(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/chengxs/category/1075906.html">blog(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/chengxs/category/1039108.html">ECMAScript 6学习(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/chengxs/category/1062742.html">git使用(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/chengxs/category/1075905.html">hexo(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/chengxs/category/868314.html">Html+CSS+Javascript/Jquery(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/chengxs/category/881947.html">HTML5(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/chengxs/category/868315.html">MySQL(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/chengxs/category/994265.html">NodeJS(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/chengxs/category/994266.html">ReactJS</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/chengxs/category/885373.html">阿里云服务器(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/chengxs/category/895419.html">笔试题(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/chengxs/category/994202.html">各种demo(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/chengxs/category/946563.html">前端基本知识(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/chengxs/category/890646.html">前端框架学习(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/chengxs/category/798417.html">软件工程(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/chengxs/category/812983.html">数学建模(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links798422" class="catList sidebar-block">
+<h3 class="catListTitle">张翼飞老师</h3>
+
+</div>
+
+<div id="sidebar_links964927" class="catList sidebar-block">
+<h3 class="catListTitle">赵亮</h3>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	45339
+	</li>
+	<li class="liRank">
+		排名 -	7744
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/chengxs/p/8067908.html#3873329">1. Re:css3的动画特效--动画序列（animation）</a></li>
+        <li class="recent_comment_body">@Alternatives 好尴尬啊...</li>
+        <li class="recent_comment_author">--saucxs</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/chengxs/p/8067908.html#3870661">2. Re:css3的动画特效--动画序列（animation）</a></li>
+        <li class="recent_comment_body">我怎么记得是“高桌子，低板凳，都是木头”</li>
+        <li class="recent_comment_author">--Alternatives</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/chengxs/p/7711752.html#3819578">3. Re:前端（各种demo）二：左侧导航栏的折叠和打开（不使用js）基础版和升级版</a></li>
+        <li class="recent_comment_body">不错，支持</li>
+        <li class="recent_comment_author">--Cyclone77</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/chengxs/p/6497575.html#3812654">4. Re:前端基本知识（四）：JS的异步模式：1、回调函数；2、事件监听；3、观察者模式；4、promise对象</a></li>
+        <li class="recent_comment_body">回调函数第一个例子里面callback的位置是不是写错了？经试验验证应放在setTimeout下面而不是里面</li>
+        <li class="recent_comment_author">--奈儿</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/chengxs/p/6290569.html#3810202">5. Re:DataTables学习：从最基本的入门静态页面，使用ajax调用Json本地数据源实现前端开发深入学习，根据后台数据接口替换掉本地的json本地数据，以及报错的处理地方，8个例子（显示行附加信息，回调使用api，动态显示和隐藏列...），详细教程</a></li>
+        <li class="recent_comment_body">楼主有没有相关代码。实在是不知道怎么解决了，<br>谢谢</li>
+        <li class="recent_comment_author">--rachelch</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/chengxs/p/5986095.html">1. 安装MYSQL详细教程　版本：mysql-installer-community-5.7.16.0　免安装版本和安装版本出现错误的解决(11803)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6252572.html">2. 使用webstorm+webpack构建简单入门级“HelloWorld”的应用&amp;&amp;引用jquery来实现alert(5183)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6297659.html">3. github学习：如何从本地把项目上传到github&amp;&amp;如何把github项目通过clone复制下来，详细教程(4762)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/5576064.html">4. Android Studio的下载和安装教程（从ADT到AS）(4001)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6238715.html">5. 创建APPID&amp;&amp;部署服务端教程(3068)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/chengxs/p/6762380.html">1. 前端和算法实现：给网站上加上自己的水印（简单+复杂）(10)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6290569.html">2. DataTables学习：从最基本的入门静态页面，使用ajax调用Json本地数据源实现前端开发深入学习，根据后台数据接口替换掉本地的json本地数据，以及报错的处理地方，8个例子（显示行附加信息，回调使用api，动态显示和隐藏列...），详细教程(7)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/7496236.html">3. github+hexo搭建自己的博客网站（六）进阶配置(搜索引擎收录，优化你的url，添加RSS)(7)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6484244.html">4. 前端基本知识（三）：JS的闭包理解（第一个思考题有错误，已修改）(6)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/5372180.html">5. 软件工程--构建之法   学习进度条（已更新）(5)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/chengxs/p/6762380.html">1. 前端和算法实现：给网站上加上自己的水印（简单+复杂）(9)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/5827635.html">2. Front End Developer Questions 前端开发人员问题（一）(2)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6497575.html">3. 前端基本知识（四）：JS的异步模式：1、回调函数；2、事件监听；3、观察者模式；4、promise对象(2)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6388779.html">4. 前端基本知识（一）：W3C标准&amp;&amp;冒泡事件，捕获事件，W3C DOM对象模型，对比分析(1)</a></li><li><a href="http://www.cnblogs.com/chengxs/p/6260382.html">5. 开发环境配置：jdk8的详细安装教程&amp;&amp;tomact的详细安装教程&amp;&amp;java环境变量的配置&amp;&amp;tomcat启动总失败原因(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 saucxs
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+<iframe src="./js原生的轮播，原理以及实践_files/saved_resource.html" name="1514243794548" width="100%" height="100%" allowtransparency="yes" frameborder="no" scrolling="no" style="display: none;"></iframe></body></html>

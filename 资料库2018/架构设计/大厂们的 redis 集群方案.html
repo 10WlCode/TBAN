@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.cnblogs.com/me115/p/9043420.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大厂们的 redis 集群方案 - 大CC - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./大厂们的 redis 集群方案_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./大厂们的 redis 集群方案_files/bundle-Custom.css">
+<link type="text/css" rel="stylesheet" href="./大厂们的 redis 集群方案_files/64385.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./大厂们的 redis 集群方案_files/bundle-Custom-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/me115/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/me115/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/me115/wlwmanifest.xml">
+<script async="" src="./大厂们的 redis 集群方案_files/analytics.js.下载"></script><script src="./大厂们的 redis 集群方案_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root header + .container > .ads:first-child
+{ display: none !important; }</style><style type="text/css">img[src="https://cb.amazingcounters.com/counter.php?i=2965824&c=8897785"]
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'me115', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./大厂们的 redis 集群方案_files/blog-common.js.下载" type="text/javascript"></script>
+</head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<link rel="stylesheet" href="./大厂们的 redis 集群方案_files/prettify.css">
+<link rel="stylesheet" href="./大厂们的 redis 集群方案_files/github.css">
+<script src="./大厂们的 redis 集群方案_files/google-code-prettify.js.下载"></script>
+<script type="text/javascript">
+$(window).load(function(){
+     $("pre").addClass("prettyprint");
+    prettyPrint();
+})
+</script>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/me115/"><img id="blogLogo" src="./大厂们的 redis 集群方案_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://blog.me115.com/" target="_blank">大CC</a></h1>
+<h2><!-- Feedsky FEED发布代码开始 -->
+<!-- FEED自动发现标记开始 -->
+<link title="RSS 2.0" type="application/rss+xml" href="http://feed.cnblogs.com/blog/u/64385/rss" rel="alternate">
+<!-- FEED自动发现标记结束 -->
+<a href="http://feed.cnblogs.com/blog/u/64385/rss" target="_blank"><img border="0" src="./大厂们的 redis 集群方案_files/rss.gif" alt="feedsky" vspace="2" style="margin-bottom:3px"></a><br>
+<!-- Feedsky FEED发布代码结束 -->
+关注 Nosql/Docker/阅读分享</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/me115/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="http://www.me115.com/" target="_blank">木书架</a></li>
+<li></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/me115/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/me115/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 315&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 611</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle" data-date="2018. 05 15">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/me115/p/9043420.html">大厂们的 redis 集群方案</a>
+		</h1>
+		<div class="clear"></div>
+		<div id="navCategory" class="dir"><h3>内容目录：</h3><ul><li><a href="https://www.cnblogs.com/me115/p/9043420.html#h20">类 codis 架构</a></li><li><a href="https://www.cnblogs.com/me115/p/9043420.html#h21">基于官方 redis cluster 的方案</a></li></ul></div><div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><p>redis 集群方案主要有两类，一是使用类 codis 的架构，按组划分，实例之间互相独立；<br>
+另一套是基于官方的 redis cluster 的方案；下面分别聊聊这两种方案；</p>
+<h2 id="h20">类 codis 架构</h2>
+<p><img src="./大厂们的 redis 集群方案_files/90573-20180515222110177-1033686810.jpg"></p>
+<p>这套架构的特点：</p>
+<ul>
+<li>分片算法：基于 slot hash桶；</li>
+<li>分片实例之间相互独立，每组 一个master 实例和多个slave；</li>
+<li>路由信息存放到第三方存储组件，如 zookeeper 或etcd</li>
+<li>旁路组件探活</li>
+</ul>
+<p>使用这套方案的公司：<br>
+阿里云： ApsaraCache, RedisLabs、京东、百度等</p>
+<h3 id="codis">codis</h3>
+<p>slots 方案：划分了 1024个slot， slots 信息在 proxy层感知； redis 进程中维护本实例上的所有key的一个slot map；</p>
+<p>迁移过程中的读写冲突处理：<br>
+最小迁移单位为key；<br>
+访问逻辑都是先访问 src 节点，再根据结果判断是否需要进一步访问 target 节点；</p>
+<ul>
+<li>访问的 key 还未被迁移：读写请求访问 src 节点，处理后访问：</li>
+<li>访问的 key 正在迁移：读请求访问 src 节点后直接返回；写请求无法处理，返回 retry</li>
+<li>访问的 key 已被迁移(或不存在）：读写请求访问 src 节点，收到 moved 回复，继续访问 target 节点处理</li>
+</ul>
+<h3 id="阿里云">阿里云</h3>
+<p>AparaCache 的单机版已开源(开源版本中不包含slot等实现)，集群方案细节未知；<a href="https://github.com/alibaba/ApsaraCache">ApsaraCache</a></p>
+<h3 id="百度-bdrp-2.0">百度 BDRP 2.0</h3>
+<p>主要组件：<br>
+proxy，基于twemproxy 改造，实现了动态路由表；<br>
+redis内核： 基于2.x 实现的slots 方案；<br>
+metaserver：基于redis实现，包含的功能：拓扑信息的存储 &amp; 探活；<br>
+最多支持1000个节点；</p>
+<p>slot 方案：<br>
+redis 内核中对db划分，做了16384个db； 每个请求到来，首先做db选择；</p>
+<p>数据迁移实现：<br>
+数据迁移的时候，最小迁移单位是slot，迁移中整个slot 处于阻塞状态，只支持读请求，不支持写请求；<br>
+对比 官方 redis cluster/ codis 的按key粒度进行迁移的方案：按key迁移对用户请求更为友好，但迁移速度较慢；这个按slot进行迁移的方案速度更快；</p>
+<h3 id="京东">京东</h3>
+<p>主要组件：<br>
+proxy: 自主实现，基于 golang 开发；<br>
+redis内核：基于 redis 2.8<br>
+configServer(cfs)组件：配置信息存放；<br>
+scala组件：用于触发部署、新建、扩容等请求；<br>
+mysql：最终所有的元信息及配置的存储；<br>
+sentinal（golang实现）：哨兵，用于监控proxy和redis实例，redis实例失败后触发切换；</p>
+<p>slot 方案实现：<br>
+在内存中维护了slots的map映射表；</p>
+<p>数据迁移：<br>
+基于 slots 粒度进行迁移；<br>
+scala组件向dst实例发送命令告知会接受某个slot；<br>
+dst 向 src 发送命令请求迁移，src开启一个线程来做数据的dump，将这个slot的数据整块dump发送到dst（未加锁，只读操作）<br>
+写请求会开辟一块缓冲区，所有的写请求除了写原有数据区域，同时双写到缓冲区中。<br>
+当一个slot迁移完成后，把这个缓冲区的数据都传到dst，当缓冲区为空时，更改本分片slot规则，不再拥有该slot，后续再请求这个slot的key返回moved；<br>
+上层proxy会保存两份路由表，当该slot 请求目标实例得到 move 结果后，更新拓扑；</p>
+<p>跨机房：跨机房使用主从部署结构；没有多活，异地机房作为slave；</p>
+<h2 id="h21">基于官方 redis cluster 的方案</h2>
+<p><img src="./大厂们的 redis 集群方案_files/90573-20180515222127730-567425490.jpg"></p>
+<p>和上一套方案比，所有功能都集成在 redis cluster 中，路由分片、拓扑信息的存储、探活都在redis cluster中实现；各实例间通过 gossip 通信；这样的好处是简单，依赖的组件少，应对400个节点以内的场景没有问题（按单实例8w read qps来计算，能够支持 200 * 8 = 1600w 的读多写少的场景）；但当需要支持更大的规模时，由于使用 gossip协议导致协议之间的通信消耗太大，redis cluster 不再合适；</p>
+<p>使用这套方案的有：AWS, 百度贴吧</p>
+<h3 id="官方-redis-cluster">官方 redis cluster</h3>
+<p>数据迁移过程：<br>
+基于 key粒度的数据迁移；<br>
+迁移过程的读写冲突处理：<br>
+从A 迁移到 B;</p>
+<ul>
+<li>访问的 key 所属slot 不在节点 A 上时，返回 MOVED 转向，client 再次请求B；</li>
+<li>访问的 key 所属 slot 在节点 A 上，但 key 不在 A上， 返回 ASK 转向，client再次请求B；</li>
+<li>访问的 key 所属slot 在A上，且key在 A上，直接处理；（同步迁移场景：该 key正在迁移，则阻塞）</li>
+</ul>
+<h3 id="aws-elasticcache">AWS ElasticCache</h3>
+<p>ElasticCache 支持主从和集群版、支持读写分离；<br>
+集群版用的是开源的Redis Cluster，未做深度定制；</p>
+<h3 id="百度贴吧的ksarch-saas">百度贴吧的ksarch-saas：</h3>
+<p>基于redis cluster + twemproxy 实现；后被 BDRP 吞并；<br>
+twemproxy 实现了 smart client 功能；使用 redis cluster后还加一层 proxy的好处：</p>
+<ol>
+<li>对client友好，不需要client都升级为smart client；（否则，所有语言client 都需要支持一遍）</li>
+<li>加一层proxy可以做更多平台策略；比如在proxy可做 大key、热key的监控、慢查询的请求监控、以及接入控制、请求过滤等；</li>
+</ol>
+<p>即将发布的 redis 5.0 中有个 feature，作者计划给 redis cluster加一个proxy。</p>
+<p>ksarch-saas 对 twemproxy的改造已开源：<br>
+<a href="https://github.com/ksarch-saas/r3proxy" class="uri">https://github.com/ksarch-saas/r3proxy</a></p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/me115/category/590819.html" target="_blank">NoSQL</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9043420,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;308d174c-bea9-de11-ba8f-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./大厂们的 redis 集群方案_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./大厂们的 redis 集群方案_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/me115/" target="_blank"><img src="./大厂们的 redis 集群方案_files/u90573.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/me115/">大CC</a><br>
+            <a href="http://home.cnblogs.com/u/me115/followees">关注 - 3</a><br>
+            <a href="http://home.cnblogs.com/u/me115/followers">粉丝 - 529</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;308d174c-bea9-de11-ba8f-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9043420,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">6</span>
+    </div>
+    <div class="buryit" onclick="votePost(9043420,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/me115/p/8516838.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/me115/p/8516838.html" title="发布于2018-03-06 21:19">redis 突然大量逐出导致读写请求block</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2018-05-15 22:23</span> <a href="http://www.cnblogs.com/me115/">大CC</a> 阅读(<span id="post_view_count">488</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=9043420" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/me115/p/9043420.html#" onclick="AddToWz(9043420);return false;">收藏</a></div>
+	</div>
+	<script src="./大厂们的 redis 集群方案_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=64385,cb_entryId=9043420,cb_blogApp=currentBlogApp,cb_blogUserGuid='308d174c-bea9-de11-ba8f-001cf0cd104b',cb_entryCreatedDate='2018/5/15 22:23:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3975064,&#39;R23jog6Ttu6yaLagJt7skCeARprylewIoEqX5M1mqrHusyIVRl0Orw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3975064,&#39;R23jog6Ttu6yaLagJt7skCeARprylewIoEqX5M1mqrHusyIVRl0Orw==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/me115/p/9043420.html#3975064" class="layer">#1楼</a><a name="3975064" id="comment_anchor_3975064"></a>  <span class="comment_date">2018-05-15 22:33</span> <a id="a_comment_author_3975064" href="http://www.cnblogs.com/stulzq/" target="_blank">晓晨Master</a> <a href="http://msg.cnblogs.com/send/%E6%99%93%E6%99%A8Master" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3975064" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3975064,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3975064,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3975064_avatar" style="display:none;">http://pic.cnblogs.com/face/668104/20180314222145.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3975311,&#39;T5h3MW1hhR3tlGtmVv4UDtC3cSyiYISTXLTitrq92hJcQLjHqcgiGQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3975311,&#39;T5h3MW1hhR3tlGtmVv4UDtC3cSyiYISTXLTitrq92hJcQLjHqcgiGQ==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/me115/p/9043420.html#3975311" class="layer">#2楼</a><a name="3975311" id="comment_anchor_3975311"></a><span id="comment-maxId" style="display:none;">3975311</span><span id="comment-maxDate" style="display:none;">2018/5/16 10:56:28</span>  <span class="comment_date">2018-05-16 10:56</span> <a id="a_comment_author_3975311" href="http://www.cnblogs.com/Irving/" target="_blank">花儿笑弯了腰</a> <a href="http://msg.cnblogs.com/send/%E8%8A%B1%E5%84%BF%E7%AC%91%E5%BC%AF%E4%BA%86%E8%85%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3975311" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3975311,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3975311,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3975311_avatar" style="display:none;">http://pic.cnblogs.com/face/365537/20140218233545.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/me115/p/9043420.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/me115/p/9043420.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./大厂们的 redis 集群方案_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./大厂们的 redis 集群方案_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./大厂们的 redis 集群方案_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./大厂们的 redis 集群方案_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./大厂们的 redis 集群方案_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./大厂们的 redis 集群方案_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./大厂们的 redis 集群方案_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/596783/" target="_blank">Def Con黑客大会首次在中国举办</a><br> ·  <a href="https://news.cnblogs.com/n/596782/" target="_blank">开发者总结了 8 种最好的AI机器学习开源项目</a><br> ·  <a href="https://news.cnblogs.com/n/596780/" target="_blank">为提升产能，特斯拉本月底将再次暂停生产Model 3</a><br> ·  <a href="https://news.cnblogs.com/n/596779/" target="_blank">南孚推全球首款立式风冷无线充 解了苹果难题</a><br> ·  <a href="https://news.cnblogs.com/n/596778/" target="_blank">马斯克畅想未来：任何人都能去火星，传统汽车退出历史舞台</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br> ·  <a href="http://kb.cnblogs.com/page/593985/" target="_blank">如何识别人的技术能力和水平？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"><b>历史上的今天:</b><br>2011-05-15 <a href="http://www.cnblogs.com/me115/archive/2011/05/15/2046873.html">.net 下动态加载自定义控件后传值及函数调用方法</a><br></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div class="catListLink"><h3 class="catListTitle">常用链接</h3><p class="notes_block">联系方式:<b>me115在126.com</b></p><br><h3 class="catListTitle">我的开源书籍</h3><p class="notes_block">《Linux工具快速教程》<br> <a href="http://linuxtools-rst.readthedocs.org/zh_CN/latest/" target="_blank">在线阅读</a> &nbsp;&nbsp;<a href="https://github.com/me115/linuxtools_rst" target="_blank">GitHub地址</a> </p><br><p class="notes_block">《图说设计模式》<br> <a href="http://design-patterns.readthedocs.org/zh_CN/latest/index.html" target="_blank">在线阅读</a> &nbsp;&nbsp;<a href="https://github.com/me115/design_patterns" target="_blank">GitHub地址</a> </p></div><div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/me115/p/9043420.html">1. 大厂们的 redis 集群方案</a></li><li><a href="http://www.cnblogs.com/me115/p/8516838.html">2. redis 突然大量逐出导致读写请求block</a></li><li><a href="http://www.cnblogs.com/me115/p/6366391.html">3. Docker 1.13 管理命令</a></li><li><a href="http://www.cnblogs.com/me115/p/6366374.html">4. 玩转 Ceph 的正确姿势</a></li><li><a href="http://www.cnblogs.com/me115/p/6129222.html">5. 修复docker pull image failed</a></li><li><a href="http://www.cnblogs.com/me115/p/5698851.html">6. Docker镜像文件存储结构</a></li><li><a href="http://www.cnblogs.com/me115/p/5698791.html">7. Kerberos是怎么工作的？</a></li><li><a href="http://www.cnblogs.com/me115/p/5698787.html">8. nginx缓冲区优化</a></li><li><a href="http://www.cnblogs.com/me115/p/5539047.html">9. Docker 常用命令</a></li><li><a href="http://www.cnblogs.com/me115/p/5528463.html">10. godep 包管理工具</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/me115/category/225774.html">C++编程(64)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/me115/category/331464.html">CC评网(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/me115/category/369026.html">CC书评(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/me115/category/943000.html">Ceph(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/me115/category/835196.html">Docker(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/me115/category/783320.html">Go编程(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/me115/category/226360.html">IT行业(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/me115/category/267414.html">Linux&amp;Unix(59)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/me115/category/270742.html">Memcache(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/me115/category/590819.html">NoSQL(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/me115/category/314131.html">Python(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/me115/category/313395.html">Vi配置(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/me115/category/245702.html">Web 开发(53)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/me115/category/265401.html">WEB安全&amp;优化(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/me115/category/279785.html">WEB信息采集(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/me115/category/237917.html">包容万物(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/me115/category/270743.html">并行计算(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/me115/category/406685.html">公司管理(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/me115/category/629835.html">架构(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/me115/category/226359.html">经济观点(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/me115/category/828996.html">开源工具(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/me115/category/241976.html">论文相关(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/me115/category/264777.html">时间管理(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/me115/category/264780.html">网站运营(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/me115/category/828998.html">虚拟化</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/me115/archive/2018/05.html">2018年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/me115/archive/2018/03.html">2018年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/me115/archive/2017/02.html">2017年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/me115/archive/2016/12.html">2016年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/me115/archive/2016/07.html">2016年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/me115/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/me115/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/me115/archive/2015/12.html">2015年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/me115/archive/2015/11.html">2015年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/me115/archive/2015/10.html">2015年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/me115/archive/2015/09.html">2015年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/me115/archive/2015/08.html">2015年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/me115/archive/2015/06.html">2015年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/me115/archive/2015/05.html">2015年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/me115/archive/2015/04.html">2015年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/me115/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/me115/archive/2015/02.html">2015年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/me115/archive/2015/01.html">2015年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/me115/archive/2014/11.html">2014年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/me115/archive/2014/10.html">2014年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/me115/archive/2014/09.html">2014年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/me115/archive/2014/08.html">2014年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/me115/archive/2014/07.html">2014年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/me115/archive/2014/06.html">2014年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/me115/archive/2014/05.html">2014年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/me115/archive/2014/04.html">2014年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/me115/archive/2014/02.html">2014年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/me115/archive/2013/12.html">2013年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/me115/archive/2013/11.html">2013年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/me115/archive/2013/10.html">2013年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/me115/archive/2013/09.html">2013年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/me115/archive/2013/06.html">2013年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/me115/archive/2013/04.html">2013年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/me115/archive/2013/03.html">2013年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/me115/archive/2013/01.html">2013年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/me115/archive/2012/12.html">2012年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/me115/archive/2012/10.html">2012年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/me115/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/me115/archive/2012/08.html">2012年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/me115/archive/2012/07.html">2012年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/me115/archive/2012/06.html">2012年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/me115/archive/2012/05.html">2012年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/me115/archive/2012/04.html">2012年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/me115/archive/2012/02.html">2012年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/me115/archive/2011/11.html">2011年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/me115/archive/2011/10.html">2011年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/me115/archive/2011/09.html">2011年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/me115/archive/2011/08.html">2011年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/me115/archive/2011/07.html">2011年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_49" href="http://www.cnblogs.com/me115/archive/2011/06.html">2011年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_50" href="http://www.cnblogs.com/me115/archive/2011/05.html">2011年5月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_51" href="http://www.cnblogs.com/me115/archive/2011/04.html">2011年4月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_52" href="http://www.cnblogs.com/me115/archive/2011/03.html">2011年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_53" href="http://www.cnblogs.com/me115/archive/2011/02.html">2011年2月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_54" href="http://www.cnblogs.com/me115/archive/2011/01.html">2011年1月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_55" href="http://www.cnblogs.com/me115/archive/2010/12.html">2010年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_56" href="http://www.cnblogs.com/me115/archive/2010/11.html">2010年11月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_57" href="http://www.cnblogs.com/me115/archive/2010/10.html">2010年10月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_58" href="http://www.cnblogs.com/me115/archive/2010/09.html">2010年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_59" href="http://www.cnblogs.com/me115/archive/2010/08.html">2010年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_60" href="http://www.cnblogs.com/me115/archive/2010/06.html">2010年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_61" href="http://www.cnblogs.com/me115/archive/2010/05.html">2010年5月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_62" href="http://www.cnblogs.com/me115/archive/2010/04.html">2010年4月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_63" href="http://www.cnblogs.com/me115/archive/2010/03.html">2010年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_64" href="http://www.cnblogs.com/me115/archive/2010/01.html">2010年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_65" href="http://www.cnblogs.com/me115/archive/2009/12.html">2009年12月 (4)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	355939
+	</li>
+	<li class="liRank">
+		排名 -	472
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/me115/archive/2012/09/06/2672798.html">1. 不要在一门技术上吊死(59)</a></li><li><a href="http://www.cnblogs.com/me115/p/4207117.html">2. 2014年度个人目标总结(53)</a></li><li><a href="http://www.cnblogs.com/me115/archive/2012/09/18/2689986.html">3. 如何保障晚间的高效工作(30)</a></li><li><a href="http://www.cnblogs.com/me115/p/3545054.html">4. 《淘宝技术这十年》读书笔记(27)</a></li><li><a href="http://www.cnblogs.com/me115/p/4092632.html">5. 看懂UML类图和时序图(27)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/me115/p/4092632.html">1. 看懂UML类图和时序图(42)</a></li><li><a href="http://www.cnblogs.com/me115/p/4221272.html">2. 发布《Linux工具快速教程》(38)</a></li><li><a href="http://www.cnblogs.com/me115/archive/2013/01/24/2874153.html">3. WEB站点性能优化实践（加载速度提升2s）(31)</a></li><li><a href="http://www.cnblogs.com/me115/p/3545054.html">4. 《淘宝技术这十年》读书笔记(29)</a></li><li><a href="http://www.cnblogs.com/me115/p/4207117.html">5. 2014年度个人目标总结(28)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 大CC
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<a href="http://www.me115.com/" target="_blank">木书架</a>
+<a href="http://blog.me115.com/" target="_blank">大CC的博客</a>
+<script src="./大厂们的 redis 集群方案_files/stat.php" language="JavaScript"></script><script src="./大厂们的 redis 集群方案_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=2236510" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./大厂们的 redis 集群方案_files/pic.gif"></a>
+
+<link rel="stylesheet" href="./大厂们的 redis 集群方案_files/prettify.css">
+<link rel="stylesheet" href="./大厂们的 redis 集群方案_files/github.css">
+<script src="./大厂们的 redis 集群方案_files/google-code-prettify.js.下载"></script>
+
+<script type="text/javascript">
+var $a = $("#navList").children("li").eq(2).children("a");
+$a.attr('href','http://www.me115.com');
+$a.attr('target','_blank');
+$a.html('木书架');
+var $weibo = $("#navList").children("li").eq(3).children("a");
+$weibo.attr('href','http://weibo.com/bigcc115');
+$weibo.attr('target','_blank');
+$weibo.html('微博');
+
+var $bigc = $("#Header1_HeaderTitle");
+$bigc.attr('href','http://blog.me115.com');
+$bigc.attr('target','_blank');
+
+var notes = "<div class='catListLink'><h3 class='catListTitle'>常用链接</h3><p class='notes_block'>联系方式:<b>me115在126.com</b></p><br/><h3 class='catListTitle'>我的开源书籍</h3><p class='notes_block'>《Linux工具快速教程》<br/> <a href='http://linuxtools-rst.readthedocs.org/zh_CN/latest/' target='_blank'>在线阅读</a> &nbsp;&nbsp;<a href='https://github.com/me115/linuxtools_rst' target='_blank'>GitHub地址</a> </p><br/><p class='notes_block'>《图说设计模式》<br/> <a href='http://design-patterns.readthedocs.org/zh_CN/latest/index.html' target='_blank'>在线阅读</a> &nbsp;&nbsp;<a href='https://github.com/me115/design_patterns' target='_blank'>GitHub地址</a> </p></div>";
+
+$("#blog-sidecolumn").before(notes);
+
+$(function(){$('.postTitle').each(function(p){  $(this).attr('data-date', $(this).nextAll('.postDesc').eq(0).text().split(' ')[2].replace(/(\d+)-(\d+)-(\d+)/, "$1. $2 $3") )});$("pre").addClass("code"); var dirbef = '<div id="navCategory" class="dir"><h3>内容目录：</h3><ul>', dirend = '</ul></div>', dircontent = '';$('.post h2').each( function(i,e){ dircontent += '<li><a href="#h2' + i + '">' + $(e).text() + "</a></li>"; $(this).attr('id', 'h2' + i);  } );$( dirbef + dircontent + dirend ).insertBefore( '.postBody' );});
+
+
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

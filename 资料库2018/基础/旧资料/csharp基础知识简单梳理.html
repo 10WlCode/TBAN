@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html -->
+<html lang="zh-cn" class="gr__cnblogs_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C#基础知识简单梳理 - 超级塞亚人 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./csharp基础知识简单梳理_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./csharp基础知识简单梳理_files/bundle-MountainInk.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./csharp基础知识简单梳理_files/bundle-MountainInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhouzhou-aspnet/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhouzhou-aspnet/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhouzhou-aspnet/wlwmanifest.xml">
+<script type="text/javascript" src="./csharp基础知识简单梳理_files/encoder.js.下载"></script><script src="./csharp基础知识简单梳理_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'zhouzhou-aspnet', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./csharp基础知识简单梳理_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/zhouzhou-aspnet/"><img id="blogLogo" src="./csharp基础知识简单梳理_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhouzhou-aspnet/">超级塞亚人</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/zhouzhou-aspnet/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E8%B6%85%E7%BA%A7%E5%A1%9E%E4%BA%9A%E4%BA%BA">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/zhouzhou-aspnet/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/zhouzhou-aspnet/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 4&nbsp; </span>
+<span id="stats_article_count">文章 - 253&nbsp; </span>
+<span id="stats-comment_count">评论 - 8</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html">C#基础知识简单梳理</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>本文是一个菜鸟所写，本文面向的人群就是像我这样的小菜鸟，工作一年也辛辛苦苦学习了一年，一直没有机会梳理一下自己的知识，最近花了一些时间整理了一些C#基础知识，也算是对过去的一年做个回顾把~</p>
+<p>文章有点长，请自带瓜子和茶吧，请看下面C#基础知识简单架构图，不可能100%的全面，请见谅啊...&nbsp;</p>
+<p><img src="./csharp基础知识简单梳理_files/2012070814470737.png" alt=""></p>
+<p><span><strong><span>1.值类型和引用类型</span></strong></span></p>
+<p>　　<span><strong><span>1.1堆和栈</span></strong></span></p>
+<p>　　简单的说值类型存放在堆栈上面，引用类型的数据存放在托管堆上面(它的引用地址却存放在堆栈上面)！</p>
+<p>　　栈：它是一个内存数组，是一个先进后出的数据结构！</p>
+<p>　　栈的特征：数据只能从栈顶进，从栈顶出！</p>
+<p>　　堆：它是一个内存区域，可以分配大块区域存储某类型的数据，与栈不同的是它里面的数据可以任意排序和移除！</p>
+<p>　　下面是园子的一张图，贴上来供大家参考啊！</p>
+<table border="1" cellspacing="0" cellpadding="2">
+<tbody>
+<tr><th valign="top" width="234"><span>问&nbsp;&nbsp;&nbsp;&nbsp; 题</span></th><th valign="top" width="237"><span>值&nbsp; 类&nbsp; 型</span></th><th valign="top" width="272"><span>引 用 类 型</span></th></tr>
+<tr>
+<td valign="top" width="234"><span>这个类型分配在哪里？</span></td>
+<td valign="top" width="237"><span>分配在栈上</span></td>
+<td valign="top" width="272"><span>分配在托管堆上</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>变量是怎么表示的？</span></td>
+<td valign="top" width="237"><span>值类型变量是局部复制</span></td>
+<td valign="top" width="272"><span>引用类型变量指向被分配得实例所占的内存</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>基类型是什么？</span></td>
+<td valign="top" width="237"><span>必须继承自System.ValueType</span></td>
+<td valign="top" width="272"><span>可以继承自除了System.ValueType以外的任何类型，只要那个类型不是sealed的</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>这个类型能作为其他类型的基类吗？</span></td>
+<td valign="top" width="237"><span>不能。值类型是密封的，不能被继承</span></td>
+<td valign="top" width="272"><span>是的。如果这个类型不是密封的，它可以作为其他类型的基类</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>默认的参数传递是什么？</span></td>
+<td valign="top" width="237"><span>变量是按值传递的（也就是，一个变量的副本被传入被调用的函数）</span></td>
+<td valign="top" width="272"><span>变量是按引用传递（例如，变量的地址传入被调用的函数）</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>这个类型能重写System.Object.Finalize()吗？</span></td>
+<td valign="top" width="237"><span>不能。值类型不好放在堆上，因此不需要被终结。</span></td>
+<td valign="top" width="272"><span>可以间接地重写</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>我可以为这个类型定义构造函数吗？</span></td>
+<td valign="top" width="237"><span>是的，但是默认的构造函数被保留（也就是自定义构造函数必须全部带有参数）</span></td>
+<td valign="top" width="272"><span>当然！</span></td>
+</tr>
+<tr>
+<td valign="top" width="234"><span>这个类型的变量什么时候消亡？</span></td>
+<td valign="top" width="237"><span>当它们越出定义的作用域时。</span></td>
+<td valign="top" width="272"><span>当托管堆被垃圾回收时。</span></td>
+</tr>
+</tbody>
+</table>
+<p>　　<span><strong><span>1.2装箱和拆箱</span></strong></span></p>
+<p>　　　　关于装箱和拆箱是一个老生常谈的话题，也有很多文章来分析它，如：1.<span>&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/niyw/archive/2010/09/20/1832077.html"><span>6个重要的.NET概念:栈,堆,值类型,引用类型,装箱,拆箱</span></a>&nbsp;</span>2.&nbsp;<span><a id="ctl01_lnkTitle" href="http://www.cnblogs.com/enshjiang/archive/2012/02/23/2365022.html"><span>值类型的装箱与拆箱浅析</span></a></span>&nbsp;3.&nbsp;<span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/John-Connor/archive/2012/04/13/2443765.html"><span>深入C#内存管理来分析值类型&amp;引用类型，装箱&amp;拆箱，堆栈几个概念组合之间的区别</span></a></span></p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070815055685.png" alt=""></p>
+<p>　　这类的文章真的多了，再总结就没多大的意义了，看的时候多写写代码，多想想，就会明白的！</p>
+<p><span><strong><span>2.接口，抽象类，封装，继承，多态</span></strong></span></p>
+<p><span>&nbsp;　　接口和抽象类这两个概念还真不容易理解，有的时候理解一半，换一种方法考考你，你就会晕，到现在说实话我还没完全懂，一直没有把握它们的精髓，最近在看&lt;&lt;你必须知道的.NET&gt;&gt;，这是第二次看，收获很多...</span></p>
+<p><span><strong><span>　&nbsp;</span></strong>大家还是有时间多看看&lt;&lt;<span><strong>你必须知道的.NET</strong></span>&gt;&gt;，这本书可以说是很详细的讲解了OO思想，还有看看设计模式的书，多想多练，可以时间会长一点，不过总有一点我们会开窍的...</span></p>
+<p><span>　　这种东西不是通过总结一下就能熟练运用的，不过你起码要有一点面向对象的思想，要想有这种思想必须学习前辈留下的知识总结，这种才能理论结合实践，才能深入的了解OO思想</span></p>
+<p>&nbsp;　　推荐文章：<span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xia520pi/archive/2011/10/07/2200793.html"><span>细细品味C#——抽象、接口、委托、反射</span></a></span>（感谢虾皮老师啊...）</p>
+<p><span><strong><span>3.迭代器</span></strong></span></p>
+<p>　　主要是对foreach的深入理解，以及对两个接口的深入剖析(包括它们的泛型结构)：IEnumerable(可枚举类型)，IEnumertor(可枚举数)，文章入口：<span><span><span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yangcaogui/archive/2011/12/04/2266589.html"><span>使用IEnumerable和IEnumerator接口</span></a></span>，</span></span><span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/artech/archive/2010/10/28/yield.html"><span>从yield关键字看IEnumerable和Collection的区别</span></a></span></p>
+<p><strong><span>4.泛型</span></strong></p>
+<p>　　泛型保证了类型安全，避免了装箱和拆箱的操作，提高了性能，可复用性也得到了很大的提高，下面就来说说基本的泛型语法吧！</p>
+<p>　　项目中对于泛型和委托的结合运用也很多见，很多人不是为了语法而学习，而是泛型的扩展性让我们必须要知道它，把它实实在在的运用到项目中去，提高扩展性...</p>
+<p>　　泛型语法不是很复杂，包括定义泛型类型，泛型方法，指定泛型约束，还有泛型约束包括只包括哪些类型等等，这些语法只要花些时间就能明白了，难的是一种思想，o(︶︿︶)o 我还很菜啊...</p>
+<p>　　推荐文章：<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xia520pi/archive/2011/10/06/2200161.html">细细品味C#——泛型系列专题</a>（虾皮帮我们已经整理关于泛型的精彩文章，看完之后会有很多的收获）</p>
+<p><span><strong><span>5.集合</span></strong></span></p>
+<p>　　<span><strong>5.1一般集合</strong></span></p>
+<p>&nbsp;　　　　.NET Frameword中关于集合的类存储在<span>System.Collections</span>命名空间下，其实一开始学习的时候感觉集合这个东西很神秘，能动态增加，删除，选择数据(比数据好用多了)，可是在学习之后，它的神秘感也随之消息，因为<span>集合的底层代码跟数组有着密切联系的</span>，请看：<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yangcaogui/archive/2011/12/23/2299885.html">学习之路二：关于集合和数组内在联系的深入了解</a>(里面也有个链接，可以点击学习)！</p>
+<p>　　　　下面是非泛型集合类之间的关系图：</p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012071019374089.png" alt=""></p>
+<p>　　<span><strong>5.2泛型集合</strong></span></p>
+<p><span><strong><span>　　　</span></strong><span>自从.NET Framework引用泛型概念之后，它在C#编程方面掀起了一个泛型热潮，泛型实在太好用了，不仅是类型安全，可扩展性，重要的是在性能方面有了显著提高，这让我们苦逼的程序猿看到了曙光，哈哈...</span></span></p>
+<p><span><span>　　　　泛型集合类存储在System.Collections.Generic以及System.Collections.ObjectModel命名空间下，下面是集合类之间的关系图：</span></span></p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012071019380191.png" alt=""></p>
+<p>　　推荐文章：<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xia520pi/archive/2011/10/06/2200161.html">细细品味C#——泛型系列专题</a>(有个pdf文件，下载下来回家慢慢看，同志们)</p>
+<p><span><strong><span>6.反射</span></strong></span></p>
+<p>&nbsp;　　反射这东西两面性很极端，很多人说它的坏，也有很它在某些方面有着重大的作用，下图是关于类型反射所需要用到的类之间的关系图：</p>
+<p><img src="./csharp基础知识简单梳理_files/2012071213334429.png" alt=""></p>
+<p>　　除了类型反射之外，还有一种是程序集的反射，功能比较强大，可是我对它的研究比较少，我就推荐几篇好文章把(下面几篇文章我也正在学习中)...</p>
+<p>　　推荐文章 : 　1.<a id="CategoryEntryList1_EntryStoryList_Entries_ctl20_TitleUrl" class="entrylistItemTitle" href="http://www.cnblogs.com/JimmyZhang/archive/2008/01/27/Reflection-Part1.html"><span>.Net 中的反射(序章) - Part.1</span></a><br><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;　　　　　　2.</span><a id="CategoryEntryList1_EntryStoryList_Entries_ctl16_TitleUrl" class="entrylistItemTitle" href="http://www.cnblogs.com/JimmyZhang/archive/2008/02/17/1071372.html"><span>.Net 中的反射(查看基本类型信息) - Part.2</span></a><br><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;　　　　　　3.</span><a id="CategoryEntryList1_EntryStoryList_Entries_ctl18_TitleUrl" class="entrylistItemTitle" href="http://www.cnblogs.com/JimmyZhang/archive/2008/01/27/1055254.html"><span>.Net 中的反射(反射特性) - Part.3</span></a><br><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;　　　　　　4.</span><a id="CategoryEntryList1_EntryStoryList_Entries_ctl14_TitleUrl" class="entrylistItemTitle" href="http://www.cnblogs.com/JimmyZhang/archive/2008/03/18/1110711.html"><span>.Net中的反射(动态创建类型实例) - Part.4</span></a></p>
+<p><span><strong><span>7.特性(Attribute)</span></strong></span></p>
+<p>　　特性这个东西，在面向对象编程中有着非常重要的最用，在架构设计框架的时候，考虑使用特性的几率会非常的大！</p>
+<p>　　特性结合反射技术就可以实现依赖注入，以前看到公司一个项目在写测试代码的时候，总是给每个方法加上[RollBack]的特性，当方法结束后，所有数据库的操作都将会回滚，我很费解，因为RollBack是自己定义的，怎么就一加上这个特性就自动完成回滚了！</p>
+<p>　　下面就是完整的Rollback代码，可是我在使用它的时候遇到一个问题 ，就是它只可以用于单元测试，我尝试着把它用于一般的方法当中，可是一直没有实现回滚功能，我感到很费解，有兴趣的朋友可以帮我看看...</p>
+<div class="cnblogs_code"><img id="code_img_closed_95fcf00b-a5dc-4a00-8567-b6581fe2ce84" class="code_img_closed" src="./csharp基础知识简单梳理_files/ContractedBlock.gif" alt=""><span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;&nbsp;<strong><span>　　<span>只能在单元测试里面进行调用</span>：</span></strong>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span> 　　<span>[TestClass()]
+</span><span> 2</span>     <span>public</span> <span>class</span><span> ProgramTest : TestFixture  //<span><strong><span>继承这个类
+</span></strong></span></span><span> 3</span> <span>    {</span>
+<span>48</span> <span>        [TestMethod()]
+</span><span>49</span> <span>        [RollBack()]　　//<span><strong>添加这个RollBack特性，就能实现回滚了
+</strong></span></span><span>50</span>         <span>public</span> <span>void</span><span> MyTestTest()
+</span><span>51</span> <span>        {
+</span><span>52</span>             SqlConnectionStringBuilder connectionString = <span>new</span><span> SqlConnectionStringBuilder
+</span><span>53</span> <span>            {
+</span><span>54</span>                 DataSource = <span>@"</span><span>LBDZ-20120514VC\SQLEXPRESS</span><span>"</span><span>,
+</span><span>55</span>                 InitialCatalog = <span>"</span><span>My</span><span>"</span><span>,
+</span><span>56</span> <span>            };
+</span><span>57</span>             connectionString.IntegratedSecurity = <span>true</span><span>;
+</span><span>58</span> 
+<span>59</span>             <span>using</span> (SqlConnection conn = <span>new</span><span> SqlConnection(connectionString.ToString()))
+</span><span>60</span> <span>            {
+</span><span>61</span> <span>                conn.Open();
+</span><span>62</span>                 SqlCommand cmd =<span> conn.CreateCommand();
+</span><span>63</span>                 cmd.CommandText = <span>"</span><span>INSERT INTO dbo.MyTable (    id) VALUES ( 6666 )</span><span>"</span><span>;
+</span><span>64</span> <span>                cmd.ExecuteNonQuery();
+</span><span>65</span>                 Console.WriteLine(<span>"</span><span>OK</span><span>"</span><span>);
+</span><span>66</span> <span>            }</span> 
+<span>68</span>             Assert.IsTrue(<span>true</span><span>);
+</span><span>69</span> <span>        }
+</span><span>70</span>     }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span><strong><span>&nbsp;</span></strong></span><strong><span>　　Question:</span></strong><span><span>这个RollBack我至今还没有弄懂它怎么来实现的，如果那个园友能看懂的话，可以私信给我或留言给我，我会打心里感谢你的，可能会涉及到AOP和IOC的知识，希望大家帮帮我把，纠结了很长时间啦...</span></span></p>
+<p><span><span>　　　　推荐文章: 1.&nbsp;</span></span><a id="cb_post_title_url" href="http://www.cnblogs.com/xugang/archive/2011/01/06/1927619.html">关于C# 中的Attribute 特性</a></p>
+<p>　　　　　　　　　 2.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/over140/archive/2009/01/07/1371307.html">C# 用Attribute实现AOP事务 [C# | AOP | Attribute | ContextAttribute | IContributeObjectSink | IMessageSink ]</a></p>
+<p>　　　　　　　　&nbsp;　3.&nbsp;<a title="Attribute在.net编程中的应用（一） " href="http://www.cnblogs.com/dudu/articles/4449.html">Attribute在.net编程中的应用（一）</a>&nbsp;　　　　　　　　　</p>
+<p><span><strong><span>8.委托和事件</span></strong></span></p>
+<p>　　其实把理解事件跟字段和属性联系起来，虽然这样说可能会不严谨点，但是从一些大的方面讲事件就是对委托的封装，类似于属性对字段的封装，这种说法还是行得通的！</p>
+<p>　　想要定义一个完整的委托和事件，需要经历一下步骤(需要注意一些命名规范)：&nbsp;</p>
+<p>① 定义事件 → 委托使用微软提供的EventHadler&lt;TEventArgs&gt;泛型委托，一般都会有两个参数：</p>
+<p>A)&nbsp;&nbsp; “object sender”定义的事件依附的对象，也就是事件定义在那个类中，那么这个参数就为这个类的实例化对象，一般都会用“This”！</p>
+<p>B)&nbsp;&nbsp; “EventArgs e”也就是用于传递一些参数信息的对象，也可以使用自己定制的参数了</p>
+<p>② 创建参数类 → 如果有必要定制的数据参数类(这个类似于创建自己的实体类用来传递信息)，这个参数类应该继承于EventArgs这个类!</p>
+<p>③ 执行事件 → 其实在执行事件的时候还是有一定的规范的，比如方法名必须为“On+事件名”，还有在执行事件要判断下时候为null，，然后在调用！</p>
+<p>④ 注册事件 → 调用事件(在传递事件对象的时候最好用“this”关键字)</p>
+<p>⑤ 依附事件的方法 → 最后定义依附在这个事件中的方法，也就是执行这个事件的方法体，深入了解，其实依附事件中的方法其实都最终依附在事件衣服的委托中，这个委托会生成一个委托实例，以及一个委托链！</p>
+<p>委托和事件定义语法：</p>
+<p>委托： 访问修饰符 + delegate + 返回值类型 + 委托名(参数列表);　　</p>
+<p>事件： 访问修饰符 + event + 委托名 + 事件名;</p>
+<p>委托和事件跟观察者模式联系比较密切，可是我还是没有理解它的精髓，可能是我还太菜了...</p>
+<p>总结：灵活运用事件和委托将会给你的程序带来更好的扩展性，这需要丰富经验的积累，好了推荐几篇我曾经学习过的文章把！</p>
+<p>推荐文章：1.&nbsp;<a id="ctl01_lnkTitle" href="http://www.cnblogs.com/OceanEyes/archive/2012/07/03/delegateandevent.html">庖丁解牛——深入解析委托和事件</a></p>
+<p>　　　　　2.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JimmyZhang/archive/2007/09/23/903360.html">C# 中的委托和事件</a></p>
+<p>　　　　　3.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JimmyZhang/archive/2008/08/22/1274342.html">C#中的委托和事件(续)</a></p>
+<p><span><strong><span>9.线程</span></strong></span></p>
+<p>　　对于线程学习过，可是一直没有做过多线程的项目，一直没有领悟到它的精髓，也只能停留在表面的高度！</p>
+<p>　　我就想说下Thread中的后台线程和前台线程（默认为“前台线程”），在这里总结下(其实我也是学习前辈们的知识)。</p>
+<p>　　前台线程：当所有的前台的线程都执行完毕以后才会退出程序！</p>
+<p>　　后台线程：对于后台线程，程序是不管你是否是执行完成的，不过当你程序一旦强制退出，后台线程也会终止的！</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span>1</span>             Thread thread = <span>new</span> Thread(<span>delegate</span><span>()
+</span><span>2</span> <span>            {
+</span><span>3</span>                 Console.WriteLine(<span>"</span><span>线程开始工作</span><span>"</span><span>);
+</span><span>4</span>                 Thread.Sleep(<span>2000</span><span>);　　//暂停两秒钟
+</span><span>5</span>                 Console.WriteLine(<span>"</span><span>线程结束</span><span>"</span><span>);
+</span><span>6</span> <span>            });
+</span><span>7</span>             thread.IsBackground = <span>true</span><span>;　　//分别设置为true和false，看看控制台运行的情况，我相信你能很快明白的
+</span><span>8</span> <span>            thread.Start();
+</span><span>9</span>             Console.WriteLine(<span>"</span><span>主线程结束</span><span>"</span>);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp; &nbsp;　<strong>总结：</strong>设置为后台线程相当于我们说的异步，而前台线程就相当于同步，执行好线程在执行主程序！</p>
+<p>　　能够熟练使用多线程，还是要在项目中不断的实践，可是项目是可遇而不可求的东西，现在我的项目是肯定要不到了，只能自己看看文章，熟悉熟悉知识啊...</p>
+<p>　　推荐文章: 1.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JimmyZheng/archive/2012/06/10/2543143.html">C# 温故而知新： 线程篇(一)</a></p>
+<p><span>&nbsp;　　　　　　 2.&nbsp;</span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JimmyZheng/archive/2012/07/07/2580253.html">C# 温故而知新： 线程篇(二)</a></p>
+<p><span>&nbsp;　　　　　　 3.&nbsp;</span><a id="cb_post_title_url" href="http://www.cnblogs.com/leslies2/archive/2012/02/07/2310495.html">C#综合揭秘——细说多线程（上）</a></p>
+<p><span><strong><span>10.六种异步方式</span></strong></span></p>
+<p>　　<span><strong><span>10.1 委托异步模型&nbsp;</span></strong></span>　　　　</p>
+<p>　　　　使用的是委托的BeginInvoke和EndInvoke异步执行模式！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;必须要有两个条件：</strong></p>
+<p>　　　　① 必须要有个委托作为寄宿体</p>
+<p>　　　　② 执行函数&nbsp;&nbsp;&nbsp; ExecuteFunction</p>
+<p>　　　　③ 回调函数&nbsp;&nbsp;&nbsp; CallBackFunction ，所谓的回调函数就是获取执行函数的返回值！</p>
+<p>　　　　有了上面三种条件之后，就可以直接调用Begin和End进行委托异步编程了，其中还有细节问题需要注意，下面我们就一一来看！</p>
+<p>　　　　<strong>具体思路步骤：　</strong>　　　</p>
+<p>　　　　①&nbsp;选择一个适合的委托类型，如参数列表，返回值类型</p>
+<p>　　　　② 创建一个执行函数，必须跟委托的参数列表和返回值类型对应起来</p>
+<p>　　　　③&nbsp;创建一个回调函数，它只有一个参数没有返回值，参数类型为<strong>IAsyncResult</strong>类型，这是使用委托实现异步的规范写法，不可改变</p>
+<p>　　　　<strong>代码实现：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>         <span>//</span><span>写一段简洁的代码</span>
+<span> 2</span>         <span>private</span> <span>void</span> button1_Click(<span>object</span><span> sender, EventArgs e)
+</span><span> 3</span> <span>        {
+</span><span> 4</span>             <span>//</span><span>定义委托，并指定异步的执行方法</span>
+<span> 5</span>             Func&lt;<span>string</span>, <span>string</span>&gt; func = <span>new</span> Func&lt;<span>string</span>, <span>string</span>&gt;<span>(ExecuteFunction);
+</span><span> 6</span>             <span>//</span><span>开始异步，并指定异步的回调函数</span>
+<span> 7</span>             func.BeginInvoke(<span>"</span><span>实现了异步</span><span>"</span>, <span>new</span> AsyncCallback(CallBackFunction), <span>"</span><span>my</span><span>"</span><span>);
+</span><span> 8</span> <span>        }
+</span><span> 9</span> 
+<span>10</span>         <span>private</span> <span>string</span> ExecuteFunction(<span>string</span> str)          <span>//</span><span>执行函数</span>
+<span>11</span> <span>        {
+</span><span>12</span>             Thread.Sleep(<span>2000</span><span>);
+</span><span>13</span>             <span>//</span><span> To Do</span>
+<span>14</span>             <span>return</span><span> str;
+</span><span>15</span> <span>        }
+</span><span>16</span> 
+<span>17</span>         <span>private</span> <span>void</span> CallBackFunction(IAsyncResult ar)      <span>//</span><span>回调函数</span>
+<span>18</span> <span>        {
+</span><span>19</span>             <span>//</span><span>转化变量类型
+</span><span>20</span>             <span>//</span><span>因为委托异步编程的类型为AsyncResult类，而这个类又是实现了IAsyncResult接口的，可以说是它的基类！</span>
+<span>21</span>             AsyncResult async = ar <span>as</span><span> AsyncResult;
+</span><span>22</span>             Func&lt;<span>string</span>, <span>string</span>&gt; func = async.AsyncDelegate <span>as</span> Func&lt;<span>string</span>, <span>string</span>&gt;<span>;
+</span><span>23</span>             <span>//</span><span>获取异步执行函数的返回值</span>
+<span>24</span>             <span>string</span> str =<span> func.EndInvoke(ar); MessageBox.Show(str);
+</span><span>25</span> <span>        }
+</span><span>26</span>         <span>//</span><span>在最后进行类型转化的时候，尽量使用“as”进行转化！</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span><strong><span>　 10.2 事件驱动模型实现异步</span></strong></span></p>
+<p>　　　　这个模式的异步编程是所有异步方式中最为复杂的一个，我对它的理解也是很有限的，只限于使用它，不会自己构建它！</p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070518044446.png" alt=""></p>
+<p>　　　　<span lang="ZH-CN">基于事件模型的异步不是一个通用型的，只有当需求要进行事件模型异步编程的时候才要进行事件模型异步的创建</span>，主要有两种方法：</p>
+<p>　　　　①通过获取事件中的委托列表，然后通过委托实现异步　　　</p>
+<p align="left">　　　　首先这个异步思想是基于事件模型的，所以它会对你的事件定义有很大的要求，主要就是那两个参数的定义，可能会重新定义存储信息类！</p>
+<p align="left"><strong>　　　　实现思路：</strong></p>
+<p align="left">　　　　a)&nbsp; 通过事件注册执行方法</p>
+<p align="left">　　　　b)&nbsp; 获取事件依附的委托</p>
+<p align="left">　　　　c)&nbsp; 最后就是通过委托调用BeginInvoke实现异步</p>
+<p align="left">　　　　<strong>代码如下：</strong></p>
+<div class="cnblogs_code"><img id="code_img_closed_2ce87e0c-a2c6-46b6-97e5-f4dcf844e1ec" class="code_img_closed" src="./csharp基础知识简单梳理_files/ContractedBlock.gif" alt=""><span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　②通过自定义事件模型实现异步（暂时不会，我会给出几篇文章参考）</p>
+<p>　　<span><strong><span>10.3 使用IAsyncResult接口实现异步</span></strong></span></p>
+<p>&nbsp;　　　　使用IAsyncResult接口编程和使用委托异步编程的最大区别：</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ① 委托异步调用阻塞发生在线程池的工作线程</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ② IAsyncResult异步调用阻塞方式在线程池的I/O完成线程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<strong>Note</strong><strong>：</strong><strong>其实使用</strong><strong>IAsyncRsult</strong><strong>接口重要的是对于一些流操作或者一些文件操作都是固定的</strong><strong>Begin</strong><strong>和</strong><strong>End</strong><strong>，所以只有当使用那些异步操作的时候才使用它</strong></p>
+<p align="left"><strong>　　　　</strong>使用方法跟委托异步很相似，具体的实现代码就不贴了！</p>
+<p>　　<span><strong><span>10.4基于BackgroundWorker组建实现异步</span></strong></span></p>
+<p><strong>　　　　Note：其实这个组件最终也是基于事件异步模式进行创建的，所以说它就是封装了事件异步编程模型，从而使开发者使用更方便！</strong></p>
+<p><strong>　　　</strong>　这个模型使用率比较高，因为微软都帮我们封装好了，只要学习一下就会使用它了！&nbsp;&nbsp;&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>         <span>private</span> <span>void</span> button1_Click(<span>object</span><span> sender, EventArgs e)
+</span><span> 2</span> <span>        {
+</span><span> 3</span>             BackgroundWorker worker = <span>new</span><span> BackgroundWorker();
+</span><span> 4</span>             <span>//</span><span>注册执行函数</span>
+<span> 5</span>             worker.DoWork +=<span> ExecuteFunction;
+</span><span> 6</span>             <span>//</span><span>注册回调函数</span>
+<span> 7</span>             worker.RunWorkerCompleted +=<span> CallBackFunction;
+</span><span> 8</span>             <span>//</span><span>执行事件，启动异步操作</span>
+<span> 9</span>             worker.RunWorkerAsync(<span>"</span><span>通过e.Argument来读取的</span><span>"</span><span>);
+</span><span>10</span> <span>        }
+</span><span>11</span> 
+<span>12</span>         <span>//</span><span>执行函数</span>
+<span>13</span>         <span>public</span> <span>void</span> ExecuteFunction(<span>object</span><span> sender, DoWorkEventArgs e)
+</span><span>14</span> <span>        {
+</span><span>15</span>             Thread.Sleep(<span>2000</span><span>);
+</span><span>16</span>             <span>//</span><span>因为result的类型为Object
+</span><span>17</span>             <span>//</span><span>所以可以存入各种对象各种控件对象都可以存入</span>
+<span>18</span>             e.Result = <span>"</span><span>实现异步，这是我存入的值</span><span>"</span><span>;
+</span><span>19</span>             <span>string</span> str = e.Argument.ToString(); <span>//</span><span>这边的值是跟你启动异步方法中存入的参数</span>
+<span>20</span> <span>        }
+</span><span>21</span> 
+<span>22</span>         <span>//</span><span>回调函数</span>
+<span>23</span>         <span>public</span> <span>void</span> CallBackFunction(<span>object</span><span> sender, RunWorkerCompletedEventArgs e)
+</span><span>24</span> <span>        {
+</span><span>25</span>             <span>//</span><span>读取存入的值，而这个类似于委托异步编程中获取执行函数的返回值
+</span><span>26</span>             <span>//</span><span>相当于委托异步编程中 → 返回值的应用</span>
+<span>27</span>             MessageBox.Show(e.Result.ToString()); <span>//</span><span>读取</span>
+<span>28</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;　&nbsp;<span><strong><span>10.5创建后台线程实现异步</span></strong></span></p>
+<p><strong>　　　　实现思路：</strong></p>
+<p>　　　　① 创建新的线程，并指定在线程运行的程序</p>
+<p>　　　　② 设置线程为后台运行，推荐一篇文章：</p>
+<p>　　　　③ 启动线程</p>
+<p>　　　　<strong>代码实现：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>         <span>private</span> <span>void</span> button3_Click(<span>object</span><span> sender, EventArgs e)
+</span><span> 2</span> <span>        {
+</span><span> 3</span>             <span>//</span><span>创建新的线程，并指定它的执行方法</span>
+<span> 4</span>             Thread thread = <span>new</span> Thread(<span>new</span><span> ParameterizedThreadStart(MyThreadMethod));
+</span><span> 5</span>             thread.IsBackground = <span>true</span><span>;
+</span><span> 6</span>             thread.Start(<span>"</span><span>aa</span><span>"</span><span>);
+</span><span> 7</span> <span>        }
+</span><span> 8</span>         <span>public</span> <span>void</span> MyThreadMethod(<span>object</span><span> obj)
+</span><span> 9</span> <span>        {
+</span><span>10</span>             <span>//</span><span>不可以把这个暂停的时间方法创建线程之前，因为你在线程之前暂停那个时候还没有创建好，不能实现异步，所以这是不可以的</span>
+<span>11</span>             Thread.Sleep(<span>2000</span><span>);
+</span><span>12</span>             MessageBox.Show(<span>"</span><span>这是线程实现异步的</span><span>"</span><span>);
+</span><span>13</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;　&nbsp;<span><strong><span>10.6使用线程池实现异步</span></strong></span></p>
+<p>&nbsp;　　　　实现比较简单，<strong>代码如下：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>         <span>//</span><span>实现代码：</span>
+<span> 2</span>         <span>private</span> <span>void</span> button4_Click(<span>object</span><span> sender, EventArgs e)
+</span><span> 3</span> <span>        {
+</span><span> 4</span>             <span>//</span><span>这句代码很重要</span>
+<span> 5</span>             ThreadPool.QueueUserWorkItem(MyThreadMethod, <span>"</span><span>aaa</span><span>"</span><span>);
+</span><span> 6</span> <span>        }
+</span><span> 7</span> 
+<span> 8</span>         <span>public</span> <span>void</span> MyThreadMethod(<span>object</span><span> obj)
+</span><span> 9</span> <span>        {
+</span><span>10</span>             Thread.Sleep(<span>2000</span><span>);
+</span><span>11</span>             MessageBox.Show(<span>"</span><span>这是线程实现异步的</span><span>"</span><span>);
+</span><span>12</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>　&nbsp;<span><strong><span>10.7六种异步模式的总结</span></strong></span></p>
+<p>&nbsp;　　　　其实这个总结是根据Fish文章进行总结的，o(∩_∩)o 哈哈...</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.异步委托调用：它的实现是将原来需要阻塞的操作交给线程池的<strong>工作线程</strong>来处理了，此时线程池的工作线程被阻塞了！但是此方法对于依赖【线程池的工作线程】来处理任务的编程模型来说是没有意义的，比如Asp.Net ，Windows Services以及Web Services这些服务类的编程模型！所以它比较适应一些单线程编程模型，比如Winform这种的单线程！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.使用IAsyncResult接口：它的实现是将原来需要阻塞的操作交给线程池的<strong>I/O</strong><strong>完成线程</strong>来处理了，所以它适合任何类型。但是有限制，因为不是所有的API都支持此类接口，不过许多的I/O操作是支持此接口的，还有实现起来会比较复杂！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.基于事件的异步：这种方式可以认为是对其它异步方式的封装，其主要目的是简化异步调用模型，使用者可以直接调用事件就能实现异步，如果此模式是对第二种异步方式进行异步封装，那么它将具体第二种的所有优点！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.创建新线程的异步：主要特点是在后台创建一个新的线程来执行异步方法，如果有很多用户同时执行异步操作，那么后台就会创建无数个线程，损害性能，尤其是对服务类的编程模型来说使用起来没有任何意义，所以在没有上诉情况下可以考虑使用这种异步方法！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.使用线程的异步：基本上跟创建新线程类似，仅仅适用于一些桌面程序！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.使用BackgroundWorker的方式：它的底层也是在使用线程池的工作线程，也是采用的基于事件的异步模式，只不过它使用起来真的很方便，它不是使用的IAsyncResult接口进行异步操作的，只是模式上类似于事件异步模式！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>最后</strong>：在.NET中标准的异步模式都是使用的IAsyncResult接口，所以后三种并不算真正的异步，但它们却在某些场合有着很大的作用！</p>
+<p>　　　　 强烈推荐文章：1.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/fish-li/archive/2011/10/23/2222013.html">C#客户端的异步操作</a></p>
+<p>　　　　　　　　　　　 2.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/scy251147/archive/2012/03/03/2378477.html">我所知道的.NET异步</a></p>
+<p>　　　　　　　　　　　 3.&nbsp;<a id="cb_post_title_url" href="http://www.cnblogs.com/wisdomqq/archive/2012/03/26/2412349.html">详解.NET异步</a></p>
+<p>　　　　上面的学不会也找我，:-)</p>
+<p><span><strong><span>11.LINQ</span></strong></span></p>
+<p>　　<span><strong><span>11.1 LINQ原理剖析</span></strong></span></p>
+<p>　　　　这里主要是关于LINQ家族中：Linq To Object，对它的研究还是比较多的！</p>
+<p>　　　　LINQ是基于委托的一种高级语法，如果不能正确的理解委托的定义和使用，你就不会真正的理解<strong><span>LINQ和委托</span></strong>天衣无缝的结合，还有一点就是<strong><span>LINQ和迭代器</span></strong>的结合，所以理解委托和迭代器，LINQ你也就会用了！</p>
+<p>　　<span><strong><span>11.2 Lambda表达式，匿名方法</span></strong></span></p>
+<p>　　　　LINQ也就是一些语法糖，会语法了，LINQ自然而然就会用了，下面就把常用的语法汇总一下，再复习一次：&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>   Func&lt;<span>string</span>, <span>string</span>&gt; myFunc = <span>delegate</span>(<span>string</span><span> str)  //匿名方法语法，括号内为参数列表
+</span><span> 2</span> <span>  {
+</span><span> 3</span>       <span>return</span> <span>"</span><span>sss</span><span>"</span><span>;
+</span><span> 4</span> <span>  };
+</span><span> 5</span>   myFunc += strOne =&gt;　　//这边的strOne是个方法，我没写，只要注意参数和返回值一致就可以了
+<span> 6</span> <span>  {
+</span><span> 7</span>       <span>return</span><span> strOne;
+</span><span> 8</span> <span>  };
+</span><span> 9</span>   myFunc += (<span>string</span> strTwo) =&gt;　　//Lambda表达式，指定了参数类型
+<span>10</span> <span>  {
+</span><span>11</span>       <span>return</span><span> strTwo;
+</span><span>12</span> <span>  };
+</span><span>13</span>   myFunc += (strThree) =&gt;　　　　//Lambda表达式，也可以不指定类型，系统会自动检测
+<span>14</span> <span>  {
+</span><span>15</span>       <span>return</span><span> strThree;
+</span><span>16</span> <span>  };
+</span><span>17</span>   myFunc += strFour =&gt; <span>"</span><span>ssssss</span><span>"</span>;  <span>//</span><span>不需要加“return”，因为编译器会帮你自动加上去的！ 这样写法就搞急了，放眼一看说真的一开始还真看不懂！</span>
+<span>18</span>   Action myAction = () =&gt; Console.WriteLine(<span>"</span><span>ssssssssss</span><span>"</span><span>);
+</span><span>19</span>   myAction += () =&gt; Console.WriteLine(<span>"</span><span>sssssss</span><span>"</span><span>);　　//如果没有参数，直接使用括号就可以了
+</span><span>20</span>   myAction += <span>delegate</span><span>()
+</span><span>21</span> <span>  {
+</span><span>22</span>       Console.WriteLine(<span>"</span><span>ssssssssssssss</span><span>"</span><span>);
+</span><span>23</span>   };</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;　　<span>注意事项</span>:①如果有参数的话，必须写明参数变量！</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;②可以不写参数类型，编译器会自动判断！</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;③如果没有参数必须要写一个空的括号，这样才说明没有参数！</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;④如果方法中只有一行代码，可以不要花括号，反之则要！</p>
+<p>　　<span><strong><span>11.3 LINQ扩展方法汇总</span></strong></span></p>
+<table border="1" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td valign="top" width="120">
+<p align="center"><span>Family</span></p>
+</td>
+<td valign="top" width="516">
+<p align="center"><span>Query Operations</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Filtering</span></p>
+</td>
+<td valign="top" width="516">
+<p><span>OfType, Where</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Projection</span></p>
+</td>
+<td valign="top" width="516">
+<p><span>Select，SelectMany</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Partitioning</span></p>
+</td>
+<td valign="top" width="516">
+<p><span>Skip, SkipWhile, Take, TakeWhile</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Join</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>GroupJoin, Join</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Concatenation</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>Concat</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Ordering</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>OrderBy, OrderByDescending, Reverse, ThenBy, &nbsp; ThenByDescending</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Grouping</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>GroupBy, ToLookup</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Set</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>Distinct, Except, &nbsp; Intersect,Union</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Conversion</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>AsEnumerable, &nbsp; AsQueryable, Cast, ToArray, ToDictionary, ToList</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Equality</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>SequenceEqual</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Element</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>ElementAt, &nbsp; ElementAtOrDefault, First, FirstOrDefault, Last, LastOrDefault, Single, &nbsp; SingleOrDefault</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Generation</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>DefaultIfEmpty, Empty, &nbsp; Range, Repeat</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Quantifiers</span></p>
+</td>
+<td valign="top" width="516">
+<p align="left"><span>All, Any, &nbsp; Contains</span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="120">
+<p><span>Aggregation</span></p>
+</td>
+<td valign="top" width="516">
+<p><span>Aggregate, Average, Count, LongCount, Max, Min, Sum</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span><strong><span>　 11.4 LINQ详解方法使用细节　</span></strong></span></p>
+<p>　　　　①写个我觉得比较难的“Group By”方法</p>
+<p>　　　　分组语法最难理解的就是对“key”的理解，以及“into”关键字后面包含的是什么东西（<span><em><span><strong><span>就是我们分组后要使用的数据源</span></strong></span></em></span>），以及理解“by”关键后后面就是存放“key”的地方，代码示例：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>   <span>var</span> queryTwo =   <span>from</span> book <span>in</span><span> SampleData.Books
+</span><span> 2</span>                    group <span>new</span><span> { book.Title, book.PageCount } //分组的关键字
+</span><span> 3</span>                    by <span>new</span> { Name = book.Publisher.Name, Subject =<span> book.Subject.Name } //给分组关键字设置别名
+</span><span> 4</span> <span>                   into newBook　　//分组之后的数据源
+</span><span> 5</span>                    <span>select</span> <span>new</span> { Books =<span> newBook };
+</span><span> 6</span> 
+<span> 7</span>   <span>//</span><span>使用嵌套“foreach”来循环遍历</span>
+<span> 8</span>   <span>foreach</span> (<span>var</span> item <span>in</span><span> queryTwo)
+</span><span> 9</span> <span>  {
+</span><span>10</span> <span>      Console.WriteLine(item.Books.Key);
+</span><span>11</span>       <span>foreach</span> (<span>var</span> book <span>in</span><span> item.Books)
+</span><span>12</span> <span>      {
+</span><span>13</span>           Console.WriteLine(book.Title + <span>"</span>  <span>"</span> +<span> book.PageCount);
+</span><span>14</span> <span>      }
+</span><span>15</span>   }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;　　　 &nbsp;总结：理解 → group A by B into C (A：数据源中的关键字 B：分组之后给关键字去的别名 C：分组之后的数据源)！</p>
+<p>　　　　因为最后的newBook是我的最终数据源，上面也提过最终数据源是包括所有分组的key，所以在调用key的时候应该拿最终的数据源集合调用，还有当大于1个分组关键字时进行读取的时候会以这样的方式出现{ Name=Book,Subject=aaa}，还有大部分情况遍历分组LINQ查询都会使用嵌套的Froeach语句来检索数据！</p>
+<p>　　　　推荐一篇文章:&nbsp;<a id="ctl01_lnkTitle" href="http://www.cnblogs.com/ldp615/archive/2011/10/07/can-you-find-the-error-in-foreach-extension-method.html">你能指出这个 ForEach 扩展方法中的错误吗？</a>&nbsp;，其实可以做的更好，我需要不断的学习啊...</p>
+<p>　　<span><strong><span>11.5 自定义LINQ扩展方法</span></strong></span></p>
+<p>　　　　　　如果想写自定义LINQ方法，无非就是继承<strong>IEnumerable</strong>接口的扩展方法，写一个我们常用的foreach，这样可以节省我们好多的foreach代码，如下代码<strong>：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>  <span>public</span> <span>static</span> <span>class</span><span> Program
+</span><span> 2</span> <span> {
+</span><span> 3</span>      <span>static</span> <span>void</span> Main(<span>string</span><span>[] args)
+</span><span> 4</span> <span>     {
+</span><span> 5</span>          <span>string</span>[] strings = { <span>"</span><span>a</span><span>"</span>, <span>"</span><span>b</span><span>"</span>, <span>"</span><span>c</span><span>"</span><span> };
+</span><span> 6</span>          strings.MyForeach(Console.WriteLine); <span>//</span><span>括号里面是个方法</span>
+<span> 7</span> <span>     }
+</span><span> 8</span> 
+<span> 9</span>      <span>public</span> <span>static</span> <span>void</span> MyForeach&lt;T&gt;(<span>this</span> IEnumerable&lt;T&gt; source, Action&lt;T&gt;<span> func)
+</span><span>10</span> <span>     {
+</span><span>11</span>          <span>foreach</span> (T item <span>in</span><span> source) //先循环遍历我的数据源，然后把每个数据方法我的匿名方法中，从而输出值！
+</span><span>12</span> <span>         {
+</span><span>13</span>              func(item); <span>//</span><span>item是参数</span>
+<span>14</span> <span>         }
+</span><span>15</span> <span>     }
+</span><span>16</span>  }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;<strong>&nbsp;　　　&nbsp;总结：写代码无时无刻，但是我们最关注是对代码的思考，对代码的感悟，思想的提升，不管怎么样，写完之后停下来想想，想什么全由个人来定，有人想性能，有人想重构，想优化，想简洁，只有努力过后思想强大了才能在编程道路上得心应手！</strong></p>
+<p><strong>　　　　本人也研究了一些关于Linq To SQL的知识，可惜学艺不精啊！</strong></p>
+<p><strong>　　　　</strong>强烈推荐文章:1.&nbsp;<a id="ctl01_lnkTitle" href="http://www.cnblogs.com/lyj/archive/2008/03/25/1119671.html">LINQ体验系列文章导航</a></p>
+<p>　　　　　　　　　　 &nbsp;2.&nbsp;<a id="cb_post_title_url" href="http://www.cnblogs.com/lovecherry/archive/2007/08/13/853754.html">（原创）一步一步学Linq to sql系列文章</a></p>
+<p>　　　　　　　　　　 &nbsp;3.&nbsp;<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/lifepoem/archive/2011/12/16/2288017.html">LINQ之路系列博客导航</a></p>
+<p>　　　　看完上面三个系列，学不会找我，:-)</p>
+<p><span><strong><span>12.IO</span></strong></span></p>
+<p>　　这个系列我没有系统的学习过，不过园子里面有个人写的很好，也正在学习中，推荐文章：<span><strong><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JimmyZheng/archive/2012/03/17/2402814.html"><span>C# 温故而知新：Stream篇（—）</span></a></strong></span></p>
+<p>　　下面是我整理的流操作系统类图：</p>
+<p>　　<img src="./csharp基础知识简单梳理_files/2012070812535572.png" alt="" style="width: 690px;"></p>
+<p><span><strong><span>13.File</span></strong></span></p>
+<p>　　熟悉文件系统的操作是学习.NET Frameword必不可少的一部分，我没有系统的学习过这些知识，但能运用一些常见方法进行项目开发，下面是文件系统主要的类图架构，理解它们之间的关系，相信学习起来也很方便啦！</p>
+<p>&nbsp;　 &nbsp;<img src="./csharp基础知识简单梳理_files/2012070812481677.png" alt="" style="width: 690px;"></p>
+<p>　　推荐文章：<span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xia520pi/archive/2011/10/10/2206507.html"><span>细细品味C#——文件操作</span></a></span></p>
+<p><span><strong><span>14.代码整洁之道</span></strong></span></p>
+<p>　　最近看完了经典之作：Code Clean，收获很多，分享一下我的感悟，主要是代码规范，设计方面的知识！</p>
+<p>　　整洁代码只做一件事，糟糕的代码逻辑混乱，想做很多事，导致了阅读，修改困难！</p>
+<p>　　<span><strong><span>14.1 整洁代码的基本规则：</span></strong></span></p>
+<p>　　　　①通过所有的单元测试</p>
+<p>　　　　②没有重复代码，如果同一段代码出现了两次以上，那就是提醒你该提取相同代码进行重构了，<span><em><strong><span>时刻提醒自己不要重复</span></strong></em></span></p>
+<p>　　　　③体现系统设计的理念</p>
+<p>　　　　④<span>有意义的命名　　</span></p>
+<p>　 &nbsp;<span><strong><span>14.2 注重代码的读与写，它们的比例是“10：1”</span></strong></span></p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070718120659.png" alt="" style="width: 690px;"></p>
+<p>　　<span><strong>14.3 抽离try/catch代码快，这个非常赞同这个原则， 上图：</strong></span></p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070718150131.png" alt="" style="width: 690px;"></p>
+<p>　　<span><strong><span>14.4 关于注释(书中讲到的注释规则让我很有同感，因为现在项目中就有这样的现象)</span></strong></span></p>
+<p>　　　　请注意：注释也许真的不需要，学会使用代码就能完整表达设计和逻辑意图！</p>
+<p>　　　　常见现象：代码在变动，在演化，彼此分离和重合，可是注释并不总是随着变动，上图：</p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070718363882.png" alt="" style="width: 690px;"></p>
+<p>　　　　所以只有代码才能真正的告诉你它在干什么，它有什么作用！</p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070718382963.png" alt="" style="width: 690px;"></p>
+<p>　　　　Note：<span><strong><em><span>与其花时间编写解释你那糟糕代码的注释，还不如花时间清洁那糟糕的代码！</span></em></strong></span></p>
+<p>　　　　坏注释和多余注释的几点原则：</p>
+<p>　　　　①有时候一段坏的注释不紧会影响代码的整洁，而且还会占用一定的时间，最终读注释的时间比阅读代码的时间还长，所以这种注释要删除它，影响我们阅读代码的时间</p>
+<p>　　　　②日志式注释：这种注释最有感触，在class开头写上每次修改的记录，这种方式也有好处，但是这种情况应该在没有源代码控制的情况下进行记录(其实我听赞同在class头上写上每次修改的版本的)</p>
+<p>　　　　③关于废话性和误导性的注释坚决不能存在</p>
+<p>　　　　④能用函数和变量是就别用注释，所以变量和函数的命名真的很重要，可以让人一眼就能看出它的作用</p>
+<p>　　　　请明白非常重要的一点：<strong><em><span>注释的作用就是解释未能自行解释的代码，如果注释本身还需要解释，就太遗憾了！</span></em></strong></p>
+<p>　　<span><strong><span>14.5 单元测试的重要性</span></strong></span></p>
+<p>　　　　一直觉得单元测试可有可无，那是因为我只是学习过从来没有真正的在项目中运用过，可是最近我下了狠心要在项目中构建一个单元测试框架，终于被我搞定了，我也感悟到单元测试对一个开发人员的重要性，想学习的话可以看看这篇文章：<span><span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yangcaogui/archive/2012/02/15/2353056.html"><span>走进单元测试五：单元测试文章系列目录</span></a></span></span></p>
+<p><span><span>　　建议大家看看&lt;&lt;<span>代码整洁之道</span>&gt;&gt;和&lt;&lt;<span>.NET设计规范</span>&gt;&gt;以及&lt;&lt;<span>程序猿修炼之道之单元测试</span>&gt;&gt;</span></span></p>
+<p><span><strong><span>15.其它知识点</span></strong></span></p>
+<p>　　<span><strong><span>15.1 const和readonly本质区别</span></strong></span></p>
+<p>　　　　理解两者是在“编译时”还是“运行时”常量，以及两者的作用域，那么它们将不会这么神秘！</p>
+<p>　　　　编译时OR运行时：</p>
+<p>　　　　const：编译时&nbsp;</p>
+<p>　　　　readonly：运行时</p>
+<p>　　　　作用域：</p>
+<p>　　　　const:①本身就是静态变量</p>
+<p>　　　　　　　&nbsp;②只能定义基本类型，如int，string等等</p>
+<p>　　　　　　　 ③局部变量和全局变量都可以定义</p>
+<p>　　　　　　　 ④一旦定义就不能修改</p>
+<p>　　　　readonly:①不是静态变量，如果需要需加上“static”关键字</p>
+<p>　　　　　　　　 &nbsp;②可以定义一切类型，可以是自己自定义的对象</p>
+<p>　　　　　　　　 &nbsp;③只能定义全局变量</p>
+<p>　　　　　　　　 &nbsp;④一旦定义可以在构造函数里面进行初始化变量</p>
+<p>　　　　总结：园子里面还有很多对于它们性能方面的文章，有兴趣的可以搜搜看，推荐使用“readonly”吧！</p>
+<p>　　<span><strong><span>15.2 is和as操作符</span></strong></span></p>
+<p>　　　　16.2.1 As和强制转化最本质的区别　　　　　　</p>
+<p>　　　　 &nbsp;As：进行转换的时候永远不是出现异常，当转换失败时会返回一个“null”值，所以你只需要进行一个null值的判断就知道转换失败还是成功了！</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;强制转化：会出现转换失败并抛出异常，所以我们都需要使用“try/catch”来捕获转换出错的异常，也可以使用“is”来判断是否是你要转换的类型！</p>
+<p align="left">　　　　16.2.2 一些常见注意点</p>
+<p align="left">　　　　 &nbsp;① as不能用于值类型的转化</p>
+<p align="left">　　　　　　如：object number=100;int numberOne = number as int;</p>
+<p align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;这是因为如果转换失败，那么就会返回一个“null”值，但是值类型是不允许为“null”的，所以在语法上是行不通的，就是你写成了“int?”也是不行的！</p>
+<p align="left">　　　　 &nbsp;② 使用Is配合强制转换来进行类型转换</p>
+<p align="left">　　　　　　首先使用“Is”来判断是否是我需要转换的类型，然后在进行强制转换</p>
+<div class="cnblogs_code"><img id="code_img_closed_3f46b00b-995e-493a-8829-b4255fa8033e" class="code_img_closed" src="./csharp基础知识简单梳理_files/ContractedBlock.gif" alt=""><span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp; &nbsp;　　　 &nbsp;③ 在没有泛型的foreach中，也是把“object”进行强制转化成所需要的类型，代码如下：</p>
+<div class="cnblogs_code"><img id="code_img_closed_3c447dfe-0ddf-422e-bda5-959c4e6c10b7" class="code_img_closed" src="./csharp基础知识简单梳理_files/ContractedBlock.gif" alt=""><span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;　　　　　　Note：或者使用GetType()方法来精确检测是否是你想要的转换类型!</p>
+<p>　　<span><strong><span>15.3 运算符操作以及类型转化操作重载</span></strong></span></p>
+<p><span><strong><span>　　</span></strong><span><span>这两个知识点还是比较容易学习的，一个是操作符的重载，一个是用于自定义强制转换的方法(你也可以使用“as”进行强制转换)，只要稍加注意一些语法就好了！</span></span><span><span><br></span></span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span> 1</span>     <span>public</span> <span>class</span><span> MyPerson
+</span><span> 2</span> <span>    {
+</span><span> 3</span>         <span>public</span> <span>string</span> Name { <span>get</span>; <span>set</span><span>; }
+</span><span> 4</span> 
+<span> 5</span>         <span>/*</span>
+<span> 6</span> <span>         *  ①必须为静态
+</span><span> 7</span> <span>         *  ②关键字operator
+</span><span> 8</span> <span>         *  ③需要定义重载的操作符
+</span><span> 9</span> <span>         *  ④定义返回值类型
+</span><span>10</span>          <span>*/</span>
+<span>11</span>         <span>public</span> <span>static</span> MyPerson <span>operator</span> +<span>(MyPerson personFather, MyPerson personMother)
+</span><span>12</span> <span>        {
+</span><span>13</span>             <span>return</span> <span>new</span> MyPerson() { Name = personFather.Name +<span> personMother.Name };
+</span><span>14</span> <span>        }
+</span><span>15</span> 
+<span>16</span>         <span>/*</span>
+<span>17</span> <span>            ①必须为静态
+</span><span>18</span> <span>         *  ②关键字“explict”和operator”
+</span><span>19</span> <span>         *  ③需要转化的类型：MyPerson
+</span><span>20</span>          <span>*/</span>
+<span>21</span>         <span>public</span> <span>static</span> <span>explicit</span> <span>operator</span><span> MyPerson(MyPeople myPeople)
+</span><span>22</span> <span>        {
+</span><span>23</span>             <span>return</span> <span>new</span><span> MyPerson(){ Name="YCG" };
+</span><span>24</span> <span>        }
+</span><span>25</span> <span>    }
+</span><span>26</span>     <span>public</span> <span>class</span><span> MyPeople
+</span><span>27</span>     { }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;　　具体的用法如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span>1</span>   MyPerson personOne = <span>new</span> MyPerson() { Name = <span>"</span><span>AAAAAA</span><span>"</span><span> };
+</span><span>2</span>   MyPerson personTwo = <span>new</span> MyPerson() { Name = <span>"</span><span>BBBBB</span><span>"</span><span> };
+</span><span>3</span>   MyPerson personThree = personOne +<span> personTwo;  //操作符重载
+</span><span>4</span> <span>  Console.WriteLine(personThree.Name);  
+</span><span>5</span> 
+<span>6</span>   MyPeople people = <span>new</span> MyPeople() { Name = <span>"</span><span>wang wei</span><span>"</span><span> };
+</span><span>7</span>   MyPerson personFour = (MyPerson)people; <span>//</span><span>类型强制转换</span>
+<span>8</span>   Console.WriteLine(personFour.Name);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/14/2574486.html"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp基础知识简单梳理_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp; &nbsp;　<span><strong><span>15.4 ToString方法</span></strong></span></p>
+<p>　　　　入口：&nbsp;<a id="ctl01_lnkTitle" href="http://www.cnblogs.com/ldp615/archive/2009/09/02/1559020.html">c# 扩展方法奇思妙用高级篇五：ToString(string format) 扩展</a></p>
+<p>　　<span><strong><span>15.5 数据实体模型(Tuple)以及匿名类型</span></strong></span></p>
+<p>&nbsp;　　　　16.5.1 Tuple实际上就是一个匿名的实体的模型，它的用处在于不要自己定义一个实实在在的Entity，使用它就能达到效果！</p>
+<div class="cnblogs_code"><img id="code_img_closed_66008e39-c520-4177-be65-98b518890829" class="code_img_closed" src="./csharp基础知识简单梳理_files/ContractedBlock.gif" alt=""><span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;　　　　 Note：在查看源代码的时候注意它的第八个参数：</p>
+<p>　　　　<img src="./csharp基础知识简单梳理_files/2012070813032290.png" alt="" style="width: 690px;"></p>
+<p>　　　　16.5.2 匿名类型</p>
+<div class="cnblogs_code">
+<pre><span>1</span> <span>var</span> data = <span>new</span> { number = <span>11111</span>, str = <span>"</span><span>ssssss</span><span>"</span> };  <span>//</span><span>不需要定义变量的类型，如果想知道匿名类型底层源码怎么写的，可以使用反编译查看源码，一目了然了！</span>
+<span>2</span> Console.WriteLine(data.number + data.str); </pre>
+</div>
+<p>&nbsp;　　<span><strong><span>15.6 String和StringBuilder详解</span></strong></span></p>
+<p>　　　　这个技术大妞们已经讨论的很多，我也没这个能力说的一清二楚，推荐几篇文章吧：1.&nbsp;<span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/artech/archive/2007/03/04/663728.html"><span>字符串的驻留（String Interning）</span></a></span>&nbsp;2.<span>&nbsp;<span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/artech/archive/2007/05/06/737130.html">深入理解string和如何高效地使用string</a>&nbsp;<span>等等，实在很多啦...</span></span></span></p>
+<p><span><strong><span>17.Remoting</span></strong></span></p>
+<p>　　传送门：<strong><span><span><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yangcaogui/archive/2012/07/11/2586834.html">.NET Remoting技术文章汇总</a>&nbsp;<span>&nbsp;</span></span></span></strong><span><span><span>，看过那些文章，对于Remoting的理解会有一个质的上升...</span></span></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhouzhou-aspnet/category/344264.html" target="_blank">C#</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2591596,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;47a62c79-8cc5-e011-8ee0-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./csharp基础知识简单梳理_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./csharp基础知识简单梳理_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhouzhou-aspnet/" target="_blank"><img src="./csharp基础知识简单梳理_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhouzhou-aspnet/">超级塞亚人</a><br>
+            <a href="http://home.cnblogs.com/u/zhouzhou-aspnet/followees">关注 - 28</a><br>
+            <a href="http://home.cnblogs.com/u/zhouzhou-aspnet/followers">粉丝 - 54</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;47a62c79-8cc5-e011-8ee0-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2591596,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">14</span>
+    </div>
+    <div class="buryit" onclick="votePost(2591596,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2011/08/14/2137839.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2011/08/14/2137839.html" title="发布于2011-08-14 12:35">MVC详解</a><br><a href="http://www.cnblogs.com/zhouzhou-aspnet/p/3835036.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhouzhou-aspnet/p/3835036.html" title="发布于2014-07-10 09:14">Foreach控件使用</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-07-14 16:30</span> <a href="http://www.cnblogs.com/zhouzhou-aspnet/">超级塞亚人</a> 阅读(<span id="post_view_count">24642</span>) 评论(<span id="post_comment_count">2</span>) &nbsp;<a href="https://i.cnblogs.com/EditArticles.aspx?postid=2591596" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#" onclick="AddToWz(2591596);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=94987,cb_entryId=2591596,cb_blogApp=currentBlogApp,cb_blogUserGuid='47a62c79-8cc5-e011-8ee0-842b2b196315',cb_entryCreatedDate='2012/7/14 16:30:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3139222,&#39;VSkmHVyXXJ1YLA2yB8cey+pbtZCWNkZvoYJWG+m4+wRvpNmcKWH4jg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3139222,&#39;VSkmHVyXXJ1YLA2yB8cey+pbtZCWNkZvoYJWG+m4+wRvpNmcKWH4jg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#3139222" class="layer">#1楼</a><a name="3139222" id="comment_anchor_3139222"></a>  <span class="comment_date">2015-03-11 23:35</span> <a id="a_comment_author_3139222" href="http://www.cnblogs.com/dyg540/" target="_blank">失落‘80</a> <a href="http://msg.cnblogs.com/send/%E5%A4%B1%E8%90%BD%E2%80%9880" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3139222" class="blog_comment_body">不错，好文要顶！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3139222,&#39;Digg&#39;,this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3139222,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3139222_avatar" style="display:none;">http://pic.cnblogs.com/face/u79238.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3732845,&#39;zDd3mTGz3TkEIIGCCL1nYF6/OMUpremsYkVADc/Tou4jVAd7paaYDg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3732845,&#39;zDd3mTGz3TkEIIGCCL1nYF6/OMUpremsYkVADc/Tou4jVAd7paaYDg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#3732845" class="layer">#2楼</a><a name="3732845" id="comment_anchor_3732845"></a><span id="comment-maxId" style="display:none;">3732845</span><span id="comment-maxDate" style="display:none;">2017/7/11 16:46:41</span>  <span class="comment_date">2017-07-11 16:46</span> <a id="a_comment_author_3732845" href="http://www.cnblogs.com/mrqinxw/" target="_blank">持久才有力量</a> <a href="http://msg.cnblogs.com/send/%E6%8C%81%E4%B9%85%E6%89%8D%E6%9C%89%E5%8A%9B%E9%87%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3732845" class="blog_comment_body">总结的很好 学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3732845,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3732845,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./csharp基础知识简单梳理_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./csharp基础知识简单梳理_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./csharp基础知识简单梳理_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./csharp基础知识简单梳理_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./csharp基础知识简单梳理_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./csharp基础知识简单梳理_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://www.mtyun.com/promote/69f73a72-f46d-4103-88e5-94ed2f81259d/" target="_blank"><img width="300" height="250" src="./csharp基础知识简单梳理_files/24442-20170921101521025-1845913848.jpg" alt="美团云0921"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/579464/" target="_blank">“反响这么好，很震惊”：《绝地求生》制作人谈吃鸡的成就与未来</a><br> ·  <a href="http://news.cnblogs.com/n/579467/" target="_blank">都100%代码覆盖了，还会有什么问题？</a><br> ·  <a href="http://news.cnblogs.com/n/579481/" target="_blank">出租婚房被一夜搬光 蚂蚁短租回应：配合协助调查</a><br> ·  <a href="http://news.cnblogs.com/n/579479/" target="_blank">时隔两年，小米为何重提出货量破亿目标？</a><br> ·  <a href="http://news.cnblogs.com/n/579458/" target="_blank">从零到5000亿美元，Facebook持续增长13年背后的三个秘密</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./csharp基础知识简单梳理_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/zhouzhou-aspnet/">超级塞亚人</a><br>园龄：<a href="http://home.cnblogs.com/u/zhouzhou-aspnet/" title="入园时间：2011-08-13">6年1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/zhouzhou-aspnet/followers/">54</a><br>关注：<a href="http://home.cnblogs.com/u/zhouzhou-aspnet/followees/">28</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;47a62c79-8cc5-e011-8ee0-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/09/01&#39;);return false;">&lt;</a></td><td align="center">2017年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td></tr><tr><td class="CalTodayDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhouzhou-aspnet/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhouzhou-aspnet/category/316079.html">MVC(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhouzhou-aspnet/category/593776.html">SSIS(3)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2014/07.html">2014年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2011/08.html">2011年8月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/zhouzhou-aspnet/category/406592.html">Ado.net(10)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344268.html">Asp.net(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/zhouzhou-aspnet/category/416069.html">Blend(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344264.html">C#(62)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344269.html">div+css(6)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344267.html">jQuery</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/zhouzhou-aspnet/category/394916.html">Linq(24)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/zhouzhou-aspnet/category/583095.html">MDX</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_8" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344271.html">Silverlight(4)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_9" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344266.html">SqlServer(61)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_10" href="http://www.cnblogs.com/zhouzhou-aspnet/category/583093.html">SSAS(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_11" href="http://www.cnblogs.com/zhouzhou-aspnet/category/583092.html">SSIS(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_12" href="http://www.cnblogs.com/zhouzhou-aspnet/category/583094.html">SSRS</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_13" href="http://www.cnblogs.com/zhouzhou-aspnet/category/449856.html">WCF(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_14" href="http://www.cnblogs.com/zhouzhou-aspnet/category/344265.html">WinForm(11)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_15" href="http://www.cnblogs.com/zhouzhou-aspnet/category/390840.html">WPF(22)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_16" href="http://www.cnblogs.com/zhouzhou-aspnet/category/393489.html">公共类库使用帮助(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_17" href="http://www.cnblogs.com/zhouzhou-aspnet/category/390834.html">软件测试(32)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_18" href="http://www.cnblogs.com/zhouzhou-aspnet/category/419450.html">图形素材(7)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_19" href="http://www.cnblogs.com/zhouzhou-aspnet/category/392490.html">杂谈(18)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/3213719.html#3764926">1. Re:WPF制作的小型笔记本-仿有道云笔记</a></li>
+        <li class="recent_comment_body">非常感谢，学习一下</li>
+        <li class="recent_comment_author">--般若波罗蜜多</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/2591596.html#3732845">2. Re:C#基础知识简单梳理</a></li>
+        <li class="recent_comment_body">总结的很好 学习了</li>
+        <li class="recent_comment_author">--持久才有力量</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/3213719.html#3690621">3. Re:WPF制作的小型笔记本-仿有道云笔记</a></li>
+        <li class="recent_comment_body">博主，那个SmokeNote.Logic文件夹是用来干什么的呢</li>
+        <li class="recent_comment_author">--第Ⅲ天</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/3537683.html#3670707">4. Re:[C# 开发技巧]如何防止程序多次运行</a></li>
+        <li class="recent_comment_body">kankan</li>
+        <li class="recent_comment_author">--seavirus</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhouzhou-aspnet/articles/3213719.html#3444490">5. Re:WPF制作的小型笔记本-仿有道云笔记</a></li>
+        <li class="recent_comment_body">实现的不错啊，学习</li>
+        <li class="recent_comment_author">--yin__li</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2011/08/14/2137839.html">1. MVC详解(3997)</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/p/3835036.html">2. Foreach控件使用(271)</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/p/3845061.html">3. 条件拆分控件使用(118)</a></li><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/p/3844491.html">4. 时间戳(73)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhouzhou-aspnet/archive/2011/08/14/2137839.html">1. MVC详解(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 超级塞亚人
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

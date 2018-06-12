@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://blog.jd-in.com/947.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>  EntityFramework 优化建议 » 加点博客</title>
+                <meta name="keywords" content="软件外包,软件服务,加点信息,app开发,小程序外包,技术外包,">
+        <meta name="description" content="Entity Framework目前最新版本是6.1.3，当然Entity Framework 7 目前还是预览版，并不能投入正式生产环境，估计正式版16年第一季度会出来，了解过EF7的部分新特性后，还是狠狠期待一下滴。
+EF性能问题一直为开发者">
+		
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<!--[if lte IE 8]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if lt IE 8]>
+			<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+		<![endif]-->
+		<link rel="shortcut icon" href="http://blog.jd-in.com/wp-content/themes/francoise/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://blog.jd-in.com/wp-content/themes/francoise/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://blog.jd-in.com/wp-content/themes/francoise/apple-touch-icon-152x152.png">
+        <link rel="icon" type="image/png" href="http://blog.jd-in.com/wp-content/themes/francoise/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="http://blog.jd-in.com/wp-content/themes/francoise/favicon-16x16.png" sizes="16x16">
+
+        <link rel="alternate" type="application/rss+xml" title="加点博客 RSS Feed" href="http://blog.jd-in.com/feed">
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.jd-in.com/xmlrpc.php?rsd">
+        <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.jd-in.com/wp-includes/wlwmanifest.xml"> 
+        <!-- wp_header -->
+        
+        <link rel="stylesheet" type="text/css" href="./EntityFramework 优化建议_files/style.css">
+        <link rel="stylesheet" type="text/css" href="./EntityFramework 优化建议_files/scheme-default.css">
+        <link rel="stylesheet" type="text/css" href="./EntityFramework 优化建议_files/adaptive.css">
+	<style type="text/css">:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style><script src="./EntityFramework 优化建议_files/pc_nb.js.下载" charset="UTF-8"></script><link rel="stylesheet" type="text/css" href="./EntityFramework 优化建议_files/main.css"></head>
+<body class="post-template-default single single-post postid-947 single-format-standard" style="">
+	<header id="header">
+		<div class="siteHeader">
+			<div class="wrapper clear">
+
+
+                <div class="logo"> <a href="http://blog.jd-in.com/"><img src="./EntityFramework 优化建议_files/logo.png"></a></div>
+
+
+                <a href="http://blog.jd-in.com/" class="mobile-logo">
+                                    <img src="./EntityFramework 优化建议_files/logo.png" alt="加点博客">
+                                </a>
+
+					
+				
+
+        <ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="mainMenu clear"><li id="menu-item-1546" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1546"><a href="http://blog.jd-in.com/">首页</a></li>
+<li id="menu-item-1543" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1543"><a href="http://blog.jd-in.com/category/technology-share">技术分享</a></li>
+<li id="menu-item-1545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1545"><a href="http://blog.jd-in.com/category/ued">用户体验</a></li>
+<li id="menu-item-1544" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1544"><a href="http://blog.jd-in.com/category/reading">读书.故事</a></li>
+</ul>
+                <div class="searchIcon"></div>
+                <span class="showMobileMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                </div>
+                <div class="mobileMenu">
+                <div class="mobileSearch">
+             <form method="get" action="http://blog.jd-in.com/">
+                <input type="text" name="s" size="32" value="" placeholder="请输入关键字">
+                <input type="submit" value="">
+                </form>
+        </div>
+               
+                    <ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-1" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1546"><a href="http://blog.jd-in.com/">首页</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1543"><a href="http://blog.jd-in.com/category/technology-share">技术分享</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1545"><a href="http://blog.jd-in.com/category/ued">用户体验</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1544"><a href="http://blog.jd-in.com/category/reading">读书.故事</a></li>
+</ul>                </div>
+
+                        
+
+
+			</div>
+		
+		
+	</header>
+   
+
+
+	<section class="container">
+		<div class="wrapper clear">
+
+        			<div class="contentLeft">
+				<div id="post-947" class="singlePostMeta post-947 post type-post status-publish format-standard has-post-thumbnail hentry category-technology-share">
+					<h1>EntityFramework 优化建议</h1>
+					<time class="singlePostTime" datetime="2016-01-15">2016年1月15日 下午4:54</time>
+					<a class="archivePostCategory" href="http://blog.jd-in.com/author/leilinkang">leilinkang</a>
+					<div class="postCategoryWrap">
+
+					
+
+
+
+					</div>
+				</div>
+				<div class="singlePostWrap clear">
+
+                    <div>
+<div class="preview">
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">Entity Framework目前最新版本是6.1.3，当然Entity Framework 7 目前还是预览版，并不能投入正式生产环境，估计正式版16年第一季度会出来，了解过EF7的部分新特性后，还是狠狠期待一下滴。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">EF性能问题一直为开发者所诟病，最让人纠结的也是这块，所以此次我也来谈谈EF的性能优及建议。既然是把优化点列举出来，可能有些地方关于底层的知识就不会介绍的太深刻，权当抛砖引玉吧。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">先说说EF性能优化工具MiniProfiler，（不过也可以直接用Sqlserver profiler）MiniProfiler是StackOverFlow团队设计的一款对.net的性能分析小程序。</p>
+<p>在这里我们可以使用MiniProfiler嵌入页面查看页面处理的周期和Sql语句执行的周期及Sql语句。可以通过Nuget下载MiniProfiler和MiniProfiler.EF然后进行安装与配置(具体操作暂不细说)。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">因为作为宇宙级的开发工具VS2015已经提供了一个更为直接明了的方式，那就是“诊断工具”，具体打开的位置</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452839875012.jpg" src="./EntityFramework 优化建议_files/14528398750121.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">此工具能更为直观的将EF操作数据库的SQL语句所列举出来。如我要查询角色表数据</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs ocaml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span> db = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> <span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+
+db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Role</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; a.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Id</span> &gt; <span class="hljs-number">1</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Select</span>(a =&gt; a.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Id</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">查看工具显示</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452840022458.jpg" src="./EntityFramework 优化建议_files/14528400224581.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">查看“执行Reader”可以看到SQL语句</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452840135143.jpg" src="./EntityFramework 优化建议_files/14528401351431.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">方便你根据查询语句修改你的查询表达式及显示model.</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">以下为此次目录列表:</p>
+<div class="toc">
+<ul style="padding: 0;margin: 0 0 10px 35px">
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#1e4bdbfe794a8e69c80e696b0e78988e79a84ef">1.使用最新版的EF</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#220e7a681e794a8e5bbb6e8bf9fe58aa0e8bdbd">2. 禁用延迟加载</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#3e4bdbfe794a8e8b4aae5a9aae58aa0e8bdbdefbc88e58f88e58fabe9a284e58aa0e8bdbde5b0b1e698afe695b0e68daee5ba93e79a84e5a49ae8a1a8e69fa5e8afa2efbc89">3.使用贪婪加载（又叫预加载就是数据库的多表查询）</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#4e4ba86e8a7a320iqueryableefbc8cienumerablee79a84e58cbae588ab">4.了解 IQueryable，IEnumerable的区别</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#5e4bc98e58c96e6938de4bd9casnotrackinge4b88eattach">5.优化操作AsNoTracking()与Attach</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#6efe4bdbfe794a8sqlquery">6.EF使用SqlQuery</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#7e585b3e4ba8easnonunicode">7.关于AsNonUnicode</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#8e5bbbae8aeaee4bdbfe794a8viewmodele4bba3e69bbfe5ae9ee4bd93model">8.建议使用ViewModel代替实体Model</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#9e5bbbae8aeaemodele5ae9ee4bd93e4b8ade69e9ae4b8bee4bdbfe794a8bytee7b1bbe59e8b">9.建议Model实体中枚举使用byte类型</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#10modele5ae9ee4bd93e4bdbfe794a8datetime2e69bbfe68da2datetimee68ea7e588b6e58685e5aeb9e580bce7b2bee5baa6">10.Model实体使用DateTime2替换DateTime控制内容值精度</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#11e59088e79086e4bdbfe794a8efe689a9e5b195e5ba93">11.合理使用EF扩展库</a>
+<ul style="padding: 0;margin: 0 0 0 35px">
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#1efe5ae9ee78eb0e68c87e5ae9ae5ad97e6aeb5e79a84e69bb4e696b0">1.EF实现指定字段的更新</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#2e689b9e9878fe69fa5e8afa2e58a9fe883bd">2.批量查询功能</a></li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#3e69fa5e8afa2e7bc93e5ad98e58a9fe883bd">3.查询缓存功能</a></li>
+</ul>
+</li>
+<li><a style="color: #0088cc;text-decoration: none" href="http://blog.jd-in.com/947.html#12efe4bdbfe794a8sqle58886e5ba93e6938de4bd9c">12.EF使用SQL分库操作</a></li>
+</ul>
+</div>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">下面开始一一介绍</p>
+<h1 id="articleHeader0" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">1.使用最新版的EF</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">使用最新版的EF正式版本代替老的版本(除旧迎新哈哈)，毕竟EF是微软所重视的主流数据操作库，每次升级版本优化效果都挺明显的。</p>
+<h1 id="articleHeader1" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">2. 禁用延迟加载</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">若使用延迟加载遍历单个Model下的某一集合属性，如下面的例子:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-C# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> user = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.Person.Single(a =&gt; a.Id == 1);
+
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> role <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> user.Roles)
+{
+    Console.WriteLine(role.Name);
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">每次我们需要访问属性Role.Name的时候都会访问数据，这样累加起来的开销是很大的。</p>
+<p>EF默认使用延迟加载获取导航属性关联的数据。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">作为默认配置的延迟加载，需要满足以下几个条件：</p>
+<ol style="padding: 0;margin: 0 0 10px 35px">
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">context.Configuration.ProxyCreationEnabled = true;</p>
+</li>
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">context.Configuration.LazyLoadingEnabled = true;</p>
+</li>
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">导航属性被标记为virtual</p>
+</li>
+</ol>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">这三个条见缺一不可。因此可以选择性禁用全局延迟加载或者是某一属性的延迟加载.</p>
+<h1 id="articleHeader2" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">3.使用贪婪加载（又叫预加载就是数据库的多表查询）</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">这点其实也跟上面的一样响应了一个原则:尽量的减少数据库的访问次数，</p>
+<pre class="xiaoshujiang_code_container"><code class="language-C# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> user = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.Person.<span class="hljs-keyword" style="color: #f92672;font-weight: bold">Include</span>(a=&gt;a.Roles);
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">一次查询将UserProfile与其Role表数据查询出来</p>
+<h1 id="articleHeader3" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">4.了解 IQueryable，IEnumerable的区别</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">IQueryable返回的是查询表达式，也就是说生成了SQL查询语句但是却还没有与数据库进行交互。</p>
+<p>IEnumerable则是已经执行查询数据库的操作且数据保存在了内存中</p>
+<p>所以在进行条件拼接的时候一定要在IQueryable类型后面追加Where条件语句，而不是等到ToList之后再开始写条件</p>
+<p>错误的写法:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Person</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; a.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">IsDeleted</span> == <span class="hljs-literal" style="color: #f92672;font-weight: bold">false</span>);
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">正确的写法:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Person</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; a.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">IsDeleted</span> == <span class="hljs-literal" style="color: #f92672;font-weight: bold">false</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">这些写法的意思就是把数据条件拼凑好，再访问数据库。否则从数据库获取全部数据后再过滤，假如数据很庞大几十万，那后果可想而知！</p>
+<h1 id="articleHeader4" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">5.优化操作AsNoTracking()与Attach</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对于只读操作，强烈建议使用AsNoTracking进行数据获取，这样省去了访问EF Context的时间，会大大降低数据获取所需的时间。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">同时由于没有受到上下文的跟踪缓存，因此取得的数据也是及时最新的，更利于某些对数据及时性要求高的数据查询。</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Person</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; a.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">IsDeleted</span> == <span class="hljs-literal" style="color: #f92672;font-weight: bold">false</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">AsNoTracking</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">下面是本人编写关于更改AsNoTracking数据Update的两种方式测试与总结:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">EntityDB <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span> = new EntityDB();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> users = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.AsNoTracking().ToList();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> user <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> users)
+{
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.<span class="hljs-keyword" style="color: #f92672;font-weight: bold">Set</span>&lt;User&gt;().Attach(user);
+}
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> user <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> users)
+{
+    user.IsDeleted = true;
+    <span class="hljs-comment" style="color: #75715e">//db.Entry(user).State=EntityState.Modified;</span>
+}
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.SaveChanges();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">以上代码我将未跟踪的数据做Attach后赋值SaveChanges生成的SQL语句如下:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842413008.jpg" src="./EntityFramework 优化建议_files/14528424130081.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">而采用直接赋值后Entry修改State状态为Modified</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"> EntityDB <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span> = new EntityDB();
+ <span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> users = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.AsNoTracking().ToList();
+<span class="hljs-comment" style="color: #75715e">/* foreach (var user in users)
+ {
+     db.Set&lt;User&gt;().Attach(user);
+ }*/</span>
+ <span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> user <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> users)
+ {
+     user.IsDeleted = false;
+     <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.Entry(user).State=EntityState.Modified;
+ }
+ <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.SaveChanges();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">生成的SQL语句如下：</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842478070.jpg" src="./EntityFramework 优化建议_files/14528424780701.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对比我们得出结论第一种采用Attach后赋值的方法是执行的按需更新，也就是说更新哪个字段就update它，而第二种则是不管更新了哪个字段，生成的SQL语句都是更新全部。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">为什么第一种方法中我Attach后仅仅只是给对象赋值且没有修改State为Modified，但EF却能帮我修改数据值，那是因为</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">当SaveChanges时，将会自动调用DetectChanges方法，此方法将扫描上下文中所有实体，</p>
+<p>并比较当前属性值和存储在快照中的原始属性值。如果被找到的属性值发生了改变，</p>
+<p>此时EF将会与数据库进行交互，进行数据更新，所以不用设置State为Modified。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对于删除操作则需要在Attach后设置 db.Entry(user).State = EntityState.Deleted;</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">借鉴于此，我又封装了一个独立的AttachList方法，此方法仅仅只是将由AsNoTracking 取得的数据附加到上下文中，因为不用关注之后的操作是Update或者Delete所以只用了Attach。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">以下截图代码是直接从我的项目中摘取出来展示:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842518351.jpg" src="./EntityFramework 优化建议_files/14528425183511.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">其中最关键的是性能上的提高（就是上述文字标记的地方），当查询大量数据时，使用此方法比不使用而将其附加到上下文容器中，性能提升不是一点点。</p>
+<h1 id="articleHeader5" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">6.EF使用SqlQuery</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对于某些特殊业务，我们也可以使用sql语句查询实体，以下只是一个简单的事例操作</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs dockerfile" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">SqlParameter[] parameter = { };
+var <span class="hljs-built_ins">user</span> = db.Database.SqlQuery&lt;<span class="hljs-built_ins">User</span>&gt;("select * <span class="hljs-built_ins">from</span> <span class="hljs-built_ins">user</span>", parameter).ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">此方法获得的实体查询是在数据库（Database）上，实体不会被上下文跟踪。</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-type" style="color: #a6e22e;font-weight: bold">SqlParameter</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">[]</span> parameter = { };
+var user = db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Set</span>&lt;<span class="hljs-type" style="color: #a6e22e;font-weight: bold">User</span>&gt;<span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">SqlQuery</span>(<span class="hljs-string" style="color: #a6e22e">"select * from user"</span>, parameter).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">此方法获得的实体查询是被上下文跟踪，所以能直接赋值后SaveChanges()。</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">var user = db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Set</span>&lt;<span class="hljs-type" style="color: #a6e22e;font-weight: bold">User</span>&gt;<span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">SqlQuery</span>(<span class="hljs-string" style="color: #a6e22e">"select * from user"</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">ToList</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+user.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Last</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Name</span> = <span class="hljs-string" style="color: #a6e22e">"makmong"</span>;
+db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">SaveChanges</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">当然同样支持带参数的查询与存储过程操作，我就不一一列出了此处只做点出即可。</p>
+<h1 id="articleHeader6" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">7.关于AsNonUnicode</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们执行如下语句</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">query</span> = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Where(a=&gt;a.Name==<span class="hljs-string" style="color: #a6e22e">"makmong"</span>).ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">生成的SQL语句</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842803182.jpg" src="./EntityFramework 优化建议_files/14528428031821.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">再试一个语句</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">query</span> = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Where(a=&gt;a.Name== DbFunctions.AsNonUnicode(<span class="hljs-string" style="color: #a6e22e">"makmong"</span>)).ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">生成的SQL语句</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842845290.jpg" src="./EntityFramework 优化建议_files/14528428452901.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">其中生成的SQL语句区别了，一个加了N，一个未加N，N是将字符串作为Unicode格式进行存储。</p>
+<p>因为.Net字符串是Unicode格式，在上述SQL的Where子句中当一侧有N型而另一侧没有N型时，此时会进行数据转换，也就是说如果你在表中建立了索引此时会失效代替的是造成全表扫描。</p>
+<p>用 DbFunctions.AsNonUnicode 方法来告诉.Net将其作为一个非Unicode来对待，此时生成的SQL语句两侧都没有N型，就不会进行更多的数据转换，也就是说不会造成更多的全表扫描。</p>
+<p>所以当有大量数据时如果不进行转换会造成意想不到的结果。</p>
+<p>因此在进行字符串查找或者比较时建议用AsNonUnicode()方法来提高查询性能。</p>
+<h1 id="articleHeader7" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">8.建议使用ViewModel代替实体Model</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">大家可能都会碰到这种情况就是Model实体拥有多个字段，但是查询数据到页面展示的时候可能只需要显示那么几个字段，这个时候建议使用ViewModel查询，</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">也就是说需要哪些字段就查询哪些，而不是 “select *”将全部字段加载出来。此操作即出于安全考虑 (不应该将实体Model直接传递到View上面)，同时查询的字段减少 (可能就几个) 对查询性能也有所提升。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">例：</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">query</span> = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对应的查询语句为:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452842976387.jpg" src="./EntityFramework 优化建议_files/14528429763871.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">接着新建ViewModel</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs vala" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-class"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">class</span> <span class="hljs-title" style="color: white;font-weight: bold">UserViewModel</span>
+</span>{
+  <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">int</span> Id { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+  <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">string</span> Name { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">开始查询:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs nix" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">var <span class="hljs-variable">query =</span> db.User.Select(<span class="hljs-variable">a=</span>&gt;new UserViewModel()
+{
+    <span class="hljs-variable">Id =</span> a.Id,
+    <span class="hljs-variable">Name =</span> a.Name
+}).ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对应的查询语句为:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452843076486.jpg" src="./EntityFramework 优化建议_files/14528430764861.jpg" alt="enter description here"></p>
+<h1 id="articleHeader8" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">9.建议Model实体中枚举使用byte类型</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们先来了解下Sqlserver中tinyint, smallint, int, bigint的区别</p>
+<ul style="padding: 0;margin: 0 0 10px 35px">
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">bigint：从-2<sup>63(-9223372036854775808)到2</sup>63-1(9223372036854775807)的整型数据，存储大小为 8 个字节。一个字节就是8位，那么bigint就有64位</p>
+</li>
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">int：从-2<sup>31(-2,147,483,648)到2</sup>31-1(2,147,483,647)的整型数据，存储大小为 4 个字节。int类型，最大可以存储32位的数据</p>
+</li>
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">smallint：从-2<sup>15(-32,768)到2</sup>15-1(32,767)的整数数据，存储大小为 2 个字节。smallint就是有16位</p>
+</li>
+</ul>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">tinyint：从0到255的整数数据，存储大小为 1 字节。tinyint就有8位。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">所以对于有些范围比较短的数值长度，例如枚举类型值，完全可以使用byte类型替换int类型，对应生成数据库tinyint类型以节省数据存储。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">如:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs protobuf" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">public CouponType CouponType { get; set; }
+public <span class="hljs-class"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">enum</span> <span class="hljs-title" style="color: white;font-weight: bold">CouponType</span> : byte
+</span>{
+<span class="hljs-constant" style="color: #66d9ef">    RedBag</span> = <span class="hljs-number">0</span>,
+<span class="hljs-constant" style="color: #66d9ef">    Experience</span> = <span class="hljs-number">1</span>,
+<span class="hljs-constant" style="color: #66d9ef">    Cash</span> = <span class="hljs-number">2</span>,
+<span class="hljs-constant" style="color: #66d9ef">    JiaXiQuan</span> = <span class="hljs-number">3</span>
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对应的数据库类型:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452843232244.jpg" src="./EntityFramework 优化建议_files/14528432322441.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">此时的CouponType字段对应数据库就是一个tinyint类型</p>
+<h1 id="articleHeader9" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">10.Model实体使用DateTime2替换DateTime控制内容值精度</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们先看下 SQL Server中DateTime与DateTime2的区别</p>
+<ul style="padding: 0;margin: 0 0 10px 35px">
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">DateTime字段类型对应的时间格式是 yyyy-MM-dd HH:mm:ss.fff ，3个f，精确到1毫秒(ms)，示例 2014-12-03 17:06:15.433 。</p>
+</li>
+<li>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">DateTime2字段类型对应的时间格式是 yyyy-MM-dd HH:mm:ss.fffffff ，7个f，精确到0.1微秒(μs)，示例 2014-12-03 17:23:19.2880929 。</p>
+</li>
+</ul>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们知道EF Model的DateTime对应的SQL类型是DateTime</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">例：</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs actionscript" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> DateTime CreateDateTime { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对应的数据库实体类型:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452843352779.jpg" src="./EntityFramework 优化建议_files/14528433527791.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452843373852.jpg" src="./EntityFramework 优化建议_files/14528433738521.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">但是在业务操作中很多时间值我们仅仅只需要精确到秒就够了(特殊业务除外)，</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">那多余的毫秒数既无用又占数据库存储（逼死处女座），既然是优化操作那么我们是否可以去除毫秒数而只存储到秒呢?例:2014-12-03 17:06:15</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">So我们可以使用特性Attribute及抽象类PrimitivePropertyAttributeConfigurationConvention来达到这一目的。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">不多说直接上代码:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs cs" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">[AttributeUsage(AttributeTargets.Property)]
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">sealed</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">class</span> <span class="hljs-title" style="color: #a6e22e;font-weight: bold">DateTime2PrecisionAttribute</span> : <span class="hljs-title" style="color: #a6e22e;font-weight: bold">Attribute</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-title" style="color: #a6e22e;font-weight: bold">DateTime2PrecisionAttribute</span><span class="hljs-params">(<span class="hljs-keyword" style="color: #f92672;font-weight: bold">byte</span> precision = <span class="hljs-number">0</span>)</span>
+    </span>{
+        Precision = precision;
+    }
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">byte</span> Precision { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+}
+</code></pre>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs actionscript" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-class"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">class</span> <span class="hljs-title" style="color: white;font-weight: bold">DateTime2PrecisionAttributeConvention</span>: <span class="hljs-title" style="color: white;font-weight: bold">PrimitivePropertyAttributeConfigurationConvention</span>&lt;<span class="hljs-title" style="color: white;font-weight: bold">DateTime2PrecisionAttribute</span>&gt;      
+</span>{
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">override</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">void</span> Apply(ConventionPrimitivePropertyConfiguration configuration,
+        DateTime2PrecisionAttribute attribute)
+    {
+        <span class="hljs-keyword" style="color: #f92672;font-weight: bold">if</span> (attribute.Precision &gt; <span class="hljs-number">7</span>)
+        {
+            <span class="hljs-keyword" style="color: #f92672;font-weight: bold">throw</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> InvalidOperationException(<span class="hljs-string" style="color: #a6e22e">"Precision must be between 0 and 7."</span>);
+        }
+        configuration.HasPrecision(attribute.Precision);
+        configuration.HasColumnType(<span class="hljs-string" style="color: #a6e22e">"datetime2"</span>);
+    }
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">理解一下代码，第一句中的AttributeTargets.Property表示可以对属性(Property)应用特性(Attribute)</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">而构造函数DateTime2PrecisionAttribute则指定了要应用的datetime的精度值。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">而最后两句</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs vhdl" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">configuration</span>.HasPrecision(<span class="hljs-keyword" style="color: #f92672;font-weight: bold">attribute</span>.Precision);
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">configuration</span>.HasColumnType(<span class="hljs-string" style="color: #a6e22e">"datetime2"</span>);
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">则是将我们所定义的类型精度与对应声明数据类型附加给要标记的实体类型。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">最后还需要将DateTime2PrecisionAttributeConvention方法注册到我们的DbContext中</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs cs" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">virtual</span> DbSet&lt;User&gt; User { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+<span class="hljs-function"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">protected</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">override</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">void</span> <span class="hljs-title" style="color: #a6e22e;font-weight: bold">OnModelCreating</span><span class="hljs-params">(DbModelBuilder modelBuilder)</span>
+</span>{
+    modelBuilder.Conventions.Add(<span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> DateTime2PrecisionAttributeConvention());
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">现在我们再使用此特性在上面的属性CreateDateTime中看下效果吧</p>
+<p>结果图:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452843548277.jpg" src="./EntityFramework 优化建议_files/14528435482771.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452843563687.jpg" src="./EntityFramework 优化建议_files/14528435636871.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">是不是感觉不错。当然基于此拓展，我们也可以扩展我们想要的Model数据类型，如：控制decimal的精度(2位或4位小数)，改边nvarchar(max)为我们想要的长度类型（具体情况看业务再优化吧）。</p>
+<h1 id="articleHeader10" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">11.合理使用EF扩展库</h1>
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<h2 id="articleHeader11" style="font-family: inherit;font-weight: 500;line-height: 40px;color: inherit;font-size: 31.5px;margin: 1.0em 0 .6em 0">1.EF实现指定字段的更新</h2>
+</blockquote>
+</blockquote>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">在以往的数据更新操作中我们使用EF的修改都是先查询一次数据附加到上下文中，然后给需要修改的属性赋值，虽说EF能够自动跟踪实体做到按需更新,但更新前查询不仅没有必要，而且增加了额外的开销。EF删除和修改数据只能先从数据库取出，然后再进行删除.</p>
+<p>当进行如下操作时:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sql" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-operator"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">delete</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">from</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">user</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">where</span> Id&gt;<span class="hljs-number">5</span>;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">update</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">user</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span> Name=”<span class="hljs-number">10</span>”;</span>
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们需要这样操作</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> t1 = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Where(t =&gt; t.Id &gt; 5).ToList();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> t <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> t1)
+{
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Remove(t);
+}
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.SaveChanges();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> t2 = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.ToList();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">foreach</span> (<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> t <span class="hljs-keyword" style="color: #f92672;font-weight: bold">in</span> t1)
+{
+    t.Name = <span class="hljs-string" style="color: #a6e22e">"ceshi"</span>;
+}
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.SaveChanges();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">有没办法做到一条语句操作的更改呢？如“update user set name=’张三’where id=1”。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">此时就需要使用EF的扩展库EntityFramework.Extended了。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">在github中提供了一个EF扩展库https://github.com/loresoft/EntityFramework.Extended</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">在VS可以直接通过NuGet安装</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452843908839.jpg" src="./EntityFramework 优化建议_files/14528439088391.jpg" alt="enter description here"></p>
+<p>安装完成后试验下:</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">当然需要先引用:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs capnproto" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">using</span> EntityFramework.Extensions;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">编写代码测试及查看结果:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs ocaml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span> db = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> <span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">User</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; <span class="hljs-literal" style="color: #f92672;font-weight: bold">true</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Update</span>(a =&gt; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> <span class="hljs-type" style="color: #a6e22e;font-weight: bold">User</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span> {<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Name</span> = <span class="hljs-string" style="color: #a6e22e">"ceshi"</span>});
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452843975194.jpg" src="./EntityFramework 优化建议_files/14528439751941.jpg" alt="enter description here"></p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs ocaml" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span> db = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">new</span> <span class="hljs-type" style="color: #a6e22e;font-weight: bold">EntityDB</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+db.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">User</span>.<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Where</span>(a =&gt; <span class="hljs-literal" style="color: #f92672;font-weight: bold">true</span>).<span class="hljs-type" style="color: #a6e22e;font-weight: bold">Delete</span><span class="hljs-literal" style="color: #f92672;font-weight: bold">()</span>;
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452844003648.jpg" src="./EntityFramework 优化建议_files/14528440036481.jpg" alt="enter description here"></p>
+<p>嗯，至于具体选择怎么用，看业务分析哈。</p>
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<h2 id="articleHeader12" style="font-family: inherit;font-weight: 500;line-height: 40px;color: inherit;font-size: 31.5px;margin: 1.0em 0 .6em 0">2.批量查询功能</h2>
+</blockquote>
+</blockquote>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">例如：在分页查询的时候，需要查询结果数，和结果集</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">EF做法：查询两次</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> q = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Where(<span class="hljs-keyword" style="color: #f92672;font-weight: bold">u</span> =&gt; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">u</span>.Name.StartsWith(<span class="hljs-string" style="color: #a6e22e">"a"</span>));
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">count</span> = q.<span class="hljs-keyword" style="color: #f92672;font-weight: bold">Count</span>();
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> data = q.Skip(10).Take(10).ToList();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">EF扩展库的做法：一次查询</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs kotlin" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-variable"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> q</span> = db.User.Where(t =&gt; t.Name.StartsWith(<span class="hljs-string" style="color: #a6e22e">"a"</span>));
+<span class="hljs-variable"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> q1</span> = q.FutureCount();
+<span class="hljs-variable"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> q2</span> = q.Skip(<span class="hljs-number">10</span>).Take(<span class="hljs-number">10</span>).Future();
+<span class="hljs-variable"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> data</span> = q2.ToList();
+<span class="hljs-variable"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> count</span> = q1.Value;
+</code></pre>
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<blockquote style="border-left: 5px solid #dddddd;padding: 0 0 0 15px;margin: 0 0 20px 0">
+<h2 id="articleHeader13" style="font-family: inherit;font-weight: 500;line-height: 40px;color: inherit;font-size: 31.5px;margin: 1.0em 0 .6em 0">3.查询缓存功能</h2>
+</blockquote>
+</blockquote>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们现在的后台项目权限管理模块，所有的菜单项都是写进数据库里，不同的角色用户所获取展示的菜单项各不相同。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">项目导航菜单就是频繁的访问数据库导致性能低下（一开始得到1级菜单，然后通过1级获取2级菜单，2级获取3级）</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">解决方法就是第一次查询后把数据给缓存起来设定缓存时间，然后一段时间继续查询此数据（譬如整个页面刷新）则直接在缓存中获取，从而减少与数据库的交互。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">代码如下:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stata" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">var</span> users = <span class="hljs-keyword" style="color: #f92672;font-weight: bold">db</span>.User.Where(<span class="hljs-keyword" style="color: #f92672;font-weight: bold">u</span> =&gt; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">u</span>.Id &gt; 5).FromCache(CachePolicy.WithDurationExpiration(TimeSpan.FromSeconds(30)));
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">如果在30秒内重复查询，则会从缓存中读取，不会查询数据库</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们再提出二个问题那就是，</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">1：第一次查询缓存数据修改后（如：保存到数据库）紧接着继续查询一次，由于缓存时间没有失效，此时在缓存中查询的数据是刚刚修改的最新的吗？</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">2：在不同的上下文中缓存获取结果是一样的吗?</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">写代码测试看下:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452844128486.jpg" src="./EntityFramework 优化建议_files/14528441284861.jpg" alt="enter description here"></p>
+<p>上图中我在第一个上下文中获得数据缓存，然后给Name赋值”sss”，当然此处为了测试缓存是否更新所以我没有做SaveChanges()的操作，然后接着从缓存中获取数据，由结果可知此缓存值也相应的更改了。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">因此在一段时间内即使操作修改了数据值也只需要在更改的时候操作一次数据库，减少了与数据库的交互。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">另外需要注意的是更改的时候可以根据操作结果选择是否继续缓存，例如数据更改失败但是缓存却改动了，下次取值数据就会不一致，所以当我们在更新数据库失败时就可以选择移除缓存调用RemoveCache()方法。</p>
+<h1 id="articleHeader14" style="font-family: inherit;font-weight: 500;line-height: 1.6;color: inherit;font-size: 38.5px;margin: 1.0em 0 .6em 0">12.EF使用SQL分库操作</h1>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">当数据库的表及数据达到一定规模后我们想到的优化就有分库，分表之类的优化操作。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">对于之前的ADO.NET来说分库是一件很普通的操作。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">比如下面的非跨数据库查询语句：</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sql" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-operator"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">SELECT</span> Name <span class="hljs-keyword" style="color: #f92672;font-weight: bold">FROM</span> dbo.<span class="hljs-keyword" style="color: #f92672;font-weight: bold">User</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">WHERE</span> ID=<span class="hljs-number">1</span>
+</span></code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">跨数据库查询语句：</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs sql" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-operator"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">SELECT</span> Name <span class="hljs-keyword" style="color: #f92672;font-weight: bold">FROM</span> MaiMangAdb.dbo.blog_PostBody <span class="hljs-keyword" style="color: #f92672;font-weight: bold">WHERE</span> ID=<span class="hljs-number">1</span>
+</span></code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">我们知道EF的DbContext中已经指定了连接字符串</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs stylus" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">public <span class="hljs-function"><span class="hljs-title" style="color: #a6e22e;font-weight: bold">EntityDB</span><span class="hljs-params">()</span></span> : <span class="hljs-function"><span class="hljs-title" style="color: #a6e22e;font-weight: bold">base</span><span class="hljs-params">(<span class="hljs-string" style="color: #a6e22e">"DefaultConnection"</span>)</span></span>
+</code></pre>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs vbscript-html" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="xml"><span class="hljs-tag" style="color: #f92672">&lt;<span class="hljs-title" style="color: #f92672;font-weight: bold">connectionStrings</span>&gt;</span>
+  <span class="hljs-tag" style="color: #f92672">&lt;<span class="hljs-title" style="color: #f92672;font-weight: bold">add</span> <span class="hljs-attribute" style="color: #bf79db">name</span>=<span class="hljs-value" style="color: #a6e22e">"DefaultConnection"</span> <span class="hljs-attribute" style="color: #bf79db">connectionString</span>=<span class="hljs-value" style="color: #a6e22e">"Data Source=.;Initial Catalog=EFStudy;Integrated Security=True;"</span> <span class="hljs-attribute" style="color: #bf79db">providerName</span>=<span class="hljs-value" style="color: #a6e22e">"System.Data.SqlClient"</span> /&gt;</span>
+<span class="hljs-tag" style="color: #f92672">&lt;/<span class="hljs-title" style="color: #f92672;font-weight: bold">connectionStrings</span>&gt;</span>
+</span></code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">也就是说所有的上下文操作都是基于这个数据库来操作的，那我们就不能用ADO.NET那套，多个查询配多个链接去操作数据库。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">当然大神们也给出了一套方法，而且也是简单明了。那我也就直接将其移植过来记录一下吧。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">方法就是给数据库添加SYNONYM 同义词，我在此演示下</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">创建2张Model表User和Role</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs vala" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-class"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">class</span> <span class="hljs-title" style="color: white;font-weight: bold">User</span>
+</span>{
+    [Key]
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">int</span> Id { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">string</span> Name { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">bool</span> IsDeleted { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+    [DateTime2Precision]
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> DateTime CreateDateTime { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+}
+<span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-class"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">class</span> <span class="hljs-title" style="color: white;font-weight: bold">Role</span>
+</span>{
+    [Key]
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">int</span> Id { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+    <span class="hljs-keyword" style="color: #f92672;font-weight: bold">public</span> <span class="hljs-keyword" style="color: #f92672;font-weight: bold">string</span> Name { <span class="hljs-keyword" style="color: #f92672;font-weight: bold">get</span>; <span class="hljs-keyword" style="color: #f92672;font-weight: bold">set</span>; }
+}
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">并添加一条语句:</p>
+<pre class="xiaoshujiang_code_container"><code class="language-c# hljs nix" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em">EntityDB <span class="hljs-variable">db =</span> new EntityDB();
+db.User.Add(new User { <span class="hljs-variable">Id =</span> <span class="hljs-number">1</span>, <span class="hljs-variable">Name =</span> <span class="hljs-string" style="color: #a6e22e">"ddd"</span> ,<span class="hljs-variable">CreateDateTime =</span> DateTime.Now});
+db.Role.Add(new Role() {<span class="hljs-variable">Id =</span> <span class="hljs-number">1</span>, <span class="hljs-variable">Name =</span> <span class="hljs-string" style="color: #a6e22e">"admin"</span>});
+db.SaveChanges();
+</code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">运行查看数据库:</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452844357039.jpg" src="./EntityFramework 优化建议_files/14528443570391.jpg" alt="enter description here"> <img style="height: auto;vertical-align: middle;border: 0" title="1452844363784.jpg" src="./EntityFramework 优化建议_files/14528443637841.jpg" alt="enter description here"></p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">现在数据库表及内容都有了。然后我要把User表及内容移植到另一个数据库中，且不影响当前的EF操作。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">创建新的数据库EFSYNONYM并添加User表，表结构和EFStudy中的User一致。</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0"><img style="height: auto;vertical-align: middle;border: 0" title="1452844403952.jpg" src="./EntityFramework 优化建议_files/14528444039521.jpg" alt="image"></p>
+<p>然后在EFStudy中删除表User且创建同义词</p>
+<pre class="xiaoshujiang_code_container"><code class="language-sql hljs" style="border: 0;font-size: 90%;background-color: #d6dbdf;color: #ddd;background: #272822;padding: 0.5em"><span class="hljs-operator"><span class="hljs-keyword" style="color: #f92672;font-weight: bold">CREATE</span> SYNONYM [dbo].[Users] <span class="hljs-keyword" style="color: #f92672;font-weight: bold">FOR</span>  [EFSYNONYM].[dbo].[Users]
+</span></code></pre>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">效果如图</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452844454566.jpg" src="./EntityFramework 优化建议_files/14528444545661.jpg" alt="enter description here"></p>
+<p>此时的User和Role已经分别存在于不同的数据库里面，我们来插入查询数据操作下</p>
+<p><img style="height: auto;vertical-align: middle;border: 0" title="1452844476415.jpg" src="./EntityFramework 优化建议_files/14528444764151.jpg" alt="enter description here"></p>
+<p>至此分库成功。当然此方法也有个缺点就是分库表和主表间由同义词关联而无法建立主外键关系(其实当数据量达到一定级别后联合join查询反而不如分开多次查询来得快，</p>
+<p style="line-height: 1.6;margin: 0 0 1.1em 0">且由于在同一个上下文中，不用太过于关心由数据多次连接开关而产生影响，凡事有利弊总得有个最优是吧)，因此我们可以把一些独立的容易过期的数据表给移植到单独的数据库，利于管理同时也利于优化查询。</p>
+</div>
+</div>
+
+				</div>
+
+                <div class="singleLinkPages">
+                                    </div>
+
+				<div class="singlePostTags">
+                    				</div>
+
+				<div class="pageSocial">
+					<div class="pageSocialWrapper">
+					</div>
+				</div>
+
+        				<div class="singlePostNavigation clear">
+                					<div class="fcell">
+						<div class="postNavigationItem">
+                                                    <img width="60" height="60" src="./EntityFramework 优化建议_files/google_record-60x60.jpg" class="attachment-unithumb-adjacentposts size-unithumb-adjacentposts wp-post-image" alt="EntityFramework 优化建议" srcset="http://blog.jd-in.com/wp-content/uploads/2016/01/google_record-60x60.jpg 60w, http://blog.jd-in.com/wp-content/uploads/2016/01/google_record-100x100.jpg 100w" sizes="(max-width: 60px) 100vw, 60px">                        							<p>5Tips从技术实现麦芒网站的SEO</p>
+							<a class="previousPostLink" href="http://blog.jd-in.com/859.html">Previous post</a>
+						</div>
+					</div>
+                                					<div class="scell">
+						<div class="postNavigationItem">
+                                                    <img width="60" height="60" src="./EntityFramework 优化建议_files/69430231b7_140905163467611-60x60.jpg" class="attachment-unithumb-adjacentposts size-unithumb-adjacentposts wp-post-image" alt="EntityFramework 优化建议" srcset="http://blog.jd-in.com/wp-content/uploads/2016/01/69430231b7_140905163467611-60x60.jpg 60w, http://blog.jd-in.com/wp-content/uploads/2016/01/69430231b7_140905163467611-100x100.jpg 100w" sizes="(max-width: 60px) 100vw, 60px">                        							<p>如何使用markdown编辑文章并发布</p>
+							<a class="newerPostLink" href="http://blog.jd-in.com/982.html">Newer post</a>
+						</div>
+					</div>
+                				</div>
+
+                
+<div id="comments" class="commentsBox">
+
+	<h2 class="comments-title">
+		此文章共有 3 条评论	</h2>
+
+	<ol class="comment-list commentList">
+			<li id="comment-31" class="comment even thread-even depth-1">
+	<a id="view-comment-31" class="comment-anchor"></a>
+	<article id="div-comment-31" class="comment-body">
+		<footer class="comment-meta">
+			<div class="comment-author vcard">
+				<img src="./EntityFramework 优化建议_files/user-avatar-default_white.png" data-user_id="" width="56" height="56" class="uni-user-avatar-image avatar avatar-56 photo avatar-default">			</div><!-- .comment-author -->
+
+			<div class="reply">
+				<div><a rel="nofollow" class="comment-reply-link" href="http://blog.jd-in.com/947.html?replytocom=31#respond" onclick="return addComment.moveForm( &quot;div-comment-31&quot;, &quot;31&quot;, &quot;respond&quot;, &quot;947&quot; )" aria-label="回复给">回复</a></div>			</div><!-- .reply -->
+		</footer><!-- .comment-meta -->
+
+		<div class="comment-wrapper">
+			<cite class="fn">匿名</cite>
+			<span class="comment-metadata">
+				<a href="http://blog.jd-in.com/947.html#comment-31">
+					<time datetime="2016-08-02T23:18:35+00:00">
+						2016年8月2日 at 下午11:18					</time>
+				</a>
+							</span><!-- .comment-metadata -->
+
+			
+			<div class="comment-content">
+				<p>谢谢</p>
+			</div><!-- .comment-content -->
+		</div>
+	</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+	<li id="comment-32" class="comment odd alt thread-odd thread-alt depth-1 parent">
+	<a id="view-comment-32" class="comment-anchor"></a>
+	<article id="div-comment-32" class="comment-body">
+		<footer class="comment-meta">
+			<div class="comment-author vcard">
+				<img src="./EntityFramework 优化建议_files/user-avatar-default_white.png" data-user_id="" width="56" height="56" class="uni-user-avatar-image avatar avatar-56 photo avatar-default">			</div><!-- .comment-author -->
+
+			<div class="reply">
+				<div><a rel="nofollow" class="comment-reply-link" href="http://blog.jd-in.com/947.html?replytocom=32#respond" onclick="return addComment.moveForm( &quot;div-comment-32&quot;, &quot;32&quot;, &quot;respond&quot;, &quot;947&quot; )" aria-label="回复给张鑫">回复</a></div>			</div><!-- .reply -->
+		</footer><!-- .comment-meta -->
+
+		<div class="comment-wrapper">
+			<cite class="fn">张鑫</cite>
+			<span class="comment-metadata">
+				<a href="http://blog.jd-in.com/947.html#comment-32">
+					<time datetime="2016-09-20T22:05:00+00:00">
+						2016年9月20日 at 下午10:05					</time>
+				</a>
+							</span><!-- .comment-metadata -->
+
+			
+			<div class="comment-content">
+				<p>请问您说的诊断工具里面读取reader查看sql的功能现在还能用吗？我在vs2015社区版update3上找不到读取reader的有关字样。。。。</p>
+			</div><!-- .comment-content -->
+		</div>
+	</article><!-- .comment-body -->
+<ol class="children">
+	<li id="comment-36" class="comment byuser comment-author-team even depth-2">
+	<a id="view-comment-36" class="comment-anchor"></a>
+	<article id="div-comment-36" class="comment-body">
+		<footer class="comment-meta">
+			<div class="comment-author vcard">
+				<img src="./EntityFramework 优化建议_files/1_avatar_1-1-mr4z349hrldeu0spzytmamidzg79a4bvz9ke48rfnk.png" data-user_id="1" width="56" height="56" class="uni-user-avatar-image avatar avatar-56 photo avatar-default">			</div><!-- .comment-author -->
+
+			<div class="reply">
+				<div><a rel="nofollow" class="comment-reply-link" href="http://blog.jd-in.com/947.html?replytocom=36#respond" onclick="return addComment.moveForm( &quot;div-comment-36&quot;, &quot;36&quot;, &quot;respond&quot;, &quot;947&quot; )" aria-label="回复给Simon">回复</a></div>			</div><!-- .reply -->
+		</footer><!-- .comment-meta -->
+
+		<div class="comment-wrapper">
+			<cite class="fn">Simon</cite>
+			<span class="comment-metadata">
+				<a href="http://blog.jd-in.com/947.html#comment-36">
+					<time datetime="2016-12-23T11:13:42+00:00">
+						2016年12月23日 at 上午11:13					</time>
+				</a>
+							</span><!-- .comment-metadata -->
+
+			
+			<div class="comment-content">
+				<p>企业版一直都有的哦</p>
+			</div><!-- .comment-content -->
+		</div>
+	</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	</ol><!-- .comment-list -->
+
+	
+	
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">写下您的评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.jd-in.com/947.html#respond" style="display:none;">取消</a></small></h3>			<form action="http://blog.jd-in.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="您的评论内容"></textarea></p><p class="comment-form-author"><input id="author" name="author" type="text" value="" size="30" placeholder="您的名字"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="提交评论"> <input type="hidden" name="comment_post_ID" value="947" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			</div>
+        
+       <div class="sidebarRight">
+
+	      <div class="sidebar-widget">
+	        <h3>作者文章</h3>
+	        <ul>
+	 
+	     <li>
+        <a href="http://blog.jd-in.com/1193.html">
+            本地安装虚拟机及配置NLB负载均衡操作(二)
+        </a>
+    </li>
+    <li>
+        <a href="http://blog.jd-in.com/1122.html">
+            本地安装虚拟机及配置NLB负载均衡操作(一)
+        </a>
+    </li>
+    <li>
+        <a href="http://blog.jd-in.com/947.html">
+            EntityFramework 优化建议
+        </a>
+    </li>
+	        </ul>
+	      </div>
+	      <div class="sidebar-widget">
+	        <h3>TAGS</h3>
+	        <div class="tagcloud">
+	         <a href="http://blog.jd-in.com/tag/android" class="tag-link-39 tag-link-position-1" title="3个话题" style="font-size: 18px;">Android</a>
+<a href="http://blog.jd-in.com/tag/markdown" class="tag-link-32 tag-link-position-2" title="2个话题" style="font-size: 15.6px;">markdown</a>
+<a href="http://blog.jd-in.com/tag/%e5%b0%8f%e7%a8%8b%e5%ba%8f" class="tag-link-55 tag-link-position-3" title="2个话题" style="font-size: 15.6px;">小程序</a>
+<a href="http://blog.jd-in.com/tag/weapp" class="tag-link-54 tag-link-position-4" title="2个话题" style="font-size: 15.6px;">weapp</a>
+<a href="http://blog.jd-in.com/tag/requirejs" class="tag-link-20 tag-link-position-5" title="1个话题" style="font-size: 12px;">requirejs</a>
+<a href="http://blog.jd-in.com/tag/cmd" class="tag-link-19 tag-link-position-6" title="1个话题" style="font-size: 12px;">cmd</a>
+<a href="http://blog.jd-in.com/tag/commonjs" class="tag-link-22 tag-link-position-7" title="1个话题" style="font-size: 12px;">commonjs</a>
+<a href="http://blog.jd-in.com/tag/seajs" class="tag-link-21 tag-link-position-8" title="1个话题" style="font-size: 12px;">seajs</a>
+<a href="http://blog.jd-in.com/tag/%e7%94%a8%e6%88%b7%e4%bd%93%e9%aa%8c" class="tag-link-24 tag-link-position-9" title="1个话题" style="font-size: 12px;">用户体验</a>
+<a href="http://blog.jd-in.com/tag/viewport" class="tag-link-23 tag-link-position-10" title="1个话题" style="font-size: 12px;">viewport</a>
+<a href="http://blog.jd-in.com/tag/amd" class="tag-link-18 tag-link-position-11" title="1个话题" style="font-size: 12px;">amd</a>
+<a href="http://blog.jd-in.com/tag/gulp" class="tag-link-15 tag-link-position-12" title="1个话题" style="font-size: 12px;">gulp</a>
+<a href="http://blog.jd-in.com/tag/party" class="tag-link-16 tag-link-position-13" title="1个话题" style="font-size: 12px;">party</a>
+<a href="http://blog.jd-in.com/tag/css-sprite" class="tag-link-10 tag-link-position-14" title="1个话题" style="font-size: 12px;">css sprite</a>
+<a href="http://blog.jd-in.com/tag/compass" class="tag-link-9 tag-link-position-15" title="1个话题" style="font-size: 12px;">compass</a>
+<a href="http://blog.jd-in.com/tag/%e6%97%85%e8%a1%8c" class="tag-link-11 tag-link-position-16" title="1个话题" style="font-size: 12px;">旅行</a>
+<a href="http://blog.jd-in.com/tag/%e5%b9%b6%e5%8f%91" class="tag-link-12 tag-link-position-17" title="1个话题" style="font-size: 12px;">并发</a>
+<a href="http://blog.jd-in.com/tag/grunt" class="tag-link-14 tag-link-position-18" title="1个话题" style="font-size: 12px;">grunt</a>
+<a href="http://blog.jd-in.com/tag/%e5%bc%82%e6%ad%a5" class="tag-link-13 tag-link-position-19" title="1个话题" style="font-size: 12px;">异步</a>
+<a href="http://blog.jd-in.com/tag/ui%e8%ae%be%e8%ae%a1" class="tag-link-25 tag-link-position-20" title="1个话题" style="font-size: 12px;">ui设计</a>
+<a href="http://blog.jd-in.com/tag/seo" class="tag-link-29 tag-link-position-21" title="1个话题" style="font-size: 12px;">seo</a>
+<a href="http://blog.jd-in.com/tag/%e8%9e%8d%e8%b5%84" class="tag-link-47 tag-link-position-22" title="1个话题" style="font-size: 12px;">融资</a>
+<a href="http://blog.jd-in.com/tag/%e8%82%a1%e6%9d%83%e5%88%86%e9%85%8d" class="tag-link-46 tag-link-position-23" title="1个话题" style="font-size: 12px;">股权分配</a>
+<a href="http://blog.jd-in.com/tag/%e4%ba%92%e8%81%94%e7%bd%91%e5%88%9b%e4%b8%9a" class="tag-link-45 tag-link-position-24" title="1个话题" style="font-size: 12px;">互联网创业</a>
+<a href="http://blog.jd-in.com/tag/%e7%bd%91%e7%ab%99%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="tag-link-48 tag-link-position-25" title="1个话题" style="font-size: 12px;">网站日志分析</a>
+<a href="http://blog.jd-in.com/tag/%e5%a4%a7%e6%95%b0%e6%8d%ae" class="tag-link-49 tag-link-position-26" title="1个话题" style="font-size: 12px;">大数据</a>
+<a href="http://blog.jd-in.com/tag/ios" class="tag-link-52 tag-link-position-27" title="1个话题" style="font-size: 12px;">ios</a>
+<a href="http://blog.jd-in.com/tag/activity" class="tag-link-51 tag-link-position-28" title="1个话题" style="font-size: 12px;">Activity</a>
+<a href="http://blog.jd-in.com/tag/%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0" class="tag-link-50 tag-link-position-29" title="1个话题" style="font-size: 12px;">读书笔记</a>
+<a href="http://blog.jd-in.com/tag/%e5%88%87%e5%9b%be" class="tag-link-44 tag-link-position-30" title="1个话题" style="font-size: 12px;">切图</a>
+<a href="http://blog.jd-in.com/tag/photoshop" class="tag-link-43 tag-link-position-31" title="1个话题" style="font-size: 12px;">Photoshop</a>
+<a href="http://blog.jd-in.com/tag/rest" class="tag-link-34 tag-link-position-32" title="1个话题" style="font-size: 12px;">REST</a>
+<a href="http://blog.jd-in.com/tag/%e5%b0%8f%e4%b9%a6%e5%8c%a0" class="tag-link-31 tag-link-position-33" title="1个话题" style="font-size: 12px;">小书匠</a>
+<a href="http://blog.jd-in.com/tag/%e9%ba%a6%e8%8a%92" class="tag-link-30 tag-link-position-34" title="1个话题" style="font-size: 12px;">麦芒</a>
+<a href="http://blog.jd-in.com/tag/webapi" class="tag-link-35 tag-link-position-35" title="1个话题" style="font-size: 12px;">WebApi</a>
+<a href="http://blog.jd-in.com/tag/%e5%89%8d%e5%90%8e%e7%ab%af%e5%88%86%e7%a6%bb" class="tag-link-36 tag-link-position-36" title="1个话题" style="font-size: 12px;">前后端分离</a>
+<a href="http://blog.jd-in.com/tag/%e4%bb%a3%e7%a0%81%e8%a7%84%e8%8c%83" class="tag-link-41 tag-link-position-37" title="1个话题" style="font-size: 12px;">代码规范</a>
+<a href="http://blog.jd-in.com/tag/%e7%bd%91%e7%bb%9c" class="tag-link-40 tag-link-position-38" title="1个话题" style="font-size: 12px;">网络</a>
+<a href="http://blog.jd-in.com/tag/%e5%86%99%e4%bd%9c" class="tag-link-37 tag-link-position-39" title="1个话题" style="font-size: 12px;">写作</a>	         </div>
+			</div>
+
+			<div class="sidebar-widget post-nav side-outline hidden-sm" style="display: block; width: 100%; top: 0px;">
+				<h3>文章目录</h3>
+	            <div class="panel-body">
+	                <div class="nav-body" style="top: 0px;">
+	                    <div class="highlight-title" style="display: none; top: 24px; height: 24px;"></div>
+	                    <ul class="articleIndex"><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader0">1.使用最新版的EF</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader1">2. 禁用延迟加载</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader2">3.使用贪婪加载（又叫预加载就是数据库的多表查询）</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader3">4.了解 IQueryable，IEnumerable的区别</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader4">5.优化操作AsNoTracking()与Attach</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader5">6.EF使用SqlQuery</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader6">7.关于AsNonUnicode</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader7">8.建议使用ViewModel代替实体Model</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader8">9.建议Model实体中枚举使用byte类型</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader9">10.Model实体使用DateTime2替换DateTime控制内容值精度</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader10">11.合理使用EF扩展库</a></li><li style="list-style:none;"><ul><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader11">1.EF实现指定字段的更新</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader12">2.批量查询功能</a></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader13">3.查询缓存功能</a></li></ul></li><li class=""><a href="http://blog.jd-in.com/947.html#articleHeader14">12.EF使用SQL分库操作</a></li></ul>
+	                </div>
+	            </div>
+	        </div>
+
+
+
+		</div>
+
+	      
+		
+		<div class="clear"></div>
+
+	</div></section>
+
+	<footer id="footer">
+                		<div class="wrapper">
+            <ul id="menu-%e5%ba%95%e9%83%a8%e5%af%bc%e8%88%aa" class="footerMenu"><li id="menu-item-782" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-782"><a href="http://blog.jd-in.com/">首页</a></li>
+<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784"><a href="http://blog.jd-in.com/category/ued">用户体验</a></li>
+<li id="menu-item-785" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-785"><a href="http://blog.jd-in.com/category/technology-share">技术分享</a></li>
+<li id="menu-item-786" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-786"><a href="http://blog.jd-in.com/category/reading">读书.故事</a></li>
+<li id="menu-item-790" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-790"><a href="http://portal.makmong.com/">portal</a></li>
+<li id="menu-item-1416" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1416"><a href="http://portal.makmong.com/account/resetpassword">重置</a></li>
+</ul>            				<p class="copyright">© 2018 加点</p>
+            		</div>
+	</footer>
+
+	<div class="mobileMenu">
+		<div class="mobileSearch">
+			<form method="get" action="http://blog.jd-in.com/">
+				<input type="text" name="s" size="32" value="" placeholder="Search">
+				<input type="submit" value="">
+			</form>
+		</div>
+		<ul id="menu-%e5%ba%95%e9%83%a8%e5%af%bc%e8%88%aa-1" class="footerMenu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-782"><a href="http://blog.jd-in.com/">首页</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784"><a href="http://blog.jd-in.com/category/ued">用户体验</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-785"><a href="http://blog.jd-in.com/category/technology-share">技术分享</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-786"><a href="http://blog.jd-in.com/category/reading">读书.故事</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-790"><a href="http://portal.makmong.com/">portal</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1416"><a href="http://portal.makmong.com/account/resetpassword">重置</a></li>
+</ul>	</div>
+
+
+	<div class="searchPopup">
+		<span class="closeBtn"></span>
+		<div class="wrapper">
+			<form role="search" method="get" action="http://blog.jd-in.com/">
+				<input type="text" name="s" size="32" value="" placeholder="Search">
+			</form>
+		</div>
+	</div>
+
+	<div id="uni_popup"></div><script charset="utf-8" src="./EntityFramework 优化建议_files/b.js.下载"></script><script charset="utf-8" src="./EntityFramework 优化建议_files/v.js.下载"></script><script src="./EntityFramework 优化建议_files/hm.js.下载"></script><script type="text/javascript" src="./EntityFramework 优化建议_files/comment-reply.min.js.下载"></script>
+
+	<script type="text/javascript" src="./EntityFramework 优化建议_files/jquery.js.下载"></script>
+	<script type="text/javascript" src="./EntityFramework 优化建议_files/jquery.js(1).下载"></script>
+        
+<script type="text/javascript">
+
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?07be769378ab57621dcffbf47046eebd";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+
+ $('.showMobileMenu').on("click", function(e){
+		e.preventDefault();
+		$(this).toggleClass('open').closest("body").toggleClass('animated');
+	});
+            $(".searchIcon").on("click", function(){
+                $(".searchPopup").addClass("show").find('input[type="text"]').focus();
+            });
+
+            $(".closeBtn").on("click", function(){
+                $(this).closest(".searchPopup").removeClass("show");
+            });
+
+</script>
+<script type="text/javascript">
+	function affix() {
+	var e, t, n, r, i, o, a
+	e = $(".singlePostWrap"), t = e.find("h1, h2, h3"), $(".sidebarRight").find(".post-nav").addClass("side-outline hidden-sm").data("width", $(".side-outline").width()).data("top", $(".side-outline").offset().top), 
+	r = $(".side-outline"), n = r.find(".highlight-title"), o = r.offset().top, $(".nav-body").css("top", 0), 
+	e.length == 0 ? $(".post-nav").hide() : $(".post-nav").show(),
+	t.length == 0 ? $(".post-nav").hide(): (
+		$(window).scroll(function() {
+		    var e, i, o, a;
+		    i = $(this).scrollTop(), a = void 0, e = void 0, o = void 0, i > r.data("top")  + 20 ? i + r.height() + parseFloat($(".nav-body").css("top").replace(/px/, "")) < $("footer").offset().top ? r.removeClass("absolute").addClass("fixed").width(r.data("width")).css("top", 0) :r.removeClass("fixed").addClass("absolute").css("top", r.parents(".row").height() - r.height()) :r.removeClass("fixed").css("width", "100%"), 
+		    t.eq(0).offset().top < i + 40 ? (n.show(), t.each(function(s, l) {
+		        return e = r.find("[href=#" + $(this).attr("id") + "]"), o = t.last().offset().top - i, 
+		        t.eq(Math.min(Math.max(0, s + 1), t.length - 1)).offset().top > i + 20 || 20 > o ? (20 > o && (e = r.find("a").last()), 
+		        e.offset() && (a = e.offset().top - e.parents(".nav-body").offset().top), e.parents(".articleIndex").find("li").removeClass("active"), 
+		        e.parent().addClass("active"), n.css("top", a).height(e.outerHeight()), a > $(window).height() / 2 ? $(".nav-body").css("top", -(e.parent().offset().top - e.parents(".nav-body").offset().top - $(window).height() / 2)) :$(".nav-body").css("top", 0), 
+		        !1) :void 0;
+		    })) :($(".articleIndex").find("li").removeClass("active"), n.hide());
+		}), a = 1, i = $(".articleIndex"), t.each(function(e) {
+		    var t, n, r;
+		    r = $(this).text().trim(), "" !== r && ($(this).attr("id", "articleHeader" + e), 
+		    n = parseInt($(this)[0].tagName.slice(1)), t = null, 0 === e || n === a ? (t = $('<li><a href="#articleHeader' + e + '"></a></li>'), 
+		    t.find("a").text(r), i.append(t)) :n > a ? (t = $("<li style='list-style:none;'><ul><li><a href=\"#articleHeader" + e + '"></a></li></ul></li>'), 
+		    t.find("a").text(r), i.append(t), i = t.find("ul")) :a > n && (1 === n ? (t = $('<li><a href="#articleHeader' + e + '"></a></li>'), 
+		    t.find("a").text(r), $(".articleIndex").append(t), i = $(".articleIndex")) :(t = $("<li style='list-style:none;'><ul><li><a href=\"#articleHeader" + e + '"></a></li></ul></li>'), 
+		    t.find("a").text(r), i.parents("ul").parents("ul").length ? (i.parents("ul").parents("ul").append(t), 
+		    i = t.find("ul")) :(t = $('<li><a href="#articleHeader' + e + '"></a></li>'), t.find("a").text(r), 
+		    $(".articleIndex").append(t), i = $(".articleIndex")))), a = n);
+		})
+	)
+}
+
+function resz(){
+	if($(window).width() < 768 ) return;
+	affix();
+}
+$(document).ready(function(){
+	resz();
+	$(window).resize(function(){
+		if($(window).width() < 768 ) $(".post-nav").hide() ;
+	});
+});
+</script>
+
+<ins id="newBridge"><!-- target: nodeBoard --><ins class="nb-nodeboard-base nb-nodeboard-position-base nb-nodeboard-left-bottom nb-show" id="nb_nodeboard"><ins class="nb-nodeboard-contain-base nb-nodeboard-contain"><ins class="nb-nodeboard-top nb-nodeboard-top-0"><ins class="nb-head-title">请您留言</ins><ins class="nb-nodeboard-close" id="nb_nodeboard_close" data-type="min"></ins></ins><form id="nb_nodeboard_form" autocomplete="off" class="nb-board-form" action="http://p.qiao.baidu.com/cps2//bookmanage/saveBook.action?userId=22970657" method="post" accept-charset="utf-8"><ins id="nb_nodeboard_set" class="nb-nodeboard-set"><ins class="nb-nodeboard-content"><textarea id="nb-nodeboard-set-content-js" name="content" data-ph="请在此输入留言内容，我们会尽快与您联系。（必填）" placeholder="请在此输入留言内容，我们会尽快与您联系。（必填）" class="nb-nodeboard-set-content"></textarea></ins><ins class="nb-nodeboard-name" style="z-index:4;"><ins class="nb-nodeboard-icon nodeName"></ins><input id="nb_nodeboard_set_name" data-write="0" name="visitorName" maxlength="30" class="nb-nodeboard-input" type="text" data-ph="姓名" placeholder="姓名"></ins><ins class="nb-nodeboard-name" id="nb_nodeboard_phone" style="z-index:3;"><ins class="nb-nodeboard-icon nodePhone"></ins><input id="nb_nodeboard_set_phone" name="visitorPhone" maxlength="30" class="nb-nodeboard-input" data-write="1" type="text" data-ph="电话（必填）" placeholder="电话（必填）"></ins><ins class="nb-nodeboard-name" id="nb_nodeboard_mail" style="z-index:2;"><ins class="nb-nodeboard-icon nodeMail"></ins><input id="nb_nodeboard_set_email" name="visitorEmail" maxlength="50" class="nb-nodeboard-input" type="text" data-write="0" data-ph="邮箱" placeholder="邮箱"></ins><ins class="nb-nodeboard-name" style="z-index:1;"><ins class="nb-nodeboard-icon nodeAddress"></ins><input id="nb_nodeboard_set_address" name="visitorAddress" class="nb-nodeboard-input" maxlength="50" type="text" data-write="0" data-ph="地址" placeholder="地址"></ins></ins></form><ins class="nb-nodeboard-success" id="nb_nodeboard_success"><ins class="nb-success-box"><ins class="nb-success-icon"></ins><ins class="nb-success-title" id="nb_node_messagetitle">感谢留言</ins><ins class="nb-success-content" id="nb_node_messagecontent">我们会尽快与您联系</ins><ins id="sucess_close" class="nb-sucess-close">关闭</ins></ins></ins><ins class="nb-nodeboard-send" id="nb_node_contain"><ins id="nb_nodeboard_send" class="nb-nodeboard-send-btn nb-nodeboard-send-btn-0">发送</ins></ins></ins></ins><!-- end --><!-- target: iconIcon --><ins class="nb-icon-wrap nb-icon-base icon-right-bottom nb-icon-skin-0 nb-icon-icon nb-customer-icon-style" id="nb_icon_wrap" style=";width:150px;"><ins class="nb-icon-inner-wrap" style="height:52px;width:150px;background-image: url(//sgoutong.baidu.com/static/style/images/93d56b27efd44f069deb85709581603e.png);;"><ins class="nb-icon-bridge0 nb-icon-bridge-base" data-type="iconInvite"></ins></ins></ins><!-- end --><!-- target: invite --><ins class="nb-invite-wrap nb-invite-wrap-base nb-position-base nb-right-bottom customer-invite-style " id="nb_invite_wrap" style="width:400px;display:none;;"><ins class="nb-invite-body nb-invite-skin-3" style="height:175px;background:url(//sgoutong.baidu.com/static/style/images/90cfb6e7eb1348bba381fdb0237206f2.png)"><ins class="nb-invite-tool nb-invite-tool-base" id="nb_invite_tool" style=""></ins><ins class="nb-invite-text nb-invite-text-base"><ins class="nb-invite-welcome nb-invite-welcome-base nb-hide" id="nb_invite_welcome"><p style="color: #fff">欢迎来到本网站，请问有什么可以帮您？</p></ins></ins><ins class="nb-invite-btn-base nb-invte-btns-3"><ins class="nb-invite-cancel nb-invite-cancel-base" id="nb_invite_cancel">稍后再说</ins><ins class="nb-invite-ok nb-invite-ok-base" id="nb_invite_ok" style="background-color:#fecb2e;color:#000000;">现在咨询</ins></ins></ins></ins><!-- end --></ins></body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0194)https://pippio.com/api/sync?pid=1391&ref=http%3A%2F%2Fblog.suzper.com%2F2016%2F11%2F21%2Fnodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3%2F&it=1&iv=c591autj2cc6lqu -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><meta name="referrer" content="no-referrer"><script>
+		var f = function () {
+	function loadChains(chains, limit, onChainDone) {
+    function newImageLoader(url) {
+        return function () {
+            var e = new Image();
+            addListeners(e);
+            e.src = url;
+        };
+    }
+
+    function newScriptLoader(url) {
+        return function () {
+            var e = document.createElement('script');
+            e.type = 'text/javascript';
+            e.async = true;
+            addListeners(e);
+            e.src = url;
+            document.head.appendChild(e);
+        };
+    }
+
+    function newIframeLoader(url) {
+        return function () {
+            var e = document.createElement('iframe');
+            e.style.display = 'none';
+            e.width = 1;
+            e.height = 1;
+            addListeners(e);
+            e.src = url;
+            document.body.appendChild(e);
+        };
+    }
+
+    function addListeners(e) {
+        addLoadErrorListeners(e, loadNext);
+        if (typeof onChainDone === 'function') {
+            addLoadErrorListeners(e, onChainDone);
+        }
+    }
+
+    function addLoadErrorListeners(e, listener) {
+        if (typeof e.addEventListener === 'function') {
+            e.addEventListener('load', listener, false);
+            e.addEventListener('error', listener, false);
+        } else if (typeof e.attachEvent === 'function') {
+            e.attachEvent('onload', listener);
+            e.attachEvent('onerror', listener);
+        }
+    }
+
+    function loadNext() {
+        var next = loaders.shift();
+        if (typeof next === "function") {
+            setTimeout(next);
+        }
+    }
+
+    var loaders = chains.reduce(function (acc, value) {
+        var mode = value[0];
+        var url = value[1];
+
+        switch (mode) {
+            case 'image':
+                acc.push(newImageLoader(url));
+                break;
+            case 'script':
+                acc.push(newScriptLoader(url));
+                break;
+            case 'iframe':
+                acc.push(newIframeLoader(url));
+                break;
+        }
+        return acc;
+    }, []);
+
+    for (var i = 0; i < limit; i++) {
+        loadNext();
+    }
+}
+
+	var chains = [];
+	chains.push(['image', 'https://id.rlcdn.com/463636.gif']);
+	chains.push(['image', 'https://ei.rlcdn.com/448046.gif?n=1&partner_site_id=3387&m=3d2331cb490a2b37161fae2c1a3cdbf7&s=4b55ee41547baaf352de93ac9c9e33773dc8d73a&s256=0081b09939d2fcee8d766b06fe24173ffb683711103842b4aafbc9ecb530d3f8']);
+	chains.push(['image', 'https://aa.agkn.com/adscores/s.pixel?sid=9102279158&em=3d2331cb490a2b37161fae2c1a3cdbf7']);
+	chains.push(['image', 'https://aa.agkn.com/adscores/s.pixel?sid=9102280158&em=4b55ee41547baaf352de93ac9c9e33773dc8d73a']);
+	chains.push(['image', 'https://widget.criteo.com/event?a=40136&v=4.1.0&p0=e%3Dce%26m%3D%255B3d2331cb490a2b37161fae2c1a3cdbf787eaa5dd64e7e7efc28a32ac9e20ab1b%255D&rt=gif']);
+	chains.push(['image', 'https://login.dotomi.com/ucm/UCMController?dtm_com=29&dtm_fid=103&dtm_cid=3167&dtm_cmagic=20c86a&dtm_format=6&cli_promo_id=110&dtm_email_hash=3d2331cb490a2b37161fae2c1a3cdbf7&dtm_email_hash=87eaa5dd64e7e7efc28a32ac9e20ab1b']);
+	chains.push(['image', 'https://i.liadm.com/s/h/19713?m=3d2331cb490a2b37161fae2c1a3cdbf7&sh1=4b55ee41547baaf352de93ac9c9e33773dc8d73a&sh2=0081b09939d2fcee8d766b06fe24173ffb683711103842b4aafbc9ecb530d3f8']);
+	chains.push(['image', 'https://pixel.sojern.com/idSync/sync?pid=arbor']);
+	chains.push(['image', 'https://dc.arrivalist.com/px/?pixel_id=1405&event_type=pp_sync&nas']);
+	chains.push(['image', 'https://p.adsymptotic.com/d/px?_pid=13001&_psign=c5ccca7f0d37071ee38ee7ac29330eac&_puuid=FgemQX8sSigmle8tLjsdZ-j_-B4&_redirect=https%3A%2F%2Fpippio.com%2Fapi%2Fsync%3Fpid%3D1284%26m%3DCO8KEhoKFggBEPkHGg9jNTkxYXV0ajJjYzZscXUQABpTCLHni9IFEgUIhAoQABIFCKUPEAASBQiMEBAAEgUIrhEQABIFCOoXEAASBQioGRAAEgUIqRkQABIFCLkcEAASBQiUKRAAEgUIjkQQABIFCJxIEAA%26it%3D1%26iv%3D%24%7BUUID%7D']);
+	chains.push(['image', 'https://p.adsymptotic.com/d/px?_pid=13553&_psign=9e62e5c043ecadc9479a0ccac401dd7d']);
+
+	loadChains(chains, 10, (typeof onDone === "function") ? onDone : null);
+		};
+
+		if (document.body) { f(); } else { document.addEventListener('DOMContentLoaded', f); }
+	</script>
+</head><body></body></html>

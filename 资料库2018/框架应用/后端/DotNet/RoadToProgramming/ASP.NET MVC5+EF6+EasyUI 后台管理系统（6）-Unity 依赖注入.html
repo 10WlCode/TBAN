@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/ymnets/p/3424943.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/mention.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入 - ymnets - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/bundle-SimpleBlue.css">
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/168383.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ymnets/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ymnets/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ymnets/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/encoder.js.下载"></script><script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style><style>img[src="https://cc.amazingcounters.com/counter.php?i=3213285&c=9640168"],
+img[src="https://cc.amazingcounters.com/counter.php?i=3213287&c=9640174"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'ymnets', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ymnets/">编橙之路</a></div>
+<div class="subtitle">人总是要选择一条路,有人选择了编香蕉，有人选择了编苹果，我却选择了编橙！</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/ymnets/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/ymnets">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/ymnets/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/ymnets/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-125&nbsp;
+文章-0&nbsp;
+评论-1986&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ymnets/p/3424943.html">ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><a href="http://www.cnblogs.com/ymnets/p/3424309.html">系列目录</a></p>
+<h1>前言</h1>
+<blockquote>
+<p><span style="color: #ff0000;">为了符合后面更新后的重构系统，文章于2016-11-1日重写</span></p>
+<p>本节重构一下代码，采用IOC控制反转，也就是依赖注入</p>
+<p><span style="line-height: 1.5;">您可以访问</span><a style="line-height: 1.5;" href="http://unity.codeplex.com/releases">http://unity.codeplex.com/releases</a><span style="line-height: 1.5;">得到最新版本的Unity现在。</span></p>
+<p><span style="line-height: 1.5;">这里<a href="http://unity.codeplex.com/documentation">http://unity.codeplex.com/documentation</a>我们找到了帮助文档大家可以下载下来看看</span></p>
+<p><span style="line-height: 1.5;">当然，如果您在您的visual studio 中安装了Nuget 包管理器，你可以直接在Nuget中获取到最新版本的Unity。</span></p>
+<p><span><span>我们采用的是构造函数注入，<span style="color: #ff0000;">运行时注入</span>。</span></span></p>
+<p><span style="font-size: 14px;"><a href="http://www.cnblogs.com/techborther/archive/2012/01/06/2313498.html">【ASP.Net MVC3 】使用Unity 实现依赖注入</a>&nbsp;这是园内大虾写得这块知识点，大家进去看看</span></p>
+</blockquote>
+<h1>为什么要使用注入</h1>
+<p>我们反转了对依赖的控制。不是使用new关键字创建一个实例，而是将这种行为委托给了第三方实现（容器）</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/439652-20161101160306111-726005808.png" alt=""></p>
+<h1>安装Nuget Unity包</h1>
+<p>分别按照在Apps.Web,Apps.BLL,Apps.Core中</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/439652-20161101155312830-854746778.png" alt=""></p>
+<p>在Apps.Core中添加以下2个类：主要是注入配置使用</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.BLL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.DAL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.IBLL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.IDAL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Microsoft.Practices.Unity;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.Core
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> DependencyRegisterType
+    {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">系统注入</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Container_Sys(<span style="color: #0000ff;">ref</span><span style="color: #000000;"> UnityContainer container)
+        {
+            container.RegisterType</span>&lt;ISysSampleBLL, SysSampleBLL&gt;();<span style="color: #008000;">//</span><span style="color: #008000;">样例</span>
+            container.RegisterType&lt;ISysSampleRepository, SysSampleRepository&gt;<span style="color: #000000;">();
+        }
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;0af62f68-1e35-47e1-9895-1b4e206550b2&#39;)"><img id="code_img_closed_0af62f68-1e35-47e1-9895-1b4e206550b2" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_0af62f68-1e35-47e1-9895-1b4e206550b2" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;0af62f68-1e35-47e1-9895-1b4e206550b2&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_0af62f68-1e35-47e1-9895-1b4e206550b2" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Mvc;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Microsoft.Practices.Unity;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.Core
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UnityDependencyResolver : IDependencyResolver
+    {
+        </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">const</span> <span style="color: #0000ff;">string</span> HttpContextKey = <span style="color: #800000;">"</span><span style="color: #800000;">perRequestContainer</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+
+        </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">readonly</span><span style="color: #000000;"> IUnityContainer _container;
+
+        </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> UnityDependencyResolver(IUnityContainer container)
+        {
+            _container </span>=<span style="color: #000000;"> container;
+        }
+
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">object</span><span style="color: #000000;"> GetService(Type serviceType)
+        {
+            </span><span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">typeof</span><span style="color: #000000;">(IController).IsAssignableFrom(serviceType))
+            {
+                </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> ChildContainer.Resolve(serviceType);
+            }
+
+            </span><span style="color: #0000ff;">return</span> IsRegistered(serviceType) ? ChildContainer.Resolve(serviceType) : <span style="color: #0000ff;">null</span><span style="color: #000000;">;            
+        }
+
+        </span><span style="color: #0000ff;">public</span> IEnumerable&lt;<span style="color: #0000ff;">object</span>&gt;<span style="color: #000000;"> GetServices(Type serviceType)
+        {
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (IsRegistered(serviceType))
+            {
+                </span><span style="color: #0000ff;">yield</span> <span style="color: #0000ff;">return</span><span style="color: #000000;"> ChildContainer.Resolve(serviceType);
+            }
+
+            </span><span style="color: #0000ff;">foreach</span> (<span style="color: #0000ff;">var</span> service <span style="color: #0000ff;">in</span><span style="color: #000000;"> ChildContainer.ResolveAll(serviceType))
+            {
+                </span><span style="color: #0000ff;">yield</span> <span style="color: #0000ff;">return</span><span style="color: #000000;"> service;
+            }
+        }
+
+        </span><span style="color: #0000ff;">protected</span><span style="color: #000000;"> IUnityContainer ChildContainer
+        {
+            </span><span style="color: #0000ff;">get</span><span style="color: #000000;">
+            {
+                </span><span style="color: #0000ff;">var</span> childContainer = HttpContext.Current.Items[HttpContextKey] <span style="color: #0000ff;">as</span><span style="color: #000000;"> IUnityContainer;
+
+                </span><span style="color: #0000ff;">if</span> (childContainer == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+                {
+                    HttpContext.Current.Items[HttpContextKey] </span>= childContainer =<span style="color: #000000;"> _container.CreateChildContainer();
+                }
+
+                </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> childContainer;
+            }
+        }        
+
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> DisposeOfChildContainer()
+        {
+            </span><span style="color: #0000ff;">var</span> childContainer = HttpContext.Current.Items[HttpContextKey] <span style="color: #0000ff;">as</span><span style="color: #000000;"> IUnityContainer;
+
+            </span><span style="color: #0000ff;">if</span> (childContainer != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+            {
+                childContainer.Dispose();
+            }
+        }
+
+        </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> IsRegistered(Type typeToCheck)
+        {
+            </span><span style="color: #0000ff;">var</span> isRegistered = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+
+            </span><span style="color: #0000ff;">if</span> (typeToCheck.IsInterface ||<span style="color: #000000;"> typeToCheck.IsAbstract)
+            {
+                isRegistered </span>=<span style="color: #000000;"> ChildContainer.IsRegistered(typeToCheck);
+
+                </span><span style="color: #0000ff;">if</span> (!isRegistered &amp;&amp;<span style="color: #000000;"> typeToCheck.IsGenericType)
+                {
+                    </span><span style="color: #0000ff;">var</span> openGenericType =<span style="color: #000000;"> typeToCheck.GetGenericTypeDefinition();
+
+                    isRegistered </span>=<span style="color: #000000;"> ChildContainer.IsRegistered(openGenericType);
+                }
+            }
+
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> isRegistered;
+        }
+    }    
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">UnityDependencyResolver.cs</span></div>
+<p>在系统开始运行时候我们就把构造函数注入。所以我们要在Global文件写入代码</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;daf2e593-3daf-462e-91e4-b23bb9885d42&#39;)"><img id="code_img_closed_daf2e593-3daf-462e-91e4-b23bb9885d42" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_daf2e593-3daf-462e-91e4-b23bb9885d42" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;daf2e593-3daf-462e-91e4-b23bb9885d42&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_daf2e593-3daf-462e-91e4-b23bb9885d42" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Http;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Mvc;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Optimization;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Routing;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Core;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Microsoft.Practices.Unity;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.Web
+{
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 请访问 </span><span style="color: #008000; text-decoration: underline;">http://go.microsoft.com/?LinkId=9394801</span>
+
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> MvcApplication : System.Web.HttpApplication
+    {
+        </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">启用压缩</span>
+            BundleTable.EnableOptimizations = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">注入 Ioc</span>
+            <span style="color: #0000ff;">var</span> container = <span style="color: #0000ff;">new</span><span style="color: #000000;"> UnityContainer();
+            DependencyRegisterType.Container_Sys(</span><span style="color: #0000ff;">ref</span><span style="color: #000000;"> container);
+            DependencyResolver.SetResolver(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> UnityDependencyResolver(container));
+        }
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">Global.asax.cs</span></div>
+<p>好了，我们已经把</p>
+<pre>ISysSampleBLL, SysSampleBLL</pre>
+<pre>ISysSampleRepository, SysSampleRepository</pre>
+<p>关系注入到系统了</p>
+<h1>自定义模型</h1>
+<p>由于EF生成的实体模型是拥有事务状态的，我们需要为SysSample的类再次定义个模型，SysSampleModel，这个模型我们可以加属性，序列化、脱离事物</p>
+<p>在Apps.Models新建文件夹Sys，如非特别说明，Sys代表系统，一个Areas区域对应一个文件，区域我们以后会用到</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.ComponentModel.DataAnnotations;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Runtime.Serialization;
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.Models.Sys
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> SysSampleModel
+    {
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">ID</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Id { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">名称</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Name { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+       
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">年龄</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        [Range(</span><span style="color: #800080;">0</span>,<span style="color: #800080;">10000</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span>? Age { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">生日</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> DateTime? Bir { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">照片</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Photo { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">简介</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Note { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+        [Display(Name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">创建时间</span><span style="color: #800000;">"</span><span style="color: #000000;">)]
+        </span><span style="color: #0000ff;">public</span> DateTime? CreateTime { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="line-height: 1.5;">接下来我们重新写过IBLL,BLL,controller代码，DAL，IDAL的代码是没问题的，很专注底层</span></p>
+<p>BLL引用Microsoft.Practices.Unity类库</p>
+<h1><span style="color: #000000; background-color: #ffffff;">&nbsp;修改后的代码</span></h1>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;783ba55c-914d-4ab5-aba3-044ef70a96b7&#39;)"><img id="code_img_closed_783ba55c-914d-4ab5-aba3-044ef70a96b7" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_783ba55c-914d-4ab5-aba3-044ef70a96b7" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;783ba55c-914d-4ab5-aba3-044ef70a96b7&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_783ba55c-914d-4ab5-aba3-044ef70a96b7" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Models.Sys;
+
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.IBLL
+{
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> ISysSampleBLL
+    {
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 获取列表
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="pager"&gt;</span><span style="color: #008000;">JQgrid分页</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="queryStr"&gt;</span><span style="color: #008000;">搜索条件</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">列表</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        List&lt;SysSampleModel&gt; GetList(<span style="color: #0000ff;">string</span><span style="color: #000000;"> queryStr);
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 创建一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="model"&gt;</span><span style="color: #008000;">模型</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Create(SysSampleModel model);
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 删除一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">id</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">bool</span> Delete(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id);
+     
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 修改一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="model"&gt;</span><span style="color: #008000;">模型</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Edit(SysSampleModel model);
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 根据ID获得一个Model实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">id</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">Model实体</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        SysSampleModel GetById(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id);
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 判断是否存在实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">主键ID</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否存在</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">bool</span> IsExist(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id);
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">ISysSampleBLL.cs</span></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;ec1ebca3-b3f3-4699-9792-e0d8ec953855&#39;)"><img id="code_img_closed_ec1ebca3-b3f3-4699-9792-e0d8ec953855" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_ec1ebca3-b3f3-4699-9792-e0d8ec953855" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;ec1ebca3-b3f3-4699-9792-e0d8ec953855&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_ec1ebca3-b3f3-4699-9792-e0d8ec953855" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Microsoft.Practices.Unity;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Models;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Common;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Models.Sys;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.IBLL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.IDAL;
+
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.BLL
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> SysSampleBLL : ISysSampleBLL
+    {
+        DBContainer db </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> DBContainer();
+        [Dependency]
+        </span><span style="color: #0000ff;">public</span> ISysSampleRepository Rep { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 获取列表
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="pager"&gt;</span><span style="color: #008000;">JQgrid分页</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="queryStr"&gt;</span><span style="color: #008000;">搜索条件</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">列表</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> List&lt;SysSampleModel&gt; GetList(<span style="color: #0000ff;">string</span><span style="color: #000000;"> queryStr)
+        {
+            
+                IQueryable</span>&lt;SysSample&gt; queryData = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+                queryData </span>=<span style="color: #000000;"> Rep.GetList(db);
+                </span><span style="color: #0000ff;">return</span> CreateModelList(<span style="color: #0000ff;">ref</span><span style="color: #000000;"> queryData);
+        }
+        </span><span style="color: #0000ff;">private</span> List&lt;SysSampleModel&gt; CreateModelList(<span style="color: #0000ff;">ref</span> IQueryable&lt;SysSample&gt;<span style="color: #000000;"> queryData)
+        {
+
+            
+            List</span>&lt;SysSampleModel&gt; modelList = (<span style="color: #0000ff;">from</span> r <span style="color: #0000ff;">in</span><span style="color: #000000;"> queryData
+                                              </span><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> SysSampleModel
+                                              {
+                                                  Id </span>=<span style="color: #000000;"> r.Id,
+                                                  Name </span>=<span style="color: #000000;"> r.Name,
+                                                  Age </span>=<span style="color: #000000;"> r.Age,
+                                                  Bir </span>=<span style="color: #000000;"> r.Bir,
+                                                  Photo </span>=<span style="color: #000000;"> r.Photo,
+                                                  Note </span>=<span style="color: #000000;"> r.Note,
+                                                  CreateTime </span>=<span style="color: #000000;"> r.CreateTime,
+
+                                              }).ToList();
+
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> modelList;
+        }
+
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 创建一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="model"&gt;</span><span style="color: #008000;">模型</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Create( SysSampleModel model)
+        {
+            </span><span style="color: #0000ff;">try</span><span style="color: #000000;">
+            {
+                SysSample entity </span>=<span style="color: #000000;"> Rep.GetById(model.Id);
+                </span><span style="color: #0000ff;">if</span> (entity != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                }
+                entity </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> SysSample();
+                entity.Id </span>=<span style="color: #000000;"> model.Id;
+                entity.Name </span>=<span style="color: #000000;"> model.Name;
+                entity.Age </span>=<span style="color: #000000;"> model.Age;
+                entity.Bir </span>=<span style="color: #000000;"> model.Bir;
+                entity.Photo </span>=<span style="color: #000000;"> model.Photo;
+                entity.Note </span>=<span style="color: #000000;"> model.Note;
+                entity.CreateTime </span>=<span style="color: #000000;"> model.CreateTime;
+
+                </span><span style="color: #0000ff;">if</span> (Rep.Create(entity) == <span style="color: #800080;">1</span><span style="color: #000000;">)
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+                }
+                </span><span style="color: #0000ff;">else</span><span style="color: #000000;">
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                }
+            }
+            </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (Exception ex)
+            {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">ExceptionHander.WriteException(ex);</span>
+                <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+            }
+        }
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 删除一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">id</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span> Delete(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id)
+        {
+            </span><span style="color: #0000ff;">try</span><span style="color: #000000;">
+            {
+                </span><span style="color: #0000ff;">if</span> (Rep.Delete(id) == <span style="color: #800080;">1</span><span style="color: #000000;">)
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+                }
+                </span><span style="color: #0000ff;">else</span><span style="color: #000000;">
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                }
+            }
+            </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (Exception ex)
+            {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+            }
+        }
+   
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 修改一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="errors"&gt;</span><span style="color: #008000;">持久的错误信息</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="model"&gt;</span><span style="color: #008000;">模型</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否成功</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span><span style="color: #000000;"> Edit(SysSampleModel model)
+        {
+            </span><span style="color: #0000ff;">try</span><span style="color: #000000;">
+            {
+                SysSample entity </span>=<span style="color: #000000;"> Rep.GetById(model.Id);
+                </span><span style="color: #0000ff;">if</span> (entity == <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                }
+                entity.Name </span>=<span style="color: #000000;"> model.Name;
+                entity.Age </span>=<span style="color: #000000;"> model.Age;
+                entity.Bir </span>=<span style="color: #000000;"> model.Bir;
+                entity.Photo </span>=<span style="color: #000000;"> model.Photo;
+                entity.Note </span>=<span style="color: #000000;"> model.Note;
+
+
+                </span><span style="color: #0000ff;">if</span> (Rep.Edit(entity) == <span style="color: #800080;">1</span><span style="color: #000000;">)
+                {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+                }
+                </span><span style="color: #0000ff;">else</span><span style="color: #000000;">
+                {
+
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                }
+
+            }
+            </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (Exception ex)
+            {
+
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">ExceptionHander.WriteException(ex);</span>
+                <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+            }
+        }
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 判断是否存在实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">主键ID</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否存在</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span> IsExists(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id)
+        {
+            </span><span style="color: #0000ff;">if</span> (db.SysSample.SingleOrDefault(a =&gt; a.Id == id) != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+        }
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 根据ID获得一个实体
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">id</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">实体</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> SysSampleModel GetById(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id)
+        {
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (IsExist(id))
+            {
+                SysSample entity </span>=<span style="color: #000000;"> Rep.GetById(id);
+                SysSampleModel model </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> SysSampleModel();
+                model.Id </span>=<span style="color: #000000;"> entity.Id;
+                model.Name </span>=<span style="color: #000000;"> entity.Name;
+                model.Age </span>=<span style="color: #000000;"> entity.Age;
+                model.Bir </span>=<span style="color: #000000;"> entity.Bir;
+                model.Photo </span>=<span style="color: #000000;"> entity.Photo;
+                model.Note </span>=<span style="color: #000000;"> entity.Note;
+                model.CreateTime </span>=<span style="color: #000000;"> entity.CreateTime;
+
+                </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> model;
+            }
+            </span><span style="color: #0000ff;">else</span><span style="color: #000000;">
+            {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> SysSampleModel();
+            }
+        }
+
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 判断一个实体是否存在
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="id"&gt;</span><span style="color: #008000;">id</span><span style="color: #808080;">&lt;/param&gt;</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">是否存在 true or false</span><span style="color: #808080;">&lt;/returns&gt;</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">bool</span> IsExist(<span style="color: #0000ff;">string</span><span style="color: #000000;"> id)
+        {
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> Rep.IsExist(id);
+        }
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">SysSampleBLL.cs</span></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;3ba81c31-a19a-4d37-8fbc-408f0a91ea73&#39;)"><img id="code_img_closed_3ba81c31-a19a-4d37-8fbc-408f0a91ea73" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_3ba81c31-a19a-4d37-8fbc-408f0a91ea73" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;3ba81c31-a19a-4d37-8fbc-408f0a91ea73&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_3ba81c31-a19a-4d37-8fbc-408f0a91ea73" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Mvc;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.BLL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.IBLL;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Models;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Apps.Models.Sys;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> Microsoft.Practices.Unity;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> Apps.Web.Controllers
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> SysSampleController : Controller
+    {
+        </span><span style="color: #008000;">//</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;"> GET: /SysSample/</span>
+        <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+        <span style="color: #808080;">///</span><span style="color: #008000;"> 业务层注入
+        </span><span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #000000;">        [Dependency]
+        </span><span style="color: #0000ff;">public</span> ISysSampleBLL m_BLL { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+        </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> ActionResult Index()
+        {
+            List</span>&lt;SysSampleModel&gt; list = m_BLL.GetList(<span style="color: #800000;">""</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> View(list);
+        }
+
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">SysSampleController.cs</span></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;5a016176-6039-4b4f-b833-a44be43f6e72&#39;)"><img id="code_img_closed_5a016176-6039-4b4f-b833-a44be43f6e72" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ContractedBlock.gif" alt=""><img id="code_img_opened_5a016176-6039-4b4f-b833-a44be43f6e72" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;5a016176-6039-4b4f-b833-a44be43f6e72&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_5a016176-6039-4b4f-b833-a44be43f6e72" class="cnblogs_code_hide">
+<pre>@model List<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">App</span><span style="color: #ff0000;">.Models.Sys.SysSampleModel</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+
+@{
+    Layout = null;
+}
+
+</span><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="viewport"</span><span style="color: #ff0000;"> content</span><span style="color: #0000ff;">="width=device-width"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>Index<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+        @Html.ActionLink("Create New", "Create")
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">table</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+               名称
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+               年龄
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+              生日
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+               照片
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+               备注
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                创建时间
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    
+    @foreach (var item in Model) {
+        </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.Name)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.Age)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.Bir)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.Photo)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.Note)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.DisplayFor(modelItem =&gt; item.CreateTime)
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    }
+    
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">table</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View视图</span></div>
+<p>&nbsp;</p>
+<p>因为SysSample在BLL层已经被释放掉了，大家要注意一下所以视图我们要改下</p>
+<p>大家把代码下载下来，跟我们第5讲糟糕的代码对比一下。我们的代码优化了，清晰了，构造器能自动释放内存了，无需要实例化了。</p>
+<p>当然预览的效果是一样的</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/16165257-8efac58779864b7d857fef57db814701.png" alt="" width="678" height="419"></p>
+<p>下一讲，返回json格式与DataGrid结合，实现分页。</p>
+<p>&nbsp;</p></div><div id="MySignature" style="display: block;">
+作者：<a href="http://ymnets.cnblogs.com/" target="_blank">YmNets</a><br>出处：<a href="http://ymnets.cnblogs.com/" target="_blank">http://ymnets.cnblogs.com/</a><br>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ymnets/category/532237.html" target="_blank">[02]Asp.Net MVC</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ymnets/tag/ASP.NET/">ASP.NET</a>, <a href="http://www.cnblogs.com/ymnets/tag/MVC4/">MVC4</a>, <a href="http://www.cnblogs.com/ymnets/tag/EF5/">EF5</a>, <a href="http://www.cnblogs.com/ymnets/tag/EasyUI/">EasyUI</a>, <a href="http://www.cnblogs.com/ymnets/tag/Unity2.x/">Unity2.x</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3424943,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/" target="_blank"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/20161202100642.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/">ymnets</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followees">关注 - 14</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followers">粉丝 - 1575</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3424943,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">16</span>
+    </div>
+    <div class="buryit" onclick="votePost(3424943,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">2</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ymnets/p/3426454.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ymnets/p/3426454.html" title="发布于2013-11-16 10:24">ASP.NET MVC5+EF6+EasyUI 后台管理系统（5）-EF增删改查</a><br><a href="http://www.cnblogs.com/ymnets/p/3424945.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ymnets/p/3424945.html" title="发布于2013-11-17 10:29">ASP.NET MVC5+EF6+EasyUI 后台管理系统（7）-MVC与EasyUI DataGrid</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-11-16 20:42</span> <a href="http://www.cnblogs.com/ymnets/">ymnets</a> 阅读(<span id="post_view_count">26906</span>) 评论(<span id="post_comment_count">62</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3424943" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/ymnets/p/3424943.html#" onclick="AddToWz(3424943);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=168383,cb_entryId=3424943,cb_blogApp=currentBlogApp,cb_blogUserGuid='26ae7302-41eb-e111-aa3f-842b2b196315',cb_entryCreatedDate='2013/11/16 20:42:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/ymnets/p/3424943.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3649720,&#39;f8pQeQoKhjJawr9N07PXtuSDwb+FB87APy5PzjLaGjFv+PjiXFMmIA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3649720,&#39;f8pQeQoKhjJawr9N07PXtuSDwb+FB87APy5PzjLaGjFv+PjiXFMmIA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3649720" class="layer">#51楼</a><a name="3649720" id="comment_anchor_3649720"></a>  <span class="comment_date">2017-03-23 17:28</span> <a id="a_comment_author_3649720" href="http://www.cnblogs.com/alvisLee/" target="_blank">三余.无梦生</a> <a href="http://msg.cnblogs.com/send/%E4%B8%89%E4%BD%99.%E6%97%A0%E6%A2%A6%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3649720" class="blog_comment_body"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/395182-20170323172415643-1139310476.png" alt="" border="0" "=""><br><br>楼主，这个问题我弄了很久也没有解决，希望楼主可以帮我解决这个问题？谢谢！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3649720,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3649720,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3649720_avatar" style="display:none;">http://pic.cnblogs.com/face/u395182.jpg?id=24231740</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3705462,&#39;gksQ8GMEm/OKrSofZ5j4lf+toD1387bHhPjz8pVDCo8+H+vJ0CIpyQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3705462,&#39;gksQ8GMEm/OKrSofZ5j4lf+toD1387bHhPjz8pVDCo8+H+vJ0CIpyQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3705462" class="layer">#52楼</a><a name="3705462" id="comment_anchor_3705462"></a>  <span class="comment_date">2017-06-02 11:18</span> <a id="a_comment_author_3705462" href="http://home.cnblogs.com/u/1175785/" target="_blank">Amazarashi</a> <a href="http://msg.cnblogs.com/send/Amazarashi" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3705462" class="blog_comment_body">IDependencyResolver接口是在自己写的，还是需要引入 Using ？ 而且下载代码在什么位置 ？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3705462,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3705462,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3706307,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3706307,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3706307" class="layer">#53楼</a><a name="3706307" id="comment_anchor_3706307"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-06-03 15:49</span> <a id="a_comment_author_3706307" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3706307" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#3705462" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3705462);">@</a>
+Amazarashi<br>@三余.无梦生<br>需要从nuget包安装 untiy组件</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3706307,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3706307,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3706307_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3706361,&#39;tvEy81ukq+/908/dzdGZNLrkDaTZKmGbzJX5k6oW/8f6u81vm61quA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3706361,&#39;tvEy81ukq+/908/dzdGZNLrkDaTZKmGbzJX5k6oW/8f6u81vm61quA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3706361" class="layer">#54楼</a><a name="3706361" id="comment_anchor_3706361"></a>  <span class="comment_date">2017-06-03 17:42</span> <a id="a_comment_author_3706361" href="http://www.cnblogs.com/youziforever21/" target="_blank">游子forever21</a> <a href="http://msg.cnblogs.com/send/%E6%B8%B8%E5%AD%90forever21" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3706361" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#3706307" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3706307);">@</a>
+ymnets<br>如下图所示，该接口属于System.Web.Mvc这个Dll，nuget已下载下来，但是没有自动添加到类的Using里面。我们这是要手动添加引用嘛？<img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/410713-20170603174016852-1181474289.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3706361,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3706361,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3706361_avatar" style="display:none;">http://pic.cnblogs.com/face/u410713.jpg?id=19190801</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3742952,&#39;Z6rygHGGKp5LBdjxXV+rXP5Z1bahngHHeQs8uyrrt0lUPSbzpMBN5Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3742952,&#39;Z6rygHGGKp5LBdjxXV+rXP5Z1bahngHHeQs8uyrrt0lUPSbzpMBN5Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3742952" class="layer">#55楼</a><a name="3742952" id="comment_anchor_3742952"></a>  <span class="comment_date">2017-07-25 14:46</span> <a id="a_comment_author_3742952" href="http://home.cnblogs.com/u/1206610/" target="_blank">摸肚子的小胖子</a> <a href="http://msg.cnblogs.com/send/%E6%91%B8%E8%82%9A%E5%AD%90%E7%9A%84%E5%B0%8F%E8%83%96%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3742952" class="blog_comment_body">SysSample  与SysSampleModel有差吗  为什么要重新新建SysSampleModel类</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3742952,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3742952,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3743873,&#39;Z6rygHGGKp5LBdjxXV+rXP5Z1bahngHHeQs8uyrrt0lUPSbzpMBN5Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3743873,&#39;Z6rygHGGKp5LBdjxXV+rXP5Z1bahngHHeQs8uyrrt0lUPSbzpMBN5Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3743873" class="layer">#56楼</a><a name="3743873" id="comment_anchor_3743873"></a>  <span class="comment_date">2017-07-26 15:44</span> <a id="a_comment_author_3743873" href="http://home.cnblogs.com/u/1206610/" target="_blank">摸肚子的小胖子</a> <a href="http://msg.cnblogs.com/send/%E6%91%B8%E8%82%9A%E5%AD%90%E7%9A%84%E5%B0%8F%E8%83%96%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3743873" class="blog_comment_body">@ymnets <br>SysSample 与SysSampleModel差别在哪里<br>为什么建了SysSample  ，还要在新建一个SysSampleModel</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3743873,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3743873,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3767359,&#39;HqMSTF/FTtHWlciPctdVCzVQicbqJXKjODrOc4Wg87KwkwqVPjps2Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3767359,&#39;HqMSTF/FTtHWlciPctdVCzVQicbqJXKjODrOc4Wg87KwkwqVPjps2Q==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3767359" class="layer">#57楼</a><a name="3767359" id="comment_anchor_3767359"></a>  <span class="comment_date">2017-08-27 08:22</span> <a id="a_comment_author_3767359" href="http://www.cnblogs.com/xjt360/" target="_blank">xjt360</a> <a href="http://msg.cnblogs.com/send/xjt360" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3767359" class="blog_comment_body">大家把代码下载下来，跟我们第5讲糟糕的代码对比一下。我们的代码优化了，清晰了，构造器能自动释放内存了，无需要实例化了。<br><br>构造器能自动释放内存了 是什么意思呢 谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3767359,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3767359,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3783301,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3783301,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3783301" class="layer">#58楼</a><a name="3783301" id="comment_anchor_3783301"></a>  <span class="comment_date">2017-09-13 16:53</span> <a id="a_comment_author_3783301" href="http://www.cnblogs.com/baixiaoguang/" target="_blank">Arbet</a> <a href="http://msg.cnblogs.com/send/Arbet" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3783301" class="blog_comment_body"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/653255-20170913165239219-986492526.png" alt="" border="0" "=""><br>楼主，很奇怪啊，我在BLL层引入unity了，其他层用的也是这个dll，但是运行就是不成功，不知道问题出哪儿了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3783301,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3783301,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3784089,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3784089,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3784089" class="layer">#59楼</a><a name="3784089" id="comment_anchor_3784089"></a>  <span class="comment_date">2017-09-14 14:39</span> <a id="a_comment_author_3784089" href="http://www.cnblogs.com/baixiaoguang/" target="_blank">Arbet</a> <a href="http://msg.cnblogs.com/send/Arbet" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3784089" class="blog_comment_body">我知道了，我的是4.0的framework，改成4.5的framework就行了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3784089,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3784089,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3784152,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3784152,&#39;T/MikezMV8m0bXAbDHMQAQyBQNTNG116oOzggZdfwZy4fib9n19PMg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3784152" class="layer">#60楼</a><a name="3784152" id="comment_anchor_3784152"></a>  <span class="comment_date">2017-09-14 15:21</span> <a id="a_comment_author_3784152" href="http://www.cnblogs.com/baixiaoguang/" target="_blank">Arbet</a> <a href="http://msg.cnblogs.com/send/Arbet" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3784152" class="blog_comment_body"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/653255-20170914152132782-525268751.png" alt="" border="0" "=""><br><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/653255-20170914152145422-955190950.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3784152,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3784152,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3827028,&#39;A6+KgTUiPizjP+ppCh0nKWtBDduVl0BIRCyVa85cn8BRW5ufJL7hjg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3827028,&#39;A6+KgTUiPizjP+ppCh0nKWtBDduVl0BIRCyVa85cn8BRW5ufJL7hjg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3827028" class="layer">#61楼</a><a name="3827028" id="comment_anchor_3827028"></a>  <span class="comment_date">2017-10-31 16:04</span> <a id="a_comment_author_3827028" href="http://home.cnblogs.com/u/443951/" target="_blank">派大星444</a> <a href="http://msg.cnblogs.com/send/%E6%B4%BE%E5%A4%A7%E6%98%9F444" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3827028" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#3649720" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3649720);">@</a>
+三余.无梦生<br>没有注册吧<br>DependencyRegisterTypeAuto.tt 下</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3827028,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3827028,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3856562,&#39;Ay49BAGn7nhc8+m2lnN+YLtJEH3tmYOjq8pmD6+qrd/DVtGvCK+idg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3856562,&#39;Ay49BAGn7nhc8+m2lnN+YLtJEH3tmYOjq8pmD6+qrd/DVtGvCK+idg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424943.html#3856562" class="layer">#62楼</a><a name="3856562" id="comment_anchor_3856562"></a><span id="comment-maxId" style="display:none;">3856562</span><span id="comment-maxDate" style="display:none;">2017/12/3 15:15:58</span>  <span class="comment_date">2017-12-03 15:15</span> <a id="a_comment_author_3856562" href="http://home.cnblogs.com/u/1292246/" target="_blank">ntuchenxy</a> <a href="http://msg.cnblogs.com/send/ntuchenxy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3856562" class="blog_comment_body">有谁研究过signalr的unity注入的？网上查到些资料，但都写的不太清楚</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3856562,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3856562,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/ymnets/p/3424943.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/ymnets/p/3424943.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/ymnets/p/3424943.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586042/" target="_blank">微软可折叠手机进行应用适配测试：像书本一样展开</a><br> ·  <a href="https://news.cnblogs.com/n/586041/" target="_blank">央行出手！支付宝微信扫码限额500元：真相原来是这样</a><br> ·  <a href="https://news.cnblogs.com/n/586040/" target="_blank">诺基亚新机入网：搭载YunOS系统 支持移动4G</a><br> ·  <a href="https://news.cnblogs.com/n/586039/" target="_blank">你们昨天刷屏玩得"跳一跳"，其实是微信团队"抄"的</a><br> ·  <a href="https://news.cnblogs.com/n/585994/" target="_blank">探访iRobot：一家非典型机器人公司的27年成长史</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><span style="color:red">有问题,或者购买框架可以通过QQ:729994997联系我</span><br><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/ymnets/">ymnets</a><br>园龄：<a href="https://home.cnblogs.com/u/ymnets/" title="入园时间：2012-08-21">5年4个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/ymnets/followers/">1575</a><br>关注：<a href="https://home.cnblogs.com/u/ymnets/followees/">14</a><div id="p_b_follow">已关注 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;)">-取消</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ymnets/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/ymnets/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/ymnets/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/ymnets/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/ymnets/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(137)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ymnets/category/532236.html">[01].Net(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ymnets/category/532237.html">[02]Asp.Net MVC(94)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ymnets/category/532238.html">[03]Web前端(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ymnets/category/532240.html">[04]数据库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ymnets/category/532241.html">[05]JQuery&amp;JavaScript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ymnets/category/535669.html">[06]EasyUI(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ymnets/category/576780.html">[07]Android(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ymnets/category/1021286.html">[08]fullCalendar(2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	363419
+	</li>
+	<li class="liRank">
+		排名 -	420
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/6737779.html#3874731">1. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（83）-Easyui Datagrid 行内编辑扩展</a></li>
+        <li class="recent_comment_body">1.扩展tree，使其支持平滑数据格式<br><br>2.扩展combotree，使其支持平滑数据格式<br>---------------------------请问什么事平滑数据格式</li>
+        <li class="recent_comment_author">--fuckstars</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5025197.html#3867631">2. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（52）-美化EasyUI皮肤和图标</a></li>
+        <li class="recent_comment_body">@ymnets你好，请问你的tree中的图标是如何处理的，css如何利用优先原则的？谢谢...</li>
+        <li class="recent_comment_author">--路过1024</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5306935.html#3865693">3. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（58）-DAL层重构</a></li>
+        <li class="recent_comment_body">请问楼主，DAL重构后所有系统注入都报错了，需要如何修改？container.RegisterType();...</li>
+        <li class="recent_comment_author">--walkbylake</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/3484658.html#3865675">4. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（22）-权限管理系统-模块导航制作</a></li>
+        <li class="recent_comment_body">楼主，这个getUserId是在哪里定义的啊？<br></li>
+        <li class="recent_comment_author">--北冥有鱼没有水</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/7977189.html#3863901">5. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（88）-Excel导入和导出-主从表结构导出</a></li>
+        <li class="recent_comment_body">非常不错。最低是fx4.5.2改动两个地方就可以支持fx4.0了。不需要安装excel来操作vba了，确实好。也可以抛开accessdatabaseegine...</li>
+        <li class="recent_comment_author">--Ender.Lu</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(88844)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](43924)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(26906)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424936.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（3）-漂亮系统登陆界面(26729)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424939.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（4）-创建项目解决方案(25664)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">1. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](114)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(113)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](83)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424950.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（9）-MVC与EasyUI结合增删改查(81)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(62)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(140)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3569328.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（28）-系统小结(67)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">3. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](39)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">4. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](38)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3456677.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（20）-权限管理系统-根据权限获取菜单(33)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 ymnets
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

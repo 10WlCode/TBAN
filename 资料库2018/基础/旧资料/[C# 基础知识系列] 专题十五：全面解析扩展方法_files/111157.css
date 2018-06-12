@@ -1,0 +1,43 @@
+.postTitle a:link, .postTitle a:visited, .postTitle a:active, .postBody a:hover, .postBody a:link,.postBody a:visited, .postBody a:active,.catListTag a
+{
+font-size: 12pt;
+color: #F60;
+}
+.postBody a:hover
+{
+background-color: white;
+text-decoration: underline;
+}
+.catListTag a
+{
+background-color: white;
+text-decoration: underline;
+}
+div.postTitle a:visited {
+color:  #F60;
+}
+.icon_favorite {
+background: transparent url('data:image/gif;base64,R0lGODlhEAAQAOZLAK+HMu7er7iNGdGiC//SFEJAPqyFQsyyffDl…KLi0+NkQcC0HqgkoEKUIFJzkKEBCJdiS4kS4JiBJIHKhTIiBDkW8GDCg8lKQiRYtLAgEAOw==') no-repeat 0 0;
+padding-left: 16px;
+}
+.newsItem .catListTitle {
+display: none;
+}
+.box {
+border: 1px solid #fff;
+margin-bottom: 10px;
+background: #fff;
+}
+
+#MySignature .rights {
+    background: none repeat scroll 0 0 #e7f4ff;
+    margin: 0 auto;
+    padding: 12px 15px;
+    color: #666;
+    font-size: 13px;
+    width: 95%;
+    border: 1px solid #c9ddfa;
+}
+ #container{border:3px solid blue;width:800px;text-align:center;vertical-align:middle;}
+    #container image{border:1px solid blue;}
+    #container div{float:left;}

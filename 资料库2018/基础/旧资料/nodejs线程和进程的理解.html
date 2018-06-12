@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/ -->
+<html class="theme-next pisces use-motion"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3523396423625382",
+    enable_page_level_ads: true
+  });
+</script>
+  
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="./nodejs线程和进程的理解_files/pace.min.js.下载"></script>
+<link href="./nodejs线程和进程的理解_files/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="./nodejs线程和进程的理解_files/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="./nodejs线程和进程的理解_files/css" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="./nodejs线程和进程的理解_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="./nodejs线程和进程的理解_files/main.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="nodejs,">
+
+
+
+
+
+  <link rel="alternate" href="http://blog.suzper.com/atom.xml" title="Candy" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://blog.suzper.com/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Nodejs是单线程什么是线程一个进程中可以有多个线程同时运行，称为多线程，一个线程可与同属一个进程的其它线程共享进程所拥有的全部资源，同一进程中的多个线程之间可以并发执行。
+线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位指运行中的程序的调度单位。在单个程序中同时运行多个线程完成不同的工作，称为多线程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs线程和进程的理解">
+<meta property="og:url" content="http://blog.suzper.com/2016/11/21/nodejs线程和进程的理解/index.html">
+<meta property="og:site_name" content="Candy">
+<meta property="og:description" content="Nodejs是单线程什么是线程一个进程中可以有多个线程同时运行，称为多线程，一个线程可与同属一个进程的其它线程共享进程所拥有的全部资源，同一进程中的多个线程之间可以并发执行。
+线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位指运行中的程序的调度单位。在单个程序中同时运行多个线程完成不同的工作，称为多线程。">
+<meta property="og:updated_time" content="2017-04-17T01:31:12.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs线程和进程的理解">
+<meta name="twitter:description" content="Nodejs是单线程什么是线程一个进程中可以有多个线程同时运行，称为多线程，一个线程可与同属一个进程的其它线程共享进程所拥有的全部资源，同一进程中的多个线程之间可以并发执行。
+线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位指运行中的程序的调度单位。在单个程序中同时运行多个线程完成不同的工作，称为多线程。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+
+  <title> nodejs线程和进程的理解 | Candy </title>
+<script type="text/javascript" async="" src="./nodejs线程和进程的理解_files/count.js.下载"></script><script type="text/javascript" async="" src="./nodejs线程和进程的理解_files/embed.js.下载"></script><style type="text/css">.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}</style><style type="text/css">.fancybox-margin{margin-right:17px;}</style><style type="text/css">:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root .footer > #box[style="width:100%;height:100%;position:fixed;top:0"]
+{display:none !important;}</style><script src="./nodejs线程和进程的理解_files/count-data.js.下载"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.1c973af76c6535955110c0c9d8551865.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.8edffe1405dcc2d5eb5ee9d96a2866d1.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.8d07a4869c3ec17ee1881ae6bd353027.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"><style type="text/css">:root .adsbox
+{display:none !important;}</style><script src="./nodejs线程和进程的理解_files/alfalfa.4a5fcca1fe50a757044dfd331b660625.js.下载" async="" charset="UTF-8"></script></head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-Hans" class="  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/zp1112"><img style="position: absolute; top: 0; right: 0; border: 0;" src="./nodejs线程和进程的理解_files/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="http://blog.suzper.com/" class="brand" rel="start" style="opacity: 1;">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title" style="opacity: 1; top: 0px;">Candy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" style="opacity: 1; top: 0px;">front-end-developer</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.suzper.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.suzper.com/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.suzper.com/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.suzper.com/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives" style="opacity: 1; transform: translateY(0px);">
+          <a href="http://blog.suzper.com/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search" style="opacity: 1; transform: translateY(0px);">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="//schema.org/Article" style="opacity: 1; display: block; transform: translateY(0px);">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nodejs线程和进程的理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T18:36:50+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="http://blog.suzper.com/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="http://blog.suzper.com/categories/%E6%8A%80%E6%9C%AF/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/21/nodejs线程和进程的理解/" itemprop="commentsCount">0 Comments</span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Nodejs是单线程"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs是单线程" class="headerlink" title="Nodejs是单线程"></a>Nodejs是单线程</h1><h2 id="什么是线程"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>一个进程中可以有多个线程同时运行，称为多线程，一个线程可与同属一个进程的其它线程共享进程所拥有的全部资源，同一进程中的多个线程之间可以并发执行。</p>
+<p>线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位指运行中的程序的调度单位。在单个程序中同时运行多个线程完成不同的工作，称为多线程。</p>
+<a id="more"></a>
+<p>有时候，线程也称作轻量级进程。就象进程一样，线程在程序中是独立的、并发的执行路径，每个线程有它自己的堆栈、自己的程序计数器和自己的局部变量。但是，与分隔的进程相比，进程中的线程之间的隔离程度要小。它们共享内存、文件句柄和其它每个进程应有的状态。</p>
+<!-- more -->
+<h2 id="阻塞和非阻塞，异步与同步"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#阻塞和非阻塞，异步与同步" class="headerlink" title="阻塞和非阻塞，异步与同步"></a>阻塞和非阻塞，异步与同步</h2><p>阻塞/非阻塞与异步/同步是两个不同的概念，同步不代表阻塞，但是阻塞肯定就是同步了。</p>
+<p>举个现实生活中的例子，我去食堂打饭，我选择了A套餐，然后工作人员帮我去配餐，如果我就站在旁边，等待工作人员给我配餐，这种情况就称之为同步；若工作人员帮我配餐的同时，排在我后面的人就开始点餐，这样整个食堂的点餐服务并没有因为我在等待A套餐而停止，这种情况就称之为非阻塞。这个例子就简单说明了同步但非阻塞的情况。</p>
+<p>再如果我在等待配餐的时候去买饮料，等听到叫号再回去拿套餐，此时我的饮料也已经买好，这样我在等待配餐的同时还执行了买饮料的任务，叫号就等于执行了回调，就是异步非阻塞了。</p>
+<h2 id="Nodejs是单线程异步非阻塞"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs是单线程异步非阻塞" class="headerlink" title="Nodejs是单线程异步非阻塞"></a>Nodejs是单线程异步非阻塞</h2><p>线程是cpu调度的一个基本单位，一个cpu同时只能执行一个线程的任务，同样一个线程任务也只能在一个cpu上执行，所以如果你运行Node.js的机器是像i5，i7这样多核cpu，那么将无法充分利用多核cpu的性能来为Node.js服务。</p>
+<p>下面是解决单线程对cpu密集型任务的阻塞问题：</p>
+<h2 id="Nodejs多进程cluster"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs多进程cluster" class="headerlink" title="Nodejs多进程cluster"></a>Nodejs多进程cluster</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>);<span class="comment">//加载clustr模块</span></div><div class="line"><span class="keyword">var</span> numCPUs = <span class="built_in">require</span>(<span class="string">'os'</span>).cpus().length;<span class="comment">//设定启动进程数为cpu个数</span></div><div class="line"><span class="keyword">if</span> (cluster.isMaster) {</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; numCPUs; i++) {</div><div class="line">    cluster.fork();<span class="comment">//启动子进程,产生一个新的进程</span></div><div class="line">  }</div><div class="line">} <span class="keyword">else</span> {</div><div class="line">    <span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line">    <span class="keyword">var</span> app = express();</div><div class="line">    <span class="keyword">var</span> fibo = <span class="function"><span class="keyword">function</span> <span class="title">fibo</span> (<span class="params">n</span>) </span>{<span class="comment">//定义斐波那契数组算法</span></div><div class="line">       <span class="keyword">return</span> n &gt; <span class="number">1</span> ? fibo(n - <span class="number">1</span>) + fibo(n - <span class="number">2</span>) : <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>{</div><div class="line">      <span class="keyword">var</span> n = fibo(~~req.query.n || <span class="number">1</span>);<span class="comment">//接收参数</span></div><div class="line">      res.send(n.toString());</div><div class="line">    });</div><div class="line">    app.listen(<span class="number">8124</span>, <span class="string">'0.0.0.0'</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'listen on 8124'</span>);</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h2 id="Nodejs多进程child-process"><a href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs多进程child-process" class="headerlink" title="Nodejs多进程child_process"></a>Nodejs多进程child_process</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> { spawn } <span class="keyword">from</span> <span class="string">'child_process'</span>;</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> spawnWorker = <span class="function">(<span class="params">n, end</span>) =&gt;</span> {<span class="comment">// 定义工作函数</span></div><div class="line">  <span class="keyword">const</span> fibo = <span class="function">(<span class="params">m</span>) =&gt;</span> m &gt; <span class="number">1</span> ? fibo(m - <span class="number">1</span>) + fibo(m - <span class="number">2</span>) : <span class="number">1</span>;</div><div class="line">  end(fibo(n));</div><div class="line">};</div><div class="line"><span class="keyword">const</span> spawnEnd = <span class="function">(<span class="params">result</span>) =&gt;</span> {<span class="comment">// 定义工作函数结束的回调函数参数</span></div><div class="line">  <span class="built_in">console</span>.log(result);</div><div class="line">  process.exit();</div><div class="line">};</div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; {</div><div class="line">  <span class="keyword">const</span> n = ~~req.query.n || <span class="number">1</span>;</div><div class="line">  <span class="comment">// 拼接-e后面的参数</span></div><div class="line">  <span class="keyword">const</span> spawnCmd = <span class="string">`(<span class="subst">${spawnWorker.toString()}</span>(<span class="subst">${n}</span>,<span class="subst">${spawnEnd.toString()}</span>));`</span>;</div><div class="line">  <span class="built_in">console</span>.log(spawnCmd);<span class="comment">// 注意这个打印结果</span></div><div class="line">  <span class="keyword">const</span> worker = spawn(<span class="string">'node'</span>, [<span class="string">'-e'</span>, spawnCmd]);<span class="comment">// 执行node -e "xxx"命令</span></div><div class="line">  <span class="keyword">let</span> fiboRes = <span class="string">''</span>;</div><div class="line">  worker.stdout.on(<span class="string">'data'</span>, (data) =&gt; { <span class="comment">// 接收工作函数的返回</span></div><div class="line">    fiboRes += data.toString();</div><div class="line">  });</div><div class="line">  worker.on(<span class="string">'close'</span>, () =&gt; {<span class="comment">// 将结果响应给客户端</span></div><div class="line">    res.send(fiboRes);</div><div class="line">  });</div><div class="line">});</div><div class="line">app.listen(<span class="number">8124</span>);</div></pre></td></tr></tbody></table></figure>
+<p>ab压力测试：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ab -c 100 -n 100 <a class="vglnk" href="http://0.0.0.0:8124/?n=35" rel="nofollow"><span>http</span><span>://</span><span>0</span><span>.</span><span>0</span><span>.</span><span>0</span><span>.</span><span>0</span><span>:</span><span>8124</span><span>/?</span><span>n</span><span>=</span><span>35</span></a></div></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+<div>
+      
+        
+      
+</div>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果您觉得受益了，欢迎打赏鼓励。</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&#39;QR&#39;); if (qr.style.display === &#39;none&#39;) {qr.style.display=&#39;block&#39;;} else {qr.style.display=&#39;none&#39;}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <a href="./nodejs线程和进程的理解_files/wx.png" class="fancybox" rel="group"><img id="wechat_qr" src="./nodejs线程和进程的理解_files/wx.png" alt="Candy Zheng WeChat Pay"></a>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <a href="./nodejs线程和进程的理解_files/qr.png" class="fancybox" rel="group"><img id="alipay_qr" src="./nodejs线程和进程的理解_files/qr.png" alt="Candy Zheng Alipay"></a>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="http://blog.suzper.com/tags/nodejs/" rel="tag"><i class="fa fa-tag"></i>nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="http://blog.suzper.com/2016/11/09/%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E5%92%8C%E7%AE%A1%E7%90%86%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/" rel="next" title="如何发布和管理自己的npm包">
+                <i class="fa fa-chevron-left"></i> 如何发布和管理自己的npm包
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="http://blog.suzper.com/2016/12/09/symmetric-server-3-8-11%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8C%E6%AD%A5/" rel="prev" title="symmetric-server-3.8.11实现数据库同步">
+                symmetric-server-3.8.11实现数据库同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread"><iframe id="dsq-app9702" name="dsq-app9702" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./nodejs线程和进程的理解_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 670px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar" style="margin-top: 370px; display: block;">
+    <div class="sidebar-inner affix-top">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="./nodejs线程和进程的理解_files/e5d9e2c177df642cc4fe605a4a491026.jpg" alt="Candy Zheng">
+          <p class="site-author-name" itemprop="name">Candy Zheng</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="http://blog.suzper.com/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="http://blog.suzper.com/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="http://blog.suzper.com/tags">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://blog.suzper.com/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zp1112" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://cool.suzper.com/" target="_blank" title="Gitbook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Gitbook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zp1112.github.io/cdcomponents/" target="_blank" title="cd-ui">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  cd-ui
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="cc-opacity" target="_blank">
+              <img src="./nodejs线程和进程的理解_files/cc-by-nc.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc" style="max-height: 927px; width: calc(100% + 17px);">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs是单线程"><span class="nav-number">1.</span> <span class="nav-text">Nodejs是单线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#什么是线程"><span class="nav-number">1.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#阻塞和非阻塞，异步与同步"><span class="nav-number">1.2.</span> <span class="nav-text">阻塞和非阻塞，异步与同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs是单线程异步非阻塞"><span class="nav-number">1.3.</span> <span class="nav-text">Nodejs是单线程异步非阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs多进程cluster"><span class="nav-number">1.4.</span> <span class="nav-text">Nodejs多进程cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://blog.suzper.com/2016/11/21/nodejs%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#Nodejs多进程child-process"><span class="nav-number">1.5.</span> <span class="nav-text">Nodejs多进程child_process</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async="" src="./nodejs线程和进程的理解_files/busuanzi.pure.mini.js.下载"></script>
+<div class="copyright">
+  
+  ©  2003 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Candy Zheng</span>
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv" style="display: inline;">
+  本站访客数:<span id="busuanzi_value_site_uv">1483</span>
+</span>
+</div>
+<!--
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共39.1k字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/index.js.下载"></script>
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/fastclick.min.js.下载"></script>
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/jquery.lazyload.js.下载"></script>
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/velocity.min.js.下载"></script>
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/velocity.ui.min.js.下载"></script>
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/jquery.fancybox.pack.js.下载"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/utils.js.下载"></script>
+
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/motion.js.下载"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/affix.js.下载"></script>
+
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/pisces.js.下载"></script>
+
+
+
+  
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/scrollspy.js.下载"></script>
+<script type="text/javascript" src="./nodejs线程和进程的理解_files/post-details.js.下载"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="./nodejs线程和进程的理解_files/bootstrap.js.下载"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blog-suzper-com';
+      var disqus_identifier = '2016/11/21/nodejs线程和进程的理解/';
+      var disqus_title = "nodejs线程和进程的理解";
+      var disqus_url = 'http://blog.suzper.com/2016/11/21/nodejs线程和进程的理解/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="./nodejs线程和进程的理解_files/love.js.下载"></script>
+
+
+<iframe style="display: none;" src="./nodejs线程和进程的理解_files/saved_resource(1).html"></iframe></body></html>

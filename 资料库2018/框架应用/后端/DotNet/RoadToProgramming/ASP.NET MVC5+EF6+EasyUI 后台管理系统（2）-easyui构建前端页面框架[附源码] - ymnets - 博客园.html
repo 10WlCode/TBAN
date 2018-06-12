@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://www.cnblogs.com/ymnets/p/3424514.html#!comments -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/bundle-SimpleBlue.css">
+<link type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/168383.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ymnets/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ymnets/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ymnets/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/encoder.js.下载"></script><script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'ymnets', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style></head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ymnets/">编橙之路</a></div>
+<div class="subtitle">人总是要选择一条路,有人选择了编香蕉，有人选择了编苹果，我却选择了编橙！</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/ymnets/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/ymnets">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/ymnets/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/ymnets/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-124&nbsp;
+文章-0&nbsp;
+评论-1973&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ymnets/p/3424514.html">ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码]</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><a href="http://www.cnblogs.com/ymnets/p/3424309.html">系列目录</a></p>
+<h1>前言</h1>
+<blockquote>
+<p><span style="color: #ff0000;">为了符合后面更新后的重构系统，本文于2016-10-31日修正一些截图，文字</span></p>
+<p>我们有了一系列的解决方案，我们将动手搭建新系统吧。</p>
+<p>后台系统没有多大的UI视觉，这次我们采用的是标准的左右分栏，左边是系统菜单，右边是一个以tabs页组成的页面集合，每一个tab都可以单独刷新和关闭</p>
+</blockquote>
+<h1>开发工具</h1>
+<p>Visual Studio 2012（以上）</p>
+<h1>开始搭建</h1>
+<p>打开我们熟悉的VS创建一个空解决方案。我起了个名字叫Apps，类库命名空间将与Apps开头</p>
+<p>如Apps.BLL,Apps.Web等命名</p>
+<h3>1. 新建MVC5.0的Web站点</h3>
+<p>　　<img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/439652-20161031144746033-274410333.png" alt=""></p>
+<h3>2.前端框架EasyUI</h3>
+<blockquote>
+<p>EasyUI下载：有多新用多新<a href="http://www.jeasyui.com/download/list.php" target="_blank">&nbsp;http://www.jeasyui.com/download/list.php</a><a href="http://www.jeasyui.net/" target="_blank"><br></a></p>
+<p>关于素材的存放，我列了下面</p>
+
+
+
+</blockquote>
+<ul>
+<li>1.把jquery.easyui.min.js放到scripts目录下</li>
+<li>2.主题themes放到到content下 这里我只保留灰色和蓝色主题，其他主题我的审美有限度，大家可以到easyui官方下载新的主题</li>
+<li>3.把Images文件夹移动到content下</li>
+<li>4.Filters文件删掉</li>
+<li>5.把素材放到content目录下，我已经为大家准备好这个项目所要用到的图片素材，不够我们再添加</li>
+<li>6.把controllers的AccountController.cs,HomeController.cs删除</li>
+<li>7.把View视图自带的cshtml删掉。</li>
+
+
+
+</ul>
+<h3>3.新建Home控制器</h3>
+<p>&nbsp;还是新建一个“空”的控制器，添加index视图</p>
+<p>Index代码</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;bd67501b-246d-4e61-90de-675f9ac491bb&#39;)"><img id="code_img_closed_bd67501b-246d-4e61-90de-675f9ac491bb" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_bd67501b-246d-4e61-90de-675f9ac491bb" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;bd67501b-246d-4e61-90de-675f9ac491bb&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_bd67501b-246d-4e61-90de-675f9ac491bb" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>Index<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="viewport"</span><span style="color: #ff0000;"> content</span><span style="color: #0000ff;">="width=device-width"</span> <span style="color: #0000ff;">/&gt;</span>
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="@Url.Content("</span><span style="color: #ff0000;">~/Scripts/jquery.min.js")" type</span><span style="color: #0000ff;">="text/javascript"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="@Url.Content("</span><span style="color: #ff0000;">~/Scripts/jquery.easyui.min.js")" type</span><span style="color: #0000ff;">="text/javascript"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+     @Styles.Render("~/Content/css")
+     @Styles.Render("~/Content/themes/blue/css")
+     @Scripts.Render("~/bundles/home")
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="easyui-layout"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="OverTimeLogin"</span><span style="color: #ff0000;">  class</span><span style="color: #0000ff;">="easyui-dialog"</span><span style="color: #ff0000;"> data-options</span><span style="color: #0000ff;">="closed:true,modal:true"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">iframe </span><span style="color: #ff0000;">width</span><span style="color: #0000ff;">="726px"</span><span style="color: #ff0000;"> scrolling</span><span style="color: #0000ff;">="no"</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">="497px"</span><span style="color: #ff0000;"> frameborder</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;">  id</span><span style="color: #0000ff;">="iOverTimeLogin"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">iframe</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">data-options</span><span style="color: #0000ff;">="region:'north',border:false,split:true"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="height: 60px;"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="define-head"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="define-logo"</span><span style="color: #0000ff;">&gt;</span>
+               <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="LoginTopLine"</span><span style="color: #0000ff;">&gt;</span>System Manage<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="LoginBotoomLine"</span><span style="color: #0000ff;">&gt;</span>MVC4+EF5.0+EasyUI<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="define-account"</span><span style="color: #0000ff;">&gt;</span>
+                   
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">data-options</span><span style="color: #0000ff;">="region:'west',split:true,title:'菜单列表'"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="width: 200px; height:100%; padding-top: 2px; background-color:#fff; overflow:auto"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="RightTree"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">=" background-color:#fff;"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="panel-loading"</span><span style="color: #0000ff;">&gt;</span>加载中...<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">data-options</span><span style="color: #0000ff;">="region:'south',border:false"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="height: 20px;"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="define-bottom"</span><span style="color: #0000ff;">&gt;</span>
+            
+
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">data-options</span><span style="color: #0000ff;">="region:'center',border:false"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="mainTab"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="easyui-tabs"</span><span style="color: #ff0000;"> data-options</span><span style="color: #0000ff;">="fit:true"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">title</span><span style="color: #0000ff;">="我的桌面"</span><span style="color: #ff0000;"> data-options</span><span style="color: #0000ff;">="closable:true"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="overflow: hidden; background:#fff"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">iframe </span><span style="color: #ff0000;">scrolling</span><span style="color: #0000ff;">="auto"</span><span style="color: #ff0000;"> frameborder</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> src</span><span style="color: #0000ff;">=""</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="width: 100%; height: 100%;"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">iframe</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="easyui-menu"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="width: 150px;"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabrefresh"</span><span style="color: #ff0000;"> data-options</span><span style="color: #0000ff;">="iconCls:'icon-reload'"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+            刷新</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-openFrame"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+           在新的窗体打开</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabcloseall"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+            关闭所有</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabcloseother"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+            关闭其他标签页</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="menu-sep"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabcloseright"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+           关闭右边</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabcloseleft"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+           关闭左边</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="tab_menu-tabclose"</span><span style="color: #ff0000;"> data-options</span><span style="color: #0000ff;">="iconCls:'icon-remove'"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+          关闭</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="menu"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="easyui-menu"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="width: 150px;"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code </span></div>
+<p>这里我们看到head&nbsp;@Styles.Render("~/Content/css")这些代码，这是MVC的捆版压缩技术，将css和javascript压缩输出到页面。我已经做好了所以大家只要看下就可以。也可以谷歌一下他的原理组成。博客园很多大虾也都给出了答案。其文件是App_Start下的BundleConfig.cs</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;8d4d5a73-6d7d-4b33-b3f1-1724b90f69b0&#39;)"><img id="code_img_closed_8d4d5a73-6d7d-4b33-b3f1-1724b90f69b0" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_8d4d5a73-6d7d-4b33-b3f1-1724b90f69b0" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;8d4d5a73-6d7d-4b33-b3f1-1724b90f69b0&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_8d4d5a73-6d7d-4b33-b3f1-1724b90f69b0" class="cnblogs_code_hide">
+<pre>      $(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+          $(</span>'#tab_menu-tabrefresh').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              </span><span style="color: #008000;">/*</span><span style="color: #008000;">重新设置该标签 </span><span style="color: #008000;">*/</span>
+              <span style="color: #0000ff;">var</span> url = $(".tabs-panels .panel").eq($('.tabs-selected').index()).find("iframe").attr("src"<span style="color: #000000;">);
+              $(</span>".tabs-panels .panel").eq($('.tabs-selected').index()).find("iframe").attr("src"<span style="color: #000000;">, url);
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">在新窗口打开该标签</span>
+          $('#tab_menu-openFrame').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              </span><span style="color: #0000ff;">var</span> url = $(".tabs-panels .panel").eq($('.tabs-selected').index()).find("iframe").attr("src"<span style="color: #000000;">);
+              window.open(url);
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">关闭当前</span>
+          $('#tab_menu-tabclose').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              </span><span style="color: #0000ff;">var</span> currtab_title = $('.tabs-selected .tabs-inner span'<span style="color: #000000;">).text();
+              $(</span>'#mainTab').tabs('close'<span style="color: #000000;">, currtab_title);
+              </span><span style="color: #0000ff;">if</span> ($(".tabs li").length == 0<span style="color: #000000;">) {
+                  </span><span style="color: #008000;">//</span><span style="color: #008000;">open menu</span>
+                  $(".layout-button-right").trigger("click"<span style="color: #000000;">);
+              }
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">全部关闭</span>
+          $('#tab_menu-tabcloseall').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              $(</span>'.tabs-inner span').each(<span style="color: #0000ff;">function</span><span style="color: #000000;"> (i, n) {
+                  </span><span style="color: #0000ff;">if</span> ($(<span style="color: #0000ff;">this</span>).parent().next().is('.tabs-close'<span style="color: #000000;">)) {
+                      </span><span style="color: #0000ff;">var</span> t =<span style="color: #000000;"> $(n).text();
+                      $(</span>'#mainTab').tabs('close'<span style="color: #000000;">, t);
+                  }
+              });
+              </span><span style="color: #008000;">//</span><span style="color: #008000;">open menu</span>
+              $(".layout-button-right").trigger("click"<span style="color: #000000;">);
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">关闭除当前之外的TAB</span>
+          $('#tab_menu-tabcloseother').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              </span><span style="color: #0000ff;">var</span> currtab_title = $('.tabs-selected .tabs-inner span'<span style="color: #000000;">).text();
+              $(</span>'.tabs-inner span').each(<span style="color: #0000ff;">function</span><span style="color: #000000;"> (i, n) {
+                  </span><span style="color: #0000ff;">if</span> ($(<span style="color: #0000ff;">this</span>).parent().next().is('.tabs-close'<span style="color: #000000;">)) {
+                      </span><span style="color: #0000ff;">var</span> t =<span style="color: #000000;"> $(n).text();
+                      </span><span style="color: #0000ff;">if</span> (t !=<span style="color: #000000;"> currtab_title)
+                          $(</span>'#mainTab').tabs('close'<span style="color: #000000;">, t);
+                  }
+              });
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">关闭当前右侧的TAB</span>
+          $('#tab_menu-tabcloseright').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+              </span><span style="color: #0000ff;">var</span> nextall = $('.tabs-selected'<span style="color: #000000;">).nextAll();
+              </span><span style="color: #0000ff;">if</span> (nextall.length == 0<span style="color: #000000;">) {
+                  $.messager.alert(</span>'提示', '前面没有了!', 'warning'<span style="color: #000000;">);
+                  </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+              }
+              nextall.each(</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> (i, n) {
+                  </span><span style="color: #0000ff;">if</span> ($('a.tabs-close', $(n)).length &gt; 0<span style="color: #000000;">) {
+                      </span><span style="color: #0000ff;">var</span> t = $('a:eq(0) span'<span style="color: #000000;">, $(n)).text();
+                      $(</span>'#mainTab').tabs('close'<span style="color: #000000;">, t);
+                  }
+              });
+              </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+          });
+          </span><span style="color: #008000;">//</span><span style="color: #008000;">关闭当前左侧的TAB</span>
+          $('#tab_menu-tabcloseleft').click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+
+              </span><span style="color: #0000ff;">var</span> prevall = $('.tabs-selected'<span style="color: #000000;">).prevAll();
+              </span><span style="color: #0000ff;">if</span> (prevall.length == 0<span style="color: #000000;">) {
+                  $.messager.alert(</span>'提示', '后面没有了!', 'warning'<span style="color: #000000;">);
+                  </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+              }
+              prevall.each(</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> (i, n) {
+                  </span><span style="color: #0000ff;">if</span> ($('a.tabs-close', $(n)).length &gt; 0<span style="color: #000000;">) {
+                      </span><span style="color: #0000ff;">var</span> t = $('a:eq(0) span'<span style="color: #000000;">, $(n)).text();
+                      $(</span>'#mainTab').tabs('close'<span style="color: #000000;">, t);
+                  }
+              });
+              </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+          });
+
+      });
+$(</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+    </span><span style="color: #008000;">/*</span><span style="color: #008000;">为选项卡绑定右键</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+    $(</span>".tabs li").live('contextmenu', <span style="color: #0000ff;">function</span><span style="color: #000000;"> (e) {
+        </span><span style="color: #008000;">/*</span><span style="color: #008000;">选中当前触发事件的选项卡 </span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">var</span> subtitle = $(<span style="color: #0000ff;">this</span><span style="color: #000000;">).text();
+        $(</span>'#mainTab').tabs('select'<span style="color: #000000;">, subtitle);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">显示快捷菜单</span>
+        $('#tab_menu').menu('show'<span style="color: #000000;">, {
+            left: e.pageX,
+            top: e.pageY
+        });
+        </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+    });
+});
+
+
+
+
+</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> addTab(subtitle, url, icon) {
+    </span><span style="color: #0000ff;">if</span> (!$("#mainTab").tabs('exists'<span style="color: #000000;">, subtitle)) {
+        $(</span>"#mainTab").tabs('add'<span style="color: #000000;">, {
+            title: subtitle,
+            content: createFrame(url),
+            closable: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+            icon: icon
+        });
+    } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+        $(</span>"#mainTab").tabs('select'<span style="color: #000000;">, subtitle);
+        $(</span>"#tab_menu-tabrefresh").trigger("click"<span style="color: #000000;">);
+    }
+    $(</span>".layout-button-left").trigger("click"<span style="color: #000000;">);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">tabClose();</span>
+<span style="color: #000000;">}
+</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> createFrame(url) {
+    </span><span style="color: #0000ff;">var</span> s = '&lt;iframe frameborder="0" src="' + url + '" scrolling="auto" style="width:100%; height:99%"&gt;&lt;/iframe&gt;'<span style="color: #000000;">;
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> s;
+}
+
+
+    $(</span><span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+        $(</span>".ui-skin-nav .li-skinitem span").click(<span style="color: #0000ff;">function</span><span style="color: #000000;"> () {
+            </span><span style="color: #0000ff;">var</span> theme = $(<span style="color: #0000ff;">this</span>).attr("rel"<span style="color: #000000;">);
+            $.messager.confirm(</span>'提示', '切换皮肤将重新加载系统！', <span style="color: #0000ff;">function</span><span style="color: #000000;"> (r) {
+                </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (r) {
+                    $.post(</span>"../../Home/SetThemes", { value: theme }, <span style="color: #0000ff;">function</span> (data) { window.location.reload(); }, "json"<span style="color: #000000;">);
+                }
+            });
+        });
+    });</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code </span></div>
+<p>index的脚本，这个home视图的脚本，他集成了tab页的右键菜单我已经集成到系统。运行之前要在Global.asax启用压缩</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;4a026cf1-0e20-4670-b0e4-6bc9bb9126a0&#39;)"><img id="code_img_closed_4a026cf1-0e20-4670-b0e4-6bc9bb9126a0" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_4a026cf1-0e20-4670-b0e4-6bc9bb9126a0" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;4a026cf1-0e20-4670-b0e4-6bc9bb9126a0&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_4a026cf1-0e20-4670-b0e4-6bc9bb9126a0" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Http;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Mvc;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Optimization;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Routing;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> App.Admin
+{
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 请访问 </span><span style="color: #008000; text-decoration: underline;">http://go.microsoft.com/?LinkId=9394801</span>
+
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> MvcApplication : System.Web.HttpApplication
+    {
+        </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">启用压缩</span>
+            BundleTable.EnableOptimizations = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
+        }
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code </span></div>
+<p>在BundleConfig.RegisterBundles(BundleTable.Bundles);前面加入</p>
+<p>//启用压缩<br>            BundleTable.EnableOptimizations = true;<br>好，我们来看看效果！</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/15212627-a2c22bbac2d643beb4955af506b2841c.png" alt="" width="780" height="440"></p>
+<p>如果你要启用灰色主题那么在将@Styles.Render("~/Content/themes/blue/css")</p>
+<p>修改为@Styles.Render("~/Content/themes/gray/css")即可</p>
+<p><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/15210424-d9c7b1238c0b49059e6e0c01cd7d9928.png" alt="" width="785" height="487"></p>
+<p>其实这一些没什么好说的，只是为系统搭建了一个简单的框架。如果用easyui没有不下几个小时也是很难搭建起来的，不过别担心，我为大家准备了原代码</p>
+<p><a href="http://files.cnblogs.com/ymnets/App.Admin.7z">代码下载</a>&nbsp; 下载的源码有的同学运行有问题请把App_Start下的BundleConfig.cs更改为</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;784bece7-0074-496e-b020-b17c0ee0cfa1&#39;)"><img id="code_img_closed_784bece7-0074-496e-b020-b17c0ee0cfa1" class="code_img_closed" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_784bece7-0074-496e-b020-b17c0ee0cfa1" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;784bece7-0074-496e-b020-b17c0ee0cfa1&#39;,event)" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_784bece7-0074-496e-b020-b17c0ee0cfa1" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web;
+</span><span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Optimization;
+
+</span><span style="color: #0000ff;">namespace</span><span style="color: #000000;"> App.Admin
+{
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> BundleConfig
+    {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 有关 Bundling 的详细信息，请访问 </span><span style="color: #008000; text-decoration: underline;">http://go.microsoft.com/fwlink/?LinkId=254725</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> RegisterBundles(BundleCollection bundles)
+        {
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/common</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                        </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/common.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/home</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                       </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/home.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/account</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                       </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/Account.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">easyui</span>
+            bundles.Add(<span style="color: #0000ff;">new</span> StyleBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/blue/css</span><span style="color: #800000;">"</span>).Include(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/blue/easyui.css</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+            bundles.Add(</span><span style="color: #0000ff;">new</span> StyleBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/gray/css</span><span style="color: #800000;">"</span>).Include(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/gray/easyui.css</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+            bundles.Add(</span><span style="color: #0000ff;">new</span> StyleBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/metro/css</span><span style="color: #800000;">"</span>).Include(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/themes/metro/easyui.css</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/jqueryfrom</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                        </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/jquery.form.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/easyuiplus</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                        </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/jquery.easyui.plus.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/jqueryval</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                        </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/jquery.validate.unobtrusive.plus.js</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 使用 Modernizr 的开发版本进行开发和了解信息。然后，当你做好
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 生产准备时，请使用 </span><span style="color: #008000; text-decoration: underline;">http://modernizr.com</span><span style="color: #008000;"> 上的生成工具来仅选择所需的测试。</span>
+            bundles.Add(<span style="color: #0000ff;">new</span> ScriptBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/bundles/modernizr</span><span style="color: #800000;">"</span><span style="color: #000000;">).Include(
+                        </span><span style="color: #800000;">"</span><span style="color: #800000;">~/Scripts/modernizr-*</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+            bundles.Add(</span><span style="color: #0000ff;">new</span> StyleBundle(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/css</span><span style="color: #800000;">"</span>).Include(<span style="color: #800000;">"</span><span style="color: #800000;">~/Content/site.css</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+
+
+
+
+
+        }
+    }
+}</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<blockquote>
+<p>&nbsp;关于代码：代码没有上传整个解决方案，你下载解压后，只需要引用现有类库即可，关于里面的素材，不懂的可以问我，里面包含里以后所有要用到的素材</p>
+</blockquote>
+<p>&nbsp;</p></div><div id="MySignature" style="display: block;">
+作者：<a href="http://ymnets.cnblogs.com/" target="_blank">YmNets</a><br>出处：<a href="http://ymnets.cnblogs.com/" target="_blank">http://ymnets.cnblogs.com/</a><br>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ymnets/category/532237.html" target="_blank">[02]Asp.Net MVC</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ymnets/tag/ASP.NET/">ASP.NET</a>, <a href="http://www.cnblogs.com/ymnets/tag/MVC4/">MVC4</a>, <a href="http://www.cnblogs.com/ymnets/tag/EF5/">EF5</a>, <a href="http://www.cnblogs.com/ymnets/tag/EasyUI/">EasyUI</a>, <a href="http://www.cnblogs.com/ymnets/tag/Unity2.x/">Unity2.x</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3424514,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/" target="_blank"><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/20161202100642.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ymnets/">ymnets</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followees">关注 - 14</a><br>
+            <a href="http://home.cnblogs.com/u/ymnets/followers">粉丝 - 1557</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3424514,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">38</span>
+    </div>
+    <div class="buryit" onclick="votePost(3424514,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ymnets/p/3424309.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ymnets/p/3424309.html" title="发布于2013-11-14 23:34">ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）</a><br><a href="http://www.cnblogs.com/ymnets/p/3424936.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ymnets/p/3424936.html" title="发布于2013-11-15 22:16">构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（3）-漂亮系统登陆界面</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-11-15 21:28</span> <a href="http://www.cnblogs.com/ymnets/">ymnets</a> 阅读(<span id="post_view_count">42975</span>) 评论(<span id="post_comment_count">82</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3424514" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/ymnets/p/3424514.html#" onclick="AddToWz(3424514);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=168383,cb_entryId=3424514,cb_blogApp=currentBlogApp,cb_blogUserGuid='26ae7302-41eb-e111-aa3f-842b2b196315',cb_entryCreatedDate='2013/11/15 21:28:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/ymnets/p/3424514.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2910623,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2910623,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2910623" class="layer">#51楼</a><a name="2910623" id="comment_anchor_2910623"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-04-03 14:26</span> <a id="a_comment_author_2910623" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2910623" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2910478" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2910478);">@</a>
+Pan丶Gp<br>刚开始做，你们应该对源码进行对比知道那里出问题！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2910623,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2910623,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2910623_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2910864,&#39;gUIFdaQg6Mavk1ca72dP4fT5htHln3iuiajJLExx98NnbqASg43SBg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2910864,&#39;gUIFdaQg6Mavk1ca72dP4fT5htHln3iuiajJLExx98NnbqASg43SBg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2910864" class="layer">#52楼</a><a name="2910864" id="comment_anchor_2910864"></a>  <span class="comment_date">2014-04-03 19:27</span> <a id="a_comment_author_2910864" href="http://www.cnblogs.com/pgping/" target="_blank">Pan丶Gp</a> <a href="http://msg.cnblogs.com/send/Pan%E4%B8%B6Gp" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2910864" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2910623" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2910623);">@</a>
+ymnets<br>我是把home.js复制的，还是报对象不支持live属性或方法。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2910864,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2910864,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2911129,&#39;F1G1jBZTMgjvAfWyEvgER4uNQzVI2gzsuVnoFNgCcRAwJM1+kyakFw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2911129,&#39;F1G1jBZTMgjvAfWyEvgER4uNQzVI2gzsuVnoFNgCcRAwJM1+kyakFw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2911129" class="layer">#53楼</a><a name="2911129" id="comment_anchor_2911129"></a>  <span class="comment_date">2014-04-04 10:05</span> <a id="a_comment_author_2911129" href="http://home.cnblogs.com/u/619379/" target="_blank">笛卡儿积</a> <a href="http://msg.cnblogs.com/send/%E7%AC%9B%E5%8D%A1%E5%84%BF%E7%A7%AF" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2911129" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2910864" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2910864);">@</a>
+Pan丶Gp<br>百度一下，live是jquery旧的方法，你的juery版本不支持，换个版本</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2911129,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2911129,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2939404,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2939404,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939404" class="layer">#54楼</a><a name="2939404" id="comment_anchor_2939404"></a>  <span class="comment_date">2014-05-15 12:06</span> <a id="a_comment_author_2939404" href="http://www.cnblogs.com/amwuau/" target="_blank">风来风往风伤</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E6%9D%A5%E9%A3%8E%E5%BE%80%E9%A3%8E%E4%BC%A4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2939404" class="blog_comment_body">素材下载下来，为什么解压不了？  出来的都是amdin文件。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2939404,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2939404,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2939419,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2939419,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939419" class="layer">#55楼</a><a name="2939419" id="comment_anchor_2939419"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-05-15 12:37</span> <a id="a_comment_author_2939419" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2939419" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939404" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2939404);">@</a>
+风来风往风伤<br>解压App.Admin直接用VS打开项目</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2939419,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2939419,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2939419_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2939431,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2939431,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939431" class="layer">#56楼</a><a name="2939431" id="comment_anchor_2939431"></a>  <span class="comment_date">2014-05-15 12:50</span> <a id="a_comment_author_2939431" href="http://www.cnblogs.com/amwuau/" target="_blank">风来风往风伤</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E6%9D%A5%E9%A3%8E%E5%BE%80%E9%A3%8E%E4%BC%A4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2939431" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939419" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2939419);">@</a>
+ymnets<br><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/151250152816154.png" alt="" border="0" "=""><br>解压成这个了。。。不知道怎么回事。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2939431,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2939431,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2939458,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2939458,&#39;gwXq8tV9hPNWmHaQJ9xFRrGcNd7Q4UNqy37uSGdB/Wpby8+p5bW9ww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939458" class="layer">#57楼</a><a name="2939458" id="comment_anchor_2939458"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-05-15 13:17</span> <a id="a_comment_author_2939458" href="http://www.cnblogs.com/ymnets/" target="_blank">ymnets</a> <a href="http://msg.cnblogs.com/send/ymnets" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2939458" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939431" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2939431);">@</a>
+风来风往风伤<br>重新下载，用7-zip软件解压</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2939458,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2939458,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2939458_avatar" style="display:none;">http://pic.cnblogs.com/face/439652/20161202100642.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2939474,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2939474,&#39;HiBC1uJHM/kSutk3uONc1hoyv/hx+PVgKmZPE3zvVA20vXRROIe8Xg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939474" class="layer">#58楼</a><a name="2939474" id="comment_anchor_2939474"></a>  <span class="comment_date">2014-05-15 13:32</span> <a id="a_comment_author_2939474" href="http://www.cnblogs.com/amwuau/" target="_blank">风来风往风伤</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E6%9D%A5%E9%A3%8E%E5%BE%80%E9%A3%8E%E4%BC%A4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2939474" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2939458" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2939458);">@</a>
+ymnets<br>恩 已经好了。是那个7zip软件的问题。 谢谢哈。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2939474,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2939474,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2941899,&#39;IXTP6nAQ/Dv79iNJDkdHA/M8PDi4sEKmQ199sreCPgSQBDBQRdhceg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2941899,&#39;IXTP6nAQ/Dv79iNJDkdHA/M8PDi4sEKmQ199sreCPgSQBDBQRdhceg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2941899" class="layer">#59楼</a><a name="2941899" id="comment_anchor_2941899"></a>  <span class="comment_date">2014-05-19 16:10</span> <a id="a_comment_author_2941899" href="http://www.cnblogs.com/oran176/" target="_blank">oran176</a> <a href="http://msg.cnblogs.com/send/oran176" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2941899" class="blog_comment_body">关于前面反应的自己做的不行，解压LZ的源码就可以了。<br>是要修改下BundleConfig.cs文件里面的绑定。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2941899,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2941899,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2994858,&#39;d7uXLYRFDrHxyDT3TjUqF7D5OvJX8oIDPDBXUmSaulH1vLXrh2vXLw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2994858,&#39;d7uXLYRFDrHxyDT3TjUqF7D5OvJX8oIDPDBXUmSaulH1vLXrh2vXLw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#2994858" class="layer">#60楼</a><a name="2994858" id="comment_anchor_2994858"></a>  <span class="comment_date">2014-07-25 22:57</span> <a id="a_comment_author_2994858" href="http://home.cnblogs.com/u/574453/" target="_blank">happyjiyi</a> <a href="http://msg.cnblogs.com/send/happyjiyi" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2994858" class="blog_comment_body">继续学习中</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2994858,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2994858,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3034462,&#39;TVpd8nIkw6HuQgl0BSjLxqRgswC/872D5wQL3y51wYA4O3EtrhkIoQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3034462,&#39;TVpd8nIkw6HuQgl0BSjLxqRgswC/872D5wQL3y51wYA4O3EtrhkIoQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3034462" class="layer">#61楼</a><a name="3034462" id="comment_anchor_3034462"></a>  <span class="comment_date">2014-09-25 14:18</span> <a id="a_comment_author_3034462" href="http://home.cnblogs.com/u/640168/" target="_blank">New～</a> <a href="http://msg.cnblogs.com/send/New%EF%BD%9E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3034462" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2908176" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2908176);">@</a>
+Pan丶Gp<br>把live换成on</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3034462,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3034462,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3068639,&#39;2MOZ3ChaEwzJiTOzSR3CMrjSqooVfiCea+YroNP+og3SnSWBLdIXBw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3068639,&#39;2MOZ3ChaEwzJiTOzSR3CMrjSqooVfiCea+YroNP+og3SnSWBLdIXBw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3068639" class="layer">#62楼</a><a name="3068639" id="comment_anchor_3068639"></a>  <span class="comment_date">2014-11-21 10:21</span> <a id="a_comment_author_3068639" href="http://home.cnblogs.com/u/695178/" target="_blank">java_ant</a> <a href="http://msg.cnblogs.com/send/java_ant" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3068639" class="blog_comment_body">common.js文件怎么在scripts目录下没有啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3068639,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3068639,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3149745,&#39;jNRTTzaN3uR1+P/S+/SXjIU5M/4aBEoUO9+GnlnlELS+SKfv8MmsNw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3149745,&#39;jNRTTzaN3uR1+P/S+/SXjIU5M/4aBEoUO9+GnlnlELS+SKfv8MmsNw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3149745" class="layer">#63楼</a><a name="3149745" id="comment_anchor_3149745"></a>  <span class="comment_date">2015-03-26 22:25</span> <a id="a_comment_author_3149745" href="http://www.cnblogs.com/lpboke/" target="_blank">博客园管理员测试号</a> <a href="http://msg.cnblogs.com/send/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E7%AE%A1%E7%90%86%E5%91%98%E6%B5%8B%E8%AF%95%E5%8F%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3149745" class="blog_comment_body">感谢大神， 学习中...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3149745,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3149745,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3149745_avatar" style="display:none;">http://pic.cnblogs.com/face/493168/20160107161028.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3181893,&#39;npo5Ox2fRyCAWjbhtDCaiV9UvCnqJC9uddnsosnQ0du5NimqoLFDww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3181893,&#39;npo5Ox2fRyCAWjbhtDCaiV9UvCnqJC9uddnsosnQ0du5NimqoLFDww==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3181893" class="layer">#64楼</a><a name="3181893" id="comment_anchor_3181893"></a>  <span class="comment_date">2015-05-12 15:45</span> <a id="a_comment_author_3181893" href="http://home.cnblogs.com/u/543068/" target="_blank">soso_zjl</a> <a href="http://msg.cnblogs.com/send/soso_zjl" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3181893" class="blog_comment_body">空控制器怎么添加。。。<br>是啥意思啊。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3181893,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3181893,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3208763,&#39;hGeu/g1FQ4gDTHLeYmLp77kX5oYXzLseJ5Z+ZaOyAMggSHjNKSutqw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3208763,&#39;hGeu/g1FQ4gDTHLeYmLp77kX5oYXzLseJ5Z+ZaOyAMggSHjNKSutqw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3208763" class="layer">#65楼</a><a name="3208763" id="comment_anchor_3208763"></a>  <span class="comment_date">2015-06-15 15:01</span> <a id="a_comment_author_3208763" href="http://home.cnblogs.com/u/774681/" target="_blank">盧卡斯</a> <a href="http://msg.cnblogs.com/send/%E7%9B%A7%E5%8D%A1%E6%96%AF" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3208763" class="blog_comment_body">沒怎麼用過這種模式開發，讚一個o(￣▽￣)d</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3208763,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3208763,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3414751,&#39;Kz71ZVuOBfrr10VjRWKpHWK2Mq4DLAgo/l9mLvfOTGU1TGMO9Z7OWA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3414751,&#39;Kz71ZVuOBfrr10VjRWKpHWK2Mq4DLAgo/l9mLvfOTGU1TGMO9Z7OWA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3414751" class="layer">#66楼</a><a name="3414751" id="comment_anchor_3414751"></a>  <span class="comment_date">2016-04-21 23:39</span> <a id="a_comment_author_3414751" href="http://www.cnblogs.com/boyliupan/" target="_blank">圣光下的囚徒</a> <a href="http://msg.cnblogs.com/send/%E5%9C%A3%E5%85%89%E4%B8%8B%E7%9A%84%E5%9B%9A%E5%BE%92" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3414751" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2908179" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2908179);">@</a>
+Pan丶Gp<br>home.js 的79行<br> /*为选项卡绑定右键*/<br>    $(".tabs li").live('contextmenu', function (e)<br><br><br>改为<br>$(".tabs li").bind('contextmenu', function (e)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3414751,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3414751,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3414751_avatar" style="display:none;">http://pic.cnblogs.com/face/30693/20130614180912.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3473544,&#39;5R93GGutypxJRUVybIS1631NJivmDzuFjv26diPoeuiaFqjsWrKDDA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3473544,&#39;5R93GGutypxJRUVybIS1631NJivmDzuFjv26diPoeuiaFqjsWrKDDA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3473544" class="layer">#67楼</a><a name="3473544" id="comment_anchor_3473544"></a>  <span class="comment_date">2016-07-20 18:18</span> <a id="a_comment_author_3473544" href="http://www.cnblogs.com/moy-1313133/" target="_blank">查克拉的觉醒</a> <a href="http://msg.cnblogs.com/send/%E6%9F%A5%E5%85%8B%E6%8B%89%E7%9A%84%E8%A7%89%E9%86%92" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3473544" class="blog_comment_body">方便 留个QQ吗？？  283120991@qq.com o(^▽^)o</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3473544,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3473544,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3473544_avatar" style="display:none;">http://pic.cnblogs.com/face/743133/20150415034548.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3483457,&#39;QlZB+u3/fK+DmH1hUGAidP/9xoS6QfLvzk+Jdk0F1RRMhdJYiwi4Ig==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3483457,&#39;QlZB+u3/fK+DmH1hUGAidP/9xoS6QfLvzk+Jdk0F1RRMhdJYiwi4Ig==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3483457" class="layer">#68楼</a><a name="3483457" id="comment_anchor_3483457"></a>  <span class="comment_date">2016-08-05 10:24</span> <a id="a_comment_author_3483457" href="http://www.cnblogs.com/z5337/" target="_blank">z5337</a> <a href="http://msg.cnblogs.com/send/z5337" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3483457" class="blog_comment_body">我刚去 easyui 官网 <a href="http://www.jeasyui.com/" target="_blank">http://www.jeasyui.com/</a><br>没看到有 jEasyUI 最新版本不支持 ie8 及以下版本的说明啊？<br>楼主是在哪看到的？ 我下载了 1.5 版本，里面的 jquery.min.js 版本是 1.11.3 , 我平时使用 1.12.4 也支持 ie6 .</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3483457,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3483457,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3483457_avatar" style="display:none;">http://pic.cnblogs.com/face/551042/20130904223829.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3537014,&#39;rVyzx2OFkds//HuK/LU8zMhNS4/89ajs1rw4hSnHzAfqCR59QocMJg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3537014,&#39;rVyzx2OFkds//HuK/LU8zMhNS4/89ajs1rw4hSnHzAfqCR59QocMJg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3537014" class="layer">#69楼</a><a name="3537014" id="comment_anchor_3537014"></a>  <span class="comment_date">2016-10-20 16:26</span> <a id="a_comment_author_3537014" href="http://www.cnblogs.com/Ywk-xm/" target="_blank">1234567890study</a> <a href="http://msg.cnblogs.com/send/1234567890study" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3537014" class="blog_comment_body">这一节运行成功了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3537014,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3537014,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3570000,&#39;Ni5cYBG6pdcEZJTiYBQM46f52YSfEwWf9cPyyH9Gi+6H8H+XxHFvWQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3570000,&#39;Ni5cYBG6pdcEZJTiYBQM46f52YSfEwWf9cPyyH9Gi+6H8H+XxHFvWQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3570000" class="layer">#70楼</a><a name="3570000" id="comment_anchor_3570000"></a>  <span class="comment_date">2016-12-01 15:42</span> <a id="a_comment_author_3570000" href="http://home.cnblogs.com/u/1073415/" target="_blank">我是包大人</a> <a href="http://msg.cnblogs.com/send/%E6%88%91%E6%98%AF%E5%8C%85%E5%A4%A7%E4%BA%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3570000" class="blog_comment_body">楼主你好、为什么我做的总是右键不显示 那些功能呢、还有上边的最上边的logo样式也不显示 、</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3570000,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3570000,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3570106,&#39;Ni5cYBG6pdcEZJTiYBQM46f52YSfEwWf9cPyyH9Gi+6H8H+XxHFvWQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3570106,&#39;Ni5cYBG6pdcEZJTiYBQM46f52YSfEwWf9cPyyH9Gi+6H8H+XxHFvWQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3570106" class="layer">#71楼</a><a name="3570106" id="comment_anchor_3570106"></a>  <span class="comment_date">2016-12-01 16:52</span> <a id="a_comment_author_3570106" href="http://home.cnblogs.com/u/1073415/" target="_blank">我是包大人</a> <a href="http://msg.cnblogs.com/send/%E6%88%91%E6%98%AF%E5%8C%85%E5%A4%A7%E4%BA%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3570106" class="blog_comment_body">楼主 请问  easyUI.css你是重写了吗。。1.5的样式和下载的差距有点大、、</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3570106,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3570106,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3597556,&#39;mLfEaj39Jm2dyHaR0bTz3xUu8179JqIx8LqsXn/mQDYZZz9PsVZ1qQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3597556,&#39;mLfEaj39Jm2dyHaR0bTz3xUu8179JqIx8LqsXn/mQDYZZz9PsVZ1qQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3597556" class="layer">#72楼</a><a name="3597556" id="comment_anchor_3597556"></a>  <span class="comment_date">2017-01-06 09:52</span> <a id="a_comment_author_3597556" href="http://home.cnblogs.com/u/1091746/" target="_blank">UDFrost</a> <a href="http://msg.cnblogs.com/send/UDFrost" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3597556" class="blog_comment_body">请问下素材在哪里下载啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3597556,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3597556,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3621798,&#39;SBl2ai65yXwXBZw1akCXl3zOU2U7G0OiuTjrt8yvuB58ptOSL5ROWg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3621798,&#39;SBl2ai65yXwXBZw1akCXl3zOU2U7G0OiuTjrt8yvuB58ptOSL5ROWg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3621798" class="layer">#73楼</a><a name="3621798" id="comment_anchor_3621798"></a>  <span class="comment_date">2017-02-19 15:43</span> <a id="a_comment_author_3621798" href="http://www.cnblogs.com/sunlining/" target="_blank">沙漠涟漪</a> <a href="http://msg.cnblogs.com/send/%E6%B2%99%E6%BC%A0%E6%B6%9F%E6%BC%AA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3621798" class="blog_comment_body">楼主，你会保留本文吧，我开始要一节一节跟着学习了，学完后不知道能不能做出框架来，但中间你可别把文章扯了呀~~哈哈</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3621798,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3621798,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3622830,&#39;1NDZIAThTuwe5FWEgbQu88vJiZAXK/KhC5rJaJnD1TEZKDiRCMRMqg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3622830,&#39;1NDZIAThTuwe5FWEgbQu88vJiZAXK/KhC5rJaJnD1TEZKDiRCMRMqg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3622830" class="layer">#74楼</a><a name="3622830" id="comment_anchor_3622830"></a>  <span class="comment_date">2017-02-21 11:18</span> <a id="a_comment_author_3622830" href="http://www.cnblogs.com/i-shanghai/" target="_blank">i-shanghai</a> <a href="http://msg.cnblogs.com/send/i-shanghai" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3622830" class="blog_comment_body">Content 中的 themes 需要用博主 源码中的 themes才能正确显示样式：<br><img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/895126-20170221111814023-364445843.png" alt="" border="0" "=""></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3622830,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3622830,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3622830_avatar" style="display:none;">http://pic.cnblogs.com/face/895126/20160219124739.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3632192,&#39;Rkv6XszoeBeBKjzHiVtXoYk4b1yXE7f1qkrzicgDx7YOaYcGwoL6Iw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3632192,&#39;Rkv6XszoeBeBKjzHiVtXoYk4b1yXE7f1qkrzicgDx7YOaYcGwoL6Iw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3632192" class="layer">#75楼</a><a name="3632192" id="comment_anchor_3632192"></a>  <span class="comment_date">2017-03-05 12:53</span> <a id="a_comment_author_3632192" href="http://www.cnblogs.com/liqie/" target="_blank">新星李切</a> <a href="http://msg.cnblogs.com/send/%E6%96%B0%E6%98%9F%E6%9D%8E%E5%88%87" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3632192" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#3622830" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3622830);">@</a>
+i-shanghai<br>我也是遇到你同样的问题，引用下载的themes主题就没用图标，样式还是有的，唯独没用图标</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3632192,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3632192,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3632192_avatar" style="display:none;">http://pic.cnblogs.com/face/523869/20130502224217.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3710696,&#39;KOoj2W+8DDWSe1DeD0m9u0zWHfRz4J2f+OU7tpCdptU304rZ2cmrQw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3710696,&#39;KOoj2W+8DDWSe1DeD0m9u0zWHfRz4J2f+OU7tpCdptU304rZ2cmrQw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3710696" class="layer">#76楼</a><a name="3710696" id="comment_anchor_3710696"></a>  <span class="comment_date">2017-06-09 13:02</span> <a id="a_comment_author_3710696" href="http://www.cnblogs.com/jsriping/" target="_blank">jsripingjay</a> <a href="http://msg.cnblogs.com/send/jsripingjay" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3710696" class="blog_comment_body">同样的问题，下载的源码运行效果ok，自己新建的就不行，怎么解决的？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3710696,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3710696,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3711636,&#39;qXOusPu8+G91SQsmnbBYM6QnTcOR9uKQmfxfXtH0bTifAJo0ZBUteA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3711636,&#39;qXOusPu8+G91SQsmnbBYM6QnTcOR9uKQmfxfXtH0bTifAJo0ZBUteA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3711636" class="layer">#77楼</a><a name="3711636" id="comment_anchor_3711636"></a>  <span class="comment_date">2017-06-10 22:44</span> <a id="a_comment_author_3711636" href="http://home.cnblogs.com/u/1178926/" target="_blank">RadioKidA</a> <a href="http://msg.cnblogs.com/send/RadioKidA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3711636" class="blog_comment_body">感谢大佬</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3711636,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3711636,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3742528,&#39;KV57OBNy3SC25JaVJPp/Ke23JwUC54X9pR78awFQUHQfSQ2OhuRi5A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3742528,&#39;KV57OBNy3SC25JaVJPp/Ke23JwUC54X9pR78awFQUHQfSQ2OhuRi5A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3742528" class="layer">#78楼</a><a name="3742528" id="comment_anchor_3742528"></a>  <span class="comment_date">2017-07-25 00:13</span> <a id="a_comment_author_3742528" href="http://www.cnblogs.com/jishuichengyuan/" target="_blank">丨渊丨</a> <a href="http://msg.cnblogs.com/send/%E4%B8%A8%E6%B8%8A%E4%B8%A8" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3742528" class="blog_comment_body">&lt;div id="LoginBotoomLine"&gt;MVC4+EF5.0+EasyUI&lt;/div&gt;<br><br>LoginBotoomLine 中的bottom 写错了吧   LoginBottomLine</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3742528,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3742528,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3742528_avatar" style="display:none;">http://pic.cnblogs.com/face/689388/20160331090733.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3778582,&#39;woRSyRdAHRC6YtMbtzi2k7W0zj2F9W3m4rEFFQD+/h01Bsa4d50isQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3778582,&#39;woRSyRdAHRC6YtMbtzi2k7W0zj2F9W3m4rEFFQD+/h01Bsa4d50isQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3778582" class="layer">#79楼</a><a name="3778582" id="comment_anchor_3778582"></a>  <span class="comment_date">2017-09-08 14:04</span> <a id="a_comment_author_3778582" href="http://www.cnblogs.com/yunquan/" target="_blank">蜀云泉</a> <a href="http://msg.cnblogs.com/send/%E8%9C%80%E4%BA%91%E6%B3%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3778582" class="blog_comment_body">make，感谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3778582,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3778582,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3778582_avatar" style="display:none;">http://pic.cnblogs.com/face/793293/20170721151326.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3815463,&#39;ocTkwy//Mr8o38swhZ9+dE6OotrqNJBITE8Qv/Cs/smcZUz/qHnhUQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3815463,&#39;ocTkwy//Mr8o38swhZ9+dE6OotrqNJBITE8Qv/Cs/smcZUz/qHnhUQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3815463" class="layer">#80楼</a><a name="3815463" id="comment_anchor_3815463"></a>  <span class="comment_date">2017-10-19 15:26</span> <a id="a_comment_author_3815463" href="http://www.cnblogs.com/liuweiqiang11188/" target="_blank">liusheng11188</a> <a href="http://msg.cnblogs.com/send/liusheng11188" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3815463" class="blog_comment_body">运行成功,但是,没有弹出的那个框<img src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/863546-20171019152554740-1002194120.png" alt="" border="0" "=""><br>不知道什么原因,代码也对照过一模一样的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3815463,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3815463,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3829752,&#39;HlYyEJAoV8n/RxPZ07TXy/0sTp5KE0SQp6Yiup2+fkK+SRUTtQp0YQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3829752,&#39;HlYyEJAoV8n/RxPZ07TXy/0sTp5KE0SQp6Yiup2+fkK+SRUTtQp0YQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3829752" class="layer">#81楼</a><a name="3829752" id="comment_anchor_3829752"></a>  <span class="comment_date">2017-11-03 09:37</span> <a id="a_comment_author_3829752" href="http://www.cnblogs.com/1995-qxl/" target="_blank">覃兽兽</a> <a href="http://msg.cnblogs.com/send/%E8%A6%83%E5%85%BD%E5%85%BD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3829752" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#3815463" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3815463);">@</a>
+liusheng11188<br>我运行出来的也是这样，请问最后解决了么？怎么解决的呢？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3829752,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3829752,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3829752_avatar" style="display:none;">http://pic.cnblogs.com/face/811774/20171021095058.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3829801,&#39;HlYyEJAoV8n/RxPZ07TXy/0sTp5KE0SQp6Yiup2+fkK+SRUTtQp0YQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3829801,&#39;HlYyEJAoV8n/RxPZ07TXy/0sTp5KE0SQp6Yiup2+fkK+SRUTtQp0YQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/ymnets/p/3424514.html#3829801" class="layer">#82楼</a><a name="3829801" id="comment_anchor_3829801"></a><span id="comment-maxId" style="display:none;">3829801</span><span id="comment-maxDate" style="display:none;">2017/11/3 10:07:10</span>  <span class="comment_date">2017-11-03 10:07</span> <a id="a_comment_author_3829801" href="http://www.cnblogs.com/1995-qxl/" target="_blank">覃兽兽</a> <a href="http://msg.cnblogs.com/send/%E8%A6%83%E5%85%BD%E5%85%BD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3829801" class="blog_comment_body"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#2908805" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2908805);">@</a>
+Tortoise<br>你最后解决了么？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3829801,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3829801,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3829801_avatar" style="display:none;">http://pic.cnblogs.com/face/811774/20171021095058.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="http://www.cnblogs.com/ymnets/p/3424514.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/ymnets/p/3424514.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/ymnets/p/3424514.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/ymnets/p/3424514.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码] - ymnets - 博客园_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/584331/" target="_blank">小米工业设计获国家认可！唯一电子类企业</a><br> ·  <a href="https://news.cnblogs.com/n/584333/" target="_blank">高通高管：我们不怕苹果“断粮” 中国市场增长猛</a><br> ·  <a href="https://news.cnblogs.com/n/584338/" target="_blank">男女员工区别对待谷歌遭集体诉讼 被法院驳回</a><br> ·  <a href="https://news.cnblogs.com/n/584337/" target="_blank">ActiveReports报表控件发布v12版本 多项新特性增强设计能力</a><br> ·  <a href="https://news.cnblogs.com/n/584336/" target="_blank">Twitter大力发展直播视频业务 四季度有望盈利</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><span style="color:red">有问题,或者购买框架可以通过QQ:729994997联系我</span><br><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/ymnets/">ymnets</a><br>园龄：<a href="http://home.cnblogs.com/u/ymnets/" title="入园时间：2012-08-21">5年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/ymnets/followers/">1556</a><br>关注：<a href="http://home.cnblogs.com/u/ymnets/followees/">14</a><div id="p_b_follow">已关注 <a href="javascript:void(0);" onclick="unfollow(&#39;26ae7302-41eb-e111-aa3f-842b2b196315&#39;)">-取消</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ymnets/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/ymnets/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/ymnets/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/ymnets/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/ymnets/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(137)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ymnets/category/532236.html">[01].Net(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ymnets/category/532237.html">[02]Asp.Net MVC(94)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ymnets/category/532238.html">[03]Web前端(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ymnets/category/532240.html">[04]数据库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ymnets/category/532241.html">[05]JQuery&amp;JavaScript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ymnets/category/535669.html">[06]EasyUI(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ymnets/category/576780.html">[07]Android(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ymnets/category/1021286.html">[08]fullCalendar(2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	359081
+	</li>
+	<li class="liRank">
+		排名 -	425
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/3546629.html#3858700">1. Re:构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（24）-权限管理系统-将权限授权给角色</a></li>
+        <li class="recent_comment_body">@不做英雄做狗熊但在UpdateRight方法里没有调用P_Sys_InsertSysRight存储过程啊...</li>
+        <li class="recent_comment_author">--UI费玉清</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/3546629.html#3857898">2. Re:构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（24）-权限管理系统-将权限授权给角色</a></li>
+        <li class="recent_comment_body">lz,在存储过程和控制器并没有看到insert  SysRight 啊？<br>看了你之前的回答说是在UpdateRight方法里面，但我并没有看到有啊？</li>
+        <li class="recent_comment_author">--UI费玉清</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5065201.html#3857603">3. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统--系统权限全套完整图</a></li>
+        <li class="recent_comment_body">asdasd</li>
+        <li class="recent_comment_author">--longjili</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/3424943.html#3856562">4. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入</a></li>
+        <li class="recent_comment_body">有谁研究过signalr的unity注入的？网上查到些资料，但都写的不太清楚</li>
+        <li class="recent_comment_author">--ntuchenxy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ymnets/p/5306935.html#3855820">5. Re:ASP.NET MVC5+EF6+EasyUI 后台管理系统（58）-DAL层重构</a></li>
+        <li class="recent_comment_body">麻烦请教一下老师，这个改造之后，系统注入那里该怎么写呢？像之前container.RegisterType(); 这样就要会报错了，该怎么写才正确呢？...</li>
+        <li class="recent_comment_author">--mr.ty</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(86771)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](42975)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(26371)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424936.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（3）-漂亮系统登陆界面(26207)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424939.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（4）-创建项目解决方案(25172)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">1. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](114)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(113)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">3. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](82)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424950.html">4. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（9）-MVC与EasyUI结合增删改查(81)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424943.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（6）-Unity 依赖注入(62)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ymnets/p/3424309.html">1. ASP.NET MVC5+EF6+EasyUI 后台管理系统（1）-前言与目录（持续更新中...）(140)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3569328.html">2. ASP.NET MVC5+EF6+EasyUI 后台管理系统（28）-系统小结(67)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3431057.html">3. 构建ASP.NET MVC4+EF5+EasyUI+Unity2.x注入的后台管理系统（10）-系统菜单栏[附源码](39)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3424514.html">4. ASP.NET MVC5+EF6+EasyUI 后台管理系统（2）-easyui构建前端页面框架[附源码](38)</a></li><li><a href="http://www.cnblogs.com/ymnets/p/3456677.html">5. ASP.NET MVC5+EF6+EasyUI 后台管理系统（20）-权限管理系统-根据权限获取菜单(33)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 ymnets
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,61 @@
+/*推荐和反对*/
+#div_digg {
+    padding: 10px;
+    position: fixed;
+    _position: absolute;
+    z-index: 1000;
+    bottom: 20px;
+    right: 0;
+    _right: 17px;
+    border: 1px solid #D9DBE1;
+    background-color: #FFFFFF;
+    filter: alpha(Opacity=80);
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+}
+
+.icon_favorite {
+    background: transparent url('//files.cnblogs.com/files/jackson0714/kj.gif') no-repeat 0 0;
+    padding-left: 16px;
+}
+
+#blog_post_info_block a {
+    text-decoration: none;
+    color: #5B9DCA;
+    padding: 3px;
+}
+
+/*固定式按钮，只有推荐按钮*/
+
+.diggit{
+    width: 125px;
+    height: 50px;
+    background: url('//pic002.cnblogs.com/images/2011/70278/2011050520390113.gif') no-repeat;
+    cursor: pointer;
+    margin-top: 0px;
+     padding-top: 9px;
+     padding-left: 38px;
+}
+.diggnum{
+    font-family:Georgia, Serif;
+ }
+.buryit {
+    display:none;
+ }
+span#digg_count{
+    font-size: 20px;
+    color:green;
+ }
+
+ 
+/*评论者头像*/
+/*
+.feedbackCon img:hover {
+-webkit-transform: rotateZ(360deg);
+-moz-transform: rotateZ(360deg);
+-ms-transform: rotateZ(360deg);
+-o-transform: rotateZ(360deg);
+transform: rotateZ(360deg);
+}
+
+*/

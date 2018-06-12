@@ -1,0 +1,192 @@
+如果做测试可以再本机，或者局域网其它机器上，下载MemCache,安装到IIS上，传智视频里有搭建的流程。
+
+Cookie+Memcache模拟Session保持登录状态
+
+创建登陆页面
+-使用Memcache记录登录用户信息
+添加程序集引用,Commons.dll,log4net.dll,Memcached.ClientLibrary.dll,ICSharpCode.SharpZipLib.dll
+http://sourceforge.net/projects/memcacheddotnet/
+-封装MemecacheHelper
+在Common下把MemeCache配置文件封装成MemCacheHelper
+public class MemcacheHelper
+    {
+       private static readonly MemcachedClient mc = null;
+
+       static MemcacheHelper()
+       {
+           //最好放在配置文件中
+           string[] serverlist = { "127.0.0.1:11211", "10.0.0.132:11211" };
+
+           //初始化池
+           SockIOPool pool = SockIOPool.GetInstance();
+           pool.SetServers(serverlist);
+
+           pool.InitConnections = 3;
+           pool.MinConnections = 3;
+           pool.MaxConnections = 5;
+
+           pool.SocketConnectTimeout = 1000;
+           pool.SocketTimeout = 3000;
+
+           pool.MaintenanceSleep = 30;
+           pool.Failover = true;
+
+           pool.Nagle = false;
+           pool.Initialize();
+
+           // 获得客户端实例
+            mc = new MemcachedClient();
+           mc.EnableCompression = false;
+       }
+       /// <summary>
+       /// 存储数据
+       /// </summary>
+       /// <param name="key"></param>
+       /// <param name="value"></param>
+       /// <returns></returns>
+       public static bool Set(string key,object value)
+       {
+          return mc.Set(key, value);
+       }
+       public static bool Set(string key, object value,DateTime time)
+       {
+           return mc.Set(key, value,time);
+       }
+       /// <summary>
+       /// 获取数据
+       /// </summary>
+       /// <param name="key"></param>
+       /// <returns></returns>
+       public static object Get(string key)
+       {
+           return mc.Get(key);
+       }
+       /// <summary>
+       /// 删除
+       /// </summary>
+       /// <param name="key"></param>
+       /// <returns></returns>
+       public static bool Delete(string key)
+       {
+           if (mc.KeyExists(key))
+           {
+               return mc.Delete(key);
+
+           }
+           return false;
+
+       }
+    }
+
+因为要跨平台传输数据，还得要序列化，继续封装一个SerializeHelper,引用程序集Newtonsoft.Json
+ public class SerializeHelper
+    {
+       /// <summary>
+       /// 对数据进行序列化
+       /// </summary>
+       /// <param name="value"></param>
+       /// <returns></returns>
+       public static string  SerializeToString(object value)
+       {
+          return JsonConvert.SerializeObject(value);
+       }
+       /// <summary>
+       /// 反序列化操作
+       /// </summary>
+       /// <typeparam name="T"></typeparam>
+       /// <param name="str"></param>
+       /// <returns></returns>
+       public static T DeserializeToObject<T>(string str)
+       {
+          return JsonConvert.DeserializeObject<T>(str);
+       }
+    }
+用Cookie模拟登录用户的会话
+修改LoginController
+        public ActionResult UserLogin()
+        {
+            string validateCode = Session["validateCode"] != null ? Session["validateCode"].ToString() : string.Empty;
+            if (string.IsNullOrEmpty(validateCode))
+            {
+                return Content("no:验证码错误!!");
+            }
+            Session["validateCode"] = null;
+            string txtCode = Request["vCode"];
+            if (!validateCode.Equals(txtCode, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return Content("no:验证码错误!!");
+            }
+            string userName = Request["LoginCode"];//把数据接过来
+            string userPwd = Request["LoginPwd"];
+            var userInfo = UserInfoService.LoadEntities(u => u.UName == userName && u.UPwd == userPwd).FirstOrDefault();//根据用户名找用户
+            if (userInfo != null)
+            {
+                // Session["userInfo"] = userInfo;
+                //产生一个GUID值作为Memache的键.
+                //  System.Web.Script.Serialization.JavaScriptSerializer
+                string sessionId = Guid.NewGuid().ToString();
+                Common.MemcacheHelper.Set(sessionId, Common.SerializeHelper.SerializeToString(userInfo)
+                    , DateTime.Now.AddMinutes(20));//将登录用户信息存储到Memcache中。
+                Response.Cookies["sessionId"].Value = sessionId;//将Memcache的key以Cookie的形式返回给浏览器。
+
+
+                return Content("ok:登录成功");
+            }
+            else
+            {
+
+                return Content("no:登录失败");
+            }
+        }
+用户登录成功之后，在往客户端写入一个cookie信息【生成一个会话id】来标识当前用户对应的会话信息。然后后续的所有的请求过来时候，从cookie中读取会话相关的id，然后在memcache中查找对应数据，如果为空那么就是没有登录或者会话超时了。如果不为空那么表示用户已经登录。
+修改BaseController
+    public class BaseController : Controller
+    {
+        public UserInfo LoginUser { get; set; }
+        /// <summary>
+        /// 执行控制器中的方法之前先执行该方法。
+        /// </summary>
+        /// <param name="filterContext"></param>
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            //if (Session["userInfo"] == null)
+            bool isSucess = false;
+            if(Request.Cookies["sessionId"]!=null)
+            {
+                string sessionId = Request.Cookies["sessionId"].Value;
+                //根据该值查Memcache.
+                object obj=Common.MemcacheHelper.Get(sessionId);
+                if(obj!=null)
+                {
+                    UserInfo userInfo = Common.SerializeHelper.DeserializeToObject<UserInfo>(obj.ToString());
+                   LoginUser = userInfo;
+                   isSucess = true;
+                   Common.MemcacheHelper.Set(sessionId, obj, DateTime.Now.AddMinutes(20));//模拟出滑动过期时间.
+                }
+               
+              //  filterContext.HttpContext.Response.Redirect("/Login/Index");
+               
+            }
+            if (!isSucess)
+            {
+                filterContext.Result = Redirect("/Login/Index");//注意.
+            }
+        }
+    }
+修改HomeController
+        public ActionResult Index()
+        {
+            ViewData["name"] = LoginUser.UName;
+            return View();
+        }
+    }
+
+本次遇到问题
+内部异常 1:
+TypeInitializationException: “Memcached.ClientLibrary.SockIOPool”的类型初始值设定项引发异常。
+
+内部异常 2:
+FileLoadException: 未能加载文件或程序集“log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821”或它的某一个依赖项。找到的程序集清单定义与程序集引用不匹配。 (异常来自 HRESULT:0x80131040)
+
+.NET中程序集版本冲突问题， 我先用nuget引用的Log4net,之后因为在Nuget上找不到memcached的安装，就手动引用的memcached造成两个程序引用的log4net程序集版本冲突，后来我把common的引用删了，重新再nuget上搜索memcached.client注意了一下右边写的log4net的版本和是大于等于2.03和我引用的版本一致，装上以后问题解决。

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html -->
+<html lang="zh-cn" class="gr__cnblogs_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convert.ToInt32()与int.Parse()的区别 - 凡夫·俗子 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Convert.ToInt32()与int.Parse()的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Convert.ToInt32()与int.Parse()的区别_files/bundle-sea.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Convert.ToInt32()与int.Parse()的区别_files/bundle-sea-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/linyechengwei/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/linyechengwei/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/linyechengwei/wlwmanifest.xml">
+<script async="" src="./Convert.ToInt32()与int.Parse()的区别_files/analytics.js.下载"></script><script src="./Convert.ToInt32()与int.Parse()的区别_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'linyechengwei', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./Convert.ToInt32()与int.Parse()的区别_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/linyechengwei/"><h4>一步一个脚印</h4></a><br>
+		<b>The early bird catches the worm </b>
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/linyechengwei/">首页</a> &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+ &nbsp;
+&nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats"><div id="blog_stats">
+随笔-85&nbsp;
+评论-80&nbsp;
+文章-0&nbsp;
+<!--trackbacks-1-->
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html">Convert.ToInt32()与int.Parse()的区别</a></h1>
+	<div id="cnblogs_post_body"><p><span style="font-size: 10pt">(1)这两个方法的最大不同是它们对null值的处理方法：<br>
+&nbsp;&nbsp;&nbsp; <span style="color: red">Convert.ToInt32(null)会返回0而不会产生任何异常，但int.Parse(null)则会产生异常。</span></span></p>
+<p><span style="color: #000000"><span style="font-size: 10pt">没搞清楚Convert.ToInt32和int.Parse()的细细微区别时千万别乱用，否则可能会产生无法预料的结果，举例来说：假如从url中取一个参数page的值，我们知道这个值是一个int，所以即可以用Convert.ToInt32(Request.QueryString["page"])，也可以用,int.Parse(Request.QueryString["page"])，但是如果page这个参数在url中不存在，那么前者将返回0，0可能是一个有效的值，所以你不知道url中原来根本就没有这个参数而继续进行下一下的处理，这就可能产生意想不到的效果，而用后一种办法的话没有page这个参数会抛出异常，我们可以捕获异常然后再做相应的处理，比如提示用户缺少参数，而不是把参数值当做0来处理。</span></span></p>
+<p><span style="color: red"><span style="font-size: 10pt; color: #000000">(2)还有一点区别就是<br>
+</span></span><span style="color: red"><span style="font-size: 10pt">&nbsp; a. Convert.ToInt32(double value)<br>
+如果 value 为两个整数中间的数字，则返回二者中的偶数；即 3.5转换为4，4.5 转换为 4，而 5.5 转换为 6。&nbsp;&nbsp;不过4.6可以转换为5，4.4转换为4</span></span><span style="color: red"><span style="font-size: 10pt"><br>
+&nbsp; b. int.Parse("4.5") <br>
+</span></span><span style="color: red"><span style="font-size: 10pt">直接报错:"<em>输入字符串的格式不正确</em>".</span></span></p>
+<p><span style="color: red"><span style="font-size: 10pt">&nbsp; c. int(4.6) = 4<br>
+</span></span><span style="color: red"><span style="font-size: 10pt">Int转化其他数值类型为Int时没有四舍五入，强制转换 </span></span><br>
+<span style="color: #000000"><span style="font-size: 10pt"><br>
+int.Parse是转换String为int<br>
+Convert.ToInt32是转换继承自Object的对象为int的. <br>
+你得到一个object对象,你想把它转换为int,用int.Parse就不可以,要用Convert.ToInt32.<br>
+<br>
+</span><span style="color: red"><span style="font-size: 10pt"><strong>个人总结:<br>
+</strong><font color="#ff0000" size="2">(1)Convert.ToInt32的参数比较多，Int.Parse只能转换string类型的.</font></span></span></span><span style="color: #000000"><span style="color: red"><span style="font-size: 10pt"><br>
+(2)Parse就是把String转换成int,char,double....等,也就是*.Parse(string) 括号中的一定要是string.<br>
+(3)Convert可以提供多种类型的转换,也就是Convert.*()括号中可以为很多种类型(包括string).<br>
+(4)至于效率上的区别可以看看这遍文章：《细说Convert和Parse到底那个效率高》&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnblogs.com/Ihaveadream/archive/2008/04/23/1168143.html" target="_new"><font color="#8d8c8c">http://www.cnblogs.com/Ihaveadream/archive/2008/04/23/1168143.html</font></a></span></span></span></p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/linyechengwei/tag/Convert.ToInt32/">Convert.ToInt32</a>, <a href="http://www.cnblogs.com/linyechengwei/tag/int.Parse/">int.Parse</a>, <a href="http://www.cnblogs.com/linyechengwei/tag/%E5%8C%BA%E5%88%AB/">区别</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1330819,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;743b420b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Convert.ToInt32()与int.Parse()的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Convert.ToInt32()与int.Parse()的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/linyechengwei/" target="_blank"><img src="./Convert.ToInt32()与int.Parse()的区别_files/u33813.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/linyechengwei/">凡夫·俗子</a><br>
+            <a href="http://home.cnblogs.com/u/linyechengwei/followees">关注 - 12</a><br>
+            <a href="http://home.cnblogs.com/u/linyechengwei/followers">粉丝 - 24</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;743b420b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1330819,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">8</span>
+    </div>
+    <div class="buryit" onclick="votePost(1330819,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/06/1328241.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/06/1328241.html" title="发布于2008-11-06 16:41">asp.net数据采集基类</a><br><a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/24/1339957.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/24/1339957.html" title="发布于2008-11-24 15:48">C#导出EXCEL(DataTable导出EXCEL)</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2008-11-10 17:32</span> <a href="http://www.cnblogs.com/linyechengwei/">凡夫·俗子</a> 阅读(<span id="post_view_count">18520</span>) 评论(<span id="post_comment_count">13</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1330819" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#" onclick="AddToWz(1330819);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=37375,cb_entryId=1330819,cb_blogApp=currentBlogApp,cb_blogUserGuid='743b420b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2008/11/10 17:32:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>评论:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366193" class="layer">#1楼</a><a name="1366193" id="comment_anchor_1366193"></a>
+				 <span class="comment_date">2008-11-10 17:53</span> | <a id="a_comment_author_1366193" href="http://www.cnblogs.com/jhh0111/" target="_blank">中华小鹰</a> <a href="http://msg.cnblogs.com/send/%E4%B8%AD%E5%8D%8E%E5%B0%8F%E9%B9%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366193" class="blog_comment_body">嗯。总结得不错，努力啊。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366193,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366193,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366193,&#39;pxyP4MGdHIvGeOty7if3W42pKxqdxfahnxs2uSJyoL4gZz7p+OQtLA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366193,&#39;pxyP4MGdHIvGeOty7if3W42pKxqdxfahnxs2uSJyoL4gZz7p+OQtLA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366250" class="layer">#2楼</a><a name="1366250" id="comment_anchor_1366250"></a>
+				 <span class="comment_date">2008-11-10 20:22</span> | <a id="a_comment_author_1366250" href="http://www.cnblogs.com/peach/" target="_blank">Peach</a> <a href="http://msg.cnblogs.com/send/Peach" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366250" class="blog_comment_body">不错</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366250,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366250,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366250,&#39;Z7jIR6g7PV+LsPbLd8jPt9fDJ1wFbw+JoS016fHI+wC3YGMXAmYonQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366250,&#39;Z7jIR6g7PV+LsPbLd8jPt9fDJ1wFbw+JoS016fHI+wC3YGMXAmYonQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366254" class="layer">#3楼</a><a name="1366254" id="comment_anchor_1366254"></a>
+				 <span class="comment_date">2008-11-10 20:31</span> | <a id="a_comment_author_1366254" href="http://www.cnblogs.com/shelter-min/" target="_blank">hong111</a> <a href="http://msg.cnblogs.com/send/hong111" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366254" class="blog_comment_body">似乎效率上也有区别</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366254,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366254,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366254,&#39;fETez6UJGIQBIVbn/6cXm22hfRQmyr7ps/x9MrVgzsjFDpGvoGWI+w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366254,&#39;fETez6UJGIQBIVbn/6cXm22hfRQmyr7ps/x9MrVgzsjFDpGvoGWI+w==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366278" class="layer">#4楼</a><a name="1366278" id="comment_anchor_1366278"></a>
+				 <span class="comment_date">2008-11-10 20:58</span> | <a id="a_comment_author_1366278" href="http://www.cnblogs.com/kfps8/" target="_blank">叶宁</a> <a href="http://msg.cnblogs.com/send/%E5%8F%B6%E5%AE%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366278" class="blog_comment_body">不错，学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366278,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366278,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366278,&#39;0PPRmFB45t9RVLzmF4cQhv3MaZgzZ6/97qER/q4l8LABm2cvcx9Sxw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366278,&#39;0PPRmFB45t9RVLzmF4cQhv3MaZgzZ6/97qER/q4l8LABm2cvcx9Sxw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366305" class="layer">#5楼</a><a name="1366305" id="comment_anchor_1366305"></a>
+				 <span class="comment_date">2008-11-10 21:35</span> | <a id="a_comment_author_1366305" href="http://www.cnblogs.com/VisualStudio/" target="_blank">瞪着你的小狗</a> <a href="http://msg.cnblogs.com/send/%E7%9E%AA%E7%9D%80%E4%BD%A0%E7%9A%84%E5%B0%8F%E7%8B%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366305" class="blog_comment_body">这个我怎么在首页上看过！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366305,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366305,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366305,&#39;qDmFhjhxVIIWQ/pZjxsXibecDUTv8IBlIMBoW83CFOCgyhPWznnLyA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366305,&#39;qDmFhjhxVIIWQ/pZjxsXibecDUTv8IBlIMBoW83CFOCgyhPWznnLyA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366402" class="layer">#6楼</a><a name="1366402" id="comment_anchor_1366402"></a>
+				 <span class="comment_date">2008-11-10 23:32</span> | <a id="a_comment_author_1366402" href="http://www.cnblogs.com/huangjianhuakarl/" target="_blank">匆匆</a> <a href="http://msg.cnblogs.com/send/%E5%8C%86%E5%8C%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366402" class="blog_comment_body">不错</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366402,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366402,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1366402_avatar" style="display:none;">http://pic.cnblogs.com/face/28741/20130529111513.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366402,&#39;HoAW6a5Btyj1pvoqUso4cqG12Rhju6ysKoRm5wF6ypqvBb/YztLCVg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366402,&#39;HoAW6a5Btyj1pvoqUso4cqG12Rhju6ysKoRm5wF6ypqvBb/YztLCVg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1366636" class="layer">#7楼</a><a name="1366636" id="comment_anchor_1366636"></a>[<span class="louzhu">楼主</span>]
+				 <span class="comment_date">2008-11-11 10:31</span> | <a id="a_comment_author_1366636" href="http://www.cnblogs.com/linyechengwei/" target="_blank">凡夫·俗子</a> <a href="http://msg.cnblogs.com/send/%E5%87%A1%E5%A4%AB%26%23183%3B%E4%BF%97%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1366636" class="blog_comment_body">--引用--------------------------------------------------
+<br>洪敏: 似乎效率上也有区别
+<br>--------------------------------------------------------
+<br>呵呵，谢谢提醒，本来我也没注意，现在我把这个区别加上去了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1366636,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1366636,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1366636_avatar" style="display:none;">http://pic.cnblogs.com/face/u33813.jpg</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1366636,&#39;lD5uAI8MslvDVElvgA6IWB70thkCMxYw/ETpxA+JQCLcyM3AM9CB4g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1366636,&#39;lD5uAI8MslvDVElvgA6IWB70thkCMxYw/ETpxA+JQCLcyM3AM9CB4g==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1430924" class="layer">#8楼</a><a name="1430924" id="comment_anchor_1430924"></a>
+				 <span class="comment_date">2009-01-14 14:13</span> | <a id="a_comment_author_1430924" href="http://www.cnblogs.com/kaka5q/" target="_blank">★海戰鷹</a> <a href="http://msg.cnblogs.com/send/%E2%98%85%E6%B5%B7%E6%88%B0%E9%B7%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1430924" class="blog_comment_body">楼主的帖子实在是写得太好了。文笔流畅，修辞得体，深得魏晋诸朝遗风，更将唐风宋骨发扬得入木三分，能在有生之年看见楼主的这个帖子 ，实在是我三生之幸啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1430924,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1430924,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1430924,&#39;kxmWSkO4ZoEp+QqzweBUky8ahc8BZfbr5sA68nEjnTotrfgB2w1aGA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1430924,&#39;kxmWSkO4ZoEp+QqzweBUky8ahc8BZfbr5sA68nEjnTotrfgB2w1aGA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#1431064" class="layer">#9楼</a><a name="1431064" id="comment_anchor_1431064"></a>[<span class="louzhu">楼主</span>]
+				 <span class="comment_date">2009-01-14 16:09</span> | <a id="a_comment_author_1431064" href="http://www.cnblogs.com/linyechengwei/" target="_blank">凡夫·俗子</a> <a href="http://msg.cnblogs.com/send/%E5%87%A1%E5%A4%AB%26%23183%3B%E4%BF%97%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_1431064" class="blog_comment_body">@★海戰鷹
+<br>过奖了，我是在网上摘抄总结的，大家一起学习</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1431064,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1431064,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1431064_avatar" style="display:none;">http://pic.cnblogs.com/face/u33813.jpg</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1431064,&#39;lD5uAI8MslvDVElvgA6IWB70thkCMxYw/ETpxA+JQCLcyM3AM9CB4g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1431064,&#39;lD5uAI8MslvDVElvgA6IWB70thkCMxYw/ETpxA+JQCLcyM3AM9CB4g==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#2284963" class="layer">#10楼</a><a name="2284963" id="comment_anchor_2284963"></a>
+				 <span class="comment_date">2012-01-02 06:10</span> | <a id="a_comment_author_2284963" href="http://home.cnblogs.com/u/356400/" target="_blank">野马007</a> <a href="http://msg.cnblogs.com/send/%E9%87%8E%E9%A9%AC007" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2284963" class="blog_comment_body">不错，收藏了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2284963,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2284963,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2284963,&#39;wjjD3xOlO2gD1/0E1J6lsYae1umZlaGsHc7K4UjI1MJDNWnD9uGXbw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2284963,&#39;wjjD3xOlO2gD1/0E1J6lsYae1umZlaGsHc7K4UjI1MJDNWnD9uGXbw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#2561837" class="layer">#11楼</a><a name="2561837" id="comment_anchor_2561837"></a>
+				 <span class="comment_date">2012-11-24 20:14</span> | <a id="a_comment_author_2561837" href="http://www.cnblogs.com/jessexing/" target="_blank">Jesse Xing</a> <a href="http://msg.cnblogs.com/send/Jesse%20Xing" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2561837" class="blog_comment_body">不错，收藏了~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2561837,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2561837,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2561837_avatar" style="display:none;">http://pic.cnblogs.com/face/463499/20130614211224.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2561837,&#39;Fr+4SroKRRO9Qh69JHxHwYUtKPbwsliw7S3yYK9DAJ2Rd61x4Pb5+Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2561837,&#39;Fr+4SroKRRO9Qh69JHxHwYUtKPbwsliw7S3yYK9DAJ2Rd61x4Pb5+Q==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#2635100" class="layer">#12楼</a><a name="2635100" id="comment_anchor_2635100"></a>
+				 <span class="comment_date">2013-03-14 23:02</span> | <a id="a_comment_author_2635100" href="http://www.cnblogs.com/ccding13/" target="_blank">goto13</a> <a href="http://msg.cnblogs.com/send/goto13" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2635100" class="blog_comment_body">是的哦，没注意，就只想到参数的类型不同而已，，，<br><br>楼主好银，果断收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2635100,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2635100,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2635100,&#39;2IMtgZhI5gYs17yNmycQ3XO573xFiYNS1bvI06WNfN+BvcmBaxXgGA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2635100,&#39;2IMtgZhI5gYs17yNmycQ3XO573xFiYNS1bvI06WNfN+BvcmBaxXgGA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#3136392" class="layer">#13楼</a><a name="3136392" id="comment_anchor_3136392"></a><span id="comment-maxId" style="display:none;">3136392</span><span id="comment-maxDate" style="display:none;">2015/3/6 13:40:15</span>
+				 <span class="comment_date">2015-03-06 13:40</span> | <a id="a_comment_author_3136392" href="http://www.cnblogs.com/KingKnight/" target="_blank">King丶Knight</a> <a href="http://msg.cnblogs.com/send/King%E4%B8%B6Knight" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3136392" class="blog_comment_body">就得都搞清楚，免得埋下地雷！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3136392,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3136392,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3136392_avatar" style="display:none;">http://pic.cnblogs.com/face/u410682.jpg?id=19161517</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3136392,&#39;8UGQ1bZqtdy8KWU2vMV+2mVQSGC7SvH7JCv+R8OI06yMxHMkeIGCBA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3136392,&#39;8UGQ1bZqtdy8KWU2vMV+2mVQSGC7SvH7JCv+R8OI06yMxHMkeIGCBA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/linyechengwei/archive/2008/11/10/1330819.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./Convert.ToInt32()与int.Parse()的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.436846.436846.436846" target="_blank">【推荐】搭建微信小程序 就选腾讯云</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://www.mtyun.com/promote/69f73a72-f46d-4103-88e5-94ed2f81259d/" target="_blank"><img width="300" height="250" src="./Convert.ToInt32()与int.Parse()的区别_files/24442-20170921101521025-1845913848.jpg" alt="美团云0921"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/579752/" target="_blank">光量子新算法或能大规模运算 不需冷却真空设备</a><br> ·  <a href="http://news.cnblogs.com/n/579751/" target="_blank">顺丰投资了一个校园快递柜，这是它近期投资的第三个快递柜公司</a><br> ·  <a href="http://news.cnblogs.com/n/579750/" target="_blank">他16岁自学AI编程被谷歌关注了，你还在抱怨假期太少</a><br> ·  <a href="http://news.cnblogs.com/n/579749/" target="_blank">《人类简史》作者将出版新书，讲述“21世纪的21个教训”</a><br> ·  <a href="http://news.cnblogs.com/n/579748/" target="_blank">微软要将指纹识别集成到键盘，和Surface Keyboard有什么不同？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./Convert.ToInt32()与int.Parse()的区别_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/linyechengwei/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/linyechengwei/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/linyechengwei/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/linyechengwei/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/linyechengwei/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/linyechengwei/tag/Asp.net/">Asp.net</a>(17)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/sql/">sql</a>(8)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/jquery/">jquery</a>(6)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/js/">js</a>(5)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/validate/">validate</a>(3)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/gridview/">gridview</a>(2)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/mvc/">mvc</a>(2)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/ajax/">ajax</a>(2)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/div/">div</a>(2)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/excel/">excel</a>(2)</li><li><a href="http://www.cnblogs.com/linyechengwei/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3 class="catListTitle">ASP.NET C#</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/seven911/default.html?OnlyTitle=1" rel="nofollow">.net操作Oracle</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://blog.csdn.net/mengyao/archive/2007/03/14/1528557.aspx" target="_blank">ASP.net 2.0资料吐血收藏（^_^）收藏</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.webdiyer.com/download/default.aspx" rel="nofollow">AspNetPager下载</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://topic.csdn.net/u/20070321/10/498a38fe-f071-46f4-adb2-855044b30193.html" rel="nofollow" target="_blank">C#获取硬盘编号、CPU编号及类型、内存大小及使用情况</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.codeplex.com/" rel="nofollow">codeplex</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.coolcode.cn/show-254-1.html" rel="nofollow">JavaScript 面向对象程序设计（上）——封装</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://blog.joycode.com/scottgu/archive/2008/09/29/115287.aspx">jquery-ms</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://tech.ddvip.com/2009-01/1231922206105845.html" rel="nofollow">开源客户关系管理系统SplendidCRM下的二次开发</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cssrain.cn/" rel="nofollow">前端技术</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www4.it168.com/jtzt/shenlan/tech/enterprise_library/index.html" rel="nofollow" target="_blank">微软企业库</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.antardev.cn/showArticle.aspx?id=84" rel="nofollow">用于ASP.NET2.0的进度条控件(实时)</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">NBear学习</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.codeplex.com/nbear" rel="nofollow" target="_blank">下载NBearV3最新版本</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">SharePoint学习链接</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://blog.joycode.com/kaneboy/archive/2006/11/19/87192.aspx" target="_blank">DelegateControl：SharePoint Server 2007内置的一个"用户控件包装器"</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://taglib.cn/story/221" rel="nofollow" target="_blank">将你的Asp.NET应用程序嵌入到SharePoint</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_2" class="listitem" href="http://taglib.cn/story/292" rel="nofollow" target="_blank">将你的Asp.NET应用程序嵌入到SharePoint(续)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_3" class="listitem" href="http://www.eallies.com/" rel="nofollow" target="_blank">易联工作室</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_4" class="listitem" href="http://www.cnblogs.com/blusehuang/archive/2007/06/26/796546.html" target="_blank">在Web Part中使用User Control </a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">SQL</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_0" class="listitem" href="http://hi.baidu.com/dolet/blog/item/384d882f249fe23a1f3089a8.html" rel="nofollow" target="_blank">如何用SQL语句为数据库表列添加描述</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_1" class="listitem" href="http://www.pconline.com.cn/pcedu/empolder/db/access/0310/226080.html" rel="nofollow" target="_blank">在 Access 中使用“存储过程”</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">英语学习</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_0" class="listitem" href="http://blog.csdn.net/carefree31441/archive/2008/07/10/2635411.aspx" target="_blank">经典英语句子</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">杂项</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_5_Link_0" class="listitem" href="http://blog.csdn.net/zdg/archive/2007/03/26/1541677.aspx" target="_blank">2007年第12周最热网友收藏</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_5_Link_1" class="listitem" href="http://www.yscode.com/article/server/428.html" rel="nofollow">花生壳的安装和使用</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		65106
+	</li><li>
+		排名 -
+		4743
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/linyechengwei/archive/2011/02/24/1963874.html#3584239">1. Re:在RDLC报表中添加链接</a></li>
+        <li class="recent_comment_body">博主，请问如果= "javascript:viewinfo(" &amp; Fields!ActivityID.Value &amp; ")"中参数带有中文的话，rdlc会自动将其进行一次URL编码，然后如果是使用I......</li>
+        <li class="recent_comment_author">--好人卡收藏家</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/linyechengwei/archive/2009/11/18/1605377.html#3533398">2. Re:Asp.Net异常:"由于代码已经过优化或者本机框架位于调用堆栈之上,无法计算表达式的值"的解决方法</a></li>
+        <li class="recent_comment_body">学习了。谢谢</li>
+        <li class="recent_comment_author">--一朵茉莉花</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/linyechengwei/archive/2010/06/14/1758337.html#3507378">3. Re:C# Datatable排序</a></li>
+        <li class="recent_comment_body">正好用到,多谢</li>
+        <li class="recent_comment_author">--songyulan</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/linyechengwei/archive/2010/06/14/1758337.html#3463735">4. Re:C# Datatable排序</a></li>
+        <li class="recent_comment_body">感谢楼主,帮了我的忙.</li>
+        <li class="recent_comment_author">--南宫萧尘</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/linyechengwei/archive/2010/06/14/1758337.html#3442703">5. Re:C# Datatable排序</a></li>
+        <li class="recent_comment_body">@tiasys@tiasys引用//按标题升序排列 dt.DefaultView.Sort="title asc"; DataTable dtSort = ......</li>
+        <li class="recent_comment_author">--东辰潋（it猪）</li>
+</ul>
+</div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2017 凡夫·俗子
+</div>
+
+
+
+
+
+</body></html>

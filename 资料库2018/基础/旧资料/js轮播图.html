@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				text-decoration: none;
+			}
+			
+			body {
+				padding: 20px;
+			}
+			
+			#container {
+				position: relative;
+				width: 600px;
+				height: 400px;
+				border: 3px solid #333;
+				overflow: hidden;
+			}
+			
+			#list {
+				position: absolute;
+				z-index: 1;
+				width: 4200px;
+				height: 400px;
+			}
+			
+			#list img {
+				float: left;
+				width: 600px;
+				height: 400px;
+			}
+			
+			#buttons {
+				position: absolute;
+				left: 250px;
+				bottom: 20px;
+				z-index: 2;
+				height: 10px;
+				width: 100px;
+			}
+			
+			#buttons span {
+				float: left;
+				margin-right: 5px;
+				width: 10px;
+				height: 10px;
+				border: 1px solid #fff;
+				border-radius: 50%;
+				background: #333;
+				cursor: pointer;
+			}
+			
+			#buttons .on {
+				background: orangered;
+			}
+			
+			.arrow {
+				position: absolute;
+				top: 180px;
+				z-index: 2;
+				display: none;
+				width: 40px;
+				height: 40px;
+				font-size: 36px;
+				font-weight: bold;
+				line-height: 35px;
+				text-align: center;
+				color: #fff;
+				background-color: RGBA(0, 0, 0, .3);
+				cursor: pointer;
+			}
+			
+			.arrow:hover {
+				background-color: RGBA(0, 0, 0, .7);
+			}
+			
+			#container:hover .arrow {
+				display: block;
+			}
+			
+			#prev {
+				left: 20px;
+			}
+			
+			#next {
+				right: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="list" style="left: -600px;">
+				<img src="img/5.png" alt="1" />
+				<img src="img/1.png" alt="1" />
+				<img src="img/2.png" alt="2" />
+				<img src="img/3.png" alt="3" />
+				<img src="img/4.png" alt="4" />
+				<img src="img/5.png" alt="5" />
+				<img src="img/1.png" alt="5" />
+			</div>
+			<div id="buttons">
+				<span index="1" class="on"></span>
+				<span index="2"></span>
+				<span index="3"></span>
+				<span index="4"></span>
+				<span index="5"></span>
+			</div>
+			<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+			<a href="javascript:;" id="next" class="arrow">&gt;</a>
+		</div>
+
+	</body>
+
+</html>
+
+<script>
+	window.onload = function() {
+		var list = document.getElementById('list');
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+
+		function animate(offset) {
+			/*获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
+			且style.left获取的是字符串，需要用parseInt()取整转化为数字。*/
+			var newLeft = parseInt(list.style.left) + offset;
+			list.style.left = newLeft + 'px';
+			if(newLeft < -3000) {
+				list.style.left = -600 + 'px';
+			}
+			if(newLeft > -600) {
+				list.style.left = -3000 + 'px';
+			}
+		}
+		/*需要定位到按钮的样式*/
+		var buttons = document.getElementById('buttons').getElementsByTagName('span');
+		var index = 1;
+
+		function buttonShow() {
+			/*console.log(buttons.length);*/
+			/*清除之前的样式*/
+			for(var i = 0; i < buttons.length; i++) {
+				if(buttons[i].className === 'on') {
+					buttons[i].className = '';
+				}
+			}
+			/*数组从0开始，temp从-1开始*/
+			buttons[index - 1].className = 'on';
+		}
+		/*上一步*/
+		prev.onclick = function() {
+				index = index - 1;
+				if(index < 1) {
+					index = 5;
+				}
+				buttonShow();
+				animate(600);
+			}
+			/*下一步*/
+		next.onclick = function() {
+				index = index + 1;
+				if(index > 5) {
+					index = 1;
+				}
+				buttonShow();
+				animate(-600);
+			}
+			/*自动循环播放*/
+		var timer;
+
+		function play() {
+			timer = setInterval(function() {
+				next.onclick();
+			}, 1500)
+		}
+		play();
+		/*鼠标放上（离开）对应轮播暂停（播放）*/
+		var container = document.getElementById('container');
+
+		function stop() {
+			clearInterval(timer);
+		}
+		container.onmouseover = stop;
+		container.onmouseout = play;
+
+		/*小圆点的点击事件*/
+		for(var i = 0; i < buttons.length; i++) {
+			/*使用立即函数*/
+			(function(i) {
+				buttons[i].onclick = function() {
+					console.log(i);
+					/*偏移量的获取：获取鼠标的小圆点的位置，用this把index绑定到对象buttons[i]上*/
+					/*由于index是自定义属性，需要用到getAttribute()这个dom的2级方法，去获取自定义的index属性*/
+					var clickIndex = parseInt(this.getAttribute('index'));
+					var offset = 600 * (index - clickIndex);
+					animate(offset);
+					index = clickIndex;
+					buttonShow();
+				}
+			})(i)
+		}
+	}
+</script>

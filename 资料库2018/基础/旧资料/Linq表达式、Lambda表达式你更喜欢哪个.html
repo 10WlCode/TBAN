@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.cnblogs.com/zhaopei/p/5746414.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/encoder.js.下载"></script><script async="" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/mention.js.下载"></script><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linq表达式、Lambda表达式你更喜欢哪个？ - 农码一生 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Linq表达式、Lambda表达式你更喜欢哪个_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Linq表达式、Lambda表达式你更喜欢哪个_files/bundle-LessIsMoreRight.css">
+<link type="text/css" rel="stylesheet" href="./Linq表达式、Lambda表达式你更喜欢哪个_files/203234.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Linq表达式、Lambda表达式你更喜欢哪个_files/bundle-LessIsMoreRight-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhaopei/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhaopei/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhaopei/wlwmanifest.xml">
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style><style>img[src="https://cc.amazingcounters.com/counter.php?i=3213285&c=9640168"],
+img[src="https://cc.amazingcounters.com/counter.php?i=3213287&c=9640174"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'zhaopei', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<script type="text/javascript">       
+
+</script>
+<!--样式-->
+<link href="./Linq表达式、Lambda表达式你更喜欢哪个_files/mycnblog.css" rel="stylesheet" type="text/css">
+<!--<link href="http://hi.haojima.net/cnblogs/mycnblog.css?v=1216" rel="stylesheet" type="text/css" />-->
+<link href="./Linq表达式、Lambda表达式你更喜欢哪个_files/jquery.ui.core.css" rel="stylesheet" type="text/css">
+<link href="./Linq表达式、Lambda表达式你更喜欢哪个_files/jquery.ui.dialog.css" rel="stylesheet" type="text/css">
+<!--js不能引用jquery，不然评论会有问题-->
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/jquery-ui-1.8.24.min.js.下载"></script>
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/cnblog.begin.js.下载"></script><div class="alertMsg"></div>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhaopei/">因为菜，所以要好好学习、天天向上！  —— 农码一生</a></div>
+<div class="subtitle"><!--只做最感兴趣的事，那么你的钱肯定不会少。-->
+开始，我们以为自己什么都知道。后来发现，其实我们什么都不知道。</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/zhaopei/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%86%9C%E7%A0%81%E4%B8%80%E7%94%9F">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/zhaopei/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/zhaopei/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+<li><a id="" class="menu" href="http://www.cnblogs.com/zhaopei/articles/4213784.html">留言</a></li>                      <li><a id="" class="menu" href="http://www.cnblogs.com/zhaopei/articles/4225735.html">关于</a></li>                      <li><a id="" target="_blank" style="color:red;font-size:12px;text-decoration: none" class="menu" href="http://www.haojima.net/">haojima.net&nbsp;&nbsp;<span class="myurlspan" style="color:#0094ff;">好记吗<span style="font-weight:bold">?</span></span></a></li></ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-96&nbsp;
+文章-139&nbsp;
+评论-2158&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mymainContent" class="maxmainContent">
+	<div class="forFlow"><div class="myadd clearfix">                     <div class="myadd_left"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20150913215146559-472190696.jpg"></div>                     <div class="myadd_right">                           <div><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html">一、我们为什么应该坚持写博客</a></div>                           <div><a href="http://www.cnblogs.com/zhaopei/p/async_two.html">二、C#异步的世界【下】</a></div>                           <div><a href="http://www.cnblogs.com/zhaopei/p/IQueryable-IQueryProvider.html">三、再讲IQueryable<t>，揭开表达式树的神秘面纱</t></a></div>                      </div>                   </div>    <div class="zdycz clearfix"><input class="but_quanping" type="button" value="全屏"><input class="but_mulu" type="button" value="目录"></div>
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhaopei/p/5746414.html">Linq表达式、Lambda表达式你更喜欢哪个？</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody"><div class="addpostBody"><h1>阅读目录</h1>                               <div><div class="sideCatalogBg" id="sideCatalog"><div id="sideCatalog-sidebar"><div class="sideCatalog-sidebar-top"></div><div class="sideCatalog-sidebar-bottom"></div></div><div id="sideCatalog-catalog"><ul class="nav" style="zoom:1"><div style="text-align: right" class="close_directory"><a id="close_directory" style="cursor: default;color:red">关闭</a>&nbsp;&nbsp;</div><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-0-0" title="什么是Linq表达式？什么是Lambda表达式？">什么是Linq表达式？什么是Lambda表达式？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-1-0" title="查询表达式、点标记你更喜欢哪个？">查询表达式、点标记你更喜欢哪个？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-2-0" title="为什么选择点标记 ">为什么选择点标记&nbsp;</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-3-0" title="什么时候使用查询表达式？">什么时候使用查询表达式？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-4-0" title="联接查询（内联、左联、交叉联）">联接查询（内联、左联、交叉联）</a></li></ul></div></div></div>                           </div>
+			<div id="cnblogs_post_body" class="blogpost-body"><h1 id="autoid-0-0">什么是Linq表达式？什么是Lambda表达式？</h1>
+<p>如图：</p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807144642262-1782994143.png" alt=""></p>
+<p>由此可见<span style="color: #ff0000;"><strong>Linq表达式和Lambda表达式并没有什么可比性</strong></span>。</p>
+<p>那与Lambda表达式相关的整条语句称作什么呢？在微软并没有给出官方的命名，在《深入理解C#》中称为<strong>点标记</strong>。</p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807145824012-93648776.png" alt=""></p>
+<h1 id="autoid-1-0">查询表达式、点标记你更喜欢哪个？</h1>
+<p>所以，我们的标题的提问根本就不合适。应该是“<span style="color: #ff0000;"><strong>查询表达式和点标记你更喜欢哪个？</strong></span>”。如：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> <span style="color: #008000;">//</span><span style="color: #008000;">查询表达式</span>
+ <span style="color: #0000ff;">var</span> students1 = <span style="color: #0000ff;">from</span> t <span style="color: #0000ff;">in</span><span style="color: #000000;"> db.Students
+                </span><span style="color: #0000ff;">where</span> t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>
+                <span style="color: #0000ff;">select</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> { t.Id, t.Name, t.Age };
+ </span><span style="color: #008000;">//</span><span style="color: #008000;">点标记</span>
+ <span style="color: #0000ff;">var</span> students2 =<span style="color: #000000;"> db.Students
+                 .Where(t </span>=&gt; t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+                 .Select(t </span>=&gt; <span style="color: #0000ff;">new</span> { t.Id, t.Name, t.Age });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h1 id="autoid-2-0">为什么选择点标记&nbsp;</h1>
+<p>我相信更多的人偏向选择点标记。具体什么原因我也说不清（<span style="color: #888888;">可能是点标记中的Lambda更加优雅吧</span>）。对于我个人来说，也是更加喜欢点标记这种方式。</p>
+<p><strong>1、所有的查询表达式都可以转成对应的点标记。<span style="color: #666699;">反之，不是所有的点标记都可以转成查询表达式。</span></strong></p>
+<p>为什么？因为查询表达式在编译后就直接变成了点标记：（<span style="color: #888888;">以下是上面两个语句对应的编译后的反编译C#代码</span>）</p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807152700418-483760163.png" alt=""></p>
+<p>生成了一模一样的代码。（<span style="color: #888888;">由于是编译后的，好多乱七八糟的代码。我们只看Where和Select关键字就知道，使用的都是点标记。</span>）</p>
+<p><strong>2、点标记确实比查询表达式更加优雅</strong></p>
+<p><strong>例一：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> <span style="color: #008000;">//</span><span style="color: #008000;">查询表达式</span>
+ <span style="color: #0000ff;">var</span> students1 = <span style="color: #0000ff;">from</span> t <span style="color: #0000ff;">in</span><span style="color: #000000;"> db.Students
+                 </span><span style="color: #0000ff;">where</span> t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>
+                 <span style="color: #0000ff;">select</span><span style="color: #000000;"> t;
+ </span><span style="color: #008000;">//</span><span style="color: #008000;">点标记</span>
+ <span style="color: #0000ff;">var</span> students2 =<span style="color: #000000;"> db.Students
+                 .Where(t </span>=&gt; t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong><span style="color: #666699;">我为什么一定要</span></strong>&nbsp;<span class="cnblogs_code"><span style="color: #0000ff;">select</span> t</span>&nbsp;<strong><span style="color: #666699;">啊，这句没卵用的废话就不能省吗？</span><span style="color: #666699;">是的，省了就报错：</span></strong></p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807153939684-1700713492.png" alt=""></p>
+<p><strong>例二：</strong></p>
+<p><span style="color: #666699;"><strong>必须需要括号包裹起来才能取结果集？你还能更丑一点吗？</strong></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">查询表达式</span>
+<span style="color: #0000ff;">var</span> students1 = (<span style="color: #0000ff;">from</span> t <span style="color: #0000ff;">in</span><span style="color: #000000;"> db.Students
+                 </span><span style="color: #0000ff;">where</span> t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>
+                 <span style="color: #0000ff;">select</span><span style="color: #000000;"> t).ToList();
+</span><span style="color: #008000;">//</span><span style="color: #008000;">点标记</span>
+<span style="color: #0000ff;">var</span> students2 =<span style="color: #000000;"> db.Students
+                .Where(t </span>=&gt; t.Name == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+                .ToList();       </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>例三：<span style="color: #808080;">（<span style="color: #666699;">为什么说</span>："不是所有的点标记都可以转成查询表达式"【此例只适用于IEnumerator】）</span></strong></p>
+<p><strong><span style="color: #666699;">此条点标记你能转成查询表达式吗？</span></strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> list = <span style="color: #0000ff;">new</span> List&lt;<span style="color: #0000ff;">string</span>&gt;() { <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span><span style="color: #000000;"> };
+
+</span><span style="color: #0000ff;">var</span> students2 =<span style="color: #000000;"> list
+                .Where((item, index) </span>=&gt; item == <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span> &amp;&amp; index % <span style="color: #800080;">2</span> == <span style="color: #800080;">0</span><span style="color: #000000;">)
+                .Select((item, index) </span>=&gt; <span style="color: #0000ff;">new</span><span style="color: #000000;"> { item, index })
+                .ToList();</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong><span style="color: #666699;">查询表达式你能Reverse吗？</span></strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> list = <span style="color: #0000ff;">new</span> List&lt;<span style="color: #0000ff;">string</span>&gt;() { <span style="color: #800000;">"</span><span style="color: #800000;">张三1</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三2</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三3</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三0</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四9</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三3</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三2</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span><span style="color: #000000;"> };
+
+</span><span style="color: #0000ff;">var</span> students2 =<span style="color: #000000;"> list
+             .Where((item, index) </span>=&gt; item.Contains(<span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+             .Select((item, index) </span>=&gt; <span style="color: #0000ff;">new</span><span style="color: #000000;"> { item, index })
+             .Reverse()</span><span style="color: #008000;">//</span><span style="color: #008000;">反序</span>
+             .ToList();</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="cnblogs_code">
+<pre>ListA.Distinct().ToList();<span style="color: #008000;">//</span><span style="color: #008000;">去重</span>
+ListA.Except(ListB).ToList();<span style="color: #008000;">//</span><span style="color: #008000;">差集</span>
+ListA.Union(ListB).ToList();  <span style="color: #008000;">//</span><span style="color: #008000;">并集</span>
+ListA.Intersect(ListB).ToList();<span style="color: #008000;">//</span><span style="color: #008000;">交集</span></pre>
+</div>
+<p>&nbsp;</p>
+<h1 id="autoid-3-0">什么时候使用查询表达式？</h1>
+<p>通过上面的对比，好像查询表达式一文不值了。no，不是这样的。</p>
+<p>比如下面几种情况我们就可以选择使用查询表达式：</p>
+<p><strong>例一：</strong>（<strong><span style="color: #808080;">本例适用于Linq to Object 和 没有建主外键的EF查询</span></strong>）</p>
+<p><span style="color: #666699;"><strong>点标记中的Join需要传四个参数表达式，是不是有点晕了。。。</strong></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> list1 = <span style="color: #0000ff;">new</span> Dictionary&lt;<span style="color: #0000ff;">string</span>, <span style="color: #0000ff;">string</span>&gt; { { <span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">2</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">3</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">4</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span><span style="color: #000000;"> } };
+</span><span style="color: #0000ff;">var</span> list2 = <span style="color: #0000ff;">new</span> Dictionary&lt;<span style="color: #0000ff;">string</span>, <span style="color: #0000ff;">string</span>&gt; { { <span style="color: #800000;">"</span><span style="color: #800000;">1</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">2</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">3</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">李四</span><span style="color: #800000;">"</span> }, { <span style="color: #800000;">"</span><span style="color: #800000;">4</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">张三</span><span style="color: #800000;">"</span><span style="color: #000000;"> } };
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">查询表达式</span>
+<span style="color: #0000ff;">var</span> obj1 = <span style="color: #0000ff;">from</span> l1 <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1
+           join l2 </span><span style="color: #0000ff;">in</span><span style="color: #000000;"> list2
+           on l1.Key equals l2.Key
+           </span><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> { l1, l2 };
+</span><span style="color: #008000;">//</span><span style="color: #008000;">点标记</span>
+<span style="color: #0000ff;">var</span> obj = list1.Join(list2, l1 =&gt; l1.Key, l2 =&gt; l2.Key, (l1, l2) =&gt; <span style="color: #0000ff;">new</span> { l1, l2 });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>例二：</strong></p>
+<p><span style="color: #666699;"><strong>点标记需要区分OrderBy、ThenBy有没有觉得麻烦</strong></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">查询表达式</span>
+<span style="color: #0000ff;">var</span> obj1 = <span style="color: #0000ff;">from</span> l1 <span style="color: #0000ff;">in</span><span style="color: #000000;"> list1
+           join l2 </span><span style="color: #0000ff;">in</span><span style="color: #000000;"> list2
+           on l1.Key equals l2.Key
+           </span><span style="color: #0000ff;">orderby</span><span style="color: #000000;"> l1.Key, l2.Key descending
+           </span><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> { l1, l2 };
+</span><span style="color: #008000;">//</span><span style="color: #008000;">点标记</span>
+<span style="color: #0000ff;">var</span> obj = list1.Join(list2, l1 =&gt; l1.Key, l2 =&gt; l2.Key, (l1, l2) =&gt; <span style="color: #0000ff;">new</span><span style="color: #000000;"> { l1, l2 })
+    .OrderBy(li </span>=&gt;<span style="color: #000000;"> li.l1.Key)
+    .ThenByDescending(li </span>=&gt;<span style="color: #000000;"> li.l2.Key)
+    .Select(t </span>=&gt; <span style="color: #0000ff;">new</span> { t.l1, t.l2 });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #666699;"><strong>总觉得查询表达式更多的只是为了照顾那些写惯了sql的程序员。</strong></span></p>
+<h1 id="autoid-4-0">联接查询<span style="color: #888888;">（内联、左联、交叉联）</span></h1>
+<p>关于联接查询使用查询表达式会更合适一些这个上面已经说了。</p>
+<p>接下来我们写内联、左联、交叉联的查询表达式和对应的点标记代码。<span style="color: #808080;"><strong>（目的：可能有些人不会，同时在这里也给自己做个备忘）</strong></span></p>
+<p><strong>内联：</strong></p>
+<p><strong><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807164646700-1725251014.png" alt=""></strong></p>
+<p><strong style="line-height: 1.5;">左联：</strong></p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807163844325-2105654505.png" alt=""></p>
+<p><strong>交叉联：</strong></p>
+<p><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/208266-20160807164513700-1664539072.png" alt=""></p>
+<p>其实关于联接查询，如果EF建好了主外键我还是觉得点标记用起来更爽爽的。</p>
+<p>&nbsp;</p>
+<p><strong>结束：</strong></p>
+<p><strong><span style="color: #666699;">本文并不是要改变你的习惯，也不是否定你的观点。仅仅只是表达个人对点标记和查询表达式的些许理解。</span></strong></p>
+<p>关于是使用查询表达式还是点标记，可能起着更大决定性的作用的是团队共同的习惯和规范。</p>
+<p>然后还想说说，只要我们对比什么，很可能就会有人跳出了，什么不要比，用好了都一样，什么什么才是最重要的，什么什么的。。。</p>
+<p>就像很多人会反感java和C#的对比，其实我个人觉得对比下底层实现、对比下语法简易也不是不可以的，只要我们可以从中学到知识（<span style="color: #888888;">个人也是不喜欢对比 谁谁谁学什么工资多少多少</span>）。</p>
+<p>昨天的自己对比今天的自己，今天的自己对比明天的自己。只要可以进步为什么不要对比呢？</p>
+<p>&nbsp;</p>
+<p>本文以同步至《<a href="http://www.cnblogs.com/zhaopei/p/Indexes.html#autoid-0-0" target="_blank">C#基础知识巩固系列</a>》</p></div><div id="MySignature" style="display: block;"><div id="div_autograph">
+<ul>
+<li>学习本是一个不断抄袭、模仿、练习、创新的过程。</li>
+<li>虽然，园中已有本人无法超越的同主题博文，为什么还是要写。</li>
+<li>对于自己，博文只是总结。在总结的过程发现问题，解决问题。</li>
+<li>对于他人，在此过程如果还能附带帮助他人，那就再好不过了。</li>
+<li><strong>由于博主能力有限，文中可能存在描述不正确，欢迎指正、补充！</strong></li>
+<li><strong>感谢您的阅读。如果文章对您有用，那么请轻轻点个赞，以资鼓励。</strong></li>
+</ul>
+<div></div></div></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhaopei/category/861059.html" target="_blank">学习区1.6【Entity Framework】</a>,<a href="http://www.cnblogs.com/zhaopei/category/753084.html" target="_blank">学习区1.5【.Net、C#】</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/zhaopei/tag/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">lambda表达式</a>, <a href="http://www.cnblogs.com/zhaopei/tag/%5B%E5%B7%A9%E5%9B%BAC%23%5D/">[巩固C#]</a>, <a href="http://www.cnblogs.com/zhaopei/tag/Linq%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Linq表达式</a>, <a href="http://www.cnblogs.com/zhaopei/tag/%E6%9F%A5%E8%AF%A2%E8%A1%A8%E8%BE%BE%E5%BC%8F/">查询表达式</a>, <a href="http://www.cnblogs.com/zhaopei/tag/%E7%82%B9%E6%A0%87%E8%AE%B0/">点标记</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5746414,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhaopei/" target="_blank"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20151201100731.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhaopei/">农码一生</a><br>
+            <a href="http://home.cnblogs.com/u/zhaopei/followees">关注 - 42</a><br>
+            <a href="http://home.cnblogs.com/u/zhaopei/followers">粉丝 - 2128</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;f7ea6e5b-e3f5-df11-ac81-842b2b196315&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg" style="display: none;">
+    <div class="diggit" onclick="votePost(5746414,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">108</span>
+    </div>
+    <div class="buryit" onclick="votePost(5746414,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">3</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+<div class="">                        <a href="javascript:void(0);" onclick="follow(&#39;f7ea6e5b-e3f5-df11-ac81-842b2b196315&#39;);">关注</a>                         &nbsp;|&nbsp;                        <a href="http://www.cnblogs.com/zhaopei/p/5746414.html#top">顶部</a>                         &nbsp;|&nbsp;                        <a href="javascript:void(0);" onclick=" $(&#39;#tbCommentBody&#39;).focus();">评论</a>                   </div></div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhaopei/p/5721789.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhaopei/p/5721789.html" title="发布于2016-08-01 08:46">你必须知道的EF知识和经验</a><br><a href="http://www.cnblogs.com/zhaopei/p/5769782.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhaopei/p/5769782.html" title="发布于2016-08-15 08:56">先说IEnumerable，我们每天用的foreach你真的懂它吗？</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-08-08 08:53</span> <a href="http://www.cnblogs.com/zhaopei/">农码一生</a> 阅读(<span id="post_view_count">16639</span>) 评论(<span id="post_comment_count">64</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5746414" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/zhaopei/p/5746414.html#" onclick="AddToWz(5746414);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=203234,cb_entryId=5746414,cb_blogApp=currentBlogApp,cb_blogUserGuid='f7ea6e5b-e3f5-df11-ac81-842b2b196315',cb_entryCreatedDate='2016/8/8 8:53:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3488180,&#39;rotGOBWu2LsEDRIPpDcLrVAZZnDW7/vF0HkzqRLUjjD1Mdc02G4AjQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3488180,&#39;rotGOBWu2LsEDRIPpDcLrVAZZnDW7/vF0HkzqRLUjjD1Mdc02G4AjQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3488180" class="layer">#51楼</a><a name="3488180" id="comment_anchor_3488180"></a>  <span class="comment_date">2016-08-12 13:34</span> <a id="a_comment_author_3488180" href="http://www.cnblogs.com/wzxinchen/" target="_blank">馨辰</a> <a href="http://msg.cnblogs.com/send/%E9%A6%A8%E8%BE%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/wzxinchen/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3488180" class="blog_comment_body"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3486855" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3486855);">@</a>
+禁诫<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3486855" title="查看引用原文">引用</a></legend>你的标题应该改为,查询表达式和方法表达式，lamda简单说就是个语法糖而已。                         </fieldset><br>linq确实是糖，但你要说lambda也是糖，那我就在一旁看着吧<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3488180,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3488180,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3489290,&#39;OyfRVmIdq5ZhDEs3i5G25Co1S9glgi8HNPBEdRwXo9j+0rEo5T0/lw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3489290,&#39;OyfRVmIdq5ZhDEs3i5G25Co1S9glgi8HNPBEdRwXo9j+0rEo5T0/lw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489290" class="layer">#52楼</a><a name="3489290" id="comment_anchor_3489290"></a>  <span class="comment_date">2016-08-15 08:20</span> <a id="a_comment_author_3489290" href="http://www.cnblogs.com/gongheng/" target="_blank">龚恒</a> <a href="http://msg.cnblogs.com/send/%E9%BE%9A%E6%81%92" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/gongheng/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20160607111441.png"></a></div><div id="comment_body_3489290" class="blog_comment_body">楼主，图片看不了<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3489290,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3489290,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3489290_avatar" style="display:none;">http://pic.cnblogs.com/face/960791/20160607111441.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3489295,&#39;wKrltCfSgeK4/7qsQoH0JhNNzDI/za2WEkszrDpqu2dFiCZM4Shafw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3489295,&#39;wKrltCfSgeK4/7qsQoH0JhNNzDI/za2WEkszrDpqu2dFiCZM4Shafw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489295" class="layer">#53楼</a><a name="3489295" id="comment_anchor_3489295"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2016-08-15 08:34</span> <a id="a_comment_author_3489295" href="http://www.cnblogs.com/zhaopei/" target="_blank">农码一生</a> <a href="http://msg.cnblogs.com/send/%E5%86%9C%E7%A0%81%E4%B8%80%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/zhaopei/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20151201100731.png"></a></div><div id="comment_body_3489295" class="blog_comment_body"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489290" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3489290);">@</a>
+龚恒<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489290" title="查看引用原文">引用</a></legend>楼主，图片看不了                         </fieldset><br>我这边没有任何问题啊<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3489295,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3489295,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3489295_avatar" style="display:none;">http://pic.cnblogs.com/face/208266/20151201100731.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3489314,&#39;YqYCqMPREBHyeozWyQzF9nLOvbifnvZSC0UdmGvQ4viYeqss4hk+Dw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3489314,&#39;YqYCqMPREBHyeozWyQzF9nLOvbifnvZSC0UdmGvQ4viYeqss4hk+Dw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489314" class="layer">#54楼</a><a name="3489314" id="comment_anchor_3489314"></a>  <span class="comment_date">2016-08-15 09:08</span> <a id="a_comment_author_3489314" href="http://www.cnblogs.com/dandzm/" target="_blank">dandzm</a> <a href="http://msg.cnblogs.com/send/dandzm" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/dandzm/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3489314" class="blog_comment_body">查询表达式的关键字执行顺序是怎样的？<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3489314,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3489314,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3489348,&#39;CBrHmlP8hPFBqy3oOQBGQaEwYaxSYwxAzzGP27Ar7H78cINeYvKzKA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3489348,&#39;CBrHmlP8hPFBqy3oOQBGQaEwYaxSYwxAzzGP27Ar7H78cINeYvKzKA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3489348" class="layer">#55楼</a><a name="3489348" id="comment_anchor_3489348"></a>  <span class="comment_date">2016-08-15 09:49</span> <a id="a_comment_author_3489348" href="http://www.cnblogs.com/FishTank/" target="_blank">笑对当空</a> <a href="http://msg.cnblogs.com/send/%E7%AC%91%E5%AF%B9%E5%BD%93%E7%A9%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/FishTank/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3489348" class="blog_comment_body">貌似我反编译出来不对 是不是4.6.2的问题<br><br><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/377101-20160815094845468-1775408957.png" alt="" border="0" "=""><br><br><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/377101-20160815094859125-153305986.png" alt="" border="0" "=""><span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3489348,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3489348,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3490043,&#39;q4pwsc9XNBjAPP4mwOTS+7u+cgXb5C+UiMprEqqWdfLD7ZCqNZDC0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3490043,&#39;q4pwsc9XNBjAPP4mwOTS+7u+cgXb5C+UiMprEqqWdfLD7ZCqNZDC0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3490043" class="layer">#56楼</a><a name="3490043" id="comment_anchor_3490043"></a>  <span class="comment_date">2016-08-16 09:48</span> <a id="a_comment_author_3490043" href="http://www.cnblogs.com/songcan/" target="_blank">songcan</a> <a href="http://msg.cnblogs.com/send/songcan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/songcan/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3490043" class="blog_comment_body">老实说,个人觉得 linq表达式更好用一些,配上格式化功能,清晰易懂<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3490043,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3490043,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3490123,&#39;ejhto4vlBJq9xKS3lPBEBFtHO6VwLmuAVwDhkj+Cykgr0chLpZbJIw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3490123,&#39;ejhto4vlBJq9xKS3lPBEBFtHO6VwLmuAVwDhkj+Cykgr0chLpZbJIw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3490123" class="layer">#57楼</a><a name="3490123" id="comment_anchor_3490123"></a>  <span class="comment_date">2016-08-16 10:54</span> <a id="a_comment_author_3490123" href="http://www.cnblogs.com/binblog/" target="_blank">小彬</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%BD%AC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/binblog/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20161102171253.png"></a></div><div id="comment_body_3490123" class="blog_comment_body"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3488180" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3488180);">@</a>
+馨辰<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3488180" title="查看引用原文">引用</a></legend>@<br>禁诫<br><fieldset class="comment_quote"><legend>引用</legend>引用你的标题应该改为,查询表达式和方法表达式，lamda简单说就是个语法糖而已。                         </fieldset><br>linq确实是糖，但你要说lambda也是糖，那我就在一旁看着吧                         </fieldset><br>lambda确实是匿名委托的糖<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3490123,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3490123,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3490123_avatar" style="display:none;">http://pic.cnblogs.com/face/75568/20161102171253.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3490412,&#39;9pulAZyhC27NAnRye8NCSRXmRLn0ylGLoYs0+ufXEEdOn9IBCtY03A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3490412,&#39;9pulAZyhC27NAnRye8NCSRXmRLn0ylGLoYs0+ufXEEdOn9IBCtY03A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3490412" class="layer">#58楼</a><a name="3490412" id="comment_anchor_3490412"></a>  <span class="comment_date">2016-08-16 17:22</span> <a id="a_comment_author_3490412" href="http://www.cnblogs.com/netbox/" target="_blank">何来</a> <a href="http://msg.cnblogs.com/send/%E4%BD%95%E6%9D%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/netbox/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3490412" class="blog_comment_body"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3490123" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3490123);">@</a>
+小彬<br>两回事，lambda表达式重点是表达式<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3490412,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3490412,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3490685,&#39;EEkVVyUSlJvQHtfMxYaXAdIvKfCNFUKqLcgx0Sv9MNErjobR3fb6Cw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3490685,&#39;EEkVVyUSlJvQHtfMxYaXAdIvKfCNFUKqLcgx0Sv9MNErjobR3fb6Cw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3490685" class="layer">#59楼</a><a name="3490685" id="comment_anchor_3490685"></a>  <span class="comment_date">2016-08-17 09:27</span> <a id="a_comment_author_3490685" href="http://www.cnblogs.com/paulhe/" target="_blank">paulhe</a> <a href="http://msg.cnblogs.com/send/paulhe" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/paulhe/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20151010135700.png"></a></div><div id="comment_body_3490685" class="blog_comment_body">很喜欢博主这几天写的文章，对自己所学知识有比较深的理解和对比。希望自己也能加强这块。<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3490685,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3490685,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3490685_avatar" style="display:none;">http://pic.cnblogs.com/face/569436/20151010135700.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3499699,&#39;UHo5Ohd2htJCYmmzpb7rinwwbhZ59Vmzun+BQ4ZyFTZiKVrJnHraLA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3499699,&#39;UHo5Ohd2htJCYmmzpb7rinwwbhZ59Vmzun+BQ4ZyFTZiKVrJnHraLA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3499699" class="layer">#60楼</a><a name="3499699" id="comment_anchor_3499699"></a>  <span class="comment_date">2016-08-30 16:50</span> <a id="a_comment_author_3499699" href="http://home.cnblogs.com/u/1017841/" target="_blank">shigella</a> <a href="http://msg.cnblogs.com/send/shigella" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://home.cnblogs.com/u/1017841/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3499699" class="blog_comment_body">看得好爽。。。刷新了一些认识<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3499699,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3499699,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3522704,&#39;20b9SgSiHjdk0QWGrvFFUHYEtw8g/We1iVuPxosoepWbO+l/QGbSGw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3522704,&#39;20b9SgSiHjdk0QWGrvFFUHYEtw8g/We1iVuPxosoepWbO+l/QGbSGw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3522704" class="layer">#61楼</a><a name="3522704" id="comment_anchor_3522704"></a>  <span class="comment_date">2016-09-29 18:48</span> <a id="a_comment_author_3522704" href="http://www.cnblogs.com/xiao99/" target="_blank">xiao99</a> <a href="http://msg.cnblogs.com/send/xiao99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/xiao99/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/u243886.jpg"></a></div><div id="comment_body_3522704" class="blog_comment_body">一直在用，但是两者之间的却别也没有仔细的想过，一般都是有联合的取值就用linq，单数据操作就用Lambda<br>以前碰到取某几列的时候一直以为Lambda只能是Select(t =&gt;  t.Name)，所以被迫使用linq了，还真是没有注意Lambda还有 .Select(t =&gt; new { t.Id, t.Name, t.Age });，多谢你的分享。<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3522704,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3522704,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3522704_avatar" style="display:none;">http://pic.cnblogs.com/face/u243886.jpg?id=04222635</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3527330,&#39;r7RNzBspq8fBbuhCxUPJcixOmwS1e74WKPmNPA1+LSuLokDOZ9aLDg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3527330,&#39;r7RNzBspq8fBbuhCxUPJcixOmwS1e74WKPmNPA1+LSuLokDOZ9aLDg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3527330" class="layer">#62楼</a><a name="3527330" id="comment_anchor_3527330"></a>  <span class="comment_date">2016-10-10 14:44</span> <a id="a_comment_author_3527330" href="http://www.cnblogs.com/jluyun/" target="_blank">Annie_Luyun</a> <a href="http://msg.cnblogs.com/send/Annie_Luyun" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/jluyun/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3527330" class="blog_comment_body">楼主写的文章都形象生动，没那么古板，很喜欢<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3527330,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3527330,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3577792,&#39;r3ZKSC+Hc9R6wvoB2D0DBQlyTiLLCcOZA3ffJ6GwN4gzTuQx2sCOTw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3577792,&#39;r3ZKSC+Hc9R6wvoB2D0DBQlyTiLLCcOZA3ffJ6GwN4gzTuQx2sCOTw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3577792" class="layer">#63楼</a><a name="3577792" id="comment_anchor_3577792"></a>  <span class="comment_date">2016-12-11 14:33</span> <a id="a_comment_author_3577792" href="http://www.cnblogs.com/ywnwa417/" target="_blank">ywnwa417</a> <a href="http://msg.cnblogs.com/send/ywnwa417" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/ywnwa417/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/20151012162826.png"></a></div><div id="comment_body_3577792" class="blog_comment_body">IQueryable 用查询表达式和点标记 区别是很大的 <br>用点标记 需要自己创建表达式树 累死了<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3577792,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3577792,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3577792_avatar" style="display:none;">http://pic.cnblogs.com/face/821562/20151012162826.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3825864,&#39;CZXllH/W6vvKfEIpEGPsIRCuUq2ZFdvPHYuFsvk5XFmWISn6ET1Wkw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3825864,&#39;CZXllH/W6vvKfEIpEGPsIRCuUq2ZFdvPHYuFsvk5XFmWISn6ET1Wkw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3825864" class="layer">#64楼</a><a name="3825864" id="comment_anchor_3825864"></a><span id="comment-maxId" style="display:none;">3825864</span><span id="comment-maxDate" style="display:none;">2017/10/30 14:58:55</span>  <span class="comment_date">2017-10-30 14:58</span> <a id="a_comment_author_3825864" href="http://www.cnblogs.com/oywc/" target="_blank">oywc01</a> <a href="http://msg.cnblogs.com/send/oywc01" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon clearfix">
+				<div class="body_right" style="float: left;"><a target="_blank" href="http://www.cnblogs.com/oywc/"><img src="./Linq表达式、Lambda表达式你更喜欢哪个_files/sample_face.gif"></a></div><div id="comment_body_3825864" class="blog_comment_body">帮助很大！谢谢了<span class="bot"></span>                         <span class="top"></span></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3825864,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3825864,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./Linq表达式、Lambda表达式你更喜欢哪个_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea tbCommentBody_bg"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586042/" target="_blank">微软可折叠手机进行应用适配测试：像书本一样展开</a><br> ·  <a href="https://news.cnblogs.com/n/586041/" target="_blank">央行出手！支付宝微信扫码限额500元：真相原来是这样</a><br> ·  <a href="https://news.cnblogs.com/n/586040/" target="_blank">诺基亚新机入网：搭载YunOS系统 支持移动4G</a><br> ·  <a href="https://news.cnblogs.com/n/586039/" target="_blank">你们昨天刷屏玩得"跳一跳"，其实是微信团队"抄"的</a><br> ·  <a href="https://news.cnblogs.com/n/585994/" target="_blank">探访iRobot：一家非典型机器人公司的27年成长史</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news">
+
+<!--html5画时钟-->
+<div style="text-align: center; color: #0094ff;">
+        <canvas id="canvas" height="160" width="160">
+            您的浏览器不支持html5的canvas
+        </canvas>
+        <div style="height: 10px">
+        </div>
+        <div id="div_clock">
+            <div id="div1">17:10:33</div>
+            <div id="div2">星期五</div>
+        </div>
+</div>
+
+   <div style="color: rgb(215, 129, 129);">
+     <div style="margin-top: 5px;">MyGitHub：<a href="https://github.com/zhaopeiym" target="_blank" style="color: #92AFC3;">github.com/zhaopeiym</a>
+     </div>
+ 
+  <!--<div style="color: rgb(215, 129, 129);">
+     <div style="margin-top: 5px;">个人简历：<a href="http://job.haojima.net/ResumeFiles/zhaopei.html" target="_blank" style="color: #92AFC3;">job.haojima.net</a>
+     </div>-->
+
+     <!--<div style="margin-top: 5px;">博客开源地址：<a href="http://git.oschina.net/zhaopeiym/Hi-Blogs" target="_blank" style="
+    color: #92AFC3;
+">Hi-Blogs(嗨-博客)</a>
+     </div>-->
+
+     <div style="margin-top: 5px;">.NET高级Q群：<a href="https://jq.qq.com/?_wv=1027&amp;k=4CS9dZP" target="_blank" style="
+    color: #92AFC3;
+">491585006</a><a style="margin-left: 3px;" href="http://www.cnblogs.com/zhaopei/p/4920147.html#name1" target="_blank">(入群须知)</a>
+     </div>
+
+     <!--<div style="margin-top: 5px;">.NET高级Q群：<a href="http://jq.qq.com/?_wv=1027&k=gJLHtO" target="_blank" style="color: #92AFC3;">229082941</a><a style="margin-left: 3px;" href='http://www.cnblogs.com/zhaopei/p/4920147.html#name2' target="_blank">(入群须知)</a>
+     </div>-->
+
+     <div style="margin-top: 5px;">前端技术交流：<a href="http://jq.qq.com/?_wv=1027&amp;k=YGac6S" target="_blank" style="color: #92AFC3;">482542123</a><a style="margin-left: 3px;" href="http://www.cnblogs.com/zhaopei/p/4920147.html#name3" target="_blank">(入群须知)</a>
+     </div>
+
+     <div style="margin-top: 10px;">一直不知道大神们为什么愿意花那么多的时间写博客，直到自己尝试并坚持写博客后才发现其中的<a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html" target="_blank" style="color: #92AFC3;">奥秘</a>~~
+     </div>
+
+    <div style="margin-top: 10px;">关于本人的博文阅读<a href="http://www.cnblogs.com/zhaopei/p/Indexes.html" style="color: #92AFC3;">从这里开始</a>~~
+     </div>
+
+     <!--<div style="margin-top: 10px;"><a href="http://www.cnblogs.com/zhaopei/p/4378239.html" target="_blank" style="color: #92AFC3;">求职（卖身协议）</a>
+     </div>-->
+</div>
+
+<!--有事儿您Q我-->
+<!--<div class="div_qq">
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=532542551&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:532542551:13" alt="有事您Q我" title="有事您Q我"/></a>
+</div>--><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/zhaopei/">农码一生</a><br>园龄：<a href="https://home.cnblogs.com/u/zhaopei/" title="入园时间：2010-11-22">7年1个月</a><br>荣誉：<a href="https://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="https://home.cnblogs.com/u/zhaopei/followers/">2128</a><br>关注：<a href="https://home.cnblogs.com/u/zhaopei/followees/">42</a><div id="p_b_follow">已关注 <a href="javascript:void(0);" onclick="unfollow(&#39;f7ea6e5b-e3f5-df11-ac81-842b2b196315&#39;)">-取消</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk clearfix"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+<div class="div_my_zzk clearfix">                    <input class="text_bing_Search" type="text" value="" onkeyup="keyup_bing_Search();" oninput="up_bing_Search();">                    <a href="http://www.cnblogs.com/zhaopei/p/5746414.html#" class="a_bing_Search" target="_blank"><span class="span_bing_Search">必应搜索</span></a>                </div>                <div class="div_select_tag div_my_zzk clearfix">                    <input class="text_select_tag" type="text" value="" list="get_list_tag_text" onkeyup="open_Search();" oninput="set_tag_a_value();">                    <a href="http://www.cnblogs.com/zhaopei/p/5746414.html#" class="a_open_tag" id="a_open_tag" target="_blank">打开标签</a>                    <datalist id="get_list_tag_text"><option value="Entlib5.0">Entlib5.0</option><option value="html">html</option><option value="表单">表单</option><option value="IdentityServer4">IdentityServer4</option><option value="js">js</option><option value="IEnumerable">IEnumerable</option><option value="触发器">触发器</option><option value="IE7">IE7</option><option value="博客">博客</option><option value="锁">锁</option><option value="待看">待看</option><option value="css3">css3</option><option value="Hi-Blogs">Hi-Blogs</option><option value="匿名方法">匿名方法</option><option value="单点登录">单点登录</option><option value="form">form</option><option value="[巩固C#]">[巩固C#]</option><option value="异步">异步</option><option value="单例模式">单例模式</option><option value="Chrome插件">Chrome插件</option><option value="个人博客">个人博客</option><option value="网址">网址</option><option value="博客转发工具">博客转发工具</option><option value="code first">code first</option><option value="一步步学习javascript">一步步学习javascript</option><option value="委托">委托</option><option value="策略模式">策略模式</option><option value="Cookies">Cookies</option><option value="一步步学习javascript基础篇">一步步学习javascript基础篇</option><option value="委托和事件">委托和事件</option><option value="插件">插件</option><option value="DbContext">DbContext</option><option value="plsql">plsql</option><option value="线程安全">线程安全</option><option value="查询表达式">查询表达式</option><option value="DI">DI</option><option value="sql">sql</option><option value="oracle date">oracle date</option><option value="响应式">响应式</option><option value="dll汇入exe">dll汇入exe</option><option value="EF">EF</option><option value="反射">反射</option><option value="小玩意">小玩意</option><option value="download">download</option><option value=".NET博客">.NET博客</option><option value="感悟">感悟</option><option value="协变">协变</option><option value="EAP">EAP</option><option value="date">date</option><option value="单元测试">单元测试</option><option value="修饰符">修饰符</option><option value=".net常见问题记录">.net常见问题记录</option><option value="css">css</option><option value="嗨-博客">嗨-博客</option><option value="延迟加载">延迟加载</option><option value="APM">APM</option><option value="问题记录">问题记录</option><option value="招聘">招聘</option><option value="文件">文件</option><option value="Authorize">Authorize</option><option value="接私单">接私单</option><option value="生活">生活</option><option value="维权">维权</option><option value="ajax后退">ajax后退</option><option value="分词">分词</option><option value="重定向">重定向</option><option value="阅读量统计">阅读量统计</option><option value="MVC资料">MVC资料</option><option value="webconfig">webconfig</option><option value="重构">重构</option><option value="运动">运动</option><option value="ngnix">ngnix</option><option value="自定义类型">自定义类型</option><option value="状态机">状态机</option><option value="诈骗">诈骗</option><option value="Nullable">Nullable</option><option value="博客小工具">博客小工具</option><option value="自定义类注释">自定义类注释</option><option value="占用">占用</option><option value="Queue">Queue</option><option value="程序人生">程序人生</option><option value="自动补全">自动补全</option><option value="无限分级">无限分级</option><option value="Q群">Q群</option><option value="跨域">跨域</option><option value="自动注入">自动注入</option><option value="依赖注入">依赖注入</option><option value="Session为null">Session为null</option><option value="设计模式">设计模式</option><option value="缓存">缓存</option><option value="爬虫">爬虫</option><option value="SqlServer">SqlServer</option><option value="搜索">搜索</option><option value="混淆">混淆</option><option value="前端">前端</option><option value="SSO">SSO</option><option value="err">err</option><option value="加壳">加壳</option><option value="权限管理">权限管理</option><option value="TAP">TAP</option><option value=".NET 博客">.NET 博客</option><option value="加密">加密</option><option value="日志记录">日志记录</option><option value="TDD">TDD</option><option value="ajax请求事件">ajax请求事件</option><option value="简历">简历</option><option value="上传">上传</option><option value="tree">tree</option><option value="git">git</option><option value="健康">健康</option><option value="扩展方法">扩展方法</option><option value="upload">upload</option><option value="lambda表达式">lambda表达式</option><option value="开源">开源</option><option value="励志">励志</option><option value="webBrowser">webBrowser</option><option value="Lucenne">Lucenne</option><option value="可空类型">可空类型</option><option value="逆变">逆变</option><option value="js跨域">js跨域</option><option value="location.href">location.href</option><option value="根目录">根目录</option><option value="特性">特性</option><option value="js事件监听">js事件监听</option><option value="Linq表达式">Linq表达式</option><option value="滚动条">滚动条</option><option value="图片上传">图片上传</option><option value="js坐标">js坐标</option><option value="linux">linux</option><option value="递归">递归</option><option value="网络诈骗">网络诈骗</option><option value="Jumony">Jumony</option><option value="js插件">js插件</option><option value="点标记">点标记</option><option value="索引">索引</option><option value="H5">H5</option><option value="MVC学习">MVC学习</option><option value="动态Lambda条件">动态Lambda条件</option><option value="深拷贝">深拷贝</option><option value="jsonp">jsonp</option><option value=".net core">.net core</option><option value="分片上传">分片上传</option><option value="IIS Express">IIS Express</option><option value="location">location</option><option value="centos">centos</option><option value="oracle时间差">oracle时间差</option><option value="IOC">IOC</option><option value="Lambda拼接">Lambda拼接</option><option value="error">error</option><option value="博客分类">博客分类</option><option value="IQueryable">IQueryable</option><option value="Lambda数据筛选">Lambda数据筛选</option><option value="Entity Framework">Entity Framework</option><option value="websocket">websocket</option><option value="IQueryProvider">IQueryProvider</option><option value="long">long</option><option value="EntityFramework">EntityFramework</option><option value="where T:约束">where T:约束</option><option value="HtmlAgilityPack">HtmlAgilityPack</option><option value="mvc">mvc</option><option value=""></option></datalist>                    <input type="hidden" class="hidden_tag" value="">Entlib5.0&amp;html&amp;表单&amp;IdentityServer4&amp;js&amp;IEnumerable&amp;触发器&amp;IE7&amp;博客&amp;锁&amp;待看&amp;css3&amp;Hi-Blogs&amp;匿名方法&amp;单点登录&amp;form&amp;[巩固C#]&amp;异步&amp;单例模式&amp;Chrome插件&amp;个人博客&amp;网址&amp;博客转发工具&amp;code first&amp;一步步学习javascript&amp;委托&amp;策略模式&amp;Cookies&amp;一步步学习javascript基础篇&amp;委托和事件&amp;插件&amp;DbContext&amp;plsql&amp;线程安全&amp;查询表达式&amp;DI&amp;sql&amp;oracle date&amp;响应式&amp;dll汇入exe&amp;EF&amp;反射&amp;小玩意&amp;download&amp;.NET博客&amp;感悟&amp;协变&amp;EAP&amp;date&amp;单元测试&amp;修饰符&amp;.net常见问题记录&amp;css&amp;嗨-博客&amp;延迟加载&amp;APM&amp;问题记录&amp;招聘&amp;文件&amp;Authorize&amp;接私单&amp;生活&amp;维权&amp;ajax后退&amp;分词&amp;重定向&amp;阅读量统计&amp;MVC资料&amp;webconfig&amp;重构&amp;运动&amp;ngnix&amp;自定义类型&amp;状态机&amp;诈骗&amp;Nullable&amp;博客小工具&amp;自定义类注释&amp;占用&amp;Queue&amp;程序人生&amp;自动补全&amp;无限分级&amp;Q群&amp;跨域&amp;自动注入&amp;依赖注入&amp;Session为null&amp;设计模式&amp;缓存&amp;爬虫&amp;SqlServer&amp;搜索&amp;混淆&amp;前端&amp;SSO&amp;err&amp;加壳&amp;权限管理&amp;TAP&amp;.NET 博客&amp;加密&amp;日志记录&amp;TDD&amp;ajax请求事件&amp;简历&amp;上传&amp;tree&amp;git&amp;健康&amp;扩展方法&amp;upload&amp;lambda表达式&amp;开源&amp;励志&amp;webBrowser&amp;Lucenne&amp;可空类型&amp;逆变&amp;js跨域&amp;location.href&amp;根目录&amp;特性&amp;js事件监听&amp;Linq表达式&amp;滚动条&amp;图片上传&amp;js坐标&amp;linux&amp;递归&amp;网络诈骗&amp;Jumony&amp;js插件&amp;点标记&amp;索引&amp;H5&amp;MVC学习&amp;动态Lambda条件&amp;深拷贝&amp;jsonp&amp;.net core&amp;分片上传&amp;IIS Express&amp;location&amp;centos&amp;oracle时间差&amp;IOC&amp;Lambda拼接&amp;error&amp;博客分类&amp;IQueryable&amp;Lambda数据筛选&amp;Entity Framework&amp;websocket&amp;IQueryProvider&amp;long&amp;EntityFramework&amp;where T:约束&amp;HtmlAgilityPack&amp;mvc&amp;</input>                </div></div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhaopei/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/zhaopei/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/zhaopei/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/zhaopei/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/zhaopei/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a href="http://www.cnblogs.com/zhaopei/p/4228163.html" title="关注博客分类">快速链接</a></li></ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+<li><a href="http://www.cnblogs.com/zhaopei/p/4228163.html" title="关注博客分类">快速链接</a></li></ul>
+</div>
+</div></div><div class="newListSeries"><h3 class="newListSeriesTitle">推荐</h3><ul><li><a id="CatList_LinkList_0_Link_0" target="_blank" href="http://mindhacks.cn/">刘未鹏-思维改变生活</a></li><li><a id="CatList_LinkList_0_Link_0" target="_blank" href="http://www.zhangxinxu.com/wordpress/">张鑫旭的个人博客</a></li></ul></div><div class="newListSeries"><h3 class="newListSeriesTitle">系列文章</h3><ul><li><a id="CatList_LinkList_0_Link_0" target="_blank" href="http://www.haojima.net/zhaopei/GetTagBlogs/236/1.html">备战面试之（系列）</a></li><li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/tag/Hi-Blogs/">一步步开发自己的博客.NET版（系列）</a></li><li><a id="CatList_LinkList_0_Link_0" target="_blank" href="http://www.haojima.net/zhaopei/510.html">一步步学习javascript基础篇（系列）</a></li><li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/tag/%E6%8B%9B%E8%81%98/">各大招聘网站信息实时查询浏览（两篇）</a></li><li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/p/tuhua_and_imgUpload.html">免费图片存储（一篇）</a></li><li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/tag/%E5%8D%9A%E5%AE%A2%E5%B0%8F%E5%B7%A5%E5%85%B7/">博客小工具（三篇）</a></li><li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/tag/sql/">oracle学习（七篇）</a></li></ul></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhaopei/p/SSO.html">1. 浅析C#中单点登录的原理和使用</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/dispose-on-dbcontext.html">2. 关于DbContext能不能单次请求内唯一？DbContex需不需要主动释放？欢迎各路大侠来“参战”！</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/auto-injection.html">3. 《HiBlogs》重写笔记[1]--从DbContext到依赖注入再到自动注入</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/7397402.html">4. Linux学习(1)-常用快捷键、文件管理和查询</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/netcore2.html">5. ASP.NET Core 快速入门（实战篇）</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/netcore.html">6. ASP.NET Core 快速入门（环境篇）</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/authorize-1.html">7. 权限管理学习 一、ASP.NET Forms身份认证</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/download.html">8. 文件下载之断点续传（客户端与服务端的实现）</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/upload.html">9. 文件各种上传，离不开的表单</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/6922522.html">10. 面对疑似网络诈骗，应该怎样维权？反信用钱包！</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhaopei/category/753080.html">学习区1.2【Asp.Net Mvc】(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhaopei/category/639440.html">学习区1.4【WinForm】(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zhaopei/category/753084.html">学习区1.5【.Net、C#】(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/zhaopei/category/861059.html">学习区1.6【Entity Framework】(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/zhaopei/category/639050.html">学习区2.1【JavaScript】(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/zhaopei/category/753082.html">学习区2.2【Css】(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/zhaopei/category/963604.html">学习区2.3【设计模式】(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/zhaopei/category/639032.html">学习区3.1【Sql】(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/zhaopei/category/639441.html">学习区4.1【杂记】(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/zhaopei/category/648153.html">学习区5.1【Error、笔记】(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/zhaopei/category/671234.html">学习区6.1【小玩意、小作品】(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/zhaopei/category/672086.html">学习区7.1【生活、人生、其他】(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/zhaopei/category/1050095.html">学习区8.1【.NET Core】(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/zhaopei/category/1050094.html">学习区8.2【Linux】(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/zhaopei/category/1050096.html">学习区8.3【nginx】(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/zhaopei/archive/2017/10.html">2017年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/zhaopei/archive/2017/09.html">2017年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/zhaopei/archive/2017/08.html">2017年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/zhaopei/archive/2017/07.html">2017年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/zhaopei/archive/2017/05.html">2017年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/zhaopei/archive/2017/03.html">2017年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/zhaopei/archive/2017/01.html">2017年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/zhaopei/archive/2016/08.html">2016年8月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/zhaopei/archive/2016/07.html">2016年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/zhaopei/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/zhaopei/archive/2016/02.html">2016年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/zhaopei/archive/2016/01.html">2016年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/zhaopei/archive/2015/12.html">2015年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/zhaopei/archive/2015/11.html">2015年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/zhaopei/archive/2015/10.html">2015年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/zhaopei/archive/2015/09.html">2015年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/zhaopei/archive/2015/08.html">2015年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/zhaopei/archive/2015/05.html">2015年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/zhaopei/archive/2015/04.html">2015年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/zhaopei/archive/2015/03.html">2015年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/zhaopei/archive/2015/02.html">2015年2月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/zhaopei/archive/2015/01.html">2015年1月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/zhaopei/archive/2014/12.html">2014年12月 (11)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleCategory">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/zhaopei/category/644083.html">转发区1【SQL】(15)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/zhaopei/category/644084.html">转发区2【ASP.NET】(41)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/zhaopei/category/644085.html">转发区3【javascript】(27)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/zhaopei/category/644086.html">转发区4【乱七八糟】(24)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/zhaopei/category/644211.html">转发区5【Winfrom】(11)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/zhaopei/category/644265.html">转发区6【网络】(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/zhaopei/category/644755.html">转发区7【足迹】(10)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/zhaopei/category/667299.html">转发区8【励志、学习】(6)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/reflection.html#3870482">1. Re:二、什么是反射、反射可以做些什么</a></li>
+        <li class="recent_comment_body">博主的这个确实是通俗易懂，适合入门。自己平常因为在工作中很少用到这些，所以一直对这个概念不是很好的理解。然后最近换工作才发现自己虽然做好本分工作，但是懂得太少太少了。</li>
+        <li class="recent_comment_author">--张君度</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/async_one.html#3867266">2. Re:C#异步的世界【上】</a></li>
+        <li class="recent_comment_body">总结的很好。有复习了原先的异步原理</li>
+        <li class="recent_comment_author">--jsyzzcx</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/5721789.html#3860434">3. Re:你必须知道的EF知识和经验</a></li>
+        <li class="recent_comment_body">写的好</li>
+        <li class="recent_comment_author">--~雨落忧伤~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html#3853043">4. Re:我们为什么应该坚持写博客</a></li>
+        <li class="recent_comment_body">老哥稳。说得好</li>
+        <li class="recent_comment_author">--Angelye</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3851786">5. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">很不错！！！！！！！！！！！！！！！！！！！！！！</li>
+        <li class="recent_comment_author">--陆文门虎</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3841885">6. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">楼主，5002、5003在不同域名下单点登出有解决吗？</li>
+        <li class="recent_comment_author">--ddrsql</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/dispose-on-dbcontext.html#3837243">7. Re:关于DbContext能不能单次请求内唯一？DbContex需不需要主动释放？欢迎各路大侠来“参战”！</a></li>
+        <li class="recent_comment_body">@农码一生老哥 我要告诉你一件事 关于这个问题 今天晚上我又测试了一次 因为我 总感觉是我的代码的问题，没想到真的是这是我之前写的两个委托参数 是用这种类型 导致生成的sql 到数据库是查询的全部........</li>
+        <li class="recent_comment_author">--Flaming丶淡蓝</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/4228163.html#3836941">8. Re:关注博客分类</a></li>
+        <li class="recent_comment_body">thank U share</li>
+        <li class="recent_comment_author">--Smile's</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/5769782.html#3836175">9. Re:先说IEnumerable，我们每天用的foreach你真的懂它吗？</a></li>
+        <li class="recent_comment_body">@BornReady实践后发现概率的确是一致的...尝试答一下开始我也沿着这个思路想,后来发现有问题.这样算出来的是第n个值被取到过的概率,而不是最后返回n的概率.(如果按这个思路,那其实第一个值的概......</li>
+        <li class="recent_comment_author">--ZhangShenchen</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html#3834335">10. Re:我们为什么应该坚持写博客</a></li>
+        <li class="recent_comment_body">666</li>
+        <li class="recent_comment_author">--一切向钱看</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/5721789.html#3832784">11. Re:你必须知道的EF知识和经验</a></li>
+        <li class="recent_comment_body">mark，改天过来看，虽然不用EF好久</li>
+        <li class="recent_comment_author">--风的传说</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3832753">12. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">平时用的JWT轻量级的框架也挺不错</li>
+        <li class="recent_comment_author">--风的传说</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3828740">13. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">栗子过于简单，不完整，文章排版，有些杂乱，，建议。。</li>
+        <li class="recent_comment_author">--咕-咚</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3828499">14. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">服务器端 保存一下  每个客户 最新的  登陆ID号 每次 访问比对一下 是否是最新的那个 不就完了。</li>
+        <li class="recent_comment_author">--SoarNo1</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html#3827836">15. Re:我们为什么应该坚持写博客</a></li>
+        <li class="recent_comment_body">博主书说的很好~好记性不如烂笔头，如果哪天忘记了，打开自己的笔记一看，感觉又都回来啦~哈哈</li>
+        <li class="recent_comment_author">--尹正杰</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3827671">16. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">mk</li>
+        <li class="recent_comment_author">--T林飘叶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826651">17. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@balahoho我就是这样做的，cookie跨域共享最简单，也比session厉害多了，因为他还可以跨浏览器单点登录，可以跨设备单点登录，在微信公众号里也能和PC的和wap的一起单点登录。sessi......</li>
+        <li class="recent_comment_author">--hambert</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826615">18. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">清晰易懂 好</li>
+        <li class="recent_comment_author">--AllenRobin</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826517">19. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">也可以用API网关代理来实现单点登录的效果，这样系统只有一个登录入口，所有的业务处理都通过代理请求后端其它服务器，在代理的时候进行授权控制，详细请参考PWMIS.OAuth2.0这个开源项目：...</li>
+        <li class="recent_comment_author">--深蓝医生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826476">20. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@Qlin引用lz 问一下，感觉为每个client的配置不一样的 tokenId 好点？ client和 tokenid 映射表，其他站点拿到不匹配的tokenid无效化 ......</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826469">21. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@Darren01引用楼主这个耦合度有点高啊，SSO认证服务器不应该和下面的客户端存在这么强的耦合度，我客户端换一个端口或者要新加入一个系统，服务器都要换一遍！ ......</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826468">22. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">lz 问一下，感觉为每个client的配置不一样的 tokenId 好点？ client和 tokenid 映射表，其他站点拿到不匹配的tokenid无效化</li>
+        <li class="recent_comment_author">--Qlin</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826465">23. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">建议楼主将标记已登录的这一步可以通过在地址栏url传递，这样不管是何种授权，都会根据这个url跳向不同的子系统。</li>
+        <li class="recent_comment_author">--Darren01</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826461">24. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">楼主这个耦合度有点高啊，SSO认证服务器不应该和下面的客户端存在这么强的耦合度，我客户端换一个端口或者要新加入一个系统，服务器都要换一遍！</li>
+        <li class="recent_comment_author">--Darren01</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826327">25. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">我们目前使用cookie跨域共享就搞完了，在主系统中做的身份认证，前提是都在同一个顶级域名下</li>
+        <li class="recent_comment_author">--balahoho</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826301">26. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">补充一下，如果不想看见跳转可以考虑使用iframe内跳转；不过更建议进一步可以让ajax跨域完成（这样用户感知不到）。</li>
+        <li class="recent_comment_author">--搵中求胜</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826163">27. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@WhyShang引用虽然是浅析，但还是要喷一下：你这篇文章【推荐】量完全是你之前的人气积累起来的。但这篇文章太过于简单。单点登录的原理，说出来大家都懂，无非就是”一处登录，处处通行“ 的意思。楼主可......</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826162">28. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@Tobyee引用建议把登出也解析一下，对于sso来说，其中一个站点退出，所有站点都会退出。 关于退出感觉用文字描述起来比较麻烦，我就没写。代码里面有实......</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826158">29. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@庸斋杂记引用LZ你好，请教下：这个动图怎么做的？使用什么软件？ GifCam 5.0...</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826157">30. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">首先感谢各位老铁们的支持。</li>
+        <li class="recent_comment_author">--农码一生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826099">31. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">虽然是浅析，但还是要喷一下：你这篇文章【推荐】量完全是你之前的人气积累起来的。但这篇文章太过于简单。单点登录的原理，说出来大家都懂，无非就是”一处登录，处处通行“ 的意思。楼主可以从以下几方面重点来阐......</li>
+        <li class="recent_comment_author">--WhyShang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826066">32. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">mark  先收藏  慢慢看. lz辛苦了</li>
+        <li class="recent_comment_author">--feier1992</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826005">33. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">mark lz辛苦了</li>
+        <li class="recent_comment_author">--其实我不笨</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3826003">34. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">问下，这个和 passport 是一个东西吗？例如<a href="http://www.cnblogs.com/zhaopei/p/5746414.html" target="_blank"></a>  <a href="http://www.cnblogs.com/zhaopei/p/5746414.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--wdwwtzy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3825994">35. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@_York引用微软的封装 总感觉 封装过度了 你是说IdentityServer吗？它是第三方开发的，不是微软的...</li>
+        <li class="recent_comment_author">--wch_99</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3825960">36. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">mark</li>
+        <li class="recent_comment_author">--灵雨飘零</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3825942">37. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">@_York不想用它的封装就自己撸轮子自己组装也没问题啊, 比如MVC, 完全可以不用它提供的那一套, 自己搞一套定制的....</li>
+        <li class="recent_comment_author">--CV80</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#3825864">38. Re:Linq表达式、Lambda表达式你更喜欢哪个？</a></li>
+        <li class="recent_comment_body">帮助很大！谢谢了</li>
+        <li class="recent_comment_author">--oywc01</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3825761">39. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">微软的封装 总感觉 封装过度了</li>
+        <li class="recent_comment_author">--_York</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhaopei/p/SSO.html#3825729">40. Re:浅析C#中单点登录的原理和使用</a></li>
+        <li class="recent_comment_body">mark</li>
+        <li class="recent_comment_author">--lisansi</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhaopei/p/5721789.html">1. 你必须知道的EF知识和经验(41620)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html">2. Linq表达式、Lambda表达式你更喜欢哪个？(16639)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4368417.html">3. 各大招聘网站信息实时查询浏览(15525)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html">4. 我们为什么应该坚持写博客(14821)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5769782.html">5. 先说IEnumerable，我们每天用的foreach你真的懂它吗？(14787)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/variability.html">6. 那些年搞不懂的术语、概念：协变、逆变、不变体(12341)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/reflection.html">7. 二、什么是反射、反射可以做些什么(11723)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/async_one.html">8. C#异步的世界【上】(11079)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4737958.html">9. 一步步开发自己的博客 .NET版（1、基本显示）(10175)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4823359.html">10. 一步步开发自己的博客  .NET版 剧终篇（6、响应式布局 和 自定义样式）(9974)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/upload.html">11. 文件各种上传，离不开的表单(9887)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/IQueryable-IQueryProvider.html">12. 再讲IQueryable&lt;T&gt;，揭开表达式树的神秘面纱(8472)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/UnitTesting.html">13. C#单元测试，带你快速入门(7946)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5767631.html">14. 你知道C#中的Lambda表达式的演化过程吗？(7628)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/async_two.html">15. C#异步的世界【下】(7427)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhaopei/p/5721789.html">1. 你必须知道的EF知识和经验(143)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4368417.html">2. 各大招聘网站信息实时查询浏览(133)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/6922522.html">3. 面对疑似网络诈骗，应该怎样维权？反信用钱包！(107)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html">4. 我们为什么应该坚持写博客(102)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/dispose-on-dbcontext.html">5. 关于DbContext能不能单次请求内唯一？DbContex需不需要主动释放？欢迎各路大侠来“参战”！(73)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4823359.html">6. 一步步开发自己的博客  .NET版 剧终篇（6、响应式布局 和 自定义样式）(70)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4836739.html">7. 学习经历感想(69)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/job_hunting.html">8. 各大招聘网站信息实时查询浏览【二】(66)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4737958.html">9. 一步步开发自己的博客 .NET版（1、基本显示）(64)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html">10. Linq表达式、Lambda表达式你更喜欢哪个？(64)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhaopei/p/5721789.html">1. 你必须知道的EF知识和经验(537)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4368417.html">2. 各大招聘网站信息实时查询浏览(219)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/upload.html">3. 文件各种上传，离不开的表单(200)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5769782.html">4. 先说IEnumerable，我们每天用的foreach你真的懂它吗？(176)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/why_write_blog.html">5. 我们为什么应该坚持写博客(167)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4823359.html">6. 一步步开发自己的博客  .NET版 剧终篇（6、响应式布局 和 自定义样式）(135)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/async_one.html">7. C#异步的世界【上】(119)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/netcore.html">8. ASP.NET Core 快速入门（环境篇）(113)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/variability.html">9. 那些年搞不懂的术语、概念：协变、逆变、不变体(108)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html">10. Linq表达式、Lambda表达式你更喜欢哪个？(108)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/IQueryable-IQueryProvider.html">11. 再讲IQueryable&lt;T&gt;，揭开表达式树的神秘面纱(101)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/4174811.html">12. 博客园页面设置(93)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/download.html">13. 文件下载之断点续传（客户端与服务端的实现）(89)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5767631.html">14. 你知道C#中的Lambda表达式的演化过程吗？(86)</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/SSO.html">15. 浅析C#中单点登录的原理和使用(78)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 农码一生
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript">       
+$(function () {
+   //为超链接加上target='_blank'属性
+		$("#cnblogs_post_body.cnblogs-markdown").find('a[href^="http"]').each(function() {
+			$(this).attr('target', '_blank');
+		});
+});
+</script>
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/mycnblog.js.下载"></script>
+<!--<script src="http://hi.haojima.net/cnblogs/mycnblog.js"></script>-->
+<!--画时钟-->
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/cnblog.clock.js.下载"></script>
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/bootstrap.min.js.下载"></script>
+<!--目录-->
+<script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/cnblog.Directory.js.下载"></script>
+
+<div class="divyoulian" style="text-align:center">
+  <div>
+    友情链接:
+    <a href="http://www.jeezweb.com/" target="_blank">极致时刻</a>
+    <a href="http://shuaibi.org/" target="_blank">ShuaiBi的随笔</a>
+  </div>
+  <div class="">我的一亩三分地:<a target="_blank" href="http://www.haojima.net/">www.haojima.net</a>&nbsp;<span style="color:red">好记吗?<span></span></span></div>
+  <div>
+    <span id="cnzz_stat_icon_1254486480"><a href="http://www.cnzz.com/stat/website.php?web_id=1254486480" target="_blank">站长统计</a><a href="http://www.cnzz.com/stat/website.php?web_id=1254486480" target="_blank"> |  今日IP[110] | 今日PV[203] | 昨日IP[304] |  昨日PV[607] | </a><a href="http://www.cnzz.com/stat/website.php?web_id=1254486480&amp;method=online" target="_blank">当前在线[1]</a></span>
+  </div>  
+</div>
+
+<!--begin流量统计-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254486480'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254486480%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1254486480"></span><script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/z_stat.php" type="text/javascript"></script><script src="./Linq表达式、Lambda表达式你更喜欢哪个_files/core.php" charset="utf-8" type="text/javascript"></script>
+<!--end-->
+<!--PageEndHtml Block End-->
+
+
+<div style="position: fixed; right: 0px; top: 300px;"><a id="open_directory" href="javascript:void(0)" style="padding:4px;color:#0094ff"></a><a></a></div><div id="sideToolbar" style="display:none"><div class="sideCatalogBg" id="sideCatalog"><div id="sideCatalog-sidebar"><div class="sideCatalog-sidebar-top"></div><div class="sideCatalog-sidebar-bottom"></div></div><div id="sideCatalog-catalog"><ul class="nav" style="zoom:1"><div style="text-align: right" class="close_directory"><a id="close_directory" style="cursor: default;color:red">关闭</a>&nbsp;&nbsp;</div><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-0-0" title="什么是Linq表达式？什么是Lambda表达式？">什么是Linq表达式？什么是Lambda表达式？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-1-0" title="查询表达式、点标记你更喜欢哪个？">查询表达式、点标记你更喜欢哪个？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-2-0" title="为什么选择点标记 ">为什么选择点标记&nbsp;</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-3-0" title="什么时候使用查询表达式？">什么时候使用查询表达式？</a></li><li><a href="http://www.cnblogs.com/zhaopei/p/5746414.html#autoid-4-0" title="联接查询（内联、左联、交叉联）">联接查询（内联、左联、交叉联）</a></li></ul></div></div></div></body></html>

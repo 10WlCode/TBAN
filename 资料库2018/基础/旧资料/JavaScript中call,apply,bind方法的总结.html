@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.cnblogs.com/pssp/p/5215621.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaScript中call,apply,bind方法的总结。 - 追梦子 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JavaScript中call,apply,bind方法的总结_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./JavaScript中call,apply,bind方法的总结_files/258835.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./JavaScript中call,apply,bind方法的总结_files/bundle-SimpleMemory-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/pssp/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/pssp/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/pssp/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./JavaScript中call,apply,bind方法的总结_files/encoder.js.下载"></script><script src="./JavaScript中call,apply,bind方法的总结_files/hm.js.下载"></script><script src="./JavaScript中call,apply,bind方法的总结_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'pssp', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./JavaScript中call,apply,bind方法的总结_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/pssp/"><img id="blogLogo" src="./JavaScript中call,apply,bind方法的总结_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/pssp/">追梦子</a></h1>
+<h2>当你真的想做好一件事的时候，会遗忘很多，因为对于你来说它就是你的一切。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList"><li><a href="http://www.cnblogs.com/pssp/" title="首页">首页</a></li><li><a href="http://www.cnblogs.com/pssp/category/788821.html" title="CSS指南">CSS指南</a></li><li><a href="http://www.cnblogs.com/pssp/category/792058.html" title="HTML5">HTML5</a></li><li><a href="http://www.cnblogs.com/pssp/category/786428.html" title="Javascript">Javascript</a></li><li><a href="http://www.cnblogs.com/pssp/category/936692.html" title="其他语言">其他语言</a></li><li><a href="http://www.cnblogs.com/pssp/category/786458.html" title="生活生活">生活生活</a></li></ul>
+		<div class="blogStats">
+			
+			
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/pssp/p/5215621.html">JavaScript中call,apply,bind方法的总结。</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>why？call,apply,bind干什么的？为什么要学这个？</p>
+<p>　　一般用来指定this的环境，在没有学之前，通常会有这些问题。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user);
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b(); </span><span style="color: #008000;">//</span><span style="color: #008000;">undefined</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>我们是想打印对象a里面的user却打印出来undefined是怎么回事呢？如果我们直接执行a.fn()是可以的。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user);
+    }
+}
+a.fn(); //追梦子</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这里能够打印是因为，这里的this指向的是函数a，那为什么上面的不指向a？我们如果需要了解this的指向问题，请看<a href="http://www.cnblogs.com/pssp/p/5216085.html" target="_blank">彻底理解js中this的指向，不必硬背</a>这篇文章。</p>
+<p>虽然这种方法可以达到我们的目的，但是有时候我们不得不将这个对象保存到另外的一个变量中，那么就可以通过以下方法。</p>
+<p><strong>1、call()</strong></p>
+<p><strong>　　</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.call(a);</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>通过在call方法，给第一个参数添加要把b添加到哪个环境中，简单来说，this就会指向那个对象。</p>
+<p>call方法除了第一个参数以外还可以添加多个参数，如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(e,ee){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+        console.log(e</span>+<span style="color: #000000;">ee); //3
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.call(a,</span>1,2);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>2、apply()</strong></p>
+<p>apply方法和call方法有些相似，它也可以改变this的指向</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.apply(a);</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>同样apply也可以有多个参数，但是不同的是，第二个参数必须是一个数组，如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(e,ee){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+        console.log(e</span>+<span style="color: #000000;">ee); //11
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.apply(a,[</span>10,1]);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>或者</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(e,ee){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+        console.log(e</span>+<span style="color: #000000;">ee); //520
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+</span><span style="color: #0000ff;">var</span> arr = [500,20<span style="color: #000000;">];
+b.apply(a,arr);</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>//注意如果call和apply的第一个参数写的是null，那么this指向的是window对象</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">); //Window {external: Object, chrome: Object, document: document, a: Object, speechSynthesis: SpeechSynthesis…}
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.apply(</span><span style="color: #0000ff;">null</span>);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>3、bind()</strong></p>
+<p>bind方法和call、apply方法有些不同，但是不管怎么说它们都可以用来改变this的指向。</p>
+<p>先来说说它们的不同吧。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user);
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+b.bind(a);</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>我们发现代码没有被打印，对，这就是bind和call、apply方法的不同，实际上bind方法返回的是一个修改过后的函数。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user);
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+</span><span style="color: #0000ff;">var</span> c =<span style="color: #000000;"> b.bind(a);
+console.log(c); //function() { [native code] }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>那么我们现在执行一下函数c看看，能不能打印出对象a里面的user</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span>"追梦子"<span style="color: #000000;">,
+    fn:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+</span><span style="color: #0000ff;">var</span> c =<span style="color: #000000;"> b.bind(a);
+c();</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>ok，同样bind也可以有多个参数，并且参数可以执行的时候再次添加，但是要注意的是，参数是按照形参的顺序进行的。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> a =<span style="color: #000000;"> {
+    user:</span><span style="color: #800000;">"</span><span style="color: #800000;">追梦子</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    fn:function(e,d,f){
+        console.log(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.user); //追梦子
+        console.log(e,d,f); //10 1 2
+    }
+}
+</span><span style="color: #0000ff;">var</span> b =<span style="color: #000000;"> a.fn;
+</span><span style="color: #0000ff;">var</span> c = b.bind(a,<span style="color: #800080;">10</span><span style="color: #000000;">);
+c(</span><span style="color: #800080;">1</span>,<span style="color: #800080;">2</span>);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript中call,apply,bind方法的总结_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>总结：call和apply都是改变上下文中的this并立即执行这个函数，bind方法可以让对应的函数想什么时候调就什么时候调用，并且可以将参数在执行的时候添加，这是它们的区别，根据自己的实际情况来选择使用。</p></div><div id="MySignature" style="display: block;"><div class="m-reward">
+  <div class="m-desc">打赏支持我写出更多好文章，谢谢！</div>
+  <a class="reward-btn" href="http://www.cnblogs.com/pssp/p/5215621.html#reward-content">打赏作者</a>
+</div>
+<div class="reward-wrap" id="reward-content">
+  <a class="reward-btn-close" href="http://www.cnblogs.com/pssp/p/5215621.html#1">+</a>
+  <h2>(^_^)打个赏喝个咖啡(^_^)</h2>
+  <div class="wechat">
+    <img src="./JavaScript中call,apply,bind方法的总结_files/857662-20161012161410921-589764638.png" alt="微信支付">
+  </div>
+  <div class="zhifubao">
+    <img src="./JavaScript中call,apply,bind方法的总结_files/857662-20161012161344437-1876547736.jpg" alt="支付宝支付">
+  </div>
+</div></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/pssp/category/786428.html" target="_blank">javascript</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/pssp/tag/javascript/">javascript</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5215621,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;d8bb7c57-fda2-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JavaScript中call,apply,bind方法的总结_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JavaScript中call,apply,bind方法的总结_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/pssp/" target="_blank"><img src="./JavaScript中call,apply,bind方法的总结_files/20161022181320.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/pssp/">追梦子</a><br>
+            <a href="http://home.cnblogs.com/u/pssp/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/pssp/followers">粉丝 - 320</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;d8bb7c57-fda2-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5215621,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">17</span>
+    </div>
+    <div class="buryit" onclick="votePost(5215621,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/pssp/p/5211637.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/pssp/p/5211637.html" title="发布于2016-02-24 22:54">再次讲解js中的回收机制是怎么一回事。</a><br><a href="http://www.cnblogs.com/pssp/p/5216085.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/pssp/p/5216085.html" title="发布于2016-02-25 10:32">彻底理解js中this的指向，不必硬背。</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-02-25 10:29</span> <a href="http://www.cnblogs.com/pssp/">追梦子</a> 阅读(<span id="post_view_count">22378</span>) 评论(<span id="post_comment_count">10</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5215621" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/pssp/p/5215621.html#" onclick="AddToWz(5215621);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=258835,cb_entryId=5215621,cb_blogApp=currentBlogApp,cb_blogUserGuid='d8bb7c57-fda2-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/2/25 10:29:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/pssp/p/5215621.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/pssp/p/5215621.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./JavaScript中call,apply,bind方法的总结_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586274/" target="_blank">阿里六次投资印度企业，拟1亿美元投资物流公司XpressBees</a><br> ·  <a href="https://news.cnblogs.com/n/586273/" target="_blank">前端不止：请告诉我，你要什么样的图标</a><br> ·  <a href="https://news.cnblogs.com/n/586271/" target="_blank">网民QQ聊天图被替换成支付宝海报 腾讯正在调查</a><br> ·  <a href="https://news.cnblogs.com/n/586269/" target="_blank">Snapchat计划强迫用户观看3秒钟广告</a><br> ·  <a href="https://news.cnblogs.com/n/586268/" target="_blank">贾跃亭：我会尽责到底！乐视网内部人士：他在表演</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	<div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3579743,&#39;aVo+p31WQe0RW3JuB8RGauezK3sGqSqIQafkuWAyShEtRebA0yaoSA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3579743,&#39;aVo+p31WQe0RW3JuB8RGauezK3sGqSqIQafkuWAyShEtRebA0yaoSA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3579743" class="layer">#1楼</a><a name="3579743" id="comment_anchor_3579743"></a>  <span class="comment_date">2016-12-13 20:13</span> <a id="a_comment_author_3579743" href="http://www.cnblogs.com/zhn0823/" target="_blank">张华男</a> <a href="http://msg.cnblogs.com/send/%E5%BC%A0%E5%8D%8E%E7%94%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3579743" class="blog_comment_body">赞</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3579743,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3579743,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3579743_avatar" style="display:none;">http://pic.cnblogs.com/face/1016352/20161210100918.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3619796,&#39;qOHBHPI0QvSmdl9CcQ9MG5P6LZ9PMaNqeIOsJQT05Q0GXsqY55IrtA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3619796,&#39;qOHBHPI0QvSmdl9CcQ9MG5P6LZ9PMaNqeIOsJQT05Q0GXsqY55IrtA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3619796" class="layer">#2楼</a><a name="3619796" id="comment_anchor_3619796"></a>  <span class="comment_date">2017-02-16 11:07</span> <a id="a_comment_author_3619796" href="http://www.cnblogs.com/pmandy/" target="_blank">寒江雪雁</a> <a href="http://msg.cnblogs.com/send/%E5%AF%92%E6%B1%9F%E9%9B%AA%E9%9B%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3619796" class="blog_comment_body">写的不错 已收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3619796,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3619796,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3687522,&#39;+ORWQsAdMLduJpLAWonGqGv/xBR2n+WpXw9al9dPFEa/Cgjq1Q5Vrw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3687522,&#39;+ORWQsAdMLduJpLAWonGqGv/xBR2n+WpXw9al9dPFEa/Cgjq1Q5Vrw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3687522" class="layer">#3楼</a><a name="3687522" id="comment_anchor_3687522"></a>  <span class="comment_date">2017-05-09 10:27</span> <a id="a_comment_author_3687522" href="http://www.cnblogs.com/fumj/" target="_blank">``炯``</a> <a href="http://msg.cnblogs.com/send/%60%60%E7%82%AF%60%60" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3687522" class="blog_comment_body">"通过在call方法，给第一个参数添加要把b添加到哪个环境中，"<br>这句话很拗口,看不明白.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3687522,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3687522,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3687522_avatar" style="display:none;">http://pic.cnblogs.com/face/u297868.jpg?id=09164815</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3714373,&#39;ibwnBRChbMFVUqOPAptioBbksRCTR1DIMANuTs3u141fVIGqTnpasg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3714373,&#39;ibwnBRChbMFVUqOPAptioBbksRCTR1DIMANuTs3u141fVIGqTnpasg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3714373" class="layer">#4楼</a><a name="3714373" id="comment_anchor_3714373"></a>  <span class="comment_date">2017-06-14 16:19</span> <a id="a_comment_author_3714373" href="http://www.cnblogs.com/leon-Tian/" target="_blank">一抹浅笑╮</a> <a href="http://msg.cnblogs.com/send/%E4%B8%80%E6%8A%B9%E6%B5%85%E7%AC%91%E2%95%AE" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3714373" class="blog_comment_body">写的简单易懂。厉害。佩服</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3714373,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3714373,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3714373_avatar" style="display:none;">http://pic.cnblogs.com/face/538333/20150413214519.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3722349,&#39;t8/FTJJUCpNBe4Lg6CF2abKYXuxrd1pZ+x1qpkuGmz3EGVDVkVadoQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3722349,&#39;t8/FTJJUCpNBe4Lg6CF2abKYXuxrd1pZ+x1qpkuGmz3EGVDVkVadoQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3722349" class="layer">#5楼</a><a name="3722349" id="comment_anchor_3722349"></a>  <span class="comment_date">2017-06-25 23:56</span> <a id="a_comment_author_3722349" href="http://www.cnblogs.com/jafeefish/" target="_blank">永夜若离</a> <a href="http://msg.cnblogs.com/send/%E6%B0%B8%E5%A4%9C%E8%8B%A5%E7%A6%BB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3722349" class="blog_comment_body">var who = {<br>			name : "xiaoming",<br>			birht: 1990,<br>			age:function(){<br>					function getage(){<br>						var now = new Date().getFullYear();<br>						return now - this.birht;<br>						}<br>						return getage();<br>			}<br>			}<br>			<br>			var who2 = who.age;<br>			console.log(who2.call(who));//Nan<br><br>楼主帮分析下这段代码，如何用call或者apply取到this？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3722349,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3722349,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3722349_avatar" style="display:none;">http://pic.cnblogs.com/face/1085550/20161223172651.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3758858,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3758858,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3758858" class="layer">#6楼</a><a name="3758858" id="comment_anchor_3758858"></a>  <span class="comment_date">2017-08-15 23:37</span> <a id="a_comment_author_3758858" href="http://www.cnblogs.com/xxwang/" target="_blank">洽客-扶苏</a> <a href="http://msg.cnblogs.com/send/%E6%B4%BD%E5%AE%A2-%E6%89%B6%E8%8B%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3758858" class="blog_comment_body"><a href="http://www.cnblogs.com/pssp/p/5215621.html#3722349" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3722349);">@</a>
+永夜若离<br>var who = {<br>    name : "xiaoming",<br>    birht: 1990,<br>    age:function(){<br>        function getage(){<br>            var now = new Date().getFullYear();<br>            return now - this.birht;<br>        }<br>        var ag = getage;<br>		return ag.call(this)<br>	}<br>}</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3758858,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3758858,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3758862,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3758862,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3758862" class="layer">#7楼</a><a name="3758862" id="comment_anchor_3758862"></a>  <span class="comment_date">2017-08-15 23:41</span> <a id="a_comment_author_3758862" href="http://www.cnblogs.com/xxwang/" target="_blank">洽客-扶苏</a> <a href="http://msg.cnblogs.com/send/%E6%B4%BD%E5%AE%A2-%E6%89%B6%E8%8B%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3758862" class="blog_comment_body"><a href="http://www.cnblogs.com/pssp/p/5215621.html#3687522" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3687522);">@</a>
+``炯``<br>他的意思是，第一个参数代表所要执行的环境。比如，b.call(a)，就是把b放到a的环境中执行，b里面的this，就是a的this</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3758862,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3758862,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3758864,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3758864,&#39;n5G5JGNj5ucPpNHivgpdR/G6GYiSK5Yx1HrKsu2xm+V8Wqtue5HRCg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3758864" class="layer">#8楼</a><a name="3758864" id="comment_anchor_3758864"></a>  <span class="comment_date">2017-08-15 23:42</span> <a id="a_comment_author_3758864" href="http://www.cnblogs.com/xxwang/" target="_blank">洽客-扶苏</a> <a href="http://msg.cnblogs.com/send/%E6%B4%BD%E5%AE%A2-%E6%89%B6%E8%8B%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3758864" class="blog_comment_body">两篇文章浅显易懂，受益匪浅，感谢楼主</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3758864,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3758864,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3785091,&#39;r+EIYCm5xfcnFSZ6mJjWIX6sLk9IcoljQ5C1WMlIrgBkRX9VhNTNqA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3785091,&#39;r+EIYCm5xfcnFSZ6mJjWIX6sLk9IcoljQ5C1WMlIrgBkRX9VhNTNqA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3785091" class="layer">#9楼</a><a name="3785091" id="comment_anchor_3785091"></a>  <span class="comment_date">2017-09-15 14:42</span> <a id="a_comment_author_3785091" href="http://www.cnblogs.com/wingzw/" target="_blank">wingzw</a> <a href="http://msg.cnblogs.com/send/wingzw" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3785091" class="blog_comment_body">一针见血。厉害</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3785091,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3785091,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3785091_avatar" style="display:none;">http://pic.cnblogs.com/face/963861/20160525101616.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3856572,&#39;8OLTMNS+H6rajpa5btQi36ult/ylqVtfdHKwTHiYP6U3rqihJirwmQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3856572,&#39;8OLTMNS+H6rajpa5btQi36ult/ylqVtfdHKwTHiYP6U3rqihJirwmQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/pssp/p/5215621.html#3856572" class="layer">#10楼</a><a name="3856572" id="comment_anchor_3856572"></a><span id="comment-maxId" style="display:none;">3856572</span><span id="comment-maxDate" style="display:none;">2017/12/3 15:41:02</span>  <span class="comment_date">2017-12-03 15:41</span> <a id="a_comment_author_3856572" href="http://home.cnblogs.com/u/1292258/" target="_blank">GogoSky</a> <a href="http://msg.cnblogs.com/send/GogoSky" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3856572" class="blog_comment_body"><a href="http://www.cnblogs.com/pssp/p/5215621.html#3722349" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3722349);">@</a>
+永夜若离<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/pssp/p/5215621.html#3722349" title="查看引用原文">引用</a></legend><br>var who = {<br>			name : "xiaoming",<br>			birht: 1990,<br>			age:function(){<br>					function getage(){<br>						var now = new Date().getFullYear();<br>						return now - this.birht;<br>						}<br>						return getage();<br>			}<br>			}<br>			<br>			var who2 = who.age;<br>			console.log(who2.call(who));//Nan<br><br>楼主帮分析下这段代码，如何用call或者apply取到t...<br></fieldset><br>你把who的环境传给了age,在age里是可以用this获取到who的环境，但是在你的代码里this的环境并不是在age里，而是在age一个function里,所以获取不到,换成这样就可以：var who = {<br>	name : "xiaoming",<br>	birht: 1990,<br>	age:function(){<br>		<br>		function getage(){<br>			var now = new Date().getFullYear();<br>			console.log(this.birht);  //undefined<br>			return now;<br>		}<br>		return getage() - this.birht;  //this.birht = 1990<br>	}<br>}<br><br>var who2 = who.age;<br>console.log(who2.call(who));//27</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3856572,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3856572,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div></div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar" style="display: none;">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(298)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/pssp/category/788821.html">css指南(48)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/pssp/category/792058.html">HTML5(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/pssp/category/786428.html">javascript(154)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/pssp/category/786453.html">javascript菜鸟入门</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/pssp/category/786455.html">javascript大牛篇</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/pssp/category/786459.html">javascript进阶篇</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/pssp/category/795384.html">JS思维之路</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/pssp/category/936692.html">其他(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/pssp/category/904970.html">未知的CSS(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/pssp/category/786458.html">学会生活(61)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/pssp/category/912523.html">学习笔记(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/pssp/category/820137.html">移动开发</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/pssp/p/5216085.html">1. 彻底理解js中this的指向，不必硬背。(46856)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5215621.html">2. JavaScript中call,apply,bind方法的总结。(22378)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5196716.html">3. addEventListener和on的区别(14414)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5185937.html">4. js对象、数组转换字符串(8183)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5879115.html">5. CSS实现点击事件及实践(6922)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5253004.html">6. js数组冒泡排序，快速排序的原理以及实现(5818)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5216668.html">7. 对匿名函数的深入理解（彻底版）(5715)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5204324.html">8. 什么是作用域链，什么是原型链，它们的区别，在js中它们具体指什么？(5435)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5781090.html">9. 那些年我们一起过的JS闭包，作用域，this，让我们一起划上完美的句号。(4025)</a></li><li><a href="http://www.cnblogs.com/pssp/p/5215417.html">10. 关于在for循环中绑定事件打印变量i是最后一次。(3846)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 追梦子
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8d3f874b359ac4a50f19d984e023d147";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+  (function(){
+    // 推荐阅读
+    var SideBar = function(){
+      this.post_detail = document.getElementById('post_detail');
+      this.sideBar = document.getElementById('sideBar');
+      this.pager = document.getElementsByClassName('pager')[0];
+    };
+    SideBar.prototype = {
+      init:function(){
+        if(this.isSideBar()===false){
+          this.sideBar.style.display = 'none';
+        }
+      },
+      // 判断是否显示sideBar推荐阅读
+      isSideBar:function(){
+        var flag = true;
+        // 分类页不显示推荐
+        if(location.pathname.indexOf('/pssp/category')==0){
+          flag = false;
+        }
+        // 内容页
+        if(this.post_detail){
+          flag = false;
+        }
+        // 末尾页不显示推荐
+        if(this.pager!=undefined){
+          var str = this.pager.innerHTML;
+          var count = parseInt(str.substr(str.indexOf('共')+1,str.indexOf('页')-3));
+          var current = location.search.substr(location.search.indexOf('=') - 0 + 1) - 0;
+          if(current===count){
+            flag = false;
+          }
+        }
+        return flag;
+      }
+    };
+   new SideBar().init();
+    // 列表页发布时间等以及计算文章数量
+    var ListDate = function(){
+      this.dateList = document.getElementsByClassName('entrylistItemPostDesc');
+      this.forFlow = document.getElementsByClassName('forFlow')[0];
+      this.entrylist = document.getElementsByClassName('entrylist')[0];
+      this.entrylistItem = document.getElementsByClassName('entrylistItem');
+      this.titleDom = document.getElementsByClassName('entrylistTitle')[0];
+      this.itemArr = Array.prototype.slice.call(this.entrylistItem);
+      // 坚持时间
+      this.countDate = {};
+    };
+    ListDate.prototype = {
+      init:function(){
+        this.toHtml();
+        this.calculation();
+        this.addElement();
+        this.sort();
+      },
+      toHtml:function(){
+        try{
+          var dateStr = '';
+          for(var i=0,len = this.dateList.length;i<len;i+=1){
+            var ye = /\(\d*\)/.exec(this.dateList[i].innerText)[0];
+            var dateItem = {
+              'date':this.dateList[i].children[0].innerHTML,
+              'comment':this.dateList[i].children[1].innerHTML,
+              'count':ye.substr(1,ye.indexOf(')')-1),
+              'edit':this.dateList[i].children[2].href
+            };
+            dateStr = dateItem.date + ' 阅读量('+ dateItem.count +') ' + dateItem.comment + '  <a href="' + dateItem.edit + '">编辑</a>';
+            this.dateList[i].innerHTML = dateStr;
+            // 获取坚持时间
+            if(i===0){
+              this.countDate.start = dateItem.date;
+            }
+            if(i===len-1){
+              this.countDate.stop = dateItem.date;
+            }
+          }
+        }catch(err){
+        }
+      },
+      // 计算总共的篇数
+      calculation:function(){
+        var num = parseInt((new Date(this.countDate.start.replace(/-/g,'/')) - new Date(this.countDate.stop.replace(/-/g,'/')))/1000/60/60/24);
+        try{
+           var len = this.entrylistItem.length;
+           var str = '作者费了九牛二虎之力，敲出了<span>' + len + '</span>篇文章，坚持了<span>'+ num +'</span>天。'
+           this.titleDom.innerHTML = str;
+        }catch(err){}
+      },
+      // 添加排序标签
+      addElement:function(){
+        var e1 = document.createElement('span');
+        e1.id = 'new';
+        e1.innerHTML = '最新文章';
+        var e2 = document.createElement('span');
+        e2.id = 'early';
+        e2.innerHTML = '早期文章';
+        this.forFlow.appendChild(e1);
+        this.forFlow.appendChild(e2);
+      },
+      // 列表排序
+      sort:function(){
+        var _this = this;
+        var newEl = document.getElementById('new');
+        var early = document.getElementById('early');
+        // 最新
+        var newArr = Array.prototype.slice.call(_this.itemArr);
+        newEl.onclick = function(){
+          _this.entrylist.innerHTML = '';
+          _this.entrylist.appendChild(_this.titleDom);
+          for(var i=0,len=newArr.length;i<len;i+=1){
+            _this.entrylist.appendChild(newArr[i]);
+          }
+        };
+        // 倒序
+        var reverseArr = _this.itemArr.reverse();
+        early.onclick = function(){
+          _this.entrylist.innerHTML = '';
+          _this.entrylist.appendChild(_this.titleDom);
+          for(var i=0,len=reverseArr.length;i<len;i+=1){
+            _this.entrylist.appendChild(reverseArr[i]);
+          }
+        };
+      }
+    };
+    // 首页不显示排序
+    if(location.pathname.indexOf('/pssp/category/')==0){
+      new ListDate().init();
+    }
+    // 导航分类
+    var NavList = function(){
+      this.navList = document.getElementById('navList');
+      this.navListStr = '';
+      this.data = [
+        {
+          'title':'首页',
+          'href':'http://www.cnblogs.com/pssp/'
+        },
+        {
+          'title':'CSS指南',
+          'href':'http://www.cnblogs.com/pssp/category/788821.html'
+        },
+        {
+          'title':'HTML5',
+          'href':'http://www.cnblogs.com/pssp/category/792058.html'
+        },
+        {
+          'title':'Javascript',
+          'href':'http://www.cnblogs.com/pssp/category/786428.html'
+        },
+        {
+          'title':'其他语言',
+          'href':'http://www.cnblogs.com/pssp/category/936692.html'
+        },
+        {
+          'title':'生活生活',
+          'href':'http://www.cnblogs.com/pssp/category/786458.html'
+        }
+      ];
+    };
+    NavList.prototype = {
+      toHtml:function(){
+        for(var i=0;i<6;i+=1){
+          this.navListStr += '<li><a href="'+ this.data[i].href +'" title="' + this.data[i].title + '">' + this.data[i].title + '</a></li>';
+        }
+        this.navList.innerHTML = this.navListStr;
+      }
+    };
+    new NavList().toHtml();
+
+    // 内容页改变背景
+    if(location.pathname.indexOf('/pssp/p/')==0){
+      document.body.style.backgroundColor = '#fff';
+    }
+
+    // 改变评论位置
+    var forFlow = document.getElementsByClassName('forFlow')[0];
+    var comments = document.getElementById('blog-comments-placeholder');
+    try{
+      forFlow.appendChild(comments);
+    }catch(err){
+      
+    }
+
+    // 隐藏留言页内容部分
+    if(location.pathname.indexOf('/pssp/p/5995901.html')===0){
+      document.getElementsByClassName('postBody')[0].style.display = 'none';
+      document.getElementsByClassName('postDesc')[0].style.display = 'none';
+    }
+    // 回到顶部
+    var goTop = document.createElement("a");
+    goTop.href = "#";
+    goTop.id = "goTop";
+    goTop.textContent = "#回到顶部";
+    document.body.appendChild(goTop);
+  }())
+
+  // 阅读排行榜
+  // (function(){
+  //  var oBox = document.getElementById('TopViewPostsBlock');
+  //  var oUl = oBox.children[0];
+  //  var oLis = oUl.children;
+  //  var arr = [];
+  //  for(var i=0,len = oLis.length;i<len;i+=1){
+  //    arr.push({
+  //        'title':oLis[i].children[0].innerHTML.substr(3),
+  //        'href':oLis[i].children[0].href
+  //      });
+  //  }
+  // }())
+</script><a href="http://www.cnblogs.com/pssp/p/5215621.html#" id="goTop">#回到顶部</a>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

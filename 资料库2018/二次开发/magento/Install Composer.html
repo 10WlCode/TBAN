@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Install Composer | Magento 2 Developer Documentation</title>
+	<meta name="description" content="Magento 2 Developer Documentation.
+">
+
+	<link rel="stylesheet" href="./Install Composer_files/app.css">
+	<link rel="stylesheet" href="./Install Composer_files/print.css" media="print">
+
+	<link rel="stylesheet" href="./Install Composer_files/devdocs.css">
+
+	<script type="text/javascript" async="" src="./Install Composer_files/munchkin.js.下载"></script><script type="text/javascript" async="" src="./Install Composer_files/heap-2619540280.js.下载"></script><script async="" src="./Install Composer_files/analytics.js.下载"></script><script>
+  var baseUrl = "";
+  var algolia = {
+    id : "E642SEDTHL",
+    index:  "devdocs",
+    key:  "d2d0f33ab73e291ef8d88d8b565e754c"
+  };
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-66243208-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<!-- Hotjar Tracking Code for http://devdocs.magento.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:806243,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script><script async="" src="https://static.hotjar.com/c/hotjar-806243.js?sv=6"></script>
+
+<!-- heap analytics -->
+<script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("2619540280");
+</script>
+
+
+
+
+	<link rel="canonical" href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html">
+
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="https://magento.com/favicon.ico">
+	<link rel="apple-touch-icon" type="image/png" href="https://magento.com/apple-touch-icon.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="https://magento.com/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="72x72" href="https://magento.com/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://magento.com/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="https://magento.com/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://magento.com/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="144x144" href="https://magento.com/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://magento.com/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://magento.com/apple-touch-icon-180x180.png">
+
+<script type="text/javascript" async="" src="./Install Composer_files/munchkin.js(1).下载"></script><style type="text/css">
+:root .content > .ads:first-child,
+:root .content > a > .topline,
+:root .container > .ads:first-child,
+:root #main-content > [style="padding:10px 0 0 0 !important;"]
+{ display: none !important; }</style></head><div style="display: block; opacity: 1;"></div>
+<body class="layout-default">
+
+	<header class="site-header">
+
+		<nav class="site-nav">
+
+  <div class="menu-btn">
+    <a id="menu-btn" class="menu-trigger menu-icon" href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html#nav-main" aria-haspopup="true" aria-controls="nav-main"></a>
+  </div>
+
+  <div class="nav-container">
+
+    <a class="logo" href="https://devdocs.magento.com/">
+      <img src="./Install Composer_files/m-logo.svg" alt=""><img src="./Install Composer_files/magento-logo.svg" alt="Magento" class="magento-logo">
+      <span class="site-logo">DevDocs</span>
+    </a>
+
+    <div id="nav-main" class="nav-main-wrap" aria-labelledby="menu-btn">
+      
+<div class="version-switcher dropdown" data-version="2.2">
+	<button id="version-switcher-button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Magento 2.2
+	</button>
+
+	<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="version-switcher-button">
+	
+		<li><a class="dropdown-item" data-proofer-ignore="" href="https://devdocs.magento.com/guides/v2.0/install-gde/prereq/integrator_install.html">Magento 2.0</a></li>
+	
+		<li><a class="dropdown-item" data-proofer-ignore="" href="https://devdocs.magento.com/guides/v2.1/install-gde/prereq/integrator_install.html">Magento 2.1</a></li>
+	
+		<li><a class="dropdown-item" data-proofer-ignore="" href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install.html">Magento 2.2</a></li>
+	
+		<li><a class="dropdown-item" data-proofer-ignore="" href="https://devdocs.magento.com/guides/v2.3/install-gde/prereq/integrator_install.html">Magento 2.3 Pre-release</a></li>
+	
+  </ul>
+
+</div>
+
+
+      <!-- Main Navigation -->
+<ul class="nav-main" role="menubar">
+
+  <li class="nav-main-item" tabindex="0" role="menuitem" aria-haspopup="true">
+    <span tabindex="-1">Setup</span>
+
+    <div class="nav-popup" role="menu" aria-hidden="true">
+      <ul>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/install-gde/bk-install-guide.html">Installation Guide</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/comp-mgr/bk-compman-upgrade-guide.html">Extension Update and System Upgrade Guide</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/config-guide/bk-config-guide.html">Configuration Guide</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/performance-best-practices/index.html">Performance Best Practices</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/migration/bk-migration-guide.html">Migration Guide</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/cloud/bk-cloud.html">Magento Commerce (Cloud) Guide</a></li>
+          <li><a href="https://devdocs.magento.com/magento-release-information.html">Release Information</a></li>
+      </ul>
+    </div>
+
+  </li>
+
+
+  <li class="nav-main-item" tabindex="0" role="menuitem" aria-haspopup="true">
+    <span tabindex="-1">Development</span>
+
+    <div class="nav-popup" role="menu" aria-hidden="true">
+
+      <div class="nav-section">
+        <div class="nav-section-title">Backend</div>
+        <ul>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/architecture/bk-architecture.html" tabindex="-1">Architecture Guide</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/extension-dev-guide/bk-extension-dev-guide.html" tabindex="-1">PHP Developer Guide</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/ext-best-practices/bk-ext-best-practices.html" tabindex="-1">Extension Developer Best Practices</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/mrg/intro.html" tabindex="-1">Module Reference Guide</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/coding-standards/bk-coding-standards.html" tabindex="-1">Coding Standards</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/contributor-guide/contributing.html" tabindex="-1">Contributor Guide</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Frontend</div>
+        <ul>
+          <li class=""><a href="https://devdocs.magento.com/guides/v2.2/frontend-dev-guide/bk-frontend-dev-guide.html" tabindex="-1">Frontend Developer Guide</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/ui_comp_guide/bk-ui_comps.html" tabindex="-1">UI Components Guide</a></li>
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/javascript-dev-guide/bk-javascript-dev-guide.html" tabindex="-1">JavaScript Developer Guide</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/pattern-library/bk-pattern.html" tabindex="-1">Admin Design Pattern Library</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/design-styleguide/bk-styleguide.html" tabindex="-1">Admin Style Guide</a></li>
+          <li><a href="https://magento-research.github.io/pwa-devdocs/" tabindex="-1">PWA Studios</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title"><abbr>API</abbr></div>
+        <ul>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/get-started/bk-get-started-api.html" tabindex="-1">Get Started with Magento Web APIs</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/rest/bk-rest.html" tabindex="-1">REST API Reference</a></li>
+          <li><a href="https://devdocs.magento.com/guides/v2.2/soap/bk-soap.html" tabindex="-1">SOAP API Reference</a></li>
+          
+          
+          <li><a href="https://devdocs.magento.com/guides/v2.2/marketplace/eqp/api.html" tabindex="-1">Marketplace EQP API Reference</a></li>
+          
+        </ul>
+      </div>
+    </div>
+
+  </li>
+
+
+  <li class="nav-main-item" tabindex="0" role="menuitem" aria-haspopup="true">
+    <span tabindex="-1">Testing</span>
+
+    <div class="nav-popup" role="menu" aria-hidden="true">
+      <ul>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/test/testing.html">Magento Testing Guide</a></li>
+        
+        <li><a href="https://devdocs.magento.com/guides/v2.2/magento-functional-testing-framework/release-2/introduction.html">Functional Acceptance Testing (New!)</a></li>
+        
+        <li><a href="https://devdocs.magento.com/guides/v2.2/mtf/mtf_introduction.html">Functional Testing</a></li>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/test/integration/integration_test_execution.html">Integration Testing</a></li>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/test/js/jasmine.html">JavaScript Unit Testing</a></li>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/test/unit/unit_test_execution.html">PHP Unit Testing</a></li>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/get-started/web-api-functional-testing.html">Web API Functional Testing</a></li>
+      </ul>
+    </div>
+
+  </li>
+
+
+  <li class="nav-main-separator"></li>
+
+
+  <li class="nav-main-item" tabindex="0" role="menuitem" aria-haspopup="true">
+    <span tabindex="-1">Functional Areas</span>
+
+    <div class="nav-popup" role="menu" aria-hidden="true">
+      <ul>
+          
+          <li class="leaf"><a href="https://devdocs.magento.com/guides/v2.2/advanced-reporting/overview.html">Advanced Reporting</a></li>
+          
+        
+        <li class="leaf"><a href="https://devdocs.magento.com/guides/v2.2/b2b/bk-b2b.html">B2B</a></li>
+        
+        <li><a href="https://devdocs.magento.com/guides/v2.2/howdoi/checkout/checkout_overview.html">Checkout</a></li>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/payments-integrations/bk-payments-integrations.html">Payment Integrations</a></li>
+        
+          <li><a href="https://devdocs.magento.com/guides/v2.2/extension-dev-guide/staging.html">Staging</a></li>
+        
+      </ul>
+    </div>
+
+  </li>
+
+
+  <li class="nav-main-item" tabindex="0" role="menuitem" aria-haspopup="true">
+    <span tabindex="-1">Tutorials</span>
+
+    <div class="nav-popup" role="menu" aria-hidden="true">
+      <ul>
+        <li><a href="https://devdocs.magento.com/guides/v2.2/howdoi/bk-how-do-i.html">How To</a></li>
+        
+        <li><a data-proofer-ignore="" href="https://devdocs.magento.com/guides/v2.2/get-started/order-tutorial/order-intro.html">Order Processing with REST APIs</a></li>
+        
+
+        <li><a href="https://devdocs.magento.com/videos/">Video Tutorials</a></li>
+      </ul>
+    </div>
+
+  </li>
+
+</ul><!-- /.nav-main -->
+
+    </div>
+
+    <div class="search-btn">
+      <a class="search-trigger search-icon" href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html#"></a>
+    </div>
+
+    <form class="quick-search" action="https://devdocs.magento.com/guides/v2.2/search.html" method="get" novalidate="novalidate">
+      <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input type="search" class="aa-hint" readonly="" aria-hidden="true" autocomplete="off" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input type="search" name="q" placeholder="Search" class="aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="aa-dataset-1"></div></span></span>
+      <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html#" class="quick-search-close">×</a>
+    </form>
+
+  </div>
+
+</nav><!-- #site-nav -->
+<div class="nav-main-fader"></div>
+
+
+	</header>
+
+	<div class="global-wrapper">
+
+		<div class="main-container">
+			<a id="main-content"></a>
+
+
+<div class="content-container">
+
+	<!-- sidebar -->
+<aside class="sidebar">
+	<a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html#" data-proofer-ignore="" class="toc-toggler">Table of Contents</a>
+	<div class="sidebar-wrapper">
+
+		
+
+		<h4 class="guide-title">Installation Guide</h4>
+		<div class="collapsible-navigation"><button class="expand-all">Expand</button>
+		    <ul>
+		    
+		    	
+
+<li class="nav-level1  " id="how-to-get-the-magento-software" role="treeitem" aria-expanded="false">
+    
+
+    
+    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/bk-install-guide.html">How to get the Magento software</a>
+    
+
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1  " id="installation-flow-diagram" role="treeitem" aria-expanded="false">
+    
+
+    
+    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-flow-diagram.html">Installation flow diagram</a>
+    
+
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="just-the-basics" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>Just the basics</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-1"></button><ul id="collapsible-menu-1" role="group">
+        
+        
+        
+        <li class="nav-level2  " id="is-the-magento-software-installed-already?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_magento-installed.html">Is the Magento software installed already?</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="what-operating-system-is-my-server-running?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_os-version.html">What operating system is my server running?</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="how-do-i-log-in-to-my-magento-server-using-a-terminal,-command-prompt,-or-ssh?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_login.html">How do I log in to my Magento server using a terminal, command prompt, or SSH?</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="what&#39;s-the-difference-between-a-module-and-a-component?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_module.html">What's the difference between a module and a component?</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="what-is-the-software-that-the-magento-server-needs-to-run?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_software.html">What is the software that the Magento server needs to run?</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="what-is-a-docroot?" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/basics/basics_docroot.html">What is a docroot?</a>
+            
+
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children open" id="getting-started" role="treeitem" aria-expanded="true">
+    
+
+    
+    <span>Getting Started</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-2"></button><ul id="collapsible-menu-2" role="group" style="display: block;">
+        
+        
+        
+        <li class="nav-level2   has-children" id="helpful-resources" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-resources-parent.html">Helpful resources</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-3"></button><ul id="collapsible-menu-3" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-quick-reference-(tutorial)" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-quick-ref.html">Installation quick reference (tutorial)</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-flow-diagram" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-resource-diagram.html">Installation flow diagram</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-roadmap-(reference)" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-roadmap_part1.html">Installation roadmap (reference)</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="magento-system-requirements" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/system-requirements2.html">Magento system requirements</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-4"></button><ul id="collapsible-menu-4" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="magento-technology-stack-requirements" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/system-requirements-tech.html">Magento technology stack requirements</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="supported-browsers" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/system-requirements_browsers.html">Supported browsers</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3   item-toggle has-children" id="transport-layer-security-(tls)-requirements" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <span>Transport Layer Security (TLS) requirements</span>
+                    
+
+                    
+                    <button class="toggle" aria-controls="collapsible-menu-5"></button><ul id="collapsible-menu-5" role="group">
+                        
+                        
+                        
+                        <li class="nav-level4  " id="tls-1.2-requirement-for-paypal" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/system-requirements_tls1-2.html">TLS 1.2 requirement for PayPal</a>
+                        
+
+                        </li>
+                        
+                        
+                        
+                        
+                        <li class="nav-level4  " id="tls-requirement-for-repo.magento.com" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/system-requirements_repo-tls1-2.html">TLS requirement for repo.magento.com</a>
+                        
+
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="prerequisites" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/prereq-overview.html">Prerequisites</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-6"></button><ul id="collapsible-menu-6" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="apache" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/apache.html">Apache</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="nginx" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/nginx.html">nginx</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3   item-toggle has-children" id="php" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <span>PHP</span>
+                    
+
+                    
+                    <button class="toggle" aria-controls="collapsible-menu-7"></button><ul id="collapsible-menu-7" role="group">
+                        
+                        
+                        
+                        <li class="nav-level4  " id="php-5.6-or-7.0—centos" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/php-centos.html">PHP 5.6 or 7.0—CentOS</a>
+                        
+
+                        </li>
+                        
+                        
+                        
+                        
+                        <li class="nav-level4  " id="php-5.6-or-7.0—ubuntu" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/php-ubuntu.html">PHP 5.6 or 7.0—Ubuntu</a>
+                        
+
+                        </li>
+                        
+                        
+                        
+                        
+                        <li class="nav-level4  " id="required-php-settings" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/php-settings.html">Required PHP settings</a>
+                        
+
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="mysql" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/mysql.html">MySQL</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="get-your-authentication-keys" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/connect-auth.html">Get your authentication keys</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3   item-toggle has-children" id="magento-file-system-ownership-and-permissions" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <span>Magento file system ownership and permissions</span>
+                    
+
+                    
+                    <button class="toggle" aria-controls="collapsible-menu-8"></button><ul id="collapsible-menu-8" role="group">
+                        
+                        
+                        
+                        <li class="nav-level4  " id="overview-of-ownership-and-permissions" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/file-sys-perms-over.html">Overview of ownership and permissions</a>
+                        
+
+                        </li>
+                        
+                        
+                        
+                        
+                        <li class="nav-level4  " id="set-pre-installation-ownership-and-permissions" role="treeitem" aria-expanded="false">
+
+                        
+                        <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/file-system-perms.html">Set pre-installation ownership and permissions</a>
+                        
+
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="rabbitmq-(magento-commerce-only)" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/install-rabbitmq.html">RabbitMQ (Magento Commerce only)</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="set-up-a-remote-mysql-database-connection" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/mysql_remote.html">Set up a remote MySQL database connection</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="selinux-and-iptables" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/security.html">SELinux and iptables</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="optional-software" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/optional.html">Optional software</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="set-up-the-updater-(obsolete)" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/prereq_updater.html">Set up the updater (obsolete)</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="get-the-magento-software" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/get-software.html">Get the Magento software</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="(easy)-install-the-magento-archive-on-your-server" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/zip_install.html">(Easy) Install the Magento archive on your server</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children open" id="(integrator)-integrator-installation" role="treeitem" aria-expanded="true">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install.html">(Integrator) Integrator installation</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-9"></button><ul id="collapsible-menu-9" role="group" style="display: block;">
+                
+
+                
+                
+                <li class="nav-level3 active open" id="install-composer" role="treeitem" aria-expanded="true">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html">Install Composer</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="get-the-magento-open-source-metapackage" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_ce.html">Get the Magento Open Source metapackage</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="get-the-magento-commerce-metapackage" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_ee.html">Get the Magento Commerce metapackage</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="(contributor)-clone-the-magento-repository" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/dev_install.html">(Contributor) Clone the Magento repository</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-10"></button><ul id="collapsible-menu-10" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="update-installation-dependencies" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/prepare-install.html">Update installation dependencies</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="get-help-with-your-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/get-help.html">Get help with your installation</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="install-options" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/continue-to-install.html">Install options</a>
+            
+
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="setup-wizard-install" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>Setup Wizard Install</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-11"></button><ul id="collapsible-menu-11" role="group">
+        
+        
+        
+        <li class="nav-level2  " id="installation-roadmap-(reference)" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-roadmap_web.html">Installation roadmap (reference)</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="install-optional-sample-data-modules" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web-sample-data.html">Install optional sample data modules</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-12"></button><ul id="collapsible-menu-12" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="install-using-composer" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web-sample-data-composer.html">Install using Composer</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="install-by-cloning-repositories" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web-sample-data-clone.html">Install by cloning repositories</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="setup-wizard-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web.html">Setup Wizard installation</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-13"></button><ul id="collapsible-menu-13" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="step-1.-readiness-check" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_1-readiness.html">Step 1. Readiness check</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="step-2.-add-a-database" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_2-db.html">Step 2. Add a Database</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="step-3.-web-configuration" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_3-web-conf.html">Step 3. Web Configuration</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="step-4.-customize-your-store" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_4-customize-store.html">Step 4. Customize Your Store</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="step-5.-create-admin-account" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_5-create-admin.html">Step 5. Create Admin Account</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="step-6.-install" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/web/install-web_6-install.html">Step 6. Install</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="post-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/continue-to-verify.html">Post-installation</a>
+            
+
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="command-line-installation" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>Command Line Installation</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-14"></button><ul id="collapsible-menu-14" role="group">
+        
+        
+        
+        <li class="nav-level2  " id="installation-roadmap-(reference)" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install-roadmap_cli.html">Installation roadmap (reference)</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="install-optional-sample-data-modules" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-sample-data.html">Install optional sample data modules</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-15"></button><ul id="collapsible-menu-15" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="install-using-composer" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-sample-data-composer.html">Install using Composer</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="install-by-cloning-repositories" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-sample-data-clone.html">Install by cloning repositories</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="install-the-magento-software-using-the-command-line" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli.html">Install the Magento software using the command line</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-16"></button><ul id="collapsible-menu-16" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="get-started-with-the-command-line-installation" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands.html">Get started with the command-line installation</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="install-the-magento-software" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-install.html">Install the Magento software</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="uninstall-or-reinstall-magento" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-uninstall.html">Uninstall or reinstall Magento</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="display-or-change-the-admin-uri" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-adminurl.html">Display or change the Admin URI</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="remove-sample-data-modules-or-update-sample-data" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-sample-data-other.html">Remove sample data modules or update sample data</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="enable-or-disable-modules" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-enable.html">Enable or disable modules</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="uninstall-modules" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-uninstall-mods.html">Uninstall modules</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="create-or-update-the-deployment-configuration" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-deployment.html">Create or update the deployment configuration</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="enable-or-disable-maintenance-mode" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="create-the-magento-database-schema" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-db.html">Create the Magento database schema</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="update-the-magento-database-schema-and-data" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-db-upgr.html">Update the Magento database schema and data</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="configure-the-store" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-store.html">Configure the store</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="create,-edit,-or-unlock-a-magento-administrator-account" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-subcommands-admin.html">Create, edit, or unlock a Magento administrator account</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="back-up-and-roll-back-the-file-system,-media,-and-database" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-backup.html">Back up and roll back the file system, media, and database</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="uninstall-themes-composer-packages" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-theme-uninstall.html">Uninstall themes Composer packages</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="uninstall-language-packages" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/install-cli-uninstall-langpk.html">Uninstall language packages</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="contributing-developers—update,-reinstall-magento" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/dev_options.html">Contributing developers—update, reinstall Magento</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-17"></button><ul id="collapsible-menu-17" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="update-the-magento-application" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/dev_update-magento.html">Update the Magento application</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="add-or-update-components" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/dev_add-update.html">Add or update components</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="change-to-a-released-version" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/dev_downgrade.html">Change to a released version</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="reinstall-the-magento-software" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/cli/dev_reinstall.html">Reinstall the Magento software</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="post-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/continue-to-verify_cli.html">Post-installation</a>
+            
+
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="post-installation" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>Post Installation</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-18"></button><ul id="collapsible-menu-18" role="group">
+        
+        
+        
+        <li class="nav-level2  " id="verify-the-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/verify.html">Verify the installation</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="configure-the-magento-application" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/post-install-config.html">Configure the Magento application</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="optionally-set-a-umask" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/post-install-umask.html">Optionally set a umask</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2  " id="appendix—magento-file-system-ownership-and-appendix-(legacy)" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/legacy-file-system-perms.html">Appendix—Magento file system ownership and appendix (legacy)</a>
+            
+
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   has-children" id="install-sample-data-after-magento" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/sample-data-after-magento.html">Install sample data after Magento</a>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-19"></button><ul id="collapsible-menu-19" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="install-using-composer" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/sample-data-after-composer.html">Install using Composer</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="install-by-cloning-repositories" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/install/sample-data-after-clone.html">Install by cloning repositories</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="troubleshooting" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>Troubleshooting</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-20"></button><ul id="collapsible-menu-20" role="group">
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="access-issues" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>Access issues</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-21"></button><ul id="collapsible-menu-21" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="cannot-access-magento-software-in-a-web-browser" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_access-browser.html">Cannot access Magento software in a web browser</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="503-(service-unavailable)-errors-accessing-magento-software-in-a-web-browser" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_mod_access_compat.html">503 (Service Unavailable) errors accessing Magento software in a web browser</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="after-installing,-images-and-stylesheets-do-not-load;-only-text-displays,-no-graphics" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_no-styles.html">After installing, images and stylesheets do not load; only text displays, no graphics</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="exceptions-during-installation" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_exceptions.html">Exceptions during installation</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="cannot-write-to-the-var/generation-directory" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_var-gen-perms.html">Cannot write to the var/generation directory</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-dependencies-not-met" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_install_depend.html">Installation dependencies not met</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="error-after-logging-in-to-the-magento-admin" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_admin.html">Error after logging in to the Magento Admin</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="errors-during-installation" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>Errors during installation</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-22"></button><ul id="collapsible-menu-22" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-stops-at-about-70%" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_70pct.html">Installation stops at about 70%</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="cannot-install-using-nginx" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_nginx-port.html">Cannot install using nginx</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="during-installation,-fatal-pdo-error-displays" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_pdo.html">During installation, fatal PDO error displays</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="during-installation,-reflection-exception-error" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_wrong-mysql.html">During installation, Reflection Exception error</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="during-installation,-exception-sessionhandler::read()" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_session.html">During installation, exception SessionHandler::read()</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="download-fails-because-of-changes-in-composer" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_composer-fail.html">Download fails because of changes in Composer</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="unknown-module-magento_bundlesampledata" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_bundlesampledata.html">Unknown module Magento_BundleSampleData</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="installation-fails;-cannot-create-install.log" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_install-log.html">Installation fails; cannot create install.log</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="errors-installing-optional-sample-data" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_sample-data.html">Errors installing optional sample data</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="during-installation,-xdebug-maximum-function-nesting-level-error" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_xdebug.html">During installation, xdebug maximum function nesting level error</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="readiness-check-issues" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>Readiness check issues</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-23"></button><ul id="collapsible-menu-23" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="component-dependency-readiness-issues" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/readiness/tshoot_rc_depend.html">Component dependency readiness issues</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="cron-readiness-check-issues" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/readiness/tshoot_rc_cron.html">cron readiness check issues</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="file-permissions-readiness-check-issues" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/readiness/tshoot_rc_perms.html">File permissions readiness check issues</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="php-version-readiness-check-issues" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/readiness/tshoot_rc_php.html">PHP version readiness check issues</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="github-errors" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>GitHub errors</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-24"></button><ul id="collapsible-menu-24" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="cannot-clone-the-magento-github-repository" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/git/tshoot_clone.html">Cannot clone the Magento GitHub repository</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="git-pull-origin-develop-fails-when-updating-the-magento-software" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/git/tshoot_git-pull-origin.html">git pull origin develop fails when updating the Magento software</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="php-errors" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>PHP errors</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-25"></button><ul id="collapsible-menu-25" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="resolve-an-illegal-offset-error" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_opcache.html">Resolve an illegal offset error</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="php-settings-errors" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_php-set.html">PHP settings errors</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="the-php-mcrypt-extension-is-not-installed-properly" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_mcrypt.html">The PHP mcrypt extension is not installed properly</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="during-installation,-php-date-warning" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_php-date.html">During installation, PHP date warning</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        
+        
+        <li class="nav-level2   item-toggle has-children" id="other-issues" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <span>Other issues</span>
+            
+
+            
+            <button class="toggle" aria-controls="collapsible-menu-26"></button><ul id="collapsible-menu-26" role="group">
+                
+
+                
+                
+                <li class="nav-level3  " id="known-issues-that-affect-installation" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_install-issues.html">Known issues that affect installation</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="error-&#39;mysql-server-has-gone-away&#39;-during-installation" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_mysql_table-open-cache.html">Error 'MySQL server has gone away' during installation</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="segmentation-fault-during-rollback" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_segfault.html">Segmentation fault during rollback</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="sqlstate[hy000]-[2002]-no-such-file-or-directory" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/php/tshoot_phpini.html">SQLSTATE[HY000] [2002] No such file or directory</a>
+                    
+
+                    
+                </li>
+                
+                
+
+                
+                
+                <li class="nav-level3  " id="cannot-run-&#39;composer-install&#39;" role="treeitem" aria-expanded="false">
+                    
+
+                    
+                    <a href="https://devdocs.magento.com/guides/v2.2/install-gde/trouble/tshoot_composer-install.html">Cannot run 'composer install'</a>
+                    
+
+                    
+                </li>
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    	
+
+<li class="nav-level1   item-toggle has-children" id="how-tos" role="treeitem" aria-expanded="false">
+    
+
+    
+    <span>How Tos</span>
+    
+
+    
+    <button class="toggle" aria-controls="collapsible-menu-27"></button><ul id="collapsible-menu-27" role="group">
+        
+        
+        
+        <li class="nav-level2  " id="modify-docroot-to-improve-security" role="treeitem" aria-expanded="false">
+
+            
+
+            
+            <a href="https://devdocs.magento.com/guides/v2.2/install-gde/tutorials/change-docroot-to-pub.html">Modify docroot to improve security</a>
+            
+
+            
+        </li>
+        
+        
+    </ul>
+    
+</li>
+
+
+		    
+		    </ul>
+		</div>
+
+	</div>
+
+</aside>
+<!-- /sidebar -->
+
+
+	<section class="content">
+		<div class="content-wrap">
+			<!-- page-header -->
+<section class="page-intro">
+	
+
+  <nav class="breadcrumbs">
+
+    <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">
+
+      <li class="breadcrumb-item"><a class="breadcrumb-item" href="https://devdocs.magento.com/"><span>Home</span></a></li>
+
+    <!-- Iteration breadcrumb item -->
+    
+    
+
+    
+
+      <!-- Skip if root -->
+      
+
+      <!-- Get breadcrumb title -->
+      
+
+      <!-- SEO data -->
+      
+
+      <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem">
+
+        
+
+          
+
+          <span property="name">Install Composer</span>
+
+        
+
+        <meta property="position" content="1">
+      </li>
+
+    
+
+    </ol>
+
+  </nav>
+
+
+
+	
+
+	
+
+	<h1 class="page-heading">Install Composer</h1>
+
+  
+
+
+</section>
+
+			<h2 id="instgde-prereq-compose-install"><a class="anchor" href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_composer.html#instgde-prereq-compose-install"></a>Install Composer</h2>
+
+<div>
+
+  <p>First, check  if Composer is already installed:</p>
+
+  <p>In a command prompt, enter any of the following commands:</p>
+
+  <ul>
+    <li><code class="highlighter-rouge">composer --help</code></li>
+    <li><code class="highlighter-rouge">composer list --help</code></li>
+  </ul>
+
+  <p>If command help displays, Composer is already installed.</p>
+
+  <p>If an error displays, use the following steps to install Composer.</p>
+
+  <p>To install Composer:</p>
+
+  <ol>
+    <li>
+      <p>Change to or create an empty directory on your Magento server.</p>
+    </li>
+    <li>
+      <p>Enter the following commands:</p>
+
+      <div class="highlighter-rouge"><div class="highlight"><div class="pre-wrap"><pre class="highlight"><code>curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+</code></pre><div class="btn btn-copy">Copy</div></div></div>      </div>
+
+      <p>For additional installation options, see the <a href="https://getcomposer.org/download/" target="_blank">Composer installation documentation</a>.</p>
+    </li>
+  </ol>
+
+  <h4 id="next-step">Next step</h4>
+  <ul>
+    <li><a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_ce.html">Get the Magento Open Source metapackage</a></li>
+    <li><a href="https://devdocs.magento.com/guides/v2.2/install-gde/prereq/integrator_install_ee.html">Get the Magento Commerce metapackage</a></li>
+  </ul>
+</div>
+
+			
+		</div>
+		<!-- /.content-wrap -->
+
+		<div class="page-info">
+
+    
+  
+    
+    <div class="github-link">
+      <a class="improve-page" href="https://github.com/magento/devdocs/blob/develop/guides/v2.2/install-gde/prereq/integrator_install_composer.md" target="_blank">
+        Edit this page on GitHub
+      </a>
+    </div>
+    
+  
+    
+    <div class="new-issue">
+      <a href="https://github.com/magento/devdocs/issues/new?title=Feedback%20on%20page:%20/guides/v2.2/install-gde/prereq/integrator_install_composer.html" target="_blank">Give us feedback</a>
+    </div>
+    
+  
+  </div>
+
+	</section>
+	<!-- /.content -->
+
+</div> <!-- /.content-container -->
+
+
+	</div>
+	<!-- /.main-container -->
+</div>
+<!-- /#gl-wrapper -->
+
+<!-- footer-->
+<div class="page-footer">
+  <div class="container">
+
+    <div class="copyright-links">
+      <ul class="nav footer-links">
+  <li><a href="https://devdocs.magento.com/guides/v2.2/contributor-guide/contributing_docs.html">Become a Contributor</a>
+  </li><li><a href="https://magento.github.io/glossary/index.html?audience=developer">Glossary</a></li>
+  <li><a href="http://magento.com/legal/terms/privacy/">Privacy Policy</a></li>
+  <li><a href="http://magento.com/legal/terms/">Terms of Service</a></li>
+  <li><a href="http://magento.com/legal/licensing/">License/Trademark FAQ</a></li>
+  <li><a href="https://devdocs.magento.com/guides/v2.2/release-notes/bk-release-notes.html">Release Notes</a></li>
+  <li><a href="https://devdocs.magento.com/magento-third-party.html">Third-Party Licenses</a></li>
+</ul>
+
+    </div>
+
+		<div class="copyright-date">© 2018 Magento. All rights reserved.</div>
+
+  </div>
+</div>
+<!-- / #footer -->
+
+
+<script src="./Install Composer_files/jquery.min.js.下载"></script>
+<script src="./Install Composer_files/algoliasearch.min.js.下载"></script>
+<script src="./Install Composer_files/app.min.js.下载"></script>
+
+
+<script src="./Install Composer_files/devdocs.min.js.下载"></script>
+
+
+
+<script type="text/javascript">
+    (function() {
+        var didInit = false;
+        function initMunchkin() {
+            if(didInit === false) {
+                didInit = true;
+                Munchkin.init('585-GGD-959', {cookieAnon: false});
+            }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+            if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                initMunchkin();
+            }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body></html>

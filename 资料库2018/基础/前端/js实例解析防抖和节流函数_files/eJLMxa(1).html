@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://s.codepen.io/dcorb/fullembedgrid/eJLMxa?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Infinite scrolling throttled</title>
+  
+  
+  
+  
+      <style>
+      body {
+   background: #444444;
+   color: white;
+   font: 15px/1.51 system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+   margin:0 auto;
+   max-width:600px;
+   padding:20px;
+}
+.item {
+  border:4px solid white;
+  height:120px;
+  width:100%;
+  margin-bottom:50px;
+  background:#333;
+  padding:20px;
+}
+
+
+
+.color-1 { border-color: #9BFFBB}
+.color-2 { border-color: #B9C6FF}
+.color-3 { border-color: #FFA3D8}
+.color-4 { border-color: #FF8E9B}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style type="text/css">:root .ad
+{display:none !important;}</style></head>
+
+<body translate="no">
+
+  <h1>Infinite scrolling throttled</h1>
+<div class="item color-1">Block 1</div>
+<div class="item color-2">Block 2</div>
+<div class="item color-3">Block 3</div>
+<div class="item color-4">Block 4</div>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  <script src="./jquery.min.js.下载"></script>
+<script src="./lodash.min.js(1).下载"></script>
+
+  
+
+    <script>
+      // Very simple example.
+// Probably you would want to use a 
+// full-featured plugin like
+// https://github.com/infinite-scroll/infinite-scroll/blob/master/jquery.infinitescroll.js
+$(document).ready(function(){
+  
+  // Check every 200ms the scroll position
+  $(document).on('scroll', _.throttle(function(){
+    check_if_needs_more_content();
+  }, 300));
+
+  function check_if_needs_more_content() {     
+    pixelsFromWindowBottomToBottom = 0 + $(document).height() - $(window).scrollTop() -$(window).height();
+    
+  // console.log($(document).height());
+  // console.log($(window).scrollTop());
+  // console.log($(window).height());
+  //console.log(pixelsFromWindowBottomToBottom);
+    
+    
+    if (pixelsFromWindowBottomToBottom < 200){
+      // Here it would go an ajax request
+      $('body').append($('.item').clone()); 
+      
+    }
+  }
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+  
+  
+
+
+
+
+ <div class="item color-1">Block 1</div><div class="item color-2">Block 2</div><div class="item color-3">Block 3</div><div class="item color-4">Block 4</div><div class="item color-1">Block 1</div><div class="item color-2">Block 2</div><div class="item color-3">Block 3</div><div class="item color-4">Block 4</div><div class="item color-1">Block 1</div><div class="item color-2">Block 2</div><div class="item color-3">Block 3</div><div class="item color-4">Block 4</div></body></html>

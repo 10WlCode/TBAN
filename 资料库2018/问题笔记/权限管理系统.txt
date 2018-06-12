@@ -1,0 +1,1296 @@
+打开模型设计器DotNetOA.Model,下面的OAModel.edmx,右键模型图，选择从数据库更新模型。
+把UserInfo，RoleInfo,R_UserInfo_ActionInfor,ActionInfo,Department映射成实体，现在如果尝试登陆的话，会报错（如果登陆的用户什么权限都没有那就不会报错），因为之前用MEMCached的时候用到了序列化，这里循环序列化了，先不用管，一会儿会修改。
+因为每个表都需要对应的生成各个层里的类，这里有很多重复的代码所以可以，用T4模板批量生成代码，如果想自己写T4模板的话,在MVC项目上面右键，添加，常规，文本模板，这里我们已经写好了各层的模板，拖过来修改生成就行了。修改的时候对比着之前自己写的UserInfoDAL,UserInfoService,那些类就行，把之前自己写的UserInfoDAL那些类都变成partial类。
+先把IDAL.tt粘到IDAL层里，然后打开IUserInfoDAL，把IUserInfoDAL里的引用文件Copy过去，把NameSpaceCopy过去，然后在把第10行的string inputFile里面的Model路径修改一下。再把自己写的UserInfoDAL改成partial类。
+
+然后把IDBSession拖到IDAL里，还是修改路径，Using文件和name sapce,然后修改自己定义的IDBSession把自己定义的IUserInfoDAL接口（IUserInfoDAL UserInfoDAL { get; set; }）就可以注释掉了，然后把IDBSession改成partial。
+把DAL拖到DAL里
+DBSession拖到DALFactory里，修改路径，Using，和NameSpace。然后自己写的DBSession就可以改成partial了，然后我们自己写的下面这几行代码：
+
+        private IUserInfoDAL _UserInfoDAL;
+        public IUserInfoDAL UserInfoDAL
+        {
+            get
+            {
+                if (_UserInfoDAL == null)
+                {
+                    //_UserInfoDAL = new UserInfoDAL();
+                    _UserInfoDAL = AbstractFactory.CreateUserInfoDAL();
+                }
+                return _UserInfoDAL;
+            }
+            set
+            {
+                _UserInfoDAL = value;
+            }
+        }
+
+就可以被注释掉了。
+
+然后再把SimpleDALFactory拖到DALFactory里面，修改路径，Using，和NameSpace。然后变partial，自己写的下面代码注释掉。
+
+        public static IUserInfoDAL CreateUserInfoDAL()
+        {
+            string fullClassName = NameSpace + ".UserInfoDAL";
+            return CreateInstance(fullClassName) as IUserInfoDAL;
+        }
+
+IBLL拖到IBLL里
+BLL拖到BLL里，自己定义的UserInfoService里的下面代码就可以注释掉了。
+        public override void SetCurrentDAL()
+        {
+            CurrentDAL = this.CurrentDBSession.UserInfoDAL;
+        }
+
+这时候我们需要处理一下登陆时候报错（登陆要是什么关联都没有就不会报错），在UserInfo在Memcached序列化的时候报错。原因是在Model里面映射出来的UserInfo里面除了自己的基本属性以外，还有关联属性（导航属性），从UserInfo转到R_UserInfo_ActionInfo表之后继续找，找到R_UserInfo_ActionInfo和UserInfo与ActionInfo都有关系，所以又回来序列化UserInfo，和ActionInfo，这样就循环序列化了。解决方案
+在UserInfo映射的实体类的关系属性前面加[JsonIgnore]。添加引用    using Newtonsoft.Json;
+        [JsonIgnore]
+        public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
+          [JsonIgnore]
+        public virtual ICollection<Department> Department { get; set; }
+          [JsonIgnore]
+        public virtual ICollection<RoleInfo> RoleInfo { get; set; }
+
+权限管理-
+第一条线 用户-角色-权限
+先修改前端显示的Icon，这里EasyUI是把Icon放在Links这个数组里，然后遍历输出，我们要做的就是过滤用户权限，然后再填入数组里。
+先把links数组里面的title和url改成我们想要的，在view里home/index 
+    var links = [
+            { icon: '/Content/lib/images/3DSMAX.png', title: '用户管理', url: '/UserInfo/Index' },
+            { icon: '/Content/lib/images/3DSMAX.png', title: '角色管理', url: '/RoleInfo/Index' }
+]
+然后添加RoleInfo控制器，和视图，RoleInfo的视图样式，应该和UserInfo是一样的，所以我们把UserInfo的引用的CSS和JS文件引用进来。
+    <link href="~/Content/Themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/Themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+然后把两个Index的title改成用户管理和角色管理，然后是$function(){loaddata();}把下面的黏贴到Head里
+    <script type="text/javascript">
+            $(function () {
+                loadData();
+    });
+loadData这个方法
+        function loadData() {
+            $('#tt').datagrid({
+                url: '/UserInfo/GetUserInfolist',
+                title: '用户数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID',//主键列的列明
+                loadMsg: '正在加载用户的信息...',
+                pagination: true,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 5,//页大小，一页多少条数据
+                pageNumber: 1,//当前页，默认的
+                pageList: [5, 10, 15],
+                queryParams: {},//往后台传递参数
+                columns: [[//c.UserName, c.UserPass, c.Email, c.RegTime
+                    { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                    { field: 'ID', title: '编号', width: 80 },
+                    { field: 'UName', title: '姓名', width: 120 },
+                    { field: 'UPwd', title: '密码', width: 120 },
+                    { field: 'Remark', title: '备注', width: 120 },
+                    {
+                        field: 'SubTime', title: '时间', width: 80, align: 'right',
+                        formatter: function (value, row, index) {
+                            return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                        }
+                    }
+                ]],
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+
+                        deleteInfo();
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+
+                        addInfo();
+                    }
+                }, {
+                    id: 'btnEidt',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showEditInfo();
+                    }
+                }],
+            });
+        }
+table标签放在DIV里面
+<table id="tt" style="width: 700px;" title="标题，可以使用代码进行初始化，也可以使用这种属性的方式" iconcls="icon-edit"></table> 
+下面来改造主要是url和columne,title什么的看着改就好
+
+        function loadData(pars) {
+            $('#tt').datagrid({
+                url: '/RoleInfo/GetRoleInfoList',
+                title: '角色数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID',//主键列的列明
+                loadMsg: '正在加载角色的信息...',
+                pagination: true,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 5,//页大小，一页多少条数据
+                pageNumber: 1,//当前页，默认的
+                pageList: [5, 10, 15],
+                queryParams: pars,//往后台传递参数
+                columns: [[//c.UserName, c.UserPass, c.Email, c.RegTime
+                    { field: 'ck', checkbox: true, align: 'left', width: 50 },
+					{ field: 'ID', title: '编号', width: 80 },
+					{ field: 'RoleName', title: '角色名称', width: 120 },
+                     { field: 'Sort', title: '排序', width: 120 },
+                      { field: 'Remark', title: '备注', width: 120 },
+					{
+					    field: 'SubTime', title: '时间', width: 80, align: 'right',
+					    formatter: function (value, row, index) {
+					        return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+					    }
+					}
+                ]],
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+
+                        deleteInfo();
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+
+                        addInfo();
+                    }
+                }, {
+                    id: 'btnEidt',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showEditInfo();
+                    }
+                }, {
+                    id: 'btnSetRoleAction',
+                    text: '为角色分配权限',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showRoleAction();
+                    }
+                }],
+            });
+        }
+然后完善RoleInfoController控制器。
+在RoleInfoController，添加        IBLL.IRoleInfoService RoleInfoService { get; set; }，
+然后在Config下面Controllers添加
+  <object  type="DotNetOA.MVC.Controllers.RoleInfoController, DotNetOA.MVC" singleton="false" >
+    <property name="RoleInfoService" ref="RoleInfoService" />
+      </object>
+在Config下的Service加上  <object type="DotNetOA.BLL.RoleInfoService, DotNetOA.BLL" singleton="false" name="RoleInfoService" >
+  </object>
+然后看一眼前端url发过来的地址，是GetUserInfoList那我们就在RoleInfoController下面建立这个方法
+        public ActionResult GetRoleInfoList()
+        {
+            int pageIndex = Request["page"] != null ? int.Parse(Request["page"]) : 1;
+            int pageSize = Request["rows"] != null ? int.Parse(Request["rows"]) : 5;
+            int totalCount;
+             short delFlag=(short)DeleteEnumType.Normarl;
+            var roleInfoList = RoleInfoService.LoadPageEntities<int>(pageIndex,pageSize,out totalCount,r=>r.DelFlag==delFlag,r=>r.ID,true);
+            var temp = from r in roleInfoList
+                       select new { ID = r.ID, RoleName = r.RoleName, Sort = r.Sort, SubTime = r.SubTime,Remark=r.Remark };
+            return Json(new { rows=temp,total=totalCount},JsonRequestBehavior.AllowGet);
+        }
+现在角色数据表格就可以显示出来了
+现在要做添加角色，如果还按照管理用户那样直接写JS，页面的JS代码我们觉得比较了，臃肿不好看，那么我们就想这次把添加角色放在Iframe这样指定一个Src属性就可以显示了，
+和管理用户一样，管理角色时候用户点击添加按钮，就会出现一个表单，不过这次我们用Iframe
+    <!------------添加表单------------------>
+    <div id="addDiv">
+        <iframe  id="addFrame" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+这个表单一开始是隐藏起来的，把$function改成
+        $(function () {
+            $("#addDiv").css("display", "none");
+            loadData();
+        });
+在JS里面完善addInfo方法
+        //添加信息
+        function addInfo() {
+            //给ifrme指定页面的URL地址。
+            $("#addFrame").attr("src", "/RoleInfo/ShowAddInfo");//给Iframe加src属性
+            $("#addDiv").css("display", "block");
+            $('#addDiv').dialog({
+                title: '添加角色数据',
+                width: 300,
+                height: 400,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                     //提交表单
+                        //调用子窗口的方法.
+                        var childWindow = $("#addFrame")[0].contentWindow;//表示获取了嵌入在iframe中的子窗体的window对象。
+                        childWindow.subForm();//调用子窗体中的方法，完成表单的提交。
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#addDiv').dialog('close');
+                    }
+                }]
+            });
+        }
+在RoleInfoController里面，完善ShowAddInfo方法，
+        public ActionResult ShowAddInfo()
+        {
+            return View();
+        }
+右键创建视图，这次为了省事，我就选了Create模板，的强类型视图vs2017没有写明强类型视图了，但是可以选模板，一样的。数据选RoleInfo，然后把不需要用户输入的信息表格删了，比如修改时间，Create按钮等
+
+
+现在问题来了，我们是把视图放在Iframe里面的，我们需要使用Iframe主窗体的的OK按钮完成表单提交，那我们要改造一下ShowAddInfo这个强类型视图。
+添加引用JQuery和Ajax
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#addRoleForm").submit();//定义一个方法，可以发送表单，这样让主窗体调用到这个方法，就可以发送表单了。
+        }
+    </script>
+把Using（（html.beginForm））换成 @using (Ajax.BeginForm("AddRoleInfo", "RoleInfo", new { }, new AjaxOptions() { OnSuccess = "afterAdd" }, new { id = "addRoleForm" }))
+
+修改RoleInfo\index下面的AddInfo方法下面的Handler下面的js方法
+                    handler: function () {
+                        //提交表单
+                        //调用子窗口的方法.
+                        var childWindow = $("#addFrame")[0].contentWindow;//$("#addFrame")[0]把addFrame表单转成DOM对象，然后.contentWindow,获取了嵌入在iframe中的子窗体的window对象(子窗体)。
+                        childWindow.subForm();//拿到子窗体以后，子窗体的方法就随便调用了，调用子窗体中的方法，完成表单的提交。
+                    }
+
+再回来完善RoleInfoController
+        #region 完成角色信息添加
+        public ActionResult AddRoleInfo(RoleInfo roleInfo)
+        {
+            roleInfo.ModifiedOn = Convert.ToString(DateTime.Now);
+            roleInfo.SubTime = DateTime.Now;
+            roleInfo.DelFlag = 0;
+            RoleInfoService.AddEntity(roleInfo);
+            return Content("ok");
+        }
+        #endregion
+现在又出来一个问题，子窗体发送完表单，添加完角色信息以后需要关闭主窗体。
+在主窗体的Index文件RoleInfo\Index添加一个方法
+        //添加完成后调用该方法。
+        function afterAdd(data) {
+            if (data == "ok") {
+                $('#addDiv').dialog('close');
+                $('#tt').datagrid('reload');//加载表格不会跳到第一页。
+            }
+        }
+在子窗体每次发送完表单以后都调用它，在Script下面加入
+        function afterAdd(data) {
+            //子窗体调用父窗体中的方法。
+            window.parent.afterAdd(data);
+        }
+坐到这里我发现不用#Region加两下Tab把代码分区看着真的好累啊，决定以后能分区的话，比如在控制器里还是把代码分区看着舒服。
+
+下面我们需要做
+UserInfoController为用户展示用户已有角色，为用户分配角色，RoleInfoController展示要分配权限，为角色分配权限。
+
+展示用户已有角色，为用户分配角色
+在views/userInfo/index增加显示按钮
+ {
+                    id: 'btnSetUserRole',
+                    text: '为用户分配角色',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showSetUserRoleInfo();
+                    }
+                }, 
+完善showSetUserRoleInfo()方法，在Script里
+        //为用户配置角色.
+        function showSetUserRoleInfo() {
+            //判断一下用户是否选择了要修改的数据
+            var rows = $('#tt').datagrid('getSelections');//获取所选择的行
+            if (rows.length != 1) {
+                $.messager.alert("提示", "请选择要分配角色的用户", "error");
+                return;
+            }
+            $("#setUserRoleFrame").attr("src","/UserInfo/ShowUserRoleInfo/?id="+rows[0].ID);
+            $("#setUsrRoleDiv").css("display", "block");
+            $('#setUsrRoleDiv').dialog({
+                title: '为用户分配角色数据',
+                width: 300,
+                height: 200,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        var childWindow = $("#setUserRoleFrame")[0].contentWindow;
+                        childWindow.subForm();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#setUsrRoleDiv').dialog('close');
+                    }
+                }]
+            });
+        }
+        //为用户分配完成角色以后调用的方法。
+        function afterSetUserRole(data) {
+            if (data == "ok") {
+                $('#setUsrRoleDiv').dialog('close');
+            }
+
+        }
+在Body里加入表格
+    <!-------------------为用户分配角色---------------------->
+    <div id="setUsrRoleDiv">
+        <iframe id="setUserRoleFrame" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+在UserInfoController加入
+
+        IBLL.IRoleInfoService RoleInfoService { get; set; }
+        IBLL.IActionInfoService ActionInfoService { get; set; }
+
+        #region 展示用户已经有的角色
+         public ActionResult ShowUserRoleInfo()
+         {
+             int id = int.Parse(Request["id"]);
+            var userInfo= UserInfoService.LoadEntities(u=>u.ID==id).FirstOrDefault();
+            ViewBag.UserInfo = userInfo;
+            //查询所有的角色.
+              short delFlag = (short)DeleteEnumType.Normarl;
+           var allRoleList= RoleInfoService.LoadEntities(r=>r.DelFlag==delFlag).ToList();
+             //查询一下要分配角色的用户以前具有了哪些角色编号。
+           var allUserRoleIdList = (from r in userInfo.RoleInfo
+                                    select r.ID).ToList();
+           ViewBag.AllRoleList = allRoleList;
+           ViewBag.AllUserRoleIdList = allUserRoleIdList;
+           return View();
+         }
+
+        #endregion
+
+        #region 完成用户角色的分配
+         public ActionResult SetUserRoleInfo()
+         {
+             int userId = int.Parse(Request["userId"]);
+             string[]allKeys=Request.Form.AllKeys;//获取所有表单元素name属性值。
+             List<int> roleIdList = new List<int>();
+             foreach (string key in allKeys)
+             {
+                 if (key.StartsWith("cba_"))
+                 {
+                     string k = key.Replace("cba_","");
+                     roleIdList.Add(Convert.ToInt32(k));
+                 }
+             }
+             if (UserInfoService.SetUserRoleInfo(userId, roleIdList))//设置用户的角色,没有满足的方法，我们到UserInfoService需要自己建立
+             {
+                 return Content("ok");
+             }
+             else
+             {
+                 return Content("no");
+             }
+         }
+
+右键ShowUserRoleInfo添加视图
+
+@{
+    Layout = null;
+}
+@using using DotNetOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为用户分配角色</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#setUserRoleForm").submit();
+        }
+        function afterSet(data) {
+            window.parent.afterSetUserRole(data);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为  @{
+            UserInfo userInfo = ViewBag.UserInfo;
+           <span style="font-size:14px;color:red;font-weight:bold"> @userInfo.UName</span>
+            
+        }  用户分配角色<br />
+
+        @{
+            using(Ajax.BeginForm("SetUserRoleInfo","UserInfo",new{},new AjaxOptions(){OnSuccess="afterSet",HttpMethod="post"},new{id="setUserRoleForm"})){
+                <input type="hidden" name="userId" value="@userInfo.ID" />
+            List<RoleInfo> allRoleList = ViewBag.AllRoleList;
+            List<int>roleIdList=ViewBag.AllUserRoleIdList;
+            foreach(RoleInfo roleInfo in allRoleList){
+                var roleName="cba_"+roleInfo.ID;
+                if(roleIdList.Contains(roleInfo.ID))
+                {
+                   
+              <input type="checkbox" name="@roleName" value="@roleInfo.ID" checked="checked" />@roleInfo.RoleName
+                    }
+                    else
+                    {
+                 <input type="checkbox" name="@roleName" value="@roleInfo.ID"  />@roleInfo.RoleName
+                }
+            }
+         }
+        }
+
+    </div>
+</body>
+</html>
+
+
+因为需要权限和角色所以我们配置Config/Controller把UserInfoController的配置改成下面这样
+  <object  type="DotNetOA.MVC.Controllers.UserInfoController, DotNetOA.MVC" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+  <property name="RoleInfoService" ref="RoleInfoService" />
+    <property name="ActionInfoService" ref="ActionInfoService" />
+      </object>
+
+Config/Services文件加入下面这行
+  <object type="DotNetOA.BLL.ActionInfoService, DotNetOA.BLL" singleton="false" name="ActionInfoService" >
+  </object>
+
+在UserInfoService里加入具体业务类SetUserRoleInfo
+        /// <summary>
+        /// 为用户分配角色TODO:还需要继续理解。
+        /// </summary>
+        /// <param name="userId">用户编号</param>
+        /// <param name="roleIdList">要分配的角色的编号</param>
+        /// <returns></returns>
+        public bool SetUserRoleInfo(int userId, List<int> roleIdList)
+        {
+            var userInfo = this.CurrentDBSession.UserInfoDAL.LoadEntities(u => u.ID == userId).FirstOrDefault();//根据用户的编号查找用户的信息
+            if (userInfo != null)
+            {
+                userInfo.RoleInfo.Clear();
+                foreach (int roleId in roleIdList)
+                {
+                    var roleInfo = this.CurrentDBSession.RoleInfoDAL.LoadEntities(r => r.ID == roleId).FirstOrDefault();
+                    userInfo.RoleInfo.Add(roleInfo);
+                }
+                return this.CurrentDBSession.SaveChanges();
+            }
+            return false;
+
+        }
+在IUserInfoService里加入具体业务类SetUserRoleInfo的接口
+        bool SetUserRoleInfo(int userId, List<int> roleIdList);
+
+看View/RoleInfoController下面有没有，button和IFrame
+{
+                    id: 'btnSetRoleAction',
+                    text: '为角色分配权限',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showRoleAction();
+                    }
+                }
+
+        <!------------添加表单------------------>
+    <div id="setActionDiv">
+        <iframe  id="setActionFrame" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+在Script下面写
+        //为角色分配权限
+        function showRoleAction() {
+            //判断是否选择了一个角色.
+            var rows = $('#tt').datagrid('getSelections');//获取所选择的行
+            if (rows.length != 1) {
+                $.messager.alert("提示", "请选择要分配权限的角色", "error");
+                return;
+            }
+            //指定iframe的src.
+            $("#setActionFrame").attr("src", "/RoleInfo/ShowRoleAction/?id=" + rows[0].ID);
+            $("#setActionDiv").css("display", "block");
+            $('#setActionDiv').dialog({
+                title: '为角色分配权限数据',
+                width: 300,
+                height: 400,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //提交表单
+                        //调用子窗口的方法.
+                        var childWindow = $("#setActionFrame")[0].contentWindow;//表示获取了嵌入在iframe中的子窗体的window对象。
+                        childWindow.subForm();//调用子窗体中的方法，完成表单的提交。
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#setActionDiv').dialog('close');
+                    }
+                }]
+            });
+        }
+        //为角色分配完成权限后调用该方法
+        function afterSet(data) {
+            if (data == "ok") {
+                $('#setActionDiv').dialog('close');
+            }
+        }
+在RoleInfoController下面
+先创建实例 IBLL.IActionInfoService ActionInfoService { get; set; }
+然后配置Config/Controller文件，改成  <object  type="DotNetOA.MVC.Controllers.RoleInfoController, DotNetOA.MVC" singleton="false" >
+    <property name="RoleInfoService" ref="RoleInfoService" />
+    <property name="ActionInfoService" ref="ActionInfoService" />
+  </object>
+
+然后
+        #region 展示要分配的权限
+        public ActionResult ShowRoleAction()
+        {
+            int id = int.Parse(Request["id"]);
+            var roleInfo = RoleInfoService.LoadEntities(r=>r.ID==id).FirstOrDefault();//获取要分配的权限的角色信息。
+            ViewBag.RoleInfo = roleInfo;
+            //获取所有的权限。
+            short delFlag = (short)DeleteEnumType.Normarl;
+          var actionInfoList= ActionInfoService.LoadEntities(a=>a.DelFlag==delFlag).ToList();
+            //要分配权限的角色以前有哪些权限。
+          var actionIdList = (from a in roleInfo.ActionInfo
+                              select a.ID).ToList();
+          ViewBag.ActionInfoList = actionInfoList;
+          ViewBag.ActionIdList = actionIdList;
+          return View();
+        }
+        #endregion
+
+        #region  完成角色权限的分配
+        public ActionResult SetRoleAction()
+        {
+            int roleId = int.Parse(Request["roleId"]);//获取角色编号
+            string[] allKeys = Request.Form.AllKeys;//获取所有表单元素name属性的值。
+            List<int> list = new List<int>();
+            foreach (string key in allKeys)
+            {
+                if (key.StartsWith("cba_"))
+                {
+                    string k = key.Replace("cba_","");
+                    list.Add(Convert.ToInt32(k));
+                }
+            }
+            if (RoleInfoService.SetRoleActionInfo(roleId, list))//创建SetRoleActionInfo
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("no");
+            }
+        }
+添加ShowRoleAction视图
+@{
+    Layout = null;
+}
+@using DotNetOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为角色分配权限</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#setRoleActionForm").submit();
+        }
+        function afterSet(data) {
+            window.parent.afterSet(data);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为 @{
+            RoleInfo roleInfo = ViewBag.RoleInfo;
+            <span style="font-size:14px;color:red;font-weight:bold">@roleInfo.RoleName</span>
+        }角色分配权限
+        <br />
+        @{
+            using (Ajax.BeginForm("SetRoleAction", "RoleInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterSet" }, new { id = "setRoleActionForm" }))
+            {
+                <input type="hidden" name="roleId" value="@roleInfo.ID" />
+                List<ActionInfo> actionInfoList = ViewBag.ActionInfoList;
+                List<int> actionIdList = ViewBag.ActionIdList;
+                foreach (var actionInfo in actionInfoList)
+                {
+                    var actionName = "cba_" + actionInfo.ID;
+                    if (actionIdList.Contains(actionInfo.ID))
+                    {
+                        <input type="checkbox" value="@actionInfo.ID" name="@actionName" checked="checked" />@actionInfo.ActionInfoName
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="@actionInfo.ID" name="@actionName" />@actionInfo.ActionInfoName
+                    }
+
+                }
+            }
+        }
+    </div>
+</body>
+</html>
+
+在IBLL下面创建接口IRoleInfoService，不能再T4模板下面直接改，因为T4模板再一次生成以后就会变，代码就没了
+    public partial interface IRoleInfoService : IBaseService<RoleInfo>
+    {
+        bool SetRoleActionInfo(int roleId,List<int>actionIdList);
+    }
+BLL下创建RoleInfoService
+namespace DotNetOA.BLL
+{
+    public partial class RoleInfoService:BaseService<RoleInfo>, IRoleInfoService
+    {
+        
+        /// <summary>
+        /// 为角色分配权限
+        /// </summary>
+        /// <param name="roleId">角色编号</param>
+        /// <param name="actionIdList">权限编号列表</param>
+        /// <returns></returns>
+        public bool SetRoleActionInfo(int roleId, List<int> actionIdList)
+        {
+            //获取角色信息.
+            var roleInfo = this.CurrentDBSession.RoleInfoDAL.LoadEntities(r => r.ID == roleId).FirstOrDefault();
+            if (roleInfo != null)
+            {
+                roleInfo.ActionInfo.Clear();
+                foreach (int actionId in actionIdList)
+                {
+                    var actionInfo = this.CurrentDBSession.ActionInfoDAL.LoadEntities(a => a.ID == actionId).FirstOrDefault();
+                    roleInfo.ActionInfo.Add(actionInfo);
+                }
+                return this.CurrentDBSession.SaveChanges();
+            }
+            return false;
+        }
+    }
+}
+
+做用户-权限这条线
+
+先做展示加分配用户权限
+View/UserInfo/index下面添加按钮
+ {
+                    id: 'btnSetUserAction',
+                    text: '为用户分配权限',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showSetUserActionInfo();
+                    }
+                }
+完善showSetUserActionInfo
+        //为用户分配权限
+        function showSetUserActionInfo() {
+            //判断一下用户是否选择了要修改的数据
+            var rows = $('#tt').datagrid('getSelections');//获取所选择的行
+            if (rows.length != 1) {
+                $.messager.alert("提示", "请选择要分配权限的用户", "error");
+                return;
+            }
+            $("#setUserActionFrame").attr("src","/UserInfo/ShowUserAction/?userId="+rows[0].ID);
+            $("#setUsrActionDiv").css("display", "block");
+            $('#setUsrActionDiv').dialog({
+                title: '为用户分配权限数据',
+                width: 400,
+                height: 300,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                      
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#setUsrActionDiv').dialog('close');
+                    }
+                }]
+            });
+        }
+在body下面
+    <!--------------为用户分配权限------------------->
+    <div id="setUsrActionDiv">
+        <iframe id="setUserActionFrame" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+在$(function())里面
+            $("#setUsrRoleDiv").css("display", "none");
+            $("#setUsrActionDiv").css("display", "none");
+
+完善UserInfoController
+先实例化对象
+        IBLL.IActionInfoService ActionInfoService { get; set; }
+然后在config/controller里的UserInfoService注册一下ActionInfoService
+        #region 展示用户权限
+        public ActionResult ShowUserAction()
+        {
+            int userId = int.Parse(Request["userId"]);//把ID接过来
+            var userInfo = UserInfoService.LoadEntities(u => u.ID == userId).FirstOrDefault();//通过ID查到整条数据
+            ViewBag.UserInfo = userInfo;//在视图里呈现给用户，赋值给ViewBag
+            //获取所有的权限,展示展示出来让用户去选，需要实例化ActionInfoService对象添加IBLL.IActionInfoService ActionInfoService { get; set; }。
+            short delFlag = (short)DeleteEnumType.Normarl;
+            var allActionList = ActionInfoService.LoadEntities(a => a.DelFlag == delFlag).ToList();//这里不用ToList也行，不ToList返回的事Iqueryable，倒是后循环的时候再查数据，ToList就变成马上查数据。
+            //获取要分配的用户已经有的权限。
+            var allActionIdList = (from a in userInfo.R_UserInfo_ActionInfo//找到用户和权限的中间表
+                                   select a).ToList();//直接返回带权限ID和用户ID的数据
+            ViewBag.AllActionList = allActionList;
+            ViewBag.AllActionIdList = allActionIdList;
+            return View();
+        }
+        #endregion
+
+        #region 完成用户权限的分配
+         public ActionResult SetUserAction()
+         {
+             int actionId = int.Parse(Request["actionId"]);
+             int userId = int.Parse(Request["userId"]);
+             bool isPass = Request["isPass"] == "true" ? true : false;
+             if (UserInfoService.SetUserActionInfo(actionId, userId, isPass))
+             {
+                 return Content("ok");
+             }
+             else
+             {
+                 return Content("no");
+             }
+         }
+        #endregion
+添加视图ShowUserAction，给用户权限我们使用RadioButton一个禁止一个允许，需要从数据库里取出数据，然后用RadioButton显示权限。
+@{
+    Layout = null;
+}
+@using DotNetOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为用户分配权限</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <link href="~/Content/tableStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <div>
+        为用户 @{
+            UserInfo userInfo = ViewBag.UserInfo;//拿到UserInfo数据实例
+            <span style="font-size:14px;color:red;font-weight:bold"> @userInfo.UName</span>
+        }分配权限
+        <br />
+        <table>
+            <tr><th>编号</th><th>权限名称</th><th>Url</th><th>HttpMethod</th><th>操作</th></tr>
+            @{
+                List<ActionInfo> allActionList = ViewBag.AllActionList;//从视图包里拿到所有的权限
+                List<R_UserInfo_ActionInfo> allActionId = ViewBag.AllActionIdList;//从视图包里拿到用户所有的权限
+                foreach (ActionInfo actionInfo in allActionList)
+                {
+                    var actionName = "cba_" + actionInfo.ID;
+                    var noactionName = "nocba_" + actionInfo.ID;
+                    <tr>
+                        <td>@actionInfo.ID</td>
+                        <td>@actionInfo.ActionInfoName</td>
+                        <td>@actionInfo.Url</td>
+                        <td>@actionInfo.HttpMethod</td>
+                        <td>
+                            @{
+                                var isExt = (from a in allActionId
+                                             where a.ActionInfoID == actionInfo.ID//思路是过滤allActionId这个集合如果它里面的ID和actionInfo.ID的ID一样那就说明有数据。其实就是containers TODO:看一下上一条线里的containers
+                                             select a).FirstOrDefault();
+                                if (isExt != null)
+                                {
+                                    if (isExt.IsPass)//有IsPass就选中允许，ID是必要的，和for=""配合起来点文字就能选中Button
+                                    {
+                                        <label for="@actionName">允许</label>
+                                        <input type="radio" checked="checked" value="true" class="selectActions" ids="@actionInfo.ID" id="@actionName" name="@actionName" />
+                                        <label for="@noactionName">禁止</label>
+                                        <input type="radio" value="false" class="selectActions" ids="@actionInfo.ID" id="@noactionName" name="@actionName" />
+
+                                    }
+                                    else//没有IsPass就选中禁止
+                                    {
+
+                                        <label for="@actionName">允许</label>
+                                        <input type="radio" value="true" class="selectActions" ids="@actionInfo.ID" id="@actionName" name="@actionName" />
+                                        <label for="@noactionName">禁止</label>
+                                        <input type="radio" value="false" class="selectActions" ids="@actionInfo.ID" checked="checked" id="@noactionName" name="@actionName" />
+                                    }
+
+                                }
+                                else//没这条数据，直接什么都不选
+                                {
+                                    <label for="@actionName">允许</label>
+                                    <input type="radio" value="true" class="selectActions" ids="@actionInfo.ID" id="@actionName" name="@actionName" />
+                                    <label for="@noactionName">禁止</label>
+                                    <input type="radio" value="false" class="selectActions" ids="@actionInfo.ID" id="@noactionName" name="@actionName" />
+
+                                }
+                                <input type="button" value="清除" class="btnClear" ids="@actionInfo.ID" />
+
+                            }
+
+                        </td>
+                    </tr>
+                                }
+            }
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        bindRadioClickEvent();
+        bindClearBtnClickEvent();
+    });
+    //单击“单选按钮”完成权限的分配
+    function bindRadioClickEvent() {
+        $(".selectActions").click(function () {
+            var actionId = $(this).attr("ids");//获取权限编号
+            var isPass=$(this).val();
+            $.post("/UserInfo/SetUserAction", { "actionId": actionId, "userId": '@userInfo.ID', "isPass": isPass }, function (data) {
+                if (data == "ok") {
+                    $.messager.show({
+                        title: '提示',
+                        msg: '权限分配成功',
+                        showType: 'show'
+                    });
+
+                } else {
+                    $.messager.show({
+                        title: '提示',
+                        msg: '权限分配失败',
+                        showType: 'show'
+                    });
+                }
+            });
+        });
+    }
+    //清除权限
+    function bindClearBtnClickEvent() {
+        $(".btnClear").click(function () {
+            var actionId = $(this).attr("ids");//获取权限编号
+            var $control=$(this)
+            $.post("/UserInfo/ClearUserAction", { "actionId": actionId, "userId": '@userInfo.ID' }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    $control.parent().find(".selectActions").removeAttr("checked");
+                    showMsg(serverData[1]);
+                } else {
+                    showMsg(serverData[1]);
+                }
+            });
+        });
+    }
+    function showMsg(msg) {
+        $.messager.show({
+            title: '提示',
+            msg: msg,
+            showType: 'show'
+        });
+    }
+
+</script>
+
+
+完善UserInfoService.SetUserActionInfo的具体业务类和业务接口
+接口：bool SetUserActionInfo(int actionId,int userId,bool isPass);
+业务类：
+        /// <summary>
+        /// 完成用户权限的分配
+        /// </summary>
+        /// <param name="actionId"></param>
+        /// <param name="userId"></param>
+        /// <param name="isPass"></param>
+        /// <returns></returns>
+        public bool SetUserActionInfo(int actionId, int userId, bool isPass)
+        {
+           //判断userId以前是否有了该actionId,如果有了只需要修改isPass状态，否则插入。
+            var r_userInfo_actionInfo = this.CurrentDBSession.R_UserInfo_ActionInfoDal.LoadEntities(a=>a.ActionInfoID==actionId&&a.UserInfoID==userId).FirstOrDefault();
+            if (r_userInfo_actionInfo == null)
+            {
+                R_UserInfo_ActionInfo userInfoActionInfo = new R_UserInfo_ActionInfo();
+                userInfoActionInfo.ActionInfoID = actionId;
+                userInfoActionInfo.UserInfoID = userId;
+                userInfoActionInfo.IsPass =isPass;
+                this.CurrentDBSession.R_UserInfo_ActionInfoDal.AddEntity(userInfoActionInfo);
+            }
+            else
+            {
+                r_userInfo_actionInfo.IsPass = isPass;
+                this.CurrentDBSession.R_UserInfo_ActionInfoDal.EditEntity(r_userInfo_actionInfo);
+            }
+           return this.CurrentDBSession.SaveChanges();
+
+        }
+删除用户权限
+先加个Button
+<input type="button" value="清除" class="btnClear" ids="@actionInfo.ID" />  
+
+    //清除权限
+    function bindClearBtnClickEvent() {
+        $(".btnClear").click(function () {
+            var actionId = $(this).attr("ids");//获取权限编号
+            var $control=$(this)
+            $.post("/UserInfo/ClearUserAction", { "actionId": actionId, "userId": '@userInfo.ID' }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    $control.parent().find(".selectActions").removeAttr("checked");
+                    showMsg(serverData[1]);
+                } else {
+                    showMsg(serverData[1]);
+                }
+            });
+        });
+    }
+    function showMsg(msg) {
+        $.messager.show({
+            title: '提示',
+            msg: msg,
+            showType: 'show'
+        });
+    }
+
+在UserInfoController下面
+        #region 完成权限删除
+         public ActionResult ClearUserAction()
+         {
+             int actionId = int.Parse(Request["actionId"]);
+             int userId = int.Parse(Request["userId"]);
+           var r_userInfo_actionInfo=R_UserInfo_ActionInfoService.LoadEntities(r=>r.ActionInfoID==actionId&&r.UserInfoID==userId).FirstOrDefault();
+           if (r_userInfo_actionInfo != null)
+           {
+               if (R_UserInfo_ActionInfoService.DeleteEntity(r_userInfo_actionInfo))
+               {
+                   return Content("ok:删除成功!!");
+               }
+               else
+               {
+                   return Content("ok:删除失败!!");
+               }
+           }
+           else
+           {
+               return Content("no:数据不存在!!");
+           }
+
+         }
+        #endregion
+因为要删除的事中间表格的数据所以需要把中间表格实例化
+IBLL.IR_UserInfo_ActionInfoService R_UserInfo_ActionInfoService { get; set; }
+Controller下的UserInfoController下
+    <property name="R_UserInfo_ActionInfoService" ref="R_UserInfo_ActionInfoService" />
+Service下
+    <object type="DotNetOA.BLL.R_UserInfo_ActionInfoService, DotNetOA.BLL" singleton="false" name="R_UserInfo_ActionInfoService" >
+    </object>
+
+下一步做权限的过滤
+菜单权限过滤
+在View/Home/Index下面先把Links里的东西都注释掉
+        //{ icon: '/Content/lib/images/3DSMAX.png', title: '用户管理', url: '/UserInfo/Index' },
+        //{ icon: '/Content/lib/images/3DSMAX.png', title: '角色管理', url: '/RoleInfo/Index' },
+        //    { icon: '/Content/lib/images/3DSMAX.png', title: '多表头', url: '../grid/mulheader/grid2.htm' },
+        //    { icon: '/Content/lib/images/Program Files Folder.png', title: '固定列', url: '../grid/frozen/frozengrid.htm' },
+        //    { icon: 'images/Program Files Folder.png', title: '可拖动', url: '../base/drag.htm' },
+        //    { icon: 'images/Alien Folder.png', title: '树', url: '../tree/draggable.htm' },
+        //    { icon: 'images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+        //    { icon: 'images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+        //    { icon: 'images/Alien Folder.png', title: 'layout', url: '../layout/layoutFullHeight.htm' },
+        //     { icon: 'images/Alien Folder.png', title: 'menu', url: '../menu/menubar.htm' },
+        //     { icon: 'images/Xp-G5 006.png', title: 'tab', url: '../tab/tabHtml.htm' },
+        //     { icon: 'images/3DSMAX.png', title: '分组', url: '../grid/groupable/checkbox.htm' }
+然后把linksInit()和Onresize()移动到我们自己定义的方法里，通过GetMenus
+    $.getJSON("/Home/Getmenus", {}, function (data) {//请求Getmenus这个方法完成过滤
+        links = data;
+        linksInit();
+        onResize();
+    });
+创建实例IBLL.IUserInfoService UserInfoService { get; set; }
+Config里没有设置过Home控制器我们增加一个homecontroller
+  <object  type="DotNetOA.MVC.Controllers.HomeController, DotNetOA.MVC" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+
+在Model层再添加一个枚举类，ActionTypeEnum.cs
+    public enum ActionTypeEnum
+    {
+        /// <summary>
+        /// 普通权限
+        /// </summary>
+        NormalActioinType=0,
+        /// <summary>
+        /// 菜单权限
+        /// </summary>
+        MenumActionType=1
+    }
+在Model层添加去重类EqualityComparer.cs
+    public class EqualityComparer : IEqualityComparer<ActionInfo>
+    {
+        public bool Equals(ActionInfo x, ActionInfo y)
+        {
+            return x.ID == y.ID;
+        }
+
+        public int GetHashCode(ActionInfo obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+
+完善GetMenu方法在HomeController里
+        #region 过滤登录用户的菜单权限
+        /// <summary>
+        /// 1: 可以按照用户---角色---权限这条线找出登录用户的权限，放在一个集合中。
+        /// 2：可以按照用户---权限这条线找出用户的权限，放在一个集合中。
+        /// 3：将这两个集合合并成一个集合。
+        /// 4：把禁止的权限从总的集合中清除。
+        /// 5：将总的集合中的重复权限清除。
+        /// 6：把过滤好的菜单权限生成JSON返回。
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Getmenus()
+        {
+            //1: 可以按照用户---角色---权限这条线找出登录用户的权限，放在一个集合中。
+            //获取登录用户的信息,LoginUser里面存的不是完整的信息，因为我们用了Memcached,序列化的时候我们把导航信息都给去掉了，所以需要重新再查一次。
+            var userInfo = UserInfoService.LoadEntities(u => u.ID == LoginUser.ID).FirstOrDefault();
+            //获取登录用户的角色.
+            var userRoleInfo = userInfo.RoleInfo;
+            //根据登录用户的角色获取对应的菜单权限。
+            short actionTypeEnum = (short)ActionTypeEnum.MenumActionType;//在Model下面再定义一个枚举，
+            var loginUserMenuActions = (from r in userRoleInfo
+                                        from a in r.ActionInfo
+                                        where a.ActionTypeEnum == actionTypeEnum
+                                        select a).ToList();
+
+            //下面语句是错误的，allUserActions是一个大集合该集合中包含了很多小的集合，所以变量b为集合类型
+            //var allUserActions = from r in userRoleInfo
+            //                     select r.ActionInfo;
+            //var mm = from b in allUserActions
+            //         where b.ActionTypeEnum == actionTypeEnum
+            //         select b;
+
+
+            // 2：可以按照用户---权限这条线找出用户的权限，放在一个集合中。
+            var userActions = from a in userInfo.R_UserInfo_ActionInfo
+                              select a.ActionInfo;
+
+            var userMenuActions = (from a in userActions
+                                   where a.ActionTypeEnum == actionTypeEnum
+                                   select a).ToList();
+
+            // a.ActionInfo不是一个集合,注意理解权限表与用户权限关系表之间的对应关系
+            //var userMenuActionse = from a in userInfo.R_UserInfo_ActionInfo
+            //                       from b in a.ActionInfo
+            //                       where b.ActionTypeEnum == actionTypeEnum
+            //                       select b;
+
+
+
+            //3：将这两个集合合并成一个集合。
+            loginUserMenuActions.AddRange(userMenuActions);
+
+            //4：把禁止的权限从总的集合中清除。
+            var forbidActions = (from a in userInfo.R_UserInfo_ActionInfo
+                                 where a.IsPass == false
+                                 select a.ActionInfoID).ToList();
+            var loginUserAllowActions = loginUserMenuActions.Where(a => !forbidActions.Contains(a.ID));
+
+            //5：将总的集合中的重复权限清除。
+            var lastLoginUserActions = loginUserAllowActions.Distinct(new EqualityComparer());
+            //6：把过滤好的菜单权限生成JSON返回。
+            var temp = from a in lastLoginUserActions
+                       select new { icon = a.MenuIcon, title = a.ActionInfoName, url = a.Url };
+            return Json(temp, JsonRequestBehavior.AllowGet);
+        }
+        
+
+非菜单权限校验，因为是点击菜单上的Button，所以一定是对控制发请求，所有的控制器都继承自BaseController，所以我们只要修改BaseController就行
+把下面代码加到OnActionExecuting方法里
+                    //留一个后门，测试方便。发布的时候一定要删除该代码。
+                   if (LoginUser.UName == "itcast")
+                   {
+                       return;
+                   }
+
+
+                    //完成权限校验。
+                    //获取用户请求的URL地址.
+                   string url = Request.Url.AbsolutePath.ToLower();
+                    //获取请求的方式.
+                   string httpMehotd = Request.HttpMethod;
+                    //根据获取的URL地址与请求的方式查询权限表。
+                   IApplicationContext ctx = ContextRegistry.GetContext();
+                   IBLL.IActionInfoService ActionInfoService = (IBLL.IActionInfoService)ctx.GetObject("ActionInfoService");//Spring.Net配置文件创建不出来BaseController对象，我们只能用原始方法来解耦。
+                  var actionInfo= ActionInfoService.LoadEntities(a=>a.Url==url&&a.HttpMethod==httpMehotd).FirstOrDefault();
+
+                    //判断用户是否具有所访问的地址对应的权限
+                   IUserInfoService UserInfoService = (IUserInfoService)ctx.GetObject("UserInfoService");
+                   var loginUserInfo = UserInfoService.LoadEntities(u=>u.ID==LoginUser.ID).FirstOrDefault();
+                    //1:可以先按照用户权限这条线进行过滤。
+                   var isExt =(from a in loginUserInfo.R_UserInfo_ActionInfo
+                               where a.ActionInfoID == actionInfo.ID
+                               select a).FirstOrDefault();
+                   if (isExt != null)
+                   {
+                       if (isExt.IsPass)
+                       {
+                           return;
+                       }
+                       else
+                       {
+                           filterContext.Result = Redirect("/Error.html");
+                           return;
+                       }
+
+                   }
+                    //2：按照用户角色权限这条线进行过滤。
+                   var loginUserRole = loginUserInfo.RoleInfo;
+                   var count = (from r in loginUserRole
+                               from a in r.ActionInfo
+                               where a.ID == actionInfo.ID
+                               select a).Count();
+                   if (count < 1)
+                   {
+                       filterContext.Result = Redirect("/Error.html");
+                       return;
+                   }
+                    
+
+                }
+
+我们的权限控制，每个控制器的地址都得录入一遍，一般来说是把所有用户信息写成XML然后写一个小程序一次录入，这样比较省时间。
+
+修改BaseController
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            //if (Session["userInfo"] == null)
+            bool isSucess = false;
+            if(Request.Cookies["sessionId"]!=null)
+            {
+                string sessionId = Request.Cookies["sessionId"].Value;
+                //根据该值查Memcache.
+                object obj=Common.MemcacheHelper.Get(sessionId);
+                if(obj!=null)
+                {
+                    UserInfo userInfo = Common.SerializeHelper.DeserializeToObject<UserInfo>(obj.ToString());
+                   LoginUser = userInfo;
+                   isSucess = true;
+                   Common.MemcacheHelper.Set(sessionId, obj, DateTime.Now.AddMinutes(20));//模拟出滑动过期时间.
+                    //留一个后门，测试方便。发布的时候一定要删除该代码。
+                   if (LoginUser.UName == "itcast")
+                   {
+                       return;
+                   }
+
+
+                    //完成权限校验。
+                    //获取用户请求的URL地址.
+                   string url = Request.Url.AbsolutePath.ToLower();
+                    //获取请求的方式.
+                   string httpMehotd = Request.HttpMethod;
+                    //根据获取的URL地址与请求的方式查询权限表。
+                   IApplicationContext ctx = ContextRegistry.GetContext();
+                   IBLL.IActionInfoService ActionInfoService = (IBLL.IActionInfoService)ctx.GetObject("ActionInfoService");
+                  var actionInfo= ActionInfoService.LoadEntities(a=>a.Url==url&&a.HttpMethod==httpMehotd).FirstOrDefault();
+
+                    //判断用户是否具有所访问的地址对应的权限
+                   IUserInfoService UserInfoService = (IUserInfoService)ctx.GetObject("UserInfoService");
+                   var loginUserInfo = UserInfoService.LoadEntities(u=>u.ID==LoginUser.ID).FirstOrDefault();
+                    //1:可以先按照用户权限这条线进行过滤。
+                   var isExt =(from a in loginUserInfo.R_UserInfo_ActionInfo
+                               where a.ActionInfoID == actionInfo.ID
+                               select a).FirstOrDefault();
+                   if (isExt != null)
+                   {
+                       if (isExt.IsPass)
+                       {
+                           return;
+                       }
+                       else
+                       {
+                           filterContext.Result = Redirect("/Error.html");
+                           return;
+                       }
+
+                   }
+                    //2：按照用户角色权限这条线进行过滤。
+                   var loginUserRole = loginUserInfo.RoleInfo;
+                   var count = (from r in loginUserRole
+                               from a in r.ActionInfo
+                               where a.ID == actionInfo.ID
+                               select a).Count();
+                   if (count < 1)
+                   {
+                       filterContext.Result = Redirect("/Error.html");
+                       return;
+                   }
+                    
+
+                }
+               
+               
+
+              //  filterContext.HttpContext.Response.Redirect("/Login/Index");
+               
+            }
+            if (!isSucess)
+            {
+                filterContext.Result = Redirect("/Login/Index");//注意.
+            }
+        }
+    }
+}

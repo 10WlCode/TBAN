@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/q/1010000006782335 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://static.segmentfault.com/v-5a4c4828/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>javascript - onclick和click的区别？ - SegmentFault</title><meta name="description" content="{代码...} 这两个有什么区别，在写代码的时候，感觉到了两者的不同。具体的区别是什么和原因是什么？各位大神解答下。谢谢了。"><meta name="keywords" content="javascript"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://static.segmentfault.com/v-5a4c4828/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://static.segmentfault.com/v-5a4c4828/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://static.segmentfault.com/v-5a4c4828/global/img/touch-icon.png"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./javascript - onclick和click的区别？_files/global.css"><link rel="stylesheet" href="./javascript - onclick和click的区别？_files/qa.css"><link rel="stylesheet" href="./javascript - onclick和click的区别？_files/responsive.css"></head><body data-mod="qa" class="qa-question "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://static.segmentfault.com/v-5a4c4828/global/img/touch-icon-512.png"><div class="global-nav sf-header sf-header--index"><nav class="container nav"><div class="visible-xs header-response"><a href="https://segmentfault.com/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="https://segmentfault.com/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="https://segmentfault.com/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a><div class="bottom-nav"><div class="opts"><a class="opts-group " href="https://segmentfault.com/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group active" href="https://segmentfault.com/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group " href="https://segmentfault.com/news"><i class="fa fa-newspaper-o" aria-hidden="true"></i><span>头条</span></a><a class="opts-group " href="https://segmentfault.com/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="https://segmentfault.com/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="https://segmentfault.com/jobs">职位</a></li><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li></ul></div></div></div></div></div><script src="./javascript - onclick和click的区别？_files/hm.js.下载"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+mobileScroll(
+    function(direction) { 
+        if (direction === 'down') {
+            document.querySelector('.bottom-nav').classList.add('hidden')
+        } else {
+            document.querySelector('.bottom-nav').classList.remove('hidden')
+        }
+    }
+);    
+function mobileScroll( fn ) {
+    var beforeScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+        fn = fn || function() {};
+    window.addEventListener("scroll", function() {
+        var afterScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+            delta = afterScrollTop - beforeScrollTop;
+        if( delta === 0 ) return false;
+        fn( delta > 0 ? "down" : "up" );
+        beforeScrollTop = afterScrollTop;
+    }, false);
+}
+</script><div class="row hidden-xs"><div class="col-sm-8 col-md-9 col-lg-9"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/" class="">首页</a></li><li class="menu__item"><a href="https://segmentfault.com/questions" class="active-nav">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/news" class="">头条</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs" class="">专栏</a></li><li class="menu__item"><a href="https://segmentfault.com/lives" class="">讲堂</a></li><li class="menu__item menu__item--more dropdown"><a href="https://segmentfault.com/q/1010000006782335##" class="dropdown-toggle dropdownBtn" data-toggle="dropdown">
+                                        发现<i class="fa fa-caret-down" style="font-size: 14px;margin-left: 5px;" aria-hidden="true"></i></a><div class="dropdown-block hidden"><ul class="dropdown-content-menu"><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/groups">技术圈<span class="notice notice-menu">hi</span></a></li><li><a href="https://segmentfault.com/jobs">找工作</a></li><li><a href="https://segmentfault.com/users">排行榜</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li><li><a href="https://segmentfault.com/notes">笔记</a></li><li><a href="https://docs.segmentfault.com/" target="_blank">开发手册<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li><li><a href="https://business.segmentfault.com/ads.html?utm_source=sf-header" target="_blank">广告投放<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li></ul></div></li><li class="menu__item visible-sm-inline-block"><a href="https://segmentfault.com/search"><span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span></a></li></ul><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs pull-right"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="搜索问题或关键字" class="form-control" value=""></form></div></div><div class="col-sm-4 col-md-3 col-lg-3 text-right"><ul class="opts list-inline hidden-xs"><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFLogin btn-signin" style="margin-bottom:2px;">立即登录</a><a href="https://segmentfault.com/user/login" class="SFLogin ml10 btn-signup" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">免费注册</a></li></ul></div></div><div class="sub-head hidden-xs"><span class="tag-nav__item btn-all-tag"><a href="https://segmentfault.com/tags" class="text-secondNav">热门标签</a></span><div class="tag-container-outer"><span class="tag-nav__item mr20 active"><a class="active" href="https://segmentfault.com/questions">全部</a></span><div class="tag-container"><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/javascript">javascript</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/php">php</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/python">python</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/java">java</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/mysql">mysql</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/ios">ios</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/android">android</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/node.js">node.js</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/html5">html5</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/linux">linux</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/c%2B%2B">c++</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/css3">css3</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/git">git</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/golang">golang</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/ruby">ruby</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/vim">vim</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/docker">docker</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/mongodb">mongodb</a></span></div></div><div class="gradient-block"></div></div></nav></div><div class="wrap">
+
+            <div id="loginBanner" class="hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-7">
+                <h1 class="title">在 SegmentFault，学习技能、解决问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-1">
+                <form class="register-form clearfix" action="https://segmentfault.com/api/user/phone/register">
+
+                    
+                    <a href="https://segmentfault.com/user/login" class="SFLogin btn btn-lg btn-primary mr15">免费注册</a>
+                    <a href="https://segmentfault.com/user/login" class="SFLogin btn btn-lg btn-primary">立即登录</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+</div>    
+    <div class="post-topheader">
+        <div class="container">
+            <div class="block-for-right-border">
+                <div class="row">
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <span class="post-topheader__title--icon-symbol">问</span>
+
+                        <div class="post-topheader__info">
+                            <h1 class="h3 post-topheader__info--title" id="questionTitle" data-id="1010000006782335">
+                                <a href="https://segmentfault.com/q/1010000006782335">onclick和click的区别？</a>
+                            </h1>
+
+                            <ul class="taglist--inline inline-block question__title--tag mr10">
+                                                                    <li class="tagPopup mb5">
+                                        <a class="tag" href="https://segmentfault.com/t/javascript" data-toggle="popover" data-img="https://sfault-avatar.b0.upaiyun.com/195/823/1958237468-1040000000089436_huge256" data-placement="top" data-original-title="javascript" data-id="1040000000089436">
+                                                                                        javascript
+                                        </a>
+                                    </li>
+                                                            </ul>
+
+                            <div class="question__author">
+                                <a href="https://segmentfault.com/u/bowenzhao" class="mr5"><strong>bowenzhao</strong></a>
+                                2016年08月31日提问<span class="hidden-xs">
+                                                                                          </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-12 hidden-xs">
+                        <ul class="post-topheader__side list-unstyled">
+                            <li>
+                                                                    <button type="button" id="sideFollow" class="btn btn-success btn-sm" data-id="1010000006782335" data-do="follow" data-type="question" data-toggle="tooltip" data-placement="right" title="" data-original-title="关注后将获得更新提醒">关注
+                                    </button>
+                                                                <strong>5</strong> 关注
+                            </li>
+                            <li>
+                                                                    <button type="button" id="sideBookmark" class="btn btn-default btn-sm" data-id="1010000006782335" data-type="question">收藏
+                                    </button>
+                                                                <strong id="sideBookmarked">0</strong> 收藏，<strong class="no-stress">1.7k</strong> 浏览
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main">
+                <article class="widget-question__item">
+                    <div class="post-col">
+                        <div class="widget-vote  ">
+                            <button type="button" class="like" data-id="1010000006782335" data-type="question" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="问题对人有帮助，内容完整，我也想知道答案">
+                                <span class="sr-only">问题对人有帮助，内容完整，我也想知道答案</span>
+                            </button>
+                                                        <span class="count">0</span>
+                            <button type="button" class="hate" data-id="1010000006782335" data-type="question" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="问题没有实际价值，缺少关键内容，没有改进余地">
+                                <span class="sr-only">问题没有实际价值，缺少关键内容，没有改进余地</span>
+                            </button>
+                        </div>
+                        <!-- end .widget-vote -->
+                    </div>
+
+                    <div class="post-offset">
+                        <div class="question fmt" data-id="1010000006782335">
+                                                            
+<div class="widget-codetool" style="display: block;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="$(&quot;id&quot;).click(function(){};
+$(&quot;id&quot;).onclick(function(){};" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs javascript"><code>$(<span class="hljs-string">"id"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{};
+$(<span class="hljs-string">"id"</span>).onclick(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{};</code></pre>
+<p>这两个有什么区别，在写代码的时候，感觉到了两者的不同。具体的区别是什么和原因是什么？各位大神解答下。谢谢了。</p>
+
+                            
+                        </div>
+
+
+                                                                                                                        
+                        
+                        <div class="row">
+                            <div class="post-opt col-md-8">
+                                <ul class="list-inline mb0"><li class="pr15"><a href="https://segmentfault.com/q/1010000006782335">2016年08月31日提问</a></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1010000006782335" data-target="#comment-1010000006782335"><i class="fa fa-commenting mr4" aria-hidden="true"></i>评论</a></li><li class="edit-btn js__rank-check pl0 pr15" data-toggle="tooltip" data-placement="top" title="" data-original-title="声望需要达到 15"><a class="  " href="javascript:;" data-title="onclick和click的区别？" data-url="http://sfau.lt/bNCCyF" data-id="1010000006782335">邀请回答</a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li><li class="dropdown js__content-ops pl0 pr15" data-module="question" data-typetext="问题" data-id="1010000006782335"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="https://segmentfault.com/q/1010000006782335#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li></ul></li></ul>                            </div>
+
+                            
+                        </div>
+
+
+                        <div class="widget-comments hidden" id="comment-1010000006782335" data-id="1010000006782335"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1010000006782335"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1010000006782335" data-id="1010000006782335" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1010000006782335">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+                    </div>
+                    <!-- end .post-offset -->
+                </article>
+
+                                <div id="mm_124884735_33830642_143436142" class="mt20 ad-detail-mm hidden-xs"></div>
+                
+                    <div class="widget-answers" id="goToReplyArea">
+        <div class="btn-group pull-right" role="group">
+            <a href="https://segmentfault.com/q/1010000006782335#answers-title" id="sortby-rank" class="btn btn-default btn-xs active">默认排序</a>
+            <a href="https://segmentfault.com/q/1010000006782335?sort=created#answers-title" id="sortby-created" class="btn btn-default btn-xs">时间排序</a>
+        </div>
+
+        <h2 class="title h4 mt30 mb20 post-title" id="answers-title">4个回答</h2>
+                                                            
+    
+            
+
+
+    <article class="clearfix widget-answers__item accepted" id="a-1020000006782500">
+        <div class="post-col">
+            <div class="widget-vote ">
+                <button type="button" class="like" data-id="1020000006782500" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">2</span>
+                <button type="button" class="hate" data-id="1020000006782500" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+              <!-- 该答案被采纳 -->
+            <div class="text-center accepted-check cancel-cursor-pointer mt15" data-id="1020000006782500" data-do="accept/cancel" data-type="answer" style="white-space:nowrap" ;="">
+                <i class="fa fa-check-circle accepted-check-icon" aria-hidden="true"></i><br>
+                <span class="fontsize13">已采纳</span>
+            </div>
+
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000006782500">
+                                    
+<p>原生的应该是：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="document.getElementById(&quot;id&quot;).onclick = function(){
+       //do sth
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs javascript"><code><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"id"</span>).onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+       <span class="hljs-comment">//do sth</span>
+}</code></pre>
+<p>而这个只是JQ封装的而已</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="$(&quot;#id&quot;).click(function(){
+    //do sth
+})" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs javascript"><code>$(<span class="hljs-string">"#id"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-comment">//do sth</span>
+})</code></pre>
+
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0"><li class="pr15"><a href="https://segmentfault.com/q/1010000006782335/a-1020000006782500" data-toggle="tooltip" data-placement="top" title="" data-original-title="2016年08月31日 发布">2016年09月01日更新</a></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000006782500" data-target="#comment-1020000006782500"><i class="fa fa-commenting mr4" aria-hidden="true"></i>评论</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000006782500"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-2 answer__info--author-avatar">
+                    <a class="mr10 inline-block" href="https://segmentfault.com/u/hockor"><img class="avatar-32 " data-toggle="popover" data-slug="hockor" data-id="1030000000777206" src="./javascript - onclick和click的区别？_files/3964073863-54b07b89e6909_big64" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-2 hidden-xs answer__info--author">
+                    <div class=" answer__info--author-warp">
+                        <a class="answer__info--author-name" title="Hockor" href="https://segmentfault.com/u/hockor">Hockor</a><span class="answer__info--author-rank">610 声望</span></div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000006782500" data-id="1020000006782500"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000006782500"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000006782500" data-id="1020000006782500" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000006782500">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+        
+                    
+    
+            
+
+
+    <article class="clearfix widget-answers__item" id="a-1020000006782382">
+        <div class="post-col">
+            <div class="widget-vote ">
+                <button type="button" class="like" data-id="1020000006782382" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">1</span>
+                <button type="button" class="hate" data-id="1020000006782382" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000006782382">
+                                    <p>一个是js原生，一个是jquery库</p>
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0"><li class="pr15"><a href="https://segmentfault.com/q/1010000006782335/a-1020000006782382"> 2016年08月31日回答</a></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000006782382" data-target="#comment-1020000006782382"><i class="fa fa-commenting mr4" aria-hidden="true"></i>评论</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000006782382"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-2 answer__info--author-avatar">
+                    <a class="mr10 inline-block" href="https://segmentfault.com/u/wumahoo"><img class="avatar-32 " data-toggle="popover" data-slug="wumahoo" data-id="1030000004665261" src="./javascript - onclick和click的区别？_files/user-64.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-2 hidden-xs answer__info--author">
+                    <div class=" answer__info--author-warp">
+                        <a class="answer__info--author-name" title="wumahoo" href="https://segmentfault.com/u/wumahoo">wumahoo</a><span class="answer__info--author-rank">166 声望</span></div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000006782382" data-id="1020000006782382"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000006782382"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000006782382" data-id="1020000006782382" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000006782382">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+                    
+    
+            
+
+
+    <article class="clearfix widget-answers__item" id="a-1020000006782403">
+        <div class="post-col">
+            <div class="widget-vote ">
+                <button type="button" class="like" data-id="1020000006782403" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">1</span>
+                <button type="button" class="hate" data-id="1020000006782403" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000006782403">
+                                    <p>你确定jquery对象有onclick这个方法？</p>
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0"><li class="pr15"><a href="https://segmentfault.com/q/1010000006782335/a-1020000006782403" data-toggle="tooltip" data-placement="top" title="" data-original-title="2016年08月31日 发布">2016年08月31日更新</a></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000006782403" data-target="#comment-1020000006782403"><i class="fa fa-commenting mr4" aria-hidden="true"></i>1 评论</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000006782403"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-2 answer__info--author-avatar">
+                    <a class="mr10 inline-block" href="https://segmentfault.com/u/jeffwong617"><img class="avatar-32 prestige-exceed-1000" data-toggle="popover" data-slug="jeffwong617" data-id="1030000002669097" src="./javascript - onclick和click的区别？_files/994541567-593892616f854_big64" alt="" data-original-title="" title=""></a>
+                </div>
+                <div class="col-md-2 col-sm-2 hidden-xs answer__info--author">
+                    <div class=" answer__info--author-warp">
+                        <a class="answer__info--author-name" title="杰枫Jeff" href="https://segmentfault.com/u/jeffwong617">杰枫Jeff</a><span class="answer__info--author-rank">1.8k 声望</span></div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000006782403" data-id="1020000006782403"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000006782403"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000006782403" data-id="1020000006782403" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000006782403">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+                    
+    
+            
+
+
+    <article class="clearfix widget-answers__item" id="a-1020000006782485">
+        <div class="post-col">
+            <div class="widget-vote ">
+                <button type="button" class="like" data-id="1020000006782485" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">0</span>
+                <button type="button" class="hate" data-id="1020000006782485" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000006782485">
+                                    <p>使用onclick创建一个属性，它的value值应该是指向函数的一个字符串，而不是实际的函数本身。<br>使用click在元素上创建一个属性，它的值应该是函数本身。</p>
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0"><li class="pr15"><a href="https://segmentfault.com/q/1010000006782335/a-1020000006782485"> 2016年08月31日回答</a></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000006782485" data-target="#comment-1020000006782485"><i class="fa fa-commenting mr4" aria-hidden="true"></i>评论</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000006782485"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                <div class="col-md-2 col-sm-2 col-xs-2 answer__info--author-avatar">
+                    <a class="mr10 inline-block" href="https://segmentfault.com/u/everfigt"><img class="avatar-32 " data-toggle="popover" data-slug="everfigt" data-id="1030000004863708" src="./javascript - onclick和click的区别？_files/2531872239-5763e2fd08147_big64" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-2 hidden-xs answer__info--author">
+                    <div class=" answer__info--author-warp">
+                        <a class="answer__info--author-name" title="everfigt" href="https://segmentfault.com/u/everfigt">everfigt</a><span class="answer__info--author-rank">629 声望</span></div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000006782485" data-id="1020000006782485"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000006782485"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000006782485" data-id="1020000006782485" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000006782485">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+        
+        
+        
+        <div class="text-center">
+            
+        </div>
+    </div><!-- /.widget-answers -->
+
+
+            
+
+                                <div style="padding-left: 65px;" id="goToReplyEditor">
+            <h4>撰写答案</h4>
+            <input type="hidden" id="draftId" value="">
+            <input type="hidden" value="1010000006782335" id="questionId">
+            <form action="https://segmentfault.com/question/1010000006782335/answers/add" method="post" class="editor-wrap">
+                <div class="editor" id="questionText">
+                    <textarea id="answerEditor" name="text" class="form-control" rows="4" placeholder="撰写答案..."></textarea>
+                </div>
+                <div id="answerSubmit" class="hide mt15 clearfix">
+                    <div class="checkbox pull-left">
+                        <label><input type="checkbox" class="" id="shareToWeibo">
+                            同步到新浪微博</label>
+                    </div>
+                    <div class="pull-right">
+                    <span id="editorStatus" class="hidden text-muted">
+
+                    </span>
+                        <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                        <button type="submit" id="answerIt" data-id="1010000006782335" class="btn btn-lg btn-primary ml20">提交回答
+                        </button>
+                    </div>
+                </div>
+            </form>
+                        </div>
+            
+                    
+                            </div>
+            <!-- /.main -->
+
+
+            
+<div class="col-xs-12 col-md-3 side">
+
+    <div class="widget-box widget_lives pt0 hidden" style="border-top: none" id="live-recommend-wrapper">
+        <h2 class="widget-box__title">
+            讲堂推荐
+            <i class="fa fa-youtube-play fa-sm" aria-hidden="true"></i>
+            <a href="https://segmentfault.com/lives" class="pull-right more">更多</a>
+        </h2>
+        <div id="live-recommend" class="mb20"></div>
+    </div>
+
+        <div id="mm_124884735_33830642_120290173" class="mb25 "></div>
+
+    <!--     <div data-api="/api/news/hottest">
+        <script type="text/template">
+            <div class="widget_headline widget-box mt20 mb30">
+                <h2 class="h4 widget-box__title">热门头条</h2>
+                <ul class="taglist--block pl20" >
+                    <% _.each(data,function(d){ %>
+                    <li class="">
+                        <a href="<%- d.url %>" data-id="<%- d.id %>"
+                           data-original-title="<%= d.name %>"><%= d.title %></a>
+                        <p class=""><span class="mr5 color_F5A623"><%- d.VotesWord %> 赞</span> | <span class="ml5"><%- d.comments %> 评论</span></p>
+                    </li>
+                    <% }) %>
+                    <a href="/news" target="_blank" class="f12" >更多头条内容→</a>
+                </ul>
+
+            </div>
+        </script>
+    </div>
+ -->
+    
+            <!--     <div data-type="widget" data-api="/api/bookmarkArchive/hots" data-api-overwrite="/api/bookmarkArchive/1010000006782335/related">
+        <script type="text/template">
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right"
+                                                          href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    <% _.each(data,function(d){ %>
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-<%= d.id%19 %> mr10" src="https://static.segmentfault.com/v-5a4c4828/global/img/pattern/<%= d.id%10 ? d.id%10 : 10 %>.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="<%- d.url %>"><%= d.name %></a>
+                            <p class="mb0">
+                                <span><%- d.num %></span> 个条目 <span class="division">|</span> <span><%- d.followers %></span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </script>
+    </div>
+ -->
+        <div class="widget-box no-border">
+            <h2 class="h4 widget-box__title">相似问题</h2>
+            <ul class="widget-links list-unstyled">
+                                    <li class="widget-links__item mb10"><a title="javascript onclick" href="https://segmentfault.com/q/1010000009293941">javascript onclick</a>
+                                                    <br>
+                            <small class="text-muted">
+                                                                    3 回答
+                                                                                            </small>
+                                            </li>
+                                    <li class="widget-links__item mb10"><a title="在javascript中onclick=&amp;quot; return check()&amp;quot;和onclick=&amp;quot;check()&amp;quot;有什么区别？" href="https://segmentfault.com/q/1010000004223031">在javascript中onclick=" return check()"和onclick="check()"有什么区别？</a>
+                                                    <br>
+                            <small class="text-muted">
+                                                                    4 回答
+                                                                                                    <i class="fa fa-check ml15" aria-hidden="true"></i>
+                                    已解决
+                                                            </small>
+                                            </li>
+                                    <li class="widget-links__item mb10"><a title="javascript 基础 document.onclick 问题" href="https://segmentfault.com/q/1010000011637200">javascript 基础 document.onclick 问题</a>
+                                                    <br>
+                            <small class="text-muted">
+                                                                    4 回答
+                                                                                            </small>
+                                            </li>
+                                    <li class="widget-links__item mb10"><a title="onclick=&amp;quot;return fun(this)/javascript:fun(this)/fun(this)&amp;quot;的区别？" href="https://segmentfault.com/q/1010000005070024">onclick="return fun(this)/javascript:fun(this)/fun(this)"的区别？</a>
+                                                    <br>
+                            <small class="text-muted">
+                                                                    1 回答
+                                                                                            </small>
+                                            </li>
+                                    <li class="widget-links__item mb10"><a title="原生的JavaScript绑定onclick事件却产生onload的效果?" href="https://segmentfault.com/q/1010000011458758">原生的JavaScript绑定onclick事件却产生onload的效果?</a>
+                                                    <br>
+                            <small class="text-muted">
+                                                                    3 回答
+                                                                                                    <i class="fa fa-check ml15" aria-hidden="true"></i>
+                                    已解决
+                                                            </small>
+                                            </li>
+                            </ul>
+        </div>
+
+        <div class="widget-share__full" data-text="onclick和click的区别？" data-url="https://segmentfault.com/q/1010000006782335" data-shorturl="http://sfau.lt/bNCCyF"><div style="margin-bottom:10px;">分享扩散：</div><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/q/1010000006782335" data-shorturl="http://sfau.lt/bNCCyF"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+
+
+                <div id="mm_124884735_33830642_145440102" class="mb25 ad-should-be-fixed stuckMenu" style="position: relative; top: 0px; display: block;"></div>
+
+    
+</div><!-- /.side -->
+
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/q/1010000006782335" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.config = {"like_question":[1,5,"\u95ee\u9898\u88ab\u6295\u8d5e\u540c\u7968"],"hate_question":[2,-2,"\u95ee\u9898\u88ab\u6295\u53cd\u5bf9\u7968"],"ask_question":[4,1,"\u63d0\u95ee"],"like_answer":[5,10,"\u56de\u7b54\u88ab\u6295\u8d5e\u540c\u7968"],"hate_answer":[6,-2,"\u56de\u7b54\u88ab\u6295\u53cd\u5bf9\u7968"],"answer_question":[7,1,"\u56de\u7b54\u95ee\u9898"],"like_comment":[8,0,"\u8bc4\u8bba\u88ab\u8d5e\u540c"],"bookmark_question":[11,1,"\u95ee\u9898\u88ab\u6536\u85cf"],"delete_question":[12,-1,"\u95ee\u9898\u88ab\u5220\u9664\uff08\u5305\u62ec\u81ea\u5df1\u5220\u9664\uff09"],"accept_answer":[13,15,"\u56de\u7b54\u88ab\u91c7\u7eb3"],"delete_answer":[14,-5,"\u56de\u7b54\u88ab\u5220\u9664\uff08\u5305\u62ec\u81ea\u5df1\u5220\u9664\uff09"],"ignore_answer":[15,-1,"\u56de\u7b54\u88ab\u5ffd\u7565"],"question_answer":[16,0,"\u95ee\u9898\u88ab\u4ed6\u4eba\u56de\u7b54"],"invite_user":[17,0,"\u9080\u8bf7\u7528\u6237"],"like_article":[18,5,"\u6587\u7ae0\u88ab\u70b9\u8d5e"],"write_article":[20,0,"\u53d1\u5e03\u65b0\u6587\u7ae0"],"bookmark_article":[21,1,"\u6587\u7ae0\u88ab\u6536\u85cf"],"oppose_answer":[24,-1,"\u53cd\u5bf9\u4ed6\u4eba\u7b54\u6848"],"accept_answer_reward":[25,2,"\u91c7\u7eb3\u4ed6\u4eba\u7b54\u6848"],"user_register":[26,1,"\u65b0\u7528\u6237\u6fc0\u6d3b"],"report":[27,-100,"\u5185\u5bb9\u88ab\u6210\u529f\u4e3e\u62a5 6 \u6b21"],"like_share":[28,0,"\u5934\u6761\u88ab\u70b9\u8d5e"],"sign_live":[29,1,"\u4ed8\u8d39\u62a5\u540d\u8bb2\u5ea7"],"live_sign":[30,1,"\u8bb2\u5ea7\u88ab\u62a5\u540d"],"publish_live":[31,5,"\u53d1\u5e03\u8bb2\u5ea7"],"finish_live":[32,10,"\u8bb2\u5ea7\u5982\u671f\u5f00\u64ad\uff0c\u5e76\u5df2\u7ed3\u675f"],"like_question_payment":[33,5,"\u95ee\u9898\u88ab\u6295\u8d5e\u540c\u7968"],"hate_question_payment":[34,-2,"\u95ee\u9898\u88ab\u6295\u53cd\u5bf9\u7968"],"like_grapevine":[35,0,"\u5c0f\u9053\u6d88\u606f\u88ab\u70b9\u8d5e"],"like_live_score":[36,0,"\u8bc4\u5206\u70b9\u8d5e"],"sign_live_series":[37,1,"\u4ed8\u8d39\u62a5\u540d\u7cfb\u5217\u8bb2\u5ea7"],"live_series_sign":[38,1,"\u7cfb\u5217\u8bb2\u5ea7\u88ab\u62a5\u540d"]}
+</script>
+
+<div id="delete-modal" class="modal widget-911" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title radio-del question-close-only">关闭<span class="type-911">问题</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del question-delete-only">删除<span class="type-911">问题</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del answer-delete-only">删除<span class="type-911">回答</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del answer-ignore-only">忽略<span class="type-911">回答</span></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong class="required radio-del question-close-only">关闭理由：</strong>
+                    <strong class="required radio-del question-delete-only answer-delete-only">删除理由：</strong>
+                    <strong class="required radio-del answer-ignore-only">忽略理由：</strong>
+                </p>
+                <div id="reportDescription">
+                    <div class="radio-del radio all">
+                        <label>
+                            <input type="radio" name="descRadio" value="推广（招聘、广告、SEO 等）方面的内容">
+                            推广（招聘、广告、SEO 等）方面的内容
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="与已有问题重复">
+                            与已有问题重复（请编辑该提问指向已有相同问题）
+                        </label>
+                    </div>
+                    <div class="radio-del radio answer-ignore-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="答非所问，不符合答题要求">
+                            答非所问，不符合答题要求
+                        </label>
+                    </div>
+                    <div class="radio-del radio answer-ignore-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="宜作评论而非答案">
+                            宜作评论而非答案
+                        </label>
+                    </div>
+                    <div class="radio-del radio all">
+                        <label>
+                            <input type="radio" name="descRadio" value="带有人身攻击、辱骂、仇恨等违反条款的内容">
+                            带有人身攻击、辱骂、仇恨等违反条款的内容
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="无法获得确切结果的问题">
+                            无法获得确切结果的问题
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="非开发直接相关的问题">
+                            非开发直接相关的问题
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only question-delete-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="非技术提问的讨论型问题">
+                            非技术提问的讨论型问题
+                        </label>
+                    </div>
+
+                    <div class="radio-del radio all btwRadio">
+                        <label>
+                            <input type="radio" name="descRadio" value="">
+                            其他原因（请补充说明）
+                        </label>
+                    </div>
+                    <div class="btw" style="display:none;">
+                        <p class="mt20"><strong>补充说明：</strong></p>
+                        <textarea class="form-control" rows="3" name="description" id="deleteDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="submit-delete">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    <div id="loginBanner" class="hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-7">
+                <h1 class="title">在 SegmentFault，学习技能、解决问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-1">
+                <form class="register-form clearfix" action="https://segmentfault.com/api/user/phone/register">
+
+                    
+                    <a href="https://segmentfault.com/user/login" class="SFLogin btn btn-lg btn-primary mr15">免费注册</a>
+                    <a href="https://segmentfault.com/user/login" class="SFLogin btn btn-lg btn-primary">立即登录</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+</div>
+
+
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>产品</dt>
+                
+                <dd><a href="https://segmentfault.com/questions/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E9%97%AE%E7%AD%94">热门问答</a></dd>
+                <dd><a href="https://segmentfault.com/blogs/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E4%B8%93%E6%A0%8F">热门专栏</a></dd>
+                <dd><a href="https://segmentfault.com/lives?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E8%AE%B2%E5%A0%82">热门讲堂</a></dd>
+                <dd><a href="https://segmentfault.com/events?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%9C%80%E6%96%B0%E6%B4%BB%E5%8A%A8">最新活动</a></dd>
+                <dd><a href="https://segmentfault.com/groups?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%8A%80%E6%9C%AF%E5%9C%88">技术圈</a></dd>
+                <dd><a href="https://segmentfault.com/jobs?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%89%BE%E5%B7%A5%E4%BD%9C">找工作</a></dd>
+                <dd><a href="https://segmentfault.com/app?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=app">移动客户端</a></dd>
+                
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>资源</dt>
+                <dd><a href="https://segmentfault.com/weekly?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-weekly&amp;utm_term=%E6%AF%8F%E5%91%A8%E7%B2%BE%E9%80%89">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/users?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-users&amp;utm_term=%E7%94%A8%E6%88%B7%E6%8E%92%E8%A1%8C%E6%A6%9C">用户排行榜</a></dd>
+                <dd><a href="https://segmentfault.com/badges?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-badges&amp;utm_term=%E5%BE%BD%E7%AB%A0">徽章</a></dd>
+                <dd><a href="https://segmentfault.com/faq?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-faq&amp;utm_term=%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%BF%83">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-repu&amp;utm_term=%E5%A3%B0%E6%9C%9B%E4%B8%8E%E6%9D%83%E9%99%90">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/community?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-community&amp;utm_term=%E7%A4%BE%E5%8C%BA%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83">社区服务中心</a></dd>
+                <dd><a href="https://docs.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-docs&amp;utm_term=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C">开发手册</a></dd>
+
+   
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>商务</dt>
+                <dd><a href="https://business.segmentfault.com/services.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-rencai&amp;utm_term=%E4%BA%BA%E6%89%8D%E6%9C%8D%E5%8A%A1" target="_blank">人才服务</a></dd>
+                <dd><a href="https://business.segmentfault.com/services.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-qiyeneixun&amp;utm_term=%E4%BC%81%E4%B8%9A%E6%9C%8D%E5%8A%A1" target="_blank">企业培训</a></dd>
+                <dd><a href="https://business.segmentfault.com/services.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-huodongcehua&amp;utm_term=%E6%B4%BB%E5%8A%A8%E7%AD%96%E5%88%92" target="_blank">活动策划</a></dd>
+                <dd><a href="https://business.segmentfault.com/ads.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-ads&amp;utm_term=%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE" target="_blank">广告投放</a></dd>
+                <dd><a href="https://business.segmentfault.com/contact.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-contact&amp;utm_term=%E5%90%88%E4%BD%9C%E8%81%94%E7%B3%BB" target="_blank">合作联系</a></dd>
+               
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>关于</dt>
+                <dd><a href="https://about.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-index&amp;utm_term=%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC">关于我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/careers.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-careers&amp;utm_term=%E5%8A%A0%E5%85%A5%E6%88%91%E4%BB%AC">加入我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/contact.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-contact&amp;utm_term=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">联系我们</a></dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>关注</dt>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                <dd>
+                    <ul class="sn-inline">
+                        <li>
+                            <a class="entypo-wechart icon-sn-weixin weixin-popover-qrcode" data-toggle="popover" data-placement="top" data-content="" data-original-title="" title="">微信</a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/segmentfault" target="_blank" class="entypo-weibo icon-sn-weibo">新浪微博</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/SegmentFault" target="_blank" class="entypo-facebook icon-sn-github">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/segment_fault" target="_blank" class="entypo-twitter icon-sn-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link" id="license">
+                <dt>条款</dt>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">内容许可</a></dd>
+                <dd>
+                    <a href="https://segmentfault.com/app" class="clearfix mt10 block"><img src="./javascript - onclick和click的区别？_files/appQrcode.png" class="app-qrcode"></a>
+                    <div class="app-download-desc">
+                        <p>扫一扫下载 App</p>
+                    </div>
+                    
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2018 SegmentFault. 当前呈现版本 17.06.16<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+            <p class="mt30">CDN 存储服务由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 赞助提供 </p>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="hidden border-bottom" href="https://segmentfault.com/q/1010000006782335#">回顶部</a>
+</div>
+
+<script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+            <h1 class="h4 text-muted login-title">用户登录</h1>
+            <form action="/api/user/login" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" required placeholder="密码">
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right pl20 pr20"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+            <div class="widget-login mt30">
+                <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+                <a href="/user/oauth/google" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                            class="icon-sn-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+                <a href="/user/oauth/github" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                            class="icon-sn-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+                <a href="/user/oauth/weibo" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                            class="icon-sn-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+                <a href="/user/oauth/qq" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+                <a href="/user/oauth/weixin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-weixin"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+                <a href="/user/oauth/linkedin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                            class="icon-sn-linkedin"></span> <strong class="visible-xs-inline">LinkedIn 账号</strong></a>
+                <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span><strong
+                            class="visible-xs-inline">•••</strong></span>
+                <a href="/user/oauth/twitter" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                            class="icon-sn-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+                <a href="/user/oauth/facebook" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                            class="icon-sn-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+                <a href="/user/oauth/douban" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                            class="icon-sn-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+            </div>
+        </div>
+        <div class="login-vline hidden-xs hidden-sm"></div>
+        <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+            <h1 class="h4 text-muted login-title">注册新账号</h1>
+            <form action="/api/user/phone/register" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="name" class="control-label">名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+
+
+                <div class="form-group js-register-switch-box">
+                    <div class="mb10">
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="phone" checked> 用手机号注册
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="mail"> 用 Email 注册
+                        </label>
+                    </div>
+                    <div class="js-register-switch-content">
+                        <input type="phone" class="form-control mb15" name="phone" required placeholder="仅支持大陆手机号"
+                               autocomplete="off">
+                        <div class="captchaInput mb10 hidden">
+                            <label class="required control-label mt5">验证码</label>
+                            <input type="text" class="form-control" name="cap" placeholder="请输入下方的验证码后，再点击获取验证码">
+                            <div class="mt10 ">
+                                <a id="loginReloadCaptcha" href="javascript:void(0)">
+                                <img data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50"/></a>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input name="code" type="text" class="form-control js-user-login__phone-code-value" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default js-user-login__phone-vaild-btn" style="width:96px;" type="button">
+                                获取验证码</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label class="required control-label">验证码</label>
+                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                    <div class="mt10"><a id="loginReloadCaptcha" href="javascript:void(0)"><img
+                                    data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50"/></a>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center text-muted mt30">
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="bg-white bindphone-model">
+        <div class="alert alert-warning" role="alert">
+            为了保证账号安全，请先绑定手机
+        </div>
+        <div>
+            <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                <div class="form-group ">
+                    <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
+
+
+<script>
+    window.serverTime = 1514958618000;
+</script>
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://static.segmentfault.com/v-5a4c4828"
+        };
+        w.SF.token = (function () {
+    var _yLiQMg = '2da'//'Q'
++//'9'
+'2a'+'xF'//'xF'
++//'fM'
+'d4d'+'4'//'nS'
++'8'//'wq'
++''///*'a9'*/'a9'
++'272'//'VR'
++'f'//'sW'
++//'FW9'
+'6'+//'aZX'
+'3'+''///*'0B'*/'0B'
++//'9'
+'b'+//'d'
+'d'+'7'//'6P6'
++''///*'iV'*/'iV'
++//'mW'
+'f7a'+//'xn'
+'xn'+//'J'
+'4'+/* 'u'//'u' */''+'4d'//'l'
++''///*'i'*/'i'
++'981'//'N'
++'e4d'//'nPj'
++/* 'Z3H'//'Z3H' */''+//'iiN'
+'65', _KgI4fOw = [[5,7],[17,18],[21,23]];
+
+    for (var i = 0; i < _KgI4fOw.length; i ++) {
+        _yLiQMg = _yLiQMg.substring(0, _KgI4fOw[i][0]) + _yLiQMg.substring(_KgI4fOw[i][1]);
+    }
+
+    return _yLiQMg;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+
+        var ddosMode = false;
+    
+    (function (currentUrl) {
+        if (typeof URL != 'undefined') {
+            // 测试环境
+            if ('https://segmentfault.com' === '//localhost:3000') return
+
+            var baseUrl = new URL('https://segmentfault.com');
+
+            if (baseUrl.protocol != currentUrl.protocol
+                || baseUrl.host != currentUrl.host) {
+                window.location.href = baseUrl.protocol + '//' + baseUrl.host
+                    + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+            }
+        }
+    })(window.location);
+</script>
+     <script crossorigin="" src="./javascript - onclick和click的区别？_files/assets.js.下载"></script>
+         
+    <script crossorigin="" src="./javascript - onclick和click的区别？_files/question.min.js.下载"></script>
+    
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                
+        
+
+            
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1514958618,
+        'allowLinker'
+    : true });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['docs.segmentfault.com'] );
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+        <script type="text/javascript" src="https://afpmm.alicdn.com/g/mm/afp-cdn/JS/k.js"></script>
+            <script>
+                    ac_keywords_targeting = "javascript";
+                _acM({
+            aid: "mm_124884735_33830642_145440102",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_145440102",
+            sendkeywords: 1,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script>
+            <script>
+                    ac_keywords_targeting = "javascript";
+                _acM({
+            aid: "mm_124884735_33830642_120290173",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_120290173",
+            sendkeywords: 1,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script>
+     
+
+        <script type="text/javascript" src="https://afpmm.alicdn.com/g/mm/afp-cdn/JS/k.js"></script>
+            <script>
+                    ac_keywords_targeting = "javascript";
+                _acM({
+            aid: "mm_124884735_33830642_143436142",
+            format: 1,
+            mode: 1,
+            gid: 1,
+            destid: "mm_124884735_33830642_143436142",
+            sendkeywords: 1,
+            serverbaseurl: "afpeng.alimama.com/"
+        });
+        </script>
+     
+
+
+
+<iframe id="p_analyse_iframe" src="./javascript - onclick和click的区别？_files/saved_resource.html" style="display: none;"></iframe><div id="noteWidget" class="noteWidget hidden hidden-xs">
+    <div class="noteWidget-header clearfix">
+        <h2 class="h4 pull-left">记笔记</h2>
+        <ul class="list-inline pull-right mb0">
+            <li id="noteWidgetMinimize"><span class="icon-minimize"></span></li><li id="noteWidgetZoom"><span class="icon-zoom"></span></li><li id="noteWidgetClose"><span class="icon-close"></span></li>
+        </ul>
+    </div>
+    <form method="POST" action="https://segmentfault.com/api/notes/add" role="form">
+        <div class="form-group">
+            <label for="title" class="sr-only">标题</label>
+            <input type="hidden" value="" id="draftId">
+            <input type="text" name="title" data-error="" autocomplete="off" class="form-control" placeholder="笔记描述" value="">
+        </div>
+        <div class="editor-config clearfix">
+            <select name="lang" class="form-control pull-left input-sm">
+                <optgroup label="文本语法">
+                    <option value="text" data-mode="text">纯文本</option>
+                    <option value="markdown" data-mode="markdown">Markdown</option>
+                    <option value="javascript" data-mode="javascript">Javascript</option>
+                    <option value="css" data-mode="css">CSS</option>
+                    <option value="html5" data-mode="htmlmixed">HTML</option>
+                    <option value="php" data-mode="php">PHP</option>
+                    <option value="python" data-mode="python">Python</option>
+                    <option value="ruby" data-mode="ruby">Ruby</option>
+                    <option value="go" data-mode="go">Go</option>
+                    <option value="c" data-mode="clike">C/C++</option>
+                    <option value="java" data-mode="java">Java</option>
+                    <option value="bash" data-mode="shell">Shell/Bash</option>
+                </optgroup>
+            </select>
+            <div class="pull-right hidden-xs">
+                <select name="indentWithTabs" class="form-control inline-block input-sm">
+                    <optgroup label="缩进模式">
+                        <option value="false">空格缩进</option>
+                        <option value="true">Tabs 缩进</option>
+                    </optgroup>
+                </select>
+                <select name="tabSize" class="form-control inline-block input-sm">
+                    <optgroup label="缩进大小">
+                        <option value="2">2</option>
+                        <option value="4" selected="">4</option>
+                    </optgroup>
+                </select>
+                <select name="lineWrap" class="form-control inline-block input-sm">
+                    <optgroup label="换行方式">
+                        <option value="true">自动换行</option>
+                        <option value="false">不换行</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <textarea id="codeMirror" class="form-control" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+        <div class="mt20 clearfix">
+            <div class="pull-right">
+                <span class="text-muted hidden" id="editorStatus">已保存</span>
+                <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                <button data-type="note" id="publishIt2" class="btn btn-default ml10" data-id="" data-do="add" data-url="" data-text="保存私密笔记" data-name="">保存私密笔记</button>
+                <button data-type="note" id="publishIt" class="btn btn-primary ml10" data-id="" data-do="add" data-url="" data-text="保存公开笔记" data-name="">保存公开笔记</button>
+                </div>
+            </div>
+        </form></div>
+    
+</body></html>

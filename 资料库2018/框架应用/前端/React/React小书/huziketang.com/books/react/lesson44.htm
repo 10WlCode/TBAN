@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="GNvdsbNFPS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    
+      <title>实战分析：评论功能（七） | React.js 小书</title>
+      <meta name="keywords" content="react.js,web,props,state,javascript" />
+      <meta name="description" content="React.js 小书是一个开源、免费、专业、简单的 React.js 在线教程。提炼实战经验中基础的、重要的、频繁的知识进行重点讲解，让你能用最少的精力深入了解实战中最需要的 React.js 知识。" />
+    
+
+    
+
+    <link rel="icon" href="https://huzidaha.github.io/static/assets/img/favicon.ico">
+    <link rel="stylesheet"
+href="../../../fonts.googleapis.com/css-family=Inconsolata-400,700.css" tppabs="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" tppabs="http://huziketang.com/books/react/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- <div class='float-wechat' id='float-wechat'>
+    	<img src='https://huzidaha.github.io/static/assets/img/wechat-user.jpeg' />
+      <p>加入《React.js 小书》读者交流群，一起讨论、交流、学习前端技术。</p>
+    </div> -->
+    <div class="wrapper" id='wrapper'>
+      <style media="screen">
+@media (max-width: 1335px) and (min-width: 900px) {
+	.wrapper {
+		margin-left: 329px;
+	}
+}
+@media (max-width: 900px) {
+	#table-of-content {
+		margin-left: -350px;
+	}
+}
+</style>
+<h1 style='position: relative; top: -15px;'>React.js 小书</h1>
+
+<link ref='prefetch' href="/books/react/lesson45" />
+
+
+<nav class='table-of-content' id='table-of-content'>
+	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 首页</a>
+	<h3>第一阶段</h3>
+  
+  
+		<a  href="lesson1.htm" tppabs="http://huziketang.com/books/react/lesson1" title="React.js 简介">1. React.js 简介</a>
+  
+  
+  
+		<a  href="lesson2.htm" tppabs="http://huziketang.com/books/react/lesson2" title="前端组件化（一）：从一个简单的例子讲起">2. 前端组件化（一）：从一个简单的例子讲起</a>
+  
+  
+  
+		<a  href="lesson3.htm" tppabs="http://huziketang.com/books/react/lesson3" title="前端组件化（二）：优化 DOM 操作">3. 前端组件化（二）：优化 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson4.htm" tppabs="http://huziketang.com/books/react/lesson4" title="前端组件化（三）：抽象出公共组件类">4. 前端组件化（三）：抽象出公共组件类</a>
+  
+  
+  
+		<a  href="lesson5.htm" tppabs="http://huziketang.com/books/react/lesson5" title="React.js 基本环境安装">5. React.js 基本环境安装</a>
+  
+  
+  
+		<a  href="lesson6.htm" tppabs="http://huziketang.com/books/react/lesson6" title="使用 JSX 描述 UI 信息">6. 使用 JSX 描述 UI 信息</a>
+  
+  
+  
+		<a  href="lesson7.htm" tppabs="http://huziketang.com/books/react/lesson7" title="组件的 render 方法">7. 组件的 render 方法</a>
+  
+  
+  
+		<a  href="lesson8.htm" tppabs="http://huziketang.com/books/react/lesson8" title="组件的组合、嵌套和组件树">8. 组件的组合、嵌套和组件树</a>
+  
+  
+  
+		<a  href="lesson9.htm" tppabs="http://huziketang.com/books/react/lesson9" title="事件监听">9. 事件监听</a>
+  
+  
+  
+		<a  href="lesson10.htm" tppabs="http://huziketang.com/books/react/lesson10" title="组件的 state 和 setState">10. 组件的 state 和 setState</a>
+  
+  
+  
+		<a  href="lesson11.htm" tppabs="http://huziketang.com/books/react/lesson11" title="配置组件的 props">11. 配置组件的 props</a>
+  
+  
+  
+		<a  href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12" title="state vs props">12. state vs props</a>
+  
+  
+  
+		<a  href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13" title="渲染列表数据">13. 渲染列表数据</a>
+  
+  
+  
+		<a  href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14" title="实战分析：评论功能（一）">14. 实战分析：评论功能（一）</a>
+  
+  
+  
+		<a  href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15" title="实战分析：评论功能（二）">15. 实战分析：评论功能（二）</a>
+  
+  
+  
+		<a  href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16" title="实战分析：评论功能（三）">16. 实战分析：评论功能（三）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第二阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17" title="前端应用状态管理 —— 状态提升">17. 前端应用状态管理 —— 状态提升</a>
+  
+  
+  
+		<a  href="lesson18.htm" tppabs="http://huziketang.com/books/react/lesson18" title="挂载阶段的组件生命周期（一）">18. 挂载阶段的组件生命周期（一）</a>
+  
+  
+  
+		<a  href="lesson19.htm" tppabs="http://huziketang.com/books/react/lesson19" title="挂载阶段的组件生命周期（二）">19. 挂载阶段的组件生命周期（二）</a>
+  
+  
+  
+		<a  href="lesson20.htm" tppabs="http://huziketang.com/books/react/lesson20" title="更新阶段的组件生命周期">20. 更新阶段的组件生命周期</a>
+  
+  
+  
+		<a  href="lesson21.htm" tppabs="http://huziketang.com/books/react/lesson21" title="ref 和 React.js 中的 DOM 操作">21. ref 和 React.js 中的 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson22.htm" tppabs="http://huziketang.com/books/react/lesson22" title="props.children 和容器类组件">22. props.children 和容器类组件</a>
+  
+  
+  
+		<a  href="lesson23.htm" tppabs="http://huziketang.com/books/react/lesson23" title="dangerouslySetHTML 和 style 属性">23. dangerouslySetHTML 和 style 属性</a>
+  
+  
+  
+		<a  href="lesson24.htm" tppabs="http://huziketang.com/books/react/lesson24" title="PropTypes 和组件参数验证">24. PropTypes 和组件参数验证</a>
+  
+  
+  
+		<a  href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25" title="实战分析：评论功能（四）">25. 实战分析：评论功能（四）</a>
+  
+  
+  
+		<a  href="lesson26.htm" tppabs="http://huziketang.com/books/react/lesson26" title="实战分析：评论功能（五）">26. 实战分析：评论功能（五）</a>
+  
+  
+  
+		<a  href="lesson27.htm" tppabs="http://huziketang.com/books/react/lesson27" title="实战分析：评论功能（六）">27. 实战分析：评论功能（六）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第三阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson28.htm" tppabs="http://huziketang.com/books/react/lesson28" title="高阶组件（Higher-Order Components）">28. 高阶组件（Higher-Order Components）</a>
+  
+  
+  
+		<a  href="lesson29.htm" tppabs="http://huziketang.com/books/react/lesson29" title="React.js 的 context">29. React.js 的 context</a>
+  
+  
+  
+		<a  href="lesson30.htm" tppabs="http://huziketang.com/books/react/lesson30" title="动手实现 Redux（一）：优雅地修改共享状态">30. 动手实现 Redux（一）：优雅地修改共享状态</a>
+  
+  
+  
+		<a  href="lesson31.htm" tppabs="http://huziketang.com/books/react/lesson31" title="动手实现 Redux（二）：抽离 store 和监控数据变化">31. 动手实现 Redux（二）：抽离 store 和监控数据变化</a>
+  
+  
+  
+		<a  href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32" title="动手实现 Redux（三）：纯函数（Pure Function）简介">32. 动手实现 Redux（三）：纯函数（Pure Function）简介</a>
+  
+  
+  
+		<a  href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33" title="动手实现 Redux（四）：共享结构的对象提高性能">33. 动手实现 Redux（四）：共享结构的对象提高性能</a>
+  
+  
+  
+		<a  href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34" title="动手实现 Redux（五）：不要问为什么的 reducer">34. 动手实现 Redux（五）：不要问为什么的 reducer</a>
+  
+  
+  
+		<a  href="lesson35.htm" tppabs="http://huziketang.com/books/react/lesson35" title="动手实现 Redux（六）：Redux 总结">35. 动手实现 Redux（六）：Redux 总结</a>
+  
+  
+  
+		<a  href="lesson36.htm" tppabs="http://huziketang.com/books/react/lesson36" title="动手实现 React-redux（一）：初始化工程">36. 动手实现 React-redux（一）：初始化工程</a>
+  
+  
+  
+		<a  href="lesson37.htm" tppabs="http://huziketang.com/books/react/lesson37" title="动手实现 React-redux（二）：结合 context 和 store">37. 动手实现 React-redux（二）：结合 context 和 store</a>
+  
+  
+  
+		<a  href="lesson38.htm" tppabs="http://huziketang.com/books/react/lesson38" title="动手实现 React-redux（三）：connect 和 mapStateToProps">38. 动手实现 React-redux（三）：connect 和 mapStateToProps</a>
+  
+  
+  
+		<a  href="lesson39.htm" tppabs="http://huziketang.com/books/react/lesson39" title="动手实现 React-redux（四）：mapDispatchToProps">39. 动手实现 React-redux（四）：mapDispatchToProps</a>
+  
+  
+  
+		<a  href="lesson40.htm" tppabs="http://huziketang.com/books/react/lesson40" title="动手实现 React-redux（五）：Provider">40. 动手实现 React-redux（五）：Provider</a>
+  
+  
+  
+		<a  href="lesson41.htm" tppabs="http://huziketang.com/books/react/lesson41" title="动手实现 React-redux（六）：React-redux 总结">41. 动手实现 React-redux（六）：React-redux 总结</a>
+  
+  
+  
+		<a  href="lesson42.htm" tppabs="http://huziketang.com/books/react/lesson42" title="使用真正的 Redux 和 React-redux">42. 使用真正的 Redux 和 React-redux</a>
+  
+  
+  
+		<a  href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43" title="Smart 组件 vs Dumb 组件">43. Smart 组件 vs Dumb 组件</a>
+  
+  
+  
+		<a  class='active'  href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44" title="实战分析：评论功能（七）">44. 实战分析：评论功能（七）</a>
+  
+  
+  
+		<a  href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45" title="实战分析：评论功能（八）">45. 实战分析：评论功能（八）</a>
+  
+  
+  
+		<a  href="lesson46.htm" tppabs="http://huziketang.com/books/react/lesson46" title="实战分析：评论功能（九）">46. 实战分析：评论功能（九）</a>
+  
+  
+</nav>
+<div id="mask-template">
+	<div></div>
+</div>
+<style>
+	#granted-modal {
+		display: none;
+		position: fixed;
+		margin: auto;
+		left: 100px;
+		top: 0;
+		bottom: 100px;
+		right: 0;
+		width: 500px;
+		height: 300px;
+		background: #fff;
+		z-index: 100;
+		border-radius: 5px;
+	}
+	#try-to-buy {
+		display: none;
+	}
+	.error-message {
+    position: absolute;
+    bottom: 7px;
+    right: -30px;
+    font-size: 12px;
+    color: rgb(211, 53, 62);
+  }
+	.field {
+		position: relative;
+		margin-top: 25px;
+	}
+	.modal-head {
+		font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+	}
+	.granted-footer {
+		text-align: center;
+	}
+	#back-to-input {
+		font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+	}
+	.hover {
+		cursor: pointer;
+	}
+	.granted-footer {
+		position: absolute;
+    margin: auto;
+		padding-top: 15px;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+		border-top: 1px solid #eee;
+	}
+	#buy-now {
+		color: #00a854;
+	}
+	.field label {
+		display: inline-block;
+		width: 90px;
+		text-align: right;
+	}
+	.field label::after {
+		content: "："
+	}
+	.granted-form {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 25px;
+	}
+	.submit {
+		display: inline-block;
+		float: right;
+	}
+	.button {
+		background: #f7f7f7;
+		border: 1px solid #ccc;
+		padding: 5px 20px;
+		border-radius: 3px;
+		outline: none;
+	}
+	.button:hover {
+		background: #fff;
+	}
+	.field input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #e0dbdb;
+    width: 166px;
+	}
+</style>
+<div id="granted-modal">
+	<div style="padding: 10px;">
+		<div id="readcode-input-area">
+			<h2 class="modal-head">阅读第三阶段，请输入你的阅读码 </h2>
+			<form class="granted-form" id="read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="email">
+				</div>
+				<div class="field">
+					<label>阅读码</label>
+					<input type="text" id="read-code">
+				</div>
+				<button id="check-granted" class="button hover submit">确认</button>
+			</form>
+			<div class="granted-footer">
+				还没有阅读码？<b>¥10</b> 元即可阅读所有章节
+				<p style="margin-top: 10px;"><a class="hover" id="buy-now">马上获取阅读码</a></p>
+			</div>
+		</div>
+		<div id="try-to-buy">
+			<div id="back-to-input" class="hover">&lt;&lt; 返回</div>
+			<h2 class="modal-head">输入你的邮箱，系统会给你发送邮件</h2>
+			<form class="granted-form" id="get-read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="reader-email">
+				</div>
+				<button id="alipay" style="margin-top: 20px;" class="hover submit button">获取阅读码</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="assets/js/jquery-3.2.1.min.js" tppabs="http://huziketang.com/books/react/assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/pay.min.js" tppabs="http://huziketang.com/books/react/assets/js/pay.min.js"></script>
+<script type="text/javascript">
+var tableOfContent = document.getElementById('table-of-content')
+var timer = null
+function resetTableOfContent (rect) {
+  scrollTop = localStorage.getItem('scrollTop') * 1
+  scrollTop = scrollTop || 0
+  tableOfContent.scrollTop = scrollTop
+}
+tableOfContent.addEventListener('scroll', function (event) {
+  clearTimeout(timer)
+  timer = setTimeout(function() {
+    localStorage.setItem('scrollTop', tableOfContent.scrollTop)
+  }, 50)
+}, false)
+resetTableOfContent()
+</script>
+<div class="post">
+	<div class="post__back">
+  	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 返回首页</a>
+    <div class="post__title">
+    	<h1>实战分析：评论功能（七）</h1>
+    </div>
+    <div class="post__meta">
+    	<p></p>
+    </div>
+    <div class="post__content"?>
+      <ul style="font-size: 14px; margin-top: -10px;">
+  <li>
+    作者：<a href="javascript:if(confirm('https://www.zhihu.com/people/hu-zi-da-ha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.zhihu.com/people/hu-zi-da-ha'" tppabs="https://www.zhihu.com/people/hu-zi-da-ha" target="_blank">胡子大哈</a>
+  </li>
+  <li>
+    原文链接：<a href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44"> http://huziketang.com/books/react/lesson44 </a>
+  </li>
+  <li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+
+<p>（本文未审核）</p>
+
+<p>从本节开始，我们开始用 Redux、React-redux 来重构第二阶段的评论功能。产品需求跟之前一样，但是会用 Redux、React-redux 来帮助管理应用状态，而不是“状态提升”。让整个应用更加接近真实的工程。</p>
+
+<p>大家可以在第二阶段的代码上进行修改 <a href="javascript:if(confirm('https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app2  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app2'" tppabs="https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app2">comment-app2</a>（非高阶组件版本）。如果已经忘了第二阶段评论功能的同学可以先简单回顾一下它的功能需求，<a href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25">实战分析：评论功能（四）</a>。第一、二、三阶段的实战代码都可以在这里找到：<a href="javascript:if(confirm('https://github.com/huzidaha/react-naive-book-examples  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/huzidaha/react-naive-book-examples'" tppabs="https://github.com/huzidaha/react-naive-book-examples">react-naive-book-examples</a>。</p>
+
+<p>我们首先安装好依赖，现在 comment-app2 需要依赖 Redux、React-redux 了，进入工程目录执行命令安装依赖：</p>
+
+<pre><code>npm install redux react-redux --save
+</code></pre>
+
+<p>然后我们二话不说先在 <code>src</code> 下建立三个空目录：<code>components</code>、<code>containers</code>、<code>reducers</code>。</p>
+
+<h2 id="构建评论的-reducer">构建评论的 reducer</h2>
+<p>我们之前的 reducer 都是直接写在 <code>src/index.js</code> 文件里面，这是一个不好的做法。因为随着应用越来越复杂，可能需要更多的 reducer 来帮助我们管理应用（这里后面的章节会有所提及）。所以最好还是把所有 reducer 抽出来放在一个目录下 <code>src/reducers</code>。</p>
+
+<p>对于评论功能其实还是比较简单的，回顾一下我们在<a href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17">状态提升</a>章节里面不断提升的状态是什么？其实评论功能的组件之间共享的状态只有 <code>comments</code>。我们可以直接只在 <code>src/reducers</code> 新建一个 reducer <code>comments.js</code> 来对它进行管理。</p>
+
+<p>思考一下评论功能对于评论有什么操作？想清楚我们才能写好 reducer，因为 reducer 就是用来描述数据的形态和相应的变更。<em>新增</em>和<em>删除</em>评论这两个操作是最明显的，大家应该都能够轻易想到。还有一个，我们的评论功能其实会从 LocalStorage 读取数据，读取数据以后其实需要保存到应用状态中。所以我们还有一个<em>初始化</em>评论的操作。所以目前能想到的就是三个操作：</p>
+
+<pre><code class="language-javascript">// action types
+const INIT_COMMENTS = 'INIT_COMMENTS'
+const ADD_COMMENT = 'ADD_COMMENT'
+const DELETE_COMMENT = 'DELETE_COMMENT'
+</code></pre>
+
+<p>我们用三个常量来存储 <code>action.type</code> 的类型，这样以后我们修改起来就会更方便一些。根据这三个操作编写 reducer：</p>
+
+<pre><code class="language-javascript">// reducer
+export default function (state, action) {
+  if (!state) {
+    state = { comments: [] }
+  }
+  switch (action.type) {
+    case INIT_COMMENTS:
+      // 初始化评论
+      return { comments: action.comments }
+    case ADD_COMMENT:
+      // 新增评论
+      return {
+        comments: [...state.comments, action.comment]
+      }
+    case DELETE_COMMENT:
+      // 删除评论
+      return {
+        comments: [
+          ...state.comments.slice(0, action.commentIndex),
+          ...state.comments.slice(action.commentIndex + 1)
+        ]
+      }
+    default:
+      return state
+  }
+}
+</code></pre>
+
+<p>我们只存储了一个 <code>comments</code> 的状态，初始化为空数组。当遇到 <code>INIT_COMMENTS</code> 的 action 的时候，会新建一个对象，然后用 <code>action.comments</code> 覆盖里面的 <code>comments</code> 属性。这就是初始化评论操作。</p>
+
+<p>同样新建评论操作 <code>ADD_COMMENT</code> 也会新建一个对象，然后新建一个数组，接着把原来 <code>state.comments</code> 里面的内容全部拷贝到新的数组当中，最后在新的数组后面追加 <code>action.comment</code>。这样就相当新的数组会比原来的多一条评论。（这里不要担心数组拷贝的性能问题，<code>[...state.comments]</code> 是浅拷贝，它们拷贝的都是对象引用而已。）</p>
+
+<p>对于删除评论，其实我们需要做的是<em>新建一个删除了特定下标的内容的数组</em>。我们知道数组 <code>slice(from, to)</code> 会根据你传进去的下标拷贝特定范围的内容放到新数组里面。所以我们可以利用 <code>slice</code> 把原来评论数组中 <code>action.commentIndex</code> 下标之前的内容拷贝到一个数组当中，把 <code>action.commentIndex</code> 坐标之后到内容拷贝到另外一个数组当中。然后把两个数组合并起，就相当于“删除”了 <code>action.commentIndex</code> 的评论了。</p>
+
+<p>这样就写好了评论相关的 reducer。</p>
+
+<h2 id="action-creators">action creators</h2>
+<p>之前我们使用 <code>dispatch</code> 的时候，都是直接手动构建对象：</p>
+
+<pre><code class="language-javascript">dispatch({ type: 'INIT_COMMENTS', comments })
+</code></pre>
+
+<p>每次都要写 <code>type</code> 其实挺麻烦的，而且还要去记忆 action type 的名字也是一种负担。我们可以把 action 封装到一种函数里面，让它们去帮助我们去构建这种 action，我们把它叫做 action creators。</p>
+
+<pre><code class="language-javascript">// action creators
+export const initComments = (comments) =&gt; {
+  return { type: INIT_COMMENTS, comments }
+}
+
+export const addComment = (comment) =&gt; {
+  return { type: ADD_COMMENT, comment }
+}
+
+export const deleteComment = (commentIndex) =&gt; {
+  return { type: DELETE_COMMENT, commentIndex }
+}
+</code></pre>
+
+<p>所谓 action creators 其实就是返回 action 的函数，这样我们 <code>dispatch</code> 的时候只需要传入数据就可以了：</p>
+
+<pre><code class="language-javascript">dispatch(initComments(comments))
+</code></pre>
+
+<p>action creators 还有额外好处就是可以帮助我们对传入的数据做统一的处理；而且有了 action creators，代码测试起来会更方便一些。这些内容大家可以后续在实际项目当中进行体会。</p>
+
+<p>整个 <code>src/reducers/comments.js</code> 的代码就是：</p>
+
+<pre><code class="language-javascript">// action types
+const INIT_COMMENTS = 'INIT_COMMENTS'
+const ADD_COMMENT = 'ADD_COMMENT'
+const DELETE_COMMENT = 'DELETE_COMMENT'
+
+// reducer
+export default function (state, action) {
+  if (!state) {
+    state = { comments: [] }
+  }
+  switch (action.type) {
+    case INIT_COMMENTS:
+      // 初始化评论
+      return { comments: action.comments }
+    case ADD_COMMENT:
+      // 新增评论
+      return {
+        comments: [...state.comments, action.comment]
+      }
+    case DELETE_COMMENT:
+      // 删除评论
+      return {
+        comments: [
+          ...state.comments.slice(0, action.commentIndex),
+          ...state.comments.slice(action.commentIndex + 1)
+        ]
+      }
+    default:
+      return state
+  }
+}
+
+// action creators
+export const initComments = (comments) =&gt; {
+  return { type: INIT_COMMENTS, comments }
+}
+
+export const addComment = (comment) =&gt; {
+  return { type: ADD_COMMENT, comment }
+}
+
+export const deleteComment = (commentIndex) =&gt; {
+  return { type: DELETE_COMMENT, commentIndex }
+}
+</code></pre>
+
+<blockquote>
+  <p>有些朋友可能会发现我们的 reducer 跟网上其他的 reducer 的例子不大一样。有些人喜欢把 action 单独切出去一个目录 <code>actions</code>，让 action 和 reducer  分开。个人观点觉得这种做法可能有点过度优化了，其实多数情况下特定的 action 只会影响特定的 reducer，直接放到一起可以更加清晰地知道这个 action 其实只是会影响到什么样的 reducer。而分开会给我们维护和理解代码带来额外不必要的负担，这有种矫枉过正的意味。但是这里没有放之四海皆准的规则，大家可以多参考、多尝试，找到适合项目需求的方案。</p>
+</blockquote>
+
+<p>个人写 reducer 文件的习惯，仅供参考：</p>
+
+<ol>
+  <li>定义 action types</li>
+  <li>编写 reducer</li>
+  <li>跟这个 reducer 相关的 action creators</li>
+</ol>
+
+<hr />
+
+<blockquote>
+  <p>因为第三方评论工具有问题，对本章节有任何疑问的朋友可以移步到 <a target="_blank" href="javascript:if(confirm('http://scriptoj.com/category/4/react-js-小书交流区  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://scriptoj.com/category/4/react-js-小书交流区'" tppabs="http://scriptoj.com/category/4/react-js-小书交流区">React.js 小书的论坛</a> 发帖，我会回答大家的疑问。</p>
+</blockquote>
+
+    </div>
+		<br/>
+		<hr />
+		<br />
+		<div class="PageNavigation">
+			
+			<p>
+				<a class="next" href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45">下一节：实战分析：评论功能（八）</a>
+			</p>
+			
+			<br/>
+			
+			<p>
+				<a class="prev" href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43">上一节：Smart 组件 vs Dumb 组件</a>
+			</p>
+			
+		</div>
+		<!-- <a class="ad" href="https://aonaotu.com" target="_blank"> -->
+			<!-- <div class="ad-logo">
+				<img src="/books/react/assets/img/ad-logo.svg">
+				<p class="ad-title">凹脑图</p>
+			</div>
+			<p class="ad-wording">迄今为止最简单好用的在线思维导图工具</p>
+			<span class="ad-indicator">广告</span>
+			<img src="/books/react/assets/img/ad-bg-2.svg" class="ad-bg-2">
+		</a> -->
+		<!-- <div class='share-block margin-top-gap'>
+			<p>如果你觉得小书写得还不错，可以请胡子大哈喝杯茶 :)</p>
+			<button class='donate-button' id='donate-button' type="button">赞赏</button>
+		</div> -->
+		<div class='share-block margin-bottom-gap'>
+			<p>传播一下知识也是一个很好的选择</p>
+			<div class="share-block-inner">
+				<div class="jiathis_style_24x24">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a href="javascript:if(confirm('http://www.jiathis.com/share?uid=2127727  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jiathis.com/share?uid=2127727'" tppabs="http://www.jiathis.com/share?uid=2127727" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				</div>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'};
+				</script>
+				<script type="text/javascript" src="../../../v3.jiathis.com/code/jia.js-uid=2127727" tppabs="http://v3.jiathis.com/code/jia.js?uid=2127727" charset="utf-8"></script>
+			</div>
+		</div>
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript">
+		var paths = window.location.pathname.split('/')
+		var lessonName = paths[paths.length - 1]
+		var uyan_config = {
+			// 'url': 'http://react.huziketang.com/blog/' + lessonName,
+			'du': 'http://huziketang.com/books/react/react.huziketang.com'
+		}
+		</script>
+		<script type="text/javascript" src="../../../v2.uyan.cc/code/uyan.js-uid=2127727" tppabs="http://v2.uyan.cc/code/uyan.js?uid=2127727"></script>
+		<!-- UY END -->
+		<!--wechat donate-->
+		<div class='donate-mask' id='donate-mask'>
+			<img src="../../../huzidaha.github.io/static/assets/img/wechat-pay.png" tppabs="https://huzidaha.github.io/static/assets/img/wechat-pay.png" id='wechat-pay' />
+		</div>
+		<script type="text/javascript">
+			// var donateMask = document.getElementById('donate-mask')
+			// var donateButton = document.getElementById('donate-button')
+			// var wechatPay = document.getElementById('wechat-pay')
+			// donateButton.addEventListener('click', function () {
+			// 	donateMask.style.display = 'flex'
+			// }, false)
+			// donateMask.addEventListener('click', function () {
+			// 	donateMask.style.display = 'none'
+			// }, false)
+			// wechatPay.addEventListener('click', function (event) {
+			// 	event.stopPropagation()
+			// }, false)
+		</script>
+	</div>
+
+    </div>
+    <script src="assets/js/highlight.js" tppabs="http://huziketang.com/books/react/assets/js/highlight.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      if (window.location.origin.match(/localhost/)) return
+      var hm = document.createElement("script");
+      hm.src = "../../../hm.baidu.com/hm.js-f08b5240ef2d1692572ce0f7756b325e"/*tpa=https://hm.baidu.com/hm.js?f08b5240ef2d1692572ce0f7756b325e*/;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      var bp = document.createElement('script');
+      // push baidu.com
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = '../../../zz.bdstatic.com/linksubmit/push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/;
+      }
+      else {
+        bp.src = '../../../push.zhanzhang.baidu.com/push.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/;
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+    // var wrapper = document.getElementById('wrapper')
+    // var floatWechat = document.getElementById('float-wechat')
+
+    // function resetAll (event) {
+    //   var rect = wrapper.getBoundingClientRect()
+    //   resetFloatWechat(rect)
+    // }
+    // function resetFloatWechat(rect) {
+    //   var left = rect.left + rect.width
+    //   floatWechat.style.left = left + 'px'
+    //   floatWechat.style.display = 'block'
+    // }
+    // window.addEventListener('resize', resetAll)
+    // resetAll()
+    </script>
+
+</body>
+
+</html>

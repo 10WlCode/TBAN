@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.cnblogs.com/xianyulaodi/p/6414805.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【原】以setTimeout来聊聊Event Loop - 咸鱼老弟 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./以setTimeout来聊聊Event Loop_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./以setTimeout来聊聊Event Loop_files/239339.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./以setTimeout来聊聊Event Loop_files/bundle-red_autumnal_leaves-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/xianyulaodi/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/xianyulaodi/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/xianyulaodi/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./以setTimeout来聊聊Event Loop_files/encoder.js.下载"></script><script src="./以setTimeout来聊聊Event Loop_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'xianyulaodi', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./以setTimeout来聊聊Event Loop_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body><link href="./以setTimeout来聊聊Event Loop_files/jiathis_share.css" rel="stylesheet" type="text/css"><div class="jiathis_style" style="height: auto; position: fixed; z-index: 100000000; top: 150px; right: 0px; overflow: hidden; width: 26px;"><table cellpadding="0" cellspacing="0"><tbody style="background:transparent"><tr><td style="background:transparent"><img src="./以setTimeout来聊聊Event Loop_files/r3.gif" style="cursor:pointer;" onmouseover="$CKE.over()" onclick="$CKE.center(this)"></td><td><div><div class="jiadiv_01"><div style="width:100%;background:#F2F2F2;border-bottom:1px solid #E5E5E5;line-height:200%;padding-left:5px;font-size:12px"><table width="100%"><tbody><tr class="jt_sharetitle"><td align="left" style="text-align:left;line-height:25px;font-size:14px;font-weight:bold;color:#000000;">分享到...</td><td align="right" style="text-align:right;"><img src="./以setTimeout来聊聊Event Loop_files/img_exit.gif" border="0" style="opacity:0.5;filter:alpha(opacity=50);margin:0 10px;cursor:pointer;" onclick="$CKE.shareClose();"></td></tr></tbody></table></div><div class="jiadiv_02" style="width:100%;" id="jiathis_sers"><a href="javascript:;" onclick="jiathis_sendto(&#39;weixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_weixin">微信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">微博</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_cqq">QQ好友</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">印象笔记</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">领英</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ishare&#39;);return false;" class="jiatitle"><span class="jtico jtico_ishare">一键分享</span></a><a href="javascript:;" onclick="$CKE.center(this);return false;" class="jiatitle"><span class="jtico jtico_jiathis">查看更多(96)</span></a><div style="clear:both"></div></div><div class="ckepopBottom" style="width:100%;"><div style="float:left;font-size:10px"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;display:none;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 5px 0 0;"><img src="./以setTimeout来聊聊Event Loop_files/img_012.gif" align="absmiddle" border="0"><a href="http://www.jiathis.com/index2" style="color:#333333;padding:0 3px;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></td></tr></tbody></table></div><iframe frameborder="0" style="position: absolute; display: none;" src="./以setTimeout来聊聊Event Loop_files/saved_resource.html"></iframe><div class="jiathis_style" style="height: auto; position: absolute; z-index: 100000000; display: none; top: 50%; left: 50%; overflow: auto;"><div style="border:10px solid #7F7F7F; width:300px;"><div class="jiadiv_01" style="width:300px;"><div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;"><table width="100%" style="margin:5px 0 0 0;"><tbody><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="./以setTimeout来聊聊Event Loop_files/img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"></td></tr></tbody></table></div><div class="searchTxtCont"><div style="background:url(http://v3.jiathis.com/code/images/img_so.gif) no-repeat center;height:30px; width:281px"><form onsubmit="return false;"><input class="searchTxt" name="" type="text" onclick="this.value=&#39;&#39;;this.style.color=&#39;#000&#39;;" value="输入网站名或拼音缩写" onkeyup="$CKE.choose(this);"></form></div></div><div id="jiathis_sharelist" class="jiadiv_02" style="width:300px;height:300px;overflow-y:auto;"><a href="javascript:;" onclick="jiathis_sendto(&#39;weixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_weixin">微信</span><input type="hidden" value="weixin,微信,wx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">微博</span><input type="hidden" value="tsina,微博,xlwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_cqq">QQ好友</span><input type="hidden" value="cqq,QQ好友,cqq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span><input type="hidden" value="qzone,QQ空间,qqkj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span><input type="hidden" value="copy,复制网址,fzwz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fav&#39;);return false;" class="jiatitle"><span class="jtico jtico_fav">收藏夹</span><input type="hidden" value="fav,收藏夹,scj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;print&#39;);return false;" class="jiatitle"><span class="jtico jtico_print">打印</span><input type="hidden" value="print,打印,dy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span><input type="hidden" value="email,邮件,yj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span><input type="hidden" value="renren,人人网,rrw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span><input type="hidden" value="kaixin001,开心网,kxw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">印象笔记</span><input type="hidden" value="evernote,印象笔记,evernote"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">领英</span><input type="hidden" value="linkedin,领英,linkedin"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span><input type="hidden" value="feixin,飞信,fx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span><input type="hidden" value="douban,豆瓣,db"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span><input type="hidden" value="twitter,Twitter,twitter"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span><input type="hidden" value="fb,Facebook,facebook"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ishare&#39;);return false;" class="jiatitle"><span class="jtico jtico_ishare">一键分享</span><input type="hidden" value="ishare,一键分享,yjfx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ujian&#39;);return false;" class="jiatitle"><span class="jtico jtico_ujian">猜你喜欢</span><input type="hidden" value="ujian,猜你喜欢,cnxh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;yixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_yixin">易信</span><input type="hidden" value="yixin,易信,yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;huaban&#39;);return false;" class="jiatitle"><span class="jtico jtico_huaban">花瓣网</span><input type="hidden" value="huaban,花瓣网,hbw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_tqq">腾讯微博</span><input type="hidden" value="tqq,腾讯微博,txwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;googleplus&#39;);return false;" class="jiatitle"><span class="jtico jtico_googleplus">Google+</span><input type="hidden" value="googleplus,Google+,googlej"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;alibaba&#39;);return false;" class="jiatitle"><span class="jtico jtico_alibaba">阿里巴巴</span><input type="hidden" value="alibaba,阿里巴巴,albb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;xiaoyou&#39;);return false;" class="jiatitle"><span class="jtico jtico_xiaoyou">朋友网</span><input type="hidden" value="xiaoyou,朋友网,pyw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;sdonote&#39;);return false;" class="jiatitle"><span class="jtico jtico_sdonote">麦库记事</span><input type="hidden" value="sdonote,麦库记事,mkjs"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;baidu&#39;);return false;" class="jiatitle"><span class="jtico jtico_baidu">百度搜藏</span><input type="hidden" value="baidu,百度搜藏,bdsc"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;gmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_gmail">Gmail邮箱</span><input type="hidden" value="gmail,Gmail邮箱,gmailyx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ydnote&#39;);return false;" class="jiatitle"><span class="jtico jtico_ydnote">有道云笔记</span><input type="hidden" value="ydnote,有道云笔记,ydybj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tianya&#39;);return false;" class="jiatitle"><span class="jtico jtico_tianya">天涯社区</span><input type="hidden" value="tianya,天涯社区,tysq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tieba&#39;);return false;" class="jiatitle"><span class="jtico jtico_tieba">百度贴吧</span><input type="hidden" value="tieba,百度贴吧,bdtb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qingbiji&#39;);return false;" class="jiatitle"><span class="jtico jtico_qingbiji">轻笔记</span><input type="hidden" value="qingbiji,轻笔记,qbj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tifeng&#39;);return false;" class="jiatitle"><span class="jtico jtico_tifeng">凤凰微博</span><input type="hidden" value="tifeng,凤凰微博,fhwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fanfou&#39;);return false;" class="jiatitle"><span class="jtico jtico_fanfou">饭否</span><input type="hidden" value="fanfou,饭否,ff"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mingdao&#39;);return false;" class="jiatitle"><span class="jtico jtico_mingdao">明道</span><input type="hidden" value="mingdao,明道,md"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban9dian&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban9dian">豆瓣9点</span><input type="hidden" value="douban9dian,豆瓣9点,db9d"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;google&#39;);return false;" class="jiatitle"><span class="jtico jtico_google">谷歌</span><input type="hidden" value="google,谷歌,gg"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;buzz&#39;);return false;" class="jiatitle"><span class="jtico jtico_buzz">谷歌Buzz</span><input type="hidden" value="buzz,谷歌Buzz,ggbuzz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;youdao&#39;);return false;" class="jiatitle"><span class="jtico jtico_youdao">有道书签</span><input type="hidden" value="youdao,有道书签,ydsq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qq&#39;);return false;" class="jiatitle"><span class="jtico jtico_qq">QQ书签</span><input type="hidden" value="qq,QQ书签,qqsq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;msn&#39;);return false;" class="jiatitle"><span class="jtico jtico_msn">MSN</span><input type="hidden" value="msn,MSN,msn"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pinterest&#39;);return false;" class="jiatitle"><span class="jtico jtico_pinterest">Pinterest</span><input type="hidden" value="pinterest,Pinterest,pinterest"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;duitang&#39;);return false;" class="jiatitle"><span class="jtico jtico_duitang">堆糖</span><input type="hidden" value="duitang,堆糖,dt"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tyaolan&#39;);return false;" class="jiatitle"><span class="jtico jtico_tyaolan">摇篮微博</span><input type="hidden" value="tyaolan,摇篮微博,ylwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hi&#39;);return false;" class="jiatitle"><span class="jtico jtico_hi">百度空间</span><input type="hidden" value="hi,百度空间,bdkj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hotmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_hotmail">Hotmail邮箱</span><input type="hidden" value="hotmail,Hotmail邮箱,hotmailyx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;xqw&#39;);return false;" class="jiatitle"><span class="jtico jtico_xqw">雪球</span><input type="hidden" value="xqw,雪球,xqw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_hexun">和讯</span><input type="hidden" value="hexun,和讯,hx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;139mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_139mail">139邮箱</span><input type="hidden" value="139mail,139邮箱,139yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;189mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_189mail">189邮箱</span><input type="hidden" value="189mail,189邮箱,189yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;189cn&#39;);return false;" class="jiatitle"><span class="jtico jtico_189cn">翼友圈</span><input type="hidden" value="189cn,翼友圈,yyq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tpeople&#39;);return false;" class="jiatitle"><span class="jtico jtico_tpeople">人民微博</span><input type="hidden" value="tpeople,人民微博,rmwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;txinhua&#39;);return false;" class="jiatitle"><span class="jtico jtico_txinhua">新华微博</span><input type="hidden" value="txinhua,新华微博,xhwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;translate&#39;);return false;" class="jiatitle"><span class="jtico jtico_translate">谷歌翻译</span><input type="hidden" value="translate,谷歌翻译,ggfy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tuita&#39;);return false;" class="jiatitle"><span class="jtico jtico_tuita">推他</span><input type="hidden" value="tuita,推他,tt"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mop&#39;);return false;" class="jiatitle"><span class="jtico jtico_mop">猫扑推客</span><input type="hidden" value="mop,猫扑推客,mptk"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;meilishuo&#39;);return false;" class="jiatitle"><span class="jtico jtico_meilishuo">美丽说</span><input type="hidden" value="meilishuo,美丽说,mls"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mogujie&#39;);return false;" class="jiatitle"><span class="jtico jtico_mogujie">蘑菇街</span><input type="hidden" value="mogujie,蘑菇街,mgj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ganniu&#39;);return false;" class="jiatitle"><span class="jtico jtico_ganniu">赶牛网</span><input type="hidden" value="ganniu,赶牛网,gnw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;poco&#39;);return false;" class="jiatitle"><span class="jtico jtico_poco">Poco网</span><input type="hidden" value="poco,Poco网,pocow"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;leihou&#39;);return false;" class="jiatitle"><span class="jtico jtico_leihou">雷猴网</span><input type="hidden" value="leihou,雷猴网,lhw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;thexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_thexun">和讯微博</span><input type="hidden" value="thexun,和讯微博,hxwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;dream163&#39;);return false;" class="jiatitle"><span class="jtico jtico_dream163">游戏江湖</span><input type="hidden" value="dream163,游戏江湖,yxjh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;jcrb&#39;);return false;" class="jiatitle"><span class="jtico jtico_jcrb">法律微博</span><input type="hidden" value="jcrb,法律微博,flwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tumblr&#39;);return false;" class="jiatitle"><span class="jtico jtico_tumblr">Tumblr</span><input type="hidden" value="tumblr,Tumblr,tumblr"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;reddit&#39;);return false;" class="jiatitle"><span class="jtico jtico_reddit">Reddit</span><input type="hidden" value="reddit,Reddit,reddit"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;instapaper&#39;);return false;" class="jiatitle"><span class="jtico jtico_instapaper">Instapaper</span><input type="hidden" value="instapaper,Instapaper,instapaper"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pocket&#39;);return false;" class="jiatitle"><span class="jtico jtico_pocket">Pocket</span><input type="hidden" value="pocket,Pocket,pocket"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;caimi&#39;);return false;" class="jiatitle"><span class="jtico jtico_caimi">财迷</span><input type="hidden" value="caimi,财迷,cm"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;iwo&#39;);return false;" class="jiatitle"><span class="jtico jtico_iwo">WO+分享</span><input type="hidden" value="iwo,WO+分享,iwo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;waakee&#39;);return false;" class="jiatitle"><span class="jtico jtico_waakee">挖客网</span><input type="hidden" value="waakee,挖客网,wkw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cyzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_cyzone">创业邦</span><input type="hidden" value="cyzone,创业邦,cyb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;99earth&#39;);return false;" class="jiatitle"><span class="jtico jtico_99earth">救救地球</span><input type="hidden" value="99earth,救救地球,jjdq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;chouti&#39;);return false;" class="jiatitle"><span class="jtico jtico_chouti">抽屉网</span><input type="hidden" value="chouti,抽屉网,ctw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;dig24&#39;);return false;" class="jiatitle"><span class="jtico jtico_dig24">递客网</span><input type="hidden" value="dig24,递客网,dkw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;yijee&#39;);return false;" class="jiatitle"><span class="jtico jtico_yijee">易集网</span><input type="hidden" value="yijee,易集网,yjw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pdfonline&#39;);return false;" class="jiatitle"><span class="jtico jtico_pdfonline">Pdf在线转换</span><input type="hidden" value="pdfonline,Pdf在线转换,pdfzxzh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;printfriendly&#39;);return false;" class="jiatitle"><span class="jtico jtico_printfriendly">友好打印</span><input type="hidden" value="printfriendly,友好打印,yhdy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;w3c&#39;);return false;" class="jiatitle"><span class="jtico jtico_w3c">W3c验证</span><input type="hidden" value="w3c,W3c验证,w3cyz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;bitly&#39;);return false;" class="jiatitle"><span class="jtico jtico_bitly">Bit.ly</span><input type="hidden" value="bitly,Bit.ly,bitly"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;digg&#39;);return false;" class="jiatitle"><span class="jtico jtico_digg">Digg</span><input type="hidden" value="digg,Digg,digg"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mailru&#39;);return false;" class="jiatitle"><span class="jtico jtico_mailru">Mail.ru</span><input type="hidden" value="mailru,Mail.ru,mail.ru"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;diigo&#39;);return false;" class="jiatitle"><span class="jtico jtico_diigo">Diigo</span><input type="hidden" value="diigo,Diigo,diigo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;friendfeed&#39;);return false;" class="jiatitle"><span class="jtico jtico_friendfeed">FriendFeed</span><input type="hidden" value="friendfeed,FriendFeed,friendfeed"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;myspace&#39;);return false;" class="jiatitle"><span class="jtico jtico_myspace">Myspace</span><input type="hidden" value="myspace,Myspace,myspace"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mixx&#39;);return false;" class="jiatitle"><span class="jtico jtico_mixx">Mixx</span><input type="hidden" value="mixx,Mixx,mixx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;netlog&#39;);return false;" class="jiatitle"><span class="jtico jtico_netlog">NetLog</span><input type="hidden" value="netlog,NetLog,netlog"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;netvibes&#39;);return false;" class="jiatitle"><span class="jtico jtico_netvibes">Netvibes</span><input type="hidden" value="netvibes,Netvibes,netvibes"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;phonefavs&#39;);return false;" class="jiatitle"><span class="jtico jtico_phonefavs">Phonefavs</span><input type="hidden" value="phonefavs,Phonefavs,phonefavs"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pingfm&#39;);return false;" class="jiatitle"><span class="jtico jtico_pingfm">Ping.fm</span><input type="hidden" value="pingfm,Ping.fm,ping.fm"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;plaxo&#39;);return false;" class="jiatitle"><span class="jtico jtico_plaxo">Plaxo</span><input type="hidden" value="plaxo,Plaxo,plaxo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;delicious&#39;);return false;" class="jiatitle"><span class="jtico jtico_delicious">Delicious</span><input type="hidden" value="delicious,Delicious,delicious"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;wong&#39;);return false;" class="jiatitle"><span class="jtico jtico_wong">Mister Wong</span><input type="hidden" value="wong,Mister Wong,misterwong"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;stumbleupon&#39;);return false;" class="jiatitle"><span class="jtico jtico_stumbleupon">Stumbleupon</span><input type="hidden" value="stumbleupon,Stumbleupon,stumbleupon"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;plurk&#39;);return false;" class="jiatitle"><span class="jtico jtico_plurk">Plurk</span><input type="hidden" value="plurk,Plurk,plurk"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;funp&#39;);return false;" class="jiatitle"><span class="jtico jtico_funp">Funp</span><input type="hidden" value="funp,Funp,funp"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;myshare&#39;);return false;" class="jiatitle"><span class="jtico jtico_myshare">Myshare</span><input type="hidden" value="myshare,Myshare,myshare"></a><div style="clear:both"></div></div><div class="centerBottom"><div style="float:left;font-size:10px;"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;display:none;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 10px 0 0;"><img src="./以setTimeout来聊聊Event Loop_files/img_012.gif" align="absmiddle" border="none">&nbsp;<a href="http://www.jiathis.com/index2" style="color:#333333;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></div><iframe frameborder="0" src="./以setTimeout来聊聊Event Loop_files/jiathis_utility.html" style="display: none;"></iframe>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/xianyulaodi/"><img id="blogLogo" src="./以setTimeout来聊聊Event Loop_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/xianyulaodi/">咸鱼老弟</a></h1>
+<h2>此博客不再更新，新博客地址：<a href="https://xianyulaodi.github.io/" style="color:#f60;">https://xianyulaodi.github.io</a> ，欢迎来访</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/xianyulaodi/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%92%B8%E9%B1%BC%E8%80%81%E5%BC%9F">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/xianyulaodi/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/xianyulaodi/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 66&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 203</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xianyulaodi/p/6414805.html">【原】以setTimeout来聊聊Event Loop</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><a name="_labelTop"></a><div id="navCategory"><p style="font-size:18px"><b>阅读目录</b></p><ul><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label0">setTimeout基本用法</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label1">Event Loop简介</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label2">理解js代码的执行</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label3">setTimeout问题的解答</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label4">关于setTimeout新的问题</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_label5">总结</a></li></ul></div><p>　 平时的工作中，也许你会经常用到setTimeout这个方法，可是你真的了解setTimeout吗？本文想通过总结setTimeout的用法，顺便来探索javascript里面的事件执行机制。</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label0"></a></div><h2>setTimeout基本用法</h2>
+<p>1、</p>
+<div class="cnblogs_code">
+<pre>setTimeout(code,millisec)</pre>
+</div>
+<p>setTimeout函数接受两个参数，第一个参数code是将要推迟执行的函数名或者一段代码，第二个参数millisec是推迟执行的毫秒数。</p>
+<p>例如：</p>
+<div class="cnblogs_code">
+<pre>setTimeout(‘console.log(2)’,100<span style="color: #000000;">);
+
+setTimeout(</span><span style="color: #0000ff;">function</span>(){console.log(2)},100);</pre>
+</div>
+<p>如果直接在setTimeout中直接执行代码， 需要以字符串的形式去写，引擎内部会将字符串转为可执行的代码</p>
+<p>&nbsp;</p>
+<p>2、再来一些简单些的代码</p>
+<div class="cnblogs_code">
+<pre>console.log(1<span style="color: #000000;">);
+setTimeout(</span>'console.log(2)',1000<span style="color: #000000;">);
+console.log(</span>3);</pre>
+</div>
+<p>是的，如你所愿，依次输出的是 &nbsp;<em>// 1 3 2</em></p>
+<p>&nbsp;</p>
+<p><em>3、</em>代码升级版</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>console.log(1<span style="color: #000000;">);
+
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>300<span style="color: #000000;">);
+
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;10000;i++<span style="color: #000000;">) {
+    console.log(</span>4<span style="color: #000000;">);
+}
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>5<span style="color: #000000;">);
+},</span>100);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这个时候的输入顺序是怎样的呢？这里先埋个伏笔，因为我们是以setTimeout来聊Event Loop</p>
+<p>&nbsp;</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label1"></a></div><h2>Event Loop简介</h2>
+<p>&nbsp;</p>
+<p><strong>什么是Event Loop呢？</strong></p>
+<p class="best-text mb-10">&nbsp; &nbsp; 因为javascript是单线程的，所谓的单线程是指在JS引擎中负责解释和执行JavaScript代码的线程只有一个，可以叫它为<strong>主线程</strong>。</p>
+<p>&nbsp; &nbsp; 除了主线程，还存在其他的线程。例如：处理AJAX请求的线程、处理DOM事件的线程、定时器线程、读写文件的线程(例如在Node.js中)等等。我们以setTimeout为例，当在代码中调用setTimeout()方法时，注册的延时方法会交由浏览器内核其他模块（以webkit为例，是webcore模块）处理，当延时方法到达触发条件，即到达设置的延时时间时，这一延时方法被添加至任务队列里。这一过程由浏览器内核其他模块处理，与执行引擎主线程独立，执行引擎在主线程方法执行完毕，到达空闲状态时，会从任务队列中顺序获取任务来执行，这一过程是一个不断循环的过程，称为事件循环模型。</p>
+<p>&nbsp;</p>
+<p class="best-text mb-10"><img src="./以setTimeout来聊聊Event Loop_files/776370-20170226101214523-381417596.png" alt="" width="388" height="340"></p>
+<p class="best-text mb-10">&nbsp;</p>
+<p class="best-text mb-10">　　Javascript执行引擎的主线程运行的时候，产生堆（heap）和栈（stack）。程序中代码依次进入栈中等待执行，当调用setTimeout()方法时，即图中右侧WebAPIs方法时，浏览器内核相应模块开始延时方法的处理，当延时方法到达触发条件时，方法被添加到用于回调的任务队列，只有执行引擎栈中的代码执行完毕，主线程才会去读取任务队列，依次执行那些满足触发条件的回调函数。</p>
+<p class="best-text mb-10">　　在上图中的callback queue中指的是 "任务队列"，也可以理解为消息的队列，“消息“我们可以简单理解为是：<strong>注册异步任务时添加的回调函数。</strong></p>
+<p class="best-text mb-10"><strong>例如：</strong></p>
+<div class="cnblogs_code">
+<pre>setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(‘hello’);
+},</span>100);</pre>
+</div>
+<p>其中里面的function(){console.log('hello')}就是一个消息，任务队列里面保存的就是这些回调函数</p>
+<p class="best-text mb-10">&nbsp;</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label2"></a></div><h2 class="best-text mb-10">理解js代码的执行</h2>
+<p>我们以一段代码的运行来进行理解，代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>console.log('start'<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Timer1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>'hello'<span style="color: #000000;">);
+},</span>200<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Timer2</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>'world'<span style="color: #000000;">);
+},1</span>00<span style="color: #000000;">);
+
+console.log(</span>'end');</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>代码运行的gif图如下：</p>
+<p><img src="./以setTimeout来聊聊Event Loop_files/776370-20170226112523241-1162148115.gif" alt=""></p>
+<p>我们分步骤来进行这个过程解答</p>
+<p class="best-text mb-10">　 &nbsp;1、 js执行引擎开始执行上述代码时，会先讲一个main()方法加入执行栈。首先第一个console.log(‘start’)入栈，console.log方法是一个webkit内核支持的普通方法，而不是前面图中WebAPIs涉及的方法，所以这里log('start')方法立即出栈被引擎执行。</p>
+<p class="best-text mb-10">&nbsp; &nbsp; 2、引擎继续往下，将setTimeout(callback,200)添加到执行栈。setTimeout()方法属于事件循环模型中WebAPIs中的方法，引擎在将setTimeout()方法出栈执行时，将延时执行的函数交给了相应模块，即图右方的timer模块来处理。</p>
+<p class="best-text mb-10">　 &nbsp;3、然后主线程继续向下执行，紧接着将第二个定时器也交给Timer模块，然后执行到第二个console.log()，控制台打印'end'，</p>
+<p class="best-text mb-10">&nbsp; &nbsp; &nbsp;4、执行完毕后清空执行栈。但是并没有结束，在主线程执行的同时，Timer模块会检查其中的异步代码，一旦满足触发条件，就会将它添加到任务队列中。Timer2延迟100ms，所以会早于Timer1被添加到队列排头。而主线程此时处于空闲状态，所以会检查任务队列是否有待执行的任务。此时会将Timer2回调中的console.log()执行，控制台打印'world'，然后执行栈空闲后继续检查任务队列，将Timer1的代码压入执行栈中执行，控制台打印'hello'，清空执行栈，此时任务队列为空，执行结束,程序处理完毕，main()方法也出栈。</p>
+<p class="best-text mb-10">　 5、在这里再次强调一下，不是setTimeout加入了事件队列，而是setTimeout里面的回调函数加入了事件队列</p>
+<p class="best-text mb-10">&nbsp;</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label3"></a></div><h2 class="best-text mb-10">setTimeout问题的解答</h2>
+<p>回到我们文章之初的那倒题：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>console.log(1<span style="color: #000000;">);
+//Time1
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>300<span style="color: #000000;">);
+//Time2
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;10000;i++<span style="color: #000000;">) {
+    console.log(</span>4<span style="color: #000000;">);
+}<br>//Time3
+setTimeout(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>5<span style="color: #000000;">);
+},</span>100);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp; &nbsp; &nbsp; 如果理解了上面的内容，那么这道题理解起来就比较容易了。</p>
+<p>&nbsp; &nbsp; &nbsp; 首先是打印出 1，然后是 10000个4，那么Time1、Time2、Time3是顺序是如何的呢？</p>
+<p>　　在这个代码中，for循环比较耗时，在Time1和Timer加入到执行队列中后，主线程依然还在执行for循环中的代码，处于阻塞状态。队列中的Time1和Time2并不会得以执行。当for循环结束，这时才将Time3交由Timer模块去管理，清空执行栈。虽然在这里Time3的延迟时间最短，但是加入任务队列后还是会排在Time1和Time2的后面，所以此时按顺序执行任务队列中的代码，依次打印2、3、5。</p>
+<p>所以执行结果为：</p>
+<p><img src="./以setTimeout来聊聊Event Loop_files/776370-20170226131730320-9660993.jpg" alt=""></p>
+<p>&nbsp;</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label4"></a></div><h2>关于setTimeout新的问题</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>console.log(1<span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>300<span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time2</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;10000;i++<span style="color: #000000;">) {
+    console.log(</span>4<span style="color: #000000;">);
+}
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time3</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>5<span style="color: #000000;">);
+},</span>100);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>上面这个问题中，Time3加入任务队列的时间比Time2,Time1晚，所以它是最后才执行的。那么问题来了，请看下面代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>console.log(1<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time2</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>300<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;10000;i++<span style="color: #000000;">) {
+    console.log(</span>4<span style="color: #000000;">);
+}
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time3</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>5<span style="color: #000000;">);
+},</span>100);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp; &nbsp;我们将Time1和Time2的顺序对换一下，按照前面的说法，Time2先加入任务队列，然后是Time1，再然后是Time3。可是执行的结果还是1、4、2、3、5，这是为什么呢？虽然Time1的执行时间短，可是它比Time2晚加入任务队列啊。</p>
+<p>&nbsp; &nbsp;为了验证这个问题，我们可以提出这样的一个假设：</p>
+<p><strong>&nbsp; &nbsp; 如果setTimeout加入队列的阻塞时间大于两个setTimeout执行的间隔时间，那么先加入任务队列的先执行，尽管它里面设置的时间比另一个setTimeout的要大</strong></p>
+<p>可能假设听起来比较拗口，我们可以用代码来理解一下：</p>
+<p>代码1：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">Time2</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">var</span> start=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;5000;i++<span style="color: #000000;">) {
+    console.log(</span>'这里只是模拟一个耗时操作'<span style="color: #000000;">);
+};
+</span><span style="color: #0000ff;">var</span> end=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+console.log(</span>'阻塞耗时：'+Number(end-start)+'毫秒'<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>300<span style="color: #000000;">);
+</span><span style="color: #0000ff;"><br></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>Time1比Time2设定的执行时间早100ms，但是Time2先加入任务队列，在Time2和Time1时间有一个阻塞的for循环，执行结果如下：</p>
+<p><img src="./以setTimeout来聊聊Event Loop_files/776370-20170227132406766-1770219106.png" alt=""></p>
+<p>Time2先执行；</p>
+<p>&nbsp;</p>
+<p>代码2：</p>
+<p>我们把for循环里面的时间设置短一点：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>400<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">var</span> start=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;500;i++<span style="color: #000000;">) {
+    console.log(</span>'这里只是模拟一个耗时操作'<span style="color: #000000;">);
+};
+</span><span style="color: #0000ff;">var</span> end=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+console.log(</span>'阻塞耗时：'+Number(end-start)+'毫秒'<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>300);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img src="./以setTimeout来聊聊Event Loop_files/776370-20170227132754095-1066713665.png" alt=""></p>
+<p>此时，Time1先执行，因为阻塞的耗时小于Time1和Time2的执行间隔时间100毫秒；</p>
+<p>&nbsp;</p>
+<p>代码3：</p>
+<p>我们再来验证一下，把Time2的执行时间设为350毫秒；</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">Time2</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>2<span style="color: #000000;">);
+},</span>350<span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">var</span> start=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+</span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0;i&lt;500;i++<span style="color: #000000;">) {
+    console.log(</span>'这里只是模拟一个耗时操作'<span style="color: #000000;">);
+};
+</span><span style="color: #0000ff;">var</span> end=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Date();
+console.log(</span>'阻塞耗时：'+Number(end-start)+'毫秒'<span style="color: #000000;">);
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">Time1</span>
+setTimeout(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+    console.log(</span>3<span style="color: #000000;">)
+},</span>300);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./以setTimeout来聊聊Event Loop_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>直接结果为：<img src="./以setTimeout来聊聊Event Loop_files/776370-20170227133015141-186210832.png" alt=""></p>
+<p>Time2先执行，因为阻塞的时间大于两个setTimeout之间的间隔时间。</p>
+<p>&nbsp;</p>
+<p>通过上面的假设，我们可以得出这样一个结论：<strong>如果setTimeout加入队列的阻塞时间大于两个setTimeout执行的间隔时间，那么先加入任务队列的先执行，尽管它里面设置的时间可能比另一个setTimeout的要大</strong></p>
+<p>&nbsp;</p>
+<div style="text-align: right"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#_labelTop">回到顶部</a><a name="_label5"></a></div><h2>总结</h2>
+<p class="best-text mb-10">&nbsp;　　理解js的事件循环在平时的工作中还是挺有用的，它可以让我们清楚的知道事件的执行顺序，知道事件的走向，才能更好的驾驭Javascript。本文是对事件循环的一个小小总结，更多的干货，可以看看下面的参考文档。本文有误之处，欢迎指出</p>
+<p class="best-text mb-10">&nbsp;</p>
+<p class="best-text mb-10">&nbsp;</p>
+<p class="best-text mb-10">参看文档：</p>
+<p class="best-text mb-10"><a class="blogTitle btitle" title="【转向Javascript系列】从setTimeout说事件循环模型" href="http://www.alloyteam.com/2015/10/turning-to-javascript-series-from-settimeout-said-the-event-loop-model/" rel="bookmark" target="_blank">【转向Javascript系列】从setTimeout说事件循环模型</a></p>
+<p id="page-title" class="asset-name entry-title"><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank">JavaScript 运行机制详解：再谈Event Loop</a></p>
+<p id="activity-name" class="rich_media_title"><a href="https://mp.weixin.qq.com/s?__biz=MzI1MTE2NTE1Ng==&amp;mid=2649515867&amp;idx=1&amp;sn=971a3e41da08ddf2da200d9d07af0fb0&amp;chksm=f1efe7d0c6986ec688a746ece15f52c8df78bca37ca2609e75199f5c3fbbabd3fbcc00179885&amp;scene=0&amp;key=564c3e9811aee0abcc036cb111e6e7bdbe3938a8756b5bf3b98a1696b2f16c1e6e3a1b4af159d1ae1dd3e71ee5fae4e0b6655bd9f37cc81efb1174bf3ef39b43f874bc6a0482348422cc5245dfae917f&amp;ascene=0&amp;uin=MzIxNTY1NTU%3D&amp;devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.12.1+build(16B2555)&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=g24dIjS%2F70EF4QPCYwRMInMa218z6XagvevxLr5Mbzc%3D" target="_blank">干货 | 原来你是这样的 setTimeout</a></p>
+<p id="articleTitle" class="h3 post-topheader__info--title" data-id="1190000004322358"><a href="https://segmentfault.com/a/1190000004322358" target="_blank">JavaScript：彻底理解同步、异步和事件循环(Event Loop)</a></p>
+<p class="best-text mb-10">&nbsp;</p><p style="padding-top:40px;">如果您觉得文章有用，可以打赏个咖啡钱</p><p><img src="./以setTimeout来聊聊Event Loop_files/776370-20160914124035805-437895007.png" alt=""></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/xianyulaodi/category/816216.html" target="_blank">js</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/xianyulaodi/tag/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>, <a href="http://www.cnblogs.com/xianyulaodi/tag/Event%20Loop/">Event Loop</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6414805,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;29bac201-5e16-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./以setTimeout来聊聊Event Loop_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./以setTimeout来聊聊Event Loop_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xianyulaodi/" target="_blank"><img src="./以setTimeout来聊聊Event Loop_files/20161023125045.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xianyulaodi/">咸鱼老弟</a><br>
+            <a href="http://home.cnblogs.com/u/xianyulaodi/followees">关注 - 14</a><br>
+            <a href="http://home.cnblogs.com/u/xianyulaodi/followers">粉丝 - 137</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;29bac201-5e16-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6414805,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+    <div class="buryit" onclick="votePost(6414805,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/xianyulaodi/p/6288322.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/xianyulaodi/p/6288322.html" title="发布于2017-01-19 10:14">【原】小写了一个cnode的小程序</a><br><a href="http://www.cnblogs.com/xianyulaodi/p/6476991.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/xianyulaodi/p/6476991.html" title="发布于2017-03-12 12:18">【原】cookie小结</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-02-26 13:35</span> <a href="http://www.cnblogs.com/xianyulaodi/">咸鱼老弟</a> 阅读(<span id="post_view_count">836</span>) 评论(<span id="post_comment_count">5</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6414805" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#" onclick="AddToWz(6414805);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=239339,cb_entryId=6414805,cb_blogApp=currentBlogApp,cb_blogUserGuid='29bac201-5e16-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/2/26 13:35:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3627092,&#39;xrZEViHjvAyFcTIfAcOu41qKzOMDZVlFkCXL0lNCgRyd1q6OSGjVEw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3627092,&#39;xrZEViHjvAyFcTIfAcOu41qKzOMDZVlFkCXL0lNCgRyd1q6OSGjVEw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3627092" class="layer">#1楼</a><a name="3627092" id="comment_anchor_3627092"></a>  <span class="comment_date">2017-02-27 08:11</span> <a id="a_comment_author_3627092" href="http://home.cnblogs.com/u/558760/" target="_blank">究级天狼</a> <a href="http://msg.cnblogs.com/send/%E7%A9%B6%E7%BA%A7%E5%A4%A9%E7%8B%BC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3627092" class="blog_comment_body">把10000换成更小的数试试</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3627092,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3627092,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3627362,&#39;G7912HDr/ZFRgHSCYTBHsUhLtdc5J2YuHHTH/VPS/AP/b3InafNHJg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3627362,&#39;G7912HDr/ZFRgHSCYTBHsUhLtdc5J2YuHHTH/VPS/AP/b3InafNHJg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3627362" class="layer">#2楼</a><a name="3627362" id="comment_anchor_3627362"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-02-27 12:27</span> <a id="a_comment_author_3627362" href="http://www.cnblogs.com/xianyulaodi/" target="_blank">咸鱼老弟</a> <a href="http://msg.cnblogs.com/send/%E5%92%B8%E9%B1%BC%E8%80%81%E5%BC%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3627362" class="blog_comment_body"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3627092" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3627092);">@</a>
+究级天狼<br>那个for循环只是为了模拟一个阻塞过程，所以忽略那个具体值</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3627362,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3627362,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3627362_avatar" style="display:none;">http://pic.cnblogs.com/face/776370/20161023125045.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3627384,&#39;JGAXq87JuOVn8okH4lyGiV5LIbRKobTRBV8ZkPa8I7eksheYjSgcSw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3627384,&#39;JGAXq87JuOVn8okH4lyGiV5LIbRKobTRBV8ZkPa8I7eksheYjSgcSw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3627384" class="layer">#3楼</a><a name="3627384" id="comment_anchor_3627384"></a>  <span class="comment_date">2017-02-27 13:17</span> <a id="a_comment_author_3627384" href="http://www.cnblogs.com/cike8899/" target="_blank">一别经年</a> <a href="http://msg.cnblogs.com/send/%E4%B8%80%E5%88%AB%E7%BB%8F%E5%B9%B4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3627384" class="blog_comment_body">还有和promise的比较</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3627384,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3627384,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3627384_avatar" style="display:none;">http://pic.cnblogs.com/face/545336/20150110092335.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3655075,&#39;hkUeHCU5WJKTJB3jqUUq8Q6vn1dEVLu2mLfOPreDBAsmYj0JqYjnLg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3655075,&#39;hkUeHCU5WJKTJB3jqUUq8Q6vn1dEVLu2mLfOPreDBAsmYj0JqYjnLg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3655075" class="layer">#4楼</a><a name="3655075" id="comment_anchor_3655075"></a>  <span class="comment_date">2017-03-29 21:30</span> <a id="a_comment_author_3655075" href="http://home.cnblogs.com/u/836323/" target="_blank">coman.chen</a> <a href="http://msg.cnblogs.com/send/coman.chen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3655075" class="blog_comment_body">我觉得这样比较容易理解：<br>当调用栈执行到setTimeout时，就开始计时。<br><br>例如代码1<br>time2阻塞了400<br>for循环阻塞了515<br>那么在for循环执行完后，time2已经延迟完等待立即执行；<br>即400-515=-115 &lt; 300<br><br>代码2<br>400-61=339 &gt; 300，所以time1先执行<br><br>代码3<br>350-60=290 &lt; 300，所以time2先执行</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3655075,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3655075,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3656971,&#39;G7912HDr/ZFRgHSCYTBHsUhLtdc5J2YuHHTH/VPS/AP/b3InafNHJg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3656971,&#39;G7912HDr/ZFRgHSCYTBHsUhLtdc5J2YuHHTH/VPS/AP/b3InafNHJg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3656971" class="layer">#5楼</a><a name="3656971" id="comment_anchor_3656971"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">3656971</span><span id="comment-maxDate" style="display:none;">2017/4/1 9:44:52</span>  <span class="comment_date">2017-04-01 09:44</span> <a id="a_comment_author_3656971" href="http://www.cnblogs.com/xianyulaodi/" target="_blank">咸鱼老弟</a> <a href="http://msg.cnblogs.com/send/%E5%92%B8%E9%B1%BC%E8%80%81%E5%BC%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3656971" class="blog_comment_body"><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#3655075" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3655075);">@</a>
+coman.chen<br>这样理解也是可以的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3656971,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3656971,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3656971_avatar" style="display:none;">http://pic.cnblogs.com/face/776370/20161023125045.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/xianyulaodi/p/6414805.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./以setTimeout来聊聊Event Loop_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./以setTimeout来聊聊Event Loop_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/592250/" target="_blank">拼多多为什么能爆红？</a><br> ·  <a href="https://news.cnblogs.com/n/592187/" target="_blank">ICO收割炒币者，交易所收割ICO，谁才是韭菜？</a><br> ·  <a href="https://news.cnblogs.com/n/592249/" target="_blank">牙买加政府积极探索使用开源软件</a><br> ·  <a href="https://news.cnblogs.com/n/592248/" target="_blank">微软Azure Stack混合云4月国内正式商用</a><br> ·  <a href="https://news.cnblogs.com/n/592247/" target="_blank">Linux基金会宣布开放物联网ACRN管理程序</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><object type="application/x-shockwave-flash" style="outline:none;" data="./以setTimeout来聊聊Event Loop_files/hamster.swf.下载" width="200" height="160">
+<param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?up_bodyColor=f0e9cc&amp;up_feetColor=D4C898&amp;up_eyeColor=000567&amp;up_wheelSpokeColor=DEDEDE&amp;up_wheelColor=FFFFFF&amp;up_waterColor=E0EFFF&amp;up_earColor=b0c4de&amp;up_wheelOuterColor=FF4D4D&amp;up_snoutColor=F7F4E9&amp;up_bgColor=F0E4E4&amp;up_foodColor=cba920&amp;up_wheelCenterColor=E4EB2E&amp;up_tailColor=E6DEBE&amp;">
+<param name="AllowScriptAccess" value="always">
+<param name="wmode" value="opaque"></object>
+<span style="color: #3E8BD6;font-size: 9pt;"></span><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/xianyulaodi/">咸鱼老弟</a><br>园龄：<a href="https://home.cnblogs.com/u/xianyulaodi/" title="入园时间：2015-06-19">2年9个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/xianyulaodi/followers/">137</a><br>关注：<a href="https://home.cnblogs.com/u/xianyulaodi/followees/">14</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;29bac201-5e16-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('29bac201-5e16-e511-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&lt;</a></td><td align="center">2018年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td class="CalTodayDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xianyulaodi/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E7%88%AC%E8%99%AB/">爬虫</a>(2)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7/">前端代码异常监控</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E8%BE%93%E5%85%A5url%E4%B9%8B%E5%90%8E%E7%9A%84%E5%93%8D%E5%BA%94/">输入url之后的响应</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E7%AE%97%E6%B3%95/">算法</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/cdn%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/">cdn相关技术</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/cookie/">cookie</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/Event%20Loop/">Event Loop</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/git/">git</a>(1)</li><li><a href="http://www.cnblogs.com/xianyulaodi/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/xianyulaodi/category/816231.html">css(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/xianyulaodi/category/816218.html">flux(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/xianyulaodi/category/816228.html">gulp(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/xianyulaodi/category/816216.html">js(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/xianyulaodi/category/907246.html">node.js(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/xianyulaodi/category/816214.html">react(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/xianyulaodi/category/816219.html">redux(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/xianyulaodi/category/816215.html">webpack(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/xianyulaodi/category/816232.html">其他(15)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/xianyulaodi/archive/2017/03.html">2017年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/xianyulaodi/archive/2017/02.html">2017年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/xianyulaodi/archive/2017/01.html">2017年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/xianyulaodi/archive/2016/12.html">2016年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/xianyulaodi/archive/2016/11.html">2016年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/xianyulaodi/archive/2016/10.html">2016年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/xianyulaodi/archive/2016/09.html">2016年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/xianyulaodi/archive/2016/08.html">2016年8月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/xianyulaodi/archive/2016/07.html">2016年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/xianyulaodi/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/xianyulaodi/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/xianyulaodi/archive/2016/04.html">2016年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/xianyulaodi/archive/2016/03.html">2016年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/xianyulaodi/archive/2016/02.html">2016年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/xianyulaodi/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/xianyulaodi/archive/2015/12.html">2015年12月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/xianyulaodi/archive/2015/08.html">2015年8月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xianyulaodi/p/5314868.html#3901902">1. Re:【原】react-router项目实战</a></li>
+        <li class="recent_comment_body">请问博主，我在使用路由的时候，有一个组件我不需要重新渲染该怎么办？举个例子：（router用的是3.0.2版本）render() { return ( ......</li>
+        <li class="recent_comment_author">--小木工</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xianyulaodi/p/5314868.html#3871580">2. Re:【原】react-router项目实战</a></li>
+        <li class="recent_comment_body">history貌似没有用到，这个是修改相对路径的吧？</li>
+        <li class="recent_comment_author">--macmatilda</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xianyulaodi/p/5533185.html#3852273">3. Re:【原】js检测移动端横竖屏</a></li>
+        <li class="recent_comment_body">使用媒体查询横竖屏，是不是有些样式不能使用呢？</li>
+        <li class="recent_comment_author">--tzWeb</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xianyulaodi/p/6547807.html#3832696">4. Re:【原】老生常谈-从输入url到页面展示到底发生了什么</a></li>
+        <li class="recent_comment_body">写的真好</li>
+        <li class="recent_comment_author">--潇湘旧友</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xianyulaodi/p/5038258.html#3820823">5. Re:【原】dangerouslySetInnerHTML,   让React正常显示你的html代码</a></li>
+        <li class="recent_comment_body">&lt;Script&gt;alert(“XSS attack available!”);&lt;/Script&gt;</li>
+        <li class="recent_comment_author">--一介匹夫</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/xianyulaodi/p/5338359.html">1. 【原】react中如何使用jquery插件(16391)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5035171.html">2. 【原】js离开页面执行函数 onbeforeunload与onunload事件(11518)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5399264.html">3. 【原】redux学习笔记(11478)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5827821.html">4. 【原】常用的javascript设计模式(11411)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5755079.html">5. 【原】雅虎前端优化的35条军规(9619)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/xianyulaodi/p/5097489.html">1. 【原】回顾2015，展望2016(44)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5638139.html">2. 【原】javascript最佳实践(11)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5314868.html">3. 【原】react-router项目实战(11)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5755108.html">4. 【原】老生常谈的跨域处理(10)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5883318.html">5. 【转】浏览器工作原理(7)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/xianyulaodi/p/6547807.html">1. 【原】老生常谈-从输入url到页面展示到底发生了什么(22)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5097489.html">2. 【原】回顾2015，展望2016(12)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5755108.html">3. 【原】老生常谈的跨域处理(11)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/5533201.html">4. 【原】移动端界面的适配(10)</a></li><li><a href="http://www.cnblogs.com/xianyulaodi/p/6001122.html">5. 【原】小搞一下 javascript算法(10)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 咸鱼老弟
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- JiaThis Button BEGIN f分享的js-->
+<script type="text/javascript" src="./以setTimeout来聊聊Event Loop_files/jiathis_r.js.下载" charset="utf-8"></script><script src="./以setTimeout来聊聊Event Loop_files/ckepop.js.下载" charset="utf-8"></script><script src="./以setTimeout来聊聊Event Loop_files/ckecenterpop.js.下载" charset="utf-8"></script><script type="text/javascript" src="./以setTimeout来聊聊Event Loop_files/plugin.client.js.下载" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+<script language="javascript" type="text/javascript">
+//生成目录索引列表,目录锚点链接
+function GenerateContentList()
+{
+    var jquery_h3_list = $('#cnblogs_post_body h2');//如果你的章节标题不是h2,只需要将这里的h2换掉即可
+    if(jquery_h3_list.length>0)
+    {
+        var content = '<a name="_labelTop"></a>';
+        content    += '<div id="navCategory">';
+        content    += '<p style="font-size:18px"><b>阅读目录</b></p>';
+        content    += '<ul>';
+        for(var i =0;i<jquery_h3_list.length;i++)
+        {
+            var go_to_top = '<div style="text-align: right"><a href="#_labelTop">回到顶部</a><a name="_label' + i + '"></a></div>';
+            $(jquery_h3_list[i]).before(go_to_top);
+            var li_content = '<li><a href="#_label' + i + '">' + $(jquery_h3_list[i]).text() + '</a></li>';
+            content += li_content;
+        }
+        content    += '</ul>';
+        content    += '</div>';
+        if($('#cnblogs_post_body').length != 0 )
+        {
+            $($('#cnblogs_post_body')[0]).prepend(content);
+        }
+    }    
+}
+GenerateContentList();
+
+// 打赏红包
+$($('#cnblogs_post_body')[0]).append('<p style="padding-top:40px;">如果您觉得文章有用，可以打赏个咖啡钱</p><p ><img src="https://images2015.cnblogs.com/blog/776370/201609/776370-20160914124035805-437895007.png" alt="" /></p>');
+
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

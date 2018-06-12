@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html -->
+<html lang="zh-cn" class="gr__cnblogs_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不能不说的C#特性-对象集合初始化器 - 横刀天笑 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./对象集合初始化器_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./对象集合初始化器_files/bundle-Minyx2_Lite.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./对象集合初始化器_files/bundle-Minyx2_Lite-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yuyijq/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yuyijq/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yuyijq/wlwmanifest.xml">
+<script async="" src="./对象集合初始化器_files/analytics.js.下载"></script><script type="text/javascript" src="./对象集合初始化器_files/encoder.js.下载"></script><script src="./对象集合初始化器_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'yuyijq', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./对象集合初始化器_files/blog-common.js.下载" type="text/javascript"></script>
+<script src="./对象集合初始化器_files/bundle-Minyx2_Lite.js.下载" language="javascript" type="text/javascript"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<a name="top"></a>
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                <div id="blog_stats">
+Posts - 159, 
+Articles - 5, 
+Comments - 2458
+<!----></div>
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com/">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/yuyijq/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/logout.aspx?ReturnUrl=http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html">Logout</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/yuyijq/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e6%a8%aa%e5%88%80%e5%a4%a9%e7%ac%91">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/yuyijq/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/yuyijq/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/yuyijq/">横刀天笑的碎碎念</a>
+            <!-- 子标题 -->
+            <small>
+                </small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+<div id="post_detail">
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html">不能不说的C#特性-对象集合初始化器</a></h2>
+    <small>2008-07-16 15:53 by 横刀天笑, <span id="post_view_count">10553</span> 阅读, <span id="post_comment_count">15</span> 评论, <a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#" onclick="AddToWz(1244433);return false;">收藏</a>,  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1244433" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><p><span style="font-family: 宋体">本系列文章连接：<br>
+不能不说的C#特性-对象集合初始化器<br>
+<font face="Verdana"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244460.html" target="_blank"><font face="Verdana">不能不说的C#特性-匿名类型与隐式类型局部变量<br>
+</font></a></font><font face="Verdana"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244657.html" target="_blank"><font face="Verdana">不能不说的C#特性-扩展方法</font></a>&nbsp;</font><br>
+<font face="Verdana"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244736.html" target="_blank"><font face="Verdana">不能不说的C#特性-匿名方法和Lambda表达式</font></a></font><br>
+<span style="font-family: 宋体"><a class="postTitle2" id="homepage1_HomePageDays_DaysList_ctl01_DayItem_DayList_ctl00_TitleUrl" href="http://www.cnblogs.com/yuyijq/archive/2008/07/18/1246190.html">不能不说的C#特性-迭代器(上)及一些研究过程中的副产品</a></span></span></p>
+<p><span style="font-family: 宋体"><a class="postTitle2" id="homepage1_HomePageDays_DaysList_ctl00_DayItem_DayList_ctl00_TitleUrl" href="http://www.cnblogs.com/yuyijq/archive/2008/07/19/1246609.html">不能不说的C#特性-迭代器(下)，yield以及流的延迟计算</a></span></p>
+<p><span style="font-family: 宋体"><br>
+在写一些实体类的时候，我们往往在写构造方法的时候思考很长时间，除了一个无参构造器外还在想需要写几个构造器呢？哪些参数是需要初始化的。现在你再也不需要为这事烦恼了。</span>C# 3.0<span style="font-family: 宋体">为你提供了对象集合初始化器</span>:<br>
+</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br>
+</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;图书类<br>
+</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br>
+</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">class</span><span style="color: #000000">&nbsp;Book<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;图书名称<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br>
+</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;Title&nbsp;{&nbsp;</span><span style="color: #0000ff">get</span><span style="color: #000000">;&nbsp;</span><span style="color: #0000ff">set</span><span style="color: #000000">;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;单价<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br>
+</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">float</span><span style="color: #000000">&nbsp;Price&nbsp;{&nbsp;</span><span style="color: #0000ff">get</span><span style="color: #000000">;&nbsp;</span><span style="color: #0000ff">set</span><span style="color: #000000">;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;作者<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br>
+</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;Author&nbsp;{&nbsp;</span><span style="color: #0000ff">get</span><span style="color: #000000">;&nbsp;</span><span style="color: #0000ff">set</span><span style="color: #000000">;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;ISBN号<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br>
+</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;ISBN&nbsp;{&nbsp;</span><span style="color: #0000ff">get</span><span style="color: #000000">;&nbsp;</span><span style="color: #0000ff">set</span><span style="color: #000000">;&nbsp;}<br>
+}<br>
+</span><span style="color: #008000">//</span><span style="color: #008000">对象初始化器</span><span style="color: #008000"><br>
+</span><span style="color: #000000">Book&nbsp;book&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title</span><span style="color: #000000">=</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">,ISBN</span><span style="color: #000000">=</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">};</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">现在你想初始化几个就初始化几个，不需要出现这种情况：<br>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div><img alt="" src="./对象集合初始化器_files/None.gif" align="top"><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;Book():</span><span style="color: #0000ff">this</span><span style="color: #000000">(</span><span style="color: #800000">""</span><span style="color: #000000">)<br>
+<img id="Codehighlighter1_23_27_Open_Image" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ExpandedBlockStart.gif" align="top"><img id="Codehighlighter1_23_27_Closed_Image" style="display: none" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ContractedBlock.gif" align="top"></span><span id="Codehighlighter1_23_27_Closed_Text" style="border-right: #808080 1px solid; border-top: #808080 1px solid; display: none; border-left: #808080 1px solid; border-bottom: #808080 1px solid; background-color: #ffffff"><img alt="" src="./对象集合初始化器_files/dot.gif" style=""></span><span id="Codehighlighter1_23_27_Open_Text"><span style="color: #000000">{&nbsp;<br>
+<img alt="" src="./对象集合初始化器_files/ExpandedBlockEnd.gif" align="top">}</span></span><span style="color: #000000"><br>
+<img alt="" src="./对象集合初始化器_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;Book(</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;title):</span><span style="color: #0000ff">this</span><span style="color: #000000">(title,</span><span style="color: #800080">0</span><span style="color: #000000">)<br>
+<img id="Codehighlighter1_68_71_Open_Image" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ExpandedBlockStart.gif" align="top"><img id="Codehighlighter1_68_71_Closed_Image" style="display: none" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ContractedBlock.gif" align="top"></span><span id="Codehighlighter1_68_71_Closed_Text" style="border-right: #808080 1px solid; border-top: #808080 1px solid; display: none; border-left: #808080 1px solid; border-bottom: #808080 1px solid; background-color: #ffffff"><img alt="" src="./对象集合初始化器_files/dot.gif" style=""></span><span id="Codehighlighter1_68_71_Open_Text"><span style="color: #000000">{<br>
+<img alt="" src="./对象集合初始化器_files/ExpandedBlockEnd.gif" align="top">}</span></span><span style="color: #000000"><br>
+<img alt="" src="./对象集合初始化器_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;Book(</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;title,&nbsp;</span><span style="color: #0000ff">float</span><span style="color: #000000">&nbsp;price):</span><span style="color: #0000ff">this</span><span style="color: #000000">(title,price,</span><span style="color: #800000">""</span><span style="color: #000000">)<br>
+<img id="Codehighlighter1_132_136_Open_Image" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ExpandedBlockStart.gif" align="top"><img id="Codehighlighter1_132_136_Closed_Image" style="display: none" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ContractedBlock.gif" align="top"></span><span id="Codehighlighter1_132_136_Closed_Text" style="border-right: #808080 1px solid; border-top: #808080 1px solid; display: none; border-left: #808080 1px solid; border-bottom: #808080 1px solid; background-color: #ffffff"><img alt="" src="./对象集合初始化器_files/dot.gif" style=""></span><span id="Codehighlighter1_132_136_Open_Text"><span style="color: #000000">{&nbsp;<br>
+<img alt="" src="./对象集合初始化器_files/ExpandedBlockEnd.gif" align="top">}</span></span><span style="color: #000000"><br>
+<img alt="" src="./对象集合初始化器_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;Book(</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;title,&nbsp;</span><span style="color: #0000ff">float</span><span style="color: #000000">&nbsp;price,&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;isbn)<br>
+<img id="Codehighlighter1_189_274_Open_Image" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ExpandedBlockStart.gif" align="top"><img id="Codehighlighter1_189_274_Closed_Image" style="display: none" onclick="code_collapse_toggle(this);" alt="" src="./对象集合初始化器_files/ContractedBlock.gif" align="top"></span><span id="Codehighlighter1_189_274_Closed_Text" style="border-right: #808080 1px solid; border-top: #808080 1px solid; display: none; border-left: #808080 1px solid; border-bottom: #808080 1px solid; background-color: #ffffff"><img alt="" src="./对象集合初始化器_files/dot.gif" style=""></span><span id="Codehighlighter1_189_274_Open_Text"><span style="color: #000000">{<br>
+<img alt="" src="./对象集合初始化器_files/InBlock.gif" align="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">this</span><span style="color: #000000">.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;title;<br>
+<img alt="" src="./对象集合初始化器_files/InBlock.gif" align="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">this</span><span style="color: #000000">.Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;price;<br>
+<img alt="" src="./对象集合初始化器_files/InBlock.gif" align="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">this</span><span style="color: #000000">.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;isbn;<br>
+<img alt="" src="./对象集合初始化器_files/ExpandedBlockEnd.gif" align="top">}</span></span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</span><span style="font-family: 宋体">这一串的构造方法都是为了应付不同的初始化情况。<br>
+好了，来看看对象初始化器编译器在后面为我们做了些什么呢？<br>
+使用Reflector反编译程序集：<br>
+<div class="cnblogs_code"><span style="color: #000000">Book&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+Book&nbsp;book&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0;</span></div>
+&nbsp;<span lang="EN-US">C#</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">编译器生成了一个新的局部变量</span><span lang="EN-US">&lt;&gt;g__initLocal0</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">，调用</span><span lang="EN-US">Book</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">的默认无参构造方法初始化它，然后对它的属性进行赋值，最后将这个局部变量赋值给</span><span lang="EN-US">book</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">。看到这里，我们应该想到，要使用对象初始化器，那么这个对象必须有一个无参构造方法，如果你给这个方法写了一个有参构造方法而将它的默认无参构造方法覆盖了并且没有提供一个新的无参构造方法，那么使用对象初始化器编译的时候是不会通过的</span><span lang="EN-US">(</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">不过想不通，为啥</span><span lang="EN-US">C#</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">编译器生成这么一个奇怪的局部变量名字，还有为啥不直接使用</span><span lang="EN-US">book</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">呢</span><span lang="EN-US">)</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">。像下面的代码不更好：</span><br>
+</span>
+<div class="cnblogs_code"><span style="color: #000000">Book&nbsp;book&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+book.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+book.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">;</span></div>
+<span style="font-family: 宋体">后来我发现我是在</span>debug<span style="font-family: 宋体">模式下编译的，换到</span>release<span style="font-family: 宋体">模式下变成了这样：<br>
+<div class="cnblogs_code"><span style="color: #000000">Book&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">;</span></div>
+</span><span style="font-family: 宋体">被优化了。</span><span style="font-family: 宋体">上面介绍的就是对象初始化器了，那什么是集合初始化器呢？<br>
+<div class="cnblogs_code"><span style="color: #000000">IList</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">&nbsp;books&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;List</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">();<br>
+</span><span style="color: #008000">//</span><span style="color: #008000">这里就使用了对象初始化器，学以致用吧</span><span style="color: #008000"><br>
+</span><span style="color: #000000">books.Add(</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">,Price</span><span style="color: #000000">=</span><span style="color: #800080">20</span><span style="color: #000000">&nbsp;});<br>
+books.Add(</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;C#</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-356-d89</span><span style="color: #800000">"</span><span style="color: #000000">,Price</span><span style="color: #000000">=</span><span style="color: #800080">100</span><span style="color: #000000">&nbsp;});<br>
+books.Add(</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Linq</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-d56-d89</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800080">120</span><span style="color: #000000">&nbsp;});</span></div>
+<span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">这样的代码没少写吧，实际上也许比这更复杂，有了</span><span lang="EN-US">C# 3.0</span><span style="font-family: 宋体; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri">我们睡觉都想笑：</span><br>
+<div class="cnblogs_code"><span style="color: #000000">IList</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">&nbsp;books&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;List</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">&nbsp;{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">,Price</span><span style="color: #000000">=</span><span style="color: #800080">20</span><span style="color: #000000">&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;C#</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-356-d89</span><span style="color: #800000">"</span><span style="color: #000000">,Price</span><span style="color: #000000">=</span><span style="color: #800080">100</span><span style="color: #000000">&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book&nbsp;{&nbsp;Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Linq</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-d56-d89</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800080">120</span><span style="color: #000000">&nbsp;}<br>
+};</span></div>
+<span style="font-family: 宋体">还是像刚才一样，我们来欣赏一下</span>C#<span style="font-family: 宋体">编译器为我们生成的代码：</span><br>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div><span style="color: #000000">List</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;List</span><span style="color: #000000">&lt;</span><span style="color: #000000">Book</span><span style="color: #000000">&gt;</span><span style="color: #000000">();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal1&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal1.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;COM</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal1.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-456-789</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal1.Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;20f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.Add(</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal2&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal2.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Inside&nbsp;C#</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal2.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-356-d89</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal2.Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;100f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.Add(</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal3&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;Book();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal3.Title&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">Linq</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal3.ISBN&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">123-d56-d89</span><span style="color: #800000">"</span><span style="color: #000000">;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal3.Price&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;120f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal0.Add(</span><span style="color: #000000">&lt;&gt;</span><span style="color: #000000">g__initLocal3);</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./对象集合初始化器_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span style="font-family: 宋体">从上面的代码来看，编译器自动的调用了</span>List<span style="font-family: 宋体">的无参构造方法，然后实例化一个个的</span>Book<span style="font-family: 宋体">，再一个个的</span>Add<span style="font-family: 宋体">进去，和我们原来的做法没有什么不同，但是，这是编译器为我们做的，所以简省了我们很多的编码工作。</span>
+<p style="text-align: left" align="left"><span style="font-family: 宋体">对象集合初始化器就算介绍完了。有人也许会说，不就是个</span>syntx sugar<span style="font-family: 宋体">么，有什么。是的，确实是个语法糖。在编译器发展早期，编译器科学家门一直在想方设法的优化编译器生成的代码，这个时候，编译器做的主要是对机器优化，因为那个时候机器的时间非常宝贵，机器运算速度也不快，今天我们有了足够好的机器了</span>(<span style="font-family: 宋体">但并不是说我们可以不关注性能的编写程序</span>)<span style="font-family: 宋体">，而且作为编写软件的人来说，比机器的时间宝贵得多，所以今天的编译器也在向人优化了，从编程语言的发展之路来讲，今天的编程语言比昨天的语言更高级，也更人性化了，我们只要编写更少的代码，更符合人的思维的代码，而只要关注我们值的关注的地方。体力活儿就交给编译器吧。</span></p>
+<br>
+<strong>附加：<br>
+刚开始想想这对象集合初始化器也许就一鸡肋，没啥用，不就减少一点点代码么，像这种简单的初始化工作，大部分代码生成器都可以来干。后来在研究匿名类型的时候突然发现，如果没有这个对象初始化器，匿名类型是不是要复杂一些？或者就是难以实现？<br>
+var test = new{Key="test",Value="test"};如果没有对象初始化器，匿名类型该怎么办？</strong></span> 
+</div><div id="MySignature"></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1244433,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;d8a1310b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./对象集合初始化器_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./对象集合初始化器_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yuyijq/" target="_blank"><img src="./对象集合初始化器_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yuyijq/">横刀天笑</a><br>
+            <a href="http://home.cnblogs.com/u/yuyijq/followees">关注 - 15</a><br>
+            <a href="http://home.cnblogs.com/u/yuyijq/followers">粉丝 - 1401</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;d8a1310b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1244433,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">7</span>
+    </div>
+    <div class="buryit" onclick="votePost(1244433,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+        <div class="clear"></div>
+        <div id="post_next_prev"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/15/1243714.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yuyijq/archive/2008/07/15/1243714.html" title="发布于2008-07-15 23:14">走进Linq--Linq横空出世篇</a><br><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244460.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244460.html" title="发布于2008-07-16 16:05">不能不说的C#特性-匿名类型与隐式类型局部变量</a><br></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/yuyijq/category/145453.html" target="_blank">不能不说的C#特新</a></li>
+        <li class="icon_bullet" id="EntryTag">标签: <a href="http://www.cnblogs.com/yuyijq/tag/C%23/">C#</a>, <a href="http://www.cnblogs.com/yuyijq/tag/C%23%E6%96%B0%E7%89%B9%E6%80%A7/">C#新特性</a>, <a href="http://www.cnblogs.com/yuyijq/tag/%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E5%88%9D%E5%A7%8B%E5%8C%96%E5%99%A8/">对象集合初始化器</a></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=13049,cb_entryId=1244433,cb_blogApp=currentBlogApp,cb_blogUserGuid='d8a1310b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2008/7/16 15:53:00';loadViewCount(cb_entryId);</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a class="addcomment" href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#comment_tip">Add your comment</a>
+<h3 id="comments"></h3>
+<div class="feedbackNoItems"></div>
+
+
+<ol class="commentlist" id="commentList">	
+
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1258577" class="layer">#1楼</a><a name="1258577" id="comment_anchor_1258577"></a></cite> <a id="a_comment_author_1258577" href="http://www.cnblogs.com/artech/" target="_blank">Artech</a> <a href="http://msg.cnblogs.com/send/Artech" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2008-07-17 09:20</span></small>
+			</h5>
+			<div id="comment_body_1258577" class="blog_comment_body">加个链接：[原创-总结]深入理解C# 3.x的新特性系列总结：<a href="http://www.cnblogs.com/artech/archive/2007/10/07/915969.html" target="_new">http://www.cnblogs.com/artech/archive/2007/10/07/915969.html</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1258577,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1258577,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1258577_avatar" style="display:none;">http://pic.cnblogs.com/face/u19327.jpg</span>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1258577,&#39;OU7Un0MykKhMw2LeYkuhhwVhcLfqI+HOraeO9mynaxfgMt23Ky7Vlg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1258577,&#39;OU7Un0MykKhMw2LeYkuhhwVhcLfqI+HOraeO9mynaxfgMt23Ky7Vlg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1259021" class="layer">#2楼</a><a name="1259021" id="comment_anchor_1259021"></a></cite> <a id="ctl00_CommentList_NameLink_1" title="未注册用户" target="_blank">5254341</a><small> <span class="comment_date">2008-07-17 14:18</span></small>
+			</h5>
+			<div id="comment_body_1259021" class="blog_comment_body">博主这一系列的文章看完了，期待新的Post</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1259021,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1259021,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1259021,&#39;&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1259021,&#39;&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1259500" class="layer">#3楼</a><a name="1259500" id="comment_anchor_1259500"></a>[<span class="louzhu">楼主</span>]</cite> <a id="a_comment_author_1259500" href="http://www.cnblogs.com/yuyijq/" target="_blank">横刀天笑</a> <a href="http://msg.cnblogs.com/send/%E6%A8%AA%E5%88%80%E5%A4%A9%E7%AC%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2008-07-17 21:21</span></small>
+			</h5>
+			<div id="comment_body_1259500" class="blog_comment_body">@Artech 嗯，不错，看过你的
+<br>
+<br>@5254341 谢谢支持
+<br></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1259500,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1259500,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1259500,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1259500,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1259564" class="layer">#4楼</a><a name="1259564" id="comment_anchor_1259564"></a></cite> <a id="a_comment_author_1259564" href="http://www.cnblogs.com/airwolf2026/" target="_blank">塔夫男</a> <a href="http://msg.cnblogs.com/send/%E5%A1%94%E5%A4%AB%E7%94%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2008-07-17 22:33</span></small>
+			</h5>
+			<div id="comment_body_1259564" class="blog_comment_body">有了C# 3.0我们睡觉都想笑：
+<br><br>-----------------------
+<br><br>哈哈.这个系列看完了.俺把这句话改改
+<br><br>
+<br><br>有了楼主,俺学习新东西的成本都低了.赞一个.
+<br>不过话说回来.这些新特性,怕到时候遇到的时候,还是用老方法写哈...习惯...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1259564,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1259564,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1259564_avatar" style="display:none;">http://pic.cnblogs.com/face/u27689.jpg?id=31135658</span>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1259564,&#39;fHkNXo6lOIGIt0jNag09sEu3YoOQzY0HhnE7xMJhe2flj3/Y6PBcUw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1259564,&#39;fHkNXo6lOIGIt0jNag09sEu3YoOQzY0HhnE7xMJhe2flj3/Y6PBcUw==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1285055" class="layer">#5楼</a><a name="1285055" id="comment_anchor_1285055"></a></cite> <a id="a_comment_author_1285055" href="http://www.cnblogs.com/PeterWang/" target="_blank">Peter Wang</a> <a href="http://msg.cnblogs.com/send/Peter%20Wang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2008-08-13 11:11</span></small>
+			</h5>
+			<div id="comment_body_1285055" class="blog_comment_body">要使用对象初始化器，那么这个对象必须有一个无参构造方法，<br><br>这句话有些小问题<br><br>User user = new User(1) {Id =1,Age=22,Name="peter"};<br>这样的代码可以调用有参构造的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1285055,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1285055,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1285055,&#39;bRkavopQmUddYx0g3RfArrJAfFe5rtFKCGuxq6WRWJpSDu2aKE4T6Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1285055,&#39;bRkavopQmUddYx0g3RfArrJAfFe5rtFKCGuxq6WRWJpSDu2aKE4T6Q==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1294808" class="layer">#6楼</a><a name="1294808" id="comment_anchor_1294808"></a></cite> <a id="ctl00_CommentList_NameLink_5" title="未注册用户" target="_blank">jisen007</a><small> <span class="comment_date">2008-08-22 14:48</span></small>
+			</h5>
+			<div id="comment_body_1294808" class="blog_comment_body">着实不错！赞一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1294808,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1294808,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1294808,&#39;&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1294808,&#39;&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1294884" class="layer">#7楼</a><a name="1294884" id="comment_anchor_1294884"></a>[<span class="louzhu">楼主</span>]</cite> <a id="a_comment_author_1294884" href="http://www.cnblogs.com/yuyijq/" target="_blank">横刀天笑</a> <a href="http://msg.cnblogs.com/send/%E6%A8%AA%E5%88%80%E5%A4%A9%E7%AC%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2008-08-22 15:40</span></small>
+			</h5>
+			<div id="comment_body_1294884" class="blog_comment_body">@airwolf2026
+<br>
+<br>谢谢
+<br>
+<br>
+<br>@香 妃
+<br>哦，果然是的，我晚上回去更新下，谢谢提醒
+<br>
+<br>@jisen007
+<br>tks</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1294884,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1294884,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1294884,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1294884,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1448517" class="layer">#8楼</a><a name="1448517" id="comment_anchor_1448517"></a></cite> <a id="a_comment_author_1448517" href="http://www.cnblogs.com/a-peng/" target="_blank">a-peng</a> <a href="http://msg.cnblogs.com/send/a-peng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2009-02-11 15:46</span></small>
+			</h5>
+			<div id="comment_body_1448517" class="blog_comment_body">楼主云：有了C# 3.0我们睡觉都想笑。<br>我云：有了楼主我睡觉都想笑。 :)<br><br>看楼主的文章很享受。<br><br></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1448517,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1448517,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1448517,&#39;03lnB5A3l7qgwHyXSSCZ59O2fiL9Av1lVqSU/y6SP0nPCYM1wU6QQg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1448517,&#39;03lnB5A3l7qgwHyXSSCZ59O2fiL9Av1lVqSU/y6SP0nPCYM1wU6QQg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#1470725" class="layer">#9楼</a><a name="1470725" id="comment_anchor_1470725"></a>[<span class="louzhu">楼主</span>]</cite> <a id="a_comment_author_1470725" href="http://www.cnblogs.com/yuyijq/" target="_blank">横刀天笑</a> <a href="http://msg.cnblogs.com/send/%E6%A8%AA%E5%88%80%E5%A4%A9%E7%AC%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2009-03-08 08:12</span></small>
+			</h5>
+			<div id="comment_body_1470725" class="blog_comment_body">@阿鹏
+<br>谢谢啊，呵呵</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1470725,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1470725,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(1470725,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(1470725,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2151200" class="layer">#10楼</a><a name="2151200" id="comment_anchor_2151200"></a></cite> <a id="a_comment_author_2151200" href="http://www.cnblogs.com/lugesot/" target="_blank">lugesot</a> <a href="http://msg.cnblogs.com/send/lugesot" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2011-07-14 14:11</span></small>
+			</h5>
+			<div id="comment_body_2151200" class="blog_comment_body">您的研究很仔细啊。赞。<br>C++对象再生成时，利用初始化列表，加快速度,否则是2次赋值。C#这个初始化方法明显是借鉴过来的，正如你说的，这里不会产生优化。lambda借鉴了脚本语言。当然，这些C#,IL都要自己实现的。<br>走别人的路，让自己更容易走。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2151200,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2151200,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2151200,&#39;Dj/skE7bnKKfqX7n2SepT1dI9tdHydmXn0tCquKgAoP9fk8ddWZj8w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2151200,&#39;Dj/skE7bnKKfqX7n2SepT1dI9tdHydmXn0tCquKgAoP9fk8ddWZj8w==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2236795" class="layer">#11楼</a><a name="2236795" id="comment_anchor_2236795"></a></cite> <a id="a_comment_author_2236795" href="http://home.cnblogs.com/u/251914/" target="_blank">任意球</a> <a href="http://msg.cnblogs.com/send/%E4%BB%BB%E6%84%8F%E7%90%83" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2011-11-06 19:23</span></small>
+			</h5>
+			<div id="comment_body_2236795" class="blog_comment_body">通俗易懂，又有深度，感谢分享！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2236795,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2236795,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2236795,&#39;SXX56fxfkPTKMeVWWHzgOKOfTxi1cn/o662g2QSibGAT64p2OHxY4w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2236795,&#39;SXX56fxfkPTKMeVWWHzgOKOfTxi1cn/o662g2QSibGAT64p2OHxY4w==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2254789" class="layer">#12楼</a><a name="2254789" id="comment_anchor_2254789"></a></cite> <a id="a_comment_author_2254789" href="http://www.cnblogs.com/v5wa/" target="_blank">空葫芦</a> <a href="http://msg.cnblogs.com/send/%E7%A9%BA%E8%91%AB%E8%8A%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2011-11-27 20:21</span></small>
+			</h5>
+			<div id="comment_body_2254789" class="blog_comment_body">近段一直使用4.0<br>刚才换到3.5试了一下，居然不能使用对象集合初始化器<br>博主知道可能的原因吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2254789,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2254789,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2254789_avatar" style="display:none;">http://pic.cnblogs.com/face/u306050.jpg?id=04011634</span>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2254789,&#39;aqtQZKZ3/cmJTMovNeqtTBdJJU1FhuU4uAA42hIHaa5VfG/OK9I8bw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2254789,&#39;aqtQZKZ3/cmJTMovNeqtTBdJJU1FhuU4uAA42hIHaa5VfG/OK9I8bw==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2254905" class="layer">#13楼</a><a name="2254905" id="comment_anchor_2254905"></a>[<span class="louzhu">楼主</span>]</cite> <a id="a_comment_author_2254905" href="http://www.cnblogs.com/yuyijq/" target="_blank">横刀天笑</a> <a href="http://msg.cnblogs.com/send/%E6%A8%AA%E5%88%80%E5%A4%A9%E7%AC%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2011-11-27 23:48</span></small>
+			</h5>
+			<div id="comment_body_2254905" class="blog_comment_body"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2254789" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2254789);">@</a>
+空葫芦<br>不能用的现象是什么？<br><br>如果说是vs里编译不过，那可能是1 vs编译设置里的target profile不对<br>2 没有引用System.Core库</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2254905,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2254905,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2254905,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2254905,&#39;AyxJo314ep3GTxQ/EdhYspsnB5A8eBb4hDa3LeF0zNaqZimyWdyFyg==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2255140" class="layer">#14楼</a><a name="2255140" id="comment_anchor_2255140"></a></cite> <a id="a_comment_author_2255140" href="http://www.cnblogs.com/v5wa/" target="_blank">空葫芦</a> <a href="http://msg.cnblogs.com/send/%E7%A9%BA%E8%91%AB%E8%8A%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2011-11-28 10:21</span></small>
+			</h5>
+			<div id="comment_body_2255140" class="blog_comment_body"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2254905" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2254905);">@</a>
+横刀天笑<br>-0-   感谢博主回复<br>编译不通过，没有设置对，是自己太粗心了……</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2255140,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2255140,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2255140_avatar" style="display:none;">http://pic.cnblogs.com/face/u306050.jpg?id=04011634</span>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2255140,&#39;aqtQZKZ3/cmJTMovNeqtTBdJJU1FhuU4uAA42hIHaa5VfG/OK9I8bw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2255140,&#39;aqtQZKZ3/cmJTMovNeqtTBdJJU1FhuU4uAA42hIHaa5VfG/OK9I8bw==&#39;)">引用</a></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#2895274" class="layer">#15楼</a><a name="2895274" id="comment_anchor_2895274"></a><span id="comment-maxId" style="display:none;">2895274</span><span id="comment-maxDate" style="display:none;">2014/3/14 10:42:29</span></cite> <a id="a_comment_author_2895274" href="http://home.cnblogs.com/u/377914/" target="_blank">FunctionGHW</a> <a href="http://msg.cnblogs.com/send/FunctionGHW" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2014-03-14 10:42</span></small>
+			</h5>
+			<div id="comment_body_2895274" class="blog_comment_body">博主你好，我发现文中提到的“release模式下被优化了”似乎不准确，在我自己的测试中无论是不是release模式，都存在那个局部变量。后来发现博主的测试代码只是new了一个book，book并没有被使用，我自己也试了下，终于出现了文中提到的“被优化”的情况。我觉得这个优化似乎是因为变量没被使用而被优化掉的，和对象初始化器没什么关系。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2895274,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2895274,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2895274,&#39;IPrfiZ9tyzodnnHJ0oI1b5tJTXmmp/H526DLZVOc1I5n9CV4n70PkA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2895274,&#39;IPrfiZ9tyzodnnHJ0oI1b5tJTXmmp/H526DLZVOc1I5n9CV4n70PkA==&#39;)">引用</a></span></div>
+		</li>
+	
+</ol>
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16/1244433.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./对象集合初始化器_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./对象集合初始化器_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./对象集合初始化器_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./对象集合初始化器_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./对象集合初始化器_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./对象集合初始化器_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.537249.537249.537249" target="_blank">【活动】腾讯云 【云+校园】套餐全新升级</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://forum.huaweicloud.com/forum.php?mod=viewthread&amp;tid=901&amp;utm_source=cnblogs&amp;utm_medium=MediaB&amp;utm_campaign=%E5%8D%8E%E4%B8%BA%E4%BA%91-10%E6%9C%88%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE&amp;utm_content=%E5%8D%9A%E5%AE%A2%E5%9B%AD%E5%86%85%E9%A1%B5C1%E7%9F%A9%E5%BD%A2&amp;utm_term=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%BA%91-1024%E8%AE%BA%E5%9D%9B%E6%B4%BB%E5%8A%A8" target="_blank"><img width="300" height="250" src="./对象集合初始化器_files/24442-20171015214114324-1153647777.jpg" alt="华为云1016C2"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/580659/" target="_blank">传永安行将收购小蓝单车，千万“救助款”已到账</a><br> ·  <a href="http://news.cnblogs.com/n/580658/" target="_blank">Intel发布开源增强学习框架Coach</a><br> ·  <a href="http://news.cnblogs.com/n/580657/" target="_blank">小鹿单车于10月23日起暂停北京地区业务运营，用户可申请退还押金</a><br> ·  <a href="http://news.cnblogs.com/n/580656/" target="_blank">明年推出！余承东自曝华为折叠手机：设计更完美</a><br> ·  <a href="http://news.cnblogs.com/n/580655/" target="_blank">Ubuntu 17.10已经发布 看看新功能</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./对象集合初始化器_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news">真名：余昭辉<br>
+网名：横刀天笑<br>
+<p>
+好读书，但所买之书数年犹新，故自嘲曰非好读书而好藏书耳。喜架构与模式，但又觉底层不可缺，常徘徊两者间不得门而入。 </p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/yuyijq/">横刀天笑</a><br>园龄：<a href="http://home.cnblogs.com/u/yuyijq/" title="入园时间：2005-08-02">12年2个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/yuyijq/followers/">1401</a><br>关注：<a href="http://home.cnblogs.com/u/yuyijq/followees/">15</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;d8a1310b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="./对象集合初始化器_files/btnsearch.gif" id="btnZzk" class="submit" onclick="zzk_go();return false;">
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword"></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            <div id="side-recent-posts">
+        <h2>最新随笔</h2>
+        <ul class="bullet">
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4541660.html">基于TCPCopy的Dubbo服务引流工具-DubboCopy</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4431798.html">Netty中的坑(下篇)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4401045.html">编写明显没有错误的代码</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4117634.html">Zookeeper-Zookeeper client</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4116365.html">Zookeeper-Zookeeper leader选举</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/4115589.html">Zookeeper-Zookeeper启动过程</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/3438829.html">Zookeeper-Zookeeper的配置</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/3424473.html">Zookeeper-Zookeeper可以干什么</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/p/3391945.html">Zookeeper--Zookeeper是什么</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2013/02/24/2923855.html">Linux虚拟文件系统(VFS)</a></li>
+        </ul>
+    </div><div id="side-recent-comments">
+        <h2>最新评论</h2>
+        <ul class="voice">
+                <li>
+                    <a href="http://www.cnblogs.com/yuyijq/p/3438829.html#3779170">Re:Zookeeper-Zookeeper的配置</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/yuyijq/p/3438829.html#3779170">
+                        楼主，三楼说的对吗？我没有尝试过，我都是将三个节点部署在三台不同的服务器上的。
+                        -- 周坤_6688
+                    </a>
+                </li>
+        </ul>
+    </div></div>
+            <div id="sideRight">
+            <div id="side-archives">
+        <h2>随笔档案</h2>
+        <ul class="date">
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2015/05.html">2015年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2015/04.html">2015年4月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2014/11.html">2014年11月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2013/11.html">2013年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2013/02.html">2013年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2012/09.html">2012年9月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2012/06.html">2012年6月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2012/05.html">2012年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2012/02.html">2012年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2012/01.html">2012年1月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/12.html">2011年12月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/09.html">2011年9月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/08.html">2011年8月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/06.html">2011年6月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/05.html">2011年5月(6)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/04.html">2011年4月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/03.html">2011年3月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/02.html">2011年2月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2011/01.html">2011年1月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/12.html">2010年12月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/11.html">2010年11月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/10.html">2010年10月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/09.html">2010年9月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/06.html">2010年6月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/05.html">2010年5月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/04.html">2010年4月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/03.html">2010年3月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2010/01.html">2010年1月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/11.html">2009年11月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/10.html">2009年10月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/09.html">2009年9月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/08.html">2009年8月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/07.html">2009年7月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/06.html">2009年6月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/05.html">2009年5月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/04.html">2009年4月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/03.html">2009年3月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2009/01.html">2009年1月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/09.html">2008年9月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/08.html">2008年8月(12)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/07.html">2008年7月(19)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/06.html">2008年6月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/05.html">2008年5月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/03.html">2008年3月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/02.html">2008年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2008/01.html">2008年1月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2007/11.html">2007年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2007/10.html">2007年10月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2006/07.html">2006年7月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2006/06.html">2006年6月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2006/01.html">2006年1月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2005/12.html">2005年12月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2005/11.html">2005年11月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yuyijq/archive/2005/08.html">2005年8月(5)</a></li>
+        </ul>
+    </div></div>
+            <div id="sideLeft">
+            <div id="side-calendar">
+        <h2>日历</h2>
+        <div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/06/01&#39;);return false;">&lt;</a></td><td align="center">2008年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/06.html"><u>6</u></a></td><td align="center">7</td><td align="center">8</td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/09.html"><u>9</u></a></td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/13.html"><u>13</u></a></td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/14.html"><u>14</u></a></td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/15.html"><u>15</u></a></td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/16.html"><u>16</u></a></td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/18.html"><u>18</u></a></td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/19.html"><u>19</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/20.html"><u>20</u></a></td><td align="center">21</td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/22.html"><u>22</u></a></td><td align="center">23</td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/24.html"><u>24</u></a></td><td align="center">25</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/26.html"><u>26</u></a></td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center"><a href="http://www.cnblogs.com/yuyijq/archive/2008/07/29.html"><u>29</u></a></td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div>
+    </div><div id="side-categories">
+        <h2>随笔分类</h2>
+        <ul class="folder">
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/210496.html">.NET技术面面观(8)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/187749.html">【读书笔记】.NET本质论(10)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/230407.html">【非技术】谈谈业务(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/215414.html">【应用篇】WCF学习笔记(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/180316.html">CLR探索系列(4)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/280885.html">F#(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/308125.html">Java(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/342140.html">memcache(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/268767.html">Spring(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/236218.html">白话基础系列(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/278984.html">并行和异步(7)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/145453.html">不能不说的C#特新(7)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/62599.html">翻    译(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/62597.html">技术点滴(31)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/236348.html">经济学原理学习(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/296953.html">面向对象实践之路(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/276748.html">敏捷软件开发实践(10)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/108222.html">设计模式初学者系列(12)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/62598.html">生活乱弹(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/145099.html">我的开源项目(6)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/144227.html">重构到模式系列(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/146053.html">周末话题(6)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/300711.html">自动垃圾回收(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yuyijq/category/145285.html">走进Linq(13)</a>
+                </li>
+        </ul>
+    </div><div id="side-top-posts-custom">
+    <h2>推荐排行榜</h2>
+    <div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/yuyijq/archive/2011/06/28/2091803.html">1. 做Java开发这一年(53)</a></li></ul></div>
+</div><div id="side-top-posts">
+    <h2>阅读排行榜</h2>
+    <div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/yuyijq/archive/2011/06/28/2091803.html">1. 做Java开发这一年(64423)</a></li></ul></div>
+</div>    
+    
+    
+    
+    
+
+
+        
+<div id="side-link-31796">
+            <h2>珍藏</h2>
+            <ul class="chain">
+                        <li>
+                            <a href="http://blogs.msdn.com/b/dhuba/" target="_self">Dzmitry Huba</a>
+                        </li>
+                        <li>
+ <a class="mini_rss" href="http://blogs.msdn.com/b/ericeil/rss.aspx">Rss</a>                             <a href="http://blogs.msdn.com/b/ericeil" target="_self">Eric Eilebrecht</a>
+                        </li>
+                        <li>
+ <a class="mini_rss" href="http://blogs.msdn.com/b/ericlippert/rss.aspx">Rss</a>                             <a href="http://blogs.msdn.com/b/ericlippert/" target="_self">Eric Lippert</a>
+                        </li>
+                        <li>
+ <a class="mini_rss" href="http://blogs.msdn.com/b/maoni/rss.aspx">Rss</a>                             <a href="http://blogs.msdn.com/b/maoni" target="_blank">Maoni</a>
+                        </li>
+                        <li>
+ <a class="mini_rss" href="http://blogs.msdn.com/b/ricom/rss.aspx">Rss</a>                             <a href="http://blogs.msdn.com/b/ricom/" target="_self">Rico Mariani</a>
+                        </li>
+            </ul>
+        </div></div>
+            
+                <div id="sideContainer"></div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright ©2017 横刀天笑
+</p>
+<p>
+<a href="http://www.cnblogs.com/">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+<!--PageEndHtml Block Begin-->
+<script src="./对象集合初始化器_files/stat.php" language="JavaScript" charset="gb2312"></script><script src="./对象集合初始化器_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=785800" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./对象集合初始化器_files/pic.gif"></a>
+<script src="./对象集合初始化器_files/urchin.js.下载" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-4374973-1";
+urchinTracker();
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

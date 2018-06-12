@@ -1,0 +1,75 @@
+1.下载NVM non-install
+
+https://github.com/coreybutler/nvm-windows#installation--upgrades
+
+把下载下来的文件放在全英文路径,C:\develop\
+
+右键以管理员运行install.cmd 填入root和path信息.
+
+root:  C:\develop\nvm
+path:  C:\develop\nodejs
+
+保存settings.txt确认在nvm文件夹里
+
+我的电脑右击,属性,高级系统设置,高级,环境变量,
+删除NVM_HOME和NVM_SYMLINK这两个环境变量,
+
+然后把path下面所有和nvm或者nodejs有关的都删掉,一般就是最后几个.
+
+在Hank的用户变量上面新建NVM_HOME变量和NVM_SYMLINK变量
+分别赋值
+NVM_HOME C:\develop\nvm
+NVM_SYMLINK C:\develop\nodejs
+
+然后新建PATH变量
+赋值%NVM_HOME%;%NVM_SYMLINK%
+
+改完以后显示的SYMLINK值是不对的,但是可以使用.
+可能是因为系统记住了第一次右键安装的intall时候自动配置的变量名字,nodejs只能安装在c盘program file下.
+
+解决办法:重启电脑
+
+删除所有环境变量,不使用install.cmd
+
+1.把下载下来的文件放在全英文路径,C:\develop\
+2.把node解压,放在nvm文件夹里
+3. 创建settings.txt文件
+root:  C:\develop\nvm
+path:  C:\develop\nodejs
+arch: 64 
+proxy: none
+4.配置环境变量,在自己的用户上配置就行.
+
+在Hank的用户变量上面新建NVM_HOME变量和NVM_SYMLINK变量
+分别赋值
+NVM_HOME C:\develop\nvm
+NVM_SYMLINK C:\develop\nodejs
+
+然后新建PATH变量
+赋值%NVM_HOME%;%NVM_SYMLINK%
+
+在nvm文件夹里 右键打开ConEmu,
+
+输入 nvm
+
+输入 nvm ls
+
+nvm use 5.6.0
+
+node -v 这个命令其实就是把原来的path路径上的nodejs文件夹删了,然后重新建立一个.
+
+npm -v  可以使用是因为Node.js 在 0.6.3 版本開始內建 npm
+
+但是可以自己给npm创建一个文件夹,以后把工具都安装在这里
+创建变量NPM_HOME 值C:\develop\nvm\npm
+然后重启.
+
+创建一个.npmrc文件
+写上, 不行的话 百度网盘里课件第一天里有
+cache=C:\develop\nvm\npm-cache
+prefix=C:\develop\nvm\npm
+把这个文件放在c盘用户名文件夹下面,这里放在hank下面
+
+这样是防止安装-g 的插件时 插件被安装到user appdata下面这样不好管理.
+这样就修改了npm的安装的全局路径 
+测试设置好了没有 npm config list.

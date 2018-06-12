@@ -1,0 +1,409 @@
+先把jquery.easyui.min和locale里的中文包拖到MVC里的Script里，然后在把themes里的东西拖到Content里的Themes里。
+在controller里面创建一个控制器UserInfoController.在Index（）上面右键添加视图。
+然后把JQueryEasyUI里面整理好的Code粘到视图里去，然后再添加link文件，在把Parttern.js拖进去，这个文件是把json格式转换的。
+
+严重性	代码	说明	项目	文件	行	禁止显示状态
+错误		无法将文件“C:\Users\Hank\source\repos\DotNetOA\packages\Microsoft.Net.Compilers.2.1.0\tools\System.Collections.Immutable.dll”复制到“bin\roslyn\System.Collections.Immutable.dll”。对路径“bin\roslyn\System.Collections.Immutable.dll”的访问被拒绝。	DotNetOA.MVC	
+严重性	代码	说明	项目	文件	行	禁止显示状态
+错误		无法将文件“C:\Users\Hank\source\repos\DotNetOA\packages\Microsoft.Net.Compilers.2.1.0\tools\System.ValueTuple.dll”复制到“bin\roslyn\System.ValueTuple.dll”。对路径“bin\roslyn\System.ValueTuple.dll”的访问被拒绝。	DotNetOA.MVC			
+		
+
+//z展示数据
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/Themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            loadData();
+        });
+
+        function loadData() {
+            $('#tt').datagrid({
+                url: '/UserInfo/GetUserInfoList',
+                title: '用户数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID',//主键列的列明
+                loadMsg: '正在加载用户的信息...',
+                pagination: true,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 5,//页大小，一页多少条数据
+                pageNumber: 1,//当前页，默认的
+                pageList: [5, 10, 15],
+                queryParams: {},//往后台传递参数
+                columns: [[//c.UserName, c.UserPass, c.Email, c.RegTime
+                    { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                    { field: 'ID', title: '编号', width: 80 },
+                    { field: 'UName', title: '姓名', width: 120 },
+                    { field: 'UPwd', title: '密码', width: 120 },
+                    { field: 'Remark', title: '备注', width: 120 },
+                    {
+                        field: 'SubTime', title: '时间', width: 80, align: 'right',
+                        formatter: function (value, row, index) {
+                            return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                        }
+                    }
+                ]],
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+
+                        deleteInfo();
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+
+                        addInfo();
+                    }
+                }, {
+                    id: 'btnEidt',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+
+                        showEditInfo();
+                    }
+                }],
+            });
+        }
+    </script>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table id="tt" style="width: 700px;" title="标题，可以使用代码进行初始化，也可以使用这种属性的方式" iconcls="icon-edit"></table> 
+    </div>
+</body>
+
+在UserInfoController里面添加GetUserInfoList
+
+在Model里添加文件夹EnumType创建类DeleteEnumType
+    public enum DeleteEnumType
+    {
+        Normarl = 0,
+        LogicDelete=1
+    }
+
+在UserInfoController里调用IBLL，BLL获取数据。
+        IBLL.IUserInfoService userInfoService = new BLL.UserInfoService();
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetUserInfoList()
+        {
+            int pageIndex = Request["page"] != null ? int.Parse(Request["page"]) : 1;
+            int pageSize = Request["rows"] != null ? int.Parse(Request["rows"]) : 5;
+            int totalCount;
+            short delFlag = (short)DeleteEnumType.Normarl;
+            var userInfoList = userInfoService.LoadPageEntities<int>(pageIndex, pageSize, out totalCount, c => c.DelFlag == delFlag, c => c.ID, true);
+            var temp = from u in userInfoList//过滤一下数据，让他自动填充，然后有些数据可以不用显示。
+                       select new
+                       {
+                           ID = u.ID,
+                           UName = u.UName,
+                           UPwd = u.UPwd,
+                           Remark = u.Remark,
+                           SubTime = u.SubTime
+                       };
+            return Json(new { rows = temp, total = totalCount }, JsonRequestBehavior.AllowGet);
+        }
+再改一下前段的Fieldname改成和JSon数据里面的列名一样，这样就打印在表格里了，就不用把变量接过来了。
+
+//在index下面增加，批量删除，这里不包括级联删除前面已经在toolbar上面定义了deleteinfo这个方法，下面完善
+
+        //删除数据
+        function deleteInfo() {
+            var rows = $('#tt').datagrid('getSelections');//获取所选择的行
+            if (!rows || rows.length == 0) {
+                //alert("请选择要修改的商品！");
+                $.messager.alert("提醒", "请选择要删除的记录!", "error");
+                return;
+            }
+            $.messager.confirm("提示", "确定要删除数据吗", function (r) {//这里定义一个参数r，如果在弹窗时候用户点击ok,r参数返回true
+                if (r) {
+                    //获取要删除的记录的ID值。
+                    var rowsLength = rows.length;
+                    var strId = "";
+                    for (var i = 0; i < rowsLength; i++) {
+                        strId = strId + rows[i].ID + ",";//1,2,3,
+                    }
+                    //去掉最后一个逗号.
+                    strId = strId.substr(0, strId.length - 1);
+                    //将获取的要删除的记录的ID值发送到服务端.
+                    $.post("/UserInfo/DeleteUserInfo", { "strId": strId }, function (data) {//ajax提交数据，这样就可以在UserInfoController下面接到strId
+                        if (data == "ok") {
+                            $('#tt').datagrid('reload');//加载表格不会跳到第一页。
+                            //清除上次操作的历史的记录。
+                            $('#tt').datagrid('clearSelections')
+                        } else {
+                            $.messager.alert("提醒", "删除记录失败!", "error");
+                        }
+                    });
+                }
+            });
+//在UserInfoController下面接收index传过来的数据strId
+        #region 删除用户数据
+        public ActionResult DeleteUserInfo()
+        {
+            string strId=Request["strId"];//接收字段
+            string[]strIds=strId.Split(',');//把字段按照逗号截取成为数组
+            List<int> list = new List<int>();//声明一个int数组list
+            foreach (string id in strIds)//遍历strIDs下面的字段，加到list下面，然后把id转成int32
+            {
+                list.Add(Convert.ToInt32(id));
+            }
+            //将list集合存储的的要删除的记录的编号传递到业务层.
+            if (UserInfoService.DeleteEntities(list)) //这里因为要做批量删除，所以baseService里面的DeleteEntities满足不了此时我们的需要了，需要在UserInfoService再定义一个方法进行批量删除，注意业务层的接口IUserInfoService也需要对应修改
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("no");
+            }
+        }
+        #endregion
+//在IUserInfoSerives里面增加
+bool DeleteEntities(List<int> List);
+
+//然后UserInfoSerivce里面实现接口
+        public bool DeleteEntities(List<int> List)
+        {
+            var userInfoList = this.CurrentDBSession.UserInfoDAL.LoadEntities(u => List.Contains(u.ID));//通过父类拿到DBSession，再通过DBSession拿到具体业务操作类UserInfoDAL，然后查询ID
+            foreach (var userInfo in userInfoList)//遍历userInfoList
+            {
+                this.CurrentDBSession.UserInfoDAL.DeleteEntity(userInfo);//遍历userInfoList，给数据打上delete标记
+            }
+            return this.CurrentDBSession.SaveChanges();
+
+        }
+
+可以新加几个数据insert into dbo.UserInfo values('zhzh0','123','2016-07-25 16:15:44.570','0','2016-07-25 16:15:44.570','111','123')，再删除，不然如果有foreign key的话，删除不了。
+
+//添加数据
+引入脚本文件<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>这个插件主要是给Jquery和ajax增加onSuccess,onBegin等这个方法，注意：这个插件只支持jQuery1.7.1！！用1.10.2 onSuccess效果出不来
+现在body里面添加一个表单，用在采集数据
+    <div id="addDiv">
+        @using(Ajax.BeginForm("AddUserInfo", "UserInfo", new { }, new AjaxOptions() { HttpMethod="post", OnSuccess="afterAdd"}, new { id = "addForm" })){ //ajax代码别忘了用using包裹 TODO：为什么？？？？
+        <table>
+            <tr><td>用户名</td><td><input type="text" name="UName" /></td></tr>
+            <tr><td>密码</td><td><input type="password" name="UPwd" /></td></tr>
+            <tr><td>备注</td><td><input type="text" name="Remark" /></td></tr>
+            <tr><td>排序</td><td><input type="text" name="Sort" /></td></tr>
+        </table>      
+        }
+    </div>
+然后让表单隐藏        
+       $(function () {
+            $("#addDiv").css("display","none");//加这句话
+            loadData();
+        });
+完善addinfo方法，
+
+        //添加数据
+        function addInfo() {
+            $("#addDiv").css("display", "block");
+            $('#addDiv').dialog({
+                title: '添加用户数据',
+                width: 300,
+                height: 200,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal:true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //表单校验
+                        //validateInfo($("#addForm"));一个表单先不用传属性ID，直接调用就行
+                        validateInfo();
+                        $("#addForm").submit();//提交表单
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#addDiv').dialog('close');
+                    }
+                }]
+            });
+
+        }
+        //完成添加后调用该方法
+        function afterAdd(data) {
+            if (data == "ok") {
+                $('#addDiv').dialog('close');
+                $('#tt').datagrid('reload');//加载表格不会跳到第一页。
+                $("#addForm input").val("");
+            }
+        }
+
+//userinfocontroller下面添加
+        public ActionResult AddUserInfo(UserInfo userInfo)
+        {
+            userInfo.DelFlag = 0;
+            userInfo.ModifiedOn = DateTime.Now;
+            userInfo.SubTime = DateTime.Now;
+            UserInfoService.AddEntity(userInfo);
+            return Content("ok");
+        }
+//完善表单校验
+        //表单校验
+        function validateInfo() {
+            $("#addForm").validate({//表示对哪个form表单进行校验，获取form标签的id属性的值
+        //function validateInfo(control) {
+            //control.validate({//表示对哪个form表单进行校验，获取form标签的id属性的值
+                rules: {//表示验证规则
+                    UName: "required",//表示对哪个表单元素进行校验，要写具体的表单元素的name属性的值
+                    Remark: {
+                        required: true
+                    },
+                    UPwd: {
+                        required: true,
+                        minlength: 5
+                    },
+                    Sort: {
+                        required: true
+                    }
+                },
+                messages: {
+                    UName: "请输入用户名",
+                    Remark: {
+                        required: "请输入备注"
+                    },
+                    UPwd: {
+                        required: "请输入密码",
+                        minlength: jQuery.format("密码不能小于{0}个字 符")
+                    },
+                    Sort: {
+                        required: "请输入排序"
+                    }
+                }
+            });
+        }
+//修改数据
+//先增加一个表单，用来显示需要的数据
+    <div id="editDiv">
+        @using (Ajax.BeginForm("EditUserInfo", "UserInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterEdit" }, new { id = "editForm" }))
+        {
+            <table>
+             <input type="hidden" name="ID" id="txtId" />//隐藏域
+            <input type="hidden" name="SubTime" id="txtSubTime" />//隐藏域
+            <input type="hidden" name="DelFlag" id="txtDelFlag" />//隐藏域
+                <tr><td>用户名</td><td><input type="text" name="UName" id="txtUName" /></td></tr>
+                <tr><td>密码</td><td><input type="password" name="UPwd" id="txtUPwd" /></td></tr>
+                <tr><td>备注</td><td><input type="text" name="Remark" id="txtRemark"/></td></tr>
+                <tr><td>排序</td><td><input type="text" name="Sort" id="txtSort"/></td></tr>
+            </table>
+        }
+    </div>
+然后在script里面把表单隐藏，在loadData();写这行$("#editDiv").css("display", "none");
+然后写一个方法
+        //展示一下要修改的数据.
+        function showEditInfo() {
+            //判断一下用户是否选择了要修改的数据
+            var rows = $('#tt').datagrid('getSelections');//获取所选择的行
+            if (rows.length != 1) {
+                $.messager.alert("提示", "请选择要修改的数据", "error");
+                return;
+            }
+            //将要修改的数据查询出来，显示到文本框中。
+            var id = rows[0].ID;
+            $.post("/UserInfo/ShowEditInfo", { "id": id }, function (data) {
+                $("#txtUName").val(data.UName);
+                $("#txtUPwd").val(data.UPwd);
+                $("#txtRemark").val(data.Remark);
+                $("#txtSort").val(data.Sort);
+                $("#txtSubTime").val(ChangeDateFormat(data.SubTime));
+                $("#txtDelFlag").val(data.DelFlag);
+                $("#txtId").val(data.ID);
+            });
+            $("#editDiv").css("display", "block");
+            $('#editDiv').dialog({
+                title: '编辑用户数据',
+                width: 300,
+                height: 200,
+                collapsible: true,
+                maximizable: true,
+                resizable: true,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //表单校验
+                        validateInfo($("#editForm"));
+                        $("#editForm").submit();//提交表单
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#editDiv').dialog('close');
+                    }
+                }]
+            });
+        }
+        //更新以后调用该方法.
+        function afterEdit(data) {
+            if (data == "ok") {
+                $('#editDiv').dialog('close');
+                $('#tt').datagrid('reload');//加载表格不会跳到第一页。
+            } else {
+                $.messager.alert("提示", "修改的数据失败", "error");
+            }
+        }
+同样的我们在UserInfoController下面也得建一个showEditInfo这个方法来查询选中信息。
+        public ActionResult ShowEditInfo()
+        {
+            int id = int.Parse(Request["id"]);
+            var userInfo = UserInfoService.LoadEntities(u=>u.ID==id).FirstOrDefault();//这里要加一个firstordefault别忘了
+            return Json(userInfo,JsonRequestBehavior.AllowGet);//返回view的时候需要把UserInfo生成json再返回，还得加一个allowget，别忘了
+        }
+然后index需要逐个把数据接回来
+                $("#txtUName").val(data.UName);
+                $("#txtUPwd").val(data.UPwd);
+                $("#txtRemark").val(data.Remark);
+                $("#txtSort").val(data.Sort);
+                $("#txtSubTime").val(ChangeDateFormat(data.SubTime));//从controller返回过来的json数据是格式和我们看到的不一样，我们需要转一下再赋值。
+                $("#txtDelFlag").val(data.DelFlag);//隐藏域
+                $("#txtId").val(data.ID);//隐藏域
+
+//把changdateformat方法粘进去
+        //将序列化成json格式后日期(毫秒数)转成日期格式
+        function ChangeDateFormat(cellval) {
+            var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
+
+//这时候修改表单和添加表单都需要调用validate这个方法，做一表单不能被写死， $("#addForm").validate({ 所以现在可以把之前注掉的代码拿出来，然后把写死的注掉了，思路就是用多态，每次传入的参数不一样得到效果不一样
+
+然后在userinfocontroller下面完善EditUserInfo方法
+        public ActionResult EditUserInfo(UserInfo userInfo)
+        {
+
+            userInfo.ModifiedOn = DateTime.Now;
+            if (UserInfoService.EditEntity(userInfo))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("no");
+            }
+        }

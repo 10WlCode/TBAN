@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>c#接口和抽象类的区别  - Rainbow - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./c#接口和抽象类的区别 - Rainbow - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./c#接口和抽象类的区别 - Rainbow - 博客园_files/bundle-Minyx2_Lite.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./c#接口和抽象类的区别 - Rainbow - 博客园_files/bundle-Minyx2_Lite-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yoyozhou/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yoyozhou/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yoyozhou/wlwmanifest.xml">
+<script async="" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/analytics.js.下载"></script><script src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root header + .container > .ads:first-child
+{ display: none !important; }</style><style type="text/css">img[src="https://cb.amazingcounters.com/counter.php?i=2965824&c=8897785"]
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'yoyozhou', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<script src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/bundle-Minyx2_Lite.js.下载" language="javascript" type="text/javascript"></script>
+<style type="text/css">
+:root #container > #pic_container
+{ display: none !important; }</style></head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"><script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['1']();</script>
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['5']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['2']();</script></div><script>load_page_begin_html();</script>
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                <div id="blog_stats">
+Posts - 85, 
+Articles - 2, 
+Comments - 40
+<!----></div>
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com/">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/yoyozhou/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/logout.aspx?ReturnUrl=http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html">Logout</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/yoyozhou/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/Rainbow">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/yoyozhou/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/yoyozhou/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/yoyozhou/">Rainbow</a>
+            <!-- 子标题 -->
+            <small>
+                提着昨日总总千辛万苦 向明天换一些美满和幸福</small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+<div id="post_detail">
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html">c#接口和抽象类的区别 </a></h2>
+    <small>2008-05-13 14:08 by Rainbow, <span id="post_view_count">3195</span> 阅读, <span id="post_comment_count">0</span> 评论, <a href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html#" onclick="AddToWz(1195131);return false;">收藏</a>,  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1195131" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body" class="blogpost-body">一、抽象类：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 抽象类是特殊的类，只是不能被实例化；除此以外，具有类的其他特性；重要的是抽象类可以包括抽象方法，这是普通类所不能的。抽象方法只能声明于抽象类中，且不包含任何实现，派生类必须覆盖它们。另外，抽象类可以派生自一个抽象类，可以覆盖基类的抽象方法也可以不覆盖，如果不覆盖，则其派生类必须覆盖它们。<br>
+<div class="postBody">
+<p>&nbsp;二、接口：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接口是引用类型的，类似于类,和抽象类的相似之处有三点：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、不能实例化；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2、包含未实现的方法声明；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3、派生类必须实现未实现的方法，抽象类是抽象方法，接口则是所有成员（不仅是方法包括其他成员）；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 另外，接口有如下特性：<br>
+接口除了可以包含方法之外，还可以包含属性、索引器、事件，而且这些成员都被定义为公有的。除此之外，不能包含任何其他的成员，例如：常量、域、构造函数、析构函数、静态成员。一个类可以直接继承多个接口，但只能直接继承一个类（包括抽象类）。<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 三、抽象类和接口的区别：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.类是对对象的抽象，可以把抽象类理解为把类当作对象，抽象成的类叫做抽象类.而接口只是一个行为的规范或规定，微软的自定义接口总是后带able字段，证明其是表述一类类“我能做。。。”.抽象类更多的是定义在一系列紧密相关的类间，而接口大多数是关系疏松但都实现某一功能的类中.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.接口基本上不具备继承的任何具体特点,它仅仅承诺了能够调用的方法;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.一个类一次可以实现若干个接口,但是只能扩展一个父类 &nbsp; &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.接口可以用于支持回调,而继承并不具备这个特点. &nbsp; &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.抽象类不能被密封。 &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.抽象类实现的具体方法默认为虚的，但实现接口的类中的接口方法却默认为非虚的，当然您也可以声明为虚的.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.（接口）与非抽象类类似，抽象类也必须为在该类的基类列表中列出的接口的所有成员提供它自己的实现。但是，允许抽象类将接口方法映射到抽象方法上。&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.抽象类实现了oop中的一个原则，把可变的与不可变的分离。抽象类和接口就是定义为不可变的，而把可变的座位子类去实现。 &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.好的接口定义应该是具有专一功能性的，而不是多功能的，否则造成接口污染。如果一个类只是实现了这个接口的中一个功能，而不得不去实现接口中的其他方法，就叫接口污染。 &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 10.尽量避免使用继承来实现组建功能，而是使用黑箱复用，即对象组合。因为继承的层次增多，造成最直接的后果就是当你调用这个类群中某一类，就必须把他们全部加载到栈中！后果可想而知.（结合堆栈原理理解）。同时，有心的朋友可以留意到微软在构建一个类时，很多时候用到了对象组合的方法。比如asp.net中，Page类，有Server&nbsp;Request等属性，但其实他们都是某个类的对象。使用Page类的这个对象来调用另外的类的方法和属性，这个是非常基本的一个设计原则。 &nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;11.如果抽象类实现接口，则可以把接口中方法映射到抽象类中作为抽象方法而不必实现，而在抽象类的子类中实现接口中方法.<br>
+&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 四、抽象类和接口的使用：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.&nbsp;如果预计要创建组件的多个版本，则创建抽象类。抽象类提供简单的方法来控制组件版本。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.如果创建的功能将在大范围的全异对象间使用，则使用接口。如果要设计小而简练的功能块，则使用接口。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.如果要设计大的功能单元，则使用抽象类.如果要在组件的所有实现间提供通用的已实现功能，则使用抽象类。&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.抽象类主要用于关系密切的对象；而接口适合为不相关的类提供通用功能。<br>
+<br>
+<br>
+&nbsp;以下是我在网上看到的几个形象比喻,真的非常不错,呵呵:<br>
+1.飞机会飞，鸟会飞，他们都继承了同一个接口“飞”；但是F22属于飞机抽象类，鸽子属于鸟抽象类。(太精辟了。。)<br>
+2. 就像铁门木门都是门（抽象类），你想要个门我给不了（不能实例化），但我可以给你个具体的铁门或木门（多态）；而且只能是门，你不能说它是窗（单继承）；一个门可以有锁（接口）也可以有门铃（多实现）。 门（抽象类）定义了你是什么，接口（锁）规定了你能做什么（一个接口最好只能做一件事，你不能要求锁也能发出声音吧（接口污染））。<br>
+看个例子：<br>
+假设在我们的问题领域中有一个关于Door的抽象概念，该Door具有执行两个动作open和close，此时我们可以通过abstract class或者interface来定义一个表示该抽象概念的类型，定义方式分别如下所示： </p>
+<p style="text-indent: 2em">
+</p><p style="text-indent: 2em">使用abstract class方式定义Door：
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">abstract class Door {
+</p><p style="text-indent: 2em">abstract void open();
+</p><p style="text-indent: 2em">abstract void close()；
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">使用interface方式定义Door：
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">interface Door {
+</p><p style="text-indent: 2em">void open();
+</p><p style="text-indent: 2em">void close();
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">其他具体的Door类型可以extends使用abstract class方式定义的Door或者implements使用interface方式定义的Door。看起来好像使用abstract class和interface没有大的区别。
+</p><p style="text-indent: 2em">如果现在要求Door还要具有报警的功能。我们该如何设计针对该例子的类结构呢（在本例中，主要是为了展示abstract class和interface反映在设计理念上的区别，其他方面无关的问题都做了简化或者忽略）下面将罗列出可能的解决方案，并从设计理念层面对这些不同的方案进行分析。
+</p><p style="text-indent: 2em">解决方案一：
+</p><p style="text-indent: 2em">简单的在Door的定义中增加一个alarm方法，如下：
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">abstract class Door {
+</p><p style="text-indent: 2em">abstract void open();
+</p><p style="text-indent: 2em">abstract void close()；
+</p><p style="text-indent: 2em">abstract void alarm();
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">或者
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">interface Door {
+</p><p style="text-indent: 2em">void open();
+</p><p style="text-indent: 2em">void close();
+</p><p style="text-indent: 2em">void alarm();
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">那么具有报警功能的AlarmDoor的定义方式如下：
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">class AlarmDoor extends Door {
+</p><p style="text-indent: 2em">void open() { … }
+</p><p style="text-indent: 2em">void close() { … }
+</p><p style="text-indent: 2em">void alarm() { … }
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">或者
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">class AlarmDoor implements Door ｛
+</p><p style="text-indent: 2em">void open() { … }
+</p><p style="text-indent: 2em">void close() { … }
+</p><p style="text-indent: 2em">void alarm() { … }
+</p><p style="text-indent: 2em">｝
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">这种方法违反了面向对象设计中的一个核心原则ISP（Interface Segregation Priciple），在Door的定义中把Door概念本身固有的行为方法和另外一个概念"报警器"的行为方法混在了一起。这样引起的一个问题是那些仅仅依赖于Door这个概念的模块会因为"报警器"这个概念的改变（比如：修改alarm方法的参数）而改变，反之依然。
+</p><p style="text-indent: 2em">解决方案二：
+</p><p style="text-indent: 2em">既然open、close和alarm属于两个不同的概念，根据ISP原则应该把它们分别定义在代表这两个概念的抽象类中。定义方式有：这两个概念都使用abstract class方式定义；两个概念都使用interface方式定义；一个概念使用abstract class方式定义，另一个概念使用interface方式定义。
+</p><p style="text-indent: 2em">显然，由于Java语言不支持多重继承，所以两个概念都使用abstract class方式定义是不可行的。后面两种方式都是可行的，但是对于它们的选择却反映出对于问题领域中的概念本质的理解、对于设计意图的反映是否正确、合理。我们一一来分析、说明。
+</p><p style="text-indent: 2em">如果两个概念都使用interface方式来定义，那么就反映出两个问题：
+</p><p style="text-indent: 2em">1、我们可能没有理解清楚问题领域，AlarmDoor在概念本质上到底是Door还是报警器？
+</p><p style="text-indent: 2em">2、如果我们对于问题领域的理解没有问题，比如：我们通过对于问题领域的分析发现AlarmDoor在概念本质上和Door是一致的，那么我们在实现时就没有能够正确的揭示我们的设计意图，因为在这两个概念的定义上（均使用interface方式定义）反映不出上述含义。
+</p><p style="text-indent: 2em">如果我们对于问题领域的理解是：AlarmDoor在概念本质上是Door，同时它有具有报警的功能。我们该如何来设计、实现来明确的反映出我们的意思呢？前面已经说过，abstract class在Java语言中表示一种继承关系，而继承关系在本质上是"is a"关系。所以对于Door这个概念，我们应该使用abstarct class方式来定义。另外，AlarmDoor又具有报警功能，说明它又能够完成报警概念中定义的行为，所以报警概念可以通过interface方式定义。如下所示：
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">abstract class Door {
+</p><p style="text-indent: 2em">abstract void open();
+</p><p style="text-indent: 2em">abstract void close()；
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">interface Alarm {
+</p><p style="text-indent: 2em">void alarm();
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">class AlarmDoor extends Door implements Alarm {
+</p><p style="text-indent: 2em">void open() { … }
+</p><p style="text-indent: 2em">void close() { … }
+</p><p style="text-indent: 2em">void alarm() { … }
+</p><p style="text-indent: 2em">}
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">
+</p><p style="text-indent: 2em">这种实现方式基本上能够明确的反映出我们对于问题领域的理解，正确的揭示我们的设计意图。其实abstract class表示的是"is a"关系，interface表示的是"like a"关系，大家在选择时可以作为一个依据，当然这是建立在对问题领域的理解上的，比如：如果我们认为AlarmDoor在概念本质上是报警器，同时又具有Door的功能，那么上述的定义方式就要反过来了。
+</p><p style="text-indent: 2em">abstract class和interface是Java语言中的两种定义抽象类的方式，它们之间有很大的相似性。但是对于它们的选择却又往往反映出对于问题领域中的概念本质的理解、对于设计意图的反映是否正确、合理，因为它们表现了概念间的不同的关系（虽然都能够实现需求的功能）。这其实也是语言的一种的惯用法，希望读者朋友能够细细体会 </p>
+</div>
+
+</div><div id="MySignature"></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1195131,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;9959360b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yoyozhou/" target="_blank"><img src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/u16238.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yoyozhou/">Rainbow</a><br>
+            <a href="http://home.cnblogs.com/u/yoyozhou/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/yoyozhou/followers">粉丝 - 14</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;9959360b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1195131,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(1195131,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+        <div class="clear"></div>
+        <div id="post_next_prev"><a href="http://www.cnblogs.com/yoyozhou/archive/2008/02/04/1064194.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yoyozhou/archive/2008/02/04/1064194.html" title="发布于2008-02-04 11:16">asp.net中&lt;%%&gt;形式的用法</a><br><a href="http://www.cnblogs.com/yoyozhou/archive/2008/07/08/1238109.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yoyozhou/archive/2008/07/08/1238109.html" title="发布于2008-07-08 13:25">Tar的详细用法</a><br></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/yoyozhou/category/62636.html" target="_blank">转载精华</a></li>
+        <li class="icon_bullet" id="EntryTag"></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=19797,cb_entryId=1195131,cb_blogApp=currentBlogApp,cb_blogUserGuid='9959360b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2008/5/13 14:08:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/596798/" target="_blank">三六零拟募资108亿 主要用于大数据中心建设</a><br> ·  <a href="https://news.cnblogs.com/n/596797/" target="_blank">中国芯酸往事：熬过多少苦难，才能实现追赶和超越？</a><br> ·  <a href="https://news.cnblogs.com/n/596796/" target="_blank">只能硬盘+KTV点唱机：傲娇的老罗还值得期待吗？</a><br> ·  <a href="https://news.cnblogs.com/n/596795/" target="_blank">抖音阴影下的短视频创业：音乐会是动次的解药吗？</a><br> ·  <a href="https://news.cnblogs.com/n/596794/" target="_blank">在发布了“一言难尽”的PC后 罗永浩的野心被浇上冷水</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br> ·  <a href="http://kb.cnblogs.com/page/593985/" target="_blank">如何识别人的技术能力和水平？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/yoyozhou/">Rainbow</a><br>园龄：<a href="https://home.cnblogs.com/u/yoyozhou/" title="入园时间：2006-06-29">11年10个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/yoyozhou/followers/">14</a><br>关注：<a href="https://home.cnblogs.com/u/yoyozhou/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;9959360b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div><script>getFollowStatus('9959360b-63cf-dd11-9e4d-001cf0cd104b')</script></div></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="./c#接口和抽象类的区别 - Rainbow - 博客园_files/btnsearch.gif" id="btnZzk" class="submit" onclick="zzk_go();return false;">
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword"></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            <div id="side-recent-comments">
+        <h2>最新评论</h2>
+        <ul class="voice">
+                <li>
+                    <a href="http://www.cnblogs.com/yoyozhou/archive/2012/02/25/2367829.html#3714679">Re:Java equals()和hashCode()的作用</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/yoyozhou/archive/2012/02/25/2367829.html#3714679">
+                        对于Java的hashcode与equals方法，强烈推荐 天天编码 的 [url=http://www.tiantianbianma.com/java-hashcode-equals/]深入详解Java中的hashcode()与equals()方法[/url]
+                        -- 天天编码
+                    </a>
+                </li>
+        </ul>
+    </div></div>
+            <div id="sideRight">
+            <div id="side-archives">
+        <h2>随笔档案</h2>
+        <ul class="date">
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/03.html">2012年3月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/02.html">2012年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/01.html">2012年1月(11)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/12.html">2011年12月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/11.html">2011年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/09.html">2011年9月(7)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/08.html">2011年8月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/06.html">2011年6月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/05.html">2011年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/03.html">2011年3月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2011/02.html">2011年2月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2010/12.html">2010年12月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2010/01.html">2010年1月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/12.html">2009年12月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/11.html">2009年11月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/09.html">2009年9月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/07.html">2009年7月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/05.html">2009年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/04.html">2009年4月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2009/03.html">2009年3月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/12.html">2008年12月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/11.html">2008年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/10.html">2008年10月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/07.html">2008年7月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/05.html">2008年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/02.html">2008年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/01.html">2008年1月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/12.html">2007年12月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/11.html">2007年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/08.html">2007年8月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/06.html">2007年6月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/05.html">2007年5月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/03.html">2007年3月(4)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/02.html">2007年2月(3)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/01.html">2007年1月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2006/12.html">2006年12月(9)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2006/11.html">2006年11月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2006/10.html">2006年10月(5)</a></li>
+                <li><a href="http://www.cnblogs.com/yoyozhou/archive/2006/06.html">2006年6月(1)</a></li>
+        </ul>
+    </div></div>
+            <div id="sideLeft">
+            <div id="side-calendar">
+        <h2>日历</h2>
+        <div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/04/01&#39;);return false;">&lt;</a></td><td align="center">2008年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center"><a href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13.html"><u>13</u></a></td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div>
+    </div><div id="side-hottags">
+        <h2>我的标签</h2>
+        <ul class="folder">
+            <li><a href="http://www.cnblogs.com/yoyozhou/tag/webgame/">webgame</a>(2)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/%E5%88%9B%E4%B8%9A/">创业</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/%E7%BD%91%E6%B8%B8/">网游</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/%E7%BD%91%E6%B8%B8%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/">网游技术团队</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/%E7%BD%91%E6%B8%B8%E5%BC%80%E5%8F%91/">网游开发</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/.net/">.net</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/aps.net%20mvc/">aps.net mvc</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/C%23/">C#</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/CLI/">CLI</a>(1)</li><li><a href="http://www.cnblogs.com/yoyozhou/tag/">更多</a></li>
+        </ul>
+    </div><div id="side-categories">
+        <h2>随笔分类</h2>
+        <ul class="folder">
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94763.html">ADO.NET&amp;DataSet(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94764.html">Ajax&amp;Javascript&amp;CSS(4)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/347411.html">Android(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/96681.html">ASP.NET2.0(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/96682.html">C#基础&amp;数据结构(4)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94768.html">DataBase(5)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94765.html">GirdView&amp;网格控件(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/343147.html">Java(8)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/79460.html">LAMP学习(14)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94769.html">OOP&amp;设计模式(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/94779.html">VisualStudio&amp;开发工具(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/191765.html">WebGame(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/69974.html">学习心得(10)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/306628.html">云计算(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/79515.html">专注.NET开源(3)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/yoyozhou/category/62636.html">转载精华(14)</a>
+                </li>
+        </ul>
+    </div><div id="side-top-posts-custom">
+    <h2>推荐排行榜</h2>
+    <div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/12/08/1350692.html">1. 使用svn开发，目录的约定与开发流程(3)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/01/11/2320019.html">2. java 内存模型(2)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/01/11/2319704.html">3. java 面向对象(2)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/01/10/2318453.html">4. java 集合(1)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2010/12/09/1900923.html">5. 讨论：“Mono是个跨平台的.NET”是否是个正确的说法(1)</a></li></ul></div>
+</div><div id="side-top-posts">
+    <h2>阅读排行榜</h2>
+    <div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/02/12/648375.html">1. 由表单中onsubmit="return false;"想到的(11013)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/07/08/1238109.html">2. Tar的详细用法(6614)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2012/01/04/2312351.html">3. Android Button 单击事件(5411)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2007/11/01/945914.html">4. Mysql 1045错误(5197)</a></li><li><a href="http://www.cnblogs.com/yoyozhou/archive/2008/05/13/1195131.html">5. c#接口和抽象类的区别 (3196)</a></li></ul></div>
+</div>    
+    
+
+    
+
+    
+    
+
+
+</div>
+            
+                <div id="sideContainer"></div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright ©2018 Rainbow
+</p>
+<p>
+<a href="http://www.cnblogs.com/">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+
+
+<script type="text/javascript">
+_uacct = "UA-2880124-1";
+urchinTracker();
+</script></body></html>

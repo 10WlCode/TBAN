@@ -1,0 +1,11 @@
+jQuery(function(){
+	function getQuery(k) {
+		var m = window.location.search.match(new RegExp('(\\?|&)' + k + '=([^&]*)(#|&|$)'));
+		return !m ? '' : decodeURIComponent(m[2]);
+	}
+
+	var moid = getQuery('moid');
+	moid && window.QReport && window.QReport.monitor(moid);
+});
+
+

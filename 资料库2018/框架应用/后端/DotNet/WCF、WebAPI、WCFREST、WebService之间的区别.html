@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://www.cnblogs.com/markli/p/4460564.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WCF、WebAPI、WCFREST、WebService之间的区别 - Mark1997 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./WCF、WebAPI、WCFREST、WebService之间的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./WCF、WebAPI、WCFREST、WebService之间的区别_files/bundle-MoonlightInk.css">
+<link type="text/css" rel="stylesheet" href="./WCF、WebAPI、WCFREST、WebService之间的区别_files/132766.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./WCF、WebAPI、WCFREST、WebService之间的区别_files/bundle-MoonlightInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/markli/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/markli/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/markli/wlwmanifest.xml">
+<script async="" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/analytics.js.下载"></script><script src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'markli', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style></head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/markli/"><img id="blogLogo" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/markli/"></a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/markli/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Mark1997">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/markli/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/markli/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 93&nbsp; </span>
+<span id="stats_article_count">文章 - 6&nbsp; </span>
+<span id="stats-comment_count">评论 - 9</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/markli/p/4460564.html">WCF、WebAPI、WCFREST、WebService之间的区别</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>注明：转载</p>
+<p>在.net平台下，有大量的技术让你创建一个HTTP服务，像Web Service，WCF，现在又出了Web API。在.net平台下，你有很多的选择来构建一个HTTP Services。我分享一下我对Web Service、WCF以及Web API的看法。</p>
+<p>　　Web Service</p>
+<p>　　1、它是基于SOAP协议的，数据格式是XML</p>
+<p>　　2、只支持HTTP协议</p>
+<p>　　3、它不是开源的，但可以被任意一个了解XML的人使用</p>
+<p>　　4、它只能部署在IIS上</p>
+<p>&nbsp;</p>
+<p>　　WCF</p>
+<p>　　1、这个也是基于SOAP的，数据格式是XML</p>
+<p>　　2、这个是Web Service（ASMX）的进化版，可以支持各种各样的协议，像TCP，HTTP，HTTPS，Named Pipes, MSMQ.</p>
+<p>　　3、WCF的主要问题是，它配置起来特别的繁琐</p>
+<p>　　4、它不是开源的，但可以被任意一个了解XML的人使用</p>
+<p>　　5、它可以部署应用程序中或者IIS上或者Windows服务中</p>
+<p>&nbsp;</p>
+<p>　　WCF Rest</p>
+<p>　　1、想使用WCF Rest service，你必须在WCF中使用webHttpBindings</p>
+<p>　　2、它分别用[WebGet]和[WebInvoke]属性，实现了HTTP的GET和POST动词</p>
+<p>　　3、要想使用其他的HTTP动词，你需要在IIS中做一些配置，使.svc文件可以接受这些动词的请求</p>
+<p>　　4、使用WebGet通过参数传输数据，也需要配置。而且必须指定UriTemplate</p>
+<p>　　5、它支持XML、JSON以及ATOM这些数据格式</p>
+<p>&nbsp;</p>
+<p>　　Web API</p>
+<p>　　1、这是一个简单的构建HTTP服务的新框架</p>
+<p>　　2、在.net平台上Web API 是一个开源的、理想的、构建REST-ful 服务的技术</p>
+<p>　　3、不像WCF REST Service.它可以使用HTTP的全部特点（比如URIs、request/response头，缓存，版本控制，多种内容格式）</p>
+<p>　　4、它也支持MVC的特征，像路由、控制器、action、filter、模型绑定、控制反转（IOC）或依赖注入（DI），单元测试。这些可以使程序更简单、更健壮</p>
+<p>　　5、它可以部署在应用程序和IIS上</p>
+<p>　　6、这是一个轻量级的框架，并且对限制带宽的设备，比如智能手机等支持的很好</p>
+<p>　　7、Response可以被Web API的MediaTypeFormatter转换成Json、XML 或者任何你想转换的格式。</p>
+<p>　　</p>
+<p>　　WCF和WEB API我该选择哪个？</p>
+<p>　　1、当你想创建一个支持消息、消息队列、双工通信的服务时，你应该选择WCF</p>
+<p>　　2、当你想创建一个服务，可以用更快速的传输通道时，像TCP、Named Pipes或者甚至是UDP（在WCF4.5中）,在其他传输通道不可用的时候也可以支持HTTP。</p>
+<p>　　3、当你想创建一个基于HTTP的面向资源的服务并且可以使用HTTP的全部特征时（比如URIs、request/response头，缓存，版本控制，多种内容格式），你应该选择Web API</p>
+<p>　　4、当你想让你的服务用于浏览器、手机、iPhone和平板电脑时，你应该选择Web API</p>
+<p>　　</p>
+<p>　　原文：<a href="http://www.dotnet-tricks.com/Tutorial/webapi/JI2X050413-Difference-between-WCF-and-Web-API-and-WCF-REST-and-Web-Service.html" target="_blank">http://www.dotnet-tricks.com/Tutorial/webapi/JI2X050413-Difference-between-WCF-and-Web-API-and-WCF-REST-and-Web-Service.html</a></p></div><div id="MySignature" style="display: block;">所有问题都会有一定程度的抽象和假设</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/markli/category/579628.html" target="_blank">IT技能</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4460564,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;07dde517-b870-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/markli/" target="_blank"><img src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/20160624174926.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/markli/">Mark1997</a><br>
+            <a href="http://home.cnblogs.com/u/markli/followees">关注 - 106</a><br>
+            <a href="http://home.cnblogs.com/u/markli/followers">粉丝 - 23</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;07dde517-b870-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4460564,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">24</span>
+    </div>
+    <div class="buryit" onclick="votePost(4460564,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/markli/p/4459610.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/markli/p/4459610.html" title="发布于2015-04-27 11:14">【脱单秘籍，单身狗必看】如何变得会与异性聊天?</a><br><a href="http://www.cnblogs.com/markli/p/4468889.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/markli/p/4468889.html" title="发布于2015-04-30 14:46">[C#]Datatable和json互相转换操作</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-04-27 16:35</span> <a href="http://www.cnblogs.com/markli/">Mark1997</a> 阅读(<span id="post_view_count">38223</span>) 评论(<span id="post_comment_count">5</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4460564" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/markli/p/4460564.html#" onclick="AddToWz(4460564);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=132766,cb_entryId=4460564,cb_blogApp=currentBlogApp,cb_blogUserGuid='07dde517-b870-e111-aa3f-842b2b196315',cb_entryCreatedDate='2015/4/27 16:35:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3329432,&#39;MFT8vTu141kip6xrudBsS4kDlkideCRtyHUeLyJC3CSi37I+VLP8XQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3329432,&#39;MFT8vTu141kip6xrudBsS4kDlkideCRtyHUeLyJC3CSi37I+VLP8XQ==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/markli/p/4460564.html#3329432" class="layer">#1楼</a><a name="3329432" id="comment_anchor_3329432"></a>  <span class="comment_date">2015-12-18 10:28</span> <a id="a_comment_author_3329432" href="http://www.cnblogs.com/anuo/" target="_blank">稻草客666</a> <a href="http://msg.cnblogs.com/send/%E7%A8%BB%E8%8D%89%E5%AE%A2666" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3329432" class="blog_comment_body">经典的文章</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3329432,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3329432,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3329432_avatar" style="display:none;">http://pic.cnblogs.com/face/479690/20130609084053.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3531449,&#39;jI9VrbGGW3nytmFTcWj5x7yX/Ec6rnQhUGxFdUX1DnrW6kiJyycqNg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3531449,&#39;jI9VrbGGW3nytmFTcWj5x7yX/Ec6rnQhUGxFdUX1DnrW6kiJyycqNg==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/markli/p/4460564.html#3531449" class="layer">#2楼</a><a name="3531449" id="comment_anchor_3531449"></a>  <span class="comment_date">2016-10-14 16:09</span> <a id="a_comment_author_3531449" href="http://www.cnblogs.com/yunyun0574/" target="_blank">yunyun0574</a> <a href="http://msg.cnblogs.com/send/yunyun0574" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3531449" class="blog_comment_body">简单通俗易懂，thanks</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3531449,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3531449,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3531449_avatar" style="display:none;">http://pic.cnblogs.com/face/541005/20130623080916.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3597009,&#39;8ux25NUqmbNFfhtC2mhtMwGzVB7JE30UMRtDNTmxxHPMjoknUvxJ9g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3597009,&#39;8ux25NUqmbNFfhtC2mhtMwGzVB7JE30UMRtDNTmxxHPMjoknUvxJ9g==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/markli/p/4460564.html#3597009" class="layer">#3楼</a><a name="3597009" id="comment_anchor_3597009"></a>  <span class="comment_date">2017-01-05 15:38</span> <a id="a_comment_author_3597009" href="http://www.cnblogs.com/woloveprogram/" target="_blank">我_爱编程</a> <a href="http://msg.cnblogs.com/send/%E6%88%91_%E7%88%B1%E7%BC%96%E7%A8%8B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3597009" class="blog_comment_body">大神，问一下，请问 rest api 和 web api 有什么关联。是web api =rest api？老外取名字也是够了。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3597009,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3597009,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3705613,&#39;dJacDenhv3WmtwechvOo7aKlM8OU9olXN1u6Cie3v14SvkaumwZ3MA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3705613,&#39;dJacDenhv3WmtwechvOo7aKlM8OU9olXN1u6Cie3v14SvkaumwZ3MA==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/markli/p/4460564.html#3705613" class="layer">#4楼</a><a name="3705613" id="comment_anchor_3705613"></a>  <span class="comment_date">2017-06-02 13:58</span> <a id="a_comment_author_3705613" href="http://home.cnblogs.com/u/1168887/" target="_blank">彬闻</a> <a href="http://msg.cnblogs.com/send/%E5%BD%AC%E9%97%BB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3705613" class="blog_comment_body">挺好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3705613,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3705613,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3889849,&#39;xRFK7bOHrZlzOLbGPDlyC8hDxnu/QYJoTfJpgqwwjSpIeAHrFSdBHQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3889849,&#39;xRFK7bOHrZlzOLbGPDlyC8hDxnu/QYJoTfJpgqwwjSpIeAHrFSdBHQ==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/markli/p/4460564.html#3889849" class="layer">#5楼</a><a name="3889849" id="comment_anchor_3889849"></a><span id="comment-maxId" style="display:none;">3889849</span><span id="comment-maxDate" style="display:none;">2018/1/16 10:23:10</span>  <span class="comment_date">2018-01-16 10:23</span> <a id="a_comment_author_3889849" href="http://home.cnblogs.com/u/1265605/" target="_blank">拉乌闪闪</a> <a href="http://msg.cnblogs.com/send/%E6%8B%89%E4%B9%8C%E9%97%AA%E9%97%AA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3889849" class="blog_comment_body">谢谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3889849,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3889849,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/markli/p/4460564.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/markli/p/4460564.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/596798/" target="_blank">三六零拟募资108亿 主要用于大数据中心建设</a><br> ·  <a href="https://news.cnblogs.com/n/596797/" target="_blank">中国芯酸往事：熬过多少苦难，才能实现追赶和超越？</a><br> ·  <a href="https://news.cnblogs.com/n/596796/" target="_blank">只能硬盘+KTV点唱机：傲娇的老罗还值得期待吗？</a><br> ·  <a href="https://news.cnblogs.com/n/596795/" target="_blank">抖音阴影下的短视频创业：音乐会是动次的解药吗？</a><br> ·  <a href="https://news.cnblogs.com/n/596794/" target="_blank">在发布了“一言难尽”的PC后 罗永浩的野心被浇上冷水</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/596164/" target="_blank">评审的艺术——谈谈现实中的代码评审</a><br> ·  <a href="http://kb.cnblogs.com/page/577233/" target="_blank">如何高效学习</a><br> ·  <a href="http://kb.cnblogs.com/page/578689/" target="_blank">如何成为优秀的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/594930/" target="_blank">菜鸟工程师的超神之路 -- 从校园到职场</a><br> ·  <a href="http://kb.cnblogs.com/page/593985/" target="_blank">如何识别人的技术能力和水平？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2877205018&amp;site=qq&amp;menu=yes"><img border="0" src="./WCF、WebAPI、WCFREST、WebService之间的区别_files/pa" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+<div id="myTime"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="160" height="70" id="honehoneclock" align="middle"><param name="allowScriptAccess" value="always"><param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="wmode" value="transparent"><embed wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf" quality="high" bgcolor="#ffffff" width="160" height="70" name="honehoneclock" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object></div><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/markli/">Mark1997</a><br>园龄：<a href="https://home.cnblogs.com/u/markli/" title="入园时间：2012-03-18">6年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/markli/followers/">23</a><br>关注：<a href="https://home.cnblogs.com/u/markli/followees/">106</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;07dde517-b870-e111-aa3f-842b2b196315&#39;)">+加关注</a></div><script>getFollowStatus('07dde517-b870-e111-aa3f-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/04/01&#39;);return false;">&lt;</a></td><td align="center">2018年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalTodayDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/markli/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/markli/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/markli/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/markli/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/markli/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/markli/tag/WinForm/">WinForm</a>(5)</li><li><a href="http://www.cnblogs.com/markli/tag/SQL/">SQL</a>(5)</li><li><a href="http://www.cnblogs.com/markli/tag/%E5%9B%BE%E7%89%87%E5%B1%80%E9%83%A8%E6%94%BE%E5%A4%A7%E3%80%81PictureBox%E3%80%81%E5%9B%BE%E7%89%87%E7%BB%86%E8%8A%82%E5%B1%95%E7%A4%BA/">图片局部放大、PictureBox、图片细节展示</a>(2)</li><li><a href="http://www.cnblogs.com/markli/tag/%E5%83%8F%E7%B4%A0/">像素</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E9%A2%9C%E8%89%B2%E5%90%8D%E5%AD%97/">颜色名字</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E9%AA%8C%E8%AF%81%E5%9B%BE%E7%89%87/">验证图片</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E7%94%A8%E6%88%B7%E6%8E%A7%E4%BB%B6/">用户控件</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E4%BC%98%E5%8C%96/">优化</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/%E4%BC%A0%E5%80%BC/">传值</a>(1)</li><li><a href="http://www.cnblogs.com/markli/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/markli/category/426525.html">ASP.NET(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/markli/category/1193899.html">ASP.NET Core</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/markli/category/579628.html">IT技能(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/markli/category/430491.html">SQL(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/markli/category/564741.html">WebForm(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/markli/category/473486.html">Web前端技术(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/markli/category/564740.html">WinFrom(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/markli/category/434967.html">面试(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/markli/category/430492.html">数据库(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/markli/category/683801.html">项目管理(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/markli/category/664500.html">移动开发(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/markli/archive/2018/01.html">2018年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/markli/archive/2017/01.html">2017年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/markli/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/markli/archive/2016/08.html">2016年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/markli/archive/2016/05.html">2016年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/markli/archive/2016/04.html">2016年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/markli/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/markli/archive/2015/12.html">2015年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/markli/archive/2015/11.html">2015年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/markli/archive/2015/09.html">2015年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/markli/archive/2015/08.html">2015年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/markli/archive/2015/05.html">2015年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/markli/archive/2015/04.html">2015年4月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/markli/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/markli/archive/2014/12.html">2014年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/markli/archive/2014/11.html">2014年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/markli/archive/2014/07.html">2014年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/markli/archive/2014/05.html">2014年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/markli/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/markli/archive/2014/03.html">2014年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/markli/archive/2014/02.html">2014年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/markli/archive/2013/12.html">2013年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/markli/archive/2013/11.html">2013年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/markli/archive/2013/06.html">2013年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/markli/archive/2013/04.html">2013年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/markli/archive/2013/03.html">2013年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/markli/archive/2013/01.html">2013年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/markli/archive/2012/12.html">2012年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/markli/archive/2012/11.html">2012年11月 (4)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+<h3 class="catListTitle">相册</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/markli/gallery/473409.html" rel="nofollow">生命在于运动</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_web ui前端jquery,css介绍
+" class="catListWeb UI前端JQuery,CSS介绍
+ sidebar-block">
+<h3 class="catListTitle">Web前端技术</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.1008a.com/" rel="nofollow">Web前端实验室</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/markli/p/4460564.html#3889849">1. Re:WCF、WebAPI、WCFREST、WebService之间的区别</a></li>
+        <li class="recent_comment_body">谢谢分享</li>
+        <li class="recent_comment_author">--拉乌闪闪</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/markli/p/4460564.html#3705613">2. Re:WCF、WebAPI、WCFREST、WebService之间的区别</a></li>
+        <li class="recent_comment_body">挺好</li>
+        <li class="recent_comment_author">--彬闻</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/markli/p/4460564.html#3597009">3. Re:WCF、WebAPI、WCFREST、WebService之间的区别</a></li>
+        <li class="recent_comment_body">大神，问一下，请问 rest api 和 web api 有什么关联。是web api =rest api？老外取名字也是够了。。。</li>
+        <li class="recent_comment_author">--我_爱编程</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/markli/p/4460564.html#3531449">4. Re:WCF、WebAPI、WCFREST、WebService之间的区别</a></li>
+        <li class="recent_comment_body">简单通俗易懂，thanks</li>
+        <li class="recent_comment_author">--yunyun0574</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/markli/p/3863173.html#3348827">5. Re:WinForm轻松实现自定义分页 （转载）</a></li>
+        <li class="recent_comment_body">楼主 还有这个帖子的源码么？</li>
+        <li class="recent_comment_author">--收破烂</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/markli/p/4460564.html">1. WCF、WebAPI、WCFREST、WebService之间的区别(38221)</a></li><li><a href="http://www.cnblogs.com/markli/p/3883534.html">2. CSS颜色代码 颜色值 颜色名字大全(转载)(25828)</a></li><li><a href="http://www.cnblogs.com/markli/p/3862542.html">3. LINQ查询返回DataTable类型(12039)</a></li><li><a href="http://www.cnblogs.com/markli/p/4468889.html">4. [C#]Datatable和json互相转换操作(9374)</a></li><li><a href="http://www.cnblogs.com/markli/p/6052406.html">5. SQL 表连接查询出现重复列，由此理清LEFT JOIN、INNER JOIN的区别(7130)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/markli/p/4460564.html">1. WCF、WebAPI、WCFREST、WebService之间的区别(5)</a></li><li><a href="http://www.cnblogs.com/markli/p/3863173.html">2. WinForm轻松实现自定义分页 （转载）(1)</a></li><li><a href="http://www.cnblogs.com/markli/p/3862542.html">3. LINQ查询返回DataTable类型(1)</a></li><li><a href="http://www.cnblogs.com/markli/archive/2012/11/07/2758548.html">4. 创建一个验证码图片类(1)</a></li><li><a href="http://www.cnblogs.com/markli/archive/2013/04/19/3030362.html">5. 推荐两款富文本编辑器：NicEdit和Kindeditor(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/markli/p/4460564.html">1. WCF、WebAPI、WCFREST、WebService之间的区别(24)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 Mark1997
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

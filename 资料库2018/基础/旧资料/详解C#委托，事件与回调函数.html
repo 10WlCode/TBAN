@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="http://js.users.51.la/1608940.js?_=1513762466514"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>详解C#委托，事件与回调函数 - Birdshover - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./详解C#委托，事件与回调函数_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./详解C#委托，事件与回调函数_files/bundle-summerGarden.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./详解C#委托，事件与回调函数_files/bundle-summerGarden-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/birdshover/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/birdshover/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/birdshover/wlwmanifest.xml">
+<script src="./详解C#委托，事件与回调函数_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'birdshover', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./详解C#委托，事件与回调函数_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/birdshover/"><img id="blogLogo" src="./详解C#委托，事件与回调函数_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/birdshover/">智慧掩盖真相<br></a><a href="http://weibo.com/yurow" target="_blank">我的微博</a></h1>
+<h2><span style="align:left">天之道，不争而善胜。</span></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/birdshover/">首页</a></li>
+	<li><a href="http://news.cnblogs.com/">新闻</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Birdshover">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li>
+	</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 139&nbsp;
+文章- 51&nbsp;
+评论- 2189&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html">详解C#委托，事件与回调函数</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body">.Net编程中最经常用的元素，事件必然是其中之一。无论在ASP.NET还是WINFrom开发中，窗体加载(Load),绘制(Paint),初始化(Init)等等。<br>“protected void Page_Load(object sender, EventArgs e)”这段代码相信没有人不熟悉的。细心一点一定会发现，非常多的事件方法都是带了“object sender, EventArgs e”这两个参数。这是不是和委托非常相似呢？<br><br><strong>一、委托（有些书中也称为委派）</strong><br><br>委托是什么呢？这个名字的意思已经赋予了我们想象的空间，你是编程的，你现在正在写一个ASP.NET网页，而JS是你不熟悉的，于是你委托你的一位同事来帮助你完成JS部分。这就是委托，把你所不能做的事情交给其他人去做。而怎么知道是哪个人去做呢？当然是要知道名字！而为了区别名字一样的不同人，因此，需要描述一个特征。<br><br>在C#中，委托的作用是这样描述的：委托就像一个函数的指针，在程序运行时可以使用它们来调用不同的函数。这个其实和你委托同事完成&nbsp;JS代码一样。如果有两位同事可以做这件事情，他们只要做的结果能够满足你的需求（就像一个接口），尽管他们做的过程不一样，并且作出的效果也不一样，但是，能够达到你的要求就可以了。<br><br>1、简单的委托<br><br>那委托需要承载哪些信息呢？首先，它存储了方法名，还有参数列表(方法签名),以及返回的类型。比如：<br><font color="#0000ff">delegate</font> <font color="#ff0000">string/*返回类型*/</font> ProcessDelegate(int i);<br>这就是一个委托的定义。蓝色部分是声明委托的关键字，红色部分是返回的类型，而黑色部分是委托的类型名，和一个类名差不多，而()里的就是参数部分。它的意思是，你要使用这个委托来做事情的话，那么，做事情的方法必须满足以下条件：<br>1、返回类型和委托的返回类型一致，这里是string类型；<br>2、能且只能有一个参数，并且是int类型。<br>OK,满足以上两个条件，一切就可以工作了:)<br><br>例如：<br>
+<div style="BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 13px; PADDING-BOTTOM: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 98%; WORD-BREAK: break-all; PADDING-TOP: 4px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #eeeeee"><span style="COLOR: #008080">&nbsp;1</span>&nbsp;<span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System;<br></span><span style="COLOR: #008080">&nbsp;2</span>&nbsp;<span style="COLOR: #000000"></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Collections.Generic;<br></span><span style="COLOR: #008080">&nbsp;3</span>&nbsp;<span style="COLOR: #000000"></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Text;<br></span><span style="COLOR: #008080">&nbsp;4</span>&nbsp;<span style="COLOR: #000000"><br></span><span style="COLOR: #008080">&nbsp;5</span>&nbsp;<span style="COLOR: #000000"></span><span style="COLOR: #0000ff">namespace</span><span style="COLOR: #000000">&nbsp;TestApp<br></span><span style="COLOR: #008080">&nbsp;6</span>&nbsp;<span style="COLOR: #000000">{<br></span><span style="COLOR: #008080">&nbsp;7</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">&nbsp;8</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;委托<br></span><span style="COLOR: #008080">&nbsp;9</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">10</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">11</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">12</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #008080">13</span>&nbsp;<span style="COLOR: #808080"></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">delegate</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2);<br></span><span style="COLOR: #008080">14</span>&nbsp;<span style="COLOR: #000000"><br></span><span style="COLOR: #008080">15</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Program<br></span><span style="COLOR: #008080">16</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="COLOR: #008080">17</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">static</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;Main(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">[]&nbsp;args)<br></span><span style="COLOR: #008080">18</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="COLOR: #008080">19</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;&nbsp;调用方法&nbsp;&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br></span><span style="COLOR: #008080">20</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProcessDelegate&nbsp;pd&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;Test().Process);<br></span><span style="COLOR: #008080">21</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(pd(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text1</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text2</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">));<br></span><span style="COLOR: #008080">22</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="COLOR: #008080">23</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="COLOR: #008080">24</span>&nbsp;<span style="COLOR: #000000"><br></span><span style="COLOR: #008080">25</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Test<br></span><span style="COLOR: #008080">26</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="COLOR: #008080">27</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">28</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;方法<br></span><span style="COLOR: #008080">29</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">30</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">31</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br></span><span style="COLOR: #008080">32</span>&nbsp;<span style="COLOR: #008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #008080">33</span>&nbsp;<span style="COLOR: #808080"></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2)<br></span><span style="COLOR: #008080">34</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="COLOR: #008080">35</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s2;<br></span><span style="COLOR: #008080">36</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="COLOR: #008080">37</span>&nbsp;<span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="COLOR: #008080">38</span>&nbsp;<span style="COLOR: #000000">}</span></div>输出的结果是:<br>Text1Tex2<br><br><br>2、泛型委托<br><br>泛型的委托，就是然参数的类型不确定,例如代码改写为：<br>
+<div style="BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 13px; PADDING-BOTTOM: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 98%; WORD-BREAK: break-all; PADDING-TOP: 4px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #eeeeee"><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Collections.Generic;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Text;<br><br></span><span style="COLOR: #0000ff">namespace</span><span style="COLOR: #000000">&nbsp;TestApp<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;委托<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">delegate</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;ProcessDelegate</span><span style="COLOR: #000000">&lt;</span><span style="COLOR: #000000">T,S</span><span style="COLOR: #000000">&gt;</span><span style="COLOR: #000000">(T&nbsp;s1,&nbsp;S&nbsp;s2);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Program<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">static</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;Main(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">[]&nbsp;args)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;&nbsp;调用方法&nbsp;&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProcessDelegate</span><span style="COLOR: #000000">&lt;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">,</span><span style="COLOR: #0000ff">int</span><span style="COLOR: #000000">&gt;</span><span style="COLOR: #000000">&nbsp;pd&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate</span><span style="COLOR: #000000">&lt;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">,</span><span style="COLOR: #0000ff">int</span><span style="COLOR: #000000">&gt;</span><span style="COLOR: #000000">(</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;Test().Process);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(pd(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text1</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #800080">100</span><span style="COLOR: #000000">));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Test<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;方法<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,</span><span style="COLOR: #0000ff">int</span><span style="COLOR: #000000">&nbsp;s2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></span></div><br>输出的结果就是：<br>Text1100<br><br>泛型的详细内容不属于本文的介绍范围，这里不加多说了。<br><br><strong>二、事件<br></strong><br>在某件事情发生时，一个对象可以通过事件通知另一个对象。比如，前台完成了前台界面，他通知你，可以把前台和你开发的程序整合了。这就是一个事件。可以看出事件是在一个时间节点去触发另外一件事情，而另外一件事情怎么去做，他不会关心。就事件来说，关键点就是什么时候，让谁去做。<br><br>在C#中，时间定义关键字是event。例如：<br>event ProcessDelegate ProcessEvent;<br><br>整个事件定义方法以及执行过程：<br>
+<div style="BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 13px; PADDING-BOTTOM: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 98%; WORD-BREAK: break-all; PADDING-TOP: 4px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #eeeeee"><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Collections.Generic;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Text;<br><br></span><span style="COLOR: #0000ff">namespace</span><span style="COLOR: #000000">&nbsp;TestApp<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;委托<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">delegate</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(</span><span style="COLOR: #0000ff">object</span><span style="COLOR: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Program<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">static</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;Main(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">[]&nbsp;args)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;&nbsp;第一步执行&nbsp;&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;t&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;Test();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;关联事件方法，相当于寻找到了委托人&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.ProcessEvent&nbsp;</span><span style="COLOR: #000000">+=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(t_ProcessEvent);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;进入Process方法&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(t.Process());&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.Read();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">static</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;t_ProcessEvent(</span><span style="COLOR: #0000ff">object</span><span style="COLOR: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;t&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;(Test)sender;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.Text1&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Hello</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.Text2&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">World</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Test<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">private</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Text1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">get</span><span style="COLOR: #000000">&nbsp;{&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">set</span><span style="COLOR: #000000">&nbsp;{&nbsp;s1&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;value;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">private</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Text2<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">get</span><span style="COLOR: #000000">&nbsp;{&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s2;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">set</span><span style="COLOR: #000000">&nbsp;{&nbsp;s2&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;value;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">event</span><span style="COLOR: #000000">&nbsp;ProcessDelegate&nbsp;ProcessEvent;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;ProcessAction(</span><span style="COLOR: #0000ff">object</span><span style="COLOR: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">if</span><span style="COLOR: #000000">&nbsp;(ProcessEvent&nbsp;</span><span style="COLOR: #000000">==</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">null</span><span style="COLOR: #000000">)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProcessEvent&nbsp;</span><span style="COLOR: #000000">+=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(t_ProcessEvent);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProcessEvent(sender,&nbsp;e);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">//</span><span style="COLOR: #008000">如果没有自己指定关联方法，将会调用该方法抛出错误</span><span style="COLOR: #008000"><br></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;t_ProcessEvent(</span><span style="COLOR: #0000ff">object</span><span style="COLOR: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">throw</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;Exception(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">The&nbsp;method&nbsp;or&nbsp;operation&nbsp;is&nbsp;not&nbsp;implemented.</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;OnProcess()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProcessAction(</span><span style="COLOR: #0000ff">this</span><span style="COLOR: #000000">,&nbsp;EventArgs.Empty);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnProcess();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br>&nbsp;</span></div>感觉到了什么？是不是和代码注入了差不多，相当于是可以用任意符合委托接口(委托确实很像接口)的代码，注入到Process过程。在他返回之前给他赋值。<br><br><strong>三、回调函数</strong><br><br>打了这么多字，好累啊!<br><br>回调函数就是把一个方法的传给另外一个方法去执行。在C#有很多回调函数，比如异步操作的时候。这里先举个例子：<br>
+<div style="BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 13px; PADDING-BOTTOM: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 98%; WORD-BREAK: break-all; PADDING-TOP: 4px; BORDER-BOTTOM: #cccccc 1px solid; BACKGROUND-COLOR: #eeeeee"><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Collections.Generic;<br></span><span style="COLOR: #0000ff">using</span><span style="COLOR: #000000">&nbsp;System.Text;<br><br></span><span style="COLOR: #0000ff">namespace</span><span style="COLOR: #000000">&nbsp;TestApp<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;委托<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;/summary&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s1"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;param&nbsp;name="s2"&gt;&lt;/param&gt;</span><span style="COLOR: #008000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #808080">///</span><span style="COLOR: #008000">&nbsp;</span><span style="COLOR: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="COLOR: #808080"><br></span><span style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">delegate</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Program<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">static</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">void</span><span style="COLOR: #000000">&nbsp;Main(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">[]&nbsp;args)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #008000">/*</span><span style="COLOR: #008000">&nbsp;&nbsp;调用方法&nbsp;&nbsp;</span><span style="COLOR: #008000">*/</span><span style="COLOR: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;t&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;Test();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;r1&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;t.Process(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text1</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text2</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(t.Process1));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;r2&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;t.Process(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text1</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text2</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(t.Process2));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;r3&nbsp;</span><span style="COLOR: #000000">=</span><span style="COLOR: #000000">&nbsp;t.Process(</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text1</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #800000">"</span><span style="COLOR: #800000">Text2</span><span style="COLOR: #800000">"</span><span style="COLOR: #000000">,&nbsp;</span><span style="COLOR: #0000ff">new</span><span style="COLOR: #000000">&nbsp;ProcessDelegate(t.Process3));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(r1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(r2);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(r3);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">class</span><span style="COLOR: #000000">&nbsp;Test<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2,ProcessDelegate&nbsp;process)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;process(s1,&nbsp;s2);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process1(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process2(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s1&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;Environment.NewLine&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">public</span><span style="COLOR: #000000">&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;Process3(</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s1,&nbsp;</span><span style="COLOR: #0000ff">string</span><span style="COLOR: #000000">&nbsp;s2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="COLOR: #0000ff">return</span><span style="COLOR: #000000">&nbsp;s2&nbsp;</span><span style="COLOR: #000000">+</span><span style="COLOR: #000000">&nbsp;s1;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></span></div><br>输出结果：<br>Text1Text2<br>Text1<br>Text2<br>Text2Text1<br><br>Process方法调用了一个回调函数，当然这里只执行了回调函数。可以看出，可以把任意一个符合这个委托的方法传递进去，意思就是说这部分代码是可变的。而设计上有一个抽离出可变部分代码的原则，这种用法无疑可以用到那种场合了。<br><br>全文完。http://birdshover.cnblogs.com&nbsp;&nbsp;&nbsp;Birdshover<br><br>Ps:累死我了，休息休息～～～～</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/birdshover/category/808.html" target="_blank">1.首页原创精华.NET区123</a>,<a href="http://www.cnblogs.com/birdshover/category/83861.html" target="_blank">Thinking about develop</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1029471,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;1a55360b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./详解C#委托，事件与回调函数_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./详解C#委托，事件与回调函数_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/birdshover/" target="_blank"><img src="./详解C#委托，事件与回调函数_files/u15053.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/birdshover/">Birdshover</a><br>
+            <a href="http://home.cnblogs.com/u/birdshover/followees">关注 - 16</a><br>
+            <a href="http://home.cnblogs.com/u/birdshover/followers">粉丝 - 418</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;1a55360b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1029471,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">41</span>
+    </div>
+    <div class="buryit" onclick="votePost(1029471,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/01/1022064.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/birdshover/archive/2008/01/01/1022064.html" title="发布于2008-01-01 09:10">.Net 3.5(LINQ,AJAX) Web简易聊天室 源码</a><br><a href="http://www.cnblogs.com/birdshover/archive/2008/01/12/1035885.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/birdshover/archive/2008/01/12/1035885.html" title="发布于2008-01-12 00:47">DLINQ *.dbml文件该属于哪一层</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2008-01-07 20:35</span> <a href="http://www.cnblogs.com/birdshover/">Birdshover</a> 阅读(<span id="post_view_count">92808</span>) 评论(<span id="post_comment_count">67</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1029471" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#" onclick="AddToWz(1029471);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=18611,cb_entryId=1029471,cb_blogApp=currentBlogApp,cb_blogUserGuid='1a55360b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2008/1/7 20:35:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">发表评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2623400,&#39;X2bohQjjdYb9e6ilsB9a/PYuXFu3nGHxjKnTgC2+lCrm8FMfYGO0uw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2623400,&#39;X2bohQjjdYb9e6ilsB9a/PYuXFu3nGHxjKnTgC2+lCrm8FMfYGO0uw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2623400" class="layer">#51楼</a><a name="2623400" id="comment_anchor_2623400"></a> <span class="comment_date">2013-02-26 14:20</span> | <a id="a_comment_author_2623400" href="http://www.cnblogs.com/Rooty/" target="_blank">Rooty</a> <a href="http://msg.cnblogs.com/send/Rooty" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2623400" class="blog_comment_body">很好，很受用</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2623400,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2623400,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2623400_avatar" style="display:none;">http://pic.cnblogs.com/face/u323520.jpg?id=15215727</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2716892,&#39;GVZHdbLt/SSZsqFdRFXhIxoJkZWW2OMgd19TpqZJfRzL2xwqabHk1A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2716892,&#39;GVZHdbLt/SSZsqFdRFXhIxoJkZWW2OMgd19TpqZJfRzL2xwqabHk1A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2716892" class="layer">#52楼</a><a name="2716892" id="comment_anchor_2716892"></a> <span class="comment_date">2013-07-01 08:12</span> | <a id="a_comment_author_2716892" href="http://www.cnblogs.com/silents/" target="_blank">沉默的溺水者</a> <a href="http://msg.cnblogs.com/send/%E6%B2%89%E9%BB%98%E7%9A%84%E6%BA%BA%E6%B0%B4%E8%80%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2716892" class="blog_comment_body">我这样理解的，委托就是让被委托方在任意时刻（不知道怎么确定的）完成么个动作，而事件就是当这个事件发生时立即触发（注意立即）另一个事件（其实就是特殊的方法），而回调函数是将一个方法传给另一个方法使用，它与委托不同在于，它的方法参数，返回值都可以和调用者的参数，返回值可以不一样，不知道对不？？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2716892,&#39;Digg&#39;,this)">支持(3)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2716892,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2716892_avatar" style="display:none;">http://pic.cnblogs.com/face/498711/20130905175002.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2720363,&#39;lWB4zhf8h+49y7qtR0CZSoSX3omIM85aZBgK4hLaWD4uSpbX3JVY4g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2720363,&#39;lWB4zhf8h+49y7qtR0CZSoSX3omIM85aZBgK4hLaWD4uSpbX3JVY4g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2720363" class="layer">#53楼</a><a name="2720363" id="comment_anchor_2720363"></a> <span class="comment_date">2013-07-04 21:00</span> | <a id="a_comment_author_2720363" href="http://www.cnblogs.com/qiezigan/" target="_blank">茄子干</a> <a href="http://msg.cnblogs.com/send/%E8%8C%84%E5%AD%90%E5%B9%B2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2720363" class="blog_comment_body">很好，很受用</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2720363,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2720363,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2760422,&#39;V9gc9XANj4s4gXZj20z7BZhCKhH0Pv2VbfyCQMayTkYIMDJLE+nBvg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2760422,&#39;V9gc9XANj4s4gXZj20z7BZhCKhH0Pv2VbfyCQMayTkYIMDJLE+nBvg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2760422" class="layer">#54楼</a><a name="2760422" id="comment_anchor_2760422"></a> <span class="comment_date">2013-08-26 11:55</span> | <a id="a_comment_author_2760422" href="http://home.cnblogs.com/u/556993/" target="_blank">xuliyuan173</a> <a href="http://msg.cnblogs.com/send/xuliyuan173" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2760422" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2760422,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2760422,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2830886,&#39;1eLfr2+QrtNE/dZlL9x6CegpiumKO+OM2b/RDjOjbdQbScDeTMlTCA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2830886,&#39;1eLfr2+QrtNE/dZlL9x6CegpiumKO+OM2b/RDjOjbdQbScDeTMlTCA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2830886" class="layer">#55楼</a><a name="2830886" id="comment_anchor_2830886"></a> <span class="comment_date">2013-12-05 12:02</span> | <a id="a_comment_author_2830886" href="http://www.cnblogs.com/duanyong/" target="_blank">duanyong</a> <a href="http://msg.cnblogs.com/send/duanyong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2830886" class="blog_comment_body">受教，答疑解惑，好文！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2830886,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2830886,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2830886_avatar" style="display:none;">http://pic.cnblogs.com/face/u83437.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2831212,&#39;hpr97zcrN/NCqgv0Z2HKlGf6c4L6Lsq+knTrSDE7I6pDb33b4hJZhg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2831212,&#39;hpr97zcrN/NCqgv0Z2HKlGf6c4L6Lsq+knTrSDE7I6pDb33b4hJZhg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2831212" class="layer">#56楼</a><a name="2831212" id="comment_anchor_2831212"></a> <span class="comment_date">2013-12-05 17:00</span> | <a id="a_comment_author_2831212" href="http://www.cnblogs.com/yongyan/" target="_blank">钟永炎</a> <a href="http://msg.cnblogs.com/send/%E9%92%9F%E6%B0%B8%E7%82%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2831212" class="blog_comment_body">楼主，谢谢了，看完之后恍然大悟！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2831212,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2831212,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2975847,&#39;nh6p6mtW60AW9dHoBdHioWim4IiwrpMHWI7TzcFpuUIHNeQyLtzX0g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2975847,&#39;nh6p6mtW60AW9dHoBdHioWim4IiwrpMHWI7TzcFpuUIHNeQyLtzX0g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2975847" class="layer">#57楼</a><a name="2975847" id="comment_anchor_2975847"></a> <span class="comment_date">2014-07-02 14:51</span> | <a id="a_comment_author_2975847" href="http://www.cnblogs.com/xw-yanger/" target="_blank">Xw_hacker</a> <a href="http://msg.cnblogs.com/send/Xw_hacker" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2975847" class="blog_comment_body">很好！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2975847,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2975847,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2975847_avatar" style="display:none;">http://pic.cnblogs.com/face/u393541.jpg?id=31115915</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2992482,&#39;Vwn4oiqDtvwG3VGNhmHhw+wenpy8tLN7OB5fAsIs4TV0QpKdt1xZQg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2992482,&#39;Vwn4oiqDtvwG3VGNhmHhw+wenpy8tLN7OB5fAsIs4TV0QpKdt1xZQg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#2992482" class="layer">#58楼</a><a name="2992482" id="comment_anchor_2992482"></a> <span class="comment_date">2014-07-22 16:48</span> | <a id="a_comment_author_2992482" href="http://home.cnblogs.com/u/437865/" target="_blank">独立观察员</a> <a href="http://msg.cnblogs.com/send/%E7%8B%AC%E7%AB%8B%E8%A7%82%E5%AF%9F%E5%91%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2992482" class="blog_comment_body">简直出神入化！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2992482,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2992482,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3022127,&#39;mh/4jV1t09eWagtSgZzLMZgqjNoYE/TbTNzHRrSCC8Gl0bqrj+QYEw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3022127,&#39;mh/4jV1t09eWagtSgZzLMZgqjNoYE/TbTNzHRrSCC8Gl0bqrj+QYEw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3022127" class="layer">#59楼</a><a name="3022127" id="comment_anchor_3022127"></a> <span class="comment_date">2014-09-03 10:09</span> | <a id="a_comment_author_3022127" href="http://home.cnblogs.com/u/596979/" target="_blank">玉宇玄星</a> <a href="http://msg.cnblogs.com/send/%E7%8E%89%E5%AE%87%E7%8E%84%E6%98%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3022127" class="blog_comment_body">非常感谢 解答了困扰我很久的问题</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3022127,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3022127,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3023000,&#39;vS0xrtZFwst+jU0tiNQiNhz+pf49xN4ApLnOG6gDpY/3F+6sDVtQgg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3023000,&#39;vS0xrtZFwst+jU0tiNQiNhz+pf49xN4ApLnOG6gDpY/3F+6sDVtQgg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3023000" class="layer">#60楼</a><a name="3023000" id="comment_anchor_3023000"></a> <span class="comment_date">2014-09-04 11:11</span> | <a id="a_comment_author_3023000" href="http://home.cnblogs.com/u/92972/" target="_blank">imnath!</a> <a href="http://msg.cnblogs.com/send/imnath%21" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3023000" class="blog_comment_body">怒赞！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3023000,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3023000,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3032711,&#39;cgPkY+1qf/pbpcFre+2ejvNHAH8Ipz+DfXQ/izbvSTdkZkd8hdtmUQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3032711,&#39;cgPkY+1qf/pbpcFre+2ejvNHAH8Ipz+DfXQ/izbvSTdkZkd8hdtmUQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3032711" class="layer">#61楼</a><a name="3032711" id="comment_anchor_3032711"></a> <span class="comment_date">2014-09-23 10:16</span> | <a id="a_comment_author_3032711" href="http://www.cnblogs.com/zrzsoft/" target="_blank">workhard</a> <a href="http://msg.cnblogs.com/send/workhard" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032711" class="blog_comment_body">用自定义事件或回调函数 与 我直接调用方法有什么区别？ 你写的这几个例子最终都是调一个具体函数了。为什么要费那么大一圈去调用找个函数呢，为什么不直接调用</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032711,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032711,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3033501,&#39;TlXEC1wxTpO2neOrk4Jie/7JDuWbTR5AKxuRb9Zz8KQAJwlwq7AL6g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3033501,&#39;TlXEC1wxTpO2neOrk4Jie/7JDuWbTR5AKxuRb9Zz8KQAJwlwq7AL6g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3033501" class="layer">#62楼</a><a name="3033501" id="comment_anchor_3033501"></a> <span class="comment_date">2014-09-24 10:50</span> | <a id="a_comment_author_3033501" href="http://www.cnblogs.com/cyg17173/" target="_blank">风寒晓</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E5%AF%92%E6%99%93" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3033501" class="blog_comment_body">需要说明的是，这个已经是我目前看到最好的。作为新手，认真看了一个小时，还是没有理解透，但是还是很有收获，对于委托、回调函数的使用似乎摸到一点点边。赞！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3033501,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3033501,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3530756,&#39;v3EeeVSF64ZGYtonPE2xWa33HG/xmrgzgaxsgOZbX9MZKqxGHZ4wuw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3530756,&#39;v3EeeVSF64ZGYtonPE2xWa33HG/xmrgzgaxsgOZbX9MZKqxGHZ4wuw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3530756" class="layer">#63楼</a><a name="3530756" id="comment_anchor_3530756"></a> <span class="comment_date">2016-10-13 23:49</span> | <a id="a_comment_author_3530756" href="http://home.cnblogs.com/u/986089/" target="_blank">十八东</a> <a href="http://msg.cnblogs.com/send/%E5%8D%81%E5%85%AB%E4%B8%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3530756" class="blog_comment_body">public string Process()<br>        {<br>            OnProcess();<br>            return s1 + s2;<br>        }<br><br>各位大神，请教一下，在事件那个例子里面。Return回来的s1，s2，这两个属性值是来自于哪一个test类的实例啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3530756,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3530756,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3620051,&#39;I2EEAUdGVSn0PV9o7kqMOIjS8+VVk8pEYzdm/sImLdVuVd57LoEM+g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3620051,&#39;I2EEAUdGVSn0PV9o7kqMOIjS8+VVk8pEYzdm/sImLdVuVd57LoEM+g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3620051" class="layer">#64楼</a><a name="3620051" id="comment_anchor_3620051"></a> <span class="comment_date">2017-02-16 15:17</span> | <a id="a_comment_author_3620051" href="http://home.cnblogs.com/u/1107484/" target="_blank">一朝天子一朝臣</a> <a href="http://msg.cnblogs.com/send/%E4%B8%80%E6%9C%9D%E5%A4%A9%E5%AD%90%E4%B8%80%E6%9C%9D%E8%87%A3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3620051" class="blog_comment_body">事件那儿，知道什么意思，只能说代码看的明白。还是没理解到。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3620051,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3620051,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3649506,&#39;WKlRjq8UyH7waUsWKxNtpb9b+r2ocEtRT4bUykpThX9JC5MhN3jH4g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3649506,&#39;WKlRjq8UyH7waUsWKxNtpb9b+r2ocEtRT4bUykpThX9JC5MhN3jH4g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3649506" class="layer">#65楼</a><a name="3649506" id="comment_anchor_3649506"></a> <span class="comment_date">2017-03-23 14:32</span> | <a id="a_comment_author_3649506" href="http://home.cnblogs.com/u/1132483/" target="_blank">水言炙心</a> <a href="http://msg.cnblogs.com/send/%E6%B0%B4%E8%A8%80%E7%82%99%E5%BF%83" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3649506" class="blog_comment_body">谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3649506,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3649506,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3771513,&#39;AsV8RMTt6ev3moYZ8YZ1qAVat8eJC7uaqHzSE5HALdLZg+8w8bBgnQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3771513,&#39;AsV8RMTt6ev3moYZ8YZ1qAVat8eJC7uaqHzSE5HALdLZg+8w8bBgnQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3771513" class="layer">#66楼</a><a name="3771513" id="comment_anchor_3771513"></a> <span class="comment_date">2017-08-31 10:18</span> | <a id="a_comment_author_3771513" href="http://www.cnblogs.com/BlackMB/" target="_blank">黑曼巴M</a> <a href="http://msg.cnblogs.com/send/%E9%BB%91%E6%9B%BC%E5%B7%B4M" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3771513" class="blog_comment_body">委托是不是事件，或者说，事件是不是委托?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3771513,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3771513,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3771513_avatar" style="display:none;">http://pic.cnblogs.com/face/1207993/20170802174705.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3806258,&#39;f7fwegHeoUpg1WOHY6P7QVxaXUXNh8IqmAhniAba63CWLIRJJV3tWw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3806258,&#39;f7fwegHeoUpg1WOHY6P7QVxaXUXNh8IqmAhniAba63CWLIRJJV3tWw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3806258" class="layer">#67楼</a><a name="3806258" id="comment_anchor_3806258"></a><span id="comment-maxId" style="display:none;">3806258</span><span id="comment-maxDate" style="display:none;">2017/10/10 13:44:42</span> <span class="comment_date">2017-10-10 13:44</span> | <a id="a_comment_author_3806258" href="http://www.cnblogs.com/williamwindy/" target="_blank">williamwindy</a> <a href="http://msg.cnblogs.com/send/williamwindy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3806258" class="blog_comment_body">关于回调的例子和总结写的挺好的，赞一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3806258,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3806258,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./详解C#委托，事件与回调函数_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./详解C#委托，事件与回调函数_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./详解C#委托，事件与回调函数_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./详解C#委托，事件与回调函数_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./详解C#委托，事件与回调函数_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./详解C#委托，事件与回调函数_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585419/" target="_blank">算法还是算力？周志华微博引爆深度学习的“鸡生蛋，蛋生鸡”问题</a><br> ·  <a href="https://news.cnblogs.com/n/585418/" target="_blank">腾讯绝艺AI下一步将学习AlphaGo zero 自对弈训练</a><br> ·  <a href="https://news.cnblogs.com/n/585414/" target="_blank">QQ出了个“AI 跳舞机” 可以随时随地尬舞了</a><br> ·  <a href="https://news.cnblogs.com/n/585411/" target="_blank">郭台铭砸重金投资 天然气行业有望成资金追捧对象</a><br> ·  <a href="https://news.cnblogs.com/n/585410/" target="_blank">九城、360矛盾升级背后，是360游戏的困境所在</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div>
+<img style="width:290px;" src="./详解C#委托，事件与回调函数_files/o_ccc.jpg">
+</div>
+<div style="font-size: 14px">网名: yurow birdshover <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;无术 夕阳轨迹 等<br>
+本名: 谢平<br>
+籍贯: 江苏溧阳<br>
+位置: 上海<br>
+职业: 打字<br>
+--------------------------------------------------------------<br>
+<a href="http://weibo.com/yurow" target="_blank">我的微博</a> http://weibo.com/yurow<br>
+<a href="http://www.361cat.com/" target="_blank">学趣网</a>
+--------------------------------------------------------------<br>
+</div>
+<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/birdshover/">Birdshover</a><br>园龄：<a href="http://home.cnblogs.com/u/birdshover/" title="入园时间：2006-05-05">11年7个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/birdshover/followers/">418</a><br>关注：<a href="http://home.cnblogs.com/u/birdshover/followees/">16</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;1a55360b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2007/12/01&#39;);return false;">&lt;</a></td><td align="center">2008年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/01.html"><u>1</u></a></td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07.html"><u>7</u></a></td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/12.html"><u>12</u></a></td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/15.html"><u>15</u></a></td><td align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/18.html"><u>18</u></a></td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/birdshover/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/birdshover/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/birdshover/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/birdshover/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/birdshover/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/birdshover/tag/lucene.net/">lucene.net</a>(5)</li><li><a href="http://www.cnblogs.com/birdshover/tag/%E4%B8%AD%E6%96%87%E5%9C%B0%E5%9D%80%E4%B9%B1%E7%A0%81/">中文地址乱码</a>(2)</li><li><a href="http://www.cnblogs.com/birdshover/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">中文分词</a>(2)</li><li><a href="http://www.cnblogs.com/birdshover/tag/IHttpModule/">IHttpModule</a>(2)</li><li><a href="http://www.cnblogs.com/birdshover/tag/express/">express</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/express-partials/">express-partials</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/Highlighter/">Highlighter</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/mvc/">mvc</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/node.js/">node.js</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/nodexcn/">nodexcn</a>(1)</li><li><a href="http://www.cnblogs.com/birdshover/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(142)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/birdshover/category/57134.html">.Net language and other(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/birdshover/category/57129.html">ASP.Net2.0(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/birdshover/category/57131.html">Desin Patterns(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/birdshover/category/124340.html">lucene.net(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/birdshover/category/152283.html">Lucene.Net 2.3.1(23)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/birdshover/category/83861.html">Thinking about develop(41)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/birdshover/category/83860.html">WinForm(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/birdshover/category/57171.html">非技术(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/birdshover/category/61414.html">数据(7)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(139)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/birdshover/archive/2014/06.html">2014年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/birdshover/archive/2012/04.html">2012年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/birdshover/archive/2010/12.html">2010年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/birdshover/archive/2010/06.html">2010年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/birdshover/archive/2010/03.html">2010年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/birdshover/archive/2010/02.html">2010年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/birdshover/archive/2010/01.html">2010年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/birdshover/archive/2009/11.html">2009年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/birdshover/archive/2009/10.html">2009年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/birdshover/archive/2009/09.html">2009年9月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/birdshover/archive/2009/08.html">2009年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/birdshover/archive/2009/07.html">2009年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/birdshover/archive/2009/04.html">2009年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/birdshover/archive/2009/03.html">2009年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/birdshover/archive/2009/02.html">2009年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/birdshover/archive/2009/01.html">2009年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/birdshover/archive/2008/12.html">2008年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/birdshover/archive/2008/11.html">2008年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/birdshover/archive/2008/10.html">2008年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/birdshover/archive/2008/09.html">2008年9月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/birdshover/archive/2008/08.html">2008年8月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/birdshover/archive/2008/07.html">2008年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/birdshover/archive/2008/05.html">2008年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/birdshover/archive/2008/03.html">2008年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/birdshover/archive/2008/01.html">2008年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/birdshover/archive/2007/12.html">2007年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/birdshover/archive/2007/11.html">2007年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/birdshover/archive/2007/10.html">2007年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/birdshover/archive/2007/07.html">2007年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/birdshover/archive/2007/04.html">2007年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/birdshover/archive/2007/02.html">2007年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/birdshover/archive/2007/01.html">2007年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/birdshover/archive/2006/10.html">2006年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/birdshover/archive/2006/08.html">2006年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/birdshover/archive/2006/07.html">2006年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/birdshover/archive/2006/06.html">2006年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/birdshover/archive/2006/05.html">2006年5月 (6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleCategory">
+<h3 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(27)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/birdshover/category/94068.html">.Net 2.0</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/birdshover/category/61025.html">.Net 3.0(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/birdshover/category/132184.html">F#(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/birdshover/category/97245.html">WinForm实验室(9)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/birdshover/category/146180.html">触摸C# Web开发(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/birdshover/category/149098.html">解读Lucene.Net(5)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/birdshover/category/146425.html">数独理论研究(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/birdshover/category/149593.html">搜索引擎开发相关(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_8" href="http://www.cnblogs.com/birdshover/category/57133.html">摘录资料(5)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleArchive">
+<h3 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(49)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.cnblogs.com/birdshover/archives/2008/08.html" rel="nofollow">2008年8月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://www.cnblogs.com/birdshover/archives/2008/07.html" rel="nofollow">2008年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://www.cnblogs.com/birdshover/archives/2008/04.html" rel="nofollow">2008年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://www.cnblogs.com/birdshover/archives/2008/03.html" rel="nofollow">2008年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.cnblogs.com/birdshover/archives/2008/02.html" rel="nofollow">2008年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.cnblogs.com/birdshover/archives/2007/11.html" rel="nofollow">2007年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://www.cnblogs.com/birdshover/archives/2007/07.html" rel="nofollow">2007年7月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_7" href="http://www.cnblogs.com/birdshover/archives/2007/06.html" rel="nofollow">2007年6月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_8" href="http://www.cnblogs.com/birdshover/archives/2006/06.html" rel="nofollow">2006年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_9" href="http://www.cnblogs.com/birdshover/archives/2006/05.html" rel="nofollow">2006年5月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">我的好友</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://listef.cnblogs.com/" rel="nofollow" target="_blank">listef的博客</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_1" href="http://www.c296.com/" rel="nofollow" target="_blank">尚峰装饰</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_2" href="http://www.361cat.com/" rel="nofollow" target="_blank">学趣</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">我的其它博客</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_5_Link_0" href="http://yurow.cnblogs.com/" rel="nofollow" target="_blank">yurow</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_1" href="http://www.cppblog.com/birdshover/" rel="nofollow" target="_blank">我的C++博客</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_2" href="http://birdshover.blogjava.net/" rel="nofollow" target="_blank">我的java博客</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_3" href="http://hi.baidu.com/snet" rel="nofollow" target="_blank">我的百度空间</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	554207
+	</li><li class="liRank">
+		排名 -	206
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3806258">1. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">关于回调的例子和总结写的挺好的，赞一个</li>
+        <li class="recent_comment_author">--williamwindy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3771513">2. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">委托是不是事件，或者说，事件是不是委托?</li>
+        <li class="recent_comment_author">--黑曼巴M</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/articles/392127.html#3760959">3. Re:转载：C#中的泛型 </a></li>
+        <li class="recent_comment_body">抄的高级编程泛型篇章</li>
+        <li class="recent_comment_author">--李二甩的春天</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3649506">4. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">谢谢</li>
+        <li class="recent_comment_author">--水言炙心</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3620051">5. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">事件那儿，知道什么意思，只能说代码看的明白。还是没理解到。。。</li>
+        <li class="recent_comment_author">--一朝天子一朝臣</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3530756">6. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">public string Process() { OnProcess(); return s1 + s2; }各位大神，请教一......</li>
+        <li class="recent_comment_author">--十八东</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2010/12/17/1909375.html#3393614">7. Re:C# Socket 编程之 TcpListener</a></li>
+        <li class="recent_comment_body">if (client.Connected) { client.Client.Shutdown(SocketShutdown.Both); } ......</li>
+        <li class="recent_comment_author">--逍遥子k</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/18/1045008.html#3374723">8. Re:MVC框架的地址重写（一）——MVC中默认的地址重写</a></li>
+        <li class="recent_comment_body">您好，我在appliction的开始方法中加入了 RouteTable.Routes.Add(new Route 7 { 8 Url = "[c......</li>
+        <li class="recent_comment_author">--秋水惜朝</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/articles/392127.html#3283918">9. Re:转载：C#中的泛型 </a></li>
+        <li class="recent_comment_body">写的好！感谢分享！</li>
+        <li class="recent_comment_author">--战狼96</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2010/12/17/1909375.html#3265733">10. Re:C# Socket 编程之 TcpListener</a></li>
+        <li class="recent_comment_body">“TcpListener每秒大概能创建两个连接” 这明显是难以置信的 线程池 是框架对 系统线程的高级封装。 有很多机制需要了解，为了“合理”线程池的所有线程不会马上启动，超过一定设置数量后就会.........</li>
+        <li class="recent_comment_author">--lulianqi15</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/08/28/1279044.html#3255521">11. Re:Lucene.Net 2.3.1开发介绍 —— 二、分词（二） </a></li>
+        <li class="recent_comment_body">学习了，受益匪浅</li>
+        <li class="recent_comment_author">--一個人過得快樂</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277019.html#3254471">12. Re:Lucene.Net 2.3.1开发介绍——附录一、如何下载Lucene.Net的各种版本</a></li>
+        <li class="recent_comment_body">@落忆无痕引用SVN填写地址已经是这个了希望对后来者有帮助3Q，确实可用...</li>
+        <li class="recent_comment_author">--一個人過得快樂</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277019.html#3244061">13. Re:Lucene.Net 2.3.1开发介绍——附录一、如何下载Lucene.Net的各种版本</a></li>
+        <li class="recent_comment_body"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html" target="_blank"></a><br>SVN填写地址已经是这个了<br><br>希望对后来者有帮助</li>
+        <li class="recent_comment_author">--落忆无痕</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/articles/392130.html#3238844">14. Re:转载：C# 泛型简介 </a></li>
+        <li class="recent_comment_body">看完了文章，大致理解 泛型的优势了： 客户端代码有能力在实例化之前根据想要实例化的目标 指定这些类要使用的具体数据类型。1. 避免早期.Net 需要频繁装拆箱解决 ArrayList 混合类型的性能问......</li>
+        <li class="recent_comment_author">--春天到了</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2010/12/17/1909375.html#3230004">15. Re:C# Socket 编程之 TcpListener</a></li>
+        <li class="recent_comment_body">赞赞赞~</li>
+        <li class="recent_comment_author">--华夏古风</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/01/1022064.html#3208777">16. Re:.Net 3.5(LINQ,AJAX) Web简易聊天室 源码</a></li>
+        <li class="recent_comment_body">xx谢谢</li>
+        <li class="recent_comment_author">--肚肚</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/08/04/1260499.html#3189772">17. Re:详解for循环（各种用法）</a></li>
+        <li class="recent_comment_body">当第二个表达式为null的时候，他的默认值为true</li>
+        <li class="recent_comment_author">--老夫很紧张</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277004.html#3155468">18. Re:Lucene.Net 2.3.1开发介绍 ——  简介</a></li>
+        <li class="recent_comment_body">Mark 一下</li>
+        <li class="recent_comment_author">--Lumia1020</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2009/08/24/1552614.html#3087387">19. Re:MVC与WebForm最大的区别</a></li>
+        <li class="recent_comment_body">新手 没看懂 不过感觉很厉害的样子</li>
+        <li class="recent_comment_author">--像云一样潇洒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html#3033501">20. Re:详解C#委托，事件与回调函数</a></li>
+        <li class="recent_comment_body">需要说明的是，这个已经是我目前看到最好的。作为新手，认真看了一个小时，还是没有理解透，但是还是很有收获，对于委托、回调函数的使用似乎摸到一点点边。赞！！！</li>
+        <li class="recent_comment_author">--风寒晓</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/04/1260499.html">1. 详解for循环（各种用法）(184814)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/01/07/1029471.html">2. 详解C#委托，事件与回调函数(92807)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2009/08/24/1552614.html">3. MVC与WebForm最大的区别(43735)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2009/08/16/1547025.html">4. 探寻IIS最大并发数(29520)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2010/12/17/1909375.html">5. C# Socket 编程之 TcpListener(23199)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2010/01/27/1657670.html">6. mysql master/slave 使用感受(23133)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2007/01/30/635230.html">7. C#开发高亮语法编辑器(一)——TextBox ,RichTextBox(22746)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277019.html">8. Lucene.Net 2.3.1开发介绍——附录一、如何下载Lucene.Net的各种版本(20955)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277081.html">9. Lucene.Net 2.3.1开发介绍 —— 一、接触Lucene.Net(20094)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277103.html">10. Lucene.Net 2.3.1开发介绍 —— 阅读索引(18711)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/26/1277004.html">11. Lucene.Net 2.3.1开发介绍 ——  简介(17765)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/01/18/1043749.html">12. ASP.Net MVC框架配置与分析(15855)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2010/01/11/1644267.html">13. java开发守护进程(14956)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/27/1277154.html">14. Lucene.Net 2.3.1开发介绍 —— 二、分词（一）(13766)</a></li><li><a href="http://www.cnblogs.com/birdshover/archive/2008/08/28/1279044.html">15. Lucene.Net 2.3.1开发介绍 —— 二、分词（二） (12585)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 Birdshover
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

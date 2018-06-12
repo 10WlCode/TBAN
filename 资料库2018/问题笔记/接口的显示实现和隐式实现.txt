@@ -1,0 +1,55 @@
+C# 接口的显示实现和隐示实现
+Posted on 2008-01-12 15:14 ∈鱼杆 阅读(3769) 评论(8) 编辑 收藏
+接口的实现很多人都知道，但接口的实现方式分显示实现和隐示实现不知道是不是很多人知道呢！但我觉的公司技术部里很少提到这个，就想起来写写这篇blogs。
+
+目前常用的方式：
+
+public interface IReview
+{
+    void GetReviews();
+}
+public class ShopReview :IReview
+{
+    public void GetReviews(){}
+}
+
+这种方式是隐示实现：
+
+IReview rv = new ShopReview();rv.GetReviews();
+
+ShopReview rv = new ShopReview();rv.GetReviews();
+
+都可以调用GetReviews这个方法。
+
+还有一种方式是显示实现：
+
+public interface IReview
+{
+    void GetReviews();
+}
+public class ShopReview :IReview
+{
+    void IReview.GetReviews(){}
+}
+
+通过这种方式的接口实现。GetReviews就只能通过接口来调用:
+
+IReview rv = new ShopReview();rv.GetReviews();
+
+下面的这种方式将会编译错误：
+
+ShopReview rv = new ShopReview();rv.GetReviews();
+
+结论：
+
+隐示实现接口和类都可以访问
+
+显示实现只有接口可以访问。
+
+显示实现益处
+
+1:隐藏代码的实现
+
+2:在使用接口访问的系统中，调用者只能通过接口调用而不是底层的类来访问。
+
+PS:可以运用到公司目前的接口+Sevice架构的系统中。避免我们总是要求大家一定要通过接口访问。因为现在不用接口访问也不行了。

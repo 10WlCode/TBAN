@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://blog.shengxunwei.com/Home/Post/04a51b76-6bfa-4eef-9171-cc48049d5e07 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sheng.c - 8/人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程（后台代码已开源于 Github）</title>
+    <link href="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/css" rel="stylesheet">
+
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/common"></script>
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/jquery-1.10.2.min.js.下载"></script>
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/jquery.validate.min.js.下载"></script>
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/layer.js.下载"></script><link rel="stylesheet" href="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/layer.css" id="layui_layer_skinlayercss" style="">
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/laytpl.js.下载"></script>
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/laypage.js.下载"></script>
+
+    <script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/laydate.js.下载"></script><link type="text/css" rel="stylesheet" href="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/laydate.css"><link type="text/css" rel="stylesheet" href="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/laydate(1).css" id="LayDateSkin">
+
+
+</head><div style="display: block; opacity: 1;"></div>
+<body style="">
+
+
+
+<link href="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/shCoreDefault.css" rel="stylesheet">
+
+<script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/shCore.js.下载"></script>
+
+
+<script src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/ueditor.parse.min.js.下载"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        SyntaxHighlighter.all();
+       
+    });
+
+
+    function subscribe() {
+        var email = $("#txtSubscription").val();
+        if (email == "") {
+            layerAlert("请输入您的电子邮件地址。");
+            return;
+        }
+
+        var url = "/Api/Subscription/CreateSubscription";
+
+        var args = new Object();
+
+        args.Email = email;
+
+        $("#btnSubscribe").attr("disabled", "disabled");
+
+        var layerIndex = layer.load();
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(layerIndex);
+
+                if (data.Success) {
+                    layerAlert("订阅成功，感谢您的关注。");
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+</script>
+
+<div style="width:1100px;margin-left:auto;margin-right:auto">
+    <div style="float:left;width:300px;background-color:white">
+        <div style="font-size:30px;font-weight:bold">
+            sheng.c
+        </div>
+        <div style="font-size:14px;">
+            <div style="margin-top:20px;">
+                <img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/sheng.jpg" style="width:100px;">
+            </div>
+            <div style="margin-top:20px;">
+                E-mail: cao.silhouette(at)msn.com
+            </div>
+            <div>
+                QQ: 279060597
+            </div>
+            <div>
+                <a href="https://github.com/iccb1013" target="_blank">https://github.com/iccb1013</a>
+            </div>
+        </div>
+        <div style="margin-top:25px; margin-bottom:25px; background-color:#DBDBDB; height:1px; "></div>
+        <div>
+            
+
+            <div style="margin-top:10px;" class="divMenuSubItem"><a href="http://blog.shengxunwei.com/Home/Index">全部</a></div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/fd4baa7a-cc7d-403c-8f02-f413067e0ea3">ASP.NET</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/9b0bbbe6-33bd-4656-a0c4-d75b4a607dde">C#</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/0f7c9842-67ee-438d-97fb-bbc8e2ed2765">Winform</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/a774afaf-9922-4116-8d56-d8617f3049c5">WPF</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/552bda04-9b37-43c0-8700-4380544da6b0">开源（GitHub）</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/53abbeb8-32be-4f5d-8f9f-209b48433d36">客服系统</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/5943c177-98d5-4b7b-b930-383e3e64c113">随笔</a>
+                </div>
+                <div style="margin-top:10px;" class="divMenuSubItem">
+                    <a href="http://blog.shengxunwei.com/Home/Index/28a759b0-92d0-4554-9338-0149e2f8c021">微信开发</a>
+                </div>
+        </div>
+        <div style="margin-top:25px; margin-bottom:25px; background-color:#DBDBDB; height:1px; "></div>
+        <div>
+            <div>
+                输入电子邮件，<br>订阅博客的内容更新通知：
+            </div>
+            <div style="text-align:left;margin-top:10px;">
+                <input type="text" class="input_16" id="txtSubscription" name="txtSubscription" maxlength="100">
+            </div>
+            <div style="text-align:left;margin-top:10px;">
+                <input type="button" class="btn_blue" value="订 阅" id="btnSubscribe" onclick="subscribe();">
+            </div>
+        </div>
+    </div>
+    <div style="float:right;width:780px; background-color:white;margin-top:50px;">
+        <div>
+            <div style="font-weight:bold;font-size:20px;">
+                8/人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程（后台代码已开源于 Github）
+            </div>
+            <div style="margin-top:25px;  background-color:#DBDBDB; height:1px; "></div>
+            <div style="text-align:right;margin-top:10px;">
+                    <span style="margin-right:20px;"><a href="http://blog.shengxunwei.com/Home/Post/04a51b76-6bfa-4eef-9171-cc48049d5e07#">开源（GitHub）</a></span>
+                    <span style="margin-right:20px;"><a href="http://blog.shengxunwei.com/Home/Post/04a51b76-6bfa-4eef-9171-cc48049d5e07#">C#</a></span>
+                    <span style="margin-right:20px;"><a href="http://blog.shengxunwei.com/Home/Post/04a51b76-6bfa-4eef-9171-cc48049d5e07#">ASP.NET</a></span>
+
+                <span style="margin-right:20px;">2018/5/3 12:49:28</span>
+            </div>
+            <div id="divContent" style="margin-top:30px;font-size:15px;">
+                <p><span style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);"><strong>Github</strong>：</span>&nbsp;<a href="https://github.com/iccb1013/Jade.Net" target="_blank" title="https://github.com/iccb1013/Jade.Net">https://github.com/iccb1013/Jade.Net</a><br><br>我们只消耗了8/人天的时间，完成了全部工作，基于我们 Jade.Net 的开源后台代码，任何小规模的后台管理系统，都可以在极短的时间内完成。<br><br>这是我们在 2017&nbsp;年早些时候开发的一个项目，甲方是一家工艺美术品企业，需要开发一款 APP 展示产品，并引入会员（多级代理），在线下单，返点等功能。&nbsp;在立项后由于一些原因，选择了使用 Java 来开发后台管理部分，面向 IOS&nbsp;和 Android&nbsp;版客户端提供服务。<br><br>项目的前期调研、分析、设计工作，及推进过程这里不作过多讨论，本文主要围绕改造工作中的技术问题进行记录和分析。<br><br>先简单看一下，了解这是怎么样的一个项目，终端 APP&nbsp;如图：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366094944504595422335073.png" title="image.png" alt="image.png" width="500" height="417"><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366094952185513078606757.png" title="image.png" alt="image.png" width="500" height="414"><br><br><br>后台管理端，有两个职责：<br>一）向 APP&nbsp;端提供功能接口，如商品接口，会员接口等；<br>二）纯后台管理功能，如商品管理，会员管理等；<br><br>总体而言并不复杂。除开业务逻辑之外，是很普通的管理后台。<br><br>下面我对这次改造工作的过程进行回顾与说明。<br><span style="text-decoration: underline;">这次改造重构的难点是要保持 APP&nbsp;接口的绝对兼容，不能影响生产环境的正常运行。</span><br><br><br><span style="font-size: 20px;"><strong>首先我们分析原 Java&nbsp;版项目：</strong></span><br><br>Java&nbsp;版后台开发人员把其公司历史项目也掺杂在内，并且新项目内有多处引用（这个严重点都会涉及法律问题），代码结构引用关系比较混乱，后台的基本权限、菜单、字典散落分布在各处：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366140540438930265447884.png" title="6366133493210289216302177.png" alt="6366133493210289216302177.png"><br><br><br><br><br>原后台使用的是 MySql 数据库，我们这次改造要将数据库换为 SQL Server ，并使用 Entity Framework 作为我们的数据库访问层。<br></p><p>引用关系比较混乱，没有表结构说明书，我们需要重新核对整个数据库表结构的设计：</p><p><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366140544714897722587518.png" title="6366133510055758427305237.png" alt="6366133510055758427305237.png"><br><br>数据表字段名与类属性名的不合理，让我们的核对工作不是很乐观：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366140547810470062493514.png" title="6366133521033819801665989.png" alt="6366133521033819801665989.png"><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366133522059329619401223.png" title="Java工程表结构3.png" alt="Java工程表结构3.png"><br><br><br>使用了&nbsp;mybatis&nbsp;做为数据访问层，我们在改造过程中，需要逐一核对数据库操作，以便在改造过程中保持百分之百的兼容：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366140549486091758109628.png" title="6366133554500246364261325.png" alt="6366133554500246364261325.png"><br><br><br><br><span style="font-size: 20px;"><strong>下面开始我们的改造工作：</strong></span><br><br><span style="font-size: 18px;"><strong>第一步：使用 SQL Server&nbsp;重建数据库</strong></span><br><br>迁移数据库分为两个步骤，一是建库，二是迁移数据。<br>理论上来说建库工作可以导出原 MySQL 的建库脚本调整后在 SQL Server&nbsp;执行来建立数据库，但是为了后续工作更稳妥的开展，我们采购了人工核对，手工建立的方式，重新梳理表结构。<br>我们根据 Java 代码和原 MySQL&nbsp;数据库，分析出了详细的的表结构设计：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366111414981293506314992.png" title="image.png" alt="image.png"><br><br>在这一过程中，也对原表结构进行了修订与细节调整，主要修订以下存在的问题：<br>1）字段命名模糊，比如字段 modify_person ，或 person_id 。系统中存在&nbsp;后台用户&nbsp;和&nbsp;客户&nbsp;两个概念，一个用表 user&nbsp;存储，一个用表 customer&nbsp;存储，所以一些表中的 person_id&nbsp;指向很模糊。<br>2）字段命名不统一，比如同样是备注，有些表使用 description ，有些表则使用 remark诸如此类，我们在重构中进行了完全的统一。<br>3）去除了原系统中不使用的表和字段，重新设计部分基础结构方面的表，去除了原开发人员复用的不知名项目相关的字段关联关系。<br>4）一些单词拼写错误。<br><br>此外，优化了一些表关联结构及业务：<br>1）商品与商品分类的关系，由一个商品只能属于一个分类，优化为允许属于多个分类，变为类似标签的概念。<br>2）商品的图片存储，由关联表的一对多存储，优化为在商品表通过一个字段存储 json&nbsp;数组来保存图片URL，这一优化可以使后台相关代码简化许多。<br>3）若干字段存储不合理的问题，可能是由于开发过程中的需求调整，开发人员对增加的字段存储欠考虑，存储的位置和结构存在问题，我们在重构中进行了修正。<br><br>表和字段的命名方式，不管合不合理，毕竟我们是重构，不是推倒重做，所以没有太大变化，继承了过去的规则和方式，但是去掉了“jade_”&nbsp;的表名前缀。<br>梳理数据库之后，我们为数据库建立了完整的外键关联关系，使用 Entity Framework&nbsp;生成了实体模型：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366114084080762747207707.png" title="image.png" alt="image.png"><br><br><br><strong><span style="font-size: 18px;">第二步：迁移数据</span></strong><br><br>在改造之后，需要将原数据库中的数据完全迁移过来，考虑到表结构发生了一定的变化，已无法简单的数据导出导入，我们专门编写了一系列的迁移脚本在上线前完成数据迁移工作。<br><br><br><strong><span style="font-size: 18px;">第三步：.NET&nbsp;版本后台框架的搭建</span></strong><br><br>首先我们确立重构所要达到的目标：<br><br>1）<span style="text-decoration: underline;">完全兼容</span> Java 版本向 APP&nbsp;端提供的 API&nbsp;接口，不影响线上 APP&nbsp;的正常使用。<br>2）针对后台管理功能所提供的 API&nbsp;接口，<span style="text-decoration: underline;">使用更规范的方式独立实现</span>，不继承 Java&nbsp;版的后台 API&nbsp;接口。<br>3）<span style="text-decoration: underline;">后台的全部重新实现</span>，包括全部 UI，Java&nbsp;版本的 UI&nbsp;有很多缺陷一直被客户诟病，体验不佳。<br>4）以最小的代价完成此次重构，<span style="text-decoration: underline;">计划 2&nbsp;个人，2个周末</span>，共 8&nbsp;人天的时间完成全部工作。<br><br>对以上问题，我们在开工前进行了简要的分析，难度并不大，但是工作量不小。接口的问题，我们定义两套，一套后台使用，一套 APP&nbsp;使用，给 APP&nbsp;使用的接口，只需参照 Java&nbsp;版代码定义 DTO&nbsp;对象，实现与数据库实体对象的映射关系即可，后台接口和整个后台管理端UI部分，在过去我做的 .NET Web 项目上进行大幅简化复用即可。<br><br>为了便于说明，我画了一张简要的结构图来说明两套 Api ：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366114861548045103654178.png" title="image.png" alt="image.png"><br><br>项目的实际规模并不大，且由于我们力求最小成本，所以如图所见，项目的结构也同样简单，本次改造工作无需追求技术体系的先进性，能够满足项目的要求即可。<br>左边后台到 Api ，再到 Core&nbsp;有现成的代码可以复用，实现了出入参协议、鉴权等基本功能，只需要实现业务逻辑即可，右侧 AppApi&nbsp;部分，则需要多一层协议转换工作，将原 Java&nbsp;版本的出入参协议转换为 Core&nbsp;要求的协议格式，而原 Java&nbsp;版的 Api&nbsp;接口协议并不统一，需要一个一个接口核查复刻。&nbsp;<br><br>后台解决方案结构如下：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366114933104237086748979.png" title="image.png" alt="image.png"><br><br><span style="text-decoration: underline;">CCPRestSDK</span><br>&nbsp; &nbsp; 我们使用的短信平台的 SDK。<br><span style="text-decoration: underline;">Jade.Core</span><br>&nbsp; &nbsp; 业务逻辑层<br><span style="text-decoration: underline;">Jade.Model</span><br>&nbsp; &nbsp; 数据库实体模型<br><span style="text-decoration: underline;">Jade.Model.Dto</span><br>&nbsp; &nbsp; 用于前后台数据传输的对象定义，包括针对 Model&nbsp;的传输对象定义和其它需要传递的对象定义。<br><span style="text-decoration: underline;">Sheng.Kernal</span><br>&nbsp; &nbsp; 基础类库，提供了如反射，HTTP请求，对象映射等等基础功能。在复用到本项目时经过了简化。<br><span style="text-decoration: underline;">Sheng.Web.Infrastructure</span><br>&nbsp; &nbsp; 用于 Web&nbsp;项目的基础类库，提供了通用 Api&nbsp;协议定义，控制器、DTO等共通的基础功能，在复用到本项目时经过了简化。<br>&nbsp; &nbsp; 这里包括一个专门为此项目写的友盟推送实现，友盟官方没有提供 C#&nbsp;版 SDK。<br><br><br>考虑到这个项目比较简单，我在这里不再对基本技术体系做太多赘述，而是通过两个简单的请求过程进行阐述，代码已经开源在了 Github&nbsp;上，可以下载代码后根据下文进行查看。<br><br><span style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);"><strong>Github</strong>：</span>&nbsp;<a href="https://github.com/iccb1013/Jade.Net" target="_blank" title="https://github.com/iccb1013/Jade.Net" style="white-space: normal;">https://github.com/iccb1013/Jade.Net</a><br><br><strong><span style="font-size: 18px;"><br>Api&nbsp;的请求过程</span></strong><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115050853386673259436.png" title="image.png" alt="image.png"><br><br>在 Areas&nbsp;下提供了 Api&nbsp;和 AppApi&nbsp;两个区域提供接口，我们以 Api&nbsp;下的 ProductController&nbsp;为例，它向后台 UI 提供产品相关的接口：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115061669238417149969.png" title="image.png" alt="image.png"><br><br>以 UpdateProduct&nbsp;接口进行说明，此接口用于更新产品，此接口接收前端传入的商品信息，并更新数据库中的商品信息：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115071775894675975720.png" title="image.png" alt="image.png"><br><br>此接口的 RequestArgs&nbsp;方法是接口 Controller&nbsp;的基础 ApiBaseController&nbsp;所提供的，用于把前端 Post&nbsp; 过来的内容反序列化成指定的对象。<br><br>Product_Info product = Mapper.Map&lt;Product_Info&gt;(args);&nbsp;<br><br>作用是将 Dto&nbsp;对象映射为数据库实体对象，这里我们使用了开源组件 AutoMapper。<br><br><em>有关 AutoMapper&nbsp; 可以访问：http://automapper.org/</em><br><br>引用 AutoMapper&nbsp;组件后，只需定义不同对象间的映射规则即可，可适用于绝大多数情况，Product_Info&nbsp;的映射规则如下：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115095345822464670947.png" title="image.png" alt="image.png"><br><br>接口在完成对象映射后，调用 Core&nbsp;中的方法来实现业务：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115113794937981377741.png" title="image.png" alt="image.png"><br><br>基本的 Entity Framework&nbsp;操作，不作赘述。<br><br>这里有一个细节，是图中标出的&nbsp;&nbsp;ShengMapper.SetValuesWithoutProperties&nbsp;部分，这个方法把&nbsp;传入的 product&nbsp;中数据拷贝到从数据库取出来的 dbProduct&nbsp;中，但是跳过2个指定的属性和所有的虚属性。<br>AutoMapper&nbsp;不能定义同一个对象类型的映射规则，也不能灵活的在不同场景使用不同的规则，所以我写了 ShengMapper&nbsp;用于处理这种情况。<br><br>ShengMapper&nbsp;也是开源的：<span style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);"><strong>Github</strong>：</span>&nbsp;<a href="https://github.com/iccb1013/Sheng.Mapper" target="_blank" title="https://github.com/iccb1013/Sheng.Mapper">https://github.com/iccb1013/Sheng.Mapper</a><br><br>此外可以留意到方法的返回对象是&nbsp;NormalResult，这是一个 Core&nbsp;层使用的一般返回对象：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115186516967726908775.png" title="image.png" alt="image.png"><br><br>相当于一个逻辑上不需要返回值的方法，但我们需要知道它的执行状态，如：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115191699010156012184.png" title="image.png" alt="image.png"><br><br>有一些开发人员爱用 Exception&nbsp;来返回业务结果，这样做是非常不合适的，比如这里的&nbsp;商品编码重复，他是一个业务操作的结果，并且这个结果是在我们的预期之内的，不是一个&nbsp;程序异常。<br>用异常来返回业务操作结果有两个非常大的弊端，一是抛异常时非常影响性能，二是要区别对待真的程序异常和业务结果，也是十分麻烦的事情。总之，没有理由这么做。<br><br>NormalResult&nbsp;还提供了一个重载，可以返回指定类型的对象结果：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115221982850476129591.png" title="image.png" alt="image.png"><br><br>当 Core&nbsp;层完成业务操作时，Controller&nbsp;层的 API&nbsp;会通过一个 ApiResult&nbsp;对象来封装 Api&nbsp;接口的返回结果：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115231834130728399865.png" title="image.png" alt="image.png"><br><br>此处的 return ApiResult()&nbsp;方法，是&nbsp;Sheng.Web.Infrastructure&nbsp;中的 BaseController&nbsp;所提供的，可以处理大多数 Api&nbsp;返回结果：<br><br>&nbsp;<img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115237235808876629978.png" title="image.png" alt="image.png"><br><br>如果都不能满足，也可以手工 new&nbsp;一个&nbsp;ApiResult&nbsp;返回：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115243589164594155528.png" title="image.png" alt="image.png"><br><br>Hint&nbsp;只在部分特殊情况下使用，并不会为每种操作结果安排一个错误码，对于我们的项目来说，多传一些字节回去没有问题，但有些特殊场景，前端需要知道具体的情况针对性处理，这时我们才使用错误码。<br><br><br>Sheng.Web.Infrastructure&nbsp;还提供了对于请求分页列表数据的通用协议：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115288519010612063786.png" title="image.png" alt="image.png"><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115291653939728682635.png" title="image.png" alt="image.png"><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115292738435021303598.png" title="image.png" alt="image.png"><br><br>GetListDataArgs&nbsp;对象使用一个&nbsp;ParametersContainer&nbsp;来存储查询条件，它其实是一个键值对。避免为每一个查询定义强类型的查询入参对象，实在是太过麻烦了，也没有必要。<br><br>我们通过这样的方式来处理查询条件即可：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115305479814552379814.png" title="image.png" alt="image.png"><br><br><br><strong><span style="font-size: 18px;">下面我们再看一个 AppApi&nbsp;的说明，我们还以产品信息为例，它的 Api&nbsp;定义：</span></strong><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115324276502329254760.png" title="image.png" alt="image.png"><br><br>在 AppApi&nbsp;中，为了兼容既有的接口约定，做了许多转换工作：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115335172824027502071.png" title="image.png" alt="image.png"><br><br>把原 APP&nbsp;接口的查询条件，转换为上文提到的 ParametersContainer：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115379707254637314172.png" title="image.png" alt="image.png"><br><br>这里把 APP&nbsp;接口的列表查询入参，转换为我们过去定义好的 GetListDataArgs：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115369890936002472670.png" title="image.png" alt="image.png"><br><br>这里做一些字段转换时的特殊标记：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115374117587039927636.png" title="image.png" alt="image.png"><br><br><br>此外，原 Java&nbsp;版在向 APP&nbsp;提供接口时，提供给 APP&nbsp;的 DTO&nbsp;对象，十分诡异的和数据库模型不一致，比如数据库字段名有下划线，但是 DTO&nbsp;传输模型没有，还有一些字段的命名则是完全不一样，我们利用 AutoMapper&nbsp;来逐一映射：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115358809161072527427.png" title="image.png" alt="image.png"><br><br>至此，项目的结构已经完全清楚，剩下的全部是业务逻辑层的业务操作。&nbsp;<br><br>重构工作的完成的效果：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115423841479076585716.jpg" title="新后台列表.jpg" alt="新后台列表.jpg"><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366115424642673464437583.jpg" title="新后台编辑.jpg" alt="新后台编辑.jpg"><br><br><br><strong><span style="font-size: 18px;">前端 UI&nbsp;的实现方法：</span></strong><br><br>前端 UI&nbsp;及脚本库复用了我之前写过的 Web&nbsp;项目， Asp.net MVC，结合使用了前后端分离和 Razor&nbsp;两种方式。<br><br>Razor&nbsp;引擎具有极高的开发效率，在做页面数据展示时非常的方便，借助 Razor&nbsp;和 Asp.net MVC&nbsp;的布局页和分布页技术，可以快速而有效的搭建页面框架。<br><br>如下图，定义了一个用于一般列表页面的布局页（模版）：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366120728332430737650639.png" title="image.png" alt="image.png"><br><br>可以轻松的看出页面定义了大体结构：标题，副标题，按钮，查询区，表格容器和分页容器。表格容器和分页容器并没有使用 Razor，而是在具体视图页通过一般前后端分离的方式用脚本进行处理。<br><br>这是一个一般列表页视图实现的例子，基于上面的布局页，<span style="text-decoration: underline;">代码量就只有不到100行，</span><span style="text-decoration: none;">就实现了一个普通列表页面。</span><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366120745928307741362407.png" title="image.png" alt="image.png"><br><br>只需要初始化table，主要是定义这个页面中表格所具备的列，查询参数即可，另外在定义一个查询条件区，这个列表页面就完成了。所有共通的功能都写在了布局页和共享的脚本文件中。<br><br>编辑和查看页面也使用了同样的处理方式，不再赘述。&nbsp;<br><br><span style="text-decoration: underline;">基于开发效率和实际项目需要考虑，我们这里没有使用重量级的前端开发框架，而是复用了过去我写的 js&nbsp;脚本</span>，这些脚本基于 jQuery&nbsp;完成一些共通的功能来提高开发效率，如处理数据加载绑定，发起 Api&nbsp;请求等操作。<br><br>common.js：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366120788150895149405992.png" title="image.png" alt="image.png"><br><br>这里的 __getDto&nbsp;和 _setDto&nbsp;方法，搭配页面 HTML&nbsp;的特殊标记，可以实现前端对象的自动生成和绑定：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366138096328796738682358.png" title="image.png" alt="image.png"><br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366138098910979652964074.png" title="image.png" alt="image.png"><br><br>在 HTML&nbsp;标签中用 dtoproperty&nbsp;属性标记出 DTO&nbsp;对象的属性名后，使用 __getDto&nbsp;方法即可自动生成前端对象。<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366138107411256794329429.png" title="image.png" alt="image.png"><br><br>使用 __setDto&nbsp;方法，则可以快速把 Api&nbsp;返回的对象，加载到前端控件中。<br><br>如上图所示，前端画面简单的保存，加载数据就完成了。<br><br><br>listViewCommon2.js，这是用于一般表页的脚本，基于这里的共通脚本，加上Razor&nbsp;引擎的布局页功能，实现了不到 100&nbsp;行 HTML&nbsp;和 JS&nbsp;代码即可完成一个列表页面，当然，如果追求技术上的更加完美，可以继续抽象，继续封装达到更好的效果：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366120796396088155215869.png" title="image.png" alt="image.png"><br><br><br>editViewCommon.js ，这是用于一般编辑页面的脚本：<br><br><img src="./sheng.c - 8_人天，小记一次 JAVA（APP后台） 项目改造 .NET 过程_files/6366120805912596474344642.png" title="image.png" alt="image.png"><br><br><br>你可以从 Github&nbsp;上下载代码之后在&nbsp;Jade.Shell&nbsp;的&nbsp;Scripts&nbsp;目前下查阅这些脚本。<br><br>整个项目从纯技术角度来说还有许多提高改进的空间，但我们现在是做项目，不是做研究做框架产品，我们可以在未来的项目中通过项目推进的方式一步一步的提炼和完善我们的开发模式和技术体系。<br><br>最终，2个人，2个周末，在大量复用过去代码的基础上，只消耗了8人天完成了本次改造工作。<br><br><span style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);"><strong>Github</strong>：</span>&nbsp;<a href="https://github.com/iccb1013/Jade.Net" target="_blank" title="https://github.com/iccb1013/Jade.Net" style="white-space: normal;">https://github.com/iccb1013/Jade.Net</a><br><br><br><strong>本次工作之后的一点心得体会，主要是几个失误的地方：</strong><br><br>1）前期将项目交给过去的同事来做，没有过多关注，导致了项目上线前遭遇许多问题，却得不到妥善解决，我个人秉承诚以待人的原则，用人不疑，疑人不用，这一点我想没有错，错的是我完全放手没有投入精力把控工程，除了报销吃喝费用外基本不参与，这是一个教训，<span style="text-decoration: underline;">无论何种情况，应该一定程度的参与并把控好各项主要工作</span>。<br><br>2）立项时预估后台工作量只需1个人月，为了分担人员风险，我还是多付了一个人的费用安排2个人来做，但<span style="text-decoration: underline;">在人员使用上，没有做到风险规避。</span><br><br>3）过早的结清了人员费用，导致工作无法顺利推进，对于外包项目，<span style="text-decoration: underline;">费用结算一定要有计划性，包括预留尾款。</span><br><br>最后我想谈一谈技术人员的“人设”问题，这是我从此项目上深刻认识到的一个问题。<br><br>我做了超过十年的技术研发工作，但同时许多朋友说我不像一个程序员，我并不认为程序员一定要双肩包，开口只谈技术，相反随着年龄和阅历的增长，我一天比一天认识到业务、行业的重要性，我很早就知道做技术是为了什么，做技术不是为了做技术，而是为了服务我们的客户，服务社会，服务一切需要的人，我更关心的是我要做什么事情，我的目标是什么。一直以来我认为这是一个技术人员转变和提高的核心观念。<br><br>但是最近一到两年，我慢慢意识到，有时我们需要让自己契合对方心理上的某种“人设”，就这个玉雕工作室的项目来说，我和客户谈需求和业务比较多，吃饭喝酒比较多，加上不那么技术的形象（长头发，扎辫子），导致客户始终不认为我是一个技术人员，当然我也不太在意这一点，但是，后来我意识到一些问题。<br><br>对于这种小型外包项目，特别是还没有接下来之前，客户最在意的还是我们有没有技术实力做好，能不能给我们做，这里有一个角色带入的问题，这时我不是供职于大公司的项目经理服务于既有客户，扎辫子花衣服做需求也不是不可以，但是当时我是一个要接项目的人，在互相不了解的情况下，如何快速建立信任？最简单的办法是让自己契合对方心理上的“人设”：我就是你要找的人。<br><br>许多客户包括企业领导层，对技术人员都有自己所理解的“人设”，客户不懂技术，领导也许也不那么懂技术，他们要找有技术实力的人，怎么办呢，说白了，凭感觉。<br><br>玉雕这个项目直到原来 Java&nbsp;版后台的两个开发人员撂挑子，客户都感叹他们技术好，客户是做工艺品的，和IT技术八杆子打不着边，为什么？这件事让我反思了很久，就是“人设”。<br><br>于是我剪了头发，换上衬衫，买一个瑞士军刀电脑包（笑）。以便于我在不同的时候有不同的人设。<br><br>当然更重要的是对于技术和业务的种种理念，在和不同的人表达的时候，要特别注意表达的方式和技巧，以及表达到什么度。对于水平比自己高的人，可以随意表达自己的想法，不要怕，但是遇到经验或能力不如自己的人时，要特别小心，因为对方可能无法体悟你的意思。<br><br>比如和同样一个做过十年项目的老鸟说一句：技术不是那么重要，也许双方可以会心一笑，重要的是彼此知道我们所说的技术不重要的点，技术不重要的度在哪里。但是如果和一个没有太多各种项目经验的人说这样的话，可能是不合适的，对方会不能理解，进行主观的判断你不行，因为你不技术。<br><br>唯一的办法是不要太个性，要契合别人的人设，不管他有没有道理。"木秀于林风必摧之"，瑞士军刀电脑包该背还是要背（笑）。<br><br><br><br><strong>本文联合作者：<br></strong><br></p><p><strong>曹旭升<br></strong>QQ：279060597<br>Email：cao.silhouette@msn.com<strong><br></strong><a href="http://blog.shengxunwei.com/" target="_blank" title="http://blog.shengxunwei.com">http://blog.shengxunwei.com</a><strong><br><br>范大宏<br></strong>QQ：237194340<em><br></em>Email：whoarefan@gmail.com</p>
+                </div>
+
+        </div>
+
+    </div>
+    <div style="clear:both"></div>
+
+</div>
+
+
+
+
+
+</body></html>

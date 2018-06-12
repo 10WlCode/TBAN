@@ -1,0 +1,445 @@
+/* Minification failed. Returning unminified contents.
+(347,10): run-time error CSS1035: Expected colon, found '1px'
+ */
+/* CnblogsCommunity .TEXT SKIN by HeShi @ http://iheshi.cnblogs.com/ */
+/* This is freeware, you are free to use it. */
+
+/* Links of all the skin */
+a:link, a:active {color : #666666; text-decoration:none;}
+a:visited {color : #666666; text-decoration:none;}
+a:hover {color : #666666; text-decoration:none;}
+
+
+/* Main Body Properties */
+.commentform
+{
+                background-color: #EEEEEE;
+}
+body {
+		background-color: #A8CE29;
+                background-image: url(images/o_background.gif);
+                margin:0px;
+		padding:0px;
+		font-family: verdana,Arial,helvetica,sans-seriff,"����";
+		font-size:12px; /*small*/
+		word-wrap:  break-word;
+                border: 0px;
+}
+.headerText
+{
+              font-size: 12px;
+              font-family: verdana,Arial,helvetica,sans-seriff,"����";
+              position : absolute;
+              top : 250px;
+              left : 15px;	             
+}
+
+/* Header */
+.header {
+                border: 0px;
+	height:310px;
+	background-color: #FFFFFF;
+                background-image: url(images/o_HeadLogo.jpg);
+                background-repeat:no-repeat;
+}
+
+a.headermaintitle {
+	font-size:24px;
+	text-decoration:none;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+                line-height: 150%;
+}
+
+/* Floating Left Menu */
+#leftcontent {
+	position : absolute;
+	top : 350px;
+	left : 0px;	
+	width : 220px;
+	background-color : #E2ECE1;	
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:12px;
+                border: 0px;
+}
+
+#leftcontentcontainer  {
+	padding:10px;
+}
+
+#centercontent {
+   	padding-top:0px;
+   	padding-right:0px;
+   	padding-left:220px;
+                border: 0px;
+}
+
+#mytopmenu {
+                border: 0px;
+	color:#666666;
+	border-top:0px;
+   	background-color:#FFFFFF;
+   	padding:8px;
+   	padding-left:10px;
+   	padding-right:5px;
+	margin-top:0px;
+	margin-right:0px;
+   	margin-left:0px;
+   	text-align:right;
+	font-size:12px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+}	
+
+#rightcontent {
+	position: absolute;
+	right:10px;
+	top:70px;
+	width:200px;
+	background:#fff;
+}
+
+#mylinks {
+                border: 0px;
+	font-size:12px;
+	position:absolute;
+   	padding:8px;
+   	padding-left:12px;
+   	padding-right:12px;
+   	left:0px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+	}
+		
+.footer {
+	color:#2C3A6B;
+   	padding:12px;
+   	padding-left:10px;
+	margin-top:0px;
+	margin-right:0px;
+   	margin-left:220px;
+   	text-align:center;
+   	line-height:20px;
+                font-size: 12px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+                background-color: #E6F0D8;
+}	
+/* End Layout and Formatting */
+
+.day {
+	background-color:White;
+   	padding:20px;
+	color:#7B7D62;
+	margin-bottom:3px;
+        border: 0px;
+        font-size:13px;
+	line-height:150%;
+}
+
+.dayTitle {
+	font-size:12px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+	text-transform:uppercase;
+	font-weight:bold;
+	margin-bottom:20px;	
+}
+
+.postSeparator {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.news {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:12px;
+	font-weight:bold;
+}
+
+.newsItem {
+	margin-top:2px;
+	margin-bottom:20px;
+}
+
+.blogstats {
+	font-size:10px;
+}
+
+.entrylist {
+	background-color:White;
+   	padding:20px;
+   	padding-bottom:8px;
+	color:#7B7D62;
+}
+
+.entrylistTitle {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:16px;
+	font-weight:bold;
+	color:Black;
+}
+
+.entrylistDescription {
+	margin-bottom:20px;
+}
+
+.entrylistItemTitle {
+	font-size:13px;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.entrylistItemPostDesc {
+	font-size:10px;
+}
+
+.gallery {
+	background-color:White;
+   	padding:20px;
+	color:#7B7D62;
+}
+
+.galleryTitle {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:16px;
+	font-weight:bold;
+	color:Black;
+}
+
+.galleryDescription {
+	margin-bottom:20px;	
+}
+
+.galleryThumbnail {
+	padding:20px;
+	padding-left:0px;
+}
+.post {
+	border:0px;
+   	background-color:White;
+   	padding:20px;
+	color:#7B7D62;
+	font-size:13px;
+	line-height:1.5;
+}
+
+.post a:link {color : #729773; text-decoration:none;}
+.post a:active {color : #729773; text-decoration:none;}
+.post a:visited {color : #729773; text-decoration:none;}
+.post a:hover {color : #729773; text-decoration:none;}
+
+.postTitle {
+	font-size:12px;
+	font-weight:bold;
+                font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	margin-bottom:10px;
+}
+
+.postTitle2 {
+	text-decoration:none;
+	font-size:14px;
+                font-weight: bold;
+                font-family:verdana,Arial,helvetica,sans-seriff,"����";
+}
+
+.postDesc {
+	color:#4B8D32;
+	margin-top:10px;
+}
+
+.contact {
+	border:0px;
+                background-color:White;
+   	padding:20px;
+   	padding-left:22px;
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-weight:bold;
+	font-size:12px;   	
+}
+
+.comments {
+	border:0px;
+	border-top:0px;	
+   	background-color:White;
+   	padding:20px;
+   	padding-left:22px;
+   	padding-top:0px;
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-weight:bold;
+	font-size:12px;   	
+}
+
+.commentsTable {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:12px;  
+	margin-top:15px; 
+}
+
+.feedback {
+	border:0px;
+	border-bottom:0px;	
+   	background-color:White;
+   	margin-top:0px;
+   	margin-bottom:0px;
+   	padding:20px;
+   	padding-bottom:30px;
+}
+
+.feedbackTitle {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-weight:bold;
+	font-size:12px;
+}
+
+.feedbackItem, .feedbackNoItems {
+	margin-bottom:0px;
+	margin-top:20px;
+	line-height:150%;
+}
+
+.feedbackList {
+	list-style: none;
+	margin-left:0px;
+	margin-right:0px; 
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.feedbackListTitle {
+	padding-bottom:6px;
+	position:absolute;
+	font-size:12px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+	text-transform:uppercase;
+	padding:5px;
+	padding-left:7px;
+	color:#8B8D72;
+}
+
+.feedbackListSubtitle {
+	background-color:#eBeDf2;
+	color:#8B8D72;
+	padding:5px;
+	padding-right:7px;
+	border:1px dotted #8B8D72;
+	text-align:right;
+	font-size:12px;
+                font-family: verdana,Arial,helvetica,sans-seriff,"����";
+	text-transform:uppercase;
+	margin-bottom:8px;
+}
+
+.catListTitle {
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:12px;
+	margin-bottom:2px;
+}
+
+h3
+{
+	font-family:verdana,Arial,helvetica,sans-seriff,"����";
+	font-size:12px;
+	margin-bottom:2px;
+}
+
+.catList {
+	list-style: none;
+	border-top: 0px;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom:20px;
+}
+
+catListItem { 
+	padding 1px 0px 1 px 0px;
+	margin-left: 5px;
+	text-align: left;
+}
+
+ul {
+	list-style: none;
+	margin : 0px;
+	padding-left : 5px;
+	margin-left : 5px;
+	margin-bottom : 10px;
+	font-size : 12px;
+                font-color: #967447;
+}
+
+.Cal
+{
+
+	width:200px;
+	font-family:Arial;
+	font-size: 12px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height:180px;
+	
+	 	
+}
+
+.CalTitle
+{
+	background-color :#FFFFFF;
+	font-family:Arial;
+	font-size: 13px;
+	margin-left : 0px;
+	padding : 0px;
+	height:100%;
+	font-weight:bold;
+}
+
+.CalOtherMonthDay
+{
+	color:#808080;
+	
+}
+
+.CalSelector
+{
+	background-color:#CCCCCC;
+	
+}
+
+a.CalNextPrev,a.CalNextPrev:link, a.CalNextPrev:visited, a.CalNextPrev:active
+{
+	color:#FFF;
+}
+
+.CalNextPrev
+{
+	color:#FFF;
+}
+
+
+.CalDayHeader
+{
+	background-color:#EFEFEF;
+	font-weight:bold;
+	
+}
+
+.CalSelectedDay
+{
+    background-color:#CCCCCC;
+   
+     
+}
+
+.CalWeekendDay
+{
+	background-color:#EFEFEF;
+}
+
+.CalTodayDay
+{
+	background-color:#DDDDDD;
+	
+    
+}
+
+img
+{
+	border:0px;
+}
+
+.commentform {
+padding-left:10px;
+}

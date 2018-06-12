@@ -1,0 +1,37 @@
+npm install -g eslint
+install ESlint extension on VSCode
+npm install --save-dev eslint-config-rallycoding
+在工程文件内 创建.eslintrc文件
+写入
+{
+  "extends":"rallycoding"
+}
+这个文件夹内也有备份好的配置eslint-config-rallycoding,防止用不了,可以复制然后放在node_modules里面然后建立文件,继承rallycoding
+
+ESlint的插件不要乱装,要不然冲突了写代码乱报错!
+
+进化版.eslintrc文件
+{
+  "extends": "rallycoding",
+  "plugins": [
+    "react",
+    "react-native"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".ios.js",
+          ".android.js"
+        ]
+      }
+    }
+  },
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "rules": {
+    "react/require-extension": "off"
+  }
+}

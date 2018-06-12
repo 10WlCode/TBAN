@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://www.cnblogs.com/Duane/p/6776302.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows 下安装 Ubuntu 双系统(更新) - duan22677 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Windows 下安装 Ubuntu 双系统(更新)_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Windows 下安装 Ubuntu 双系统(更新)_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Windows 下安装 Ubuntu 双系统(更新)_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Duane/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Duane/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Duane/wlwmanifest.xml">
+<script async="" src="./Windows 下安装 Ubuntu 双系统(更新)_files/analytics.js.下载"></script><script src="./Windows 下安装 Ubuntu 双系统(更新)_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'Duane', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./Windows 下安装 Ubuntu 双系统(更新)_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/Duane/"><img id="blogLogo" src="./Windows 下安装 Ubuntu 双系统(更新)_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/Duane/">人之初性本善</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/Duane/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/duan22677">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/Duane/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/Duane/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 4&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 37</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/Duane/p/6776302.html">Windows 下安装 Ubuntu 双系统(更新)</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h1>Windows + Ubuntu 16.04 ---&gt; 双系统</h1>
+<p>　　前言：本篇文章是对之前文章的更新，更新的主内容是把原来用手机拍摄的图片换成了虚拟机的截图，以及对磁盘划分的新的见解和一些使用感受，原本是打算删除之前的那篇Win + Ubuntu双系统的文章的，后来想想也许有的人读了原文之后，可以更好地理解这篇文章的一些用词，所以就将其保留，后来在写本文的时候，又发现了一个"好处"，有一些东西不用再写了，给个链接看原文相关内容就行了（这是多么的不负责任啊！---很少在这写博客，感觉写个博客还得调整格式，对我来说太难了，不知什么时候能支持Markdown.）对不住了！下面进入正题吧。</p>
+<p>　　　<a href="http://www.cnblogs.com/Duane/p/5424218.html" target="_blank"><strong>这里是原博客</strong></a></p>
+<h2>一、准备：</h2>
+<h3>（一）、准备工具：</h3>
+<p>&nbsp;　　➢U盘一个（请提前备份U盘里面的资料，因为后面操作要格式化U盘）</p>
+<p>&nbsp;　　➢Ubuntu16.04LTS（长期支持版）镜像：</p>
+<p>&nbsp;　　　　下载地址：<a href="http://www.ubuntu.com/download/desktop">http://www.ubuntu.com/download/desktop</a></p>
+<p>&nbsp;　　　　(Ubuntu中国下载地址：<a href="http://cn.ubuntu.com/download/">http://cn.ubuntu.com/download/</a>)</p>
+<p>&nbsp;　　　　云盘下载地址：百度云盘：链接：<a href="http://pan.baidu.com/s/1o7UgBCu">http://pan.baidu.com/s/1o7UgBCu</a>密码：vr90</p>
+<p>&nbsp;　　➢启动U盘制作软件：</p>
+<p>&nbsp;　　　　下载地址：链接：<a href="http://pan.baidu.com/s/1qYKNiYo">http://pan.baidu.com/s/1qYKNiYo</a>密码：t8u1</p>
+<p>&nbsp;　　　　（Ubuntu官网提供的页面：<a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows">http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows</a>）</p>
+<p>　　➢EasyBCD: 链接:&nbsp;<a href="https://pan.baidu.com/s/1slPiDZ3" target="_blank">https://pan.baidu.com/s/1slPiDZ3</a>&nbsp; 密码: z3r7</p>
+<p>&nbsp;　　<strong>[注：下面的(二)、(三)两步请参照<a href="http://www.cnblogs.com/Duane/p/5424218.html" target="_blank">原博客</a>]</strong></p>
+<h3>（二）、分区---分出来一个磁盘，用于安装Ubuntu</h3>
+<h3>（三）、制作启动U盘：</h3>
+<p>&nbsp;</p>
+<h2>二、安装Ubuntu</h2>
+<p class="FirstParagraph">(原本的图是我在电脑上边装边用手机拍的，效果不是很好，现在用的是虚拟机安装过程中截的图。)</p>
+<p><strong>(1) ------ </strong><strong>从</strong><strong>U</strong><strong>盘启动</strong><strong>: </strong>将U盘插在电脑上，选择启动方式为U盘启动。(如果你的电脑有两个USB...选项可供选择，可能一个带有“USB..UEFI”,另一个没有“UEFI”，请选择没有“UEFI”的，选带有“UEFI”的可能会出现问题，我有一个同学就是的，或者可以都试一下)（关于如何从U盘启动，快速U盘启动什么的，还请根据自己的电脑型号自行百度），下面是我的选择U盘启动的截图：</p>
+<p class="FigurewithCaption">&nbsp;</p>
+<p class="ImageCaption"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427204100475-49231789.jpg" alt="" width="800">&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>(2) ------ </strong><strong>欢迎界面</strong><strong>: </strong>选择了U盘启动后，等待一小会儿，会出现如下“欢迎”界面（通过左侧的语言栏选择中文），选择中文后，点击“安装Ubuntu”;</p>
+<p>&nbsp;<img style="vertical-align: middle" src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427204158725-252751600.png" alt="" width="800" height="450"></p>
+<p>&nbsp;</p>
+<p><strong>(3) ------ </strong><strong>准备安装</strong><strong>: </strong>接下来会进入“准备安装Ubuntu”界面：这里勾选“为图形或无线硬件….”,然后点击“继续”。（这里会检测是否已经连网，没网的话，那个 "安装Ubuntu时下载更新" 的是不能选的，我的因为截图用的虚拟机，连网了所以可选，你安装的时候应该会是不可选的，点完继续后还需要等待一小会儿）:</p>
+<p class="ImageCaption">&nbsp;<img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427204406834-1983781342.png" alt="" width="800"></p>
+<p>&nbsp;<strong>(4) ------ </strong><strong>选择安装类型</strong><strong>: </strong>上步之后进入“安装类型”界面，选择<strong>“</strong><strong>其他选项</strong><strong>”</strong>，之后继续，如图：(这里我的是虚拟机，实际安装那些可选项可能会有差异，但是请选择<strong>“</strong><strong>其他选项</strong><strong>”</strong>,其他的我没试过，不保证能成功，个人觉得选择"其他选择"也是最佳选项)</p>
+<p>&nbsp;<img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427204527959-650825100.png" alt="" width="800"></p>
+<p><strong>(5) ------ </strong><strong>安装位置的选择及磁盘分区</strong><strong>: </strong>之后就进入了一个很重要的环节---选择安装位置，分配分区。【说明---最开始我只分了是三个分区：“/”、“/home”、“swap”, 其实还需要一个挺重要的分区，就是"/boot"分区，在此感谢@<a href="http://home.cnblogs.com/u/786852/">小段阿誉</a>的建议。如果你的电脑只准备安装Ubuntu，个人感觉“/boot”不要也行，但是要是双系统的话，强烈建议分出一个"/boot"，这会在以后提供很大的便利。】</p>
+<h3>关于分区，想在这里说一下：</h3>
+<p class="FirstParagraph">分区的大小主要取决于个人的选择，以下内容可能会有一定帮助：</p>
+<ul>
+<li><strong>/boot</strong> - 200 MB ； 实际需求大约 100 ~ 200MB，如果有多个内核/启动镜像同时存在，建议分配 200 或者 300 MB。(个人建议:200MB ~ 300MB)</li>
+<li><strong>/</strong> - 15-20 GB ； 15-20 GB 对于大多数用户来说是一个比较合适的取值。(个人建议：15G短时间用不完，长期使用的话，建议20GB~25GB)</li>
+<li><strong>/home</strong> - [不定] ； 通常用于存放用户数据，下载的文件和媒体文件。在桌面系统中，/home 通常是最大的文件系统。(个人建议: 多多益善)</li>
+<li><strong>swap</strong> - [不定] ；在拥有不足 512 MB 内存的机器上，通常为 swap 分区分配2倍内存大小的空间。如果有更大的内存（大于 1024 MB），可以分配较少的空间甚至不需要swap 分区。(个人建议：感觉现在电脑的配置可以不要swap，但是也会用的着的，所以还是建议多少分点)</li>
+</ul>
+<p class="FirstParagraph"><strong>注意</strong>: 使用虚拟机时建议使用 Swap。<strong>如果你的磁盘空间实在是足够大的话，对上面的各个分区也可以酌情、适当地增大空间</strong><strong>(</strong><strong>这个自己体会吧</strong><strong>)</strong><strong>。当然如果磁盘空间不是很大的话，，也可以适当减小空间，但是尽量不要小于最小值（/boot 200MB）</strong></p>
+<p>以上只是个人的建议，从我现在的磁盘使用情况来给你们说明一下。(在此又想多絮叨几句，本博客第一次写于16年4月份吧因为换了固态硬盘，Ubuntu又重装了，大概是16年10月份，当时对各个分区并不是很了解，分的不是很合理)。当时我为Ubuntu系统总共分了大概120GB的空间， <strong>这是我的不怎么合理的分区，不要照着下面分区</strong>，其中：</p>
+<p>&nbsp;　　<strong>/boot</strong> ---- 2GB------&gt; 结果只用了100多MB，白白浪费了 1.8GB</p>
+<p>&nbsp;　　<strong>/</strong> ------ 50GB-------&gt; 结果到现在也就才用了，14GB不到，有36GB的空间在那里“呵呵”</p>
+<p>&nbsp;　　<strong>/home</strong> ---- 60GB ------&gt; 不是我省着用，都不敢怎么存东西，早就用完了，文件都清过几次了，现在主要是一些来编程、学习的东西( 搞 Android 开发 那些东西 就将近20个GB啊...)，其他东西都不敢乱存了。</p>
+<p>&nbsp;　　<strong>swap</strong> ------8GB ------&gt; 平时也是在那闲着，不过不一定某一天心血来潮在Ubuntu上装个Mac 或 Win 虚拟机，那就用得着了，所以这也是我上面建议多少分点儿的原因。(现在主要用的是Ubuntu，但是为了交作业有时还得切换到Windows去写word文档，虽然Ubuntu也有office软件，不过和微软的office在一些格式上会存在不兼容，出现排版错误，作业还是得用微软office写，所以在Ubuntu里装一个Win系统的虚拟机装上office，就不用来回切换系统了。)</p>
+<p><strong>好了，啰嗦了一大堆，下面看分区吧：</strong></p>
+<p>&nbsp;又要啰嗦了，我的虚拟机中只有一块完全空白的磁盘，大概120GB吧（在安装的过程中你会发现，磁盘显示的大小可能不止120GB，会有点出入，这个不要太纠结，想要了解的自己去查下资料吧）。</p>
+<p>　　<strong>/boot</strong> 分区: &nbsp;------ 300MB</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;这里又要多说几句，虽然啰嗦，不过请先看完这些...下面的图中/boot分区类型选择的是"逻辑分区",由于要把Ubuntu引导安装到/boot中，所以到后面"安装启动引导器的设备"要选择"/boot"分区，不过我在多次安装的过程中，遇到了以下的一些情况：</p>
+<table border="1">
+<tbody>
+<tr>
+<td>安装设备</td>
+<td>/boot分区类型</td>
+<td>引导器</td>
+<td>结果</td>
+</tr>
+<tr>
+<td>电脑(组成双系统)</td>
+<td>逻辑分区　　</td>
+<td>/boot</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>虚拟机</td>
+<td>逻辑分区</td>
+<td>/boot</td>
+<td>可以正常安装，但是不能启动</td>
+</tr>
+<tr>
+<td>虚拟机</td>
+<td>主分区</td>
+<td>/boot</td>
+<td>成功</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;网上有这样的说法，双系统<span style="font-family: Cambria, serif">--</span>原本电脑已经有了一个是主分区类型的引导器，这里的<span style="font-family: Cambria, serif">/boot</span>选择<span style="font-family: Cambria, serif">"</span>逻辑分区<span style="font-family: Cambria, serif">"</span>就行了；完全空白的一整块磁盘<span style="font-family: Cambria, serif">-- /boot </span>要选择<span style="font-family: Cambria, serif">"</span>主分区<span style="font-family: Cambria, serif">"</span>。我也没有都试过，不过应该是对的。所以，<strong>总结一句话，装双系统，</strong><span style="font-family: Cambria, serif"><strong>/boot </strong></span><strong>选择</strong><span style="font-family: Cambria, serif"><strong>"</strong></span><strong>逻辑分区</strong><span style="font-family: Cambria, serif"><strong>"</strong></span><strong>就行了</strong>，我自己的电脑也是这样的</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427205812365-383727227.png" alt="" width="800"></p>
+<p>　　<strong>/</strong>&nbsp;分区　------ 30GB</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427210032350-1835057866.png" alt="" width="800"></p>
+<p>　　<strong><span style="font-family: Cambria, serif">/home </span></strong>分区　------ 90GB　（安装后感觉 /home 有点大了，觉得可以再分给上面的 / 5GB，即 /home 85GB，/ 35GB）</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427210259225-1925031553.png" alt="" width="800"></p>
+<p>　　<span style="font-family: Cambria, serif"><strong>swap(</strong></span><strong>交换空间</strong><span style="font-family: Cambria, serif"><strong>)</strong> :　------ 5GB多吧（上面剩下的都给它了）</span></p>
+<p><span style="font-family: Cambria, serif">&nbsp;<img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427210412834-836103669.png" alt="" width="800"></span></p>
+<p>&nbsp;　　<span style="font-family: Cambria, serif"><strong>"</strong></span><strong>安装启动引导器的设备</strong><span style="font-family: Cambria, serif"><strong>"</strong></span><strong>选择</strong><span style="font-family: Cambria, serif"><strong>/boot</strong></span><strong>对应的分区</strong></p>
+<p><strong><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211201990-2014959472.png" alt="" width="800"></strong></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p>&nbsp;选择之后，检查无误，点击<span style="font-family: Cambria, serif">"</span>现在安装<span style="font-family: Cambria, serif">"...</span></p>
+<p><span style="font-family: Cambria, serif"><strong>(6) ------ </strong></span><strong>检查分区</strong><span style="font-family: Cambria, serif"><strong>:</strong></span></p>
+<p>&nbsp;<img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211329256-482776887.png" alt="" width="800"></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p>&nbsp;检查无误后，选择继续<span style="font-family: Cambria, serif">...</span></p>
+<p><span style="font-family: Cambria, serif"><strong>(7) ------ </strong></span><strong>选择地域</strong><span style="font-family: Cambria, serif">(</span>默认上海，直接<span style="font-family: Cambria, serif">"</span>继续<span style="font-family: Cambria, serif">"</span>就行，安装完之后可以设置精确的位置<span style="font-family: Cambria, serif">):</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211432459-79718422.png" alt="" width="800"></span></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p><span style="font-family: Cambria, serif"><strong>(8) ------ </strong></span><strong>选择键盘</strong><span style="font-family: Cambria, serif">(</span>汉语<span style="font-family: Cambria, serif">,</span>或根据个人喜好<span style="font-family: Cambria, serif">^_^):</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211518084-1874221386.png" alt="" width="800"></span></p>
+<p>&nbsp;<span style="font-family: Cambria, serif"><strong>(9) ------ </strong></span><strong>设置用户</strong><span style="font-family: Cambria, serif">:</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211610490-1258186830.png" alt="" width="800"></span></p>
+<p>&nbsp;设置完之后，选择<span style="font-family: Cambria, serif">"</span>继续<span style="font-family: Cambria, serif">"...</span></p>
+<p><span style="font-family: Cambria, serif"><strong>(10) ------ </strong></span><strong>正在安装，请等待</strong><span style="font-family: Cambria, serif">:</span></p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211717709-1779740720.png" alt="" width="800">&nbsp;</p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p><span style="font-family: Cambria, serif"><strong>(11) ------ </strong></span><strong>安装成功，请重启</strong><span style="font-family: Cambria, serif">:</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211811475-358842792.png" alt="" width="800"></span></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p>&nbsp;如果你是按照此过程安装的，上步重启之后会发现，没有<span style="font-family: Cambria, serif">Ubuntu</span>的选择项，依旧直接进入<span style="font-family: Cambria, serif">Windows</span>，别急，往下看。</p>
+<p><span style="font-family: Cambria, serif"><strong>(12) ------ </strong></span><strong>设置启动项</strong><span style="font-family: Cambria, serif">:</span></p>
+<p>　　进入<span style="font-family: Cambria, serif">Windows </span>后，安装 <span style="font-family: Cambria, serif">EasyBCD </span>，之后运行<span style="font-family: Cambria, serif">(</span>直接上图了<span style="font-family: Cambria, serif">)</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211907740-340778727.png" alt=""></span></p>
+<p>&nbsp;</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427211953084-756456199.png" alt=""></p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427212014319-1748401535.png" alt=""></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p>&nbsp;上面的所有都做完之后，重启，你会发现多了一个启动项，选择刚才添加的那个<span style="font-family: Cambria, serif">(</span>自己想的名字<span style="font-family: Cambria, serif">)</span>，然后会进入以下界面<span style="font-family: Cambria, serif">:(</span><strong>请选择第一项</strong><span style="font-family: Cambria, serif">)</span></p>
+<p><span style="font-family: Cambria, serif"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427212106225-815609850.jpg" alt=""></span></p>
+<p>&nbsp;输入用户密码:</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427212139365-314416421.png" alt="" width="800"></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<p>接下来就开始折腾吧！</p>
+<p><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/737460-20170427212218834-1510996755.png" alt="" width="800"></p>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style>
+<style>p { margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; text-align: left; orphans: 2; widows: 2 }
+a:link { color: #4f81bd; text-decoration: none }</style></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6776302,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;489482fa-f4d5-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Duane/" target="_blank"><img src="./Windows 下安装 Ubuntu 双系统(更新)_files/20150502183250.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Duane/">duan22677</a><br>
+            <a href="http://home.cnblogs.com/u/Duane/followees">关注 - 7</a><br>
+            <a href="http://home.cnblogs.com/u/Duane/followers">粉丝 - 8</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;489482fa-f4d5-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6776302,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+    <div class="buryit" onclick="votePost(6776302,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/Duane/p/5424218.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/Duane/p/5424218.html" title="发布于2016-04-23 11:57">Windows下安装Ubuntu 16.04双系统</a><br><a href="http://www.cnblogs.com/Duane/p/6835456.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/Duane/p/6835456.html" title="发布于2017-05-10 13:26">Ubuntu 安装 H3C iNode 客户端</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-04-27 21:35</span> <a href="http://www.cnblogs.com/Duane/">duan22677</a> 阅读(<span id="post_view_count">9952</span>) 评论(<span id="post_comment_count">16</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6776302" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/Duane/p/6776302.html#" onclick="AddToWz(6776302);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=223988,cb_entryId=6776302,cb_blogApp=currentBlogApp,cb_blogUserGuid='489482fa-f4d5-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2017/4/27 21:35:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3729203,&#39;Qlj9jmlaCLlTJF7wWEskcnovHLF39GBoNgYBCBJ5KG/zJnLdlwFcDg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3729203,&#39;Qlj9jmlaCLlTJF7wWEskcnovHLF39GBoNgYBCBJ5KG/zJnLdlwFcDg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3729203" class="layer">#1楼</a><a name="3729203" id="comment_anchor_3729203"></a>  <span class="comment_date">2017-07-05 17:49</span> <a id="a_comment_author_3729203" href="http://home.cnblogs.com/u/1194455/" target="_blank">何忠原</a> <a href="http://msg.cnblogs.com/send/%E4%BD%95%E5%BF%A0%E5%8E%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3729203" class="blog_comment_body">设置好basybcd之后重启选择系统进去找不到文件</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3729203,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3729203,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3730873,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3730873,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3730873" class="layer">#2楼</a><a name="3730873" id="comment_anchor_3730873"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-07-08 11:09</span> <a id="a_comment_author_3730873" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3730873" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3729203" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3729203);">@</a>
+何忠原<br>找不到什么文件？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3730873,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3730873,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3730873_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3767268,&#39;DIUHaS3V4uyECWumJ+Ian6LNF5LwzfqjnKL1XC7gDtDLBFqSCGwUSg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3767268,&#39;DIUHaS3V4uyECWumJ+Ian6LNF5LwzfqjnKL1XC7gDtDLBFqSCGwUSg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3767268" class="layer">#3楼</a><a name="3767268" id="comment_anchor_3767268"></a>  <span class="comment_date">2017-08-26 23:19</span> <a id="a_comment_author_3767268" href="http://home.cnblogs.com/u/971649/" target="_blank">1314不离不弃</a> <a href="http://msg.cnblogs.com/send/1314%E4%B8%8D%E7%A6%BB%E4%B8%8D%E5%BC%83" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3767268" class="blog_comment_body">我安装成功了，大神威武</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3767268,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3767268,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3801747,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3801747,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3801747" class="layer">#4楼</a><a name="3801747" id="comment_anchor_3801747"></a>  <span class="comment_date">2017-09-30 22:32</span> <a id="a_comment_author_3801747" href="http://home.cnblogs.com/u/1100170/" target="_blank">wangheq</a> <a href="http://msg.cnblogs.com/send/wangheq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3801747" class="blog_comment_body">博主，为什么我在选择安装类型时，其他的分区下面也会有空闲这两个字？然后就安装不成功了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3801747,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3801747,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802026,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802026,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802026" class="layer">#5楼</a><a name="3802026" id="comment_anchor_3802026"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-10-01 21:50</span> <a id="a_comment_author_3802026" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802026" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3801747" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3801747);">@</a>
+wangheq<br>这个可能是因为你的磁盘有一部分空间（分区）是未使用的（在Windows系统可能是隐藏的，看不到，需要用磁盘管理工具才能看到）。这里你在安装系统的时候不用理会他们，不过需要格外注意一下，看清你原本计划安装的磁盘和分区是哪一个，不要选错了。如果磁盘选择没有错误的话，请检查一下在安装的过程中，有没有哪个步骤遗漏了，看一下安装失败，报了什么错误或有没有什么提示</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802026,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802026,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3802026_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802035,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802035,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802035" class="layer">#6楼</a><a name="3802035" id="comment_anchor_3802035"></a>  <span class="comment_date">2017-10-01 22:08</span> <a id="a_comment_author_3802035" href="http://home.cnblogs.com/u/1100170/" target="_blank">wangheq</a> <a href="http://msg.cnblogs.com/send/wangheq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802035" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802026" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802026);">@</a>
+duan22677<br>没有报错提示，就是安装到选择时区时，选完上海继续，就自动退出，然后就安装失败。这个问题还不清楚怎么解决</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802035,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802035,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802102,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802102,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802102" class="layer">#7楼</a><a name="3802102" id="comment_anchor_3802102"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-10-02 08:20</span> <a id="a_comment_author_3802102" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802102" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802035" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802035);">@</a>
+wangheq<br>请问你在安装的时候有联网或插着网线吗？如果有的话，拔出网线，断掉网试一下。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802102,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802102,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3802102_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802198,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802198,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802198" class="layer">#8楼</a><a name="3802198" id="comment_anchor_3802198"></a>  <span class="comment_date">2017-10-02 12:07</span> <a id="a_comment_author_3802198" href="http://home.cnblogs.com/u/1100170/" target="_blank">wangheq</a> <a href="http://msg.cnblogs.com/send/wangheq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802198" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802102" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802102);">@</a>
+duan22677<br>谢谢博主，解决了，不过重启后设置basybcd时出现检测到EFI Bootloader！这个对话框，然后添加新条目时，选择框是选择不了的，然后就设置不了了，请问这个怎么解决。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802198,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802198,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802290,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802290,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802290" class="layer">#9楼</a><a name="3802290" id="comment_anchor_3802290"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-10-02 19:48</span> <a id="a_comment_author_3802290" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802290" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802198" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802198);">@</a>
+wangheq<br>这个可能是因为你的电脑是UEFI启动，我从网上搜到的好像是说easybcd不支持UEFI，我觉得如果把启动模式改为Legacy应该可以（有人不推荐，可能启动相对较慢）。<br>不过看到有人说推荐使用rEFind（我觉得如果喜欢折腾的话，建议这个），下面两个链接含有 rEFind 的使用方法：<br><a href="https://linux.cn/article-4667-1.html" target="_blank">https://linux.cn/article-4667-1.html</a><br><a href="https://tieba.baidu.com/p/4380168027?red_tag" target="_blank">https://tieba.baidu.com/p/4380168027?red_tag</a>=1059424892<br>其实这个 rEFind 我也没有用过，（我的电脑一直都是Legacy模式，用easybcd就成功了），所以在使用 rEFind 的时候，还请多留心，多看看教程，再搜索一下，多了解了解。<br>如果成功了，还请回来留下评论，探讨一下解决方法，如果有其他人遇到这种问题，说不定也可以帮助他们解决问题。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802290,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802290,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3802290_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802391,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802391,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802391" class="layer">#10楼</a><a name="3802391" id="comment_anchor_3802391"></a>  <span class="comment_date">2017-10-02 23:50</span> <a id="a_comment_author_3802391" href="http://home.cnblogs.com/u/1100170/" target="_blank">wangheq</a> <a href="http://msg.cnblogs.com/send/wangheq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802391" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802290" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802290);">@</a>
+duan22677<br>感谢博主，自己也搜了rEFind 的教程，根据这个教程试了试<a href="http://tshare365.com/archives/1774.html" target="_blank">http://tshare365.com/archives/1774.html</a>     <br>不过配置好了之后，开机后还是直接进入Windows，还是进不去Ubuntu，还是没解决好。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802391,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802391,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802419,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802419,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802419" class="layer">#11楼</a><a name="3802419" id="comment_anchor_3802419"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-10-03 08:40</span> <a id="a_comment_author_3802419" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802419" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802391" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802391);">@</a>
+wangheq<br>是没有出现rEFind的引导界面还是和以前启动一样，还是出现了rEFind引导界面但是进不去？如果是前者的话，我觉得应该是rEFind引导没有设置好（或者设置好了，但是启动顺序没设置好？），如果是后者的话，我觉得可以换一下rEFind版本看一下能否可行（最新的？）</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802419,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802419,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3802419_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3802600,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3802600,&#39;2rT/K8kl5Y+/4uPtqV/Z7U5PAoCWVPInW89rDqJq2Hv7YModINX7sw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3802600" class="layer">#12楼</a><a name="3802600" id="comment_anchor_3802600"></a>  <span class="comment_date">2017-10-03 19:40</span> <a id="a_comment_author_3802600" href="http://home.cnblogs.com/u/1100170/" target="_blank">wangheq</a> <a href="http://msg.cnblogs.com/send/wangheq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3802600" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3802419" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3802419);">@</a>
+duan22677<br>版本用了最新的，不过refind的引导界面出来了，但是进不去，找了一些关于refind的资料，但还是没能处理好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3802600,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3802600,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3822015,&#39;NxI+OP4OsgMfsFb76Y5R/KdnCI20QAjcb8j9k3qU4NNQCjjHK0JaIA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3822015,&#39;NxI+OP4OsgMfsFb76Y5R/KdnCI20QAjcb8j9k3qU4NNQCjjHK0JaIA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3822015" class="layer">#13楼</a><a name="3822015" id="comment_anchor_3822015"></a>  <span class="comment_date">2017-10-26 12:05</span> <a id="a_comment_author_3822015" href="http://home.cnblogs.com/u/919522/" target="_blank">avery.bai</a> <a href="http://msg.cnblogs.com/send/avery.bai" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3822015" class="blog_comment_body">博主，请教个问题：在你上面的文章中，我有一点不明白，我好像是没有看到你指定把 Ubuntu 安装到具体哪个盘吧，不是在已有win10的基础上安装吗？<br>我昨天安装了一次，在分区那一步，我刚到就出现了好像已有分区，不像你文中图片那么干净，然后我没有像你文章中那样，点击 “空闲”，然后分区，而是选中了已存在分区－－ sda3(win10 里的 G 盘)，修改，然后把ext4安装上去了，当然，整个系统就一个 / 分区，并且，启动管理程序也安装到了 sda3.最后提示安装完成了，但是，开机却没有 Ubuntu 的开机选项。  这究竟是安装错误，还是启动引导没设置好啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3822015,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3822015,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3822148,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3822148,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3822148" class="layer">#14楼</a><a name="3822148" id="comment_anchor_3822148"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2017-10-26 14:09</span> <a id="a_comment_author_3822148" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3822148" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3822015" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3822015);">@</a>
+avery.bai<br>是这样的，我原本写了一篇 win10 和 ubuntu 双系统安装，当时安装ubuntu 是用手机拍照，当时对ubuntu的分区也不是很懂，在我用了一段时间后，对ubuntu分区有了更多的认识（使用经验），同时也感觉之前拍照不是很清楚。于是就写了这篇更新，在文中有原文链接，那个是 win10 下 ubuntu 安装的实际操作过程，而这篇是在原博客的基础上，对ubuntu磁盘划分做了更改，为了使图片清楚，ubuntu的安装我是在虚拟机中进行的（因为可以截图）。<br><br>所以安装实际是分两部分：<br>1.  win下给ubuntu划分出一个分区（给了原文链接）;<br>2. ubuntu 的安装过程（原文的更新内容）— 包括ubuntu各个分区的划分和一些注意事项<br><br>这里我是用虚拟机的截图，所以这里图片中只有一个分区，不像你遇到的，已经有好几个分区（实际安装就是有好多分区，我的也是），不过只要选对原本计划安装的那个分区就好（步骤1中划分出来的，根据分区的排序位置，大小，也可以判断出来），选好分区按步骤安装就行了。<br>当然根据你的描述，你没有做步骤1的分区工作，而是直接选择了一个原本win下的分区，我觉得应该也是可以这样安装的，不知是不是引导项的问题。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3822148,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3822148,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3822148_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3823020,&#39;NxI+OP4OsgMfsFb76Y5R/KdnCI20QAjcb8j9k3qU4NNQCjjHK0JaIA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3823020,&#39;NxI+OP4OsgMfsFb76Y5R/KdnCI20QAjcb8j9k3qU4NNQCjjHK0JaIA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3823020" class="layer">#15楼</a><a name="3823020" id="comment_anchor_3823020"></a>  <span class="comment_date">2017-10-26 23:07</span> <a id="a_comment_author_3823020" href="http://home.cnblogs.com/u/919522/" target="_blank">avery.bai</a> <a href="http://msg.cnblogs.com/send/avery.bai" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3823020" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3822148" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3822148);">@</a>
+duan22677<br>博主你好，按你说的，安装分两步，第一步是给 Ubuntu 划一个分区，我从网上其它地方看到的是，这是步只是为了给 Ubuntu 腾一个安装的位置出来，应该没有别的其它意义了吧？<br>那么我现在的问题是，我的是新电脑，G盘本来就没数据，可是在我安装 Ubuntu 的时候，那些现存的分区，没有像你文章中显示的有 空闲分区。虽然确实有一些空闲分区，但都是几M大小的，最大的也就六百多兆。我目前还没开通博客，无法上传图片，我把G盘那一行数据打出来吧。<br><br>Device               type          size                       used<br>/dev/sda3           ntfs         341000MB              138MB<br>因为它不是 free space ,所以我选中它之后，不能点击 左下角的 + 号 创建新分区，最多只能点击 change 按钮，强行把Ubuntu安装到这个分区，我昨天晚上就是这么干的--现在已经格式化掉了，但是这样的话，是没办法把Ubuntu分成多个区的。 所以我现在的问题就是：怎么样才能把我的 G盘变成 free<br> space</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3823020,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3823020,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3823124,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3823124,&#39;BjamgHDsAjFdHpnpDOMtaNWZY4z1qFuLXJCTg6JmT3R/xfWrSgkAwg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/Duane/p/6776302.html#3823124" class="layer">#16楼</a><a name="3823124" id="comment_anchor_3823124"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">3823124</span><span id="comment-maxDate" style="display:none;">2017/10/27 8:05:35</span>  <span class="comment_date">2017-10-27 08:05</span> <a id="a_comment_author_3823124" href="http://www.cnblogs.com/Duane/" target="_blank">duan22677</a> <a href="http://msg.cnblogs.com/send/duan22677" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3823124" class="blog_comment_body"><a href="http://www.cnblogs.com/Duane/p/6776302.html#3823020" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3823020);">@</a>
+avery.bai<br>把它变成 “空闲” 很简单的方法就是在 win 下进行，你可以看一下原文win下分区步骤或者搜索其他文章也可以（步骤不完全一样，就是想让你参考一下界面，好操作）<br>下面是步骤（win下）：<br>“此电脑（我的电脑，计算机）” —&gt; （右键）“管理” —&gt; “存储” 下 有 “磁盘管理” 选中 ，[或者直接在桌面 win 和 x 快捷键，左下角会出来一个目录，直接选 “磁盘管理”] —&gt;  （进入磁盘管理后）选中你的 G 盘 ，右键 —&gt; “删除卷”，使其变成 显示“未分配” 或“可用空间”状态 ，退出磁盘管理。这个时候，你在资源管理器查看一下磁盘分区，会发现原来的 G 分区没有了（实际上存在，在win不可见，不过可以用磁盘管理看到），这种情况下你再安装ubuntu 就会发现有一个 “空闲” 就会和你原本的G盘大小一样（并不是完全一样，一般会偏大一点），这个就是你原本的G盘，接下来就可以照着步骤安装了。<br><br>其实在ubuntu安装的时候也可以直接把分区变成 “未分配” 也就是 “空闲”状态，我记得之前我有过这种情况，只是时间太长，记不清楚怎么操作了，而我现在也没有实际操作的条件。所以还是建议在 win 下进行操作，这实际上是又回到了第一步，就是为了给ubuntu腾出一个安装的位置。（之所以写第一步，是因为给ubuntu腾一个位置是必须的，在win下划分区和在ubuntu安装中划分区，两者相比较，我觉得对于刚接触Linux的同学来说，前者在熟悉的环境中可能会更顺手一些，失误的可能性会小一些，造成的损失也不会太严重（我最开始安装Linux的时候，当时也不懂，在安装过程中分区，结果失误，把我的整块磁盘都给格式化了，所有东西都没了，也是一次惨痛的教训。。。）</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3823124,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3823124,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3823124_avatar" style="display:none;">http://pic.cnblogs.com/face/737460/20150502183250.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/Duane/p/6776302.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/Duane/p/6776302.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./Windows 下安装 Ubuntu 双系统(更新)_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./Windows 下安装 Ubuntu 双系统(更新)_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/595451/" target="_blank">安卓统一推送联盟达成接口共识：打造绿色APP</a><br> ·  <a href="https://news.cnblogs.com/n/595450/" target="_blank">补贴被叫停美团打车订单大降，租赁公司称日营收减 少一半</a><br> ·  <a href="https://news.cnblogs.com/n/595449/" target="_blank">罗振宇和罗辑思维CEO吐槽淘宝打假：假书越打越多</a><br> ·  <a href="https://news.cnblogs.com/n/595448/" target="_blank">百度分拆旗下金融业务，启用新品牌“度小满”，融资超19亿美元</a><br> ·  <a href="https://news.cnblogs.com/n/595447/" target="_blank">Switch付费会员今年9月上线，任天堂说详情下个月见分晓</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/593985/" target="_blank">如何识别人的技术能力和水平？</a><br> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/Duane/">duan22677</a><br>园龄：<a href="https://home.cnblogs.com/u/Duane/" title="入园时间：2015-03-29">3年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/Duane/followers/">8</a><br>关注：<a href="https://home.cnblogs.com/u/Duane/followees/">7</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;489482fa-f4d5-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('489482fa-f4d5-e411-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/03/01&#39;);return false;">&lt;</a></td><td align="center">2018年4月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/05/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalTodayDay" align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/Duane/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/Duane/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/Duane/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/Duane/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/Duane/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/Duane/category/819805.html">Ununtu(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/Duane/archive/2017/05.html">2017年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/Duane/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/Duane/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/Duane/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Duane/p/5424218.html#3867676">1. Re:Windows下安装Ubuntu 16.04双系统</a></li>
+        <li class="recent_comment_body">@duan22677我的天 你秒回啊， 今天上倒是上去了 我密码想不起来了 研究了半天找回密码 没改成 现在在重装 哈哈...</li>
+        <li class="recent_comment_author">--魔术师1994</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Duane/p/5424218.html#3867131">2. Re:Windows下安装Ubuntu 16.04双系统</a></li>
+        <li class="recent_comment_body">@魔术师1994单独分了 /boot 分区的话，用easybcd 重新设置一下引导项就行了，设置部分可以参照 “更新”那篇文章最后的部分，或者上网搜索也行。...</li>
+        <li class="recent_comment_author">--duan22677</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Duane/p/5424218.html#3867123">3. Re:Windows下安装Ubuntu 16.04双系统</a></li>
+        <li class="recent_comment_body">楼主在吗 ，我照你的和一楼 方法装好了，后来win7重装了，开机没ubuntu引导了 怎么办</li>
+        <li class="recent_comment_author">--魔术师1994</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Duane/p/5424218.html#3864176">4. Re:Windows下安装Ubuntu 16.04双系统</a></li>
+        <li class="recent_comment_body">@小段阿誉安装ubuntu17.10时，200兆的boot空间，在升级系统的时候会提示空间不足，大家可以把空间设置大一点，比如1G...</li>
+        <li class="recent_comment_author">--Isha2088</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Duane/p/5424218.html#3842654">5. Re:Windows下安装Ubuntu 16.04双系统</a></li>
+        <li class="recent_comment_body">@深秋客请问你在安装的时候插着网线或联网了吗？如果有的话拔掉网线或断开网安装试试，之前也有其他人遇到过这种情况，就是这么解决的吧，不过问题的具体原因我也不太清楚。。。...</li>
+        <li class="recent_comment_author">--duan22677</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/Duane/p/5424218.html">1. Windows下安装Ubuntu 16.04双系统(108631)</a></li><li><a href="http://www.cnblogs.com/Duane/p/6776302.html">2. Windows 下安装 Ubuntu 双系统(更新)(9951)</a></li><li><a href="http://www.cnblogs.com/Duane/p/6835456.html">3. Ubuntu 安装 H3C iNode 客户端(393)</a></li><li><a href="http://www.cnblogs.com/Duane/p/4878805.html">4. Android环境的搭建及Android Studio的安装(274)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/Duane/p/5424218.html">1. Windows下安装Ubuntu 16.04双系统(20)</a></li><li><a href="http://www.cnblogs.com/Duane/p/6776302.html">2. Windows 下安装 Ubuntu 双系统(更新)(16)</a></li><li><a href="http://www.cnblogs.com/Duane/p/4878805.html">3. Android环境的搭建及Android Studio的安装(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/Duane/p/5424218.html">1. Windows下安装Ubuntu 16.04双系统(8)</a></li><li><a href="http://www.cnblogs.com/Duane/p/6776302.html">2. Windows 下安装 Ubuntu 双系统(更新)(2)</a></li><li><a href="http://www.cnblogs.com/Duane/p/4878805.html">3. Android环境的搭建及Android Studio的安装(2)</a></li><li><a href="http://www.cnblogs.com/Duane/p/6835456.html">4. Ubuntu 安装 H3C iNode 客户端(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 duan22677
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

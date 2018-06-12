@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.cnblogs.com/leejersey/p/3750232.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$.getJSON( )的使用方法简介 - leejersey - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./$.getJSON( )的使用方法简介_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./$.getJSON( )的使用方法简介_files/bundle-ThinkInside.css">
+<link type="text/css" rel="stylesheet" href="./$.getJSON( )的使用方法简介_files/101792.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./$.getJSON( )的使用方法简介_files/bundle-ThinkInside-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/leejersey/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/leejersey/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/leejersey/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./$.getJSON( )的使用方法简介_files/encoder.js.下载"></script><script src="./$.getJSON( )的使用方法简介_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'leejersey', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./$.getJSON( )的使用方法简介_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/leejersey/"><img id="blogLogo" src="./$.getJSON( )的使用方法简介_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/leejersey/">专注WEB前端开发</a></h1>
+<h2>爱设计，爱编程，专注WEB前端开发</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/leejersey/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/leejersey">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/leejersey/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/leejersey/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 380&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 112</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/leejersey/p/3750232.html">$.getJSON( )的使用方法简介</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>JSON（JavaScript Object Notation）即JavaScript对象表示法，是一种轻量级的数据交换格式。它非常便于编程人员对数据的处理，也便于机器对数据的解析和生成，应用非常广泛。</p>
+<p>json文件可以保存为“test.json”这样的文件，json数据的一般格式如下（“{ }”中的为对象，“[ ]”中的为数组）：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./$.getJSON( )的使用方法简介_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">{
+</span>"total":3<span style="color: #000000;">,
+</span>"rows"<span style="color: #000000;">:[
+   {
+   </span>"userId":1<span style="color: #000000;">,
+   </span>"realName":"张梅"<span style="color: #000000;">,
+   </span>"headUrl":"href='teacherDetail.html'"<span style="color: #000000;">,
+   </span>"img":"src='images/teacher.jpg'"<span style="color: #000000;">,
+   </span>"introduction":"热情大方。"<span style="color: #000000;">
+   },{
+   </span>"userId":2<span style="color: #000000;">,
+   </span>"realName":"张三"<span style="color: #000000;">,
+   </span>"headUrl":"href='teacherDetail.html'"<span style="color: #000000;">,
+   </span>"img":"src='images/teacher.jpg'"<span style="color: #000000;">,
+   </span>"introduction":"热情大方。"<span style="color: #000000;">
+   },{
+   </span>"userId":3<span style="color: #000000;">,
+   </span>"realName":"李斯"<span style="color: #000000;">,
+   </span>"headUrl":"href='teacherDetail.html'"<span style="color: #000000;">,
+   </span>"img":"src='images/teacher.jpg'"<span style="color: #000000;">,
+   </span>"introduction":"热情大方"<span style="color: #000000;">
+   }
+]
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./$.getJSON( )的使用方法简介_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>jQuery中的$.getJSON( )方法函数主要用来从服务器加载json编码的数据，它使用的是GET HTTP请求。使用方法如下：</p>
+<p>$.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )</p>
+<p>url是必选参数，表示json数据的地址；<br>data是可选参数，用于请求数据时发送数据参数；<br>success是可参数，这是一个回调函数，用于处理请求到的数据。</p>
+<p>获取json数据举例：</p>
+<div class="cnblogs_code">
+<pre>$.getJSON('test.json', <span style="color: #0000ff;">function</span><span style="color: #000000;">(data){
+   </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0; i &lt; data.rows.length; i++<span style="color: #000000;">) {
+      $(</span>'#test').append('&lt;p&gt;' + data.rows[i].realName + '&lt;/p&gt;'<span style="color: #000000;">);
+   }
+});</span></pre>
+</div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3750232,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;98e3e308-350f-e111-b422-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./$.getJSON( )的使用方法简介_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./$.getJSON( )的使用方法简介_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/leejersey/" target="_blank"><img src="./$.getJSON( )的使用方法简介_files/20141211145528.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/leejersey/">leejersey</a><br>
+            <a href="http://home.cnblogs.com/u/leejersey/followees">关注 - 63</a><br>
+            <a href="http://home.cnblogs.com/u/leejersey/followers">粉丝 - 405</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;98e3e308-350f-e111-b422-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3750232,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">8</span>
+    </div>
+    <div class="buryit" onclick="votePost(3750232,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/leejersey/p/3748452.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/leejersey/p/3748452.html" title="发布于2014-05-23 18:54">理解 CSS 的 z-index 属性</a><br><a href="http://www.cnblogs.com/leejersey/p/3750259.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/leejersey/p/3750259.html" title="发布于2014-05-24 19:35">jQuery ajax()使用serialize()提交form数据</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-05-24 19:18</span> <a href="http://www.cnblogs.com/leejersey/">leejersey</a> 阅读(<span id="post_view_count">116527</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3750232" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/leejersey/p/3750232.html#" onclick="AddToWz(3750232);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=101792,cb_entryId=3750232,cb_blogApp=currentBlogApp,cb_blogUserGuid='98e3e308-350f-e111-b422-842b2b196315',cb_entryCreatedDate='2014/5/24 19:18:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/leejersey/p/3750232.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/leejersey/p/3750232.html#top">返回顶部</a></div>
+<div id="comment_form_container"><span style="color:red">评论框加载失败，请与管理员联系(contact@cnblogs.com)。</span></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/587905/" target="_blank">微信抄袭米聊？腾讯公关总监：呵呵 你真逗</a><br> ·  <a href="https://news.cnblogs.com/n/587897/" target="_blank">东芝考虑将存储芯片业务上市：如果不能卖掉的话</a><br> ·  <a href="https://news.cnblogs.com/n/587914/" target="_blank">干货分享：《欢乐坦克大战》微信小游戏开发总结</a><br> ·  <a href="https://news.cnblogs.com/n/587913/" target="_blank">2017年谷歌热搜旅游目的地榜单出炉，TOP1居然是这里!</a><br> ·  <a href="https://news.cnblogs.com/n/587910/" target="_blank">张小龙不谈情怀，那什么才是谈情怀的正确姿势？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/586236/" target="_blank">领域驱动设计在互联网业务开发中的实践</a><br> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&lt;</a></td><td align="center">2018年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 leejersey
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

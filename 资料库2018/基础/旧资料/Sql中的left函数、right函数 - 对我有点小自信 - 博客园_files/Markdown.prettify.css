@@ -1,0 +1,157 @@
+/* desert scheme ported from vim to google prettify */
+.hljs-keyword, .hljs-id, .hljs-built_in, .css .smalltalk .hljs-class, .hljs-winutils, .bash .hljs-variable, .tex .hljs-command, .hljs-request, .hljs-status, .nginx .hljs-title, .xml .hljs-tag, .xml .hljs-tag .hljs-value {
+    color: #fff !important;
+}
+#cnblogs_post_body pre code { background: none !important; border:none !important; color: #000 }
+#cnblogs_post_body pre.prettyprint { display: block; background-color: #333 }
+#cnblogs_post_body pre .nocode { background-color: none; color: #000 }
+#cnblogs_post_body pre .str { color: #ffa0a0 } /* string  - pink */
+#cnblogs_post_body pre .kwd { color: #f0e68c; font-weight: bold }
+#cnblogs_post_body pre .com { color: #87ceeb } /* comment - skyblue */
+#cnblogs_post_body pre .typ { color: #98fb98 } /* type    - lightgreen */
+#cnblogs_post_body pre .lit { color: #cd5c5c } /* literal - darkred */
+#cnblogs_post_body pre .pun { color: #fff }    /* punctuation */
+#cnblogs_post_body pre .pln { color: #fff }    /* plaintext */
+#cnblogs_post_body pre .tag, #cnblogs_post_body pre .tag span { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+#cnblogs_post_body pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+#cnblogs_post_body pre .atv { color: #ffa0a0 } /* attribute value - pink */
+#cnblogs_post_body pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+/* Specify class=linenums on a pre to get line numbering */
+/* jiawzhang: color: #666 to darken the line number */
+#cnblogs_post_body ol.linenums { margin-top: 0; margin-bottom: 0; color: #666 } /* IE indents via margin-left */
+
+/* jiawzhang: add this to leave more space to display line number, especially, when the line number is greater than 100. */
+#cnblogs_post_body ol.linenums { margin-left: 35px; padding-left:0;}
+/* jiawzhang: polish the code snippet. */
+#cnblogs_post_body ol.linenums > li { padding-left: 15px; list-style: decimal;}
+#cnblogs_post_body pre.prettyprint {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 45px 0 0 rgba(0, 0, 0, 0.25) inset, 0 1px 0 #333;
+    padding: 9.5px;
+}
+
+/* jiawzhang: comment this line to make sure all the line number is shown, otherwise, there will be display issue when there is empty line in the code snippet. */
+/* li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none } */
+
+/* Alternate shading for lines */
+#cnblogs_post_body li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+@media print {
+ #cnblogs_post_body pre.prettyprint { background-color: none }
+ #cnblogs_post_body pre .str, code .str { color: #060 }
+ #cnblogs_post_body pre .kwd, code .kwd { color: #006; font-weight: bold }
+ #cnblogs_post_body pre .com, code .com { color: #600; font-style: italic }
+ #cnblogs_post_body pre .typ, code .typ { color: #404; font-weight: bold }
+ #cnblogs_post_body pre .lit, code .lit { color: #044 }
+ #cnblogs_post_body pre .pun, code .pun { color: #440 }
+ #cnblogs_post_body pre .pln, code .pln { color: #000 }
+ #cnblogs_post_body pre .tag, code .tag { color: #006; font-weight: bold }
+ #cnblogs_post_body pre .atn, code .atn { color: #404 }
+ #cnblogs_post_body pre .atv, code .atv { color: #060 }
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eeeeee;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+blockquote small {
+  display: block;
+  line-height: 20px;
+  color: #999999;
+}
+
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+
+blockquote.pull-right {
+  float: right;
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid #eeeeee;
+  border-left: 0;
+}
+
+blockquote.pull-right p,
+blockquote.pull-right small {
+  text-align: right;
+}
+
+blockquote.pull-right small:before {
+  content: '';
+}
+
+blockquote.pull-right small:after {
+  content: '\00A0 \2014';
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+code,
+pre {
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+code {
+  padding: 2px 4px;
+  color: #d14;
+  white-space: nowrap;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+pre.prettyprint {
+  margin-bottom: 20px;
+}
+
+pre code {
+  padding: 0 !important;
+  color: inherit !important;
+  white-space: pre !important;
+  white-space: pre-wrap !important;
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}

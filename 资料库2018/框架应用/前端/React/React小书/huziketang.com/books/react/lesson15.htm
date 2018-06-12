@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="GNvdsbNFPS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    
+      <title>实战分析：评论功能（二） | React.js 小书</title>
+      <meta name="keywords" content="React.js,React.js 小书,组件,实战,评论功能" />
+      <meta name="description" content="React.js 小书是一个开源、免费、专业、简单的 React.js 教程。本文带大家一起来学习如何分析、编写评论功能，包含了：处理用户输入、向父组件传递数据等部分。本文是评论功能的第二部分。" />
+    
+
+    
+
+    <link rel="icon" href="https://huzidaha.github.io/static/assets/img/favicon.ico">
+    <link rel="stylesheet"
+href="../../../fonts.googleapis.com/css-family=Inconsolata-400,700.css" tppabs="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" tppabs="http://huziketang.com/books/react/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- <div class='float-wechat' id='float-wechat'>
+    	<img src='https://huzidaha.github.io/static/assets/img/wechat-user.jpeg' />
+      <p>加入《React.js 小书》读者交流群，一起讨论、交流、学习前端技术。</p>
+    </div> -->
+    <div class="wrapper" id='wrapper'>
+      <style media="screen">
+@media (max-width: 1335px) and (min-width: 900px) {
+	.wrapper {
+		margin-left: 329px;
+	}
+}
+@media (max-width: 900px) {
+	#table-of-content {
+		margin-left: -350px;
+	}
+}
+</style>
+<h1 style='position: relative; top: -15px;'>React.js 小书</h1>
+
+<link ref='prefetch' href="/books/react/lesson16" />
+
+
+<nav class='table-of-content' id='table-of-content'>
+	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 首页</a>
+	<h3>第一阶段</h3>
+  
+  
+		<a  href="lesson1.htm" tppabs="http://huziketang.com/books/react/lesson1" title="React.js 简介">1. React.js 简介</a>
+  
+  
+  
+		<a  href="lesson2.htm" tppabs="http://huziketang.com/books/react/lesson2" title="前端组件化（一）：从一个简单的例子讲起">2. 前端组件化（一）：从一个简单的例子讲起</a>
+  
+  
+  
+		<a  href="lesson3.htm" tppabs="http://huziketang.com/books/react/lesson3" title="前端组件化（二）：优化 DOM 操作">3. 前端组件化（二）：优化 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson4.htm" tppabs="http://huziketang.com/books/react/lesson4" title="前端组件化（三）：抽象出公共组件类">4. 前端组件化（三）：抽象出公共组件类</a>
+  
+  
+  
+		<a  href="lesson5.htm" tppabs="http://huziketang.com/books/react/lesson5" title="React.js 基本环境安装">5. React.js 基本环境安装</a>
+  
+  
+  
+		<a  href="lesson6.htm" tppabs="http://huziketang.com/books/react/lesson6" title="使用 JSX 描述 UI 信息">6. 使用 JSX 描述 UI 信息</a>
+  
+  
+  
+		<a  href="lesson7.htm" tppabs="http://huziketang.com/books/react/lesson7" title="组件的 render 方法">7. 组件的 render 方法</a>
+  
+  
+  
+		<a  href="lesson8.htm" tppabs="http://huziketang.com/books/react/lesson8" title="组件的组合、嵌套和组件树">8. 组件的组合、嵌套和组件树</a>
+  
+  
+  
+		<a  href="lesson9.htm" tppabs="http://huziketang.com/books/react/lesson9" title="事件监听">9. 事件监听</a>
+  
+  
+  
+		<a  href="lesson10.htm" tppabs="http://huziketang.com/books/react/lesson10" title="组件的 state 和 setState">10. 组件的 state 和 setState</a>
+  
+  
+  
+		<a  href="lesson11.htm" tppabs="http://huziketang.com/books/react/lesson11" title="配置组件的 props">11. 配置组件的 props</a>
+  
+  
+  
+		<a  href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12" title="state vs props">12. state vs props</a>
+  
+  
+  
+		<a  href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13" title="渲染列表数据">13. 渲染列表数据</a>
+  
+  
+  
+		<a  href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14" title="实战分析：评论功能（一）">14. 实战分析：评论功能（一）</a>
+  
+  
+  
+		<a  class='active'  href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15" title="实战分析：评论功能（二）">15. 实战分析：评论功能（二）</a>
+  
+  
+  
+		<a  href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16" title="实战分析：评论功能（三）">16. 实战分析：评论功能（三）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第二阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17" title="前端应用状态管理 —— 状态提升">17. 前端应用状态管理 —— 状态提升</a>
+  
+  
+  
+		<a  href="lesson18.htm" tppabs="http://huziketang.com/books/react/lesson18" title="挂载阶段的组件生命周期（一）">18. 挂载阶段的组件生命周期（一）</a>
+  
+  
+  
+		<a  href="lesson19.htm" tppabs="http://huziketang.com/books/react/lesson19" title="挂载阶段的组件生命周期（二）">19. 挂载阶段的组件生命周期（二）</a>
+  
+  
+  
+		<a  href="lesson20.htm" tppabs="http://huziketang.com/books/react/lesson20" title="更新阶段的组件生命周期">20. 更新阶段的组件生命周期</a>
+  
+  
+  
+		<a  href="lesson21.htm" tppabs="http://huziketang.com/books/react/lesson21" title="ref 和 React.js 中的 DOM 操作">21. ref 和 React.js 中的 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson22.htm" tppabs="http://huziketang.com/books/react/lesson22" title="props.children 和容器类组件">22. props.children 和容器类组件</a>
+  
+  
+  
+		<a  href="lesson23.htm" tppabs="http://huziketang.com/books/react/lesson23" title="dangerouslySetHTML 和 style 属性">23. dangerouslySetHTML 和 style 属性</a>
+  
+  
+  
+		<a  href="lesson24.htm" tppabs="http://huziketang.com/books/react/lesson24" title="PropTypes 和组件参数验证">24. PropTypes 和组件参数验证</a>
+  
+  
+  
+		<a  href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25" title="实战分析：评论功能（四）">25. 实战分析：评论功能（四）</a>
+  
+  
+  
+		<a  href="lesson26.htm" tppabs="http://huziketang.com/books/react/lesson26" title="实战分析：评论功能（五）">26. 实战分析：评论功能（五）</a>
+  
+  
+  
+		<a  href="lesson27.htm" tppabs="http://huziketang.com/books/react/lesson27" title="实战分析：评论功能（六）">27. 实战分析：评论功能（六）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第三阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson28.htm" tppabs="http://huziketang.com/books/react/lesson28" title="高阶组件（Higher-Order Components）">28. 高阶组件（Higher-Order Components）</a>
+  
+  
+  
+		<a  href="lesson29.htm" tppabs="http://huziketang.com/books/react/lesson29" title="React.js 的 context">29. React.js 的 context</a>
+  
+  
+  
+		<a  href="lesson30.htm" tppabs="http://huziketang.com/books/react/lesson30" title="动手实现 Redux（一）：优雅地修改共享状态">30. 动手实现 Redux（一）：优雅地修改共享状态</a>
+  
+  
+  
+		<a  href="lesson31.htm" tppabs="http://huziketang.com/books/react/lesson31" title="动手实现 Redux（二）：抽离 store 和监控数据变化">31. 动手实现 Redux（二）：抽离 store 和监控数据变化</a>
+  
+  
+  
+		<a  href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32" title="动手实现 Redux（三）：纯函数（Pure Function）简介">32. 动手实现 Redux（三）：纯函数（Pure Function）简介</a>
+  
+  
+  
+		<a  href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33" title="动手实现 Redux（四）：共享结构的对象提高性能">33. 动手实现 Redux（四）：共享结构的对象提高性能</a>
+  
+  
+  
+		<a  href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34" title="动手实现 Redux（五）：不要问为什么的 reducer">34. 动手实现 Redux（五）：不要问为什么的 reducer</a>
+  
+  
+  
+		<a  href="lesson35.htm" tppabs="http://huziketang.com/books/react/lesson35" title="动手实现 Redux（六）：Redux 总结">35. 动手实现 Redux（六）：Redux 总结</a>
+  
+  
+  
+		<a  href="lesson36.htm" tppabs="http://huziketang.com/books/react/lesson36" title="动手实现 React-redux（一）：初始化工程">36. 动手实现 React-redux（一）：初始化工程</a>
+  
+  
+  
+		<a  href="lesson37.htm" tppabs="http://huziketang.com/books/react/lesson37" title="动手实现 React-redux（二）：结合 context 和 store">37. 动手实现 React-redux（二）：结合 context 和 store</a>
+  
+  
+  
+		<a  href="lesson38.htm" tppabs="http://huziketang.com/books/react/lesson38" title="动手实现 React-redux（三）：connect 和 mapStateToProps">38. 动手实现 React-redux（三）：connect 和 mapStateToProps</a>
+  
+  
+  
+		<a  href="lesson39.htm" tppabs="http://huziketang.com/books/react/lesson39" title="动手实现 React-redux（四）：mapDispatchToProps">39. 动手实现 React-redux（四）：mapDispatchToProps</a>
+  
+  
+  
+		<a  href="lesson40.htm" tppabs="http://huziketang.com/books/react/lesson40" title="动手实现 React-redux（五）：Provider">40. 动手实现 React-redux（五）：Provider</a>
+  
+  
+  
+		<a  href="lesson41.htm" tppabs="http://huziketang.com/books/react/lesson41" title="动手实现 React-redux（六）：React-redux 总结">41. 动手实现 React-redux（六）：React-redux 总结</a>
+  
+  
+  
+		<a  href="lesson42.htm" tppabs="http://huziketang.com/books/react/lesson42" title="使用真正的 Redux 和 React-redux">42. 使用真正的 Redux 和 React-redux</a>
+  
+  
+  
+		<a  href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43" title="Smart 组件 vs Dumb 组件">43. Smart 组件 vs Dumb 组件</a>
+  
+  
+  
+		<a  href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44" title="实战分析：评论功能（七）">44. 实战分析：评论功能（七）</a>
+  
+  
+  
+		<a  href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45" title="实战分析：评论功能（八）">45. 实战分析：评论功能（八）</a>
+  
+  
+  
+		<a  href="lesson46.htm" tppabs="http://huziketang.com/books/react/lesson46" title="实战分析：评论功能（九）">46. 实战分析：评论功能（九）</a>
+  
+  
+</nav>
+<div id="mask-template">
+	<div></div>
+</div>
+<style>
+	#granted-modal {
+		display: none;
+		position: fixed;
+		margin: auto;
+		left: 100px;
+		top: 0;
+		bottom: 100px;
+		right: 0;
+		width: 500px;
+		height: 300px;
+		background: #fff;
+		z-index: 100;
+		border-radius: 5px;
+	}
+	#try-to-buy {
+		display: none;
+	}
+	.error-message {
+    position: absolute;
+    bottom: 7px;
+    right: -30px;
+    font-size: 12px;
+    color: rgb(211, 53, 62);
+  }
+	.field {
+		position: relative;
+		margin-top: 25px;
+	}
+	.modal-head {
+		font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+	}
+	.granted-footer {
+		text-align: center;
+	}
+	#back-to-input {
+		font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+	}
+	.hover {
+		cursor: pointer;
+	}
+	.granted-footer {
+		position: absolute;
+    margin: auto;
+		padding-top: 15px;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+		border-top: 1px solid #eee;
+	}
+	#buy-now {
+		color: #00a854;
+	}
+	.field label {
+		display: inline-block;
+		width: 90px;
+		text-align: right;
+	}
+	.field label::after {
+		content: "："
+	}
+	.granted-form {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 25px;
+	}
+	.submit {
+		display: inline-block;
+		float: right;
+	}
+	.button {
+		background: #f7f7f7;
+		border: 1px solid #ccc;
+		padding: 5px 20px;
+		border-radius: 3px;
+		outline: none;
+	}
+	.button:hover {
+		background: #fff;
+	}
+	.field input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #e0dbdb;
+    width: 166px;
+	}
+</style>
+<div id="granted-modal">
+	<div style="padding: 10px;">
+		<div id="readcode-input-area">
+			<h2 class="modal-head">阅读第三阶段，请输入你的阅读码 </h2>
+			<form class="granted-form" id="read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="email">
+				</div>
+				<div class="field">
+					<label>阅读码</label>
+					<input type="text" id="read-code">
+				</div>
+				<button id="check-granted" class="button hover submit">确认</button>
+			</form>
+			<div class="granted-footer">
+				还没有阅读码？<b>¥10</b> 元即可阅读所有章节
+				<p style="margin-top: 10px;"><a class="hover" id="buy-now">马上获取阅读码</a></p>
+			</div>
+		</div>
+		<div id="try-to-buy">
+			<div id="back-to-input" class="hover">&lt;&lt; 返回</div>
+			<h2 class="modal-head">输入你的邮箱，系统会给你发送邮件</h2>
+			<form class="granted-form" id="get-read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="reader-email">
+				</div>
+				<button id="alipay" style="margin-top: 20px;" class="hover submit button">获取阅读码</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="assets/js/jquery-3.2.1.min.js" tppabs="http://huziketang.com/books/react/assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/pay.min.js" tppabs="http://huziketang.com/books/react/assets/js/pay.min.js"></script>
+<script type="text/javascript">
+var tableOfContent = document.getElementById('table-of-content')
+var timer = null
+function resetTableOfContent (rect) {
+  scrollTop = localStorage.getItem('scrollTop') * 1
+  scrollTop = scrollTop || 0
+  tableOfContent.scrollTop = scrollTop
+}
+tableOfContent.addEventListener('scroll', function (event) {
+  clearTimeout(timer)
+  timer = setTimeout(function() {
+    localStorage.setItem('scrollTop', tableOfContent.scrollTop)
+  }, 50)
+}, false)
+resetTableOfContent()
+</script>
+<div class="post">
+	<div class="post__back">
+  	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 返回首页</a>
+    <div class="post__title">
+    	<h1>实战分析：评论功能（二）</h1>
+    </div>
+    <div class="post__meta">
+    	<p></p>
+    </div>
+    <div class="post__content"?>
+      <ul style="font-size: 14px; margin-top: -10px;">
+  <li>
+    作者：<a href="javascript:if(confirm('https://www.zhihu.com/people/hu-zi-da-ha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.zhihu.com/people/hu-zi-da-ha'" tppabs="https://www.zhihu.com/people/hu-zi-da-ha" target="_blank">胡子大哈</a>
+  </li>
+  <li>
+    原文链接：<a href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15"> http://huziketang.com/books/react/lesson15 </a>
+  </li>
+  <li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+
+<p><a href="javascript:if(confirm('http://react.huziketang.com/blog/lesson14  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://react.huziketang.com/blog/lesson14'" tppabs="http://react.huziketang.com/blog/lesson14">上一节</a>我们构建了基本的代码框架，现在开始完善其他的内容。</p>
+
+<h2 id="处理用户输入">处理用户输入</h2>
+<p>我们从 <code>ComponentInput</code> 组件开始，学习 React.js 是如何处理用户输入的。首先修改 <code>ComponentInput.js</code>，完善 <code>ComponentInput</code> 的 <code>render</code> 函数中的 HTML 结构：</p>
+
+<pre><code class="language-javascript">import React, { Component } from 'react'
+
+class CommentInput extends Component {
+  render () {
+    return (
+      &lt;div className='comment-input'&gt;
+        &lt;div className='comment-field'&gt;
+          &lt;span className='comment-field-name'&gt;用户名：&lt;/span&gt;
+          &lt;div className='comment-field-input'&gt;
+            &lt;input /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className='comment-field'&gt;
+          &lt;span className='comment-field-name'&gt;评论内容：&lt;/span&gt;
+          &lt;div className='comment-field-input'&gt;
+            &lt;textarea /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className='comment-field-button'&gt;
+          &lt;button&gt;
+            发布
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+export default CommentInput
+</code></pre>
+
+<p>在浏览器中可以看到 <code>ComponentInput</code> 的结构和样式都已经生效：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png" alt="React.js 小书实战之评论功能图片" /></a></p>
+
+<p>因为还没有加入处理逻辑，所以你输入内容，然后点击发布是不会有什么效果的。用户可输入内容一个是用户名（username），一个是评论内容（content），我们在组件的构造函数中初始化一个 <code>state</code> 来保存这两个状态：</p>
+
+<pre><code class="language-javascript">...
+class CommentInput extends Component {
+  constructor () {
+    super()
+    this.state = {
+      username: '',
+      content: ''
+    }
+  }
+  ...
+}
+...
+</code></pre>
+
+<p>然后给输入框设置 <code>value</code> 属性，让它们的 <code>value</code> 值等于 <code>this.state</code> 里面相应的值：</p>
+
+<pre><code class="language-javascript">...
+        &lt;div className='comment-field'&gt;
+          &lt;span className='comment-field-name'&gt;用户名：&lt;/span&gt;
+          &lt;div className='comment-field-input'&gt;
+            &lt;input value={this.state.username} /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className='comment-field'&gt;
+          &lt;span className='comment-field-name'&gt;评论内容：&lt;/span&gt;
+          &lt;div className='comment-field-input'&gt;
+            &lt;textarea value={this.state.content} /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+...
+</code></pre>
+
+<p>可以看到接受用户名输入的 <code>&lt;input /&gt;</code> 和接受用户评论内容的 <code>&lt;textarea /&gt;</code> 的 <code>value</code> 值分别由 <code>state.username</code> 和 <code>state.content</code> 控制。这时候你到浏览器里面去输入内容看看，你会发现你什么都输入不了。</p>
+
+<p>这是为什么呢？React.js 认为所有的状态都应该由 React.js 的 state 控制，只要类似于 <code>&lt;input /&gt;</code>、<code>&lt;textarea /&gt;</code>、<code>&lt;select /&gt;</code> 这样的输入控件被设置了 <code>value</code> 值，那么它们的值永远以被设置的值为准。值不变，<code>value</code> 就不会变化。</p>
+
+<p>例如，上面设置了 <code>&lt;input /&gt;</code> 的 <code>value</code> 为 <code>this.state.username</code>，<code>username</code> 在 <code>constructor</code> 中被初始化为空字符串。即使用户在输入框里面尝试输入内容了，还是没有改变 <code>this.state.username</code> 是空字符串的事实。</p>
+
+<p>所以应该怎么做才能把用户内容输入更新到输入框当中呢？在 React.js 当中必须要用 <code>setState</code> 才能更新组件的内容，所以我们需要做的就是：监听输入框的 <code>onChange</code> 事件，然后获取到用户输入的内容，再通过 <code>setState</code> 的方式更新 <code>state</code> 中的 <code>username</code>，这样 <code>input</code> 的内容才会更新。</p>
+
+<pre><code class="language-html">...
+    &lt;div className='comment-field-input'&gt;
+      &lt;input
+        value={this.state.username}
+        onChange={this.handleUsernameChange.bind(this)} /&gt;
+    &lt;/div&gt;
+...
+</code></pre>
+
+<p>上面的代码给 <code>input</code> 加上了 <code>onChange</code> 事件监听，绑定到 <code>this.handleUsernameChange</code> 方法中，该方法实现如下：</p>
+
+<pre><code class="language-javascript">...
+  handleUsernameChange (event) {
+    this.setState({
+      username: event.target.value
+    })
+  }
+...
+</code></pre>
+
+<p>在这个方法中，我们通过 <code>event.target.value</code> 获取 <code>&lt;input /&gt;</code> 中用户输入的内容，然后通过 <code>setState</code> 把它设置到 <code>state.username</code> 当中，这时候组件的内容就会更新，<code>input</code> 的 <code>value</code> 值就会得到更新并显示到输入框内。这时候输入已经没有问题了：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png" alt="React.js 小书实战之评论功能图片" /></a></p>
+
+<p>类似于 <code>&lt;input /&gt;</code>、<code>&lt;select /&gt;</code>、<code>&lt;textarea&gt;</code> 这些元素的 <code>value</code> 值被 React.js 所控制、渲染的组件，在 React.js 当中被称为受控组件（Controlled Component）。对于用户可输入的控件，一般都可以让它们成为受控组件，这是 React.js 所推崇的做法。另外还有非受控组件，这里暂时不提及。</p>
+
+<p>同样地，让 <code>&lt;textarea /&gt;</code> 成为受控组件：</p>
+
+<pre><code class="language-javascript">...
+  handleContentChange (event) {
+    this.setState({
+      content: event.target.value
+    })
+  }
+...
+      &lt;div className='comment-field'&gt;
+        &lt;span className='comment-field-name'&gt;评论内容：&lt;/span&gt;
+        &lt;div className='comment-field-input'&gt;
+          &lt;textarea
+            value={this.state.content}
+            onChange={this.handleContentChange.bind(this)} /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+...
+</code></pre>
+
+<h2 id="向父组件传递数据">向父组件传递数据</h2>
+<p>当用户在 <code>CommentInput</code> 里面输入完内容以后，点击发布，内容其实是需要显示到 <code>CommentList</code> 组件当中的。但这两个组件明显是单独的、分离的组件。我们再回顾一下之前是怎么划分组件的：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" alt="React.js 小书实战之评论功能图片" /></a></p>
+
+<p>可以看到，<code>CommentApp</code> 组件将 <code>CommentInput</code> 和 <code>CommentList</code> 组合起来，它是它们俩的父组件，可以充当桥接两个子组件的桥梁。<em>所以当用户点击发布按钮的时候，我们就将 <code>CommentInput</code> 的 state 当中最新的评论数据传递给父组件 <code>CommentApp</code> ，然后让父组件把这个数据传递给 <code>CommentList</code> 进行渲染。</em></p>
+
+<p><code>CommentInput</code> 如何向 <code>CommentApp</code> 传递的数据？父组件 <code>CommentApp</code> 只需要通过 <code>props</code> 给子组件 <code>CommentInput</code> 传入一个回调函数。当用户点击发布按钮的时候，<code>CommentInput</code> 调用 <code>props</code> 中的回调函数并且将 <code>state</code> 传入该函数即可。</p>
+
+<p>先给发布按钮添加事件：</p>
+
+<pre><code class="language-javascript">...
+      &lt;div className='comment-field-button'&gt;
+        &lt;button
+          onClick={this.handleSubmit.bind(this)}&gt;
+          发布
+        &lt;/button&gt;
+      &lt;/div&gt;
+...
+</code></pre>
+
+<p>用户点击按钮的时候会调用 <code>this.handleSubmit</code> 方法：</p>
+
+<pre><code class="language-javascript">...
+  handleSubmit () {
+    if (this.props.onSubmit) {
+      const { username, content } = this.state
+      this.props.onSubmit({username, content})
+    }
+    this.setState({ content: '' })
+  }
+...
+</code></pre>
+
+<p><code>handleSubmit</code> 方法会判断 <code>props</code> 中是否传入了 <code>onSubmit</code> 属性。有的话就调用该函数，并且把用户输入的用户名和评论数据传入该函数。然后再通过 <code>setState</code> 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。</p>
+
+<p>修改 <code>CommentApp.js</code> ，让它可以通过传入回调来获取到新增评论数据：</p>
+
+<pre><code class="language-javascript">class CommentApp extends Component {
+  handleSubmitComment (comment) {
+    console.log(comment)
+  }
+
+  render() {
+    return (
+      &lt;div className='wrapper'&gt;
+        &lt;CommentInput
+          onSubmit={this.handleSubmitComment.bind(this)} /&gt;
+        &lt;CommentList /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+
+<p>在 <code>CommentApp</code> 中给 <code>CommentInput</code> 传入一个 <code>onSubmit</code> 属性，这个属性值是 <code>CommentApp</code> 自己的一个方法 <code>handleSubmitComment</code>。这样 <code>CommentInput</code> 就可以调用 <code>this.props.onSubmit(…)</code> 把数据传给 <code>CommenApp</code>。</p>
+
+<p>现在在 <code>CommentInput</code> 中输入完评论内容以后点击发布，就可以看到 <code>CommentApp</code> 在控制台打印的数据：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png" alt="React.js 小书实战之评论功能图片" /></a></p>
+
+<p>这样就顺利地把数据传递给了父组件，接下来我们开始处理评论列表相关的逻辑。</p>
+
+<hr />
+
+<blockquote>
+  <p>因为第三方评论工具有问题，对本章节有任何疑问的朋友可以移步到 <a target="_blank" href="javascript:if(confirm('http://scriptoj.com/category/4/react-js-小书交流区  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://scriptoj.com/category/4/react-js-小书交流区'" tppabs="http://scriptoj.com/category/4/react-js-小书交流区">React.js 小书的论坛</a> 发帖，我会回答大家的疑问。</p>
+</blockquote>
+
+    </div>
+		<br/>
+		<hr />
+		<br />
+		<div class="PageNavigation">
+			
+			<p>
+				<a class="next" href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16">下一节：实战分析：评论功能（三）</a>
+			</p>
+			
+			<br/>
+			
+			<p>
+				<a class="prev" href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14">上一节：实战分析：评论功能（一）</a>
+			</p>
+			
+		</div>
+		<!-- <a class="ad" href="https://aonaotu.com" target="_blank"> -->
+			<!-- <div class="ad-logo">
+				<img src="/books/react/assets/img/ad-logo.svg">
+				<p class="ad-title">凹脑图</p>
+			</div>
+			<p class="ad-wording">迄今为止最简单好用的在线思维导图工具</p>
+			<span class="ad-indicator">广告</span>
+			<img src="/books/react/assets/img/ad-bg-2.svg" class="ad-bg-2">
+		</a> -->
+		<!-- <div class='share-block margin-top-gap'>
+			<p>如果你觉得小书写得还不错，可以请胡子大哈喝杯茶 :)</p>
+			<button class='donate-button' id='donate-button' type="button">赞赏</button>
+		</div> -->
+		<div class='share-block margin-bottom-gap'>
+			<p>传播一下知识也是一个很好的选择</p>
+			<div class="share-block-inner">
+				<div class="jiathis_style_24x24">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a href="javascript:if(confirm('http://www.jiathis.com/share?uid=2127727  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jiathis.com/share?uid=2127727'" tppabs="http://www.jiathis.com/share?uid=2127727" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				</div>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'};
+				</script>
+				<script type="text/javascript" src="../../../v3.jiathis.com/code/jia.js-uid=2127727" tppabs="http://v3.jiathis.com/code/jia.js?uid=2127727" charset="utf-8"></script>
+			</div>
+		</div>
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript">
+		var paths = window.location.pathname.split('/')
+		var lessonName = paths[paths.length - 1]
+		var uyan_config = {
+			// 'url': 'http://react.huziketang.com/blog/' + lessonName,
+			'du': 'http://huziketang.com/books/react/react.huziketang.com'
+		}
+		</script>
+		<script type="text/javascript" src="../../../v2.uyan.cc/code/uyan.js-uid=2127727" tppabs="http://v2.uyan.cc/code/uyan.js?uid=2127727"></script>
+		<!-- UY END -->
+		<!--wechat donate-->
+		<div class='donate-mask' id='donate-mask'>
+			<img src="../../../huzidaha.github.io/static/assets/img/wechat-pay.png" tppabs="https://huzidaha.github.io/static/assets/img/wechat-pay.png" id='wechat-pay' />
+		</div>
+		<script type="text/javascript">
+			// var donateMask = document.getElementById('donate-mask')
+			// var donateButton = document.getElementById('donate-button')
+			// var wechatPay = document.getElementById('wechat-pay')
+			// donateButton.addEventListener('click', function () {
+			// 	donateMask.style.display = 'flex'
+			// }, false)
+			// donateMask.addEventListener('click', function () {
+			// 	donateMask.style.display = 'none'
+			// }, false)
+			// wechatPay.addEventListener('click', function (event) {
+			// 	event.stopPropagation()
+			// }, false)
+		</script>
+	</div>
+
+    </div>
+    <script src="assets/js/highlight.js" tppabs="http://huziketang.com/books/react/assets/js/highlight.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      if (window.location.origin.match(/localhost/)) return
+      var hm = document.createElement("script");
+      hm.src = "../../../hm.baidu.com/hm.js-f08b5240ef2d1692572ce0f7756b325e"/*tpa=https://hm.baidu.com/hm.js?f08b5240ef2d1692572ce0f7756b325e*/;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      var bp = document.createElement('script');
+      // push baidu.com
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = '../../../zz.bdstatic.com/linksubmit/push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/;
+      }
+      else {
+        bp.src = '../../../push.zhanzhang.baidu.com/push.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/;
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+    // var wrapper = document.getElementById('wrapper')
+    // var floatWechat = document.getElementById('float-wechat')
+
+    // function resetAll (event) {
+    //   var rect = wrapper.getBoundingClientRect()
+    //   resetFloatWechat(rect)
+    // }
+    // function resetFloatWechat(rect) {
+    //   var left = rect.left + rect.width
+    //   floatWechat.style.left = left + 'px'
+    //   floatWechat.style.display = 'block'
+    // }
+    // window.addEventListener('resize', resetAll)
+    // resetAll()
+    </script>
+
+</body>
+
+</html>

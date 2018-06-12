@@ -1,0 +1,107 @@
+windows快捷键
+Win+D快速回桌面
+Win+R run
+Win+E资源管理器
+
+开发工具 VSCode
+CTRL+ENTER这样就会另起一行,并且光标在行首.
+ctrl+/就是对这一行进行注释.
+Alt+Shift+下就是复制这一行,如果框住多行就是复制代码块.
+
+Home End 自动定位到每行代码的头和尾
+Page Up | page down 定位到文件的顶部和尾部
+
+生成HTML骨架 直接HTML:5 + Tab或者 ! + Tab就行.
+
+按住Ctrl+左或者右 就会跳到下一个单词的开始.
+按住Alt+上或者下,就可以调整这一行的位置
+
+框住一块代码,按住ctrl+}代码就会向右,ctrl+{代码就会向左.
+
+如果想把下面这块代码里的<p>和</p>都改成,<li>和</li>,就可以按住Alt+Shift+鼠标左键,然后把所有的p标签选中,然后都改成li,End<li>也就跟着改了. 这就是多行同时编辑.
+或者也可以Alt+鼠标左键,可以同时编辑多个文本.
+    <p>this is content1</p>
+    <p>this is content2</p>
+    <p>this is content3</p>
+    <p>this is content4</p>
+    <p>this is content5</p>
+    <p>this is content6</p>
+
+Alt+Shift+F对代码进行格式化
+
+<h1></h1>像这种同时修改可以选中<h1>,然后ctrl+D选中开头,再ctrl+D选中结尾,这样就可以同时修改了.都改成<h2>
+
+生成10个div标签 div*10就行了
+生成表单就用 (tr>td*2)*7就行了
+
+ECMAScript:JavaScript语法
+DOM:JavaScript操作网页元素的API
+BOM:JavaScript操作浏览器功能的API
+
+JS声明变量 var a1, a2, a3;
+或者 var a1 = 1,//推荐
+         a2 = 2,
+         a3 = 3;
+或者var a1=a2=a3=0;绝对不推荐 (面试题) 为什么:因为这样a2和a3没定义过,引擎会把他们变成全局变量,会发生污染.
+
+JS数据类型
+简单类型 
+数值类型 number 不分int float那些,就一个number
+布尔类型 bool
+字符类型  string
+未定义类型 undenfined
+null类型 本质上是一个特殊的Object类型
+
+复杂类型 
+object类型 引用类型
+function类型 函数类型
+
+typeof是一个操作符,意思是是取数据类型,+-*/%也是操作符,只不过是算数运算符.
+
+1E2 1表示底数,2表示指数 1*10的二次方
+0.3-0.2 == 0.4-0.3 答案是FALSE 因为计算机里面的浮点数是根据指数模拟出来的,所以不是很精确.
+
+NaN: Not a number,非数字值,是数字类型,但是非常特殊的数字类型值.
+parseInt("ss")//把ss字符串转成整数,此时转换失败会返回NaN
+涉及到NaN的所有操作都会返回NaN
+判断是否是NaN使用isNaN方法.不能使用NaN===NaN 会返回false,非数字 不等于非数字.
+
+PhotoShop
+新建图层 ctrl+shift+N
+缩放图片大小 ctrl+t
+移动图层V
+输入文字t
+拖动 space
+矩形选择框(测量使用) m
+打开标尺:菜单的视图中选择标尺,另外把对齐都选中
+取色工具:i,可以右键获取16进制的颜色值.
+调出信息板:F8
+
+AI是矢量图设计,放多大图片都不会失真,PS是图片设计,会失真.拿到AI文件,先在AI中打开,然后文件导出PSD.
+
+PS切片,使用切片工具,框选所有需要的图片,然后文件-导出-存储为web所用格式(点每个图片需要的质量)
+PSD导出某个图片,直接右击图片,快速导出PNG.
+
+美工标注软件,Markman,标注图片上的长宽,字体.标注完成,不能保存,只能截图.
+
+想建立一个div就用div.banner,或者.banner,自动生成<div class="banner"></div>.
+
+CSS样式重置,因为各个浏览器默认样式都不一样,所以一开始做项目得在base.css里面进行样式重置,也可以在网上找一份reset.css 然后copy过来.
+
+或者在github上面找开源项目Normalize.css也是和reset一样的,包括Bootstrap3也是用的normalize
+
+JS自己写函数,一般用匿名函数,怕污染全局变量,因为前端有很多库在用.
+
+匿名自执行函数,使用闭包模拟块级作用域.
+JavaScript,使用闭包模拟面向对象.
+
+JS里
+作为一个函数进行调用，是最简单的形式
+作为一个方法在对象上进行调用，支持面向对象编程
+作为构造器进行调用，创建一个新对象
+通过apply()或call()方法进行调用
+除了最后一种方式，其他方法的函数的调用，都是通过在表达式后面加上小括号来执行函数引用。如果给函数传递参数，则需要将参数放在小括号里并以逗号分隔：expression(arg1,arg2)。
+
+JS里 声明一个方法,不支持重载.
+实参( arguments ) 是;类似于数组的东西,穿进去的参数a,b 只是对应arguments[0],arguments[1]而已
+形参( parameters )就是function后面跟的a,b

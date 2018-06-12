@@ -1,0 +1,81 @@
+1.项目搭建
+建立空白解决方案,添加新建项-ASP.NET Core Web Application(.Net Core) 顶部可以选择DotNetCore版本和FrameWork的版本,这里我们选择的是Core1.0,然后添加Model层和Dal层,这里注意是要添加DotNetCore下面的类库,不是DotNetFrameWork的类库.
+在View/Home/Index下面的第二行,把Title改成DotNetBlog HomePage,其它的都删掉.
+
+数据库设计和Dapper使用
+创建新数据库BlogDB,然后数据库文件就存在项目文件夹里,把项目的路径Copy上去,这次有权限问题,还是算了吧.
+
+然后在新建的数据库下面点击,第一项Database Diagram,
+他会问要不要创建新图,确认然后右键创建新表,(注意如果你删了一个表之后,得关一下软件,再开开,才能再创建同名的表格).
+新建Admin表,加入Id int和CreateDate datetime列+简洁类型,在把Nullable换成No,右键Id行,把ID设置成为主键
+右键Admin(表名),Table View选择Modify Custom,
+把Default Value, Identity, Description点上.
+点Table View下面的Custom,这样刚才加入的Column就显示出来了.
+把ID勾选成Identity,再一次加入UserName navarchar(64),PassWord navarchar(64),Remark navarchar(2048)列+数据类型.
+修改CreateDate的Default value列的值,(getdate()).
+
+
+同理我们创建分类表,Category. 加入Id,CreateDate,CaName,Num,ParNum,Remark.
+再创建Blog表,创建好之后应该创建约束,这次我们就在程序里面写约束吧,不在表里面写了,着看个人习惯了.
+
+右键Admin表,Edit Top 200 Row,在里面添加管理员 Admin,密码是自己找的MD5的123456(e10adc3949ba59abbe56e057f20f883e),
+Category里面也添加几个数据,
+右键BlogDB数据库,在Task里面有Generate Script,把所有表都选上,在高级里面找 "要编写脚本的数据类型" 选择架构和数据,架构名称为false,选择存到新窗口.
+
+2.使用Dapper链接数据库
+在Dal层先用NeGet引用Dapper,看Dapper示例代码.https://gist.github.com/lancscoder/1829462,先创建ConnectionFactory.定义连接字符串.
+为了测试,创建CategoryDal的Insert方法.
+
+在UI层Controller下面创建新控制器,右键添加控制器好像不能用,我们就直接复制HomeController然后改名字成TestController就行了.用testcontroller调用一下Insert方法就行了.测试成功.
+
+再添加Delete方法,和查询GetList方法,这里.NetCore里面把dataTable去掉了,我们只能返回List了(以前我们也是返回List,所以这里没什么变化).
+
+再添加Update方法,需要生成Update语句,有一个小技巧,我们打开MSSQL,点击Category表,找到script table as-update. 在窗口里修改就行了,不用一个一个查都有什么列了.
+   UPDATE [Category]
+   SET [CaName] = @CaName
+      ,[Num] = @Num
+      ,[ParNum] = @ParNum
+      ,[Remark] = @Remark
+ WHERE Id = @id
+
+再添加一个查询GetModel返回实体类的方法
+
+3.后台博客文章CRUD
+在Web层,创建Areas(区域)/Adnnin(区域名)文件夹,下面一个Controller文件夹,和View文件夹,把HomeController Copy到Controller里面,修改只留下一个return view就好了,记得修改命名空间(在Areas下面).把View下的Home文件夹也Copy到View下面.修改index,这次全删掉就行了.
+配置路由,startup.cs下面把routes.MapRoute("Adnn1n", "{area:exists}/{controller}/{action=Index}/{id?}");写在Configure下面.Adnn1n这个区域名好像改不改都能进去???
+再在控制器上面再增加一个标识.[Area("Adnnin")]
+
+创建LoginController控制器,在View下面创建Login文件夹.
+
+Admin的HomeController下面要有三个页面,Top,Left,Welcome,写三个方法,return 他们三个的view.在Views/Home下面创建三个页面.
+
+把后台的样式文件Copy到wwwroot下面创建一个adminstyle文件夹里面.修改Top Left Right
+
+把LayUI的样式拖到WWWROOT下面,把LayUI的CSS拽到Welcome里面,然后再做一个模板页面,在Adnn1n/Views下面创建Shared文件夹,Copy一个_Layout.cshtml在里面.修改本Layout文件,把css和JS引入,
+把多余的都删掉,就剩下body下面的@renderbody就行了.
+
+在Views下面创建_ViewStart.cshtml文件,修改里面的Layout路径,把_layout拽进去,提取路径copy上去.
+
+把不需要模板页的页面上加上layout = null;
+
+创建Blog控制器,和视图.完善BlogController里面的CRUD
+
+创建Model和Dal层的Blog工具类,进一步完善BlogCRUD
+
+修改前台Add页面,先在页面引入Blog的Model  把@model DotNetBlog.Model.Blog添加到最顶上.(这里不知道为什么,直接右键创建视图加上这句话就出错) 只能Copy原来的index视图然后修改.
+
+再修改controller.注意Controller传数据到View时候需要用view(Model)这个括号里返回数据,不管在controller里面叫什么名字或是什么类型(Model或者list),view里面都从定义好的Model里取.
+
+再修改view,把Model引用到view.@model DotNetBlog.Model.Blog这样视图就变成强类型视图了,用下面这句话中的正则表达式可以直接写a.Title
+@Html.TextBoxFor(a => a.Title, new { placeholder = "请输入标题", @class = "layui-input" })
+
+在Add的view下面加上@Html.AntiForgeryToken() 在Controller下面的Add方法前面加入[AutoValidateAntiforgeryToken],这样比较安全.
+
+4.LayUI使用和分页
+
+把样式DIV和JS都Copy到文件,再修改.
+把数据添加上去.
+
+5.
+  头像改为我的LOGO，站点名称修改为牛腩博客，下方加入搜索框，只保留分类和博客月份，相应查询代码写好
+  后台分类管理做好，用layui tree

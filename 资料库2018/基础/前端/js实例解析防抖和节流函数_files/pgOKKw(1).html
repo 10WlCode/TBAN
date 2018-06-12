@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://s.codepen.io/dcorb/fullembedgrid/pgOKKw?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Scroll comparison requestAnimationFrame vs throttle</title>
+  
+  
+  
+  
+      <style>
+      body {
+   background: #444444;
+   color: white;
+   font: 20px/1.51 Helvetica, sans-serif;
+   margin:0 auto;
+   max-width:900px;
+   padding:20px;
+   min-height:1000vh;
+}
+.item {
+  position:fixed;
+  border:4px solid #9BFFBB;
+  height:60px;
+  width:100px;
+  background:#333;
+  padding:20px;
+  top:20px;
+}
+.second {
+  top:140px;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style type="text/css">:root .ad
+{display:none !important;}</style></head>
+
+<body translate="no">
+
+  
+<div class="item">Scroll with rAF</div>
+<div class="item second">Scroll with _.throttle</div>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  <script src="./lodash.min.js(1).下载"></script>
+
+  
+
+    <script>
+      // Based on https://www.html5rocks.com/en/tutorials/speed/animations/#debouncing-scroll-events
+
+
+
+var latestKnownScrollY = 0,
+	ticking = false,
+  item = document.querySelectorAll('.item');
+
+
+function update() {
+	// reset the tick so we can
+	// capture the next onScroll
+	ticking = false;
+
+  item[0].style.width = latestKnownScrollY + 100 + 'px';
+}
+
+
+function onScroll() {
+	latestKnownScrollY = window.scrollY; //No IE8
+	requestTick();
+}
+
+function requestTick() {
+	if(!ticking) {
+		requestAnimationFrame(update);
+	}
+	ticking = true;
+}
+
+ window.addEventListener('scroll', onScroll, false);
+
+
+/// THROTTLE
+
+function throttled_version() {
+   item[1].style.width = window.scrollY + 100 + 'px';
+}
+
+ window.addEventListener('scroll', _.throttle(throttled_version, 16), false);
+      //# sourceURL=pen.js
+    </script>
+
+
+
+  
+  
+
+
+
+
+ </body></html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html -->
+<html lang="zh-cn" class="gr__cnblogs_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[转]C# const和static readonly区别 - SamWang - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./csharp const和static readonly区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./csharp const和static readonly区别_files/bundle-sea.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./csharp const和static readonly区别_files/bundle-sea-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wangshenhe/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wangshenhe/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wangshenhe/wlwmanifest.xml">
+<script type="text/javascript" src="./csharp const和static readonly区别_files/encoder.js.下载"></script><script src="./csharp const和static readonly区别_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wangshenhe', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./csharp const和static readonly区别_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wangshenhe/">SamWang</a><br>
+		岂能尽如人意，但求无愧于心
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/wangshenhe/">首页</a> &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/SamWang">联系</a> &nbsp;
+<a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/wangshenhe/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/wangshenhe/rss"><img src="./csharp const和static readonly区别_files/xml.gif" alt="订阅"></a>&nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats"><div id="blog_stats">
+随笔-81&nbsp;
+评论-237&nbsp;
+文章-0&nbsp;
+<!--trackbacks-0-->
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html">[转]C# const和static readonly区别</a></h1>
+	<div id="cnblogs_post_body"><p>我们都知道，const和static readonly的确很像：通过类名而不是对象名进行访问，在程序中只读等等。在多数情况下可以混用。<br>二者本质的区别在于，const的值是在编译期间确定的，因此只能在声明时通过常量表达式指定其值。而static readonly是在运行时计算出其值的，所以还可以通过静态构造函数来赋值。<br>明白了这个本质区别，我们就不难看出下面的语句中static readonly和const能否互换了：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1</span>. <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> MyClass myins = <span style="color: #0000ff;">new</span><span style="color: #000000;"> MyClass();
+</span><span style="color: #800080;">2</span>. <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> MyClass myins = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #800080;">3</span>. <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> A = B * <span style="color: #800080;">20</span><span style="color: #000000;">;
+   </span><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> B = <span style="color: #800080;">10</span><span style="color: #000000;">;
+</span><span style="color: #800080;">4</span>. <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> <span style="color: #0000ff;">int</span> [] constIntArray = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">int</span>[] {<span style="color: #800080;">1</span>, <span style="color: #800080;">2</span>, <span style="color: #800080;">3</span><span style="color: #000000;">};
+</span><span style="color: #800080;">5</span>. <span style="color: #0000ff;">void</span><span style="color: #000000;"> SomeFunction()
+   {
+      </span><span style="color: #0000ff;">const</span> <span style="color: #0000ff;">int</span> a = <span style="color: #800080;">10</span><span style="color: #000000;">;
+      ...
+   }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>1：不可以换成const。new操作符是需要执行构造函数的，所以无法在编译期间确定<br>2：可以换成const。我们也看到，Reference类型的常量（除了String）只能是Null。<br>3：可以换成const。我们可以在编译期间很明确的说，A等于200。<br>4：不可以换成const。道理和1是一样的，虽然看起来1,2,3的数组的确就是一个常量。<br>5：不可以换成readonly，readonly只能用来修饰类的field，不能修饰局部变量，也不能修饰property等其他类成员。</p>
+<p>&nbsp;</p>
+<p>因此，对于那些本质上应该是常量，但是却无法使用const来声明的地方，可以使用static readonly。&nbsp;</p>
+<p>例如C#规范中给出的例子：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Color
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> Color Black = <span style="color: #0000ff;">new</span> Color(<span style="color: #800080;">0</span>, <span style="color: #800080;">0</span>, <span style="color: #800080;">0</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> Color White = <span style="color: #0000ff;">new</span> Color(<span style="color: #800080;">255</span>, <span style="color: #800080;">255</span>, <span style="color: #800080;">255</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> Color Red = <span style="color: #0000ff;">new</span> Color(<span style="color: #800080;">255</span>, <span style="color: #800080;">0</span>, <span style="color: #800080;">0</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> Color Green = <span style="color: #0000ff;">new</span> Color(<span style="color: #800080;">0</span>, <span style="color: #800080;">255</span>, <span style="color: #800080;">0</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> Color Blue = <span style="color: #0000ff;">new</span> Color(<span style="color: #800080;">0</span>, <span style="color: #800080;">0</span>, <span style="color: #800080;">255</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">byte</span><span style="color: #000000;"> red, green, blue;
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span>     <span style="color: #0000ff;">public</span> Color(<span style="color: #0000ff;">byte</span> r, <span style="color: #0000ff;">byte</span> g, <span style="color: #0000ff;">byte</span><span style="color: #000000;"> b)
+</span><span style="color: #008080;">12</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">13</span>         red =<span style="color: #000000;"> r;
+</span><span style="color: #008080;">14</span>         green =<span style="color: #000000;"> g;
+</span><span style="color: #008080;">15</span>         blue =<span style="color: #000000;"> b;
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">17</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>static readonly需要注意的一个问题是，对于一个static readonly的Reference类型，只是被限定不能进行赋值（写）操作而已。而对其成员的读写仍然是不受限制的。 <br>public static readonly MyClass myins = new MyClass();<br>…<br>myins.SomeProperty = 10;&nbsp; //正常<br>myins = new MyClass();&nbsp;&nbsp;&nbsp; //出错，该对象是只读的</p>
+<p>但是，如果上例中的MyClass不是一个class而是一个struct，那么后面的两个语句就都会出错。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Const 和 static readonly的区别：<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可能通过上述纯概念性的讲解，对有些初学者有些晕乎。下面就一些例子来说明下：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System;
+</span><span style="color: #008080;"> 2</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> P
+</span><span style="color: #008080;"> 3</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> <span style="color: #0000ff;">int</span> A=B*<span style="color: #800080;">10</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> <span style="color: #0000ff;">int</span> B=<span style="color: #800080;">10</span><span style="color: #000000;">;   
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 8</span>         Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">A is {0},B is {1} </span><span style="color: #800000;">"</span><span style="color: #000000;">,A,B);
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">10</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>对于上述代码，输出结果是多少?很多人会认为是A is 100,B is 10吧！其实，正确的输出结果是A is 0,B is 10。</p>
+<p>&nbsp;</p>
+<p>好吧，如果改成下面的话：using System;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> P
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">const</span> <span style="color: #0000ff;">int</span> A=B*<span style="color: #800080;">10</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">const</span> <span style="color: #0000ff;">int</span> B=<span style="color: #800080;">10</span><span style="color: #000000;">;   
+</span><span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 7</span>         Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">A is {0},B is {1} </span><span style="color: #800000;">"</span><span style="color: #000000;">,A,B);
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./csharp const和static readonly区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>对于上述代码，输出结果又是多少呢？难道是A is 0,B is 10？其实又错了，这次正确的输出结果是A is 100,B is<br><br>那么为什么是这样的呢？其实在上面说了，const是静态常量，所以在编译的时候就将A与B的值确定下来了（即B变量时10，而A=B*10=10*10=100）,那么Main函数中的输出当然是A is 100,B is 10啦。而static readonly则是动态常量，变量的值在编译期间不予以解析，所以开始都是默认值，像A与B都是int类型，故都是0。而在程序执行到A=B*10;所以A=0*10=0,程序接着执行到B=10这句时候，才会真正的B的初值10赋给B。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/wangshenhe/category/378696.html" target="_blank">C#</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/wangshenhe/tag/C%23/">C#</a>, <a href="http://www.cnblogs.com/wangshenhe/tag/const/">const</a>, <a href="http://www.cnblogs.com/wangshenhe/tag/static%20readonly/">static readonly</a>, <a href="http://www.cnblogs.com/wangshenhe/tag/%E5%8C%BA%E5%88%AB/">区别</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2503831,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;25c623bc-e997-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./csharp const和static readonly区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./csharp const和static readonly区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangshenhe/" target="_blank"><img src="./csharp const和static readonly区别_files/u406206.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wangshenhe/">SamWang</a><br>
+            <a href="http://home.cnblogs.com/u/wangshenhe/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/wangshenhe/followers">粉丝 - 158</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;25c623bc-e997-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2503831,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">8</span>
+    </div>
+    <div class="buryit" onclick="votePost(2503831,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503630.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503630.html" title="发布于2012-05-16 11:18">【技巧】DataGridView重新绑定时保持上次滚动位置(SamWang)</a><br><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503943.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503943.html" title="发布于2012-05-16 14:20">[转]关于release和debug的区别</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2012-05-16 13:34</span> <a href="http://www.cnblogs.com/wangshenhe/">SamWang</a> 阅读(<span id="post_view_count">5883</span>) 评论(<span id="post_comment_count">6</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2503831" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#" onclick="AddToWz(2503831);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=116890,cb_entryId=2503831,cb_blogApp=currentBlogApp,cb_blogUserGuid='25c623bc-e997-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/5/16 13:34:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>评论:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2378697" class="layer">#1楼</a><a name="2378697" id="comment_anchor_2378697"></a>
+				 <span class="comment_date">2012-05-16 22:24</span> | <a id="a_comment_author_2378697" href="http://home.cnblogs.com/u/399916/" target="_blank">betrueMM</a> <a href="http://msg.cnblogs.com/send/betrueMM" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2378697" class="blog_comment_body">最后一个例子不错~ 帮顶！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2378697,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2378697,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2378697,&#39;1wDqCrTVRZnUDXbNZBlm8nkf7DLUXknysBy/DXicQNyJCFLED6kUkw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2378697,&#39;1wDqCrTVRZnUDXbNZBlm8nkf7DLUXknysBy/DXicQNyJCFLED6kUkw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2378740" class="layer">#2楼</a><a name="2378740" id="comment_anchor_2378740"></a>[<span class="louzhu">楼主</span>]
+				 <span class="comment_date">2012-05-16 23:46</span> | <a id="a_comment_author_2378740" href="http://www.cnblogs.com/wangshenhe/" target="_blank">SamWang</a> <a href="http://msg.cnblogs.com/send/SamWang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2378740" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2378697" title="查看引用原文">引用</a></legend>betrueMM：最后一个例子不错~ 帮顶！</fieldset><br>最后两个例子一比较，马上就很清楚const与static readonly的区别了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2378740,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2378740,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2378740_avatar" style="display:none;">http://pic.cnblogs.com/face/u406206.jpg?id=16235606</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2378740,&#39;TSdilgp8DsnaFf7OwvAUVnb+iYBtB0kA7RWZ8B4BG/QoY4ZHfo8MgA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2378740,&#39;TSdilgp8DsnaFf7OwvAUVnb+iYBtB0kA7RWZ8B4BG/QoY4ZHfo8MgA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2383649" class="layer">#3楼</a><a name="2383649" id="comment_anchor_2383649"></a>
+				 <span class="comment_date">2012-05-23 10:02</span> | <a id="a_comment_author_2383649" href="http://www.cnblogs.com/kofkyo/" target="_blank">kofkyo</a> <a href="http://msg.cnblogs.com/send/kofkyo" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2383649" class="blog_comment_body">最后这个例子很好，以前没注意过</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2383649,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2383649,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2383649,&#39;Cms+WpnfaVy0Vq+Qk6/s9sfdd8mkc2uOUNDT156B2vQq9UQRdmcYgw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2383649,&#39;Cms+WpnfaVy0Vq+Qk6/s9sfdd8mkc2uOUNDT156B2vQq9UQRdmcYgw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2383841" class="layer">#4楼</a><a name="2383841" id="comment_anchor_2383841"></a>[<span class="louzhu">楼主</span>]
+				 <span class="comment_date">2012-05-23 13:12</span> | <a id="a_comment_author_2383841" href="http://www.cnblogs.com/wangshenhe/" target="_blank">SamWang</a> <a href="http://msg.cnblogs.com/send/SamWang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2383841" class="blog_comment_body"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2383649" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2383649);">@</a>
+kofkyo<br>嗯，是的！很清楚解释了编译期与运行期的区别。<br>最近看书觉得var、dynamic的性质和它们也很像！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2383841,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2383841,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2383841_avatar" style="display:none;">http://pic.cnblogs.com/face/u406206.jpg?id=16235606</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2383841,&#39;TSdilgp8DsnaFf7OwvAUVnb+iYBtB0kA7RWZ8B4BG/QoY4ZHfo8MgA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2383841,&#39;TSdilgp8DsnaFf7OwvAUVnb+iYBtB0kA7RWZ8B4BG/QoY4ZHfo8MgA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2632499" class="layer">#5楼</a><a name="2632499" id="comment_anchor_2632499"></a>
+				 <span class="comment_date">2013-03-11 18:11</span> | <a id="a_comment_author_2632499" href="http://home.cnblogs.com/u/306628/" target="_blank">与狼为伍</a> <a href="http://msg.cnblogs.com/send/%E4%B8%8E%E7%8B%BC%E4%B8%BA%E4%BC%8D" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2632499" class="blog_comment_body">有意思，4，5行调换一下又不一样了<br><br> 1 using System;<br> 2 class P<br> 3 {<br> 5     static readonly int B=10; <br> 4     static readonly int A=B*10;  <br> 6     public static void Main(string[] args)<br> 7     {<br> 8         Console.WriteLine("A is {0},B is {1} ",A,B);<br> 9     }<br>10 }</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2632499,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2632499,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2632499,&#39;GamtvSCgLW+p8wc574YWOjthWsfs3ZGqljLBYBketdmB87zh4e9QoA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2632499,&#39;GamtvSCgLW+p8wc574YWOjthWsfs3ZGqljLBYBketdmB87zh4e9QoA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#2938184" class="layer">#6楼</a><a name="2938184" id="comment_anchor_2938184"></a><span id="comment-maxId" style="display:none;">2938184</span><span id="comment-maxDate" style="display:none;">2014/5/13 17:04:46</span>
+				 <span class="comment_date">2014-05-13 17:04</span> | <a id="a_comment_author_2938184" href="http://www.cnblogs.com/stevenawake/" target="_blank">*凉风习习*</a> <a href="http://msg.cnblogs.com/send/%2A%E5%87%89%E9%A3%8E%E4%B9%A0%E4%B9%A0%2A" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2938184" class="blog_comment_body">第一个例子：<br><div class="cnblogs_Highlighter sh-gutter"><div><div id="highlighter_661341" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp keyword">static</code> <code class="csharp keyword">readonly</code> <code class="csharp plain">A = B * 20;</code></div><div class="line number2 index1 alt1"><code class="csharp keyword">static</code> <code class="csharp keyword">readonly</code> <code class="csharp plain">B = 10;</code></div></div></td></tr></tbody></table></div></div></div><br>没有给出数据类型，会报错哦。<br>A应该是0，而不是200，所以这个不能与CONST互换的。<br><br>以上在Visual Studio 2012下调试通过。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2938184,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2938184,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2938184,&#39;aTRWxk8Zvp8lvW+bAmn5zSuSeT4gMcnVVY2Zbl/TsMzg2b/V0zCsyQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2938184,&#39;aTRWxk8Zvp8lvW+bAmn5zSuSeT4gMcnVVY2Zbl/TsMzg2b/V0zCsyQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16/2503831.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./csharp const和static readonly区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./csharp const和static readonly区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./csharp const和static readonly区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./csharp const和static readonly区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./csharp const和static readonly区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./csharp const和static readonly区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.436846.436846.436846" target="_blank">【推荐】搭建微信小程序 就选腾讯云</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://www.mtyun.com/promote/69f73a72-f46d-4103-88e5-94ed2f81259d/" target="_blank"><img width="300" height="250" src="./csharp const和static readonly区别_files/24442-20170921101521025-1845913848.jpg" alt="美团云0921"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/579541/" target="_blank">微软宣布Office for Mac重大更新即将到来，敬请期待</a><br> ·  <a href="http://news.cnblogs.com/n/579533/" target="_blank">借钱也要旅游 30万年轻人成“负游族”：人均借款6000元</a><br> ·  <a href="http://news.cnblogs.com/n/579542/" target="_blank">为进一步加大影响力 微软在硅谷中心地带买下65英亩</a><br> ·  <a href="http://news.cnblogs.com/n/579546/" target="_blank">当波音的飞行背包遇上谷歌的飞行汽车</a><br> ·  <a href="http://news.cnblogs.com/n/579545/" target="_blank">Lyft准备上市了，科技范儿的打车公司到底值多少钱？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/22446/" target="_blank"><img width="468" height="60" src="./csharp const和static readonly区别_files/24442-20171001085719794-417760373.jpg" alt="阿里云1001"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/579480/" target="_blank">实用VPC虚拟私有云设计原则</a><br> ·  <a href="http://kb.cnblogs.com/page/576251/" target="_blank">如何阅读计算机科学类的书</a><br> ·  <a href="http://kb.cnblogs.com/page/578103/" target="_blank">Google 及其云智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/575829/" target="_blank">做到这一点，你也可以成为优秀的程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/566880/" target="_blank">写给立志做码农的大学生</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wangshenhe/">SamWang</a><br>园龄：<a href="http://home.cnblogs.com/u/wangshenhe/" title="入园时间：2012-05-07">5年4个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/wangshenhe/followers/">158</a><br>关注：<a href="http://home.cnblogs.com/u/wangshenhe/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;25c623bc-e997-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/04/01&#39;);return false;">&lt;</a></td><td align="center">2012年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/08.html"><u>8</u></a></td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/09.html"><u>9</u></a></td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/10.html"><u>10</u></a></td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/14.html"><u>14</u></a></td><td align="center">15</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/16.html"><u>16</u></a></td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/17.html"><u>17</u></a></td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/21.html"><u>21</u></a></td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/22.html"><u>22</u></a></td><td align="center">23</td><td align="center">24</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/25.html"><u>25</u></a></td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/28.html"><u>28</u></a></td><td align="center">29</td><td align="center"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/30.html"><u>30</u></a></td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wangshenhe/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/wangshenhe/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/wangshenhe/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/wangshenhe/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/wangshenhe/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/wangshenhe/p/3262446.html">1. [转]silverlight Datagrid 行上增加ToolTip</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3257626.html">2. [转]进程和线程的区别</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3256657.html">3. [整理]C#反射(Reflection)详解</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3255522.html">4. [转]ASP.NET页面之间传递值的几种方式</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3240448.html">5. [转]LINQ之路系列博客导航</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3240444.html">6. [转]Entity Framework vs. LINQ to SQL</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3178039.html">7. [转]Sql Server 给表与字段添加描述</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2013/06/07/3123552.html">8. [转]使用SQLServer 2008的CDC功能实现数据变更捕获</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2013/05/30/3108372.html">9. [转]UML九种图作用简介</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2013/04/28/3048798.html">10. [转]C#调用SSIS包(DTS)</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/wangshenhe/tag/C%23/">C#</a>(22)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/sql/">sql</a>(12)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/SamWang/">SamWang</a>(10)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/%E5%8C%BA%E5%88%AB/">区别</a>(5)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/.net/">.net</a>(4)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/asp.net/">asp.net</a>(4)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/%E7%B1%BB%E5%BA%93/">类库</a>(3)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95/">全文索引</a>(3)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/%E4%B8%B4%E6%97%B6%E8%A1%A8/">临时表</a>(2)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/silverlight/">silverlight</a>(2)</li><li><a href="http://www.cnblogs.com/wangshenhe/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3 class="catListTitle">随笔分类</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/378697.html">.net(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/378699.html">ASP.NET(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/402715.html">Book(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/378696.html">C#(22)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/379060.html">Class(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/452385.html">Desgin(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/505767.html">Linq&amp;EF(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/382200.html">Note(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/460085.html">other(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/459174.html">PM(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/457901.html">Silverlight(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/413449.html">Sql(19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/401223.html">Tools(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/402926.html">UML(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/511596.html">面试(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/wangshenhe/category/413451.html">原创(16)</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">随笔档案</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/08.html">2013年8月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/07.html">2013年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/06.html">2013年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/05.html">2013年5月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/04.html">2013年4月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/03.html">2013年3月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2013/02.html">2013年2月 (13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/12.html">2012年12月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/11.html">2012年11月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/10.html">2012年10月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/09.html">2012年9月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/08.html">2012年8月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/07.html">2012年7月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/06.html">2012年6月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/wangshenhe/archive/2012/05.html">2012年5月 (17)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		120906
+	</li><li>
+		排名 -
+		2196
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangshenhe/archive/2013/02/16/2913431.html#3791264">1. Re:[转]关于TDD、BDD和DDD的一些看法</a></li>
+        <li class="recent_comment_body">好文。作为一个了解扫盲文。</li>
+        <li class="recent_comment_author">--大兄弟竹子</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/14/2499159.html#3542627">2. Re:【原创】C# 实现拖拉控件改变位置与大小(SamWang)(附源代码下载)</a></li>
+        <li class="recent_comment_body">@xiaomao11能请教一下白框问题怎么解决了？再一个拉动过程中会有闪动，如何解决呢？czw6296@163.com谢谢！...</li>
+        <li class="recent_comment_author">--Victor.Cheng</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/14/2499159.html#3542624">3. Re:【原创】C# 实现拖拉控件改变位置与大小(SamWang)(附源代码下载)</a></li>
+        <li class="recent_comment_body">@慈方阳不管用呀，有时会把控件拉到框外，加了你的语句照样子...</li>
+        <li class="recent_comment_author">--Victor.Cheng</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/10/2493727.html#3409368">4. Re:【类】C# 导入导出Excel通用类(SamWang)</a></li>
+        <li class="recent_comment_body">这个类怎么用的能举个列子么 不会用</li>
+        <li class="recent_comment_author">--苏南</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/10/2493727.html#3368310">5. Re:【类】C# 导入导出Excel通用类(SamWang)</a></li>
+        <li class="recent_comment_body">@SamWangNPOI赞一个，不用不知道，实在是太快了。...</li>
+        <li class="recent_comment_author">--王正坤</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangshenhe/p/3256657.html">1. [整理]C#反射(Reflection)详解(62372)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/11/16/2773217.html">2. [转]C#获取本机IP搜集整理7种方法(45939)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/09/2490438.html">3. 【整理】C#文件操作大全(SamWang)(38298)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/25/2516842.html">4. 【分析】浅谈C#中Control的Invoke与BeginInvoke在主副线程中的执行顺序和区别（SamWang）(14120)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/11/14/2769605.html">5. 【改进】C# WinForm捕获全局异常 SamWang(12296)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangshenhe/p/3280207.html">1. [面试]第1次做面试官(95)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/14/2499159.html">2. 【原创】C# 实现拖拉控件改变位置与大小(SamWang)(附源代码下载)(23)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2013/04/27/3047092.html">3. [转]不同版本的SQL Server之间数据导出导入的方法及性能比较(18)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/25/2516842.html">4. 【分析】浅谈C#中Control的Invoke与BeginInvoke在主副线程中的执行顺序和区别（SamWang）(11)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/11/23/2784073.html">5. 【SQL】通过Sql实现根据分组合并指定列内容的查询 SamWang(9)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wangshenhe/p/3256657.html">1. [整理]C#反射(Reflection)详解(18)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/25/2516842.html">2. 【分析】浅谈C#中Control的Invoke与BeginInvoke在主副线程中的执行顺序和区别（SamWang）(12)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/14/2499159.html">3. 【原创】C# 实现拖拉控件改变位置与大小(SamWang)(附源代码下载)(9)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/p/3280207.html">4. [面试]第1次做面试官(9)</a></li><li><a href="http://www.cnblogs.com/wangshenhe/archive/2012/05/09/2490438.html">5. 【整理】C#文件操作大全(SamWang)(8)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2017 SamWang
+</div>
+
+
+
+
+
+</body></html>

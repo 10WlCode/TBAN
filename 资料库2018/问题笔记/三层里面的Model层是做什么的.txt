@@ -1,0 +1,11 @@
+Model层就是为了传递数据的，Dal层操作数据库，需要返回给Bll层，可以返回一个datatable，但是这样的话，就没有解耦，还是依赖于MSSQL，如果想换其他的数据库的话，比较难改，这样我们就想出来直接建立一个Model层，每个类都对应一个表格，里面的每个属性都对应一个列，传递数据的时候就用这个实体类传递就行了。
+
+Model里的每个类，就是一个类型，对应一个数据库。
+
+
+例如：Dal层里的UserInfoDal里面我们就把BaseDal拿来，然后再把UserinfoDal传进去，就可以做修改数据的操作了public partial class UserInfoDAL : BaseDAL<UserInfo>, IUserInfoDAL
+
+　　1、Model又叫实体类，这样，Model在三层架构中的位置，和int，string等变量的地位就一样了，没有其它的目的，仅用于数据的存储而已，只不过它存储的是复杂的数据。
+　　2、所以如果你的项目中对象都非常简单，那么不用Model而直接传递多个参数也能做成三层架构。
+
+Model层比数组更直观，哪行对应哪行一眼就能看出来。

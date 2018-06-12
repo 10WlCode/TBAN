@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://www.bbsmax.com/A/ZOJPRRwxdv/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>MVC中自带的异步((Ajax.BeginForm)无效</title>
+<link href="./MVC中自带的异步((Ajax.BeginForm)无效_files/prettify.css" type="text/css" rel="stylesheet">
+<!-- <meta name="referrer" content="never">
+h -->
+<style>
+ .menu li { float: left; }
+</style>
+<link rel="stylesheet" type="text/css" href="./MVC中自带的异步((Ajax.BeginForm)无效_files/prettify(1).css">
+<link rel="stylesheet" href="./MVC中自带的异步((Ajax.BeginForm)无效_files/style.css">
+<!-- <link rel="stylesheet" href="//bbsmax.ikafan.com/css.grace/fontello.css?ac"> -->
+<!-- <link rel="stylesheet" href="//bbsmax.ikafan.com/css.grace/animation.css?ac"> -->
+<style type="text/css">:root #header + #content > #left > #rlblock_left,
+:root .adsbygoogle
+{display:none !important;}</style></head>
+<body>
+<div id="header" class="navbar navbar-default navbar-fixed-top header-01">
+	<div class="container">
+		<h1 class="logo">
+			<a href="https://www.bbsmax.com/" title="bbsmax">
+							<img src="./MVC中自带的异步((Ajax.BeginForm)无效_files/logo.png" alt="bbsmax">
+			</a>
+		</h1>
+				<div role="navigation" class="site-nav  primary-menu">
+			<div class="menu-fix-box">
+				 <ul id="menu-navigation" class="menu">
+<li>首页</li>
+<li>Python</li>
+<li>Java</li>
+<li>PHP</li>
+<li>IOS</li>
+<li>Andorid</li>
+<li>NodeJS</li>
+<li>JavaScript</li>
+<li>HTML5</li>
+</ul>					 			</div>
+		</div>
+				<!--<div class="right-nav">
+				<button class="js-toggle-search"><i class="icon-search"></i></button>
+		</div>-->
+       
+			</div>	
+</div>
+
+
+<div id="page-content">
+	<div class="container">
+		<div class="row">
+			
+			<div class="blog-post">
+								<!--<div class="posts-top-cjtz clearfix"></div>-->
+								<div class="post">
+										<div class="post-title">
+						<!--<div class="post-entry-categories"><a href="/tag/abc" rel="tag">tag</a><a href="/tag/abc" rel="tag">tag2</a></div>-->
+						<h1 class="title">MVC中自带的异步((Ajax.BeginForm)无效</h1>
+						<div class="post_icon"> 
+															<span class="icon-user-o"> </span>															
+															<span class="icon-clock-1"> 2016-08-07 </span>
+															<span class="icon-article-1"> <a href="https://www.bbsmax.com/link/Wk9KUFJSd3hkdg==" target="_blank" rel="noindex,nofollow,oarchive">原文</a> </span>
+					</div>
+										<div class="post-content">
+						<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="text-align: center;" data-ad-format="fluid" data-ad-layout="in-article" data-ad-client="ca-pub-6527383233809815" data-ad-slot="7460572068"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+					
+		<p>1、确定unobtrusive-ajax已经引用，VS2012带，2013不带</p>
+<p>2、注意jq和unobtrusive-ajax引用顺序问题，确保jq在前</p>
+<p>3、注意JQ和unobtrusive-ajax版本问题</p>
+<p>1.8以上的JQ要去nuget上下载较新的unobtrusive-ajax，1.8以下的用VS2012自带的即可，2013不带，</p>
+<p>4、如果控制台提示TypeError: $(...).live is not a function</p>
+<p>说明JQ版本过低，JQ1.9更新了很多东西，其中live就被去掉了</p>
+<p>引用：</p>
+<div>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"~/Scripts/jquery-1.8.2.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"~/Scripts/jquery.unobtrusive-ajax.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre>
+</div>
+<p>ajax:</p>
+<div>
+<div>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">            </span><span class="lit">@using</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Ajax</span><span class="pun">.</span><span class="typ">BeginForm</span><span class="pun">(</span><span class="str">"EditeArticleType"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"UArticleType"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">AjaxOptions</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">HttpMethod</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"post"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">OnSuccess</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"afterEdit"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> id </span><span class="pun">=</span><span class="pln"> </span><span class="str">"addForm"</span><span class="pln"> </span><span class="pun">}))</span></li><li class="L1"><span class="pln">            </span><span class="pun">{</span></li><li class="L2"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"modal-body"</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-group"</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">label </span><span class="kwd">for</span><span class="pun">=</span><span class="str">"recipient-name"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"control-label"</span><span class="pun">&gt;分类名称:&lt;/</span><span class="pln">label</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">input name</span><span class="pun">=</span><span class="str">"TypeName"</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"text"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-control"</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"type-name"</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                    </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-group"</span><span class="pun">&gt;</span></li><li class="L8"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">label </span><span class="kwd">for</span><span class="pun">=</span><span class="str">"recipient-name"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"control-label"</span><span class="pun">&gt;排序:&lt;/</span><span class="pln">label</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">input name</span><span class="pun">=</span><span class="str">"ListIndex"</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"text"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-control"</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"type-index"</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">                    </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-group"</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">label </span><span class="kwd">for</span><span class="pun">=</span><span class="str">"message-text"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"control-label"</span><span class="pun">&gt;描述:&lt;/</span><span class="pln">label</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">textarea </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"form-control"</span><span class="pln"> id</span><span class="pun">=</span><span class="str">"type-describe"</span><span class="pun">&gt;&lt;/</span><span class="pln">textarea</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">                    </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">                </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">div </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"modal-footer"</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">button type</span><span class="pun">=</span><span class="str">"button"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"btn btn-default"</span><span class="pln"> data</span><span class="pun">-</span><span class="pln">dismiss</span><span class="pun">=</span><span class="str">"modal"</span><span class="pun">&gt;关闭&lt;/</span><span class="pln">button</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">button type</span><span class="pun">=</span><span class="str">"submit"</span><span class="pln"> </span><span class="kwd">class</span><span class="pun">=</span><span class="str">"btn btn-primary"</span><span class="pun">&gt;确定&lt;/</span><span class="pln">button</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">                </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">            </span><span class="pun">}</span></li></ol></pre>
+</div>
+</div>
+<p>回调函数jq:</p>
+<div>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">    </span><span class="kwd">function</span><span class="pln"> afterEdit</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">data</span><span class="pun">.</span><span class="typ">State</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">200</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">            location</span><span class="pun">.</span><span class="pln">reload</span><span class="pun">();</span></li><li class="L3"><span class="pln">        </span><span class="pun">}</span></li><li class="L4"><span class="pln">    </span><span class="pun">}</span></li></ol></pre>
+</div>
+<p>controller：</p>
+<div>
+<div>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">        </span><span class="pun">[</span><span class="typ">HttpPost</span><span class="pun">]</span></li><li class="L1"><span class="pln">        </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ActionResult</span><span class="pln"> </span><span class="typ">EditeArticleType</span><span class="pun">(</span><span class="typ">ArticleType</span><span class="pln"> articleType</span><span class="pun">)</span></li><li class="L2"><span class="pln">        </span><span class="pun">{</span></li><li class="L3"><span class="pln">            articleTypeService </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> BLL</span><span class="pun">.</span><span class="typ">ArticleTypeService</span><span class="pun">();</span></li><li class="L4"><span class="pln">            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="kwd">string</span><span class="pun">.</span><span class="typ">IsNullOrEmpty</span><span class="pun">(</span><span class="pln">articleType</span><span class="pun">.</span><span class="typ">TypeName</span><span class="pun">))</span></li><li class="L5"><span class="pln">            </span><span class="pun">{</span></li><li class="L6"><span class="pln">                articleType</span><span class="pun">.</span><span class="typ">MemberID</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">CurrentMember</span><span class="pun">.</span><span class="pln">ID</span><span class="pun">;</span></li><li class="L7"><span class="pln">                articleType</span><span class="pun">.</span><span class="typ">IsDel</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">;</span></li><li class="L8"><span class="pln">                articleType</span><span class="pun">.</span><span class="typ">CreateTime</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DateTime</span><span class="pun">.</span><span class="typ">Now</span><span class="pun">;</span></li><li class="L9"><span class="pln">                </span><span class="kwd">var</span><span class="pln"> newType </span><span class="pun">=</span><span class="pln"> articleTypeService</span><span class="pun">.</span><span class="typ">AddEntity</span><span class="pun">(</span><span class="pln">articleType</span><span class="pun">);</span></li><li class="L0"><span class="pln">                </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">newType </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span></li><li class="L1"><span class="pln">                </span><span class="pun">{</span></li><li class="L2"><span class="pln">                    </span><span class="pun">,</span><span class="typ">Msg</span><span class="pun">=</span><span class="str">"成功"</span><span class="pun">,</span><span class="typ">Data</span><span class="pun">=</span><span class="kwd">null</span><span class="pun">});</span><span class="com">//RedirectToAction("UArticleType", "UserCenter");</span></li><li class="L3"><span class="pln">                </span><span class="pun">}</span></li><li class="L4"><span class="pln">                </span><span class="kwd">else</span></li><li class="L5"><span class="pln">                </span><span class="pun">{</span></li><li class="L6"><span class="pln">                    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">View</span><span class="pun">(</span><span class="str">"/Views/Shared/Error.cshtml"</span><span class="pun">);</span></li><li class="L7"><span class="pln">                </span><span class="pun">}</span></li><li class="L8"><span class="pln">            </span><span class="pun">}</span></li><li class="L9"><span class="pln">            </span><span class="kwd">else</span></li><li class="L0"><span class="pln">            </span><span class="pun">{</span></li><li class="L1"><span class="pln">                </span><span class="typ">ViewBag</span><span class="pun">.</span><span class="pln">msg </span><span class="pun">=</span><span class="pln"> </span><span class="str">"请求参数有误"</span><span class="pun">;</span></li><li class="L2"><span class="pln">                </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">View</span><span class="pun">(</span><span class="str">"/Views/Shared/Error.cshtml"</span><span class="pun">);</span></li><li class="L3"><span class="pln">            </span><span class="pun">}</span></li><li class="L4"><span class="pln">        </span><span class="pun">}</span></li></ol></pre>
+</div>
+</div>					<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="text-align: center;" data-ad-format="fluid" data-ad-layout="in-article" data-ad-client="ca-pub-6527383233809815" data-ad-slot="2451787962"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+					<h2><a href="https://www.bbsmax.com/R/ZOJPRRwxdv/">MVC中自带的异步((Ajax.BeginForm)无效的更多相关文章</a></h2>	
+<ol>
+								<li><a href="https://www.bbsmax.com/A/qVdeBy2gzP/">MVC中，查询以异步呈现，分页不用异步的解决方案</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">MVC中,查询以异步呈现,分页不用异步的解决方案 这种需求,用一个ASPX页面和一个ASCX分部视图就可以解决了,ASPX提供对ASCX的引用,ASCX显示列表信息,ASPX主页面提供查询功能 &lt; ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/x9J2oWZn56/">MVC中实现部分内容异步加载</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">MVC中实现部分内容异步加载 action中定义一个得到结果集的方法 public ActionResult GetItemTree(string title, int itemid, int? pa ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/xl56GmxdrZ/">.net mvc中的表单异步提交</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">// // 摘要: // 将 &lt;form&gt; 开始标记写入响应. // // 参数: // ajaxHelper: // AJAX 帮助器. // // actionName: // 将处理 ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/kjdw1Z4OJN/">ASP.NET MVC中使用异步控制器</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">线程池 一直想把项目改写成异步,但是ASP.NETMVC3下写的过于繁琐,.NET 4.5与ASP.NET MVC下代码写起来就比较简单了, MS好像也一直喜欢这样搞,每一个成熟的东西,都要演变好几个 ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/o75NrkK5W3/">[ASP.NET MVC 小牛之路]14 - Unobtrusive Ajax</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">Ajax (Asynchronous JavaScript and XML 的缩写),如我们所见,这个概念的重点已经不再是XML部分,而是&nbsp;Asynchronous 部分,它是在后台从服务器请求数据的 ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/gVdnNpbadW/">MVC中的JS和CSS压缩</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">小说一下Js和CSS压缩的好处: 1.减小了文件的体积&nbsp;2.减小了网络传输量和带宽占用&nbsp;3.减小了服务器的处理的压力&nbsp;4.提高了页面的渲染显示的速度&nbsp; 很多建议将站点的静态文件(如图片.js.css  ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/q4zVwlbxJK/">MVC下HtmlHelper自带BeginForm表单提交与异步Ajax请求</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">假如有一个数据表格UserInfo: public class UserInfo { public int Id { get; set; } public string Name { get; set ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/8Bz8Vgxx5x/">MVC 5.0(or5.0↓)  Ajax.BeginForm 异步上传附件问题，答案是不能的！</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">MVC 5.0(or5.0↓) &nbsp;Ajax.BeginForm 异步上传附件问题,答案是不能的! (请注意我这里说的异步!) 来看一下下面这段一步提交file的代码 //前台 .cshtml 文件 &amp; ...</p>
+		</li>
+						<li><a href="https://www.bbsmax.com/A/q4zVOLg2JK/">MVC验证09-使用MVC的Ajax.BeginForm方法实现异步验证</a>
+		<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">原文:MVC验证09-使用MVC的Ajax.BeginForm方法实现异步验证 MVC中,关于往后台提交的方法有: 1.Html.BeginForm():同步 2.Ajax.BeginForm():异 ...</p>
+		</li>
+		</ol>
+	
+
+<h2>随机推荐</h2>	
+<ol>
+									<li><a href="https://www.bbsmax.com/A/rV57Kma5PD/">使用Autolayout实现UITableView的Cell动态布局和高度动态改变</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">本文翻译自:stackoverflow 有人在stackoverflow上问了一个问题: 1 如何在UITableViewCell中使用Autolayout来实现Cell的内容和子视图自动计算行高,并 ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/pRdBk46znx/">matlab 求解线性方程组之范数</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">1.赋范线性空间和内积空间 在线性代数的初级教材里,一般是在向量空间中定义内积,然后再由内积来导出范数,比如在n维实向量空间中: |x||=√&lt;x,x&gt; 在线性代数的高级教材中,一般是将内 ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/pRdBjZPndn/">如何运用CSS写小三角</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">&lt;html&gt; &lt;div class="con"&gt;&lt;/div&gt; &lt;/html&gt; &lt;style&gt; .con{width:0; ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/xl56xbE1zr/">告别IT,出售多年自己研发的股票分析系统源码</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">不知已过而立,发狠告别IT,回头看看以前自己的多个作品,耗时最多的就是这个股票分析系统了,留在自己的电脑里也体现不出多大价值了,故打算出售源码给需要的人,联系方式QQ:874724605 注明:股票源 ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/n2d9DGjV5D/">【.net部署】Server Error in &amp;#39;/&amp;#39; Application.错误解决方案</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">报错: Server Error in '/' Application.---------------------------------------------------------------- ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/kjdwAEOEJN/">flex 阅读器</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">遇到很多的困难 首先是 pdf2swf 而后又下载swftools 而后有swfcombine.exe 让制作的swf 文字可选? —— 这应该是很常见的需求啊! 可是我搜索来搜索去都找不到...&nbsp;搜 ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/D854e9qpdE/">Hybrid框架UI重构之路：二、事出有因</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">上文回顾:Hybird框架UI重构之路:一.师其长技以自强 一切的重构都是有原因的,或许为了更快速度.更好体验.更快捷开发等,于是就有了自己的开发目标,简单看看未重构前UI("中国移动式&amp;q ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/MyJx8VoXJn/">你真的了解UITableViewCell重用吗？</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">一:首先查看一下关于UITableViewCell重用的定义 - (nullable __kindof UITableViewCell *)dequeueReusableCellWithIdentif ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/RnJWrM9Ezq/">Play 可以做的 5 件很酷的事</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">Play 可以做的 5 件很酷的事 本章译者:@Playframwork 通过 5 个实例,透视 Play 框架背后的哲学. 绑定 HTTP 参数到 JAVA 方法参数 用 Play 框架,在 Jav ...</p>
+			</li>
+						<li><a href="https://www.bbsmax.com/A/l1dyAn6nde/">gradle研究</a>
+			<p style="color: rgba(0, 0, 0, 0.32);margin-bottom: 8px;">gradle介绍:http://www.oschina.net/p/gradle gradle官网:https://gradle.org gradle的&nbsp; eclipse 插件:http://www. ...</p>
+			</li>
+			</ol>			
+							
+					</div>
+
+					
+					<!--<div class="shareBox  clearfix">
+
+					</div>-->
+					<!--<div class="posts-cjtz content-cjtz clearfix"><img src="/images.grace/2865270162.png" alt="" /></div>	-->										<div class="next-prev-posts clearfix">
+</div>
+						 
+				</div>
+				
+	<div class="clear"></div>
+
+			</div>	</div>
+</div>
+</div>
+
+
+<div class="clearfix"></div>
+<div id="footer" class="two-s-footer">
+	<div class="footer-box">
+		<div class="container">
+			<div class="row" style="padding-left: 15px;padding-right: 15px;">
+			<div class="nav-footer">
+				<a href="https://www.bbsmax.com/">Home</a>
+				</div>
+				<div class="copyright-footer">
+					<p>Powered By WordPress</p>
+				</div>
+							</div>
+		</div>
+	</div>
+</div>
+<div style="display:none">
+<script src="./MVC中自带的异步((Ajax.BeginForm)无效_files/z_stat.php" language="JavaScript"></script><script src="./MVC中自带的异步((Ajax.BeginForm)无效_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=2328196" target="_blank" title="站长统计">站长统计</a>
+</div>
+
+
+</div></body></html>

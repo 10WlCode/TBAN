@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://q.cnblogs.com/q/53375/ -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>关于简单三层中DBContext疑惑(EF5)_已解决_博问_博客园</title>
+    <meta name="keywords" content="entity framework,DBContext关于简单三层中DBContext疑惑(EF5)">
+    <meta name="description" content="UI 界面 BLL 业务 DAL DBContext放在这层中 Mode 实体用EF的CodeFirst方式建立实体 问题1: 通常在DAL中操作时，比如查询一个实体 using(var db = n">
+    <link href="https://common.cnblogs.com/favicon.ico" rel="shortcut icon">
+    <link href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/common.min.css" rel="stylesheet">
+    
+    <link href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/detail.min.css" rel="stylesheet">
+    <link href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/zoom.min.css" rel="stylesheet">
+
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" type="text/javascript" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/gpt.js.下载"></script><script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root div[id^="zergnet-widget"],
+:root div[id^="mainads"],
+:root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"],
+:root iframe[src^="http://static.mozo.com.au/strips/"],
+:root div[class$="dealnews"] > .dealnews,
+:root AMP-AD,
+:root div > [class][onclick*=".updateAnalyticsEvents"],
+:root [onclick*="content.ad/"],
+:root a[href*=".trust.zone"],
+:root input[onclick^="window.open('http://www.friendlyduck.com/"],
+:root input[onclick^="window.open('http://www.FriendlyDuck.com/"],
+:root topadblock,
+:root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content,
+:root p[id^="div-gpt-ad-"],
+:root img[alt^="Fuckbook"],
+:root iframe[src^="http://cdn2.adexprt.com/"],
+:root iframe[src^="http://cdn1.adexprt.com/"],
+:root iframe[src^="http://ad.yieldmanager.com/"],
+:root iframe[id^="google_ads_iframe"],
+:root iframe[id^="google_ads_frame"],
+:root div[itemtype="http://www.schema.org/WPAdBlock"],
+:root div[itemtype="http://schema.org/WPAdBlock"],
+:root div[id^="q1-adset-"],
+:root div[id^="proadszone-"],
+:root div[id^="lazyad-"],
+:root div[id^="google_dfp_"],
+:root div[id^="google_ads_iframe_"],
+:root div[id^="dmRosAdWrapper"],
+:root div[id^="div_openx_ad_"],
+:root div[id^="div_ad_stack_"],
+:root div[id^="div-gpt-ad"],
+:root div[id^="div-adtech-ad-"],
+:root div[id^="dfp-slot-"],
+:root div[id^="dfp-ad-"],
+:root div[id^="crt-"][style],
+:root div[id^="cns_ads_"],
+:root div[id^="block-views-topheader-ad-block-"],
+:root div[id^="advads_"],
+:root div[id^="advads-"],
+:root div[id^="ads300_600-widget"],
+:root div[id^="ads300_250-widget"],
+:root div[id^="ads300_100-widget"],
+:root div[id^="ads250_250-widget"],
+:root div[id^="ads120_600-widget"],
+:root div[id^="adrotate_widgets-"],
+:root div[id^="ad_script_"],
+:root div[id^="ad-server-"],
+:root div[id^="ad-div-"],
+:root div[id^="acm-ad-tag-"],
+:root div[id^="YFBMSN"],
+:root div[id^="MarketGid"],
+:root div[id^="ADV-SLOT-"],
+:root div[class^="proadszone-"],
+:root div[class^="local-feed-banner-ads"],
+:root div[class^="gemini-ad"],
+:root div[class^="block-openx-"],
+:root div[class^="BlockAdvert-"],
+:root div[class^="Ad__container"],
+:root div[class^="Ad__bigBox"],
+:root div[class^="Ad__adContainer"],
+:root div[class*="_AdInArticle_"],
+:root bottomadblock,
+:root aside[id^="div-gpt-ad"],
+:root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"],
+:root a[target="_blank"][href^="http://api.taboola.com/"],
+:root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"],
+:root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source,
+:root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source,
+:root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source,
+:root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='/wp-content/embed-ad-content/"],
+:root [href^="https://www.camyou.com/?cam="][href*="&track="],
+:root [href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="],
+:root [href^="http://www.myfreecams.com/?co_id="][href*="&track="],
+:root [href^="http://www.bet365.com/"][href*="?affiliate="],
+:root [href^="http://www.bet365.com/"][href*="&affiliate="],
+:root [href^="http://taboola-"][href*="/redirect.php?app.type="],
+:root [href^="http://games.ucoz.ru/"][target="_blank"],
+:root [href^="http://amzn.to/"] > img[src^="data"],
+:root [href^="//www.mgid.com/"],
+:root [href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"],
+:root [href^="//t.MtagMonetizationA.com/"],
+:root [href^="//srv.buysellads.com/"],
+:root [href^="//api.ad-goi.com/"],
+:root [href^="//ads.ad-center.com/"],
+:root [href^="//adbit.co/?a=Advertise&"],
+:root [href^=" http://n47adshostnet.com/"],
+:root [href^=" http://ads.ad-center.com/"],
+:root a[href*="onclkds."],
+:root a[href*="letsadvertisetogether.com"],
+:root a[href*="googleme.eu"],
+:root a[href*="emprestimo.eu"],
+:root a[href*="ad2upapp.com/"],
+:root a[href*="=Adtracker"],
+:root a[href*="/cmd.php?ad="],
+:root a[href*="/adrotate-out.php?"],
+:root a[href*=".qertewrt.com/"],
+:root a[href*=".adsrv.eacdn.com/"] > img,
+:root a[href*=".adk2x.com/"],
+:root a[href$="/vghd.shtml"],
+:root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"],
+:root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author,
+:root a[data-url^="http://paid.outbrain.com/network/redir?"],
+:root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"],
+:root a[data-redirect^="http://click.plista.com/pets"],
+:root a[data-oburl^="https://paid.outbrain.com/network/redir?"],
+:root a[data-oburl^="http://paid.outbrain.com/network/redir?"],
+:root a[data-obtrack^="http://paid.outbrain.com/network/redir?"],
+:root [onclick^="window.open('http://adultfriendfinder.com/search/"],
+:root [lazy-ad="lefttop_banner"],
+:root [ad-id^="googlead"],
+:root AFS-AD,
+:root ADS-RIGHT,
+:root [href^="/dasp.php?a="],
+:root div[style^="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[id][style="width: 100%;"] > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[id][style="width: 100%;"] > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[id][style="width: 100%;"] > div > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root a[href*="/mobads.php?"],
+:root a[href*="/cpro/"],
+:root a[href*="/cpro."],
+:root div[style^="width: 100%;"][style$="z-index: inherit;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style^="width: 100%;"][style$="visibility: visible;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style^="width: 100%;"][style$="overflow: hidden;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style^="width: 100%;"][style$="opacity: 100;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style^="width: 100%;"][style$="margin: 0px;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div[style^="width: 100%;"][style$="display: block;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root div:not([id]):not([class]):not([style]) > div:not([id]):not([class]):not([style]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root [style="display:none"] + iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"],
+:root table[style="border:#e8e8e8 1px solid;"] + div[style="margin-top:5px"] > table[style="width:100%;"][cellspacing="0"][cellpadding="1"][bordercolor="#999999"][border="1"],
+:root img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child,
+:root img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226),
+:root img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child,
+:root img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226),
+:root img[src$="/2016-0114-700X70.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child,
+:root img[src$="/2016-0114-700X70.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226),
+:root div[id^="ad_thread"],
+:root body[onload*="u()"] > #x,
+:root a[href*="/?intr="],
+:root a[href*="/?aff="],
+:root a[href*="/?Intr="],
+:root a[href*="/?INTR="],
+:root a[href*=".com?intr="],
+:root a[href*=".com?aff="],
+:root a[href*=".com/Register?a="],
+:root a[href*=".com/Register/?a="],
+:root a[href*=".com/Register.aspx?aid="],
+:root a[href*=".com/?p="][target="_blank"] > img[src$=".gif"],
+:root a[href*=".com/?Extend="],
+:root a > img[width="980"][src*=".sinaimg."],
+:root a > img[width="960"][src*=".sinaimg."],
+:root a > img[src*=".sinaimg."][src$=".gif"][style*="width:960"],
+:root A[href*=".com/?Agent="],
+:root .right_content_ad
+{display:none !important;}</style><style>img[src="/Images/ad.gif"]
+{display:none !important;}</style>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/json2.js.下载" type="text/javascript"></script>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/common.min.js.下载" type="text/javascript"></script>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/external.min.js.下载" type="text/javascript"></script>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/layer.js.下载" type="text/javascript"></script><link rel="stylesheet" href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/layer.css" id="layuicss-skinlayercss">
+    
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/tiny_mce.js.下载" type="text/javascript"></script>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/detail.min.js.下载" type="text/javascript"></script>
+    <script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/zoom.min.js.下载" type="text/javascript"></script>
+    <script type="text/javascript" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/highlight.min.js.下载"></script>
+    <script type="text/javascript">
+        var qid=53375,isLogined= true,qes_award=10;
+        var isself=false;
+        var acount=4;
+        var dealflag=1;
+        var ansid=0,acid=0,commid=0,optype=0;
+        var aids="116695,116717,116848,132156";
+        var flags = "1";
+    </script>
+
+<link rel="stylesheet" href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ui.css"><link rel="stylesheet" href="./EF中DBContext使用Using解决线程内唯一的疑惑_files/window.css"></head>
+<body>
+    <div id="hd_top">
+        <div id="hd_top_w"><a href="http://www.cnblogs.com/">首页</a><a href="http://news.cnblogs.com/">新闻</a><a href="http://job.cnblogs.com/">招聘</a><a href="http://zzk.cnblogs.com/">找找看</a><a href="http://kb.cnblogs.com/">知识库</a></div>
+    </div>
+    <div class="clear"></div>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <a href="http://www.cnblogs.com/"><img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/logo20170227.png" alt="logo" style="width:165px;height:55px;"></a>
+            </div>
+            <div id="nav_block">
+                <a href="http://home.cnblogs.com/">园子</a> · <a href="http://home.cnblogs.com/followees/">关注</a> · <a href="http://home.cnblogs.com/followers/">粉丝</a> ·
+                <a href="http://home.cnblogs.com/feed/all/">随便看看</a> · <a href="http://space.cnblogs.com/msg/recent" target="_blank">消息<span id="msg_count"></span></a>
+            </div>
+            <div class="clear"></div>
+            <div id="header_user">
+                <div class="topbar-left-logo">
+                    <a href="http://www.cnblogs.com/"><img class="logo" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/cnblogs.svg" alt="博客园"></a>
+                </div>
+                
+<h1 id="header_user_left">
+        欢迎你，ZereL
+</h1>
+<div id="header_user_right">
+        <a href="http://home.cnblogs.com/u/ZereL/"><img class="pfs" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/20171213140359.png" alt=""></a>
+        <a href="http://home.cnblogs.com/u/ZereL/">ZereL</a>
+            <a href="http://www.cnblogs.com/ZereL/" class="my-blog">·我的博客</a>
+        <a href="http://home.cnblogs.com/set/account/" class="my-setting">·设置</a>
+        <a href="javascript:void(0);" onclick="return logout();">·退出</a>
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="container">
+            
+<div id="app_bar">
+<p class="app_r_3"></p><p class="app_r_2"></p><p class="app_r_1"></p>
+<div id="app_list_wrapper">
+<ul class="app_list">
+            <li>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_ing.gif" alt=""><a href="https://ing.cnblogs.com/" id="app_ing">闪存</a>
+        </li>
+            <li>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_blog.gif" alt=""><a href="https://home.cnblogs.com/blog/" id="app_blog">博客</a>
+        </li>
+            <li>
+            <em><a href="https://group.cnblogs.com/newpost/">发言</a></em>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_group.gif" alt=""><a href="https://group.cnblogs.com/" id="app_group">小组</a>
+        </li>
+            <li>
+            <em><a href="https://news.cnblogs.com/n/publish">投递</a></em>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_news.gif" alt=""><a href="https://home.cnblogs.com/news/" id="app_news">新闻</a>
+        </li>
+           <li class="current">
+            <em><a href="https://q.cnblogs.com/q/new">提问</a></em>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_question.gif" alt=""><a href="https://q.cnblogs.com/" id="app_List">博问</a>
+        </li>
+            <li>
+            <em><a href="https://q.cnblogs.com/q/53375/#" target="_blank" onclick="jutil.cnblogs.addToWz();return false;">添加</a></em>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_bookmark.gif" alt=""><a href="https://wz.cnblogs.com/" id="app_wz">收藏</a>
+        </li>
+            <li>
+            <em><a href="https://job.cnblogs.com/admin/">发布</a></em>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_job.gif" alt=""><a href="https://home.cnblogs.com/job/" id="app_job">招聘</a>
+        </li>
+            <li>
+        <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_kb.gif" alt=""><a href="https://home.cnblogs.com/kb/" id="app_kb">文库</a>
+        </li>
+</ul>
+<div class="app_setting">
+    <a href="https://group.cnblogs.com/forum/public/" class="flag_edit" target="_blank">问题反馈</a>
+</div>
+</div>
+<p class="app_r_1"></p><p class="app_r_2"></p><p class="app_r_3"></p>
+</div> 
+            <div id="container_content">
+                
+    <div class="main_nav">
+        <ul class="topic_nav_block">
+            <li><a href="https://q.cnblogs.com/">问题列表</a> </li>
+            <li><a href="https://q.cnblogs.com/list/MyStarQuestion">我关注的</a> </li>
+            <li><a href="https://q.cnblogs.com/list/myquestion">我的博问</a> </li>
+            <li><a href="https://q.cnblogs.com/tag/list">博问标签</a> </li>
+            <li><a href="https://q.cnblogs.com/q/53375/" id="lasttopnav" style="" class="current_nav">详细问题</a></li>
+        </ul>
+        <div class="clear">
+        </div>
+    </div>
+
+                <div id="main">
+                    <h1 class="qitem_title" id="q_title"><a href="https://q.cnblogs.com/q/53375/">关于简单三层中DBContext疑惑(EF5)</a></h1>
+
+
+<div class="qitem_question qclear">
+    <div class="q_digg_bury">
+        <span id="q_digg" onclick="q_digg(53375)" class="q_diggit" title="推荐（再次点击取消）">
+        </span>
+        <span id="q_diggbury_count" class="q_diggbury_count">2</span>
+        <span id="q_bury" onclick="q_bury(53375)" class="q_buryit" title="反对（再次点击取消）">
+        </span>
+    </div>
+    <div class="qitem_item">
+        <div class="qitem_publisher">
+                <img alt="" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/yuandou20170322.png" class="big-coin-icon">
+                <span class="red">悬赏园豆：<span id="question_award">10</span></span>
+                            <span>[已解决问题] </span>
+            <span id="question_view_count">浏览: 9424次</span>
+                <span>解决于 2013-08-14 11:59 </span>
+                            <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/question_star_grey.png" alt="" class="question-star" href="javascript:void(0);" onclick="StarQuestion(53375, this)">
+        </div>
+        <div id="qes_content" class="q_content">
+            <p>UI 界面</p>
+<p>BLL 业务</p>
+<p>DAL DBContext放在这层中</p>
+<p>Mode 实体用EF的CodeFirst方式建立实体</p>
+<p>&nbsp;</p>
+<p>问题1:</p>
+<p>通常在DAL中操作时，比如查询一个实体</p>
+<p>using(var db = new ..DBcontext())</p>
+<p>{</p>
+<p>　　return db.Users.FirstOrDefault();</p>
+<p>}</p>
+<p>这样当查询得到的这个User到达BLL层或者UI层的时候就失去了延迟加载的功能，因为DBContext被释放了，比如在BLL层去访问User.Role.Name 就会爆异常了。</p>
+<p>这种问题该怎么处理呢？如果不用using释放DBContext，那不是会出现很多很多DBContext的实例么？</p>
+<p>&nbsp;</p>
+<p>问题2：</p>
+<p>接上问，有博友说尽量让一次请求保持一个DBContext的实例。那会不会造成这个实例Savechanges()的时候把里面说有挂起的事务都提交了？不会出问题么？另外我个人觉得应该把DBCotext放在BLL层，然后每做一个操作就创建一个DBContext，然后使用完毕之后就销毁(一般就using)，这样利用了DBContext本身提供的事务功能，也杜绝了一个SaveChanges()把其它还没准备好的事务也提交了。不知道我这样做是否合理。</p>
+<p>请有经验的朋友指点下，实在困惑</p>
+        </div>
+        <div class="qclear">
+            <div id="d_tag" class="lf">
+                        <a class="detail_tag" href="https://q.cnblogs.com/tag/entity%20framework/unsolved">entity framework</a>
+                        <a class="detail_tag" href="https://q.cnblogs.com/tag/dbcontext/unsolved">DBContext</a>
+            </div>
+            <div class="question_author">
+                <a href="https://q.cnblogs.com/u/jionsoft/">
+                    <img class="q_avatar" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/20171014131455.png" alt="jionsoft的主页">
+                </a>
+                <a href="https://q.cnblogs.com/u/jionsoft/" class="bluelink">jionsoft</a>
+                <span class="v-split">|</span>
+                <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">初学一级</a>
+                <span class="v-split">|</span>
+                园豆：<span id="question_user_allscore">6</span><br>
+                提问于：2013-08-11 20:22
+            </div>
+        </div>
+        <div class="q_close">
+        </div>
+    </div>
+</div>
+
+
+<div id="middle-div" class="greendiv qclear">
+    <span class="adop">
+            <a id="middle-div-up" href="http://q.cnblogs.com/q/53374/" title="上一条博问">&lt;</a>
+                    <a id="middle-div-down" href="http://q.cnblogs.com/q/53376/" title="下一条博问">&gt;</a>
+    </span>
+    <span id="middle-div-content"><a href="http://zzk.cnblogs.com/" target="_blank">找找看</a></span>
+    <div class="qitme_opt">
+        <span id="span_report">
+            <a href="javascript:void(0);" class="graylink" onclick="ShareToOther()">分享</a>
+            <span id="qitme_opt_tips"></span>
+        </span>
+        <div class="share-div" id="share_div" style="display: none">
+            分享您的问题
+            <img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/icon_delete.svg" alt="" style="float: right; width: 12px; height:12px;" onclick="HideShareDiv()">
+            <div class="question-link-div">
+                <input id="question_link" type="text">
+                <img id="clip_img" onlick="ClipToBoard()" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/clippy.svg" alt="" title="点击复制到剪贴板" data-clipboard-action="copy" data-clipboard-target="#question_link" style="width: 20px; float: right; margin-top: 5px;">
+            </div>
+            <div class="share-component social-share" data-disabled="google,twitter,facebook,diandian,linkedin" data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣"><a class="social-share-icon icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3A%2F%2Fq.cnblogs.com%2Fq%2F53375%2F&amp;title=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;pic=https%3A%2F%2Fcommon.cnblogs.com%2Fimages%2Flogo%2Flogo20170227.png&amp;appkey=" target="_blank"></a><a class="social-share-icon icon-qq" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fq.cnblogs.com%2Fq%2F53375%2F&amp;title=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;source=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;desc=Share.js%20-%20%E4%B8%80%E9%94%AE%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E5%8D%9A%EF%BC%8CQQ%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%85%BE%E8%AE%AF%E5%BE%AE%E5%8D%9A%EF%BC%8C%E4%BA%BA%E4%BA%BA%EF%BC%8C%E8%B1%86%E7%93%A3&amp;pics=https%3A%2F%2Fcommon.cnblogs.com%2Fimages%2Flogo%2Flogo20170227.png" target="_blank"></a><a class="social-share-icon icon-wechat" href="javascript:;" tabindex="-1"><div class="wechat-qrcode bottom"><h4>微信扫一扫：分享</h4><div class="qrcode"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEoElEQVR4Xu2dW27dMAwFnf0vukGBflzLhsYT0q/m9FeySJ4HKTtB+rUsy5/l2n9fQ7gx/tPXT0Xrb/EhZA0xCSKEDAgQYGevh5DfTsiosKoiaEaM51MLvTo/m7/Fa3X+3gy5uuAQ8oFACNleauwMso6YCjCEvJAQ6ukj41WFVXu2fZ7223VyzBSfIw4JIb3vKSEEJGsdQB0gDpGfYuhWR4DT+n9HiAWsup8AtA6i817XsqoAE4AEmI3fOmOfONQtINX9RBARHEKKQ5oIsAT/OkIIQKtgGsrVdcr39TOECgwhgJBVGAFO6yEkhKwQuHyGkEJpnRRcHaJnO9LmT3hM6z1y7bUBLMB2PwFE67ae7vNCiGVg2B9CBkBsS+oGsPs87ZCioPDxboAJsO51LLCyIb+X5X9iWMEbnw0hIWRJy5r4pPtXftCSOxvoxepsAseUbsXk1uD/kAghH5IIIVvL3orJrcHjkH01VFsG9WB6D7CfTuycovq68y/ld+TaS0O1uyBLIAEQQorfgkIISCwOWQPUPXdXAjzSsqgl2AStA2zLoXypxdrnq/mt8Ashy+bLQQgBBKoKJICtw+lWSPGmDo1DXugQGuq0Tj2bHEDnV9cpv6ojyIF6qJ9dcAgZvmWdDQgp8Oz4JCjKLw4ZECBAq+uPI6SqALpVWMDoPMqX4hEB9j2J8lH17A0caiEqwLK9xVQLJgBCSPHTC91CSABEMAmMCLT5UbxpPXFIv4PLhFQVRgq2Pbt6nn3e1m8dQ/ngewhZmALQevf5VYBCyMBYyeI7lwYSRPVSUBXANP7et6xuBadlzSVSblmWsKqirINsfiQYchy1POXInzjEFhxC1pRMCQwhW/1bAcUhxRdRakGPI4QStj2XFETrNh87c6geyq8abxV/r2VZAEhRtiA6j/KrAkQzktYpP/x00l2AulXs/CHnEFKilH8mHYcIgI/csug4cljV4vb5bodRfFpXMyqEbOVWdXRJoCEkhOj/jaHaEqjldl9CTncIBVA98sDX2e54Nj9LYPX8leCOtKxugGjodserAmYJKjk6hPT/hzYhZJAwOcwCdrlDbMDu/VdfM+0Qp3pt/tMWSv2ckulYtwVZhVONFJ9qpOeVYylZSqZj3RYUQjpQn5wRQj7A6fj8bvkiV5LF6Rpr8+kWBNU3nWEhxP95JmqZIcRaAq7JFnByGKW3ej4OeYFDrOWUAg58y6q+J5BiaUbZ+ike4bNaP/LpRB24s7masH2e9oeQgaSzFRhCwEIEEDnQPk/7X+8QKoDeC64GiGYQCaC6Th1giseRGRJCHEUhRLZMB6/fHUJCyByB6puunUm032qcWjQ5gOJNz3/jDLkVsB+82KpLRgjZ6vlWwkNICME/qWffW6inW8VTfNWCaKDsDUBKgAqioUrnU4H2kkDnnZ2v5UB/XAwhc4gtPtPTnjBDSNFxSMlzPCQtwLblWYJtueQIqq/sEJuwBYQAp3XKr/o81WNnUggZEKBbmSU4hBBiw/rrHSLr1dupx1oFE+B2nRRPBVO8aQt8wm+d2AKop1vC7ZAOIYAAEWrX45Di0LWAk4NuJeQbnJqoO+tZx9QAAAAASUVORK5CYII="></div><div class="help"><p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p></div></div></a><a class="social-share-icon icon-tencent" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;title=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;url=https%3A%2F%2Fq.cnblogs.com%2Fq%2F53375%2F&amp;pic=https%3A%2F%2Fcommon.cnblogs.com%2Fimages%2Flogo%2Flogo20170227.png" target="_blank"></a><a class="social-share-icon icon-douban" href="http://shuo.douban.com/!service/share?href=https%3A%2F%2Fq.cnblogs.com%2Fq%2F53375%2F&amp;name=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;text=Share.js%20-%20%E4%B8%80%E9%94%AE%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E5%8D%9A%EF%BC%8CQQ%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%85%BE%E8%AE%AF%E5%BE%AE%E5%8D%9A%EF%BC%8C%E4%BA%BA%E4%BA%BA%EF%BC%8C%E8%B1%86%E7%93%A3&amp;image=https%3A%2F%2Fcommon.cnblogs.com%2Fimages%2Flogo%2Flogo20170227.png&amp;starid=0&amp;aid=0&amp;style=11" target="_blank"></a><a class="social-share-icon icon-qzone" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fq.cnblogs.com%2Fq%2F53375%2F&amp;title=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;desc=Share.js%20-%20%E4%B8%80%E9%94%AE%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E5%8D%9A%EF%BC%8CQQ%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%85%BE%E8%AE%AF%E5%BE%AE%E5%8D%9A%EF%BC%8C%E4%BA%BA%E4%BA%BA%EF%BC%8C%E8%B1%86%E7%93%A3&amp;summary=Share.js%20-%20%E4%B8%80%E9%94%AE%E5%88%86%E4%BA%AB%E5%88%B0%E5%BE%AE%E5%8D%9A%EF%BC%8CQQ%E7%A9%BA%E9%97%B4%EF%BC%8C%E8%85%BE%E8%AE%AF%E5%BE%AE%E5%8D%9A%EF%BC%8C%E4%BA%BA%E4%BA%BA%EF%BC%8C%E8%B1%86%E7%93%A3&amp;site=%E5%85%B3%E4%BA%8E%E7%AE%80%E5%8D%95%E4%B8%89%E5%B1%82%E4%B8%ADDBContext%E7%96%91%E6%83%91(EF5)_%E5%B7%B2%E8%A7%A3%E5%86%B3_%E5%8D%9A%E9%97%AE_%E5%8D%9A%E5%AE%A2%E5%9B%AD" target="_blank"></a></div>
+        </div>
+        <script>
+            var clipboard = new Clipboard('#clip_img');
+            clipboard.on('success', function (e) {
+                layer.msg("已复制到剪贴板！");
+            });
+            clipboard.on('error', function (e) {
+                console.log(e);
+            });
+        </script>
+    </div>
+</div>
+
+
+<div id="panelBestAnswer" class="qitem_best_answer qclear">
+    <div id="title_red">
+        最佳答案
+    </div>
+    <div id="span_116695" class="qitem_best_answer_inner qclear">
+        <div class="q_digg_bury" id="span_best_answer">
+            <span class="q_diggit" title="推荐（再次点击取消）" onclick="answerdigg(116695)"></span>
+            <span id="answer_diggbury_116695" class="q_diggbury_count">1</span>
+            <span class="q_buryit" title="反对（再次点击取消）" onclick="answerbury(116695)"></span>
+        </div>
+        <div class="qitem_item qclear">
+            <div id="a_116695" class="q_content">
+<p>使用<span>延迟加载（Lazy Loading）的确存在这个问题，而且一不小心就会成为性能杀手，所以我们在开发中就不用EF的延迟加载功能。</span></p>            </div>
+
+            <div id="answer_option_116695">
+                <div class="qclear">
+                        <div class="lf green">
+                            收获园豆：<span class="red">8</span>
+                        </div>
+                    <div class="answer_author">
+                                <a class="bluelink linkanswercommenttiny" aid="116695" id="link_answercomment_116695" onclick="showCommentTinyMce(&#39;link_answercomment_116695&#39;, 0)" href="javascript:void(0);">回复</a>
+                            <span class="v-split">|</span>
+                        <a href="https://q.cnblogs.com/u/dudu/" class="bluelink">dudu</a>
+                        <span class="v-split">|</span>
+                        <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">高人七级</a>
+                        <span class="v-split">|</span>园豆：34135
+                        <span class="v-split">|</span>
+                        2013-08-11 21:32
+                            <span class="v-split">|</span>
+                    </div>
+                </div>
+            </div>
+            <div class="q_answercomm" id="q_answercomm_116695">
+                        <div id="c_538710" class="q_answercommlist">
+                            <div id="q_answercomm_116695" class="q_comment_body q_content">
+<p>大哥有EF在分层架构中应用的例子或者文章么？</p>                            </div>
+                            <div class="answer_author">
+                                    <a href="javascript:void(0);" id="digg_538710" onclick="CommentVote(538710, &#39;digg&#39;)" class="comm-digg bluelink">支持(<span>0</span>)</a>
+                                    <a href="javascript:void(0);" id="bury_538710" onclick="CommentVote(538710, &#39;bury&#39;)" class="comm-bury bluelink">反对(<span>0</span>)</a>
+                                    <span class="comment-vote-tips" id="comment_vote_tips_538710"></span>
+                                        <a class="bluelink linkcommenttiny" id="link_answercomment_116695_comment_538710" href="javascript:void(0);" onclick="readyCommentReply(&#39;link_answercomment_116695&#39;, 538710)">回复</a>
+                                    <span class="v-split">|</span>
+                                <a class="bluelink" href="https://q.cnblogs.com/u/jionsoft/" id="q_a_comment_author_538710">jionsoft</a>
+                                <span class="v-split">|</span>
+                                园豆：6
+                                <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(初学一级)</a>
+                                <span class="v-split">|</span>
+                                2013-08-12 14:14
+                                    <span class="v-split">|</span>
+                            </div>
+                        </div>
+                        <div id="c_538716" class="q_answercommlist">
+                            <div id="q_answercomm_116695" class="q_comment_body q_content">
+<p>@jionsoft: 建议了解一下基于DDD的n层架构，推荐知识库中的文章：<a href="http://kb.cnblogs.com/tag/ddd/" target="_blank">http://kb.cnblogs.com/tag/ddd/</a></p>                            </div>
+                            <div class="answer_author">
+                                    <a href="javascript:void(0);" id="digg_538716" onclick="CommentVote(538716, &#39;digg&#39;)" class="comm-digg bluelink">支持(<span>0</span>)</a>
+                                    <a href="javascript:void(0);" id="bury_538716" onclick="CommentVote(538716, &#39;bury&#39;)" class="comm-bury bluelink">反对(<span>0</span>)</a>
+                                    <span class="comment-vote-tips" id="comment_vote_tips_538716"></span>
+                                        <a class="bluelink linkcommenttiny" id="link_answercomment_116695_comment_538716" href="javascript:void(0);" onclick="readyCommentReply(&#39;link_answercomment_116695&#39;, 538716)">回复</a>
+                                    <span class="v-split">|</span>
+                                <a class="bluelink" href="https://q.cnblogs.com/u/dudu/" id="q_a_comment_author_538716">dudu</a>
+                                <span class="v-split">|</span>
+                                园豆：34135
+                                <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(高人七级)</a>
+                                <span class="v-split">|</span>
+                                2013-08-12 14:18
+                                    <span class="v-split">|</span>
+                            </div>
+                        </div>
+            </div>
+            <div id="link_answercomment_116695_tinymce" class="anscomment"></div>
+        </div>
+    </div>
+</div>
+
+<!--问题的答案列表开始-->
+<div id="panelAnswerList" class="qitem_all_answer qclear">
+        <div class="title_green">
+                其他回答(3)
+        </div>
+        <div class="qitem_all_answer_inner qclear">
+                <div id="span_116717" class="q_answeritem qclear">
+                    <div class="q_digg_bury">
+                        <span onclick="answerdigg(116717)" class="q_diggit" title="推荐（再次点击取消）"></span>
+                        <span id="answer_diggbury_116717" class="q_diggbury_count">0</span>
+                        <span onclick="answerbury(116717)" class="q_buryit" title="反对（再次点击取消）"></span>
+                    </div>
+                    <div class="qitem_item qclear">
+                        <div id="a_116717" class="q_content">
+<p>是啊 ，看起来很好，</p>                        </div>
+
+                        <div id="answer_option_116717">
+                            
+<div class="q_answeroption">
+    <div class="lf">
+    </div>
+    <div class="answer_author">
+                <a class="bluelink linkanswercommenttiny" aid="116717" id="link_answercomment_116717" onclick="showCommentTinyMce(&#39;link_answercomment_116717&#39;,0)" href="javascript:void(0);">回复</a>
+            <span class="v-split">|</span>
+        <a href="https://q.cnblogs.com/u/rash/" class="bluelink">世界万物</a>
+        <span class="v-split">|</span>
+        园豆：276
+        <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(菜鸟二级)</a>
+        <span class="v-split">|</span>
+        2013-08-12 09:32
+            <span class="v-split">|</span>
+
+    </div>
+</div>
+
+                        </div>
+
+                        <div class="q_answercomm qclear" id="q_answercomm_116717">
+                        </div>
+                        <div id="link_answercomment_116717_tinymce" class="anscomment"></div>
+                    </div>
+                </div>
+                <div id="span_116848" class="q_answeritem qclear">
+                    <div class="q_digg_bury">
+                        <span onclick="answerdigg(116848)" class="q_diggit" title="推荐（再次点击取消）"></span>
+                        <span id="answer_diggbury_116848" class="q_diggbury_count">0</span>
+                        <span onclick="answerbury(116848)" class="q_buryit" title="反对（再次点击取消）"></span>
+                    </div>
+                    <div class="qitem_item qclear">
+                        <div id="a_116848" class="q_content">
+<p>之前看过大神陈晴阳写的DDD的帖子，其中将DbContext注入到应用层，这样可以做到针对用例来实例化数据库上下文对象。</p>                        </div>
+
+                        <div id="answer_option_116848">
+                            
+<div class="q_answeroption">
+    <div class="lf">
+            <div class="green">
+                收获园豆：<span class="red">2</span>
+            </div>
+    </div>
+    <div class="answer_author">
+                <a class="bluelink linkanswercommenttiny" aid="116848" id="link_answercomment_116848" onclick="showCommentTinyMce(&#39;link_answercomment_116848&#39;,0)" href="javascript:void(0);">回复</a>
+            <span class="v-split">|</span>
+        <a href="https://q.cnblogs.com/u/nianhua/" class="bluelink">nianhua11</a>
+        <span class="v-split">|</span>
+        园豆：734
+        <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(小虾三级)</a>
+        <span class="v-split">|</span>
+        2013-08-12 19:54
+            <span class="v-split">|</span>
+
+    </div>
+</div>
+
+                        </div>
+
+                        <div class="q_answercomm qclear" id="q_answercomm_116848">
+
+<div id="c_539613" class="q_answercommlist">
+    <div class="q_comment_body q_content">
+<p>如果这样的话，那说明DBContext应该在BLL层中创建，然后注入到DAL层中，在我的印象中 DDD的Services层+领域模型层 对应的就是BLL层。</p>    </div>
+    <div class="answer_author">
+        <a href="javascript:void(0);" id="digg_539613" onclick="CommentVote(539613,&#39;digg&#39;)" class="comm-digg bluelink">支持(<span>0</span>)</a>
+        <a href="javascript:void(0);" id="bury_539613" onclick="CommentVote(539613,&#39;bury&#39;)" class="comm-bury bluelink">反对(<span>0</span>)</a>
+        <span class="comment-vote-tips" id="comment_vote_tips_539613"></span>
+                <a class="bluelink linkcommenttiny" id="link_answercomment_116848_comment_539613" href="javascript:void(0);" onclick="readyCommentReply(&#39;link_answercomment_116848&#39;, 539613, &#39;ZereL&#39;)">回复</a>
+            <span class="v-split">|</span>
+        <a class="bluelink" href="https://q.cnblogs.com/u/jionsoft/" id="q_a_comment_author_539613">jionsoft</a>
+        <span class="v-split">|</span>
+        园豆：6
+        <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(初学一级)</a>
+        <span class="v-split">|</span>
+        2013-08-12 21:00
+            <span class="v-split">|</span>
+    </div>
+</div>
+
+
+
+
+
+                        </div>
+                        <div id="link_answercomment_116848_tinymce" class="anscomment"></div>
+                    </div>
+                </div>
+                <div id="span_132156" class="q_answeritem qclear">
+                    <div class="q_digg_bury">
+                        <span onclick="answerdigg(132156)" class="q_diggit" title="推荐（再次点击取消）"></span>
+                        <span id="answer_diggbury_132156" class="q_diggbury_count">0</span>
+                        <span onclick="answerbury(132156)" class="q_buryit" title="反对（再次点击取消）"></span>
+                    </div>
+                    <div class="qitem_item qclear">
+                        <div id="a_132156" class="q_content">
+<p>1、关于延迟加载的问题，如果是在bll中直接把实体类传递给UI层，那么此时就需要保证dbcontext不能释放，这个时候可以跟nh那种做法就是在请求的时候创建一个dbcontext，然后保存在当前请求中，请求结束就释放掉，还有一种是bll是把实体类转换成dto传递给UI层的，这个情况的话不会用到延迟加载（当然是需要延迟加载的，不过都在bll里面）</p>                        </div>
+
+                        <div id="answer_option_132156">
+                            
+<div class="q_answeroption">
+    <div class="lf">
+    </div>
+    <div class="answer_author">
+                <a class="bluelink linkanswercommenttiny" aid="132156" id="link_answercomment_132156" onclick="showCommentTinyMce(&#39;link_answercomment_132156&#39;,0)" href="javascript:void(0);">回复</a>
+            <span class="v-split">|</span>
+        <a href="https://q.cnblogs.com/u/liubiaocai/" class="bluelink">lawbc</a>
+        <span class="v-split">|</span>
+        园豆：63
+        <a class="graylink" href="https://q.cnblogs.com/q/faq#qt">(初学一级)</a>
+        <span class="v-split">|</span>
+        2014-02-23 17:58
+            <span class="v-split">|</span>
+
+    </div>
+</div>
+
+                        </div>
+
+                        <div class="q_answercomm qclear" id="q_answercomm_132156">
+                        </div>
+                        <div id="link_answercomment_132156_tinymce" class="anscomment"></div>
+                    </div>
+                </div>
+        </div>
+</div>
+
+
+<div id="btnendqes">
+    <input type="button" id="btn_endquestion" title="选择一个最佳答案，并且分配悬赏园豆给回答者" value="确认结帖">
+    <input type="button" id="btn_back" onclick="CancelEndQuestion()" title="取消结帖" value="取消结帖">
+</div>
+<!--问题的答案列表结束-->
+<!-- 编辑器开始 -->
+<div id="panelAnswer" style="display:">
+    <div id="waitload" style="display: none;">正在加载编辑器...</div>
+    <div class="qitem_reply" id="answer_post" style="">
+        回答被采纳可获得悬赏园豆。
+        <textarea name="txtAnswer" id="txtAnswer" aria-hidden="true" style="display: none;">编辑器加载中...</textarea><span role="application" aria-labelledby="txtAnswer_voice" id="txtAnswer_parent" class="mceEditor defaultSkin"><span class="mceVoiceLabel" style="display:none;" id="txtAnswer_voice">富文本区</span><table role="presentation" id="txtAnswer_tbl" class="mceLayout" cellspacing="0" cellpadding="0" style="width: 820px; height: 200px;"><tbody><tr role="presentation" class="mceFirst"><td class="mceToolbar mceLeft mceFirst mceLast" role="toolbar"><div id="txtAnswer_toolbargroup" role="group" aria-labelledby="txtAnswer_toolbargroup_voice" tabindex="-1"><span role="application"><span id="txtAnswer_toolbargroup_voice" class="mceVoiceLabel" style="display:none;">工具栏</span><table id="txtAnswer_toolbar1" class="mceToolbar mceToolbarRow1 Enabled" cellpadding="0" cellspacing="0" align="" role="presentation" tabindex="-1" aria-disabled="false" aria-pressed="false"><tbody><tr><td class="mceToolbarStart mceToolbarStartButton mceFirst"><span><!-- IE --></span></td><td style="position: relative"><a role="button" id="txtAnswer_undo" href="javascript:;" class="mceButton mce_undo mceButtonDisabled" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_undo_voice" title="撤销 (Ctrl Z)" tabindex="-1" aria-disabled="true"><span class="mceIcon mce_undo"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_undo_voice">撤销 (Ctrl Z)</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_redo" href="javascript:;" class="mceButton mce_redo mceButtonDisabled" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_redo_voice" title="重做 (Ctrl Y)" tabindex="-1" aria-disabled="true"><span class="mceIcon mce_redo"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_redo_voice">重做 (Ctrl Y)</span></a></td><td style="position: relative"><span class="mceSeparator" role="separator" aria-orientation="vertical" tabindex="-1"></span></td><td style="position: relative"><div id="txtAnswer_forecolor" role="button" tabindex="-1" aria-labelledby="txtAnswer_forecolor_voice" aria-haspopup="true"><table role="presentation" class="mceSplitButton mceSplitButtonEnabled mce_forecolor" cellpadding="0" cellspacing="0" title="选择文本颜色"><tbody><tr><td class="mceFirst"><a role="button" id="txtAnswer_forecolor_action" tabindex="-1" href="javascript:;" class="mceAction mce_forecolor" onclick="return false;" onmousedown="return false;" title="选择文本颜色"><span class="mceAction mce_forecolor"></span><span class="mceVoiceLabel mceIconOnly" id="txtAnswer_forecolor_voice" style="display:none;">选择文本颜色</span><div id="txtAnswer_forecolor_preview" class="mceColorPreview" style="background-color: rgb(136, 136, 136);"></div></a></td><td class="mceLast"><a role="button" id="txtAnswer_forecolor_open" tabindex="-1" href="javascript:;" class="mceOpen mce_forecolor" onclick="return false;" onmousedown="return false;" title="选择文本颜色"><span class="mceOpen mce_forecolor"><span style="display:none;" class="mceIconOnly" aria-hidden="true">▼</span></span></a></td></tr></tbody></table></div></td><td style="position: relative"><div id="txtAnswer_backcolor" role="button" tabindex="-1" aria-labelledby="txtAnswer_backcolor_voice" aria-haspopup="true"><table role="presentation" class="mceSplitButton mceSplitButtonEnabled mce_backcolor" cellpadding="0" cellspacing="0" title="选择背景颜色"><tbody><tr><td class="mceFirst"><a role="button" id="txtAnswer_backcolor_action" tabindex="-1" href="javascript:;" class="mceAction mce_backcolor" onclick="return false;" onmousedown="return false;" title="选择背景颜色"><span class="mceAction mce_backcolor"></span><span class="mceVoiceLabel mceIconOnly" id="txtAnswer_backcolor_voice" style="display:none;">选择背景颜色</span><div id="txtAnswer_backcolor_preview" class="mceColorPreview" style="background-color: rgb(136, 136, 136);"></div></a></td><td class="mceLast"><a role="button" id="txtAnswer_backcolor_open" tabindex="-1" href="javascript:;" class="mceOpen mce_backcolor" onclick="return false;" onmousedown="return false;" title="选择背景颜色"><span class="mceOpen mce_backcolor"><span style="display:none;" class="mceIconOnly" aria-hidden="true">▼</span></span></a></td></tr></tbody></table></div></td><td style="position: relative"><a role="button" id="txtAnswer_blockquote" href="javascript:;" class="mceButton mceButtonEnabled mce_blockquote" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_blockquote_voice" title="引用" tabindex="-1"><span class="mceIcon mce_blockquote"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_blockquote_voice">引用</span></a></td><td style="position: relative"><span class="mceSeparator" role="separator" aria-orientation="vertical" tabindex="-1"></span></td><td style="position: relative"><a role="button" id="txtAnswer_bold" href="javascript:;" class="mceButton mceButtonEnabled mce_bold" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_bold_voice" title="粗体 (Ctrl B)" tabindex="-1"><span class="mceIcon mce_bold"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_bold_voice">粗体 (Ctrl B)</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_italic" href="javascript:;" class="mceButton mceButtonEnabled mce_italic" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_italic_voice" title="斜体 (Ctrl I)" tabindex="-1"><span class="mceIcon mce_italic"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_italic_voice">斜体 (Ctrl I)</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_underline" href="javascript:;" class="mceButton mceButtonEnabled mce_underline" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_underline_voice" title="下划线 (Ctrl U)" tabindex="-1"><span class="mceIcon mce_underline"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_underline_voice">下划线 (Ctrl U)</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_strikethrough" href="javascript:;" class="mceButton mceButtonEnabled mce_strikethrough" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_strikethrough_voice" title="删除线" tabindex="-1"><span class="mceIcon mce_strikethrough"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_strikethrough_voice">删除线</span></a></td><td style="position: relative"><span class="mceSeparator" role="separator" aria-orientation="vertical" tabindex="-1"></span></td><td style="position: relative"><div id="txtAnswer_bullist" role="button" tabindex="-1" aria-labelledby="txtAnswer_bullist_voice" aria-haspopup="true" aria-pressed="false"><table role="presentation" class="mceSplitButton mceSplitButtonEnabled mce_bullist" cellpadding="0" cellspacing="0" title="无序编号"><tbody><tr><td class="mceFirst"><a role="button" id="txtAnswer_bullist_action" tabindex="-1" href="javascript:;" class="mceAction mce_bullist" onclick="return false;" onmousedown="return false;" title="无序编号"><span class="mceAction mce_bullist"></span><span class="mceVoiceLabel mceIconOnly" id="txtAnswer_bullist_voice" style="display:none;">无序编号</span></a></td><td class="mceLast"><a role="button" id="txtAnswer_bullist_open" tabindex="-1" href="javascript:;" class="mceOpen mce_bullist" onclick="return false;" onmousedown="return false;" title="无序编号"><span class="mceOpen mce_bullist"><span style="display:none;" class="mceIconOnly" aria-hidden="true">▼</span></span></a></td></tr></tbody></table></div></td><td style="position: relative"><div id="txtAnswer_numlist" role="button" tabindex="-1" aria-labelledby="txtAnswer_numlist_voice" aria-haspopup="true" aria-pressed="false"><table role="presentation" class="mceSplitButton mceSplitButtonEnabled mce_numlist" cellpadding="0" cellspacing="0" title="有序编号"><tbody><tr><td class="mceFirst"><a role="button" id="txtAnswer_numlist_action" tabindex="-1" href="javascript:;" class="mceAction mce_numlist" onclick="return false;" onmousedown="return false;" title="有序编号"><span class="mceAction mce_numlist"></span><span class="mceVoiceLabel mceIconOnly" id="txtAnswer_numlist_voice" style="display:none;">有序编号</span></a></td><td class="mceLast"><a role="button" id="txtAnswer_numlist_open" tabindex="-1" href="javascript:;" class="mceOpen mce_numlist" onclick="return false;" onmousedown="return false;" title="有序编号"><span class="mceOpen mce_numlist"><span style="display:none;" class="mceIconOnly" aria-hidden="true">▼</span></span></a></td></tr></tbody></table></div></td><td style="position: relative"><span class="mceSeparator" role="separator" aria-orientation="vertical" tabindex="-1"></span></td><td style="position: relative"><a role="button" id="txtAnswer_justifyleft" href="javascript:;" class="mceButton mceButtonEnabled mce_justifyleft" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_justifyleft_voice" title="左对齐" tabindex="-1"><span class="mceIcon mce_justifyleft"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_justifyleft_voice">左对齐</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_justifycenter" href="javascript:;" class="mceButton mceButtonEnabled mce_justifycenter" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_justifycenter_voice" title="居中对齐" tabindex="-1"><span class="mceIcon mce_justifycenter"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_justifycenter_voice">居中对齐</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_justifyright" href="javascript:;" class="mceButton mceButtonEnabled mce_justifyright" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_justifyright_voice" title="右对齐" tabindex="-1"><span class="mceIcon mce_justifyright"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_justifyright_voice">右对齐</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_outdent" href="javascript:;" class="mceButton mce_outdent mceButtonDisabled" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_outdent_voice" title="减少缩进" tabindex="-1" aria-disabled="true"><span class="mceIcon mce_outdent"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_outdent_voice">减少缩进</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_indent" href="javascript:;" class="mceButton mceButtonEnabled mce_indent" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_indent_voice" title="增加缩进" tabindex="-1"><span class="mceIcon mce_indent"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_indent_voice">增加缩进</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_removeformat" href="javascript:;" class="mceButton mceButtonEnabled mce_removeformat" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_removeformat_voice" title="清除格式" tabindex="-1"><span class="mceIcon mce_removeformat"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_removeformat_voice">清除格式</span></a></td><td style="position: relative"><span class="mceSeparator" role="separator" aria-orientation="vertical" tabindex="-1"></span></td><td style="position: relative"><a role="button" id="txtAnswer_link" href="javascript:;" class="mceButton mce_link mceButtonDisabled" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_link_voice" title="插入/编辑链接" tabindex="-1" aria-disabled="true"><span class="mceIcon mce_link"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_link_voice">插入/编辑链接</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_unlink" href="javascript:;" class="mceButton mce_unlink mceButtonDisabled" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_unlink_voice" title="清除链接" tabindex="-1" aria-disabled="true"><span class="mceIcon mce_unlink"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_unlink_voice">清除链接</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_image" href="javascript:;" class="mceButton mceButtonEnabled mce_image" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_image_voice" title="插入/编辑图片" tabindex="-1"><span class="mceIcon mce_image"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_image_voice">插入/编辑图片</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_uploadImage" href="javascript:;" class="mceButton mceButtonEnabled mce_uploadImage" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_uploadImage_voice" title="上传图片" tabindex="-1"><span class="mceIcon mce_uploadImage"><img class="mceIcon" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/img.gif" alt="上传图片"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_uploadImage_voice">上传图片</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_insertCode" href="javascript:;" class="mceButton mceButtonEnabled mce_insertCode" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_insertCode_voice" title="插入代码（推荐）" tabindex="-1"><span class="mceIcon mce_insertCode"><img class="mceIcon" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/insertCode.gif" alt="插入代码（推荐）"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_insertCode_voice">插入代码（推荐）</span></a></td><td style="position: relative"><a role="button" id="txtAnswer_code" href="javascript:;" class="mceButton mceButtonEnabled mce_code" onmousedown="return false;" onclick="return false;" aria-labelledby="txtAnswer_code_voice" title="编辑 HTML 源代码" tabindex="-1"><span class="mceIcon mce_code"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="txtAnswer_code_voice">编辑 HTML 源代码</span></a></td><td class="mceToolbarEnd mceToolbarEndButton mceLast"><span><!-- IE --></span></td></tr></tbody></table></span></div><a href="https://q.cnblogs.com/q/53375/#" accesskey="z" title="定位到工具列：Alt Q，定位到编辑框：Alt Z定位到工具列- Alt Q，定位到元素路径：Alt X。" onfocus="tinyMCE.getInstanceById(&#39;txtAnswer&#39;).focus();"><!-- IE --></a></td></tr><tr><td class="mceIframeContainer mceFirst mceLast"><iframe id="txtAnswer_ifr" src="javascript:&quot;&quot;" frameborder="0" allowtransparency="true" title="富文本区使用 ALT-F10 启用工具栏. 使用 ALT-0 打开帮助" style="width: 100%; height: 156px; display: block;" src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/saved_resource.html"></iframe></td></tr><tr class="mceLast"><td class="mceStatusbar mceFirst mceLast"><div id="txtAnswer_path_row" role="group" aria-labelledby="txtAnswer_path_voice" tabindex="-1"><span id="txtAnswer_path_voice">元素路径</span><span>: </span><span id="txtAnswer_path"><a href="javascript:;" role="button" onmousedown="return false;" class="mcePath_0" id="_mce_item_33" tabindex="-1">p</a></span></div><a id="txtAnswer_resize" href="javascript:;" onclick="return false;" class="mceResize" tabindex="-1"></a></td></tr></tbody></table></span>
+        <br>
+        <input type="button" id="btnAnswer" name="btnAnswer" value="提交回答">
+        Ctrl+Enter键快速提交<span id="answer_id"></span>
+    </div>
+</div>
+<script src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/53375" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- 编辑器结束 -->
+    <div id="google_ad_bottom">
+        <script type="text/javascript">
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            (function () {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') +
+                    '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+        </script>
+
+        <script type="text/javascript">
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/1090369/cnblogs_question_Q2', [728, 90], 'div-gpt-ad-1436511848662-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.pubads().collapseEmptyDivs();
+                googletag.enableServices();
+            });
+        </script>
+
+        <!-- /1090369/cnblogs_question_Q2 -->
+        <div id="div-gpt-ad-1436511848662-0" style="height:90px; width:728px;">
+            <script type="text/javascript">
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1436511848662-0'); });
+            </script>
+        </div>
+    </div>
+
+
+                </div>
+                <div id="right_sidebar" style="width:160px;">
+                    
+    
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="footer">
+            <a href="http://www.cnblogs.com/AboutUS.aspx">关于博客园</a><a href="http://www.cnblogs.com/ContactUs.aspx">联系我们</a><a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备09004260号</a>©2004-2017<a href="http://www.cnblogs.com/">博客园</a> Powered by ASP.NET Core on Linux <span id="profiler_footer"></span>
+        </div>
+    </div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-476124-16', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+<div id="goTop" style="position: fixed; bottom: 10px; right: 10px;"><a href="javascript:void(0);"><img src="./EF中DBContext使用Using解决线程内唯一的疑惑_files/ico_top.gif" alt="Top" title="回到页首"></a></div></body></html>

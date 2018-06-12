@@ -1,0 +1,14 @@
+简单工厂：专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类或接口。简单工厂模式又称为静态工厂方法（Static Factory Method）模式，属于类的创建型模式，通常根据一个条件（参数）来返回不同的类的实例。
+　
+抽象工厂模式（英语：Abstract Factory）是一种常见的设计模式。此模式为一个产品家族提供了统一的创建接口。当需要这个产品家族的某一系列的时候，可以从抽象工厂中选出相对系的系列来创建一个具体的工厂类别
+
+简单来说，Spring是一个轻量级的控制反转(IoC)和面向切面(AOP)的容器框架。控制反转　Spring通过一种称作控制反转（IoC）的技术促进了松耦合。当应用了IoC，一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。你可以认为IoC与JNDI相反——不是对象从容器中查找依赖，而是容器在对象初始化时不等对象请求就主动将依赖传递给它。
+Spring提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务（例如审计（auditing）和事务（transaction）管理）进行内聚性的开发。应用对象只实现它们应该做的——完成业务逻辑——仅此而已。它们并不负责（甚至是意识）其它的系统级关注点，例如日志或事务支持。
+
+IoC：Inversion of Control
+控制翻转：就是创建对象的权利由开发人员自己控制New，转到了由容器来控制。
+DI:Dependency Injection
+It is a process whereby objects define their dependencies, that is, the other objects they work with, only through constructor arguments and properties that are set on the object instance after it is constructed. 
+依赖注入：就是在通过容器来创建对象的时候，在对象的初始化是可以给一些属性、构造方法的参数等注入默认值（可以是复杂的类型）
+
+Spring.NET is an application framework that provides comprehensive infrastructural support for developing enterprise .NET applications

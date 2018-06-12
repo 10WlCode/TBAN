@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="GNvdsbNFPS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    
+      <title>动手实现 Redux（四）：共享结构的对象提高性能 | React.js 小书</title>
+      <meta name="keywords" content="react.js,web,props,state,javascript" />
+      <meta name="description" content="React.js 小书是一个开源、免费、专业、简单的 React.js 在线教程。提炼实战经验中基础的、重要的、频繁的知识进行重点讲解，让你能用最少的精力深入了解实战中最需要的 React.js 知识。" />
+    
+
+    
+
+    <link rel="icon" href="https://huzidaha.github.io/static/assets/img/favicon.ico">
+    <link rel="stylesheet"
+href="../../../fonts.googleapis.com/css-family=Inconsolata-400,700.css" tppabs="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" tppabs="http://huziketang.com/books/react/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- <div class='float-wechat' id='float-wechat'>
+    	<img src='https://huzidaha.github.io/static/assets/img/wechat-user.jpeg' />
+      <p>加入《React.js 小书》读者交流群，一起讨论、交流、学习前端技术。</p>
+    </div> -->
+    <div class="wrapper" id='wrapper'>
+      <style media="screen">
+@media (max-width: 1335px) and (min-width: 900px) {
+	.wrapper {
+		margin-left: 329px;
+	}
+}
+@media (max-width: 900px) {
+	#table-of-content {
+		margin-left: -350px;
+	}
+}
+</style>
+<h1 style='position: relative; top: -15px;'>React.js 小书</h1>
+
+<link ref='prefetch' href="/books/react/lesson34" />
+
+
+<nav class='table-of-content' id='table-of-content'>
+	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 首页</a>
+	<h3>第一阶段</h3>
+  
+  
+		<a  href="lesson1.htm" tppabs="http://huziketang.com/books/react/lesson1" title="React.js 简介">1. React.js 简介</a>
+  
+  
+  
+		<a  href="lesson2.htm" tppabs="http://huziketang.com/books/react/lesson2" title="前端组件化（一）：从一个简单的例子讲起">2. 前端组件化（一）：从一个简单的例子讲起</a>
+  
+  
+  
+		<a  href="lesson3.htm" tppabs="http://huziketang.com/books/react/lesson3" title="前端组件化（二）：优化 DOM 操作">3. 前端组件化（二）：优化 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson4.htm" tppabs="http://huziketang.com/books/react/lesson4" title="前端组件化（三）：抽象出公共组件类">4. 前端组件化（三）：抽象出公共组件类</a>
+  
+  
+  
+		<a  href="lesson5.htm" tppabs="http://huziketang.com/books/react/lesson5" title="React.js 基本环境安装">5. React.js 基本环境安装</a>
+  
+  
+  
+		<a  href="lesson6.htm" tppabs="http://huziketang.com/books/react/lesson6" title="使用 JSX 描述 UI 信息">6. 使用 JSX 描述 UI 信息</a>
+  
+  
+  
+		<a  href="lesson7.htm" tppabs="http://huziketang.com/books/react/lesson7" title="组件的 render 方法">7. 组件的 render 方法</a>
+  
+  
+  
+		<a  href="lesson8.htm" tppabs="http://huziketang.com/books/react/lesson8" title="组件的组合、嵌套和组件树">8. 组件的组合、嵌套和组件树</a>
+  
+  
+  
+		<a  href="lesson9.htm" tppabs="http://huziketang.com/books/react/lesson9" title="事件监听">9. 事件监听</a>
+  
+  
+  
+		<a  href="lesson10.htm" tppabs="http://huziketang.com/books/react/lesson10" title="组件的 state 和 setState">10. 组件的 state 和 setState</a>
+  
+  
+  
+		<a  href="lesson11.htm" tppabs="http://huziketang.com/books/react/lesson11" title="配置组件的 props">11. 配置组件的 props</a>
+  
+  
+  
+		<a  href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12" title="state vs props">12. state vs props</a>
+  
+  
+  
+		<a  href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13" title="渲染列表数据">13. 渲染列表数据</a>
+  
+  
+  
+		<a  href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14" title="实战分析：评论功能（一）">14. 实战分析：评论功能（一）</a>
+  
+  
+  
+		<a  href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15" title="实战分析：评论功能（二）">15. 实战分析：评论功能（二）</a>
+  
+  
+  
+		<a  href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16" title="实战分析：评论功能（三）">16. 实战分析：评论功能（三）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第二阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17" title="前端应用状态管理 —— 状态提升">17. 前端应用状态管理 —— 状态提升</a>
+  
+  
+  
+		<a  href="lesson18.htm" tppabs="http://huziketang.com/books/react/lesson18" title="挂载阶段的组件生命周期（一）">18. 挂载阶段的组件生命周期（一）</a>
+  
+  
+  
+		<a  href="lesson19.htm" tppabs="http://huziketang.com/books/react/lesson19" title="挂载阶段的组件生命周期（二）">19. 挂载阶段的组件生命周期（二）</a>
+  
+  
+  
+		<a  href="lesson20.htm" tppabs="http://huziketang.com/books/react/lesson20" title="更新阶段的组件生命周期">20. 更新阶段的组件生命周期</a>
+  
+  
+  
+		<a  href="lesson21.htm" tppabs="http://huziketang.com/books/react/lesson21" title="ref 和 React.js 中的 DOM 操作">21. ref 和 React.js 中的 DOM 操作</a>
+  
+  
+  
+		<a  href="lesson22.htm" tppabs="http://huziketang.com/books/react/lesson22" title="props.children 和容器类组件">22. props.children 和容器类组件</a>
+  
+  
+  
+		<a  href="lesson23.htm" tppabs="http://huziketang.com/books/react/lesson23" title="dangerouslySetHTML 和 style 属性">23. dangerouslySetHTML 和 style 属性</a>
+  
+  
+  
+		<a  href="lesson24.htm" tppabs="http://huziketang.com/books/react/lesson24" title="PropTypes 和组件参数验证">24. PropTypes 和组件参数验证</a>
+  
+  
+  
+		<a  href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25" title="实战分析：评论功能（四）">25. 实战分析：评论功能（四）</a>
+  
+  
+  
+		<a  href="lesson26.htm" tppabs="http://huziketang.com/books/react/lesson26" title="实战分析：评论功能（五）">26. 实战分析：评论功能（五）</a>
+  
+  
+  
+		<a  href="lesson27.htm" tppabs="http://huziketang.com/books/react/lesson27" title="实战分析：评论功能（六）">27. 实战分析：评论功能（六）</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	<h3>第三阶段</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		<a  href="lesson28.htm" tppabs="http://huziketang.com/books/react/lesson28" title="高阶组件（Higher-Order Components）">28. 高阶组件（Higher-Order Components）</a>
+  
+  
+  
+		<a  href="lesson29.htm" tppabs="http://huziketang.com/books/react/lesson29" title="React.js 的 context">29. React.js 的 context</a>
+  
+  
+  
+		<a  href="lesson30.htm" tppabs="http://huziketang.com/books/react/lesson30" title="动手实现 Redux（一）：优雅地修改共享状态">30. 动手实现 Redux（一）：优雅地修改共享状态</a>
+  
+  
+  
+		<a  href="lesson31.htm" tppabs="http://huziketang.com/books/react/lesson31" title="动手实现 Redux（二）：抽离 store 和监控数据变化">31. 动手实现 Redux（二）：抽离 store 和监控数据变化</a>
+  
+  
+  
+		<a  href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32" title="动手实现 Redux（三）：纯函数（Pure Function）简介">32. 动手实现 Redux（三）：纯函数（Pure Function）简介</a>
+  
+  
+  
+		<a  class='active'  href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33" title="动手实现 Redux（四）：共享结构的对象提高性能">33. 动手实现 Redux（四）：共享结构的对象提高性能</a>
+  
+  
+  
+		<a  href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34" title="动手实现 Redux（五）：不要问为什么的 reducer">34. 动手实现 Redux（五）：不要问为什么的 reducer</a>
+  
+  
+  
+		<a  href="lesson35.htm" tppabs="http://huziketang.com/books/react/lesson35" title="动手实现 Redux（六）：Redux 总结">35. 动手实现 Redux（六）：Redux 总结</a>
+  
+  
+  
+		<a  href="lesson36.htm" tppabs="http://huziketang.com/books/react/lesson36" title="动手实现 React-redux（一）：初始化工程">36. 动手实现 React-redux（一）：初始化工程</a>
+  
+  
+  
+		<a  href="lesson37.htm" tppabs="http://huziketang.com/books/react/lesson37" title="动手实现 React-redux（二）：结合 context 和 store">37. 动手实现 React-redux（二）：结合 context 和 store</a>
+  
+  
+  
+		<a  href="lesson38.htm" tppabs="http://huziketang.com/books/react/lesson38" title="动手实现 React-redux（三）：connect 和 mapStateToProps">38. 动手实现 React-redux（三）：connect 和 mapStateToProps</a>
+  
+  
+  
+		<a  href="lesson39.htm" tppabs="http://huziketang.com/books/react/lesson39" title="动手实现 React-redux（四）：mapDispatchToProps">39. 动手实现 React-redux（四）：mapDispatchToProps</a>
+  
+  
+  
+		<a  href="lesson40.htm" tppabs="http://huziketang.com/books/react/lesson40" title="动手实现 React-redux（五）：Provider">40. 动手实现 React-redux（五）：Provider</a>
+  
+  
+  
+		<a  href="lesson41.htm" tppabs="http://huziketang.com/books/react/lesson41" title="动手实现 React-redux（六）：React-redux 总结">41. 动手实现 React-redux（六）：React-redux 总结</a>
+  
+  
+  
+		<a  href="lesson42.htm" tppabs="http://huziketang.com/books/react/lesson42" title="使用真正的 Redux 和 React-redux">42. 使用真正的 Redux 和 React-redux</a>
+  
+  
+  
+		<a  href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43" title="Smart 组件 vs Dumb 组件">43. Smart 组件 vs Dumb 组件</a>
+  
+  
+  
+		<a  href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44" title="实战分析：评论功能（七）">44. 实战分析：评论功能（七）</a>
+  
+  
+  
+		<a  href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45" title="实战分析：评论功能（八）">45. 实战分析：评论功能（八）</a>
+  
+  
+  
+		<a  href="lesson46.htm" tppabs="http://huziketang.com/books/react/lesson46" title="实战分析：评论功能（九）">46. 实战分析：评论功能（九）</a>
+  
+  
+</nav>
+<div id="mask-template">
+	<div></div>
+</div>
+<style>
+	#granted-modal {
+		display: none;
+		position: fixed;
+		margin: auto;
+		left: 100px;
+		top: 0;
+		bottom: 100px;
+		right: 0;
+		width: 500px;
+		height: 300px;
+		background: #fff;
+		z-index: 100;
+		border-radius: 5px;
+	}
+	#try-to-buy {
+		display: none;
+	}
+	.error-message {
+    position: absolute;
+    bottom: 7px;
+    right: -30px;
+    font-size: 12px;
+    color: rgb(211, 53, 62);
+  }
+	.field {
+		position: relative;
+		margin-top: 25px;
+	}
+	.modal-head {
+		font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+	}
+	.granted-footer {
+		text-align: center;
+	}
+	#back-to-input {
+		font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+	}
+	.hover {
+		cursor: pointer;
+	}
+	.granted-footer {
+		position: absolute;
+    margin: auto;
+		padding-top: 15px;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+		border-top: 1px solid #eee;
+	}
+	#buy-now {
+		color: #00a854;
+	}
+	.field label {
+		display: inline-block;
+		width: 90px;
+		text-align: right;
+	}
+	.field label::after {
+		content: "："
+	}
+	.granted-form {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 25px;
+	}
+	.submit {
+		display: inline-block;
+		float: right;
+	}
+	.button {
+		background: #f7f7f7;
+		border: 1px solid #ccc;
+		padding: 5px 20px;
+		border-radius: 3px;
+		outline: none;
+	}
+	.button:hover {
+		background: #fff;
+	}
+	.field input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #e0dbdb;
+    width: 166px;
+	}
+</style>
+<div id="granted-modal">
+	<div style="padding: 10px;">
+		<div id="readcode-input-area">
+			<h2 class="modal-head">阅读第三阶段，请输入你的阅读码 </h2>
+			<form class="granted-form" id="read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="email">
+				</div>
+				<div class="field">
+					<label>阅读码</label>
+					<input type="text" id="read-code">
+				</div>
+				<button id="check-granted" class="button hover submit">确认</button>
+			</form>
+			<div class="granted-footer">
+				还没有阅读码？<b>¥10</b> 元即可阅读所有章节
+				<p style="margin-top: 10px;"><a class="hover" id="buy-now">马上获取阅读码</a></p>
+			</div>
+		</div>
+		<div id="try-to-buy">
+			<div id="back-to-input" class="hover">&lt;&lt; 返回</div>
+			<h2 class="modal-head">输入你的邮箱，系统会给你发送邮件</h2>
+			<form class="granted-form" id="get-read-code-form">
+				<div class="field">
+					<label>Email</label>
+					<input type="email" id="reader-email">
+				</div>
+				<button id="alipay" style="margin-top: 20px;" class="hover submit button">获取阅读码</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="assets/js/jquery-3.2.1.min.js" tppabs="http://huziketang.com/books/react/assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/pay.min.js" tppabs="http://huziketang.com/books/react/assets/js/pay.min.js"></script>
+<script type="text/javascript">
+var tableOfContent = document.getElementById('table-of-content')
+var timer = null
+function resetTableOfContent (rect) {
+  scrollTop = localStorage.getItem('scrollTop') * 1
+  scrollTop = scrollTop || 0
+  tableOfContent.scrollTop = scrollTop
+}
+tableOfContent.addEventListener('scroll', function (event) {
+  clearTimeout(timer)
+  timer = setTimeout(function() {
+    localStorage.setItem('scrollTop', tableOfContent.scrollTop)
+  }, 50)
+}, false)
+resetTableOfContent()
+</script>
+<div class="post">
+	<div class="post__back">
+  	<a href="javascript:if(confirm('http://huziketang.com/books/react  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huziketang.com/books/react'" tppabs="http://huziketang.com/books/react">&lt;-- 返回首页</a>
+    <div class="post__title">
+    	<h1>动手实现 Redux（四）：共享结构的对象提高性能</h1>
+    </div>
+    <div class="post__meta">
+    	<p></p>
+    </div>
+    <div class="post__content"?>
+      <ul style="font-size: 14px; margin-top: -10px;">
+  <li>
+    作者：<a href="javascript:if(confirm('https://www.zhihu.com/people/hu-zi-da-ha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.zhihu.com/people/hu-zi-da-ha'" tppabs="https://www.zhihu.com/people/hu-zi-da-ha" target="_blank">胡子大哈</a>
+  </li>
+  <li>
+    原文链接：<a href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33"> http://huziketang.com/books/react/lesson33 </a>
+  </li>
+  <li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+
+<p>（本文未审核）</p>
+
+<p>接下来两节某些地方可能会稍微有一点点抽象，但是我会尽可能用简单的方式进行讲解。如果你觉得理解起来有点困难，可以把这几节多读多理解几遍，其实我们一路走来都是符合“逻辑”的，都是发现问题、思考问题、优化代码的过程。所以最好能够用心留意、思考我们每一个提出来的问题。</p>
+
+<p>细心的朋友可以发现，其实我们之前的例子当中是有比较严重的<em>性能问题</em>的。我们在每个渲染函数的开头打一些 Log 看看：</p>
+
+<pre><code class="language-javascript">function renderApp (appState) {
+  console.log('render app...')
+  renderTitle(appState.title)
+  renderContent(appState.content)
+}
+
+function renderTitle (title) {
+  console.log('render title...')
+  const titleDOM = document.getElementById('title')
+  titleDOM.innerHTML = title.text
+  titleDOM.style.color = title.color
+}
+
+function renderContent (content) {
+  console.log('render content...')
+  const contentDOM = document.getElementById('content')
+  contentDOM.innerHTML = content.text
+  contentDOM.style.color = content.color
+}
+</code></pre>
+
+<p>依旧执行一次初始化渲染，和两次更新，这里代码保持不变：</p>
+
+<pre><code class="language-javascript">const store = createStore(appState, stateChanger)
+store.subscribe(() =&gt; renderApp(store.getState())) // 监听数据变化
+
+renderApp(store.getState()) // 首次渲染页面
+store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' }) // 修改标题文本
+store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'blue' }) // 修改标题颜色
+</code></pre>
+
+<p>可以在控制台看到：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/39AC7FAA-0332-448E-8B00-7A1719F048DE.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/39AC7FAA-0332-448E-8B00-7A1719F048DE.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/39AC7FAA-0332-448E-8B00-7A1719F048DE.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/39AC7FAA-0332-448E-8B00-7A1719F048DE.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/39AC7FAA-0332-448E-8B00-7A1719F048DE.png" alt="实例图片" /></a></p>
+
+<p>前三个毫无疑问是第一次渲染打印出来的。中间三个是第一次 <code>store.dispatch</code> 导致的，最后三个是第二次 <code>store.dispatch</code> 导致的。可以看到问题就是，每当更新数据就重新渲染整个 App，但其实我们两次更新都没有动到 <code>appState</code> 里面的 <code>content</code> 字段的对象，而动的是 <code>title</code> 字段。其实并不需要重新 <code>renderContent</code>，它是一个多余的更新操作，现在我们需要优化它。</p>
+
+<p>这里提出的解决方案是，在每个渲染函数执行渲染操作之前先做个判断，判断传入的新数据和旧的数据是不是相同，相同的话就不渲染了。</p>
+
+<pre><code class="language-javascript">function renderApp (newAppState, oldAppState = {}) { // 防止 oldAppState 没有传入，所以加了默认参数 oldAppState = {}
+  if (newAppState === oldAppState) return // 数据没有变化就不渲染了
+  console.log('render app...')
+  renderTitle(newAppState.title, oldAppState.title)
+  renderContent(newAppState.content, oldAppState.content)
+}
+
+function renderTitle (newTitle, oldTitle = {}) {
+  if (newTitle === oldTitle) return // 数据没有变化就不渲染了
+  console.log('render title...')
+  const titleDOM = document.getElementById('title')
+  titleDOM.innerHTML = newTitle.text
+  titleDOM.style.color = newTitle.color
+}
+
+function renderContent (newContent, oldContent = {}) {
+  if (newContent === oldContent) return // 数据没有变化就不渲染了
+  console.log('render content...')
+  const contentDOM = document.getElementById('content')
+  contentDOM.innerHTML = newContent.text
+  contentDOM.style.color = newContent.color
+}
+</code></pre>
+
+<p>然后我们用一个 <code>oldState</code> 变量保存旧的应用状态，在需要重新渲染的时候把新旧数据传进入去：</p>
+
+<pre><code class="language-javascript">const store = createStore(appState, stateChanger)
+let oldState = store.getState() // 缓存旧的 state
+store.subscribe(() =&gt; {
+  const newState = store.getState() // 数据可能变化，获取新的 state
+  renderApp(newState, oldState) // 把新旧的 state 传进去渲染
+  oldState = newState // 渲染完以后，新的 newState 变成了旧的 oldState，等待下一次数据变化重新渲染
+})
+...
+</code></pre>
+
+<p>希望到这里没有把大家忽悠到，<em>上面的代码根本不会达到我们的效果</em>。看看我们的 <code>stateChanger</code>：</p>
+
+<pre><code class="language-javascript">function stateChanger (state, action) {
+  switch (action.type) {
+    case 'UPDATE_TITLE_TEXT':
+      state.title.text = action.text
+      break
+    case 'UPDATE_TITLE_COLOR':
+      state.title.color = action.color
+      break
+    default:
+      break
+  }
+}
+</code></pre>
+
+<p>即使你修改了 <code>state.title.text</code>，但是 <code>state</code> 还是原来那个 <code>state</code>，<code>state.title</code> 还是原来的 <code>state.title</code>，这些引用指向的还是原来的对象，只是对象内的内容发生了改变。所以即使你在每个渲染函数开头加了那个判断又什么用？这就像是下面的代码那样自欺欺人：</p>
+
+<pre><code class="language-javascript">let appState = {
+  title: {
+    text: 'React.js 小书',
+    color: 'red',
+  },
+  content: {
+    text: 'React.js 小书内容',
+    color: 'blue'
+  }
+}
+const oldState = appState
+appState.title.text = '《React.js 小书》'
+oldState !== appState // false，其实两个引用指向的是同一个对象，我们却希望它们不同。
+</code></pre>
+
+<p>但是，我们接下来就要让这种事情变成可能。</p>
+
+<h2 id="共享结构的对象">共享结构的对象</h2>
+<p>希望大家都知道这种 ES6 的语法：</p>
+
+<pre><code class="language-javascript">const obj = { a: 1, b: 2}
+const obj2 = { ...obj } // =&gt; { a: 1, b: 2 }
+</code></pre>
+
+<p><code>const obj2 = { ...obj }</code> 其实就是新建一个对象 <code>obj2</code>，然后把 <code>obj</code> 所有的属性都复制到 <code>obj2</code> 里面，相当于对象的浅复制。上面的 <code>obj</code> 里面的内容和 <code>obj2</code> 是完全一样的，但是却是两个不同的对象。除了浅复制对象，还可以覆盖、拓展对象属性：</p>
+
+<pre><code class="language-javascript">const obj = { a: 1, b: 2}
+const obj2 = { ...obj, b: 3, c: 4} // =&gt; { a: 1, b: 3, c: 4 }，覆盖了 b，新增了 c
+</code></pre>
+
+<p>我们可以把这种特性应用在 <code>state</code> 的更新上，我们禁止直接修改原来的对象，一旦你要修改某些东西，你就得把修改路径上的所有对象复制一遍，例如，我们不写下面的修改代码：</p>
+
+<pre><code class="language-javascript">appState.title.text = '《React.js 小书》'
+</code></pre>
+
+<p>取而代之的是，我们新建一个 <code>appState</code>，新建 <code>appState.title</code>，新建 <code>appState.title.text</code>：</p>
+
+<pre><code class="language-javascript">let newAppState = { // 新建一个 newAppState
+  ...appState, // 复制 appState 里面的内容
+  title: { // 用一个新的对象覆盖原来的 title 属性
+    ...appState.title, // 复制原来 title 对象里面的内容
+    text: '《React.js 小书》' // 覆盖 text 属性
+  }
+}
+</code></pre>
+
+<p>如果我们用一个树状的结构来表示对象结构的话：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/C8A1EB09-2D4E-442E-AD6D-E4997B4AF1C1.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/C8A1EB09-2D4E-442E-AD6D-E4997B4AF1C1.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/C8A1EB09-2D4E-442E-AD6D-E4997B4AF1C1.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/C8A1EB09-2D4E-442E-AD6D-E4997B4AF1C1.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/C8A1EB09-2D4E-442E-AD6D-E4997B4AF1C1.png" alt="实例图片" /></a></p>
+
+<p><code>appState</code> 和 <code>newAppState</code> 其实是两个不同的对象，因为对象浅复制的缘故，其实它们里面的属性 <code>content</code> 指向的是同一个对象；但是因为 <code>title</code> 被一个新的对象覆盖了，所以它们的 <code>title</code> 属性指向的对象是不同的。同样地，修改 <code>appState.title.color</code>：</p>
+
+<pre><code class="language-javascript">let newAppState1 = { // 新建一个 newAppState1
+  ...newAppState, // 复制 newAppState1 里面的内容
+  title: { // 用一个新的对象覆盖原来的 title 属性
+    ...newAppState.title, // 复制原来 title 对象里面的内容
+    color: "blue" // 覆盖 color 属性
+  }
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/4E4E9324-4659-4791-8957-137566C3A929.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/4E4E9324-4659-4791-8957-137566C3A929.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/4E4E9324-4659-4791-8957-137566C3A929.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/4E4E9324-4659-4791-8957-137566C3A929.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/4E4E9324-4659-4791-8957-137566C3A929.png" alt="实例图片" /></a></p>
+
+<p>我们每次修改某些数据的时候，都不会碰原来的数据，而是把需要修改数据路径上的对象都 copy 一个出来。这样有什么好处？看看我们的目的达到了：</p>
+
+<pre><code class="language-javascript">appState !== newAppState // true，两个对象引用不同，数据变化了，重新渲染
+appState.title !== newAppState.title // true，两个对象引用不同，数据变化了，重新渲染
+appState.content !== appState.content // false，两个对象引用相同，数据没有变化，不需要重新渲染
+</code></pre>
+
+<p>修改数据的时候就把修改路径都复制一遍，但是保持其他内容不变，最后的所有对象具有某些不变共享的结构（例如上面三个对象都共享 <code>content</code> 对象）。大多数情况下我们可以保持 50% 以上的内容具有共享结构，这种操作具有非常优良的特性，我们可以用它来优化上面的渲染性能。</p>
+
+<h2 id="优化性能">优化性能</h2>
+<p>我们修改 <code>stateChanger</code>，让它修改数据的时候，并不会直接修改原来的数据 <code>state</code>，而是产生上述的共享结构的对象：</p>
+
+<pre><code class="language-javascript">function stateChanger (state, action) {
+  switch (action.type) {
+    case 'UPDATE_TITLE_TEXT':
+      return { // 构建新的对象并且返回
+        ...state,
+        title: {
+          ...state.title,
+          text: action.text
+        }
+      }
+    case 'UPDATE_TITLE_COLOR':
+      return { // 构建新的对象并且返回
+        ...state,
+        title: {
+          ...state.title,
+          color: action.color
+        }
+      }
+    default:
+      return state // 没有修改，返回原来的对象
+  }
+}
+</code></pre>
+
+<p>代码稍微比原来长了一点，但是是值得的。每次需要修改的时候都会产生新的对象，并且返回。而如果没有修改（在 <code>default</code> 语句中）则返回原来的 <code>state</code> 对象。</p>
+
+<p>因为 <code>stateChanger</code> 不会修改原来对象了，而是返回对象，所以我们需要修改一下 <code>createStore</code>。让它用每次 <code>stateChanger(state, action)</code> 的调用结果覆盖原来的 <code>state</code>：</p>
+
+<pre><code class="language-javascript">function createStore (state, stateChanger) {
+  const listeners = []
+  const subscribe = (listener) =&gt; listeners.push(listener)
+  const getState = () =&gt; state
+  const dispatch = (action) =&gt; {
+    state = stateChanger(state, action) // 覆盖原对象
+    listeners.forEach((listener) =&gt; listener())
+  }
+  return { getState, dispatch, subscribe }
+}
+</code></pre>
+
+<p>保持上面的渲染函数开头的对象判断不变，再看看控制台：</p>
+
+<p><a href="javascript:if(confirm('http://huzidaha.github.io/static/assets/img/posts/B7386556-7007-4AAB-9E7D-D977DD98CD44.png  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://huzidaha.github.io/static/assets/img/posts/B7386556-7007-4AAB-9E7D-D977DD98CD44.png'" tppabs="http://huzidaha.github.io/static/assets/img/posts/B7386556-7007-4AAB-9E7D-D977DD98CD44.png" target="_blank"><img src="../../../huzidaha.github.io/static/assets/img/posts/B7386556-7007-4AAB-9E7D-D977DD98CD44.png" tppabs="http://huzidaha.github.io/static/assets/img/posts/B7386556-7007-4AAB-9E7D-D977DD98CD44.png" alt="实例图片" /></a></p>
+
+<p>前三个是首次渲染。后面的 <code>store.dispatch</code> 导致的重新渲染都没有关于 <code>content</code> 的 Log 了。因为产生共享结构的对象，新旧对象的 <code>content</code> 引用指向的对象是一样的，所以触发了 <code>renderContent</code> 函数开头的：</p>
+
+<pre><code class="language-javascript">...
+  if (newContent === oldContent) return
+...
+</code></pre>
+
+<p>我们成功地把不必要的页面渲染优化掉了，问题解决。另外，并不需要担心每次修改都新建共享结构对象会有性能、内存问题，因为构建对象的成本非常低，而且我们最多保存两个对象引用（<code>oldState</code> 和 <code>newState</code>），其余旧的对象都会被垃圾回收掉。</p>
+
+<p>本节完整代码：</p>
+
+<pre><code class="language-javascript">function createStore (state, stateChanger) {
+  const listeners = []
+  const subscribe = (listener) =&gt; listeners.push(listener)
+  const getState = () =&gt; state
+  const dispatch = (action) =&gt; {
+    state = stateChanger(state, action) // 覆盖原对象
+    listeners.forEach((listener) =&gt; listener())
+  }
+  return { getState, dispatch, subscribe }
+}
+
+function renderApp (newAppState, oldAppState = {}) { // 防止 oldAppState 没有传入，所以加了默认参数 oldAppState = {}
+  if (newAppState === oldAppState) return // 数据没有变化就不渲染了
+  console.log('render app...')
+  renderTitle(newAppState.title, oldAppState.title)
+  renderContent(newAppState.content, oldAppState.content)
+}
+
+function renderTitle (newTitle, oldTitle = {}) {
+  if (newTitle === oldTitle) return // 数据没有变化就不渲染了
+  console.log('render title...')
+  const titleDOM = document.getElementById('title')
+  titleDOM.innerHTML = newTitle.text
+  titleDOM.style.color = newTitle.color
+}
+
+function renderContent (newContent, oldContent = {}) {
+  if (newContent === oldContent) return // 数据没有变化就不渲染了
+  console.log('render content...')
+  const contentDOM = document.getElementById('content')
+  contentDOM.innerHTML = newContent.text
+  contentDOM.style.color = newContent.color
+}
+
+let appState = {
+  title: {
+    text: 'React.js 小书',
+    color: 'red',
+  },
+  content: {
+    text: 'React.js 小书内容',
+    color: 'blue'
+  }
+}
+
+function stateChanger (state, action) {
+  switch (action.type) {
+    case 'UPDATE_TITLE_TEXT':
+      return { // 构建新的对象并且返回
+        ...state,
+        title: {
+          ...state.title,
+          text: action.text
+        }
+      }
+    case 'UPDATE_TITLE_COLOR':
+      return { // 构建新的对象并且返回
+        ...state,
+        title: {
+          ...state.title,
+          color: action.color
+        }
+      }
+    default:
+      return state // 没有修改，返回原来的对象
+  }
+}
+
+const store = createStore(appState, stateChanger)
+let oldState = store.getState() // 缓存旧的 state
+store.subscribe(() =&gt; {
+  const newState = store.getState() // 数据可能变化，获取新的 state
+  renderApp(newState, oldState) // 把新旧的 state 传进去渲染
+  oldState = newState // 渲染完以后，新的 newState 变成了旧的 oldState，等待下一次数据变化重新渲染
+})
+
+renderApp(store.getState()) // 首次渲染页面
+store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' }) // 修改标题文本
+store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'blue' }) // 修改标题颜色
+</code></pre>
+
+<hr />
+
+<blockquote>
+  <p>因为第三方评论工具有问题，对本章节有任何疑问的朋友可以移步到 <a target="_blank" href="javascript:if(confirm('http://scriptoj.com/category/4/react-js-小书交流区  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://scriptoj.com/category/4/react-js-小书交流区'" tppabs="http://scriptoj.com/category/4/react-js-小书交流区">React.js 小书的论坛</a> 发帖，我会回答大家的疑问。</p>
+</blockquote>
+
+    </div>
+		<br/>
+		<hr />
+		<br />
+		<div class="PageNavigation">
+			
+			<p>
+				<a class="next" href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34">下一节：动手实现 Redux（五）：不要问为什么的 reducer</a>
+			</p>
+			
+			<br/>
+			
+			<p>
+				<a class="prev" href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32">上一节：动手实现 Redux（三）：纯函数（Pure Function）简介</a>
+			</p>
+			
+		</div>
+		<!-- <a class="ad" href="https://aonaotu.com" target="_blank"> -->
+			<!-- <div class="ad-logo">
+				<img src="/books/react/assets/img/ad-logo.svg">
+				<p class="ad-title">凹脑图</p>
+			</div>
+			<p class="ad-wording">迄今为止最简单好用的在线思维导图工具</p>
+			<span class="ad-indicator">广告</span>
+			<img src="/books/react/assets/img/ad-bg-2.svg" class="ad-bg-2">
+		</a> -->
+		<!-- <div class='share-block margin-top-gap'>
+			<p>如果你觉得小书写得还不错，可以请胡子大哈喝杯茶 :)</p>
+			<button class='donate-button' id='donate-button' type="button">赞赏</button>
+		</div> -->
+		<div class='share-block margin-bottom-gap'>
+			<p>传播一下知识也是一个很好的选择</p>
+			<div class="share-block-inner">
+				<div class="jiathis_style_24x24">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a href="javascript:if(confirm('http://www.jiathis.com/share?uid=2127727  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jiathis.com/share?uid=2127727'" tppabs="http://www.jiathis.com/share?uid=2127727" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				</div>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'};
+				</script>
+				<script type="text/javascript" src="../../../v3.jiathis.com/code/jia.js-uid=2127727" tppabs="http://v3.jiathis.com/code/jia.js?uid=2127727" charset="utf-8"></script>
+			</div>
+		</div>
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript">
+		var paths = window.location.pathname.split('/')
+		var lessonName = paths[paths.length - 1]
+		var uyan_config = {
+			// 'url': 'http://react.huziketang.com/blog/' + lessonName,
+			'du': 'http://huziketang.com/books/react/react.huziketang.com'
+		}
+		</script>
+		<script type="text/javascript" src="../../../v2.uyan.cc/code/uyan.js-uid=2127727" tppabs="http://v2.uyan.cc/code/uyan.js?uid=2127727"></script>
+		<!-- UY END -->
+		<!--wechat donate-->
+		<div class='donate-mask' id='donate-mask'>
+			<img src="../../../huzidaha.github.io/static/assets/img/wechat-pay.png" tppabs="https://huzidaha.github.io/static/assets/img/wechat-pay.png" id='wechat-pay' />
+		</div>
+		<script type="text/javascript">
+			// var donateMask = document.getElementById('donate-mask')
+			// var donateButton = document.getElementById('donate-button')
+			// var wechatPay = document.getElementById('wechat-pay')
+			// donateButton.addEventListener('click', function () {
+			// 	donateMask.style.display = 'flex'
+			// }, false)
+			// donateMask.addEventListener('click', function () {
+			// 	donateMask.style.display = 'none'
+			// }, false)
+			// wechatPay.addEventListener('click', function (event) {
+			// 	event.stopPropagation()
+			// }, false)
+		</script>
+	</div>
+
+    </div>
+    <script src="assets/js/highlight.js" tppabs="http://huziketang.com/books/react/assets/js/highlight.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      if (window.location.origin.match(/localhost/)) return
+      var hm = document.createElement("script");
+      hm.src = "../../../hm.baidu.com/hm.js-f08b5240ef2d1692572ce0f7756b325e"/*tpa=https://hm.baidu.com/hm.js?f08b5240ef2d1692572ce0f7756b325e*/;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      var bp = document.createElement('script');
+      // push baidu.com
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = '../../../zz.bdstatic.com/linksubmit/push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/;
+      }
+      else {
+        bp.src = '../../../push.zhanzhang.baidu.com/push.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/;
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+    // var wrapper = document.getElementById('wrapper')
+    // var floatWechat = document.getElementById('float-wechat')
+
+    // function resetAll (event) {
+    //   var rect = wrapper.getBoundingClientRect()
+    //   resetFloatWechat(rect)
+    // }
+    // function resetFloatWechat(rect) {
+    //   var left = rect.left + rect.width
+    //   floatWechat.style.left = left + 'px'
+    //   floatWechat.style.display = 'block'
+    // }
+    // window.addEventListener('resize', resetAll)
+    // resetAll()
+    </script>
+
+</body>
+
+</html>

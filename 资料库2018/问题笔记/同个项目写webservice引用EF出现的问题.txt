@@ -1,0 +1,47 @@
+设置生成ADO.Net实体模型的时候就把密码写在里面这样Copy到MVC层的时候就会比较方便。
+
+先记得要把EF链接字符串添加到启动项目的 web config里面
+
+错误1：
+定的架构无效。错误: DataModel.ssdl(22) :
+错误 0152: 未找到具有固定名称“System.Data.SqlClient”的 ADO.NET 提供程序的实体框架提供程序。请确保在应用程序配置文件的“entityFramework”节中注册了该提供程序。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?
+解决办法，将以下代码添加至web.config配置文件中即可：
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+ 引用：
+技术分享
+ 
+ 
+ 
+ 
+ 
+错误2：无法读取配置节“entityFramework”因为它缺少节声明
+<configSections>
+<!-- For more information on Entity Framework configuration visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+<section name="entityFramework"
+type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection EntityFramework Version=6.0.0.0 Culture=neutral PublicKeyToken=b77a5c561934e089" />
+</configSections>
+
+总之需要这些在MVC的webconfig里面
+
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <connectionStrings>
+    <add name="MYDBEntities" connectionString="metadata=res://*/OAModel.csdl|res://*/OAModel.ssdl|res://*/OAModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=HANK-PC;initial catalog=MYDB;user id=Hank;password=123456;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+  </entityFramework>

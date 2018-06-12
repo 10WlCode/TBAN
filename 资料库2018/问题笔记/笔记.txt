@@ -1,0 +1,197 @@
+一般处理程序
+
+名词ProcessRequest简称PR方法
+
+客户端-服务器端 三次握手
+
+递归（打印4a4b的那张图，打印出来）-树状结构-递归加载省市-删除城市
+
+三层实现自增-三层实现登录-三层实现递归加载删除
+
+首先手写三层的话，先添加配置文件，SQLHelper，添加引用。
+
+委托事件---例子就是两个窗口里面传值
+1.就是直接修改textbox属性变成public 然后从主窗体改变值
+2.在子窗体定义一个类，然后主窗体调用类，给子窗体赋值
+3.用委托实现传值
+4.用事件事件传值
+5.用发布订阅模式进行传值。
+
+context.Request.MapPath 虚拟路径转换绝对路径。
+
+多写几遍黑马45一般处理程序，熟悉流程。
+
+https http最主要区别是一个加密一个不加密
+
+类里面能写： 字段（存数据） 属性（保护字段） 构造函数（给属性赋值） 函数（描述对象的行为） 索引器（索引的方式访问对象）
+
+自动属性 prop + 两下tab
+
+封装属性的快捷键 ctrl + R +E
+
+return返回一个值 out返回多个值
+
+委托就是函数的占位符，或者可以说是函数的父类。
+
+事件本身就是封装的一个多播委托。
+
+操作MSSQL的时候一定要自己创建一个UserID不要用sa账户不然很容易把自己系统的数据库弄乱，参见SQLserver经验。
+多看左上角链接的是哪个数据库！！！连错了很郁闷。
+有些有外联的表格删不了，那就先删除别的看看有没有外联的，一层一层的删除。
+
+本来就对泛型不太熟悉，再加上还是c#上的，更加是一头雾水，看见个
+
+  public List<T> ConvertTo<T>(DataTable datatable) where T : new()
+1
+1
+就不知所措了。 
+以下为MSDN上的解释：
+
+约束	说明
+where T: struct	类型参数必须是值类型。 可以指定除 Nullable 以外的任何值类型。 有关更多信息，请参见使用可以为 null 的类型（C# 编程指南）。
+where T : class	类型参数必须是引用类型；这一点也适用于任何类、接口、委托或数组类型。
+where T : new()	类型参数必须具有无参数的公共构造函数。 当与其他约束一起使用时，new() 约束必须最后指定。
+where T : <base class name>	类型参数必须是指定的基类或派生自指定的基类。
+where T : <interface name>	类型参数必须是指定的接口或实现指定的接口。 可以指定多个接口约束。 约束接口也可以是泛型的。
+where T : U	为 T 提供的类型参数必须是为 U 提供的参数或派生自为 U 提供的参数。
+
+使用Get Set的时候不用在方法名字后面加（）
+
+
+重点
+-》JavaScript语言：弱类型语言，就是声明变量的时候不需要制定变量的类型，C# 是强类型语言。
+-》数据类型，类型转换，判断，typeof()
+-》集合：数组中括号[]，键值对大括号{}（也可以理解为json）
+-》内置成员：Date,String
+
+了解
+-》闭包：函数内部，用一个变量，但是没有定义过变量，他就会自动向上一级寻找这个名称的变量。尽量避免，主要作用是类的定义
+
+this 代表当前对象，谁调用就是谁
+
+隐式迭代：Jquery的特征，自动跑一个foreach
+
+foreach是遍历一个新创建的在内存里的数组，因此只能读取数据不能修改。修改只能用for循环。
+什么时候用for循环，什么时候用foreach遍历：目前的理解foreach用在数组里，for用在需要修改的时候
+
+
+
+链式编程：JQuery特征，每个方法都返回。
+
+成员变量和局部变量的区别 
+
+声明属性的时候{get;set;}都不用（），写完属性后面也不用加；
+
+封装属性Ctrl+R+E
+
+封装方法Ctrl+R+M
+
+param是可变参数
+
+虚方法和抽象方法实现多态的区别
+主要看需求，需求如果需要默认实现，比方说员工打卡，那就用虚方法，如果不需要，那就用抽象方法。
+
+虚方法和抽象方法的区别
+虚方法必须有实现，抽象方法必须没有实现
+抽象方法必须在抽象类中声明，虚方法可以出现在抽象类中
+抽象方法必须在子类中重写，虚方法可以被重写
+
+
+static 关键词就是 abstract + sealed
+
+抽象方法的特点
+        //1>使用abstract关键字标记方法
+        //2>抽象方法在父类中不能有任何实现，所以抽象方法没有方法体。
+        //3>抽象成员必须写在抽象类中。
+        //4>抽象类是不能被实例化的。不能直接new一个抽象类的对象。
+        //5>抽象类中既可以有抽象成员，也可以有实例成员。
+        //6>抽象成员不能是私有的。 
+        //7>子类继承抽象类后，对于抽象类中的抽象成员子类必须重写（因为父类中没有默认实现），除非子类也标记为abstract。
+
+const与 readonly的区别 const==static readonly(不严谨,本地资料库里面有一篇文章解释)Const是编译时常量 readonly是运行时常量
+
+　　readonly 关键字与 const 关键字不同。
+　　1. const 字段只能在该字段的声明中初始化。
+　　readonly 字段可以在声明或构造函数中初始化。因此，根据所使用的构造函数，readonly 字段可能具有不同的值。
+　　2. const 字段是编译时常数，而 readonly 字段可用于运行时常数。
+　　3. const 默认就是静态的，而 readonly 如果设置成静态的就必须显示声明。
+　　4.const 对于引用类型的常数，可能的值只能是 string 和 null。
+
+C#中(int)、int.Parse()、int.TryParse()和Convert.ToInt32()的区别
+
+1)对于转换对象，Convert.ToInt32()可以为多种类型（例出数字类型外bool，DateTime等），int.TryParse()和int.Parse()只能是整型字符串类型（即各种整型ToString()之后的形式，不能为浮点型，否则int.Parse()就会出现输入的字符串格式不正确的错误，int.TryParse()也会返回false，输出参数为0），(int)只能是数字类型（例float,int,uint等）；
+
+2）对于空值NULL，从运行报错的角度讲，(int)强制转换和int.Parse()都不能接受NULL；Convert.ToInt32()其实是在转换前先做了一个判断，参数如果为NULL，则直接返回0，否则就调用int.Parse()进行转换，int.TryParse()其实是对int.Parse()做了一个异常处理，如果出现异常则返回false，并且将输出参数返回0；
+
+3）针对于浮点型的取舍问题，浮点型只有Convert.ToInt32()和(int)能进行转换，但是也是进行取舍了的，Convert.ToInt32()采取的取舍是进行四舍五入，而(int)则是截取浮点型的整数部分，忽略小数部分，例如Convert.ToInt32(1.499d)和(int)1.499d都返回1，Convert.ToInt32(1.5d)返回2，而(int)1.5d还是返回1；
+
+4）关于溢出，将大的数据类型转换为小的数据类型时Convert.ToInt32()和int.Parse()都会报溢出错误，值对于Int32太大或太小，而(int)不报错，但是返回值为-1。
+
+如此可见，我们在进行数据转换前选择转换方法要谨慎，如果是数字类型可以考虑直接用(int)强制转换，如果是整型字符串类型的，考虑用int.Parse()进行转换，如果不是这两种类型，再考虑用Convert.ToInt32()进行转换。
+
+取出表A中第30到40条数据。
+思路创建一个子查询.
+select top 10 * from A where id not in (select top 30 id from A)
+
+可空值类型int?
+
+理解构造方法和初始化器.本地资料库里有资料.
+
+值类型（int,char,long,boolean等）都是用==判断相等性。对象引用的话，==判断引用所指的对象是否是同一个。equals是Object的成员函数，有些类会覆盖（override）这个方法，用于判断对象的等价性。例如String类，两个引用所指向的String都是"abc"，但可能出现他们实际对应的对象并不是同一个（和jvm实现方式有关），因此用==判断他们可能不相等，但用equals判断一定是相等的。另一个类似的例子是BigInteger。总体来说要搞清楚，还是需要先理解清楚对象实体和引用之间的关系。
+
+作者：Zhipeng
+链接：https://www.zhihu.com/question/26872848/answer/34361217
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+新建类,左键项目,ctrl + shift +A
+
+判断字段是否为空 string.IsNullOrEmpty(cond)
+
+添加成强类型视图的时候报错@model DotNetBlog.Model.Blog,上下文中不存在Model,重新启动VS就行了.
+
+ctrl+Shift+B生成解决方案
+F10调试
+
+string 类型前面加$的意义是:
+var anInt = 1;
+var aBool = true;
+var aString = "3";
+var formated = string.Format("{0},{1},{2}", anInt, aBool, aString);
+Now becomes:
+
+var anInt = 1;
+var aBool = true;
+var aString = "3";
+var formated = $"{anInt},{aBool},{aString}";
+
+sql 中的%是什么意思
+两种情况, 一种是 取余数,   一种是 模糊比较  LIKE  里面的 通配符， 匹配 一个或者多个字符。
+
+DotNetCore里使用session需要配置.csproj文件,右键项目名选择编辑.csproj文件就会显示出来.把<PackageReference Include="Microsoft.AspNetCore.Session" Version="1.0.2" />加入到一堆带version的行里面.写完session应该就在引用里面了.还要在startup.cs里面加一句话.
+
+什么叫回调函数callback
+$.post("getDate.ashx", {"key1":"value1","key2":"value2"},function(data){
+alert(data)
+});
+这里的function(data) 就是回调函数,POST请求发给ashx文件之后,返回的数据存到data里面, 会在function这个匿名方法里面执行.
+
+Ajax发送请求的两种写法
+$.Post()或者$.Ajax
+
+这里我们看到head @Styles.Render("~/Content/css")这些代码，这是MVC的捆版压缩技术，将css和javascript压缩输出到页面。我已经做好了所以大家只要看下就可以。也可以谷歌一下他的原理组成。博客园很多大虾也都给出了答案。还要配置App_Start下的BundleConfig.cs
+
+view最前面要加上,不使用模板
+@{
+    Layout = null;
+}
+
+jquery 里的$(function () {}相当于js里的onload事件,这个事件必须写在HTML页面的最后,因为是页面加载完以后才能执行.
+纠正,$(function(){}) 和 onload的区别
+$(function(){})是框架加载完成执行
+onload是页面加载执行,包括图片和视频.
+
+Jquery里面的#ID方法 使用正则表达式去匹配,JS里的onload事件是用DOM模型查找,所以肯定是正则表达式匹配比较快了.
+
+如果在HTML上面直接加style="color:red"这种改不了颜色,那肯定是在JS里动态改的.
+我们可以在$(function(){})里用.css方法修改css例子$("#north").css("height", "70px");

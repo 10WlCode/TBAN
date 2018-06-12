@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>javascript - Why es6 react component works only with "export default"? - Stack Overflow</title>
+        <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+        <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+        <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://stackoverflow.com/opensearch.xml">
+
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default">
+        <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:domain" content="stackoverflow.com">
+        <meta name="twitter:title" property="og:title" itemprop="title name" content="Why es6 react component works only with &quot;export default&quot;?">
+        <meta name="twitter:description" property="og:description" itemprop="description" content="This component does work:
+
+export class Template extends React.Component {
+    render() {
+        return (
+            &amp;lt;div&amp;gt; component &amp;lt;/div&amp;gt;
+        );
+    }
+};
+export default Template...">
+        <script async="" src="https://secure.quantserve.com/quant.js"></script><script async="" src="https://sb.scorecardresearch.com/beacon.js"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./export default 对比 export_files/jquery.min.js.下载"></script><style type="text/css">:root div[id^="adzerk"]
+{display:none !important;}</style>
+        <script src="./export default 对比 export_files/stub.en.js.下载"></script>
+    
+    <link rel="stylesheet" type="text/css" href="./export default 对比 export_files/stacks.css">
+
+<link rel="stylesheet" type="text/css" href="./export default 对比 export_files/quack.css">
+        <link rel="stylesheet" type="text/css" href="./export default 对比 export_files/primary.css">
+    
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Why es6 react component works only with &quot;export default&quot;?&#39;" href="https://stackoverflow.com/feeds/question/31852933">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:3,shownCommentCount:3,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:31852933});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '31852933');
+                // TODO: There's a CR for replacing this with inline info on the question for moderators
+                // https://trello.com/c/ynDHhvrB/158-cr-move-the-mod-info-out-of-the-margin-and-into-the-post-estimate-needed
+                // Before we roll out the sidebar everywhere (or at least shortly after that?), we should implement it.
+                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+        
+        
+        
+        
+        
+             
+        
+                <script>
+        StackExchange.init({"locale":"en","serverTime":1522636008,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"5e38d33046a3e0189b0fd1005406b4dc24c6c5f2b281511eb28ca1e5a801492e","tid":"2651d51a-a3d4-7f83-1a19-57eae31a51d8","rep":1,"isRegistered":true,"userType":3,"userId":3439734,"accountId":4199136,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"https://i.stack.imgur.com/Hjkaa.jpg?s=32&amp;g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"https://stackoverflow.com/users/3439734/zerel","canSeeDeletedPosts":false},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"commentHighlightingWithCSS":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"userMessaging":{},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"paths":{},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"slack":{"sidebarAdDismissCookie":"slack-sidebar-ad"}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"e97792af3af0","js/moderator.en.js":"9b091b598d24","js/full-anon.en.js":"1b4f6ec886bc","js/full.en.js":"3264b5508c74","js/wmd.en.js":"0b1b0dfb757e","js/third-party/jquery.autocomplete.min.js":"bdb258e949a8","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"9ccff4bd661d","js/help.en.js":"6b672aba4d35","js/tageditor.en.js":"24c6b543a297","js/tageditornew.en.js":"19e3d3653f9b","js/inline-tag-editing.en.js":"e7aa31e8eba1","js/revisions.en.js":"a7ac7cb26f15","js/review.en.js":"a6c5fe3b9f65","js/tagsuggestions.en.js":"78eee7c19ab2","js/post-validation.en.js":"f654df558dc0","js/explore-qlist.en.js":"e2a8178eb759","js/events.en.js":"17f16b74f47a","js/keyboard-shortcuts.en.js":"b4990e0314fd","js/external-editor.en.js":"3195cefdf572","js/adops.en.js":"22a9bd59b1e9","js/external-editor.en.js":"3195cefdf572","js/snippet-javascript.en.js":"41ebd43e8e10","js/snippet-javascript-codemirror.en.js":"89d6e08cac13"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    <noscript id="noscript-css">&lt;style&gt;body,.top-bar{margin-top:1.9em}&lt;/style&gt;</noscript>
+    <script async="" src="./export default 对比 export_files/full.en.js.下载"></script><script async="" src="./export default 对比 export_files/snippet-javascript.en.js.下载"></script><script async="" src="./export default 对比 export_files/post-validation.en.js.下载"></script><script async="" src="./export default 对比 export_files/prettify-full.en.js.下载"></script><script async="" src="./export default 对比 export_files/external-editor.en.js.下载"></script><script async="" src="./export default 对比 export_files/wmd.en.js.下载"></script><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><style type="text/css">:root #dfp-tlb,
+:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle
+{display:none !important;}</style><link rel="stylesheet" href="./export default 对比 export_files/clc.min.css" type="text/css"></head>
+    <body class="question-page new-topbar">
+        <script async="" src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script>
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed _scrolling">
+    <div class="-container">
+        <div class="-main">
+                                <a href="https://stackoverflow.com/" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                        <span class="-img _glyph">Stack Overflow</span>
+                    </a>
+
+
+                <nav class="navigation" role="navigation" aria-label="site navigation">
+                    <ol class="-list">
+        <li class="-item _current">
+            <a id="nav-questions" href="https://stackoverflow.com/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+        </li>
+        <li class="-item">
+            <a id="nav-jobs" href="https://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+        </li>
+        <li class="-item">
+            <a id="nav-tags" href="https://stackoverflow.com/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+        </li>
+        <li class="-item">
+            <a id="nav-users" href="https://stackoverflow.com/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+        </li>
+                    </ol>
+                </nav>
+
+        </div>
+
+            <form id="search" action="https://stackoverflow.com/search" method="get" class="searchbar" autocomplete="off" role="search">
+                    <input name="q" type="text" placeholder="Search…" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field">
+                    <button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+            <a href="https://stackoverflow.com/users/3439734/zerel" class="my-profile js-gps-track" data-gps-track="profile_summary.click()">
+            <div class="gravatar-wrapper-24" title="ZereL"><img src="./export default 对比 export_files/Hjkaa.jpg" alt="" width="24" height="24" class="-avatar js-avatar-me"></div>
+                <div class="-rep js-header-rep" title="your reputation: 1">1</div>
+                    <div class="-badges">
+                    </div>
+            </a>
+    <nav class="secondary-nav">
+        <div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="https://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="https://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+    <a href="https://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                            <a href="https://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+                    <a href="https://stackexchange.com/users/4199136/?tab=accounts">your communities</a>
+            </h3>
+
+                <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" id="edit-pinned-sites">edit</a>
+                <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <ul class="my-sites">
+                        <li>
+                                <a href="https://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="site.switch({ target_site:1, item_type:3 }),site_switcher.click({ item_type:1 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">1</span>
+    </a>
+
+                        </li>
+                </ul>
+                    <div class="pinned-site-editor-container" style="display: none;">
+                        <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                        <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                        <ul class="js-found-sites found-sites"></ul>
+                        <ul class="pinned-site-list sortable" data-custom-list="False">
+                        </ul>
+                        <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                        <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" id="reset-pinned-sites">reset to default list</a>
+                    </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="https://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+        </div>
+        <ol class="-list">
+    <li class="-item">
+        <a href="https://stackexchange.com/users/4199136?tab=inbox" class="-link js-inbox-button" title="Recent inbox messages">
+            <svg aria-hidden="true" class="svg-icon iconInbox" width="20" height="18" viewBox="0 0 20 18"><path d="M15.19 1H4.63c-.85 0-1.6.54-1.85 1.35L0 10.79V15c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2v-4.21l-2.87-8.44A2 2 0 0 0 15.19 1zm-.28 10l-2 2h-6l-2-2H1.96L4.4 3.68A1 1 0 0 1 5.35 3h9.12a1 1 0 0 1 .95.68L17.86 11h-2.95z"></path></svg>
+            <span class="indicator-badge js-unread-count _important" style="display: none;"></span>
+        </a>
+    </li>
+    <li class="-item">
+        <a href="https://stackexchange.com/users/4199136?tab=reputation" class="-link js-achievements-button" title="Recent achievements: reputation, badges, and privileges earned" data-unread-class="_highlighted-positive">
+            <svg aria-hidden="true" class="svg-icon iconAchievements" width="18" height="18" viewBox="0 0 18 18"><path d="M15 2V1H3v1H0v4c0 1.6 1.4 3 3 3v1c.4 1.5 3 2.6 5 3v2H5s-1 1.5-1 2h10c0-.4-1-2-1-2h-3v-2c2-.4 4.6-1.5 5-3V9c1.6-.2 3-1.4 3-3V2h-3zM3 7c-.5 0-1-.5-1-1V4h1v3zm8.4 2.5L9 8 6.6 9.4l1-2.7L5 5h3l1-2.7L10 5h2.8l-2.3 1.8 1 2.7h-.1zM16 6c0 .5-.5 1-1 1V4h1v2z"></path></svg>
+            <span class="indicator-badge js-unread-count _positive" style="display: none;"></span>
+        </a>
+    </li>
+
+    <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg>
+    </a></li>
+
+    <li class="-item">
+        <a href="https://stackexchange.com/" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 172 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewBox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg>
+        </a>
+    </li>
+        </ol>
+    </nav>
+</div>
+
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+
+
+    <div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <div class="inner-content clearfix">
+        <div id="question-header">
+                    <h1 itemprop="name"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default" class="question-hyperlink">Why es6 react component works only with “export default”?</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+        <a href="https://stackoverflow.com/questions/ask" class="btn">Ask Question</a>
+</div>
+
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="31852933" id="question">
+
+    <style>#question .everyonelovesstackoverflow:empty{height:90px;width:728px;box-sizing:border-box;}</style>
+    <div id="dfp-tlb" class="everyonelovesstackoverflow"></div>    
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="31852933">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">140</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" title="Click to mark as favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>82</b></div>
+
+
+</div>
+
+            </div>
+
+            
+<div class="postcell post-layout--right">
+    <div class="post-text" itemprop="text">
+
+<p>This component does work:</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Template</span><span class="pln"> extends </span><span class="typ">React</span><span class="pun">.</span><span class="typ">Component</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    render</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">
+            </span><span class="pun">&lt;</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln"> component </span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln">
+        </span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+</span><span class="kwd">export</span><span class="pln"> </span><span class="kwd">default</span><span class="pln"> </span><span class="typ">Template</span><span class="pun">;</span></code></pre>
+
+<p>If i remove last row, it doesn't work.</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="typ">Uncaught</span><span class="pln"> </span><span class="typ">TypeError</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Cannot</span><span class="pln"> read property </span><span class="str">'toUpperCase'</span><span class="pln"> of </span><span class="kwd">undefined</span></code></pre>
+
+<p>I guess, I don't understand something in es6 syntax. Isn't it have to export without sign "default"? </p>
+    </div>
+    <div class="post-taglist">
+        <a href="https://stackoverflow.com/questions/tagged/javascript" class="post-tag js-gps-track" title="" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/ecmascript-6" class="post-tag js-gps-track" title="show questions tagged &#39;ecmascript-6&#39;" rel="tag">ecmascript-6</a> 
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/q/31852933/3439734" title="short permalink to this question" class="short-link" id="link-post-31852933">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/31852933/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </div>
+
+    <div class="post-signature grid--cell fl0">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/31852933/revisions" title="show all edits to this post">edited <span title="2015-08-07 00:57:50Z" class="relativetime">Aug 7 '15 at 0:57</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/218196/felix-kling"><div class="gravatar-wrapper-32"><img src="./export default 对比 export_files/4P5DY.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/218196/felix-kling">Felix Kling</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 494,324" dir="ltr">494k</span><span title="112 gold badges"><span class="badge1"></span><span class="badgecount">112</span></span><span title="788 silver badges"><span class="badge2"></span><span class="badgecount">788</span></span><span title="833 bronze badges"><span class="badge3"></span><span class="badgecount">833</span></span>
+        </div>
+    </div>
+</div>    </div>
+    <div class="post-signature owner grid--cell fl0">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2015-08-06 10:09:07Z" class="relativetime">Aug 6 '15 at 10:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/4845952/stkvtflw"><div class="gravatar-wrapper-32"><img src="./export default 对比 export_files/f216f5f3b8f1ad708d218d61ad092182" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/4845952/stkvtflw">stkvtflw</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,961</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="56 bronze badges"><span class="badge3"></span><span class="badgecount">56</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+
+                
+    <div class="post-layout--right">
+	    <div id="comments-31852933" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-51626687" class="comment js-comment " data-comment-id="51626687">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">you can write as   <code>export default class Template extends React.Component {</code></span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/957794/andykenward" title="511 reputation" class="comment-user">andykenward</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment51626687_31852933"><span title="2015-08-06 10:37:17Z" class="relativetime-clean">Aug 6 '15 at 10:37</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-51626816" class="comment js-comment " data-comment-id="51626816">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I know. But how can I import component that was exported without "default"? It should be possible</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/4845952/stkvtflw" title="1,961 reputation" class="comment-user owner">stkvtflw</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment51626816_31852933"><span title="2015-08-06 10:40:51Z" class="relativetime-clean">Aug 6 '15 at 10:40</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-54779950" class="comment js-comment " data-comment-id="54779950">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@stkvtflw If I answered your question please accept it so other users can benefit too.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1058314/wildservice" title="6,013 reputation" class="comment-user">WildService</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment54779950_31852933"><span title="2015-11-03 11:38:50Z" class="relativetime-clean">Nov 3 '15 at 11:38</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-31852933" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" onclick=""></a>
+        </div>         
+    </div>        </div>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2 data-answercount="1">
+                                1 Answer
+                                <span style="display:none;" itemprop="answerCount">1</span>
+                        </h2>
+                        <div>
+                            
+<div id="tabs">
+        <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere " href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+    </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+  
+<a name="31853887"></a>
+<div id="answer-31853887" class="answer accepted-answer" data-answerid="31853887" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="31853887">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">399</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>Exporting without <code>default</code> means it's a "named export". You can have multiple named exports in a single file. So if you do this,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Template</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+</span><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">AnotherTemplate</span><span class="pln"> </span><span class="pun">{}</span></code></pre>
+
+<p>then you have to import these exports using their exact names. So to use these components in another file you'd have to do,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">import</span><span class="pln"> </span><span class="pun">{</span><span class="typ">Template</span><span class="pun">,</span><span class="pln"> </span><span class="typ">AnotherTemplate</span><span class="pun">}</span><span class="pln"> from </span><span class="str">'./components/templates'</span></code></pre>
+
+<p>Alternatively if you export as the <code>default</code> export like this,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">export</span><span class="pln"> </span><span class="kwd">default</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Template</span><span class="pln"> </span><span class="pun">{}</span></code></pre>
+
+<p>Then in another file you import the default export without using the <code>{}</code>, like this,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">import</span><span class="pln"> </span><span class="typ">Template</span><span class="pln"> from </span><span class="str">'./components/templates'</span></code></pre>
+
+<p>There can only be one default export per file. In React it's a convention to export one component from a file, and to export it is as the default export.</p>
+
+<p>You're free to rename the default export as you import it,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">import</span><span class="pln"> </span><span class="typ">TheTemplate</span><span class="pln"> from </span><span class="str">'./components/templates'</span></code></pre>
+
+<p>And you can import default and named exports at the same time,</p>
+
+<pre class="lang-js prettyprint prettyprinted" style=""><code><span class="kwd">import</span><span class="pln"> </span><span class="typ">Template</span><span class="pun">,{</span><span class="typ">AnotherTemplate</span><span class="pun">}</span><span class="pln"> from </span><span class="str">'./components/templates'</span></code></pre>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/31853887/3439734" title="short permalink to this answer" class="short-link" id="link-post-31853887">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/31853887/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+    <div class="post-signature grid--cell fl0">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/31853887/revisions" title="show all edits to this post">edited <span title="2016-03-15 09:51:05Z" class="relativetime">Mar 15 '16 at 9:51</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-08-06 10:52:49Z" class="relativetime">Aug 6 '15 at 10:52</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1058314/wildservice"><div class="gravatar-wrapper-32"><img src="./export default 对比 export_files/sirtS.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1058314/wildservice">WildService</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">6,013</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-31853887" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-62786218" class="comment js-comment " data-comment-id="62786218">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="warm">7</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">OK.  But this seems like yet another seemingly arbitrary decision that I don't  see the rationale for but have to memorize.  Am I missing some good reason it is like this?  In many a project there will be dozens of React components.  Having each its own file, no matter how small seems, well, a bit anal.  It particular gets painful if many of them share clumps of helper functions. It makes for more lines of stuff to keep in sync which seems a bit counter-goodness.  What am I missing?</span>
+		            –&nbsp;<span class="comment-user">user1969453</span>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment62786218_31853887"><span title="2016-06-06 09:03:30Z" class="relativetime-clean">Jun 6 '16 at 9:03</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-62793700" class="comment js-comment " data-comment-id="62793700">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">All stylistic decisions and conventions like this are somewhat arbitrary and down to personal preference.  You're right, sometimes it might make sense to group many components into one file with helpers, especially for small/simple projects. I guess one reason to have one component per file is testing ... when importing that file to test it, it can help if you're just importing the minimal amount of other code and sub-dependencies along with it. Another reason could be for simple diffs on small focussed files during code reviews etc.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1058314/wildservice" title="6,013 reputation" class="comment-user">WildService</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment62793700_31853887"><span title="2016-06-06 12:29:27Z" class="relativetime-clean">Jun 6 '16 at 12:29</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-66946953" class="comment js-comment " data-comment-id="66946953">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">4</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thank you. I think you answer perfectly explained this: <code>import React, {Component} from 'react';</code>.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1663023/elgs-qian-chen" title="2,780 reputation" class="comment-user">Elgs Qian Chen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment66946953_31853887"><span title="2016-10-03 09:38:21Z" class="relativetime-clean">Oct 3 '16 at 9:38</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-67055888" class="comment js-comment " data-comment-id="67055888">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="warm">7</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Good answer. I have something to add to it: Try to use imports statements like this:   <code>import RaisedButton from 'material-ui/RaisedButton';</code>   instead of   <code>import {RaisedButton} from 'material-ui';</code>   This will make your build process faster and your build output smaller.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1599882/shekhar-kumar" title="1,040 reputation" class="comment-user">Shekhar Kumar</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment67055888_31853887"><span title="2016-10-05 22:12:39Z" class="relativetime-clean">Oct 5 '16 at 22:12</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-71305438" class="comment js-comment " data-comment-id="71305438">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" rel="nofollow noreferrer">developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/…</a>  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" rel="nofollow noreferrer">developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/…</a></span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/5934465/xgqfrms" title="1,850 reputation" class="comment-user">xgqfrms</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#comment71305438_31853887"><span title="2017-02-06 11:50:40Z" class="relativetime-clean">Feb 6 '17 at 11:50</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-31853887" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </div>    </div>
+</div>
+                                    <a name="new-answer"></a>
+                        <form id="post-form" action="https://stackoverflow.com/questions/31852933/answer/submit" method="post" class="post-form">
+                            <input type="hidden" id="post-id" value="31852933">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.co.nz/">
+                            <h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                showLowRepImageUploadWarning: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true,userId:3439734
+                    });
+                
+
+        }
+    });
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;"> 
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" id="wmd-snippet-button" title="JavaScript/HTML/CSS snippet Ctrl-M"><span style="background-image: url(&quot;/content/Shared/balsamiq/wmd-mockup-button.png&quot;);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y"><span style="background-position: -220px -20px;"></span></li><li class="wmd-spacer wmd-spacer-max"></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li></ul></div><div id="mdhelp" class="mdhelp" style="">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="https://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links"><div class="mdhelp-tab--content">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit https://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;https://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: https://notfound.stackexchange.com/
+ [question]: https://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre>Click [here](https://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")!
+This works with [reference links][blog] as well.
+
+ [blog]: https://stackoverflow.blog/<span class="spaces">&nbsp;</span>"click here for updates"
+</pre>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-images"><div class="mdhelp-tab--content">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](https://cdn.sstatic.net/Sites/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: https://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div></div>
+    <div class="mdhelp-tab" id="mdhelp-styles"><div class="mdhelp-tab--content">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+        </div>
+
+    </div></div>
+    <div class="mdhelp-tab" id="mdhelp-lists"><div class="mdhelp-tab--content">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre>-<span class="spaces">&nbsp;</span>Use a minus sign for a bullet
++<span class="spaces">&nbsp;</span>Or plus sign
+*<span class="spaces">&nbsp;</span>Or an asterisk
+
+1.<span class="spaces">&nbsp;</span>Numbered lists are easy
+2.<span class="spaces">&nbsp;</span>Markdown keeps track of
+   the numbers for you
+7.<span class="spaces">&nbsp;</span>So this will be item 3.
+</pre>
+        </div>
+        <div class="col2">
+<pre>1.<span class="spaces">&nbsp;</span>Lists in a list item:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again.
+2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items.
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent.
+</pre>        
+        </div>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes"><div class="mdhelp-tab--content">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-code"><div class="mdhelp-tab--content">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](https://example.com)
+</pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre>1. This is normal text.
+2. So is this, but now follows a code block:
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block.
+</pre>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-html"><div class="mdhelp-tab--content">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="https://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre>&lt;pre&gt;
+    You can &lt;em&gt;not&lt;/em&gt; use Markdown in here.
+&lt;/pre&gt;
+</pre>
+    </div></div>
+
+    <div class="cbt"></div>
+</div>
+            <textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: 0px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="5e38d33046a3e0189b0fd1005406b4dc24c6c5f2b281511eb28ca1e5a801492e">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+
+                            <div style="position: relative;">
+                                
+                                
+                            </div>
+
+                                                            <div class="form-submit cbt">
+                                        <input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+                                    <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="btn-clear discard-answer dno">discard</a>
+                                </div>
+                        </form>
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/javascript" class="post-tag" title="show questions tagged &#39;javascript&#39;" rel="tag">javascript</a> <a href="https://stackoverflow.com/questions/tagged/ecmascript-6" class="post-tag" title="show questions tagged &#39;ecmascript-6&#39;" rel="tag">ecmascript-6</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free.</p><p>Got a question about the site itself? <a href="https://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="https://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="https://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="https://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>                            <div class="module question-stats">
+                    <table id="qinfo">
+                        <tbody><tr>
+                            <td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2015-08-06 10:09:07Z"><b>2 years, 7 months ago</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>94,181 times</b>
+                                </p>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default?lastactivity" class="lastactivity-link" title="2016-06-01 11:48:48Z">1 year, 10 months ago</a></b></p>
+                                </td>
+                            </tr>
+                    </tbody></table>
+                </div>
+            <div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Featured on Meta
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://meta.stackoverflow.com/questions/365198/spring-2018-community-moderator-election-results?cb=1" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/365198/spring-2018-community-moderator-election-results&quot;,null,null]">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/365198/spring-2018-community-moderator-election-results?cb=1" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/365198/spring-2018-community-moderator-election-results&quot;,null,null]">Spring 2018 Community Moderator Election RESULTS</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://meta.stackoverflow.com/questions/364145/coming-soon-stack-overflow-for-teams?cb=1" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/364145/coming-soon-stack-overflow-for-teams&quot;,null,null]">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/364145/coming-soon-stack-overflow-for-teams?cb=1" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackoverflow.com/questions/364145/coming-soon-stack-overflow-for-teams&quot;,null,null]">Coming Soon: Stack Overflow For Teams!</a>
+        </div>
+        <br class="cbt">
+    </div>
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">5</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/365394/suggested-edit-looks-ok-but-there-is-an-emoji-should-i-edit-or-reject-edit?cb=1" title="Suggested edit looks ok, but there is an emoji: should I edit or reject + edit? 🦄" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/365394/suggested-edit-looks-ok-but-there-is-an-emoji-should-i-edit-or-reject-edit&quot;,null,null]">Suggested edit looks ok, but there is an emoji: should I edit or reject +…</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">253</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/365370/what-the-quack?cb=1" class="question-hyperlink" data-ga="[&quot;Community Bulletin Board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/365370/what-the-quack&quot;,null,null]">What the quack?</a>
+        </div>
+        <br class="cbt">
+    </div>
+    </div>
+</div>            
+<div id="dfp-tsb" class="everyonelovesstackoverflow" data-clc-stalled="true"></div>
+            <div id="hireme"></div>
+<script>;try{(function(a){function b(a){return document.getElementById(a)}function c(a){return a='string'==typeof a?b(a):a,!!a&&'none'===getComputedStyle(a).display}function d(a){return!c(a)}function e(a){return!!a}function f(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none',[].forEach.call(a.children,f)}function g(){try{return!new Function('return async()=>{};')}catch(a){return!0}}function h(){'function'==typeof clc.load?clc.load():q.push(function(a){return a.load()})}function i(){if(p.allowed&&new RegExp(p.allowed).test(location.hostname)&&!c('hireme')){var a=p.wv;if(document.hidden&&a){var b=function(){document.hidden||(i(),document.removeEventListener('visibilitychange',b))};return void document.addEventListener('visibilitychange',b)}p.al&&h();var d=g()?p.lib.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,'.ie$1.js$2'):p.lib,e=document.createElement('script');e.async=!0,e.src=d,document.body.appendChild(e)}}function j(){return Object.keys(u.ids)}function k(a){var b=u.ids[a],c=u.slots[b];'function'==typeof c&&(c=c(a));return{path:'/'+r+'/'+t+'/'+b+'/'+s,sizes:c,zone:b}}function l(){var a=document.createElement('div');a.className='adsbox',a.id='clc-abd',a.style.position='absolute',a.style.pointerEvents='none',a.innerHTML='&nbsp;',document.body.appendChild(a)}function m(a){var b=a.serviceName,c=a.slot,d=a.lineItemId;try{var e=c.getSlotElementId(),g=[];e||g.push('id=0');var h=document.getElementById(e);if(!e||h?h.hasAttribute('data-clc-stalled')&&g.push('st=1'):g.push('el=0'),0!==g.length)return void v(g.join('&'));-1===p.dh.indexOf(d)?h.setAttribute('data-clc-prefilled','true'):f(h),h.setAttribute('data-clc-ready','true')}catch(a){var i=document.querySelector('#dfp-tsb, #dfp-isb, #clc-tsb');i&&i.setAttribute('data-clc-ready','true'),v('e=1')}}function n(a,b){'dfp-isb'===a&&b.setTargeting('Sidebar',['Inline']),'dfp-tsb'===a&&b.setTargeting('Sidebar',['Right']);var c=k(a),d=c.path,e=c.sizes,f=c.zone,g=googletag.defineSlot(d,e,a);(clc.collapse_leaderboards||'tag-sponsorship'===f||'sb'===f)&&g.setCollapseEmptyDiv(!0,!0),g.addService(b),!1}function o(a){return function(){l();var b=googletag.pubads();b.enableSingleRequest(),b.addEventListener('slotRenderEnded',m),!dfp_targeting||Object.keys(dfp_targeting).forEach(function(a){b.setTargeting(a,dfp_targeting[a])}),a.forEach(function(a){return n(a,b)}),googletag.enableServices(),a.forEach(function(a){googletag.display(a)})}}var p=function(a){for(var b=[],c=1;c<arguments.length;c++)b[c-1]=arguments[c];for(var d,e=0,f=b;e<f.length;e++)for(var g in d=f[e],d)a[g]=d[g];return a}({"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=1de5944f5b79","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=905391554886","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"dh":[4385506061,4386578282,4386579572]},a.options||{}),q=a.cmd||[],r='248424177',s=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?'tag-pages':'question-pages',t=location.hostname;var u={slots:{lb:[[728,90]],mlb:[[728,90]],sb:function(a){return'dfp-tsb'===a?[[300,250],[300,600]]:[[300,250]]},"tag-sponsorship":[[730,135]],"mobile/lb":[[320,50]]},ids:{"dfp-tlb":'lb',"dfp-mlb":'mlb',"dfp-tsb":'sb',"dfp-isb":'sb',"dfp-tag":'tag-sponsorship',"dfp-m-tlb":'mobile/lb',"clc-tlb":'lb',"clc-mlb":'mlb',"clc-tsb":'sb'}},v=function(a){new Image().src='https://'+p.h+'/stalled.gif?'+a};i(),a.autoload=h,a.cmd=q,a.options=p,a.loadDisplayAds=function(a){a=a&&0<a.length?a:j();var g=a.map(b).filter(e).filter(function(a){return /^\s*$/.test(a.innerHTML)}).filter(d).map(function(a){return a.id});if(a.map(b).filter(e).filter(c).forEach(f),0!==g.length){googletag='undefined'==typeof googletag?{}:googletag,googletag.cmd=googletag.cmd||[],googletag.cmd.push(o(g));var h=document.createElement('script');h.async=!0,h.src='https://www.googletagservices.com/tag/js/gpt.js',document.body.appendChild(h)}}})(this.clc=this.clc||{})}catch(a){throw a}</script>            <script>
+                window.clc_request='AkZuhy9BmNUI4BJAAIUJ5gECAAAAAgAAAAMZAAAAfGphdmFzY3JpcHR8ZWNtYXNjcmlwdC02fACxgq1xBOmit112';                    clc.autoload();
+                var dfp_targeting={Registered:['true'],'so-tag':['javascript','ecmascript-6']};                                    clc.loadDisplayAds();
+
+            </script>
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/39939322?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/39939322/difficulty-importing-searchbox-from-react-google-maps?noredirect=1&amp;lq=1" class="question-hyperlink">Difficulty importing SearchBox from 'react-google-maps'</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/35134820?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/35134820/react-native-module-export-type?noredirect=1&amp;lq=1" class="question-hyperlink">react-native module export type</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/37025662?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/37025662/error-in-implementing-custom-native-module-for-react-native-android?noredirect=1&amp;lq=1" class="question-hyperlink">Error in implementing custom native module for react native Android</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/40624802?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/40624802/react-native-error-react-createelement-type-should-not-be-null?noredirect=1&amp;lq=1" class="question-hyperlink">React Native error - React: createElement: type should not be null</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/38415964?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/38415964/routehandler-react-createelement-type-should-not-be-null-undefined-boolean?noredirect=1&amp;lq=1" class="question-hyperlink">RouteHandler: React.createElement: type should not be null, undefined, boolean, or number</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/48441771?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/48441771/exporting-react-component-class-with-one-name-importing-it-with-another-name-s?noredirect=1&amp;lq=1" class="question-hyperlink">exporting React component class with one name, importing it with another name, still working. Why?</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/47838363?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/47838363/i-want-export-more-than-one-pure-component?noredirect=1&amp;lq=1" class="question-hyperlink">I want export more than one 'Pure component'</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/47687699?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/47687699/export-multiple-react-objects-from-other-dirs?noredirect=1&amp;lq=1" class="question-hyperlink">Export multiple react objects from other dirs</a>
+</div>			</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/69913?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1108</div></a><a href="https://stackoverflow.com/questions/69913/why-dont-self-closing-script-tags-work?rq=1" class="question-hyperlink">Why don't self-closing script tags work?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/7479520?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">75</div></a><a href="https://stackoverflow.com/questions/7479520/javascript-cannot-set-property-of-undefined?rq=1" class="question-hyperlink">JavaScript - cannot set property of undefined</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/31342290?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">9</div></a><a href="https://stackoverflow.com/questions/31342290/es6-classes-default-value?rq=1" class="question-hyperlink">ES6 Classes Default Value</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/31354559?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">486</div></a><a href="https://stackoverflow.com/questions/31354559/using-node-js-require-vs-es6-import-export?rq=1" class="question-hyperlink">Using Node.js require vs. ES6 import/export</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/34488575?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">5</div></a><a href="https://stackoverflow.com/questions/34488575/mocking-es6-react-components?rq=1" class="question-hyperlink">Mocking ES6 React Components</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/34513047?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/34513047/react-components-state-vs-props-dynamic-input?rq=1" class="question-hyperlink">React Components state vs props Dynamic Input</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/36795819?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">329</div></a><a href="https://stackoverflow.com/questions/36795819/when-should-i-use-curly-braces-for-es6-import?rq=1" class="question-hyperlink">When should I use curly braces for ES6 import?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/38250504?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">5</div></a><a href="https://stackoverflow.com/questions/38250504/refactor-a-react-component-from-function-to-es6-class?rq=1" class="question-hyperlink">Refactor a React component from function to ES6 class</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/41088450?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/41088450/react-and-d3-importing-data-in-react-component-cannot-read-property-length-o?rq=1" class="question-hyperlink">React and d3 Importing data in react Component - Cannot read property 'length' of undefined</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/41474784?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">5</div></a><a href="https://stackoverflow.com/questions/41474784/react-expose-component-function?rq=1" class="question-hyperlink">React expose component function</a></div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="https://ell.stackexchange.com/questions/162257/there-is-no-rain-in-the-street-or-on-the-street" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    There is no rain "in the street" or "on the street"?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="https://puzzling.stackexchange.com/questions/63077/another-river-with-some-extra-letters" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Another river with some extra letters
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="https://puzzling.stackexchange.com/questions/63153/this-ones-a-kettle-of-red-fish" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    This one's a kettle of (red) fish
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/184667/short-story-anthology-stories-that-were-made-into-movies" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short Story Anthology: stories that were made into movies
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="https://money.stackexchange.com/questions/93709/whats-the-meaning-of-the-word-less" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the meaning of the word 'less'?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="https://skeptics.stackexchange.com/questions/40991/is-this-swedish-government-pamphlet-a-guide-for-men-who-have-married-underage-gi" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is this Swedish government pamphlet a guide for men who have married underage girls?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a href="https://gis.stackexchange.com/questions/277878/exporting-processing-modeler-as-python-script-in-qgis-3-0" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Exporting processing modeler as Python script in QGIS 3.0?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2715752/how-to-derive-the-area-of-a-circle-without-the-use-of-calculus" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to derive the area of a circle without the use of calculus?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2717251/whats-wrong-with-this-proof-that-g%c3%b6dels-first-incompleteness-theorem-is-wron" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's wrong with this "proof" that Gödel's first incompleteness theorem is wrong?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/119611/if-i-cast-darkness-on-an-item-and-then-leave-it-somewhere-or-give-it-to-someone" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If I cast Darkness on an item and then leave it somewhere or give it to someone would the spell persist?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2717851/why-is-it-that-if-a-ring-is-simple-its-center-must-be-a-field" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is it that if a ring is simple, it's center must be a field?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/439190/in-my-native-language-weve-this-obscene-saying-dont-take-a-dump-in-the-barr" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In my native language, we've this obscene saying - don't take a dump in the barrel of honey
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-softwareengineering" title="Software Engineering Stack Exchange"></div><a href="https://softwareengineering.stackexchange.com/questions/368423/how-do-you-detect-dependency-problems-with-unit-tests-when-you-use-mock-objects" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you detect dependency problems with unit tests when you use mock objects?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-islam" title="Islam Stack Exchange"></div><a href="https://islam.stackexchange.com/questions/47084/is-there-a-hadith-to-the-effect-of-if-a-muslim-prays-but-will-not-stop-committi" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:455 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a hadith to the effect of "if a Muslim prays but will not stop committing sins... his prayers have no effect"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a href="https://interpersonal.stackexchange.com/questions/12381/how-to-stop-people-from-looking-at-my-mouth-when-were-having-a-conversation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to stop people from looking at my mouth when we're having a conversation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a href="https://interpersonal.stackexchange.com/questions/12435/how-do-you-deal-with-someone-whos-pushing-you-without-explaining-yourself" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you deal with someone who's pushing you without explaining yourself?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/107067/editor-rejected-manuscript-claiming-it-is-similar-to-a-not-yet-published-manuscr" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Editor rejected manuscript claiming it is similar to a not-yet-published manuscript (that I haven't seen). How to proceed?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="https://physics.stackexchange.com/questions/396984/can-a-nucleus-made-of-neutrons-exist-without-an-em-field" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a nucleus (made of neutrons) exist without an EM field?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-outdoors" title="The Great Outdoors Stack Exchange"></div><a href="https://outdoors.stackexchange.com/questions/18912/is-there-a-reason-for-seeing-a-lot-of-roadkill-badgers-in-the-spring" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:395 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a reason for seeing a lot of roadkill badgers in the spring?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/108161/the-world-has-converted-to-eating-cheap-vat-grown-meat-what-do-we-do-with-our-c" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    The world has converted to eating cheap vat-grown meat, what do we do with our current livestock?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="https://superuser.com/questions/1309787/excel-formula-too-long-make-it-shorter-if-possible" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Excel Formula too long - make it shorter if possible
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="https://unix.stackexchange.com/questions/434884/search-for-command-with-wildcard" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Search for command with wildcard
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="https://parenting.stackexchange.com/questions/33566/how-should-i-respond-to-a-6-year-olds-dark-drawings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should I respond to a 6 year old's dark drawings?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/161011/asterisk-spiral" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Asterisk spiral
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+
+<div id="feed-link">
+    <a href="https://stackoverflow.com/feeds/question/31852933" title="feed of this question and its answers">
+        <svg aria-hidden="true" class="svg-icon fc-orange-400 iconRss" width="18" height="18" viewBox="0 0 18 18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0 1 10 10h2.5zm-5 0A7.5 7.5 0 0 0 3 7.5V10a5 5 0 0 1 5 5h2.5zm-5 0A2.5 2.5 0 0 0 3 12.5V15h2.5z"></path></svg>
+        question feed
+    </a>
+</div>
+        </div>
+    </div>
+<script>StackExchange.ready(function(){$.get('/posts/31852933/ivc/2c79');});</script>
+<noscript>&lt;div&gt;&lt;img src="/posts/31852933/ivc/2c79" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;</noscript><div style="display:none" id="prettify-lang">lang-js</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+        </div>
+    </div><script async="" src="./export default 对比 export_files/gpt.js.下载"></script>
+
+    <footer id="footer" class="site-footer js-footer" role="contentinfo">
+        <div class="site-footer--container">
+                <div class="site-footer--logo">
+
+                    <a href="https://stackoverflow.com/"><svg aria-hidden="true" class="svg-icon native iconLogoGlyphMd" width="32" height="37" viewBox="0 0 32 37"><g><path fill="#BCBBBB" d="M26 33v-9h4v13H0V24h4v9z"></path><path d="M23.1 25.99l.68-2.95-16.1-3.35L7 23l16.1 2.99zM9.1 15.2l15 7 1.4-3-15-7-1.4 3zm4.2-7.4L26 18.4l2.1-2.5L15.4 5.3l-2.1 2.5zM21.5 0l-2.7 2 9.9 13.3 2.7-2L21.5 0zM7 30h16v-3H7v3z" fill="#F48024"></path></g></svg></a>
+                </div>
+            
+            <nav class="site-footer--nav">
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://stackoverflow.com/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://stackoverflow.com/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="https://stackoverflow.com/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick="StackExchange.switchMobile(&quot;on&quot;)" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul>
+                    </div>
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                        </ul>
+                    </div>
+                <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                    <h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer--col site-footer--categories-nav site-footer--col__visible">
+                    <a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="site-footer--back js-footer-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewBox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com/">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/31852933/why-es6-react-component-works-only-with-export-default#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="site-footer--categories">
+                    <div class="site-footer--col site-footer--category js-footer-col" data-name="Technology">
+        <ul class="-list">
+                <li class="-item"><a href="https://stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://tex.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://android.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                <li class="-item"><a href="https://mathematica.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://salesforce.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Português</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                <li class="-item"><a href="https://codereview.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://magento.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="программистов">Stack Overflow на русском</a></li>
+                <li class="-item"><a href="https://codegolf.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://es.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informática">Stack Overflow en español</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (28)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts">
+        <ul class="-list">
+                <li class="-item"><a href="https://photo.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts"><ul class="-list">
+                <li class="-item"><a href="https://diy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (15)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation">
+        <ul class="-list">
+                <li class="-item"><a href="https://english.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://gaming.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (33)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Science">
+        <ul class="-list">
+                <li class="-item"><a href="https://mathoverflow.net/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Science"><ul class="-list">
+                <li class="-item"><a href="https://cs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Other">
+        <ul class="-list">
+                <li class="-item"><a href="https://meta.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul>
+    </div>
+                </div>
+            </nav>
+            <div class="site-footer--copyright fs-fine">
+                <ul class="-list">
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog/?blb=1">Blog</a></li>
+                    <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                    <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                    <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                </ul>
+
+                <p class="mt-auto mb24">
+site design / logo © 2018 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>
+                            with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license">attribution required</a>.
+                    <span id="svnrev">rev&nbsp;2018.3.30.29681</span>
+                </p>
+            </div>
+        </div>
+
+            </footer>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled
+            &lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;
+        &lt;/div&gt;
+    </noscript>
+
+<script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            StackExchange.ready(function () {
+
+                var trackingCodes = [
+                    'UA-5620270-1'
+                ];
+
+                        trackingCodes.push('UA-108242619-1');
+
+                StackExchange.ga.init({
+                    sendTitles: true,
+                    tracker: window.ga,
+                    trackingCodes: trackingCodes
+                });
+
+                    StackExchange.ga.setDimension('dimension1', '4199136');
+
+
+                    StackExchange.ga.setDimension('dimension2', '|javascript|ecmascript-6|');
+
+                    StackExchange.ga.setDimension('dimension3', 'Questions/Show');
+
+                StackExchange.ga.trackPageView();
+            });
+            
+/**/
+            
+            var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+            (function() {
+                var ssl = 'https:' == document.location.protocol,
+                    s = document.getElementsByTagName('script')[0],
+                    qc = document.createElement('script');
+                 qc.async = true;
+                    qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    s.parentNode.insertBefore(qc, s);
+                    _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+/**/
+                 var sc = document.createElement('script');
+                    sc.async = true;
+                    sc.src = (ssl ? 'https://sb' : 'http://b') + '.scorecardresearch.com/beacon.js';
+                    s.parentNode.insertBefore(sc, s);
+                    _comscore.push({ c1: "2", c2: "17440561" });
+            })();
+            
+
+</script>
+            
+        <script src="./export default 对比 export_files/quack.en.js.下载"></script>
+<div class="quackoverflow z-modal ps-fixed r24 js-quackoverflow is-visible">
+    <div class="r12 b64 bg-white bs-sm bar-md ba bc-black-2 quack-popover js-quack-popover is-visible">
+        <div class="quack-popover--arrow"></div>
+        <div class="p12 ws-nowrap step js-step js-step01">
+            Can I help?
+        </div>
+        <div class="p24 ta-center d-none has-width step js-step js-step02">
+            <h2 class="fw-normal mb12">Ask the duck!</h2>
+            <p class="fc-light mb12">
+                You’ll need to explain your problem.<br>
+                Do you have a microphone?
+            </p>
+            <div class="grid gs12 gsx jc-center">
+                <button class="s-btn s-btn__primary grid--cell js-yes-btn" data-pref="mic">Yes</button>
+                <button class="grid--cell s-btn js-no-btn" data-pref="nomic">No</button>
+            </div>
+        </div>
+        <div class="p24 ta-center d-none has-width step js-step js-step03">
+            <p class="fc-light mb12" id="listening">Quack Overflow is listening…</p>
+
+            <p class="fc-light mb12 d-none" id="mic">
+                Explain your problem out loud. Speak naturally.
+            </p>
+            <p class="fc-light mb12 d-none" id="nomic">
+                With the magic of the internet,<br>
+                you can just explain your problem anyway!<br>
+                Speak naturally.
+            </p>
+            <p class="fc-light mb12 d-none" id="uhoh">Can you speak up a little?</p>
+            <canvas id="waves"></canvas>
+        </div>
+        <div class="p24 ta-center d-none has-width step js-step js-step04">
+            <p class="fc-light mb24" id="thinking-cap">
+                The duck is thinking about your problem…
+            </p>
+            <p class="fc-light mb24 d-none" id="any-time-now">
+                The duck is typing…
+            </p>
+            <strong class="quack-loading">
+                <div class="ring ring01"></div>
+                <div class="ring ring02"></div>
+                <div class="ring ring03"></div>
+                <div class="ring ring04"></div>
+                <div class="loading-center"></div>
+            </strong>
+        </div>
+        <div class="p8 ta-center d-none step js-step js-step05">
+            <svg width="258" height="142" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M255 113V28h-5v-4l1.3.6a5 5 0 0 0 2.1.6c1.3-.1 1.9-.4 2.3-.8.4-.4.6-1 .4-1.5-.4-1.3-1.8-1.5-2.5-1.4-.4 0-.6.3-.6.5 0 .3.4.4.7.4.2 0 .9 0 1.1.7.1.3 0 .6-.2.8-.2.2-.5.4-1 .4-.5.1-1.1-.1-1.6-.3-.5-.2-1.8-1.2-2-2 0-3.6 1-4 1.8-5 1.2-1.5 2.5-1.7 3.6-1.4 1 .3 1.8 1.1 1.3 2-.5.9-1.5 1.4-2.3 1.1a.8.8 0 0 0-.9.3c-.1.2 0 .5.4.6 1.5.5 3.2-.2 4-1.6.9-1.5-.6-2.8-2.2-3.3-2.4-.7-4.2.3-5.7 2.8V10h5c.4 0 1-.3 1-.5 0-.3-.7-.5-1-.5h-5V6h5V1h-5c-.4 0-1 .7-1 1v3h-4V2.5c-.1-.3-.2-.5-.5-.5s-.4.2-.5.5V5h-7c1.8-.8 1.9-1.4 2-1.9.2-1-.4-1.9-1.4-2.5-1-.6-2.2-.6-3.4-.3-1 .3-1.7.8-2.1 1.3-.4.6-.5 1.2-.2 1.7.1.2.5.4.9.3.3-.1.5-.4.4-.6-.2-.3 0-.7.1-.9.3-.3.8-.6 1.5-.9 1-.3 1.7 0 2 .2.7.4 1.1 1 .9 1.7-.1.7-.9 1.2-2.1 1.6-1.3.4-3 .3-5.1.3h-3c-.9 0-1.5-.2-1.7-.5-.4-.4-.5-.7-.4-1.1.1-.3.3-.5.6-.7.3-.2.7-.2 1.1-.1 1 .2 1 .7.9.8 0 .3.2.5.6.6.4 0 .7-.1.7-.4.1-.5-.2-1.6-2-1.9-.7-.1-1.5 0-2.1.3-.6.3-1 .8-1.2 1.4 0 .4.3 1 1 1.6h-6V2c0-.3-.7-1-1-1H41c-.4 0-1 .8-1 1v3h-6c.2.2.9-1.1.8-1.7-.1-.6-.5-1-1.2-1.3-.6-.3-1.4-.4-2.1-.3-1.8.3-2.1 1.3-2 1.8.1.3.4.4.7.4.4 0 .6-.3.6-.5 0-.1-.1-.6.9-.8.4-.1.8 0 1.1.2.3.2.5.4.6.7.1.4-.1.6-.4 1a2 2 0 0 1-1.7.6L28.5 5c-2.5 0-4 0-5.3-.3-1.3-.4-2-.9-2.1-1.6-.1-.6.3-1.2.9-1.6a3 3 0 0 1 2-.2c.7.2 1.2.5 1.5.8.2.2.3.5.1.8-.1.2 0 .5.4.6.3.1.7 0 .9-.3.3-.5.2-1.1-.2-1.7-.4-.5-1.1-.9-2.1-1.2a5 5 0 0 0-3.4.3c-1 .6-1.6 1.4-1.4 2.3.1.6.4 1.3 2.2 2.1h-7V2c0-.3-.1-.5-.5-.5S14 2 14 2v3H9V1H3v5h5v3H3c-.5 0-.5.3-.5.5 0 .3.1.4.5.5h5v8c-1-3-3-4-5.3-3.3-1.5.5-2.8 1.8-2 3.3.8 1.4 2.3 2.1 3.7 1.6.3-.1.4-.4.3-.6-.1-.2-.5-.4-.8-.3-.8.2-1.7-.2-2.2-1.1-.5-.9.2-1.7 1.2-2 1-.3 2.5-.2 3.4 1.4.7 1.3 1.6 3.3 1.7 5.5-.2.8-1.4 1.3-1.9 1.5a2 2 0 0 1-1.5.3c-.4-.1-.7-.2-.9-.4a.8.8 0 0 1-.2-.8c.2-.7.8-.7 1-.7.3 0 .6-.1.7-.4.1-.3-.2-.5-.5-.5-.7-.1-2 .1-2.4 1.4-.2.5 0 1.1.4 1.6.4.4 1 .7 1.7.8 1.2 0 1.8-.2 2.4-.5L8 24v2c0 .8 0 2-1 2H3.5L3 29v84h5v6l-1.2-1.6a4 4 0 0 0-2.4-.4c-.7.1-1.3.4-1.7.9-.4.5-.5 1-.4 1.6.3 1.1 1.4 1.4 2.1 1.4.6 0 .9-.3.8-.5 0-.3-.4-.4-.7-.4-.2 0-.8 0-1-.7-.1-.3 0-.6.2-.8.2-.2.5-.4.9-.4.5-.1 1 .1 1.5.3.4.2 1.7 1.3 1.9 2.1 0 2.2-1 3.6-1.7 4.9-.9 1.6-2.4 1.8-3.4 1.4-1-.3-1.7-1.1-1.2-2 .5-.9 1.4-1.4 2.2-1.1.3.1.7 0 .8-.3.1-.2 0-.5-.3-.6-1.4-.5-3 .2-3.8 1.6-.8 1.5.4 2.8 1.9 3.3a5 5 0 0 0 1.7.2c1.6 0 2.8-1.4 3.8-3.4v6.5H2.5c-.4 0-.5.2-.5.5s.2.5.5.5H8v3H3.5c-.4 0-.5.5-.5.5v4c0 .3.1.5.5.5h5c.4 0 .5-.2.5-.5V136h5v3.5c-.2.3.1.4.5.4s.5-.1.5-.4V136h8.5c-2 0-3.3 1.9-3.4 2.5-.2 1 .4 2.1 1.4 2.8.6.4 1.3.6 2 .6l1.3-.2c.9-.3 1.7-.8 2.1-1.3.4-.6.5-1.2.2-1.8-.1-.3-.5-.4-.9-.3-.3.1-.5.4-.4.7.2.4 0 .7-.1.9-.3.4-.8.7-1.5.9-1 .3-1.7 0-2-.2-.7-.4-1.1-1.1-.9-1.8.1-.8.9-1.5 2.1-1.9 1.3-.4 3-.9 5.1-.9h3c.9 0 1.5.7 1.7 1.1.4.4.5.9.4 1.3-.1.3-.3.6-.6.8-.3.2-.7.2-1.1.2-1-.2-1-.7-.9-.8 0-.3-.2-.5-.6-.6-.4 0-.7.2-.7.4-.1.6.2 1.7 2 2 1.2 0 1.7-.1 2.2-.4.6-.3 1-.8 1.2-1.4.1-.7-.1-1.5-.7-2.1a4 4 0 0 0-.9-.5H40v3.8l1 .2h177c.4 0 1-.2 1-.5V136h6.5l-.9.4c-.6.6-.8 1.3-.7 1.9.1.6.5 1 1.2 1.3.5.2 1 .3 1.6.3 2.4-.3 2.7-1.3 2.6-1.8-.1-.3-.4-.4-.7-.4-.4 0-.6.3-.6.5 0 .1.1.6-.9.8-.4.1-.8 0-1.1-.2-.3-.2-.5-.4-.6-.7-.1-.4.1-.8.4-1.2.3-.3.8-.9 1.7-.9h2.9c2.1.1 3.9.4 5.2.8 1.3.4 2 1 2.1 1.7.1.6-.3 1.3-.9 1.6-.3.2-1.1.5-2 .2-.7-.2-1.2-.5-1.5-.8-.2-.2-.3-.5-.1-.8.1-.2 0-.5-.4-.6a.8.8 0 0 0-.9.3c-.3.5-.2 1.1.2 1.7.4.5 1.1.9 2.1 1.2l1.3.2c.7 0 1.4-.2 2-.5 1-.6 1.6-1.6 1.4-2.6-.1-.6-1.6-2.4-3.4-2.4h8.5v3.5c-.3.3.2.5.6.5.4 0 .4-.5.4-.5V136h4v3c0 .3.7 1 1 1h4c.3 0 1-.2 1-.5V136c0-.3-.2-1-.5-1H250v-3h5.1c.4 0 .6-.2.6-.5s-.3-.5-.6-.5H250v-6.5c1.4 1.1 2.3 2.5 4 2.5.5 0 1.1.1 1.6 0 1.6-.5 2.9-1.8 2-3.3a3.4 3.4 0 0 0-4-1.6c-.3.1-.5.4-.3.6.1.2.5.4.9.3.8-.2 1.8.2 2.3 1.1.5.9-.2 1.7-1.3 2-1.1.3-3.8-1-4.7-2.6-.7-1.3-.5-1.3-.5-3.5 0 0 .4-1.2.5-1 .2-.8.9-1.1 1.3-1.3.5-.3 1.1-.4 1.6-.3.4.1.8.2 1 .4.2.2.3.5.2.8-.2.7-.9.7-1.1.7-.4 0-.7.1-.7.4-.1.3.2.5.6.5 1.1 0 2.2-.3 2.6-1.4.2-.5 0-1.1-.4-1.5-.4-.4-1.1-.7-1.8-.8-.8-.1-1.8.1-2.6.5l-1.2 1v-5h5zm-11 0v18h-25.4c-.4 0-.6.3-.6.6v3.4c-2.6 0-5.3 0-6.9-.5-1.5-.5-2.5-1.2-2.9-2-.4-.7-.4-1.4 0-2 .2-.4.6-1 1.5-1.4.8-.3 1.6-.3 2.6 0 .6.2 1.1.5 1.3.8.2.3.2.7 0 1.1-.1.3 0 .6.4.7.3.1.7 0 .8-.3.4-.7.4-1.3 0-1.9-.3-.6-1-1.1-1.9-1.4-1.7-.6-3-.3-3.8.1-.9.4-1.6 1.1-2 1.9-.2.4-.3.9-.3 1.4.1 1.8.6 1.8 3.2 3.5H49c2.6-1.7 3.1-1.7 3.2-3.5 0-.5-.1-1-.3-1.4a4 4 0 0 0-2-1.8c-.8-.3-2-.6-3.8-.1-.9.3-1.6.8-1.9 1.4-.4.6-.4 1.3 0 1.9.1.3.5.4.8.3.3-.1.5-.4.3-.7-.2-.4-.2-.8 0-1.1.2-.3.6-.6 1.3-.8 1-.3 1.9-.3 2.6 0 .8.4 1.3 1 1.5 1.4.3.7.3 1.4 0 2-.5.9-1.4 1.6-2.9 2-1.5.5-4.2.3-6.8.4v-3c0-.3-.6-1-1-1H15v-18c0-.3-.7-1-1-1H9v-2c0-.8.7-2 1-2.5a4.1 4.1 0 0 1 2.6-2.1c.8-.3 1.6-.3 2.4 0a3 3 0 0 1 1.6 1.1c.4.6.4 1.2 0 1.9-.2.5-.6.8-1 .9h-1.3c-.3-.1-.7 0-.8.3-.1.2 0 .5.3.6a3 3 0 0 0 2.3 0c.7-.3 1.3-.7 1.6-1.4.7-1.3.3-2.2-.1-2.7a4.9 4.9 0 0 0-2.3-1.5 5 5 0 0 0-3.2 0c-.8.2-3.1 1.9-3.1 2.9v-72c0 1 2.2 2.5 3 2.7a7 7 0 0 0 2 .3c.5 0 .9-.1 1.3-.3 1-.3 1.8-.8 2.2-1.5.4-.6.7-1.5.1-2.7-.4-.7-.9-1.2-1.6-1.4a3 3 0 0 0-2.3 0c-.3.1-.5.4-.3.6.1.2.5.4.8.3.5-.2.9-.2 1.3 0s.8.5 1 .9c.4.7.4 1.4 0 1.9-.4.6-1.2.9-1.7 1.1-.8.3-1.7.2-2.5 0-1-.3-1.6-1.1-2.2-2.1-.3-.6-1.1-.9-1.1-1.8V29h6V10h25c.4 0 1-.2 1-.5V6c2.6 0 5.5.6 7 1a5 5 0 0 1 3 2c.4.6-.2 1.3-.5 1.9-.2.3-.6 1-1.5 1.3-.8.3-1.6.3-2.6 0-.6-.2-1.1-.5-1.3-.8-.2-.3-.2-.7 0-1.1.1-.2 0-.5-.3-.6-.3-.1-.7 0-.8.3-.4.6-.4 1.3 0 1.8.3.6 1 1 1.9 1.3l1.9.3c.8 0 1.4-.2 1.9-.4a4 4 0 0 0 2-1.8c.5-.9.5-2 0-2.8-.4-.7-1.4-1.6-3.2-2.4H211a16 16 0 0 0-4.2 2.4c-.5.9-.5 1.9 0 2.8.4.8 1.2 1.5 2 1.8.5.2 1.1.4 1.9.4l1.9-.3c.9-.3 1.6-.7 1.9-1.3.4-.6.4-1.2 0-1.8-.1-.2-.5-.4-.8-.3-.3.1-.5.4-.3.6.2.4.2.7 0 1.1-.2.3-.6.6-1.3.8-1 .3-1.9.3-2.6 0a4 4 0 0 1-1.5-1.3c-.3-.6-.3-1.3 0-1.9.5-.8 1.5-1.5 3-1.9a25 25 0 0 1 7-1.1v3c0 .3.6 1 1 1h25v18c0 .3.7 1 1 1h4v4.1c0 .8-.1 1.6-.4 2.1a3.7 3.7 0 0 1-2.3 2.1c-.8.3-1.6.3-2.4 0a3 3 0 0 1-1.6-1.1c-.4-.6-.4-1.2 0-1.9.2-.5.6-.8 1-.9h1.3c.3.1.7 0 .8-.3.1-.2 0-.5-.3-.6a3 3 0 0 0-2.3 0c-.7.3-1.3.7-1.6 1.4-.7 1.3-.3 2.2.1 2.7.5.6 1.3 1.2 2.3 1.5.5.2 1.1.3 1.7.3.6 0 1-.1 1.5-.3.8-.2 2.2-1.1 2.2-2.1v70.5c0-1-1.4-1.9-2.2-2.1a4.7 4.7 0 0 0-3.3 0c-1 .3-1.8.8-2.2 1.5-.4.6-.7 1.5-.1 2.7.4.7.9 1.2 1.6 1.4a3 3 0 0 0 2.3 0c.3-.1.5-.4.3-.6-.1-.2-.5-.4-.8-.3-.5.2-.9.2-1.3 0s-.8-.5-1-.9c-.4-.7-.4-1.4 0-1.9.4-.6 1.2-.9 1.7-1.1.8-.3 1.7-.2 2.5 0 1 .3 1.7 1.1 2.3 2.1.3.6.2.9.2 1.7v3h-4c-.5.1-1 .7-1 1zm5-85h-4V10h4v18zm1-26h4v3h-4V2zm-1 4v3h-4V6h4zm-5 0v3h-25V6h25zM41 2h177v3H41V2zM28 6h12v3H15V6h13zM4 5V2h4v3H4zm5 1h5v3H9V6zm5 4v18H9V10h5zM4 112V29h4v83H4zm5 1h5v18H9v-18zm-1 26H4v-3h4v3zm1-4v-3h5v3H9zm6-3h25v3H15v-3zm203 7H41v-3h177v3zm12-4h-11v-3h25v3h-14zm24 1v3h-4v-3h4zm-5-1h-4v-3h4v3zm-4-4v-18h4v18h-4zm9-102v83h-4V29h4z" fill="#BDD5E6"></path><path d="M88.4 99.9L85 97.2a19.7 19.7 0 0 1-10.1 5.2C65 104.2 57 96 57 86.2c0-9.9 8-17.8 17.9-19.5 9.9-1.7 17.9 3.7 17.9 13.7a22 22 0 0 1-3.2 11l3.6 2.3-4.8 6.2zM75 73.6c-6.1 1.1-11 6.3-11 12.4 0 6.1 4.9 10.7 11 9.6 6.1-1.1 11-7.3 11-13.3 0-6.2-4.9-9.8-11-8.7zm34 16.7a11.2 11.2 0 0 1-5.1 4.3c-3.9 1.3-6.8-.7-6.8-5.8V72.6l6.4-2.1v15c0 1.7 1 2.4 2.7 1.8a5.3 5.3 0 0 0 2.8-2.7v-16l6.4-2.3v23.5l-6.4 2.3v-1.8zm27.7-9.9a12.8 12.8 0 0 1-5.9 4.3c-5.8 2.2-11.3-1.3-11.3-8.2 0-6.9 5.6-14.5 11.3-16.7 2.7-1 4.5-.9 5.9 0v-1.5l6.4-2.3v23.5l-6.4 2.3v-1.4zm0-13.9c-1.1-1.1-2.8-1.3-4.8-.6-3.3 1.2-6 5-6 8.3 0 3.3 2.8 5 6 3.8 2-.7 3.7-2.3 4.8-4.1v-7.4zm31.6 2.7a17.3 17.3 0 0 1-8.8 5.8c-6.9 1.9-12.4-1.7-12.4-8.6 0-6.9 5.6-14.4 12.4-16.3 3.5-1 6.6-.3 8.8 1.5l-4.6 5.6a4.8 4.8 0 0 0-4.3-.6c-3.3.9-6 4.5-6 7.8s2.7 5.2 6 4.3a7.8 7.8 0 0 0 4.2-2.9c1.7 1.1 3.2 2.3 4.7 3.4zm16.2.4a171 171 0 0 0-5.2-6.7l-1 1.5v5.9l-6.4 1.1V37l6.4-1.1v18.4l5.2-8.1c2.7-.2 5.3-.4 8-.4-2.7 3.7-5.5 7.5-8.2 11.5l9.1 12c-2.6 0-5.3.1-7.9.3zM36 71v-4h7v12l-7-8zm10 0v-4h7v12l-7-8zm150-28V31h7v4l-7 8zm10 0V31h7v4l-7 8z" fill="#1E3C52"></path></g></svg>
+        </div>
+        <div class="p24 ta-center d-none has-width step js-step js-step06">
+            <h2 class="fw-normal mb12">Quack Overflow says,</h2>
+            <p class="fc-light mb16">
+                “Whenever you’re stuck, <a class="s-link" href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber ducking</a> is a powerful method for solving even the most difficult problems. Insights are often found by simply describing the problem aloud.”
+            </p>
+            <button class="s-btn s-btn__primary js-again">I have another problem</button>
+            <button class="s-btn s-btn__muted js-enough-already">I hate this duck</button>
+        </div>
+        <div class="p24 ta-center d-none has-width step js-step js-step07">
+            <p class="fc-light mb16">The duck is sorry to hear that, but it understands.</p>
+            <button class="s-btn s-btn__primary js-goodbye">Goodbye, duck</button>
+        </div>
+    </div>
+
+    <svg class="js-quack-btn c-pointer" style="cursor: pointer;" width="56" height="49" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none"><path d="M8.9 12v-1.6C10 4.8 15 .6 20.7 1A11 11 0 0 1 31 12.8c.3 1.2 0 2.8-.7 4.4l-.6 2.7H40c2 0 3.2-.6 4.4-1.9a6.6 6.6 0 0 1 5-2.3c2 0 3.7 2 3.7 4.5v12.5A13.4 13.4 0 0 1 39.8 46h-25c-5.6 0-10.2-3.4-12.1-9a14 14 0 0 1 3.7-14.7l1.8-1.5-2.3-.7c-2.8-1-4.9-3.4-4.9-6V12h7.9z" fill="#FFF"></path><path d="M52 18.8a4 4 0 0 1 4 4v13C56 43 50.2 49 43 49H16c-5.4 0-10.4-3.5-12.3-8.8a14 14 0 0 1 4-14.8L9.5 24v-.4L7.4 23A5.6 5.6 0 0 1 3 17.4V15h7.3v-1c1-6 6.2-10.3 12-9.9a11.4 11.4 0 0 1 9.4 16.2l-1 2.7h12.2c2.9 0 4.2-1.6 5.5-2.7.8-.6 1.9-1.5 3.6-1.5zm-35.5-8.4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="#FFB935"></path><path d="M2 14.3c0 2 1.8 4 4.3 5l3.9 1.2-1.4 1.2L7.1 23a13 13 0 0 0-3.5 13.7c1.8 5 6 8.2 11.2 8.2h25c6.8 0 12.3-5.5 12.3-12.3V20.2c0-2-1.3-3.4-2.7-3.4a5.7 5.7 0 0 0-4.3 1.9 6.2 6.2 0 0 1-5.1 2.2H28.4l.9-4a6 6 0 0 0 .7-3.8v-.3A10 10 0 0 0 20.6 2c-5.1-.3-9.9 3.4-10.7 8.6V13H2v1.3zm-.2 23.2a15 15 0 0 1 4-15.9l.3-.3-.5-.2C2.4 20 0 17.3 0 14.3V11h7.9v-.6A12.5 12.5 0 0 1 20.8 0 12 12 0 0 1 32 12.7a8 8 0 0 1-.8 4.9l-.3 1.3h9c1.8 0 2.8-.5 3.7-1.5a8 8 0 0 1 1.7-1.4 7.6 7.6 0 0 1 4.1-1.2c2.6 0 4.7 2.4 4.7 5.4v12.5A14.3 14.3 0 0 1 39.8 47h-25c-6 0-11-3.7-13-9.5z" fill="#F48024"></path><path d="M46 27v2H34a7.8 7.8 0 0 0-7.6 8c0 4.4 3.4 8 7.6 8v2a9.8 9.8 0 0 1-9.6-10c0-5.5 4.3-10 9.6-10h12zM16.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 2a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm-8.6 0l2 .1c-.2 2.2.7 4.4 2.6 6.3a1.3 1.3 0 0 1-.7 2.3c-.9.2-2.6.7-3 1L7.7 20c.5-.4 1.7-.8 2.8-1.1a9.5 9.5 0 0 1-2.5-7z" fill="#F48024"></path></g>
+    </svg>
+    <svg class="js-quack-btn c-pointer d-none" style="cursor:pointer;" width="56" height="49" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs><path d="M19 25c1.7 0 3-1.8 3-3.5S19 15 19 15s-3 4.8-3 6.5c0 1.7 1.3 3.5 3 3.5z" id="a"></path></defs>
+        <g fill="none" fill-rule="evenodd"><path d="M8.9 12v-1.6C10 4.8 15 .6 20.7 1A11 11 0 0 1 31 12.8c.3 1.2 0 2.8-.7 4.4l-.6 2.7H40c2 0 3.2-.6 4.4-1.9a6.6 6.6 0 0 1 5-2.3c2 0 3.7 2 3.7 4.5v12.5A13.4 13.4 0 0 1 39.8 46h-25c-5.6 0-10.2-3.4-12.1-9a14 14 0 0 1 3.7-14.7l1.8-1.5-2.3-.7c-2.8-1-4.9-3.4-4.9-6V12h7.9z" fill="#FFF" fill-rule="nonzero"></path><path d="M52 18.8c-1.7 0-2.8.9-3.6 1.5-1.3 1.1-2.6 2.7-5.5 2.7H30.6l1.1-2.7a11.4 11.4 0 0 0-9.4-16.2c-5.8-.4-11 3.9-12 10v.9L3 17v.4c0 2.6 1.8 4.9 4.4 5.5l2.1.7v.4l-1.8 1.4a13.6 13.6 0 0 0-4 14.8c2 5.3 6.9 8.8 12.4 8.8h26.8C50.2 49 56 43 56 35.8v-13a4 4 0 0 0-4-4z" fill="#FFB935" fill-rule="nonzero"></path><path d="M2 16.3c0 2 1.8 2 4.3 3l3.9 1.2-1.4 1.2L7.1 23a13 13 0 0 0-3.5 13.7c1.8 5 6 8.2 11.2 8.2h25c6.8 0 12.3-5.5 12.3-12.3V20.2c0-2-1.3-3.4-2.7-3.4a5.7 5.7 0 0 0-4.3 1.9 6.2 6.2 0 0 1-5.1 2.2H28.4l.9-4a6 6 0 0 0 .7-3.8v-.3A10 10 0 0 0 20.6 2c-5.1-.3-9.9 3.4-10.7 8.6l.1 1.9-8 3v.8zm-.2 21.2a15 15 0 0 1 4-15.9l.3-.3-.5-.2C2.4 20 0 20.3 0 17.3V14l7.9-3v-.6A12.5 12.5 0 0 1 20.8 0 12 12 0 0 1 32 12.7a8 8 0 0 1-.8 4.9l-.3 1.3h9c1.8 0 2.8-.5 3.7-1.5a8 8 0 0 1 1.7-1.4 7.6 7.6 0 0 1 4.1-1.2c2.6 0 4.7 2.4 4.7 5.4v12.5A14.3 14.3 0 0 1 39.8 47h-25c-6 0-11-3.7-13-9.5z" fill="#F48024" fill-rule="nonzero"></path><path d="M46 27v2H34a7.8 7.8 0 0 0-7.6 8c0 4.4 3.4 8 7.6 8v2a9.8 9.8 0 0 1-9.6-10c0-5.5 4.3-10 9.6-10h12zM7.9 12l2 .1c-.2 2.2.7 4.4 2.6 6.3a1.3 1.3 0 0 1-.7 2.3c-.9.2-2.6.7-3 1L7.7 20c.5-.4 1.7-.8 2.8-1.1a9.5 9.5 0 0 1-2.5-7z" fill="#F48024" fill-rule="nonzero"></path><path d="M12 9c1 2.3 2.2 3.7 3.5 4a9 9 0 0 0 4 0v-2c-1 .3-2 .3-3 0s-1.8-1-2.5-2h-2z" fill="#F48024"></path><use fill="#FFF" xlink:href="#a"></use><path stroke="#F48024" stroke-width="2" d="M19 17a45.2 45.2 0 0 0-2 4.5c0 1.2 1 2.5 2 2.5s2-1.3 2-2.5a33 33 0 0 0-2-4.5z"></path></g>
+    </svg>
+</div>
+
+<audio id="quack-sound" src="https://cdn.sstatic.net/Shared/quack.mp3" preload="auto"></audio>        <script>
+            StackExchange.ready(function() {
+                setTimeout(function() {
+                    StackExchange.quack.init();
+                }, 500);
+            });
+        </script>
+    
+    
+<script async="" src="./export default 对比 export_files/clc.min.js.下载"></script></body></html>

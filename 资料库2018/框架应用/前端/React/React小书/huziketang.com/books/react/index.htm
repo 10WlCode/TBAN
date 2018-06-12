@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="GNvdsbNFPS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    
+      <title>React.js 小书</title>
+      <meta name="keywords" content="React.js 小书,React.js 教程,React.js,菜鸟教程,视频教程" />
+      <meta name="description" content="React.js 小书是一个开源、免费、专业、简单的 React.js 在线教程。提炼实战经验中基础的、重要的、频繁的知识进行重点讲解，让你能用最少的精力深入了解实战中最需要的 React.js 知识。 " />
+    
+
+    
+
+    <link rel="icon" href="https://huzidaha.github.io/static/assets/img/favicon.ico">
+    <link rel="stylesheet"
+href="../../../fonts.googleapis.com/css-family=Inconsolata-400,700.css" tppabs="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" tppabs="http://huziketang.com/books/react/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- <div class='float-wechat' id='float-wechat'>
+    	<img src='https://huzidaha.github.io/static/assets/img/wechat-user.jpeg' />
+      <p>加入《React.js 小书》读者交流群，一起讨论、交流、学习前端技术。</p>
+    </div> -->
+    <div class="wrapper" id='wrapper'>
+      <div class="header">
+    <h1>React.js 小书</h1>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('https://github.com/huzidaha/react-naive-book  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/huzidaha/react-naive-book'" tppabs="https://github.com/huzidaha/react-naive-book">Github</a></li>
+        
+        <li><a href="me/index.htm" tppabs="http://huziketang.com/books/react/me">关于作者</a></li>
+        
+    </ul>
+</div>
+<div class="content">
+  <div class="block">
+    <p>这是一本关于 React.js 的小书。</p>
+    <p>因为工作中一直在使用 React.js，也一直以来想总结一下自己关于 React.js 的一些知识、经验。于是把一些想法慢慢整理书写下来，做成一本开源、免费、专业、简单的入门级别的小书，提供给社区。希望能够帮助到更多 React.js 刚入门朋友。</p>
+    <p>由于水平有限，编写的过程难免会有诸多错误，也希望大家在看的过程中发现了问题，可以在 <a href="javascript:if(confirm('https://github.com/huzidaha/react-naive-book  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/huzidaha/react-naive-book'" tppabs="https://github.com/huzidaha/react-naive-book" target='_blank'>Github</a> 上给该项目发 Pull Request。衷心希望可以有更多的人参与到本书的编写当中。</p>
+    <p>2017-06-09 更新：本书所有练习题已经在 <a href="javascript:if(confirm('https://scriptoj.com/problemsGroups/593a2e29b3838c385539fa4f  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://scriptoj.com/problemsGroups/593a2e29b3838c385539fa4f'" tppabs="https://scriptoj.com/problemsGroups/593a2e29b3838c385539fa4f" target="_blank">ScriptOJ</a> 上线，读者朋友们可以直接在线进行练习。</p>
+  </div>
+  <div class="block">
+    <h2>本书介绍</h2>
+    <p>本书为有一点前端基础的并且是 React.js 零基础的同学而作，帮助他们掌握 React.js 并且灵活地把 React.js 应用到实际项目当中。如果你有一定的 HTML、CSS、JavaScript 基础并且希望学习 React.js，而又觉得 React.js 当中有些概念比难以接受和理解，希望能够从零开始学习，那么本书很适合你。但如果你已经对前端已经非常熟悉并且用过不少的前端框架和相关的组件化技术，建议你直接看官网文档。</p>
+    <p>本书并不会文档式地包含所有知识点，只会提炼实战经验中基础的、重要的、频繁的知识进行重点讲解，让你能用最少的精力深入了解实战中最需要的 React.js 知识和套路，轻装上路。如果需要更多更全面的知识点，可以参看更多的官方文档或者其他丰富的资料。</p>
+    <p><b>另外，本书全书采用 ECMAScript 2015，阅读之前请确保自己已经掌握了 ECMAScript 2015 的基本语法，否则阅读起来会非常困难。</b></p>
+    <p>本书初定分为三个阶段，每个阶段最后会有实战分析，把该阶段的知识点应用起来。</p>
+    <p><b>第一个阶段</b>：希望能让读者掌握 React.js 的基本概念和基础知识。包括问题的根源：前端组件的复用性问题、数据和视图的同步问题。了解清楚问题以后再了解 React.js 的基础知识，包括 JSX、事件监听、state、props、列表渲染等。看看 React.js 是怎么解决这些问题的。这个阶段结束以后，读者就可以可以运用 React.js 构建简单的页面功能。</p>
+    <p><b>第二个阶段</b>：让读者更进一步了解 React.js，包括组件生命周期及其含义、state 和 props 的进阶概念、props 验证及其意义、组件组合进阶、如何和 DOM 打交道、并且开始引入前端应用状态管理所存在的问题。</p>
+    <p><b>第三个阶段</b>：让读者掌握 React.js 较为高级的概念，包括高阶组件、context。并且通过引入 React-redux 来协助我们构建较为完整的前端应用，还会开始深入讨论前端应用状态管理的问题；关于 React-router 也会有所提及。</p>
+  </div>
+  <div class="block">
+    <h2>目录</h2>
+    <b>第一个阶段</b><img class='badge' src="../../../img.shields.io/badge/已完成-100%-brightgreen.svg" tppabs="https://img.shields.io/badge/已完成-100%25-brightgreen.svg" />
+    
+    <ul class="table-of-content">
+        
+        
+        <li><span class="date">Lesson 1</span> - <a href="lesson1.htm" tppabs="http://huziketang.com/books/react/lesson1">React.js 简介</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 2</span> - <a href="lesson2.htm" tppabs="http://huziketang.com/books/react/lesson2">前端组件化（一）：从一个简单的例子讲起</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 3</span> - <a href="lesson3.htm" tppabs="http://huziketang.com/books/react/lesson3">前端组件化（二）：优化 DOM 操作</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 4</span> - <a href="lesson4.htm" tppabs="http://huziketang.com/books/react/lesson4">前端组件化（三）：抽象出公共组件类</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 5</span> - <a href="lesson5.htm" tppabs="http://huziketang.com/books/react/lesson5">React.js 基本环境安装</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 6</span> - <a href="lesson6.htm" tppabs="http://huziketang.com/books/react/lesson6">使用 JSX 描述 UI 信息</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 7</span> - <a href="lesson7.htm" tppabs="http://huziketang.com/books/react/lesson7">组件的 render 方法</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 8</span> - <a href="lesson8.htm" tppabs="http://huziketang.com/books/react/lesson8">组件的组合、嵌套和组件树</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 9</span> - <a href="lesson9.htm" tppabs="http://huziketang.com/books/react/lesson9">事件监听</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 10</span> - <a href="lesson10.htm" tppabs="http://huziketang.com/books/react/lesson10">组件的 state 和 setState</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 11</span> - <a href="lesson11.htm" tppabs="http://huziketang.com/books/react/lesson11">配置组件的 props</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 12</span> - <a href="lesson12.htm" tppabs="http://huziketang.com/books/react/lesson12">state vs props</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 13</span> - <a href="lesson13.htm" tppabs="http://huziketang.com/books/react/lesson13">渲染列表数据</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 14</span> - <a href="lesson14.htm" tppabs="http://huziketang.com/books/react/lesson14">实战分析：评论功能（一）</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 15</span> - <a href="lesson15.htm" tppabs="http://huziketang.com/books/react/lesson15">实战分析：评论功能（二）</a></li>
+        
+        
+        
+        <li><span class="date">Lesson 16</span> - <a href="lesson16.htm" tppabs="http://huziketang.com/books/react/lesson16">实战分析：评论功能（三）</a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+    <p>
+      <b>第二个阶段</b><img class='badge' src="../../../img.shields.io/badge/已完成-100%-brightgreen.svg" tppabs="https://img.shields.io/badge/已完成-100%25-brightgreen.svg" />
+      <ul class="table-of-content">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li><span class="date">Lesson 17</span> - <a href="lesson17.htm" tppabs="http://huziketang.com/books/react/lesson17">前端应用状态管理 —— 状态提升</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 18</span> - <a href="lesson18.htm" tppabs="http://huziketang.com/books/react/lesson18">挂载阶段的组件生命周期（一）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 19</span> - <a href="lesson19.htm" tppabs="http://huziketang.com/books/react/lesson19">挂载阶段的组件生命周期（二）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 20</span> - <a href="lesson20.htm" tppabs="http://huziketang.com/books/react/lesson20">更新阶段的组件生命周期</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 21</span> - <a href="lesson21.htm" tppabs="http://huziketang.com/books/react/lesson21">ref 和 React.js 中的 DOM 操作</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 22</span> - <a href="lesson22.htm" tppabs="http://huziketang.com/books/react/lesson22">props.children 和容器类组件</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 23</span> - <a href="lesson23.htm" tppabs="http://huziketang.com/books/react/lesson23">dangerouslySetHTML 和 style 属性</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 24</span> - <a href="lesson24.htm" tppabs="http://huziketang.com/books/react/lesson24">PropTypes 和组件参数验证</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 25</span> - <a href="lesson25.htm" tppabs="http://huziketang.com/books/react/lesson25">实战分析：评论功能（四）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 26</span> - <a href="lesson26.htm" tppabs="http://huziketang.com/books/react/lesson26">实战分析：评论功能（五）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 27</span> - <a href="lesson27.htm" tppabs="http://huziketang.com/books/react/lesson27">实战分析：评论功能（六）</a></li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      </ul>
+    </p>
+    <p>
+      <b>第三个阶段</b><img class='badge' src="../../../img.shields.io/badge/已完成-100%-brightgreen.svg" tppabs="https://img.shields.io/badge/已完成-100%25-brightgreen.svg" />
+      <ul class="table-of-content">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li><span class="date">Lesson 28</span> - <a href="lesson28.htm" tppabs="http://huziketang.com/books/react/lesson28">高阶组件（Higher-Order Components）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 29</span> - <a href="lesson29.htm" tppabs="http://huziketang.com/books/react/lesson29">React.js 的 context</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 30</span> - <a href="lesson30.htm" tppabs="http://huziketang.com/books/react/lesson30">动手实现 Redux（一）：优雅地修改共享状态</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 31</span> - <a href="lesson31.htm" tppabs="http://huziketang.com/books/react/lesson31">动手实现 Redux（二）：抽离 store 和监控数据变化</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 32</span> - <a href="lesson32.htm" tppabs="http://huziketang.com/books/react/lesson32">动手实现 Redux（三）：纯函数（Pure Function）简介</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 33</span> - <a href="lesson33.htm" tppabs="http://huziketang.com/books/react/lesson33">动手实现 Redux（四）：共享结构的对象提高性能</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 34</span> - <a href="lesson34.htm" tppabs="http://huziketang.com/books/react/lesson34">动手实现 Redux（五）：不要问为什么的 reducer</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 35</span> - <a href="lesson35.htm" tppabs="http://huziketang.com/books/react/lesson35">动手实现 Redux（六）：Redux 总结</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 36</span> - <a href="lesson36.htm" tppabs="http://huziketang.com/books/react/lesson36">动手实现 React-redux（一）：初始化工程</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 37</span> - <a href="lesson37.htm" tppabs="http://huziketang.com/books/react/lesson37">动手实现 React-redux（二）：结合 context 和 store</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 38</span> - <a href="lesson38.htm" tppabs="http://huziketang.com/books/react/lesson38">动手实现 React-redux（三）：connect 和 mapStateToProps</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 39</span> - <a href="lesson39.htm" tppabs="http://huziketang.com/books/react/lesson39">动手实现 React-redux（四）：mapDispatchToProps</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 40</span> - <a href="lesson40.htm" tppabs="http://huziketang.com/books/react/lesson40">动手实现 React-redux（五）：Provider</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 41</span> - <a href="lesson41.htm" tppabs="http://huziketang.com/books/react/lesson41">动手实现 React-redux（六）：React-redux 总结</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 42</span> - <a href="lesson42.htm" tppabs="http://huziketang.com/books/react/lesson42">使用真正的 Redux 和 React-redux</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 43</span> - <a href="lesson43.htm" tppabs="http://huziketang.com/books/react/lesson43">Smart 组件 vs Dumb 组件</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 44</span> - <a href="lesson44.htm" tppabs="http://huziketang.com/books/react/lesson44">实战分析：评论功能（七）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 45</span> - <a href="lesson45.htm" tppabs="http://huziketang.com/books/react/lesson45">实战分析：评论功能（八）</a></li>
+          
+          
+          
+          <li><span class="date">Lesson 46</span> - <a href="lesson46.htm" tppabs="http://huziketang.com/books/react/lesson46">实战分析：评论功能（九）</a></li>
+          
+          
+      </ul>
+    </p>
+  </div>
+  <div class="block">
+    <h2>特别鸣谢</h2>
+    <p>
+      特别感谢以下朋友对本书所做的审校工作，给本书提出了很多宝贵的改进意见：<br>
+      <ul>
+        <li>
+          <a href="javascript:if(confirm('https://github.com/kuangwk/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/kuangwk/'" tppabs="https://github.com/kuangwk/" target='_blank'>邝伟科</a> - 腾讯 Web 前端工程师
+        </li>
+        <li>
+          <a href="javascript:if(confirm('https://github.com/hipoyang/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/hipoyang/'" tppabs="https://github.com/hipoyang/" target='_blank'>杨海波</a> - 百度 Web 高级前端工程师
+        </li>
+        <li>
+          <a href="javascript:if(confirm('https://github.com/brucexiejunling/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/brucexiejunling/'" tppabs="https://github.com/brucexiejunling/" target='_blank'>谢军令</a> - 天猫 Web 前端工程师
+        </li>
+        <li>
+          <a href="javascript:if(confirm('https://github.com/livoras/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/livoras/'" tppabs="https://github.com/livoras/" target='_blank'>戴嘉华</a> - 前微信 Web 前端工程师
+        </li>
+      <ul>
+    </p>
+  </div>
+  <div class="block">
+    <h2>联系作者</h2>
+    <ul style='padding-left: 0px;'>
+      <li style='padding-left: 0px;'>邮箱：huzidaha@126.com</li>
+      <li style='padding-left: 0px;'>知乎：<a href="javascript:if(confirm('https://www.zhihu.com/people/hu-zi-da-ha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.zhihu.com/people/hu-zi-da-ha'" tppabs="https://www.zhihu.com/people/hu-zi-da-ha" target='_blank'>@胡子大哈</a></li>
+      <li style='padding-left: 0px;'>专栏：<a href="javascript:if(confirm('https://zhuanlan.zhihu.com/qianduandaha  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://zhuanlan.zhihu.com/qianduandaha'" tppabs="https://zhuanlan.zhihu.com/qianduandaha" target='_blank'>@前端大哈</a></li>
+      <li style='padding-left: 0px;'>有问题上知乎给我私信留言</li>
+    </ul>
+  </div>
+  <div class="block">
+    <h2>License</h2>
+    <p>本作品采用 <a href="javascript:if(confirm('https://creativecommons.org/licenses/by-nd/4.0/legalcode  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://creativecommons.org/licenses/by-nd/4.0/legalcode'" tppabs="https://creativecommons.org/licenses/by-nd/4.0/legalcode" target='_blank'>署名-禁止演绎 4.0 国际许可协议</a> 进行许可</p>
+  </div>
+</div>
+
+    </div>
+    <script src="assets/js/highlight.js" tppabs="http://huziketang.com/books/react/assets/js/highlight.js"></script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      if (window.location.origin.match(/localhost/)) return
+      var hm = document.createElement("script");
+      hm.src = "../../../hm.baidu.com/hm.js-f08b5240ef2d1692572ce0f7756b325e"/*tpa=https://hm.baidu.com/hm.js?f08b5240ef2d1692572ce0f7756b325e*/;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      var bp = document.createElement('script');
+      // push baidu.com
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = '../../../zz.bdstatic.com/linksubmit/push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/;
+      }
+      else {
+        bp.src = '../../../push.zhanzhang.baidu.com/push.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/;
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+    // var wrapper = document.getElementById('wrapper')
+    // var floatWechat = document.getElementById('float-wechat')
+
+    // function resetAll (event) {
+    //   var rect = wrapper.getBoundingClientRect()
+    //   resetFloatWechat(rect)
+    // }
+    // function resetFloatWechat(rect) {
+    //   var left = rect.left + rect.width
+    //   floatWechat.style.left = left + 'px'
+    //   floatWechat.style.display = 'block'
+    // }
+    // window.addEventListener('resize', resetAll)
+    // resetAll()
+    </script>
+
+</body>
+
+</html>

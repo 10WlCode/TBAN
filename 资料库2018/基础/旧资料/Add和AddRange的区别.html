@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/wl0000-03/p/5892454.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add和AddRange的区别 - 刘二雄 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Add和AddRange的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Add和AddRange的区别_files/bundle-Nerium.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Add和AddRange的区别_files/bundle-Nerium-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wl0000-03/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wl0000-03/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wl0000-03/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Add和AddRange的区别_files/encoder.js.下载"></script><script src="./Add和AddRange的区别_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'wl0000-03', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./Add和AddRange的区别_files/blog-common.js.下载" type="text/javascript"></script>
+<script src="./Add和AddRange的区别_files/bundle-Nerium.js.下载" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/wl0000-03/"><img id="blogLogo" src="./Add和AddRange的区别_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wl0000-03/">刘二雄</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator" style="overflow: hidden;">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/wl0000-03/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%88%98%E4%BA%8C%E9%9B%84">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/wl0000-03/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/wl0000-03/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 96&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 26</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wl0000-03/p/5892454.html">Add和AddRange的区别</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Add和AddRange的区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">Add和AddRange区别 Add和AddRange
+
+
+Add：将指定的对象添加到……中
+
+AddRange：向……末尾，添加数组
+
+</span>-<span style="color: #000000;">
+
+在群体操作时，使用AddRange取代Add 
+
+用AddRange可以让我们要加入的东西一次性加入，而不要每次都加一次，这样显然可以加快速度。几乎所有的windows control都支持Add和AddRange两种方法。
+
+Add:
+
+For i </span>= <span style="color: #800080;">0</span> To param.Length - <span style="color: #800080;">1</span><span style="color: #000000;">
+        comm.Parameters.Add(param(i))
+Next i
+
+ 
+
+AddRange:
+
+Comm.Parameters.AddRange(Param)
+
+</span>-<span style="color: #000000;">
+
+支持Add和AddRange的类： 
+StringCollection, TraceCollection, SqlParameter, etc. 
+HttpWebRequest 
+UserControl 
+ColumnHeader 
+
+
+</span>-</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Add和AddRange的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Add和AddRange的区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">原代码：
+
+view plain
+</span><span style="color: #800080;">1</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> ExecuteQuery,查询数据操作  </span>
+<span style="color: #800080;">2</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;/summary&gt;  </span>
+<span style="color: #800080;">3</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="strSql"&gt;sql语句&lt;/param&gt;  </span>
+<span style="color: #800080;">4</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="param"&gt;参数集合&lt;/param&gt;  </span>
+<span style="color: #800080;">5</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="ct"&gt;命令类型&lt;/param&gt;  </span>
+<span style="color: #800080;">6</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;returns&gt;DataTable类型，数据表&lt;/returns&gt;  </span>
+<span style="color: #800080;">7</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;remarks&gt;&lt;/remarks&gt;  </span>
+<span style="color: #800080;">8</span><span style="color: #000000;">.Public Function ExecuteQuery(ByVal strSql As String, ByVal param() As SqlParameter, ByVal ct As CommandType) As DataTable  
+</span><span style="color: #800080;">9</span><span style="color: #000000;">.    Dim dt As New DataTable  
+</span><span style="color: #800080;">10</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">11</span>.    comm =<span style="color: #000000;"> New SqlCommand(strSql, Me.GetConn)  
+</span><span style="color: #800080;">12</span>.    comm.CommandType =<span style="color: #000000;"> ct  
+</span><span style="color: #800080;">13</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">14</span><span style="color: #000000;">.    If param IsNot Nothing Then  
+</span><span style="color: #800080;">15</span>.        For i = <span style="color: #800080;">0</span> To param.Length - <span style="color: #800080;">1</span>  
+<span style="color: #800080;">16</span><span style="color: #000000;">.            comm.Parameters.Add(param(i))  
+</span><span style="color: #800080;">17</span><span style="color: #000000;">.        Next i  
+</span><span style="color: #800080;">18</span><span style="color: #000000;">.    End If  
+</span><span style="color: #800080;">19</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">20</span><span style="color: #000000;">.    Try  
+</span><span style="color: #800080;">21</span>.        dr =<span style="color: #000000;"> comm.ExecuteReader()  
+</span><span style="color: #800080;">22</span><span style="color: #000000;">.        dt.Load(dr)  
+</span><span style="color: #800080;">23</span><span style="color: #000000;">.    Catch ex As Exception  
+</span><span style="color: #800080;">24</span><span style="color: #000000;">.        Throw ex  
+</span><span style="color: #800080;">25</span><span style="color: #000000;">.    Finally  
+</span><span style="color: #800080;">26</span><span style="color: #000000;">.        dr.Close()  
+</span><span style="color: #800080;">27</span><span style="color: #000000;">.        conn.Close()  
+</span><span style="color: #800080;">28</span><span style="color: #000000;">.    End Try  
+</span><span style="color: #800080;">29</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">30</span><span style="color: #000000;">.    Return dt  
+</span><span style="color: #800080;">31</span><span style="color: #000000;">.End Function  
+
+修改后：
+
+view plain
+</span><span style="color: #800080;">1</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;summary&gt;  </span>
+<span style="color: #800080;">2</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> 查询方法  </span>
+<span style="color: #800080;">3</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;/summary&gt;  </span>
+<span style="color: #800080;">4</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="myCommandType"&gt;sql语句类型:区别于存储过程&lt;/param&gt;  </span>
+<span style="color: #800080;">5</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="Param"&gt;参数数组&lt;/param&gt;  </span>
+<span style="color: #800080;">6</span>.<span style="color: #800000;">'''</span><span style="color: #800000;"> &lt;param name="strSql"&gt;sql语句&lt;/param&gt;  </span>
+<span style="color: #800080;">7</span><span style="color: #000000;">.Public Function ExecuteQuery(ByVal myCommandType As CommandType, ByVal Param() As SqlParameter, ByVal strSql As String) As DataTable  
+</span><span style="color: #800080;">8</span><span style="color: #000000;">.    Dim dt As New DataTable  
+</span><span style="color: #800080;">9</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">10</span>.    Comm =<span style="color: #000000;"> New SqlCommand(strSql, Me.GetConn)  
+</span><span style="color: #800080;">11</span>.    Comm.CommandType =<span style="color: #000000;"> myCommandType  
+</span><span style="color: #800080;">12</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">13</span><span style="color: #000000;">.    If Param IsNot Nothing Then  
+</span><span style="color: #800080;">14</span><span style="color: #000000;">.        Comm.Parameters.AddRange(Param)  
+</span><span style="color: #800080;">15</span><span style="color: #000000;">.    End If  
+</span><span style="color: #800080;">16</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">17</span><span style="color: #000000;">.    Try  
+</span><span style="color: #800080;">18</span>.        myDataReader =<span style="color: #000000;"> Comm.ExecuteReader  
+</span><span style="color: #800080;">19</span><span style="color: #000000;">.        dt.Load(myDataReader)  
+</span><span style="color: #800080;">20</span><span style="color: #000000;">.    Catch ex As Exception  
+</span><span style="color: #800080;">21</span><span style="color: #000000;">.        Throw ex  
+</span><span style="color: #800080;">22</span><span style="color: #000000;">.    Finally  
+</span><span style="color: #800080;">23</span><span style="color: #000000;">.        myDataReader.Close()  
+</span><span style="color: #800080;">24</span><span style="color: #000000;">.        Conn.Close()  
+</span><span style="color: #800080;">25</span><span style="color: #000000;">.    End Try  
+</span><span style="color: #800080;">26</span><span style="color: #000000;">.  
+</span><span style="color: #800080;">27</span><span style="color: #000000;">.    Return dt  
+</span><span style="color: #800080;">28</span>.End Function  </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Add和AddRange的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/wl0000-03/category/907728.html" target="_blank">C#</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5892454,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;4e8ecac8-a75a-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Add和AddRange的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Add和AddRange的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wl0000-03/" target="_blank"><img src="./Add和AddRange的区别_files/20161019165459.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wl0000-03/">刘二雄</a><br>
+            <a href="http://home.cnblogs.com/u/wl0000-03/followees">关注 - 16</a><br>
+            <a href="http://home.cnblogs.com/u/wl0000-03/followers">粉丝 - 41</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;4e8ecac8-a75a-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5892454,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5892454,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wl0000-03/p/5849526.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wl0000-03/p/5849526.html" title="发布于2016-09-07 15:03">网络电视精灵</a><br><a href="http://www.cnblogs.com/wl0000-03/p/5904140.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wl0000-03/p/5904140.html" title="发布于2016-09-25 09:49">深入.NET平台和C#编程总结大全</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-09-21 14:13</span> <a href="http://www.cnblogs.com/wl0000-03/">刘二雄</a> 阅读(<span id="post_view_count">4809</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5892454" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/wl0000-03/p/5892454.html#" onclick="AddToWz(5892454);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=298158,cb_entryId=5892454,cb_blogApp=currentBlogApp,cb_blogUserGuid='4e8ecac8-a75a-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/9/21 14:13:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3641564,&#39;aDQ/H6SXe6VSWo0oWQdVSzV2vaAL0zGOzKLHXUKMq7LpTtIpXZmkZw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3641564,&#39;aDQ/H6SXe6VSWo0oWQdVSzV2vaAL0zGOzKLHXUKMq7LpTtIpXZmkZw==&#39;)">引用</a></span>
+				</div>
+				<a href="https://www.cnblogs.com/wl0000-03/p/5892454.html#3641564" class="layer">#1楼</a><a name="3641564" id="comment_anchor_3641564"></a><span id="comment-maxId" style="display:none;">3641564</span><span id="comment-maxDate" style="display:none;">2017/3/15 15:57:46</span>  <span class="comment_date">2017-03-15 15:57</span> <a id="a_comment_author_3641564" href="http://www.cnblogs.com/misssds/" target="_blank">cunese初见</a> <a href="http://msg.cnblogs.com/send/cunese%E5%88%9D%E8%A7%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3641564" class="blog_comment_body">这篇文章跟你写的一样<a href="http://www.cnblogs.com/guozhenyp/archive/2011/07/20/2111496.html" target="_blank">http://www.cnblogs.com/guozhenyp/archive/2011/07/20/2111496.html</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3641564,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3641564,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/wl0000-03/p/5892454.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/wl0000-03/p/5892454.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./Add和AddRange的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./Add和AddRange的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./Add和AddRange的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./Add和AddRange的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./Add和AddRange的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./Add和AddRange的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/584009/" target="_blank">马化腾：中国企业需成为新技术的驱动者和贡献者</a><br> ·  <a href="https://news.cnblogs.com/n/584008/" target="_blank">蚂蚁会员积分将清零！69999积分可换iPhone X</a><br> ·  <a href="https://news.cnblogs.com/n/584007/" target="_blank">微信支付商户平台一大波新功能：手机查看“经营数据”</a><br> ·  <a href="https://news.cnblogs.com/n/584006/" target="_blank">因价格昂贵 特斯拉被德国从电动车补贴目录中移除</a><br> ·  <a href="https://news.cnblogs.com/n/584005/" target="_blank">成熟开发者的“元品质”</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div align="center"><a href="http://www.amazingcounters.com/"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3211581&amp;c=9635056" alt="AmazingCounters.com" style="display: none !important;"></a></div>
+
+本博客的目的仅为记录本人的成长过程<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wl0000-03/">刘二雄</a><br>园龄：<a href="http://home.cnblogs.com/u/wl0000-03/" title="入园时间：2016-08-05">1年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/wl0000-03/followers/">41</a><br>关注：<a href="http://home.cnblogs.com/u/wl0000-03/followees/">16</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;4e8ecac8-a75a-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalTodayDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wl0000-03/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/wl0000-03/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/wl0000-03/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/wl0000-03/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/wl0000-03/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/wl0000-03/category/967259.html">Ajax(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/wl0000-03/category/907728.html">C#(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/wl0000-03/category/935128.html">hibernate(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/wl0000-03/category/936927.html">Intellij Idea(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/wl0000-03/category/907727.html">Java(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/wl0000-03/category/907729.html">javascript(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/wl0000-03/category/969728.html">jQuery UI(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/wl0000-03/category/912144.html">Jsp(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/wl0000-03/category/972639.html">Linux(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/wl0000-03/category/954657.html">MyBatis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/wl0000-03/category/969731.html">Spring(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/wl0000-03/category/956195.html">Struts2(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/wl0000-03/category/935706.html">错误(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/wl0000-03/category/907730.html">设计模式(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/wl0000-03/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/wl0000-03/archive/2017/04.html">2017年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/wl0000-03/archive/2017/03.html">2017年3月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/wl0000-03/archive/2017/02.html">2017年2月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/wl0000-03/archive/2017/01.html">2017年1月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/wl0000-03/archive/2016/12.html">2016年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/wl0000-03/archive/2016/11.html">2016年11月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/wl0000-03/archive/2016/10.html">2016年10月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/wl0000-03/archive/2016/09.html">2016年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/wl0000-03/archive/2016/08.html">2016年8月 (11)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wl0000-03/p/6051166.html#3806605">1. Re:观察者模式</a></li>
+        <li class="recent_comment_body">perfect，例子很好</li>
+        <li class="recent_comment_author">--PPBoy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wl0000-03/p/5953989.html#3724403">2. Re:MyEclipse中常用的快捷键大全，快来.....</a></li>
+        <li class="recent_comment_body">谢谢分享。</li>
+        <li class="recent_comment_author">--绅士道</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wl0000-03/p/5941566.html#3698680">3. Re:C#深入.NET平台的软件系统分层开发</a></li>
+        <li class="recent_comment_body">好厉害</li>
+        <li class="recent_comment_author">--小王Carzyanimal</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wl0000-03/p/5964881.html#3693239">4. Re:Java中多态的一些简单理解</a></li>
+        <li class="recent_comment_body">写的挺好</li>
+        <li class="recent_comment_author">--babyla</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wl0000-03/p/5942467.html#3681074">5. Re:分层开发---酒店管理系统---</a></li>
+        <li class="recent_comment_body">删除时这么没有好友提示呢？</li>
+        <li class="recent_comment_author">--黄钟飞</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wl0000-03/p/5973039.html">1. java中synchronized关键字的用法(22583)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5953989.html">2. MyEclipse中常用的快捷键大全，快来.....(16836)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5964881.html">3. Java中多态的一些简单理解(16575)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5904140.html">4. 深入.NET平台和C#编程总结大全(5878)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/6050108.html">5. JavaScript中的匿名函数及函数的闭包(5856)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wl0000-03/p/6675811.html">1. 整合第二次（SSM第一次）------------&gt;spring+struts2+mybatis(6)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5941566.html">2. C#深入.NET平台的软件系统分层开发(5)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5904140.html">3. 深入.NET平台和C#编程总结大全(2)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/6665518.html">4. 整合初步______SH(2)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5964881.html">5. Java中多态的一些简单理解(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wl0000-03/p/5904140.html">1. 深入.NET平台和C#编程总结大全(6)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/6050108.html">2. JavaScript中的匿名函数及函数的闭包(3)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5973039.html">3. java中synchronized关键字的用法(3)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/6669835.html">4. 整合初步---------&gt;SSH（注解版）(2)</a></li><li><a href="http://www.cnblogs.com/wl0000-03/p/5813384.html">5. 体验套餐管理系统(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 刘二雄
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

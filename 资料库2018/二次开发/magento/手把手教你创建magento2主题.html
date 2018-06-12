@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://bbs.mallol.cn/?thread-111.htm -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+		
+	
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<meta name="description" content="手把手教你创建magento2主题">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+	<title>手把手教你创建magento2主题-主题-Magento2专业中文社区</title>
+	
+	
+	
+	<link rel="shortcut icon" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	<link rel="icon" sizes="32x32" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	<link rel="Bookmark" href="http://bbs.mallol.cn/view/img/favicon.ico">
+	
+	<style>
+table.nav_tag_list {margin-bottom: 0.2rem;}
+table.nav_tag_list td {padding: 0.3rem;}
+table.nav_tag_list td a{margin-right: 0.2rem;}
+.nav_tag_list .active {font-weight: normal}
+.tag_option {
+        border: 1px solid #bbb; padding: 1px 10px; border-radius: 10px; text-decoration: none;
+}
+.tag_option:active, .tag_option.active {
+        border: 1px solid #000; background: #000; color: #fff; text-decoration: none;
+}
+</style>
+		<link rel="stylesheet" href="./手把手教你创建magento2主题_files/bootstrap.css">
+	
+	
+	
+		<link rel="stylesheet" href="./手把手教你创建magento2主题_files/bootstrap-bbs.css">
+	<link rel="stylesheet" href="./手把手教你创建magento2主题_files/huux-notice.css" name="huux_notice">
+	
+	<style>
+/*
+box-shadow: 0 0 5px red;
+*/
+@keyframes xndigest {
+	0% { color: red; text-shadow: 0 0 3px #FF8D8D;} 
+	20% { color: orange; text-shadow: 0 0 3px #FFE1AD;} 
+	40% { color: green; text-shadow: 0 0 3px #B3FFAF;} 
+	65% { color: blue; text-shadow: 0 0 3px #AFE4FF;} 
+	80% { color: purple; text-shadow: 0 0 3px #FFC9F3;} 
+	100% { color: red; text-shadow: 0 0 3px #FF8D8D;} 
+}
+
+/*水晶闪烁效果 占内存*/
+i.icon-diamond.flash{color: #D53D38;  /*animation: xndigest 5s linear infinite;*/ }
+
+i.icon-digest-1 {  text-shadow: 0 0 3px #AFE4FF; }
+i.icon-digest-2 {  text-shadow: 0 0 3px #FFF177; }
+i.icon-digest-3 {  text-shadow: 0 0 3px #FF8D8D; }
+.icon-digest-1:before { content: "\f219";  color: #5BC0DE;} /* "\f0a5" */
+.icon-digest-2:before { content: "\f219";  color: #ECA541;}
+.icon-digest-3:before { content: "\f219"; color: #D53D38;}
+.icon-digest-3:afteer { content: "精"; color: #D53D38;}
+</style><style>
+/*
+.toggle_more {
+	max-height: 100px;
+}
+*/
+.update_log_list a.update_log_history, 
+.update_log_list a.update_log_delete {
+	display: none;
+}
+
+.update_log_list > li:hover {
+	background: var(--gray-300);
+}
+.update_log_list > li:hover > a.update_log_history, 
+.update_log_list > li:hover > a.update_log_delete {
+	display: inline-block;
+}
+
+</style><style>
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family:"SF Pro SC","SF Pro Text","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #656D78;
+  background-color: #f7f7f7;
+  font-weight: 400;
+}
+
+a {
+  color: #1a1d20;
+  text-decoration: none;
+  transition:.2s;
+}
+
+a:hover {
+  color: #31C177;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: #1a1d20;
+}
+
+.container {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+
+
+/**  头部 **/
+
+.logo-2 {
+  width: auto;
+  height: 24px;
+}
+
+.bg-dark {
+  background: #fff !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.navbar-dark .navbar-brand {
+  color: #1a1d20;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background: url(plugin/xn_theme_lioves/img/menu.svg) no-repeat;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #1a1d20;
+}
+
+.card-header-tabs > .nav-item > .nav-link:hover:not(.active) {
+    border: 1px solid rgba(255,255,255,0);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: #31C177;
+}
+
+.navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+  color: #31C177 !important;
+}
+
+/**  头部 end **/
+
+
+.card {
+  background: #fff;
+  border:none;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+}
+
+.card > .card-header {
+  color: #1a1d20;
+  font-size: 14px;
+  border-bottom: 1px solid #f7f7f7;
+  background: #fff;
+}
+
+.card-header-tabs > .nav-item > .nav-link {
+  padding: 0 10px 10px 10px;
+}
+
+.card-header-tabs > .nav-item > .nav-link.active {
+  background: #fff;
+  border-color: #fff;
+  border-bottom-color: #31C177;
+  color: #31C177;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.thread, .post {
+  padding: 0px 0 20px;
+  border-color: #f7f7f7;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: #fff;
+    border-top: 1px solid #f7f7f7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+.aside .btn {
+  padding: 10px;
+}
+
+
+.breadcrumb {
+  background: #fff !important;
+  border:none;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+}
+
+
+.avatar-3 {
+  border-radius: 3px;
+}
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #31C177;
+  border-color: #31C177;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #33CC7D;
+  border-color: #33CC7D;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #2DB36D;
+  border-color: #2DB36D;
+}
+
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #33CC7D;
+    border-color: #33CC7D;
+}
+
+
+
+@media (min-width: 576px) {
+  #body {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  #body {
+    padding-top: 10px;
+  }
+
+
+  #body > .container > .row > div {
+      padding: 0;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+
+</style>
+	
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left,
+:root .container > .ads:first-child
+{ display: none !important; }</style><link type="text/css" rel="stylesheet" href="./手把手教你创建magento2主题_files/default.min.css"><script src="./手把手教你创建magento2主题_files/push.js.下载"></script><script src="./手把手教你创建magento2主题_files/hm.js.下载"></script><script type="text/javascript" async="" src="./手把手教你创建magento2主题_files/highlight.min.js.下载"></script><link rel="stylesheet" type="text/css" href="./手把手教你创建magento2主题_files/syntax.css"><script src="./手把手教你创建magento2主题_files/syntax.js.下载"></script></head>
+
+<body>
+	
+	<script src="./手把手教你创建magento2主题_files/push.js.下载"></script><script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+	
+	
+	<!-- 
+		轻论坛导航：默认头部
+		Bootstrap 4.0 推荐的 PC/Mobile 公共写法 
+		优点：公用性强
+		缺点：结构稍微有点复杂
+	-->
+	
+	
+	<header class="navbar navbar-expand-lg navbar-dark bg-dark" id="header">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbar_collapse" aria-expanded="false" aria-label="展开菜单">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			
+			
+			<a class="navbar-brand text-truncate" href="http://bbs.mallol.cn/?forum-6.htm">
+				<img src="./手把手教你创建magento2主题_files/logo.png" class="logo-2">
+									<span class="hidden-lg">主题</span>
+							</a>
+			
+			
+			
+							<a class="navbar-brand hidden-lg" href="http://bbs.mallol.cn/?user-login.htm" aria-label="登录"> <i class="icon-user icon"></i></a>
+						
+			
+			
+			<div class="collapse navbar-collapse" id="nav">
+				<!-- 左侧：版块 -->
+				<ul class="navbar-nav mr-auto">
+					
+					<li class="nav-item home" fid="0" data-active="fid-0"><a class="nav-link" href="http://bbs.mallol.cn/"><i class="icon-home d-md-none"></i> 首页</a></li>
+								
+							
+													
+									
+					<li class="nav-item" fid="1" data-active="fid-1">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-1.htm"><i class="icon-circle-o d-md-none"></i> 动态</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="2" data-active="fid-2">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-2.htm"><i class="icon-circle-o d-md-none"></i> 求助</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="9" data-active="fid-9">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-9.htm"><i class="icon-circle-o d-md-none"></i> 插件</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="7" data-active="fid-7">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-7.htm"><i class="icon-circle-o d-md-none"></i> 开发</a>
+					</li>
+					
+													
+									
+					<li class="nav-item active" fid="6" data-active="fid-6">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-6.htm"><i class="icon-circle-o d-md-none"></i> 主题</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="5" data-active="fid-5">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-5.htm"><i class="icon-circle-o d-md-none"></i> 生活</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="11" data-active="fid-11">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-11.htm"><i class="icon-circle-o d-md-none"></i> FAQ</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="4" data-active="fid-4">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-4.htm"><i class="icon-circle-o d-md-none"></i> 酷工作</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="3" data-active="fid-3">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-3.htm"><i class="icon-circle-o d-md-none"></i> 资源</a>
+					</li>
+					
+													
+									
+					<li class="nav-item" fid="13" data-active="fid-13">
+						<a class="nav-link" href="http://bbs.mallol.cn/?forum-13.htm"><i class="icon-circle-o d-md-none"></i> 公告</a>
+					</li>
+					
+													
+											
+				</ul>
+				<!-- 右侧：用户 -->
+				<ul class="navbar-nav">
+								<li class="nav-item hidden-lg">
+	<a class="nav-link" href="http://bbs.mallol.cn/?search.htm"><i class="icon-search"></i> 搜索</a>
+</li>
+									<li class="nav-item"><a class="nav-link" href="http://bbs.mallol.cn/?user-login.htm"><i class="icon-user"></i> 登录</a></li>
+					<!--<li class="nav-item"><a class="nav-link" href="?user-create.htm">注册</a></li>-->
+									
+				</ul>
+			</div>
+		</div>
+	</header>
+	
+	<main id="body">
+		<div class="container">
+	
+		
+
+
+<div class="row">
+	<div class="col-lg-9 main">
+		
+				<ol class="breadcrumb d-none d-md-flex">
+			<li class="breadcrumb-item"><a href="http://bbs.mallol.cn/" aria-label="首页"><i class="icon-home"></i></a></li>
+			<li class="breadcrumb-item"><a href="http://bbs.mallol.cn/?forum-6.htm">主题</a></li>
+			<li class="breadcrumb-item active"><a href="http://bbs.mallol.cn/?thread-111.htm" title="首页返回主题第一页">手把手教你创建magento2主题</a></li>
+			
+		</ol>
+				
+		
+		<div class="card card-thread">
+			<div class="card-body">
+				<div class="media">
+					<a href="http://bbs.mallol.cn/?user-1.htm" tabindex="-1">
+						<img class="avatar-3 mr-3" src="./手把手教你创建magento2主题_files/1.png">
+					</a>
+					<div class="media-body">
+						
+						<h4 class="break-all">
+							
+							手把手教你创建magento2主题							
+			<i class="icon-digest-1" aria-hidden="true" title="一级精华"></i>
+							
+												</h4>
+						
+						<div class="d-flex justify-content-between small">
+							<div>
+								
+								<span class="username">
+									<a href="http://bbs.mallol.cn/?user-1.htm" class="text-muted font-weight-bold">admin</a>
+								</span>
+								<span class="date text-grey ml-2">26天前</span>
+								<span class="text-grey ml-2"><i class="icon-eye"></i> 166</span>
+								
+							</div>
+							<div>
+								
+																
+																
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="message break-all" isfirst="1">
+								
+					
+					<p>m2相较m1有很多改进，所以m2不兼容m1的主题做法。<br>
+m2前端主要的改进有：</p>
+
+<ul><li>对HTML5和CSS3的全面支持;</li>
+<li>内置的LESS预处理器;</li>
+<li>用RequireJS的异步模块上传 (无需手动添加代码）</li>
+<li>使用jQuery/jQuery UI 代替Prototype library;</li>
+<li>使用 MagentoUI library (它包括所有必要的组件，用来展现简单灵活的用户界面)。</li></ul>
+
+<p>至于新主题的开发，Magento 2为其脚本和代码定义了新的模块结构。目前所有的静态CSS、js和图像文件存储在特定的网站主题文件夹中。skin文件夹已经从Magento的根目录删除。视图文件夹被引入用来存放布局和文件，这为了某个特定的模块提供了MVC访问。</p>
+
+<h2>主题目录的创建</h2>
+<p>Magento 2主题存储在目录 &lt;M2根目录&gt;/app/design/frontend下面。首先，你应该创建供应商文件夹（在Magento 1是这种叫法），然后为你自己的主题创建一个新文件夹。</p>
+
+<p>举个例子: 主题目录为&lt;M2 root directory&gt;/app/design/frontend/Zou/simple.  此例中，Zou是供应商，simple是主题代码。在代码部分，你可以使用任意字母和数字的组合。</p>
+
+<p>上述目录创建后, 你需要声明主题，在后台激活它。</p>
+
+<h2>申明和注册</h2>
+<p>为了让Magento 2 ‘看到’新创建的主题,你需要创建以下文件: &lt;Magento 2 root directory&gt;/app/design/frontend/&lt;vendor&gt;/&lt;theme codename&gt;/theme.xml，代码包含如下:</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">theme</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"urn:magento:framework:Config/etc/theme.xsd"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>simple<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>Magento/blank<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">media</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">preview_image</span>&gt;</span>media/simple.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">preview_image</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">media</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">theme</span>&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>在&lt;title&gt;标签中包含了主题名称；父主题在&lt;parent&gt;标签里。(所有未找到的，静态文件和布局文件将从父主题获取。) 在本例中，你可以看到&lt;parent&gt;中显示的是blank，作为一个基本的主题，它没有父主题。然而，继承层次的数量在Magento 2是没有限制的，这比Magento 1要有用的多。</p>
+
+<p>在&lt;preview_image&gt; 标签中，你可以选择并设置主题预览。它将显示在管理部分。为了在系统中注册主题，你需要在根目录下创建 registration.php文件，如下所示：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::THEME,
+    <span class="hljs-string">'frontend/Zou/simple'</span>,
+    <span class="hljs-keyword">__DIR__</span>
+);</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>创建composer.json文件不是必要的，但是你可以将其作为composer包用来分享主题。示例如下:</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs json">{
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Zou/simple"</span>,
+    <span class="hljs-attr">"description"</span>: <span class="hljs-string">"N/A"</span>,
+    <span class="hljs-attr">"require"</span>: {
+        <span class="hljs-attr">"php"</span>: <span class="hljs-string">"~5.5.0|~5.6.0|~7.0.0"</span>,
+        <span class="hljs-attr">"magento/framework"</span>: <span class="hljs-string">"100.0.*"</span>
+    },
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"magento2-theme"</span>,
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"100.0.1"</span>,
+    <span class="hljs-attr">"license"</span>: [
+        <span class="hljs-string">"OSL-3.0"</span>,
+        <span class="hljs-string">"AFL-3.0"</span>
+    ],
+    <span class="hljs-attr">"autoload"</span>: {
+        <span class="hljs-attr">"files"</span>: [
+            <span class="hljs-string">"registration.php"</span>
+        ]
+    }
+}</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<h2>静态文件的目录创建</h2>
+<p>为了储存样式、javascript代码、图像以及字体，你应当在主题的根目录下创建web文件夹。需要如下的结构：<br>
+app/design/frontend/Zou/simple/</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs bash">├── web/
+│ ├── css/
+│ │ ├── <span class="hljs-built_in">source</span>/
+│ ├── fonts/
+│ ├── images/
+│ ├── js/</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>所有这些文件夹不都是至关重要的。在images文件夹存储了所有的静态文件。你还可以将 logo.svg（默认名）加入此文件夹，重新定义主题logo。</p>
+
+<p>基于空白父主题的特性，你可以在css/source文件夹中创建 _theme.less文件重新定义Magento UI的基本变量。然后，在&lt;magento-root&gt;/lib/web/css/source/lib/variables/文件夹里</p>
+
+<h2>图像配置</h2>
+<p>你创建的主题必须包括view.xml文件（如果没有在父主题中声明），它存储了产品图像所有有必要信息，如产品图像，宽度、高度、背景色、透明度等等。你可以使用元素的ID属性、类型进行赋值。下面将演示是如何做到的：</p>
+
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">images</span> <span class="hljs-attr">module</span>=<span class="hljs-string">"Magento_Catalog"</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;<span class="hljs-name">images</span>/&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>例如，使用上述过程，你可以很轻松的更改您的目录图表中的图像大小（如下所示）。</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"urn:magento:framework:Config/etc/view.xsd"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">media</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">images</span> <span class="hljs-attr">module</span>=<span class="hljs-string">"Magento_Catalog"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"category_page_grid"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"small_image"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">width</span>&gt;</span>200<span class="hljs-tag">&lt;/<span class="hljs-name">width</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">height</span>&gt;</span>200<span class="hljs-tag">&lt;/<span class="hljs-name">height</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">media</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>在这个主题中，Category_page_grid ID是唯一的。Small_image类型对应于管理员这边的Small Image Role。可以用作图像类型值的有：image, small_image, swatch_image, swatch_thumb以及thumbnail。</p>
+
+<p><img src="./手把手教你创建magento2主题_files/1-ZMOwrCcMZOfCCL3T.png" title="" alt="image http://bbs.mallol.cn/assets/images/1-ZMOwrCcMZOfCCL3T.png"></p>
+
+<p>当产品保存时，所有图像都缓存起来。当你改变图像大小时，你可以执行命令 &lt;magento install dir&gt;/bin/magento catalog:images:resize生成图像。最终我们将得到以下结构：</p>
+
+
+<h2>后台主题激活</h2>
+<p>当主题已经在文件系统创建好后，你可以在设置中激活它。要这么做的话，你只需遵循Content &gt; Design &gt; Themes的路径，检查主题是否在列表中。</p>
+
+<p>然后，进入CONTENT &gt; Design &gt; Configuration，点击编辑一个选择的store或者website。选择我们的主题（应用主题），然后点击保存。</p>
+
+<p>为了防止缓存作用，当主题被应用时请刷新页面。要刷新缓存，到System &gt; Cache Management，更新所有无效的缓存类型。</p>
+
+<p>最终，我们得到可靠的magento/blank主题，带有不同的logo以及调整过大小的图像。</p>
+
+<p><img src="./手把手教你创建magento2主题_files/1-aogFJUhmhTTzQflf.png" title="" alt="image http://bbs.mallol.cn/assets/images/1-aogFJUhmhTTzQflf.png"></p>
+
+<h2>使用LESS编辑主题风格</h2>
+<p>当你创建主题后，你可以修改下风格以改变网站的页面视觉。要改变风格，你可以使用Magento 2中两个LESS预处理类型中的一个：</p>
+
+  <ul><li>服务端预编译LESS;</li>
+  <li>使用less.js的客户端预编译LESS</li></ul>
+
+<p>客户端编译经常使用在开发模式中，因为所有改动和编译都可以立刻可视化：每次当你在看样式文件的时候，浏览器开始编译这些文件。与此同时，当服务端在编译的时候，你需要手动删除pub/static和 var/view_preprocessed文件夹。然而你可以使用Grunt task runner优化流程，它可以跟踪有关文件的每一动作，‘清除’所选文件夹，自动编译较少的文件。<br>
+要改变编译类型，需要进入控制面板: Stores &gt; Configuration &gt; Advanced &gt; Developer &gt; Front-end development workflow &gt; Workflow.</p>
+
+<p><img src="./手把手教你创建magento2主题_files/1-n4Fw0g5Zy8LdL3Rd.jpeg" title="" alt="image http://bbs.mallol.cn/assets/images/1-n4Fw0g5Zy8LdL3Rd.jpeg"></p>
+
+<p>我们的例子相当简单，我们将使用服务端编译 (默认设置的).</p>
+
+<p>在主题web/css下的 _theme.less 文件设置背景颜色和字体:</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs coffeescript">@page__background-color: <span class="hljs-comment">#484848;</span>
+@text__color: <span class="hljs-comment">#fff;</span>
+@font-family__base: <span class="hljs-string">'Arial'</span>, sans-serif;</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>在你删除 /pub/static/frontend/Zou/simple/en_US和var/view_preprocessed目录下的内容后，你会发现你网站的视觉效果已经变化了。</p>
+
+<p><img src="./手把手教你创建magento2主题_files/1-1MuQ1E9ui1qNsizP.png" title="" alt="image http://bbs.mallol.cn/assets/images/1-1MuQ1E9ui1qNsizP.png"></p>
+
+<h2>使用Magento 2 布局主题</h2>
+<p>Magento 2使您能够扩展和重写这个或那个主题布局。你不需要从父主题复制页面相关的或通用的布局，只需要参考主题文件夹中的选定布局，如下所示：</p>
+
+<p>Magento 2能让你对主题进行扩展和覆盖。</p>
+
+<p>&lt;theme_dir&gt;<br>
+ |<strong>/&lt;Namespace&gt;_&lt;Module&gt;<br>
+   |</strong>/layout<br>
+     |--&lt;layout1&gt;.xml<br>
+     |--&lt;layout2&gt;.xml</p>
+
+<p>举个例子，要扩展存储在 &lt;сatalog_module_dir&gt;/view/frontend/layout/catalog_category_view.xml Catalog模块的lcatalog_category_view布局，你需要创建以下route文件：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs javascript">&lt;theme_dir&gt;<span class="hljs-regexp">/Magento_Catalog/</span>layout/catalog_category_view.xml.</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>要从布局中删除任意部分（比如，类别描述)，你可以按下面的代码进行操作：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">page</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>        <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"urn:magento:framework:View/Layout/etc/page_configuration.xsd"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">referenceBlock</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"category.description"</span> <span class="hljs-attr">remove</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">page</span>&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>然而，布局扩展不能用于任何定制化任务。如果你需要定制很多东西，最好重写布局。也就是说创建并使用一个新文件要比使用父主题</p>
+
+  <ul><li>请求一个方法，“支配”父布局的另一个方法;</li>
+  <li>需更改方法的参数数目;</li>
+  <li>使用remove属性取消对block/container操作的delete命令;</li>
+  <li>为blocks/containers添加XML属性;</li>
+  <li>需删除参数块;</li>
+  <li>用 ‘blank’ layout handle重写布局文件来删除layout handles</li>
+  <li>需修改layout handles的激活.</li></ul>
+
+<p>在模块主题文件夹，创建override/base文件夹来覆盖基本布局，如下所示：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">theme_dir</span>&gt;</span>
+  |__/<span class="hljs-tag">&lt;<span class="hljs-name">Namespace_Module</span>&gt;</span>
+    |__/layout
+      |__/override
+         |__/base
+           |--<span class="hljs-tag">&lt;<span class="hljs-name">layout1</span>&gt;</span>.xml
+           |--<span class="hljs-tag">&lt;<span class="hljs-name">layout2</span>&gt;</span>.xml</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<p>以下这些文件可以覆盖布局:</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">module_dir</span>&gt;</span>/view/frontend/layout/<span class="hljs-tag">&lt;<span class="hljs-name">layout1</span>&gt;</span>.xml
+<span class="hljs-tag">&lt;<span class="hljs-name">module_dir</span>&gt;</span>/view/frontend/layout/<span class="hljs-tag">&lt;<span class="hljs-name">layout2</span>&gt;</span>.xml</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>此外，你可以通过在模块的主题文件夹中创建重写/主题文件夹来覆盖父主题的布局：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">theme_dir</span>&gt;</span>
+  |__/<span class="hljs-tag">&lt;<span class="hljs-name">Namespace_Module</span>&gt;</span>
+    |__/layout
+      |__/override
+         |__/theme
+            |__/<span class="hljs-tag">&lt;<span class="hljs-name">Parent_Vendor</span>&gt;</span>
+               |__/<span class="hljs-tag">&lt;<span class="hljs-name">parent_theme</span>&gt;</span>
+                  |--<span class="hljs-tag">&lt;<span class="hljs-name">layout1</span>&gt;</span>.xml
+                  |--<span class="hljs-tag">&lt;<span class="hljs-name">layout2</span>&gt;</span>.xml</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>以下路径的这些文件可以覆盖布局：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent_theme_dir</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">Namespace</span>&gt;</span>_<span class="hljs-tag">&lt;<span class="hljs-name">Module</span>&gt;</span>/layout/<span class="hljs-tag">&lt;<span class="hljs-name">layout1</span>&gt;</span>.xml
+<span class="hljs-tag">&lt;<span class="hljs-name">parent_theme_dir</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">Namespace</span>&gt;</span>_<span class="hljs-tag">&lt;<span class="hljs-name">Module</span>&gt;</span>/layout/<span class="hljs-tag">&lt;<span class="hljs-name">layout1</span>&gt;</span>.xml</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<h2>主题模板</h2>
+<p>Magento 2 主题不仅能让你覆盖布局模块还包括模板。要覆盖模块模板</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs javascript">&lt;module_dir&gt;<span class="hljs-regexp">/view/</span>frontend/templates/<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">path_to_templates</span>&gt;</span></span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>在主题模块文件夹创建新的文件夹模板：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">theme_dir</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">Namespace</span>&gt;</span>_<span class="hljs-tag">&lt;<span class="hljs-name">Module</span>&gt;</span>/templates/<span class="hljs-tag">&lt;<span class="hljs-name">path_to_templates</span>&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<p>让我们试着为一个cart文件(Zou/simple/Magento_Checkout/templates/cart/minicart.html)添加文本信息。文本信息需要与cart中产品的数量相关。 本文提供的例子如下所示：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-block</span>=<span class="hljs-string">"minicart"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"minicart-wrapper"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"action showcart"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php /* @escapeNotVerified */ echo $block-&gt;getShoppingCartUrl(); ?&gt;"</span>
+
+       <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"scope: 'minicart_content'"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cart-title hidden-xs"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">/* <span class="hljs-doctag">@escapeNotVerified</span> */</span> <span class="hljs-keyword">echo</span> __(<span class="hljs-string">'Shopping cart'</span>); <span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"counter total-qty empty"</span>
+
+              <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"css: { empty: cart().summary_count == 0 }, blockLoader: isLoading"</span>&gt;</span>
+        <span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">/* <span class="hljs-doctag">@escapeNotVerified</span> */</span> <span class="hljs-keyword">echo</span> __(<span class="hljs-string">'Products count:'</span>); <span class="hljs-meta">?&gt;</span></span>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"counter-number"</span>&gt;</span><span class="hljs-comment">&lt;!-- ko text: cart().summary_count --&gt;</span><span class="hljs-comment">&lt;!-- /ko --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"counter-label"</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- ko if: cart().summary_count --&gt;</span>
+                <span class="hljs-comment">&lt;!-- ko text: cart().summary_count --&gt;</span><span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+                <span class="hljs-comment">&lt;!-- ko i18n: 'items' --&gt;</span><span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+            <span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span> ($block-&gt;getIsNeedToDisplaySideBar()): <span class="hljs-meta">?&gt;</span></span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"block block-minicart empty"</span>
+
+             <span class="hljs-attr">data-role</span>=<span class="hljs-string">"dropdownDialog"</span>
+
+             <span class="hljs-attr">data-mage-init</span>=<span class="hljs-string">'{"dropdownDialog":{
+                "appendTo":"[data-block=minicart]",                "triggerTarget":".showcart",
+                "timeout": "2000",                "closeOnMouseLeave": false,
+                "closeOnEscape": true,                "triggerClass":"active",
+                "parentClass":"active",        "buttons":[]}}'</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"minicart-content-wrapper"</span> <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"scope: 'minicart_content'"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- ko template: getTemplate() --&gt;</span><span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endif</span> <span class="hljs-meta">?&gt;</span></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-built_in">window</span>.checkout = <span class="xml"><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">/* <span class="hljs-doctag">@escapeNotVerified</span> */</span> <span class="hljs-keyword">echo</span> \Zend_Json::encode($block-&gt;getConfig()); <span class="hljs-meta">?&gt;</span></span>;
+    </span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/x-magento-init"</span>&gt;</span><span class="javascript">
+    {
+        <span class="hljs-string">"[data-block='minicart']"</span>: {
+            <span class="hljs-string">"Magento_Ui/js/core/app"</span>: <span class="xml"><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">/* <span class="hljs-doctag">@escapeNotVerified</span> */</span> <span class="hljs-keyword">echo</span> $block-&gt;getJsLayout();<span class="hljs-meta">?&gt;</span></span>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">/* <span class="hljs-doctag">@escapeNotVerified</span> */</span> <span class="hljs-keyword">echo</span> $block-&gt;getViewFileUrl(<span class="hljs-string">'images/loader-1.gif'</span>); <span class="hljs-meta">?&gt;</span></span>"
+        }
+    }
+    </span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+
+<h2>主题本土化</h2>
+<p>主题本土化可以通过一系列的词汇来完成。在如下目录搜寻词汇：:</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs coffeescript">&lt;parent_theme_dir&gt;<span class="hljs-regexp">/i18n/</span> (查看所有父主题)
+&lt;current_theme_dir&gt;<span class="hljs-regexp">/i18n/</span></code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<p>I18n文件夹可以存储在每个模块或者应用程序的全局文件夹内。在搜索栏中翻译会优先考虑主题文件夹中的词汇。</p>
+
+<p>要在主题文件夹中生成带有翻译的文件，你可以使用I18N工具。你也可以在Magento 2根目录下输入以下命令：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs nginx"><span class="hljs-attribute">php</span> bin/magento i18n:collect-phrases --output=<span class="hljs-string">"app/design/frontend/Singree/walkbeyond/i18n/en_US.csv"</span> app/design/frontend/Singree/walkbeyond</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+
+<p>这些命令将所有字符串收集到一个词汇表中。文件如下所示：</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs">app/design/frontend/OrangeCo/orange/i18n/en_US.csv</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>你可以用任何表格编辑器打开 (比如Excel) ，并在正确的列中为每个词语改变翻译值。在主题已经应用后，你可以看到翻译好的字符串。</p>
+
+<h2>删除主题</h2>
+<p>如果你的主题是Composer包，你可以用以下命令将主题从root目录删除</p>
+<pre data-s9e-livepreview-postprocess="if(&#39;undefined&#39;!==typeof hljs)hljs._hb(this)"><code class="hljs nginx"><span class="hljs-attribute">php</span> bin/magento theme:uninstall [-c|--clear-static-content] {<span class="hljs-attribute">theme</span> path} ... {<span class="hljs-attribute">theme</span> path}</code></pre><script>if("undefined"!==typeof hljs)hljs._ha();else if("undefined"===typeof hljsLoading){hljsLoading=1;var a=document.getElementsByTagName("head")[0],e=document.createElement("link");e.type="text/css";e.rel="stylesheet";e.href="//cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css";a.appendChild(e);e=document.createElement("script");e.type="text/javascript";e.onload=function(){var d={},f=0;hljs._hb=function(b){b.removeAttribute("data-hljs");var c=b.innerHTML;c in d?b.innerHTML=d[c]:(7<++f&&(d={},f=0),hljs.highlightBlock(b.firstChild),d[c]=b.innerHTML)};hljs._ha=function(){for(var b=document.querySelectorAll("pre[data-hljs]"),c=b.length;0<c;)hljs._hb(b.item(--c))};hljs._ha()};e.async=!0;e.src="//cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js";a.appendChild(e)}</script>
+<p>{theme path}是到主题文件夹最近的路径，本例中{theme path}为frontend/Zou/simple。</p>
+
+<p>--clear-static-content 删除不需要自动生成的静态文件 如css, js, images。<br>
+如果你的你主题不是Composer包，你必须执行以下操作删除主题。</p>
+
+  <ul><li>删除主题文件夹app/design/frontend/&lt;Vendor&gt;/；</li>
+  <li>删除 var/view_preprocessed/ 目录下的内容；</li>
+  <li>删除 pub/static/frontend 目录下的内容/；</li>
+  <li>开启Magento 2数据库，找到theme表，删除主题名字的字符串；</li>
+  <li>使用 php bin/magento cache:flush命令刷新并删除缓存.</li></ul>
+
+<h2>总结</h2>
+<p>本文中谈论了有关使用Magento 2创建主题的主要部分，描述了怎么创建目录和文件（主题、图像、预览）结构。此外本文还触及了怎样覆盖给定主题的样式、模板和布局的流程；提及了怎么样使用在线词汇翻译网站。</p>
+
+<p>创建主题的文件夹列表如下所示：</p>
+
+  <ul><li>/&lt;Vendor&gt;_&lt;Module&gt; (非必须的; 对给定模块存储样式、模板和布局)</li>
+  <li>/&lt;Vendor&gt;_&lt;Module&gt;/web/css/source (非必须的; 存储特定模块: .ccs以及.less文件)</li>
+  <li>/&lt;Vendor&gt;_&lt;Module&gt;/layout (非必须的; 存储主要扩展包或父主题布局)</li>
+  <li>/&lt;Vendor&gt;_&lt;Module&gt;/layout/override/base (非必须的;存储主主题的覆盖布局)</li>
+  <li>/&lt;Vendor&gt;_&lt;Module&gt;/layout/override/&lt;parent_theme&gt; (非必须的; 为父主题存储覆盖布局)</li>
+  <li>/&lt;Vendor&gt;_&lt;Module&gt;/templates (非必须的; 存储模板可以覆盖主模块模板或父模板)</li>
+  <li>/etc/view.xml (如果主题没有声明是必须的; 存储图像配置信息)</li>
+  <li>/i18n (非必须的; 存储翻译词汇.csv的文件)</li>
+  <li>/media (非必须的; 存储预览)</li>
+  <li>/web (非必须的; 可以从前端上传的静态文件)</li>
+  <li>/web/css/source (非必须的; 存储Magento UI库的全局元素以及覆盖默认变量值 _theme.less文件)</li>
+  <li>/web/fonts (非必须的; 储存主题字体)</li>
+  <li>/web/images (非必须的;储存主题图像)</li>
+  <li>/web/js (非必须的; 储存javascript文件)</li>
+  <li>/composer.json (非必须的; 描述主题变量和元数据)</li>
+  <li>/registration.php (必须的; 用来注册主题)</li>
+  <li>/theme.xml (非必须的; 存储主题的基本数据和元数据; 使用它以防主题被声明为一个系统组件)</li></ul>
+
+
+<h2>主题demo源码下载</h2>
+<p><a href="https://github.com/zouhongzhao/magento2-extension-demo.git" target="_blank" rel="nofollow noreferrer">https://github.com/zouhongzhao/magento2-extension-demo.git</a></p>					
+
+					
+										
+					
+								</div>
+
+				
+				<div class="plugin d-flex justify-content-center mt-3">
+							
+		<div class="haya-post-like px-2">
+			<span class="btn-group" role="group">
+									<button class="btn btn-outline-secondary js-haya-post-like-thread-tip" data-pid="111" title="点赞本帖">
+						<i class="icon icon-thumbs-o-up" aria-label="点赞本帖"></i>
+						<span class="haya-post-like-thread-btn">点赞</span>
+					</button>
+				
+				<button class="btn btn-outline-secondary" title="点赞数量" data-tid="111">
+					<span class="haya-post-like-thread-user-count">0</span>
+				</button>
+			</span>
+		</div>
+	
+
+				</div>
+				
+
+			</div>
+		</div>
+		
+		
+	
+		
+		<div class="card card-postlist">
+			<div class="card-body">
+				<div class="card-title">
+					<div class="d-flex justify-content-between">
+						<div>
+							<b>最新回复</b> (<span class="posts">0</span>)
+						</div>
+						
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<ul class="list-unstyled postlist">
+													
+
+								
+									
+												
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="d-none threadlist"><input type="checkbox" name="modtid" value="111" checked=""></div>
+				
+				
+		
+		
+		<a role="button" class="btn btn-secondary btn-block xn-back col-lg-6 mx-auto mb-3" href="javascript:history.back();">返回</a>
+		
+	</div>
+	<div class="col-lg-3 d-none d-lg-block aside">
+	
+		<a role="button" class="btn btn-primary btn-block mb-3" href="http://bbs.mallol.cn/?thread-create-6.htm">发新帖</a>
+		
+		<div class="card card-user-info">
+			<div class="m-3 text-center">
+				<a href="http://bbs.mallol.cn/?user-1.htm" tabindex="-1">
+					<img class="avatar-5" src="./手把手教你创建magento2主题_files/1.png">
+				</a>
+				<h5><a href="http://bbs.mallol.cn/?user-1.htm">admin</a></h5>
+				
+			</div>
+			<div class="card-footer p-2">
+				<table class="w-100 small">
+					<tbody><tr align="center">
+						<td>
+							<span class="text-muted">主题数</span><br>
+							<b>19</b>
+						</td>
+						
+						<td>
+							<span class="text-muted">帖子数</span><br>
+							<b>1</b>
+						</td>
+												<td>
+							<span class="text-muted">精华数</span><br>
+							<b>7</b>
+						</td>
+						<td>
+							<span class="text-muted">注册排名</span><br>
+							<b>1</b>
+						</td>
+						
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+		
+		<div class="form-group">
+	<form action="http://bbs.mallol.cn/?search.htm" id="search_form">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="关键词" name="keyword">
+			<div class="input-group-append">
+				<button class="btn btn-primary" type="submit">搜索</button>
+			</div>
+		</div>
+	</form>
+</div>				<div class="card">
+			<div class="card-body">
+				<h6 class="card-title">作者最近主题：</h6>
+				<ul class="small break-all">
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-150.htm">
+							M2开启前台模版调试路径						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-149.htm">
+							Magento2 BuyNow立即购买插件						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-148.htm">
+							M2开发中的调试方法						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-147.htm">
+							magento2配置cron计划任务						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-146.htm">
+							M2 禁用修改管理员密码(It’s time to change your password)						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-145.htm">
+							Magento2开发人员认证考试						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-144.htm">
+							m2获取国家列表(country list)/通过国家code得到name						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-143.htm">
+							HandArt – Magento2 手工艺品商城主题						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-142.htm">
+							Thebell – 多用途响应 Magento2主题						</a>
+					</li>
+										<li class="line-height-2">
+						<a href="http://bbs.mallol.cn/?thread-141.htm">
+							[高高手]造像之术-Photoshop商业人像精修_附课程配套资源_价值780元						</a>
+					</li>
+									</ul>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+				
+					
+				
+		</div>
+	</main>
+	
+	
+	
+	<footer class="text-muted small bg-dark py-4 mt-3" id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				
+				Powered by <a href="http://bbs.xiuno.com/" target="_blank" class="text-muted"><b>Xiuno BBS <span>4.0.4</span></b></a>
+							</div>
+			<div class="col text-right">
+				
+				Processed: <b>0.013</b>, SQL: <b>18</b>
+							</div>
+		</div>
+	</div>
+</footer>	
+	
+	
+	<!--[if ltg IE 9]>
+	<script>window.location = '?browser.htm';</script>
+	<![endif]-->
+	
+	
+	
+			<script src="./手把手教你创建magento2主题_files/bbs.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/jquery-3.1.0.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/popper.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/bootstrap.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/xiuno.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/bootstrap-plugin.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/async.js.下载"></script>
+	<script src="./手把手教你创建magento2主题_files/form.js.下载"></script>
+	<script>
+	var debug = DEBUG = 1;
+	var url_rewrite_on = 0;
+	var forumarr = {
+    "1": "动态",
+    "2": "求助",
+    "9": "插件",
+    "7": "开发",
+    "6": "主题",
+    "5": "生活",
+    "11": "FAQ",
+    "4": "酷工作",
+    "3": "资源",
+    "13": "公告",
+    "10": "翻译",
+    "12": "需求",
+    "16": "意见反馈",
+    "15": "UX"
+};
+	var fid = 6;
+	var uid = 0;
+	var gid = 0;
+	xn.options.water_image_url = 'view/img/water-small.png';	// 水印图片 / watermark image
+	</script>
+	<script src="./手把手教你创建magento2主题_files/bbs.js(1).下载"></script>
+	<script>
+// 版主管理：精华
+/*
+$('.mod-button button.digest').on('click', function() {
+	var modtid = $('input[name="modtid"]').checked();
+	if(modtid.length == 0) return $.alert(lang.please_choose_thread);
+	var radios = xn.form_radio('digest', {"0": "取消精华", "1": "一级精华","2": "二级精华", "3": "三级精华"});
+	$.confirm("设置主题为精华", function() {
+		var tids = xn.implode('_', modtid);
+		var digest = $('input[name="digest"]').checked();
+		var postdata = {digest: digest};
+		$.xpost(xn.url('mod-digest-'+tids), postdata, function(code, message) {
+			if(code != 0) return $.alert(message);
+			$.alert(message).delay(1000).location('');
+		});
+	}, {'body': '<p>'+"精华等级"+'：'+radios+'</p>'});
+})*/
+</script><script>
+function xn_read_unread(tids, tid) {
+	
+	// 当前时间
+	var time = xn.time();
+	
+	// 多长时间内的主题为最新主题
+	var time_range = 86400 * 3;
+	
+	// 三天内的 tids
+	var recent_tids = $.pdata('recent_tids') || {};
+	
+	// 已读的 tids
+	var view_tids = $.pdata('view_tids') || {};
+	// 提取列表页的 tid
+	function fetch_recent_tids(tids) {
+		var changed = false;
+		$.each(tids, function(tid, last_date) {
+			if(time - last_date < time_range) {
+				recent_tids[tid] = last_date;
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('recent_tids', recent_tids);
+	}
+	
+	// 清理最近的 tid
+	function gc_recent_tids() {
+		var changed = false;
+		$.each(recent_tids, function(tid, last_date) {
+			if(time - last_date > time_range) {
+				delete recent_tids[tid];
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('recent_tids', recent_tids);
+	}
+	
+	function gc_view_tids() {
+		var changed = false;
+		$.each(view_tids, function(tid, last_date) {
+			if(!recent_tids[tid]) {
+				delete view_tids[tid];
+				changed = true;
+			}
+		});
+		if(changed) $.pdata('view_tids', view_tids);
+	}
+	
+	function save_view_tid(tid) {
+		if(!recent_tids[tid]) return;
+		view_tids[tid] = time;
+		$.pdata('view_tids', view_tids);
+	}
+	
+	if(tids) {
+		fetch_recent_tids(tids);
+		gc_recent_tids();
+		//gc_view_tids();
+	}
+	if(tid) save_view_tid(tid);
+	
+	// 三天内的主题标记为已读
+	
+	// 遍历主题列表，标记最近的，并且未读的为加粗
+
+	$('.thread').each(function() {
+		var jthis = $(this);
+		var tid = jthis.attr('tid') || jthis.data('tid');
+		if(recent_tids[tid] && recent_tids[tid] > xn.intval(view_tids[tid])) {
+			jthis.find('.subject').addClass('font-weight-bold');
+		}
+	});
+}
+
+</script>
+	
+
+
+
+
+<div id="scroll_to_top" class="d-fixed" style="position: fixed; _position: absolute; bottom: 80px; right: 10px; width: 70px; height: 70px; display: none;">
+	<a href="javascript:void(0);" style="width: 70px; height: 70px; display: inline-block; background: url(plugin/xn_top/scroll_top.png) no-repeat; outline: none;" title="返回顶部"></a>
+</div>
+	
+<script>
+// 返回顶部
+var jscroll_to_top = $('#scroll_to_top');
+$(window).scroll(function() {
+	if ($(window).scrollTop() >= 500) {
+	   jscroll_to_top.fadeIn(300);
+	} else {
+		jscroll_to_top.fadeOut(300);
+	}
+});
+
+jscroll_to_top.on('click', function() {
+	$('html,body').animate({scrollTop: '0px' }, 100);
+});
+</script><!--Meta代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?56bd8566395632c59d89dca19e9233e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+<script>
+var jform = $('#quick_reply_form');
+var jsubmit = $('#submit');
+jform.on('submit', function() {
+	jform.reset();
+	jsubmit.button('loading');
+	var postdata = jform.serialize();
+	$.xpost(jform.attr('action'), postdata, function(code, message) {
+		if(code == 0) {
+			var s = '<ul>'+message+'</ul>';
+			var jli = $(s).find('li');
+			jli.insertBefore($('.postlist > .post').last());
+			jsubmit.button('reset');
+			$('#message').val('');
+			
+			// 楼层 +1
+			var jfloor = $('#newfloor');
+			jfloor.html(xn.intval(jfloor.html()) + 1);
+			
+			// 回复数 +1
+			var jposts = $('.posts');
+			jposts.html(xn.intval(jposts.html()) + 1);
+			
+		} else if(code < 0) {
+			$.alert(message);
+			jsubmit.button('reset');
+		} else {
+			jform.find('[name="'+code+'"]').alert(message).focus();
+			jsubmit.button('reset');
+		}
+	});
+	return false;
+});
+
+
+// 缩放图片，适应屏幕大小。
+function resize_image() {
+	var jmessagelist = $('div.message');
+	var first_width = jmessagelist.width(); // 815 : 746; //  734 746
+	jmessagelist.each(function() {
+		var jdiv = $(this);
+		var maxwidth = jdiv.attr('isfirst') ? first_width : jdiv.width(); //  734 746
+		var jmessage_width = Math.min(jdiv.width(), maxwidth);
+		jdiv.find('img, embed, iframe, video').each(function() {
+			var jimg = $(this);
+			var img_width = this.org_width;
+			var img_height = this.org_height;
+			if(!img_width) {
+				var img_width = jimg.attr('width');
+				var img_height = jimg.attr('height');
+				this.org_width = img_width;
+				this.org_height = img_height;
+			}
+			//var percent = xn.min(100, xn.ceil((img_width / jmessage_width) * 100));
+			if(img_width > jmessage_width) {
+				if(this.tagName == 'IMG') {
+					jimg.width(jmessage_width);
+					jimg.css('height', 'auto');
+					jimg.css('cursor', 'pointer');
+					jimg.on('click', function() {
+						//window.open(jimg.attr('src'));
+					});
+				} else {
+					jimg.width(jmessage_width);
+					var height = (img_height / img_width) * jimg.width();
+					jimg.height(height);
+				}
+			}
+		});
+	});
+}
+
+// 对于超宽的表格，加上响应式
+function resize_table() {
+	$('div.message').each(function() {
+		var jdiv = $(this);
+		jdiv.find('table').addClass('table').wrap('<div class="table-responsive"></div>'); 
+	});
+}
+
+$(function() {
+	resize_image();
+	resize_table();
+	$(window).on('resize', resize_image);
+});
+
+// 输入框自动伸缩
+
+var jmessage = $('#message');
+jmessage.on('focus', function() {if(jmessage.t) { clearTimeout(jmessage.t); jmessage.t = null; } jmessage.css('height', '8rem'); });
+jmessage.on('blur', function() {jmessage.t = setTimeout(function() { jmessage.css('height', '2.5rem');}, 1000); });
+
+$('li[data-active="fid-6"]').addClass('active');
+
+</script>
+
+<script>
+		$(document).on('click', '.js-haya-post-like-thread-tip', function() {
+		$.confirm('点赞提示', function() {
+			window.location = "?user-login.htm";
+		}, {'body': '登录后才可以点赞本帖！点击 <b class="text-primary">确定</b> 登录。'});		
+	});
+	
+		$(document).on('click', '.js-haya-post-like-post-tip', function() {	
+		$.confirm('点赞提示', function() {
+			window.location = "?user-login.htm";
+		}, {'body': '登录后才可以点赞该回复！点击 <b class="text-primary">确定</b> 登录。'});		
+	});
+	</script>
+<script>
+        $(function(){
+                // 消息：地址栏传参实现内页跳转[分页无效]
+                var notice_postid = window.location.hash.split("#")[1];
+                var notice_domid = $('.postlist .post[data-pid="'+notice_postid+'"]');
+                if(notice_domid.length > 0){
+                    notice_domid.addClass('current');//
+                    var scroll_offset = notice_domid.offset().top;
+                    $("html, body").animate({scrollTop:scroll_offset}, {duration:500, easing:"swing"});
+                    notice_domid.on('click', function(){
+                        $(this).removeClass('current');
+                    })
+                }
+        }); 
+</script><script>
+xn_read_unread({"111": "1523972514"}, 111);
+</script><script>
+jsearch_form = $('#search_form');
+jsearch_form.on('submit', function() {
+	var keyword = jsearch_form.find('input[name="keyword"]').val();
+	var url = xn.url('search-'+xn.urlencode(keyword));
+	window.location = url;
+	return false;
+});
+</script><script>
+// 语法高亮
+if($('div.message pre').length > 0) {
+	$.require_css('plugin/xn_syntax_hightlighter/syntax_hightlighter/syntax.css');
+	$.require('plugin/xn_syntax_hightlighter/syntax_hightlighter/syntax.js', function() {
+		SyntaxHighlighter.all();
+	});
+}
+</script></body><div style="display: block; opacity: 1;"></div></html>

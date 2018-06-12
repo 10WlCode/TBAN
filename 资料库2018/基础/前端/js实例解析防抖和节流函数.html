@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/ -->
+<html lang="zh-CN" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>实例解析防抖和节流函数 | bubkoo</title><meta name="author" content="bubkoo"><meta name="description" content="防抖（Debounce）和节流（Throttle）都是用来控制某个函数在一定时间内执行多少次的技巧，两者即相似又不同。
+我们无法直接控制 DOM 事件触发频率，但我们可以在事件绑定和函数执行之间加一个控制层，所以当我们绑定 DOM 事件的时候，加上防抖或节流的函数变得特别有用。"><meta name="viewport" content="width=device-width,initial-scale=1"><meta property="og:title" content="实例解析防抖和节流函数"><meta property="og:site_name" content="bubkoo"><link href="http://bubkoo.com/favicon.ico" rel="icon" type="image/x-ico"><link href="http://bubkoo.com/atom.xml" rel="alternate" title="bubkoo" type="application/atom+xml"><link href="./js实例解析防抖和节流函数_files/style.css" rel="stylesheet" type="text/css" charset="utf-8"><link href="./js实例解析防抖和节流函数_files/jquery.fancybox.css" rel="stylesheet" type="text/css" charset="utf-8"><!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--><script>__start__ = window.performance && performance.timing ? performance.timing.navigationStart : Date.now();</script><style type="text/css">.fancybox-margin{margin-right:17px;}</style><style type="text/css">:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style></head><body><header id="header" hoot="default" hoot-rate="1" class="inner"><div class="f-left"><a href="http://bubkoo.com/" class="site-title">bubkoo</a></div><nav class="f-right"><ul class="site-nav"><li><a href="http://bubkoo.com/">&lt;&gt;</a></li><li><a href="http://bubkoo.com/archives">Archives</a></li><li><a href="https://github.com/bubkoo">Github</a></li></ul></nav></header><div id="container" class="inner"><div id="main"><article class="article post"><div class="article-wrap"><header class="article-header"><span class="article-header-icon icon-black"></span><h1 class="article-header-title">实例解析防抖和节流函数</h1><time datetime="2017-01-18T15:52:45.000Z" itemprop="datePublished" class="article-header-time"><span class="day">18</span><span class="month">2017年01月</span></time></header><section class="article-gallery" style="height: 347.325px;"><div class="article-gallery-photos"><img src="./js实例解析防抖和节流函数_files/Subaru-STI-Performance-Concept-Gauges.png" itemprop="image" style="opacity: 1;"></div></section><section class="article-content"><p>防抖（<strong>Debounce</strong>）和节流（<strong>Throttle</strong>）都是用来控制某个函数在一定时间内执行多少次的技巧，两者即相似又不同。</p>
+<p>我们无法直接控制 DOM 事件触发频率，但我们可以在事件绑定和函数执行之间加一个控制层，所以当我们绑定 DOM 事件的时候，加上防抖或节流的函数变得特别有用。</p>
+<a id="more"></a>
+<p>看下面滚动事件的例子：</p>
+<iframe src="./js实例解析防抖和节流函数_files/PZOZgB.html" scrolling="no" frameborder="0" width="100%" height="320" allowtransparency="true"></iframe>
+
+<p>当使用触控板，滚动滚轮，或者拖拽滚动条的时候，一秒就可以触发 <code>30</code> 次事件。经测试，在移动设备上轻轻滚动一下，一秒可以触发 <code>100</code> 次之多。这么高的执行频率是你期待的吗？</p>
+<p>早在 2011 年，Twitter 就出现了一个问题：当向下滚动页面的时候，页面会变得很卡顿。John Resig 发表了<a href="http://ejohn.org/blog/learning-from-twitter" target="_blank" rel="external">一篇博客</a>解释这个问题，文中指出了问题的根源在于绑定的 <code>onScroll</code> 事件回调开销巨大。John 建议的解决方案是，在 <code>onScroll</code> 回调中，每间隔 <code>250ms</code> 才执行一次。就这样一个简单的优化，避免了影响用户体验。</p>
+<h2><span id="防抖-debounce">防抖 Debounce</span></h2><p>防抖技术可以把多个调用合并成一次。</p>
+<p>想象一下，当电梯门快要关闭的时候，突然有人准备上来，此时电梯并没有改变楼层，而是再次打开电梯门，电梯延迟了改变楼层的功能，但是优化了资源。</p>
+<p>直观感受一下面的例子：</p>
+<iframe src="./js实例解析防抖和节流函数_files/KVxGqN.html" scrolling="no" frameborder="0" width="100%" height="360" allowtransparency="true"></iframe>
+
+<h3><span id="提前触发">提前触发</span></h3><p>在前面例子中，debounce 回调都是在事件停止频繁触发一定时间后才执行：</p>
+<p><a href="./js实例解析防抖和节流函数_files/debounce.png" title="" class="fancybox" rel="gallery0"><img src="./js实例解析防抖和节流函数_files/debounce.png" alt=""></a></p>
+<p>我们可以使回调在第一次触发事件的时候就执行，直到停止频繁触发并等待一定时间后才可能执行下一次回调，在类似不小心点了提交按钮两下而提交了两次的情况下很有用：</p>
+<p><a href="./js实例解析防抖和节流函数_files/debounce-leading.png" title="" class="fancybox" rel="gallery0"><img src="./js实例解析防抖和节流函数_files/debounce-leading.png" alt=""></a></p>
+<p>在 underscore 中，对应的选项叫 <code>immediate</code>：</p>
+<iframe src="./js实例解析防抖和节流函数_files/GZWqNV.html" scrolling="no" frameborder="0" width="100%" height="360" allowtransparency="true"></iframe>
+
+<h3><span id="调整窗口大小">调整窗口大小</span></h3><p>调整桌面浏览器窗口大小的时候，会触发很多次 <code>resize</code> 事件：</p>
+<iframe src="./js实例解析防抖和节流函数_files/XXPjpd.html" scrolling="no" frameborder="0" width="100%" height="300" allowtransparency="true"></iframe>
+
+<h3><span id="通过-keypress-触发的自动完成功能">通过 keypress 触发的自动完成功能</span></h3><p>直到用户输入完成之后，才向服务器发送一次 AJAX 请求，相似的使用场景还有，直到用户输完，才验证输入的正确性，显示错误信息等。</p>
+<iframe src="./js实例解析防抖和节流函数_files/mVGVOL.html" scrolling="no" frameborder="0" width="100%" height="200" allowtransparency="true"></iframe>
+
+<h2><span id="节流throttle">节流（Throttle）</span></h2><p>只允许一个函数在 <code>x</code> 毫秒内执行一次，跟 debounce 主要的不同在于，throttle 保证 <code>x</code> 毫秒内至少执行一次。</p>
+<p>例如，我们需要在用户向下滚动滚动页面时，检查滚动位置距底部多远，当邻近底部时就需要发送 AJAX 请求获取更多的数据插入到页面中。此时，debounce 就不适用了，因为只有当用户停止滚动的时候它才会触发。使用 throttle 可以保证我们不断检查距离底部有多远。</p>
+<iframe src="./js实例解析防抖和节流函数_files/eJLMxa.html" scrolling="no" frameborder="0" width="100%" height="607" allowtransparency="true"></iframe>
+
+<h2><span id="使用-debounce-和-throttle-以及常见的坑">使用 debounce 和 throttle 以及常见的坑</span></h2><p>自己造一个 debounce/throttle 的轮子看起来很诱人，或者随便找个博文复制过来。我是建议直接使用 underscore 或 lodash 。如果仅需要 <code>_.debounce</code> 或 <code>_.throttle</code> 方法，可以使用 lodash 的自定义构建工具，生成一个 <code>2KB</code> 的压缩库。使用以下的简单命令即可：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i -g lodash-cli</div><div class="line">lodash-cli include=debounce,throttle</div></pre></td></tr></tbody></table></figure>
+<p>常见的坑是，不止一次地调用 <code>_.debounce</code> 方法：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 错误</span></div><div class="line">$(<span class="built_in">window</span>).on(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">   _.debounce(doSomething, <span class="number">300</span>); </div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">// 正确</span></div><div class="line">$(<span class="built_in">window</span>).on(<span class="string">'scroll'</span>, _.debounce(doSomething, <span class="number">200</span>));</div></pre></td></tr></tbody></table></figure>
+<p>取消执行：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> debounced_version = _.debounce(doSomething, <span class="number">200</span>);</div><div class="line">$(<span class="built_in">window</span>).on(<span class="string">'scroll'</span>, debounced_version);</div><div class="line"></div><div class="line"><span class="comment">// 如果需要的话</span></div><div class="line">debounced_version.cancel();</div></pre></td></tr></tbody></table></figure>
+<h2><span id="requestanimationframe">requestAnimationFrame</span></h2><p>requestAnimationFrame 是另一种限速（节流）方式，与 <code>_.throttle(dosomething, 16)</code> 等价，可以使用 rAF API 替换 throttle 方法，对比一下优缺点：</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>动画保持 60fps（每一帧 16 ms），浏览器内部决定渲染的最佳时机</li>
+<li>简洁标准的 API，后期维护成本低</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>动画的开始/取消需要开发者自己控制，不像<code>_.debounce</code>或<code>_.throttle</code>由函数内部处理</li>
+<li>页面所在的浏览器 Tab 未激活时，一切都不会执行</li>
+<li>尽管所有的现代浏览器都<a href="http://caniuse.com/#feat=requestanimationframe" target="_blank" rel="external">支持 rAF</a>，IE9，Opera Mini 和 老的 Android 还是需要<a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank" rel="external">打补丁</a></li>
+<li>NodeJS 不支持，无法在服务器端用于文件系统事件</li>
+</ul>
+<p>下面示例的灵感来自于 <a href="http://www.html5rocks.com/en/tutorials/speed/animations/" target="_blank" rel="external">Paul Lewis 的文章</a>，我们用 requestAnimationFrame 控制 scroll，然后与<code>16ms</code>的<code>_.throttle</code>做对比；两者性能相仿，对于更复杂的场景，rAF 可能效果更佳。</p>
+<iframe src="./js实例解析防抖和节流函数_files/pgOKKw.html" scrolling="no" frameborder="0" width="100%" height="330" allowtransparency="true"></iframe>
+
+<h2><span id="结论">结论</span></h2><p>使用 debounce，throttle 和 requestAnimationFrame 都可以优化事件处理：</p>
+<ul>
+<li><strong>debounce</strong> 把触发非常频繁的事件（比如按键）合并成一次执行</li>
+<li><strong>throttle</strong> 保证每<code>x</code>毫秒恒定的执行次数，比如每<code>200ms</code>检查下滚动位置，并触发页面加载</li>
+<li><strong>requestAnimationFrame</strong> 可替代 throttle，函数需要重新计算和渲染屏幕上的元素时，想保证动画或变化的平滑性，可以用它。注意：IE9 不支持</li>
+</ul>
+<p class="j-quote"><br>原文：<a href="https://css-tricks.com/debouncing-throttling-explained-examples/" target="_blank" rel="external">Debouncing and Throttling Explained Through Examples</a><br></p></section><footer class="article-footer clearfix"><div class="categories"><a href="http://bubkoo.com/categories/javascript/" title="JavaScript">JavaScript</a></div><div class="tags"><a href="http://bubkoo.com/tags/debounce/" title="Debounce">Debounce</a> <a href="http://bubkoo.com/tags/throttle/" title="Throttle">Throttle</a></div></footer></div><nav class="article-nav clearfix"><a href="http://bubkoo.com/2017/09/21/react-framework-mickey/" class="article-nav-link article-nav-newer"><strong class="article-nav-type">Newer</strong><span class="article-nav-title">React 框架新轮子：Mickey</span></a><a href="http://bubkoo.com/2017/01/08/quick-tip-multiple-versions-node-nvm/" class="article-nav-link article-nav-older"><strong class="article-nav-type">Older</strong><span class="article-nav-title">使用 nvm 管理不同版本的 node 与 npm</span></a></nav></article><section id="article-comment" class="article-comment"><div lang="en-US" class="gitment-container gitment-root-container"><div><div lang="en-US" class="gitment-container gitment-header-container"><span class="gitment-header-like-btn">
+    <svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"></path></svg>
+    Like
+     • <strong>1</strong> Liked
+  </span><span>
+     • <strong>4</strong> Comments
+  </span><a class="gitment-header-issue-link" href="https://github.com/bubkoo/bubkoo.github.com/issues/1" target="_blank">Issue Page</a></div></div><div><div lang="en-US" class="gitment-container gitment-comments-container"><ul class="gitment-comments-list"><li class="gitment-comment">
+      <a class="gitment-comment-avatar" href="https://github.com/bubkoo" target="_blank">
+        <img class="gitment-comment-avatar-img" src="./js实例解析防抖和节流函数_files/6045824">
+      </a>
+      <div class="gitment-comment-main">
+        <div class="gitment-comment-header">
+          <a class="gitment-comment-name" href="https://github.com/bubkoo" target="_blank">
+            bubkoo
+          </a>
+          commented on
+          <span title="Tue May 02 2017 15:36:14 GMT+1200 (新西兰标准时间)">Tue May 02 2017</span>
+          
+          <div class="gitment-comment-like-btn"><svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"></path></svg> 1</div>
+        </div>
+        <div class="gitment-comment-body gitment-markdown"><p>test</p></div>
+      </div>
+    <img class="gitment-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></li><li class="gitment-comment">
+      <a class="gitment-comment-avatar" href="https://github.com/zhangjianz" target="_blank">
+        <img class="gitment-comment-avatar-img" src="./js实例解析防抖和节流函数_files/17820959">
+      </a>
+      <div class="gitment-comment-main">
+        <div class="gitment-comment-header">
+          <a class="gitment-comment-name" href="https://github.com/zhangjianz" target="_blank">
+            zhangjianz
+          </a>
+          commented on
+          <span title="Wed Aug 09 2017 15:53:48 GMT+1200 (新西兰标准时间)">Wed Aug 09 2017</span>
+          
+          <div class="gitment-comment-like-btn"><svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"></path></svg> </div>
+        </div>
+        <div class="gitment-comment-body gitment-markdown"><p>awesome!</p></div>
+      </div>
+    <img class="gitment-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></li><li class="gitment-comment">
+      <a class="gitment-comment-avatar" href="https://github.com/shellphon" target="_blank">
+        <img class="gitment-comment-avatar-img" src="./js实例解析防抖和节流函数_files/1677147">
+      </a>
+      <div class="gitment-comment-main">
+        <div class="gitment-comment-header">
+          <a class="gitment-comment-name" href="https://github.com/shellphon" target="_blank">
+            shellphon
+          </a>
+          commented on
+          <span title="Wed Sep 06 2017 18:39:27 GMT+1200 (新西兰标准时间)">Wed Sep 06 2017</span>
+          
+          <div class="gitment-comment-like-btn"><svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"></path></svg> </div>
+        </div>
+        <div class="gitment-comment-body gitment-markdown"><p>你的另外一篇文章好像无法添加评论……</p>
+<p><a href="http://bubkoo.com/2017/01/08/quick-tip-multiple-versions-node-nvm/" rel="nofollow">http://bubkoo.com/2017/01/08/quick-tip-multiple-versions-node-nvm/</a></p></div>
+      </div>
+    <img class="gitment-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></li><li class="gitment-comment">
+      <a class="gitment-comment-avatar" href="https://github.com/ceerqingting" target="_blank">
+        <img class="gitment-comment-avatar-img" src="./js实例解析防抖和节流函数_files/20520365">
+      </a>
+      <div class="gitment-comment-main">
+        <div class="gitment-comment-header">
+          <a class="gitment-comment-name" href="https://github.com/ceerqingting" target="_blank">
+            ceerqingting
+          </a>
+          commented on
+          <span title="Wed Nov 22 2017 20:13:58 GMT+1300 (新西兰夏令时)">Wed Nov 22 2017</span>
+          
+          <div class="gitment-comment-like-btn"><svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"></path></svg> </div>
+        </div>
+        <div class="gitment-comment-body gitment-markdown"><p>learn a lot，thanks</p></div>
+      </div>
+    <img class="gitment-hidden" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></li></ul></div></div><div><div lang="en-US" class="gitment-container gitment-editor-container">
+      <a class="gitment-editor-avatar" href="https://github.com/login/oauth/authorize?scope=public_repo&amp;redirect_uri=http%3A%2F%2Fbubkoo.com%2F2017%2F01%2F18%2Fdebouncing-throttling-explained-examples%2F&amp;client_id=13c9fa4a27f96e5296bf&amp;client_secret=d0f07fcf8605a22de1e57fd96ddb0666d2ce0751" title="login with GitHub">
+              <svg class="gitment-github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"></path></svg>
+            </a>
+    
+    <div class="gitment-editor-main">
+      <div class="gitment-editor-header">
+        <nav class="gitment-editor-tabs">
+          <button class="gitment-editor-tab gitment-selected">Write</button>
+          <button class="gitment-editor-tab">Preview</button>
+        </nav>
+        <div class="gitment-editor-login">
+          <a class="gitment-editor-login-link" href="https://github.com/login/oauth/authorize?scope=public_repo&amp;redirect_uri=http%3A%2F%2Fbubkoo.com%2F2017%2F01%2F18%2Fdebouncing-throttling-explained-examples%2F&amp;client_id=13c9fa4a27f96e5296bf&amp;client_secret=d0f07fcf8605a22de1e57fd96ddb0666d2ce0751">Login</a> with GitHub
+        </div>
+      </div>
+      <div class="gitment-editor-body">
+        <div class="gitment-editor-write-field">
+          <textarea placeholder="Leave a comment" title="Login to Comment" disabled=""></textarea>
+        </div>
+        <div class="gitment-editor-preview-field gitment-hidden">
+          <div class="gitment-editor-preview gitment-markdown"></div>
+        </div>
+      </div>
+    </div>
+    <div class="gitment-editor-footer">
+      <a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
+        Styling with Markdown is supported
+      </a>
+      <button class="gitment-editor-submit" title="Login to Comment" disabled="">Comment</button>
+    </div>
+  </div></div><div><div lang="en-US" class="gitment-container gitment-footer-container">
+    Powered by
+    <a class="gitment-footer-project-link" href="https://github.com/imsun/gitment" target="_blank">
+      Gitment
+    </a>
+  </div></div></div></section><link rel="stylesheet" href="./js实例解析防抖和节流函数_files/default.css"><style>.gitment-root-container{
+  margin: 40px 0;
+}
+.gitment-container {
+  font-size: 12px;
+}
+.gitment-comment-main, .gitment-editor-main{
+  background-color: #fff;
+}
+.gitment-footer-container{
+  color: #999;
+}
+.gitment-comment-main,
+.gitment-editor-main{
+  background: #fff;
+}
+a.gitment-footer-project-link,
+a.gitment-footer-project-link:visited,
+a.gitment-editor-login-link,
+a.gitment-editor-login-link:visited {
+  color: #1ba1e2;
+  opacity: .3;
+  -webkit-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+a.gitment-footer-project-link:hover,
+a.gitment-editor-login-link:hover{
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}</style><script src="./js实例解析防抖和节流函数_files/gitment.browser.js.下载"></script><script>var options = {
+  owner: 'bubkoo',
+  repo:  'bubkoo.github.com',
+  oauth: {
+    client_id: '13c9fa4a27f96e5296bf',
+    client_secret: 'd0f07fcf8605a22de1e57fd96ddb0666d2ce0751',
+  }
+};
+var gitment = new Gitment(options);
+gitment.render('article-comment')</script></div><aside id="sidebar" role="sidebar"><div class="widget tagcloud"><h3 class="widget-title">标签</h3><div class="widget-content"><a href="http://bubkoo.com/tags/aop/" style="font-size: 10px">AOP</a> <a href="http://bubkoo.com/tags/algorithm/" style="font-size: 18.33px">Algorithm</a> <a href="http://bubkoo.com/tags/analysis/" style="font-size: 10px">Analysis</a> <a href="http://bubkoo.com/tags/angularjs/" style="font-size: 15px">AngularJS</a> <a href="http://bubkoo.com/tags/animation/" style="font-size: 10px">Animation</a> <a href="http://bubkoo.com/tags/architecture/" style="font-size: 16.67px">Architecture</a> <a href="http://bubkoo.com/tags/archives/" style="font-size: 10.83px">Archives</a> <a href="http://bubkoo.com/tags/async/" style="font-size: 12.5px">Async</a> <a href="http://bubkoo.com/tags/backbone/" style="font-size: 10px">Backbone</a> <a href="http://bubkoo.com/tags/browsers/" style="font-size: 10px">Browsers</a> <a href="http://bubkoo.com/tags/css/" style="font-size: 12.5px">CSS</a> <a href="http://bubkoo.com/tags/css3/" style="font-size: 10px">CSS3</a> <a href="http://bubkoo.com/tags/closure/" style="font-size: 10.83px">Closure</a> <a href="http://bubkoo.com/tags/closures/" style="font-size: 10px">Closures</a> <a href="http://bubkoo.com/tags/cookies/" style="font-size: 10px">Cookies</a> <a href="http://bubkoo.com/tags/cross-domain/" style="font-size: 10px">Cross Domain</a> <a href="http://bubkoo.com/tags/custom-elements/" style="font-size: 10.83px">Custom Elements</a> <a href="http://bubkoo.com/tags/d3/" style="font-size: 10px">D3</a> <a href="http://bubkoo.com/tags/debounce/" style="font-size: 10px">Debounce</a> <a href="http://bubkoo.com/tags/debug/" style="font-size: 10.83px">Debug</a> <a href="http://bubkoo.com/tags/dependency/" style="font-size: 10px">Dependency</a> <a href="http://bubkoo.com/tags/document/" style="font-size: 10px">Document</a> <a href="http://bubkoo.com/tags/ecma-262-3/" style="font-size: 15.83px">ECMA-262-3</a> <a href="http://bubkoo.com/tags/ecmascript/" style="font-size: 15.83px">ECMAScript</a> <a href="http://bubkoo.com/tags/es6/" style="font-size: 20px">ES6</a> <a href="http://bubkoo.com/tags/errors/" style="font-size: 10px">Errors</a> <a href="http://bubkoo.com/tags/essential/" style="font-size: 10px">Essential</a> <a href="http://bubkoo.com/tags/evaluation-strategy/" style="font-size: 10px">Evaluation strategy</a> <a href="http://bubkoo.com/tags/event/" style="font-size: 10px">Event</a> <a href="http://bubkoo.com/tags/exceptions/" style="font-size: 10px">Exceptions</a> <a href="http://bubkoo.com/tags/express/" style="font-size: 10px">Express</a> <a href="http://bubkoo.com/tags/flip/" style="font-size: 10px">FLIP</a> <a href="http://bubkoo.com/tags/flexbox/" style="font-size: 10px">Flexbox</a> <a href="http://bubkoo.com/tags/framework/" style="font-size: 10px">Framework</a> <a href="http://bubkoo.com/tags/funarg/" style="font-size: 10px">Funarg</a> <a href="http://bubkoo.com/tags/gist/" style="font-size: 10px">Gist</a> <a href="http://bubkoo.com/tags/github/" style="font-size: 10px">Github</a> <a href="http://bubkoo.com/tags/guide/" style="font-size: 10px">Guide</a> <a href="http://bubkoo.com/tags/html/" style="font-size: 10px">HTML</a> <a href="http://bubkoo.com/tags/http/" style="font-size: 10px">HTTP</a> <a href="http://bubkoo.com/tags/hexo/" style="font-size: 10.83px">Hexo</a> <a href="http://bubkoo.com/tags/ie/" style="font-size: 10px">IE</a> <a href="http://bubkoo.com/tags/iife/" style="font-size: 10px">IIFE</a> <a href="http://bubkoo.com/tags/jshint/" style="font-size: 10px">JSHint</a> <a href="http://bubkoo.com/tags/javascript/" style="font-size: 19.17px">JavaScript</a> <a href="http://bubkoo.com/tags/leak/" style="font-size: 10px">Leak</a> <a href="http://bubkoo.com/tags/linting/" style="font-size: 10px">Linting</a> <a href="http://bubkoo.com/tags/mvc/" style="font-size: 10px">MVC</a> <a href="http://bubkoo.com/tags/methodology/" style="font-size: 10px">Methodology</a> <a href="http://bubkoo.com/tags/mickey/" style="font-size: 10px">Mickey</a> <a href="http://bubkoo.com/tags/mock/" style="font-size: 10px">Mock</a> <a href="http://bubkoo.com/tags/modular/" style="font-size: 10px">Modular</a> <a href="http://bubkoo.com/tags/mongodb/" style="font-size: 10px">MongoDB</a> <a href="http://bubkoo.com/tags/oop/" style="font-size: 10.83px">OOP</a> <a href="http://bubkoo.com/tags/partial-application/" style="font-size: 10px">Partial Application</a> <a href="http://bubkoo.com/tags/pattern/" style="font-size: 10px">Pattern</a> <a href="http://bubkoo.com/tags/patterns/" style="font-size: 10px">Patterns</a> <a href="http://bubkoo.com/tags/performance/" style="font-size: 14.17px">Performance</a> <a href="http://bubkoo.com/tags/promise/" style="font-size: 13.33px">Promise</a> <a href="http://bubkoo.com/tags/prototype/" style="font-size: 11.67px">Prototype</a> <a href="http://bubkoo.com/tags/quality/" style="font-size: 10px">Quality</a> <a href="http://bubkoo.com/tags/quiz/" style="font-size: 10px">Quiz</a> <a href="http://bubkoo.com/tags/react/" style="font-size: 10px">React</a> <a href="http://bubkoo.com/tags/regex/" style="font-size: 10px">Regex</a> <a href="http://bubkoo.com/tags/requirejs/" style="font-size: 10px">RequireJS</a> <a href="http://bubkoo.com/tags/sass/" style="font-size: 10px">SASS</a> <a href="http://bubkoo.com/tags/svg/" style="font-size: 10px">SVG</a> <a href="http://bubkoo.com/tags/scope/" style="font-size: 10.83px">Scope</a> <a href="http://bubkoo.com/tags/shapes/" style="font-size: 10px">Shapes</a> <a href="http://bubkoo.com/tags/shuffle/" style="font-size: 10px">Shuffle</a> <a href="http://bubkoo.com/tags/sort/" style="font-size: 17.5px">Sort</a> <a href="http://bubkoo.com/tags/source-map/" style="font-size: 10.83px">Source Map</a> <a href="http://bubkoo.com/tags/styling/" style="font-size: 10px">Styling</a> <a href="http://bubkoo.com/tags/sublime-text/" style="font-size: 10px">Sublime Text</a> <a href="http://bubkoo.com/tags/template/" style="font-size: 10px">Template</a> <a href="http://bubkoo.com/tags/throttle/" style="font-size: 10px">Throttle</a> <a href="http://bubkoo.com/tags/timing/" style="font-size: 10px">Timing</a> <a href="http://bubkoo.com/tags/tools/" style="font-size: 12.5px">Tools</a> <a href="http://bubkoo.com/tags/variable-object/" style="font-size: 10px">Variable object</a> <a href="http://bubkoo.com/tags/visualizations/" style="font-size: 10px">Visualizations</a> <a href="http://bubkoo.com/tags/when/" style="font-size: 12.5px">When</a> <a href="http://bubkoo.com/tags/delete/" style="font-size: 10px">delete</a> <a href="http://bubkoo.com/tags/execution-context/" style="font-size: 10px">execution context</a> <a href="http://bubkoo.com/tags/fetch/" style="font-size: 10px">fetch</a> <a href="http://bubkoo.com/tags/function/" style="font-size: 10px">function</a> <a href="http://bubkoo.com/tags/nodejs/" style="font-size: 10px">nodejs</a> <a href="http://bubkoo.com/tags/nodemon/" style="font-size: 10px">nodemon</a> <a href="http://bubkoo.com/tags/npm/" style="font-size: 10px">npm</a> <a href="http://bubkoo.com/tags/nvm/" style="font-size: 10px">nvm</a> <a href="http://bubkoo.com/tags/performance/" style="font-size: 10px">performance</a> <a href="http://bubkoo.com/tags/prebrowsing/" style="font-size: 10px">prebrowsing</a> <a href="http://bubkoo.com/tags/prefetching/" style="font-size: 10px">prefetching</a> <a href="http://bubkoo.com/tags/preloading/" style="font-size: 10px">preloading</a> <a href="http://bubkoo.com/tags/tabindex/" style="font-size: 10px">tabindex</a> <a href="http://bubkoo.com/tags/this/" style="font-size: 10px">this</a> <a href="http://bubkoo.com/tags/ui-router/" style="font-size: 14.17px">ui-router</a></div></div><div class="widget"><h3 class="widget-title">最新文章</h3><div class="widget-content"><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2017/09/21/react-framework-mickey/">React 框架新轮子：Mickey</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/">实例解析防抖和节流函数</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2017/01/08/quick-tip-multiple-versions-node-nvm/">使用 nvm 管理不同版本的 node 与 npm</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/09/08/15-ways-to-write-self-documenting-javascript/">如何编写更加自解释的代码</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/31/high-performance-animations/">使用 FLIP 来提高 Web 动画的性能</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/28/styling-broken-images/">定制图片加载失败时的样式</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/26/delivering-octicons-with-svg/">使用 SVG 输出 Octicon</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/18/how-to-use-npm-as-a-build-tool/">如何将 npm 作为构建工具使用</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/02/24/what-you-can-do-with-gists-on-github/">任何人都可以使用到的 Gist 服务</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/19/prefetching-preloading-prebrowsing/">前端性能优化 - 资源预加载</a></li></ul></div></div></aside><aside id="topic-wrap" class="toc-wrap f-right" style="position: sticky; top: 30px;"><h3 class="toc-wrap-title">内容</h3><div class="toc-tree"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">1.</span> <span class="toc-text">防抖 Debounce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">提前触发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">调整窗口大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">通过 keypress 触发的自动完成功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">2.</span> <span class="toc-text">节流（Throttle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">3.</span> <span class="toc-text">使用 debounce 和 throttle 以及常见的坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">4.</span> <span class="toc-text">requestAnimationFrame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2017/01/18/debouncing-throttling-explained-examples/#undefined"><span class="toc-number">5.</span> <span class="toc-text">结论</span></a></li></ol></div><div class="toc-progress" style="width: 69.0248%;"></div></aside></div><footer id="footer" class="inner"><span class="copyright">© 2017 bubkoo</span><span class="theme">@<a href="https://github.com/bubkoo/hexo-theme-formula" target="_blank">formula</a></span></footer><img id="go2top" src="./js实例解析防抖和节流函数_files/top_arrow.png" alt="go2top" style="display: block;"><script charset="utf-8" src="./js实例解析防抖和节流函数_files/jquery-2.1.3.min.js.下载"></script><script charset="utf-8" src="./js实例解析防抖和节流函数_files/jquery.imagesloaded.min.js.下载"></script><script charset="utf-8" src="./js实例解析防抖和节流函数_files/jquery.fancybox.pack.js.下载"></script><script charset="utf-8" src="./js实例解析防抖和节流函数_files/sea.js.下载"></script><script charset="utf-8" src="./js实例解析防抖和节流函数_files/main.js.下载"></script></body></html>

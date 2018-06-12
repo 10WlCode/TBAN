@@ -1,0 +1,20 @@
+winform中窗体的单利模式因为是托管资源，关了之后GC会进行释放，释放之后第二次就打不开了，所以我们需要保留winform的指针，给他赋值为空,和单例保持一致,就在表单的formcloseing事件里面,把_form = null;就行了
+一般的静态类,是不会释放的.
+
+单例模式代码
+1.先把构造方法隐藏(改成private)
+2.抛出一个静态方法,返回类型是该类类型的Create方法用来创建对象
+3.生明一个该类类型的静态字段用来存储单例的例子.
+4.在Create里面判断字段是不是null,如果不是null,再new对象,然后return对象
+例子:
+        private FormManagerInfo(){........}
+        private static FormManagerInfo _form;
+        public static FormManagerInfo Create()
+        {
+            if (_form == null)
+            {
+                 _form = new FormManagerInfo();
+            }
+
+            return _form;
+        }

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/mention.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MVC5 + EF6 + Bootstrap3 (10) 数据查询页面 - Slark.NET - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/bundle-coffee.css">
+<link type="text/css" rel="stylesheet" href="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/204304.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/bundle-coffee-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/slark/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/slark/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/slark/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/encoder.js.下载"></script><script src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style><style>img[src="https://cc.amazingcounters.com/counter.php?i=3213285&c=9640168"],
+img[src="https://cc.amazingcounters.com/counter.php?i=3213287&c=9640174"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'slark', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/slark/"><img id="blogLogo" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/slark/">Slark.NET</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/slark/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Slark.NET">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/slark/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/slark/rss"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 21&nbsp;
+文章- 0&nbsp;
+评论- 360&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html">MVC5 + EF6 + Bootstrap3 (10) 数据查询页面</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p class="source">文章来源：<a class="titlelink" href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html">Slark.NET-博客园 http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html</a></p>
+<p>系列教程：<a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/slark/category/636030.html">MVC5 + EF6 + Bootstrap3</a></p>
+<p>上一节：<a class="titlelink" href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html">MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)</a></p>
+<p>下一节：<a class="titlelink" href="http://www.cnblogs.com/slark/p/4199658.html">MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页</a></p>
+<p>源码下载：<a href="http://pan.baidu.com/s/1YXps" target="_blank">点我下载</a></p>
+<h2>目录</h2>
+<ul>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#qy">前言</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#model">创建Model</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#context">创建数据库上下文DbContext</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#init">创建初始化数据</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#controller">创建Controller</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#view">创建View</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#result">查看结果页面</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#db">查看数据库</a></li>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#end">结尾</a></li>
+</ul>
+<h2><a name="qy"></a>前言</h2>
+<p>前面铺垫了那么多，今天我们就用MVC5 + EF6 + Bootstrap3来正式创建一个基本查询页面。</p>
+<p>为什么从查询页面开始？嘿嘿，因为小弟的.Net生涯就是从查询页面开始的，记得正式工作的第一个月就是各种模块的查询。先做查询有什么好处？首先查询只读数据，不写数据。对数据库本身的数据安全不造成影响也不怕写入脏数据的麻烦。其次增删改查这四个操作里面，查询的难度应该是最小的，不用考虑事务流程等方面的问题。</p>
+<p>本节最后将会生成如下页面：</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/281701107474852.png" alt=""></p>
+<h2><a name="model"></a>创建Model</h2>
+<p>关于Model、数据库上下文、Entity Framework,本系列教程前面已经有介绍，想要复习下的<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-get-started-model.html%20" target="_blank">请猛戳我！</a></p>
+<p>在Models文件夹下创建一个类，命名为Worker.cs，这个类就是我们这里要用到的Model。代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> SlarkInc.Models
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">enum</span><span style="color: #000000;"> Sex
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        Male, Female
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Worker
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">    {     
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span> ID { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> LastName { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> FirstName { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">12</span>         <span style="color: #0000ff;">public</span> Sex Sex { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">13</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">double</span>? Rating { <span style="color: #0000ff;">get</span>; <span style="color: #0000ff;">set</span><span style="color: #000000;">; }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">15</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;为了方便说明，加入行号，如果想要复制代码，请点击左上角的小图标就会出现不带行号的代码。在Worker类的上面，第3行，创建了一个Sex的枚举类型，保证Sex只有Male和Female两种取值。9到13行中Worker类用自动属性的方法定义了5个属性，其中Rating属性前面有个问号表示这个属性是nullable,可以是null。</p>
+<h2><a name="context"></a>创建数据库上下文DbContext</h2>
+<p>这里我们用Code First方法创建数据库表。这个方法简单点说就是先创建Model再根据Model生成数据库表。</p>
+<p>为了方便起见，这里用的数据库是Visual Studio自带的LocalDb。</p>
+<p>数据库上下文，就是我们这里的数据访问层，根据Model对数据库表进行不同的操作。因此我们首先在项目中创建一个数据访问层文件夹，命名为DAL。然后，在DAL文件夹中创建Model对应的数据库访问上下文类，命名为CompanyContext。写入代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Data.Entity;
+</span><span style="color: #008080;"> 2</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> SlarkInc.Models;
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Data.Entity.ModelConfiguration.Conventions;
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> SlarkInc.DAL
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> CompanyContext : DbContext
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">public</span> CompanyContext()  : <span style="color: #0000ff;">base</span>(<span style="color: #800000;">"</span><span style="color: #800000;">CompanyContext</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">        { 
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span>         <span style="color: #0000ff;">public</span> DbSet&lt;Worker&gt; Workers {<span style="color: #0000ff;">get</span>;<span style="color: #0000ff;">set</span><span style="color: #000000;">;}
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span>         <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">override</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> OnModelCreating(DbModelBuilder modelBuilder)
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">17</span>             modelBuilder.Conventions.Remove&lt;PluralizingTableNameConvention&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">20</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>因为我们这里数据库访问要用Entity Framework, 所以第1行要引入System.Data.Entity。第7行，我们的数据库上下文继承EF中的DbContext基类。第9行表示</p>
+<p><span>CompanyContext 继承基类DbContext的构造函数。第13行表示我们的Model Worker和</span>CompanyContext中的数据集Workers对应。第15到18行定义了一个事件</p>
+<p><span>OnModelCreating，这个事件在我们使用的Code First方法在数据库中创建数据表时触发。第17行的代码的作用是使我们创建出来的数据库表名字都是单数，不是复数。也就是说将来的数据库表名是Worker而不是Workers。这也是我们创建数据库表的习惯命名方法。<br></span></p>
+<p><span>然后在Web.config文件里面加入这个数据库上下文要用到的数据库连接字符串。如下面的代码所示，在Web.config文件中找到&lt;configuration&gt;元素。然后在&lt;configuration&gt;元素内找到</span>&lt;connectionStrings&gt;元素。最后在&lt;connectionStrings&gt;元素内加入如下&lt;add&gt;元素。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">connectionStrings</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">add </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="CompanyContext"</span><span style="color: #ff0000;"> connectionString</span><span style="color: #0000ff;">="Data Source=(LocalDb)\v11.0;Initial Catalog=Company;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\Company.mdf"</span><span style="color: #ff0000;"> providerName</span><span style="color: #0000ff;">="System.Data.SqlClient"</span> <span style="color: #0000ff;">/&gt;</span>
+  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">connectionStrings</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>这样我们的数据库上下文CompanyContext就可以用这个连接字符串来访问数据库了。解释一下&lt;add&gt;元素里的内容。name="CompanyContext"是连接字符串的名字，这个要和CompanyContext.cs 里的base("CompanyContext")函数的参数一样，这样初始化数据库上下文的时候才能读到字符串。Data Source=(LocalDb)\v11.0表示使用的数据库种类和版本。Catalog=Company是数据库的名字。Integrated Security=SSPI是验证方式。AttachDBFilename=|DataDirectory|\Company.mdf表示在我们这里，数据库文件存在 ~\App_Data\Company.mdf 下。providerName="System.Data.SqlClient"表示我们这里要用的数据库连接器，或者叫数据库驱动。</p>
+<p>然后我们还要在Web.config中声明数据库上下文。在&lt;configuration&gt;中找到&lt;entityFramework&gt;元素。在&lt;entityFramework&gt;元素中找到&lt;contexts&gt;元素。在&lt;contexts&gt;元素中写入如下&lt;context&gt;元素。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">entityFramework</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">contexts</span><span style="color: #0000ff;">&gt;</span>
+      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="SlarkInc.DAL.CompanyContext, SlarkInc"</span><span style="color: #0000ff;">&gt;</span>
+      <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">context</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">contexts</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">entityFramework</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>type="SlarkInc.DAL.CompanyContext, SlarkInc"中的SlarkInc.DAL.CompanyContext表示这个CompanyContext的NameSpace和类名。逗号后面的SlarkInc表示这个CompanyContext在SlarkInc.dll中。</p>
+<p>这样我们就把CompanyContext添加到了Entity Framework的上下文中。</p>
+<h2><a name="init"></a>创建初始化数据</h2>
+<p>为了方便测试，我们需要在数据库创建好之后给其中添加一些数据。因此我们来创建一个数据初始化类来做这个工作。在DAL文件夹中创建一个类，命名为CompanyInitializer.cs。写入如下代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Collections.Generic;
+</span><span style="color: #008080;"> 2</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> SlarkInc.Models;
+</span><span style="color: #008080;"> 3</span> 
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> SlarkInc.DAL
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 6</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> CompanyInitializer : System.Data.Entity.DropCreateDatabaseAlways&lt;CompanyContext&gt;
+<span style="color: #008080;"> 7</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">override</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> Seed(CompanyContext context)
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">10</span>             <span style="color: #0000ff;">var</span> students = <span style="color: #0000ff;">new</span> List&lt;Worker&gt;
+<span style="color: #008080;">11</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">12</span>                 <span style="color: #0000ff;">new</span> Worker{FirstName=<span style="color: #800000;">"</span><span style="color: #800000;">Andy</span><span style="color: #800000;">"</span>,LastName=<span style="color: #800000;">"</span><span style="color: #800000;">George</span><span style="color: #800000;">"</span>,Sex =<span style="color: #000000;"> Sex.Male},
+</span><span style="color: #008080;">13</span>                 <span style="color: #0000ff;">new</span> Worker{FirstName=<span style="color: #800000;">"</span><span style="color: #800000;">Laura</span><span style="color: #800000;">"</span>,LastName=<span style="color: #800000;">"</span><span style="color: #800000;">Smith</span><span style="color: #800000;">"</span>,Sex =<span style="color: #000000;"> Sex.Female},
+</span><span style="color: #008080;">14</span>                 <span style="color: #0000ff;">new</span> Worker{FirstName=<span style="color: #800000;">"</span><span style="color: #800000;">Jason</span><span style="color: #800000;">"</span>,LastName=<span style="color: #800000;">"</span><span style="color: #800000;">Black</span><span style="color: #800000;">"</span>,Sex =<span style="color: #000000;"> Sex.Male},
+</span><span style="color: #008080;">15</span>                 <span style="color: #0000ff;">new</span> Worker{FirstName=<span style="color: #800000;">"</span><span style="color: #800000;">Linda</span><span style="color: #800000;">"</span>,LastName=<span style="color: #800000;">"</span><span style="color: #800000;">Queen</span><span style="color: #800000;">"</span>,Sex =<span style="color: #000000;"> Sex.Female},
+</span><span style="color: #008080;">16</span>                 <span style="color: #0000ff;">new</span> Worker{FirstName=<span style="color: #800000;">"</span><span style="color: #800000;">James</span><span style="color: #800000;">"</span>,LastName=<span style="color: #800000;">"</span><span style="color: #800000;">Brown</span><span style="color: #800000;">"</span>, Sex =<span style="color: #000000;"> Sex.Male}
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">            };
+</span><span style="color: #008080;">18</span>             students.ForEach(s =&gt;<span style="color: #000000;"> context.Workers.Add(s));
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">            context.SaveChanges();
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">22</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>第6行，我们的数据初始化类继承了一个名为DropCreateDatabaseAlways的泛型类，这个类的作用就像它的名字，每次程序运行时都会删除并重新创建数据库，这样方便我们测试。第8到20行，就是初始化数据的函数，重写了父类的Seed函数，并接受CompanyContext 作为数据库上下文供我们操作。第18行用Linq语法将 students的数据添加到数据库上下文的数据集中。第19行，将这些数据提交到数据库。</p>
+<p>然后要在Web.config文件中配置这个初始化器。在刚才配置过的&lt;context&gt;中写入如下所示的databaseInitializer即可。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">contexts</span><span style="color: #0000ff;">&gt;</span>
+   <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="SlarkInc.DAL.CompanyContext, SlarkInc"</span><span style="color: #0000ff;">&gt;</span>
+      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">databaseInitializer </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="SlarkInc.DAL.CompanyInitializer, SlarkInc"</span> <span style="color: #0000ff;">/&gt;</span>
+   <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">context</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">contexts</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>type="SlarkInc.DAL.CompanyInitializer, SlarkInc"中的SlarkInc.DAL.CompanyInitializer表示这个CompanyInitializer的NameSpace和类名。逗号后面的SlarkInc表示这个CompanyInitializer在SlarkInc.dll中。</p>
+<p>这样我们的初始化器就完成了。</p>
+<h2><a name="controller"></a>创建Controller</h2>
+<p>Controller没学好的同学<a href="http://www.cnblogs.com/slark/p/mvc-5-get-started-controller.html" target="_blank">请猛戳我！</a></p>
+<p>在Controllers文件夹下创建一个Controller选择"MVC 5 控制器 - 空"，命名为CompanyController.cs。写入代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Linq;
+</span><span style="color: #008080;"> 2</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> System.Web.Mvc;
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">using</span><span style="color: #000000;"> SlarkInc.DAL;
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> SlarkInc.Controllers
+</span><span style="color: #008080;"> 6</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> CompanyController : Controller
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">private</span> CompanyContext db = <span style="color: #0000ff;">new</span><span style="color: #000000;"> CompanyContext();
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">public</span><span style="color: #000000;"> ViewResult Index()
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;"> View(db.Workers.ToList());
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">15</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>为了使用之前创建的Model和数据库上下文，在第3行引入DAL命名空间并在第9行初始化CompanyContext。在第12行创建Index Action返回类型是ViewResult，那么用户请求就会返回一个View页面。然后在第12行把所有的数据传递给View。第12行ToList方法是把数据以List的形式输出。</p>
+<h2><a name="view"></a>创建View</h2>
+<p>要创建CompanyController的Index Action对应的View，首先在Views文件夹下创建Company文件夹。然后在Company文件夹下创建一个空视图并选择使用布局页。命名为Index.cshtml。写入如下代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #000000;">@model IEnumerable&lt;SlarkInc.Models.Worker&gt;</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">table </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="table"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>@Html.DisplayNameFor(model =&gt; model.FirstName)<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>@Html.DisplayNameFor(model =&gt; model.LastName)<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>@Html.DisplayNameFor(model =&gt; model.Sex)<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>@Html.DisplayNameFor(model =&gt; model.Rating)<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">th</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 8</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">    @foreach (var item in Model)
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">12</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">13</span> <span style="color: #000000;">                @Html.DisplayFor(modelItem =&gt; item.FirstName)
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">15</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">16</span> <span style="color: #000000;">                @Html.DisplayFor(modelItem =&gt; item.LastName)
+</span><span style="color: #008080;">17</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">18</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">19</span> <span style="color: #000000;">                @Html.DisplayFor(modelItem =&gt; item.Sex)
+</span><span style="color: #008080;">20</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">21</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">22</span> <span style="color: #000000;">                @Html.DisplayFor(modelItem =&gt; item.Rating)
+</span><span style="color: #008080;">23</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">24</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">25</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">26</span> <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">table</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>第1行，表示这个页面用的Model是我们创建的Worker类。下面的代码创建了一个table，用来显示Controller传来的数据。4-7行通过</p>
+<p>DisplayNameFor获取Model的属性名作为列头显示。第9-25行通过DisplayFor函数显示数据。</p>
+<h2><a name="result"></a>查看结果页面</h2>
+<p>选择在浏览器中查看。就能看到如下显示结果。</p>
+<p>&nbsp;<img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/281701107474852.png" alt=""></p>
+<p>页面的头部和尾部应用了~/Views/Shared/_Layout.cshtml的默认布局。中间部分就是在Index.cshtml文件生成的表。其中的4列是Model Worker中除了id外的其它4列数据。表里的五行数据是我们在~/DAL/CompanyInitializer.cs中初始化的数据。</p>
+<p>右键点击页面表格中的任何一个数据，选择检查元素，如下图所示。</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/281701400603531.png" alt=""></p>
+<p>这样在F12开发人员工具窗口的右侧就会有对应元素的css样式。</p>
+<p>由于我们在Index.cshtml中设置了&lt;table class="table"&gt;因此这个表格的所有元素都会套用Bootstrap的表格样式，如下所示。</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/281704342634044.png" alt=""></p>
+<h2><a name="db"></a>查看数据库</h2>
+<p>在解决方案资源管理器中点击如下图所示的显示所有文件按钮使所有文件显示。然后在App_Data下会出现一个CompanyContext.mdf的数据库文件，如下图所示。</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/282035159031784.png" alt=""></p>
+<p>&nbsp;双击这个文件，会出现服务器资源管理器窗口如下图所示：</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/282043420449622.png" alt=""></p>
+<p>可以看到两个数据库连接，不用担心，第一个是我们运行程序后生成的连接，第二个是刚才双击mdf文件生成的连接。两个连接效果是一样的。双击第二个连接的"表"文件夹下的Worker表。就可以查看我们用EF Code First 方法生成的表了。显示如下：</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/282049137946004.png" alt=""></p>
+<p>左上方是表结构，右上方是表的其他属性，下方是生成表用的SQL语句。</p>
+<p>在服务器资源管理器中右键点击Worker表，选择"显示表数据"就会显示如下图的所有数据，是不是和页面显示的一样呢？</p>
+<p><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/282052124352230.png" alt=""></p>
+<h2><a name="end"></a>结尾</h2>
+<p>这一节我们应用MVC5 + EF6 + Bootstrap3创建了第一个正式的数据查询页面。后面我们会给这个页面加入关键字查询、分页、排序等功能。为了实现这些功能我们会介绍更多的EF函数及Linq的使用方法。敬请期待。</p>
+<p>喜欢就点个赞吧！</p>
+<p>上一节：<a class="titlelink" href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html">MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)</a></p>
+<p>下一节：<a class="titlelink" href="http://www.cnblogs.com/slark/p/4199658.html">MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页</a></p>
+<div style="border: #e0e0e0 1px dashed; padding: 8px; padding-left: 90px; background: url(&#39;http://images.cnblogs.com/cnblogs_com/willick/515028/o_bulb_1.png&#39;) #e5f1f4 no-repeat 1% 50%;">
+<p>作者：<strong><span style="font-size: 12px; color: red;"><a href="http://www.cnblogs.com/slark/" target="_blank">Slark.NET</a></span></strong></p>
+<p>出处：<a href="http://www.cnblogs.com/slark/" target="_blank">http://www.cnblogs.com/slark/</a></p>
+<p>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。如有问题或建议，请多多赐教，非常感谢。</p>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/slark/category/636030.html" target="_blank">MVC5 + EF6 + Bootstrap3</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/slark/tag/MVC/">MVC</a>, <a href="http://www.cnblogs.com/slark/tag/ASP.NET/">ASP.NET</a>, <a href="http://www.cnblogs.com/slark/tag/Entity%20Framework/">Entity Framework</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4188958,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;62846916-f367-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/slark/" target="_blank"><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/20141130111557.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/slark/">Slark.NET</a><br>
+            <a href="http://home.cnblogs.com/u/slark/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/slark/followers">粉丝 - 458</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;62846916-f367-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4188958,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">52</span>
+    </div>
+    <div class="buryit" onclick="votePost(4188958,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html" title="发布于2014-12-26 06:04">MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)</a><br><a href="http://www.cnblogs.com/slark/p/CSharp-focus-1.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/slark/p/CSharp-focus-1.html" title="发布于2015-01-04 06:52">[C#详解] (1) 自动属性、初始化器、扩展方法</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-12-29 06:41</span> <a href="http://www.cnblogs.com/slark/">Slark.NET</a> 阅读(<span id="post_view_count">17749</span>) 评论(<span id="post_comment_count">16</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4188958" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#" onclick="AddToWz(4188958);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=204304,cb_entryId=4188958,cb_blogApp=currentBlogApp,cb_blogUserGuid='62846916-f367-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2014/12/29 6:41:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3095480,&#39;JWpV5TXQMIOVlTGhH7I3Zy2eW9yi8nQHlm/8/jJT8WjPThhXiGZprg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3095480,&#39;JWpV5TXQMIOVlTGhH7I3Zy2eW9yi8nQHlm/8/jJT8WjPThhXiGZprg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095480" class="layer">#1楼</a><a name="3095480" id="comment_anchor_3095480"></a> <span class="comment_date">2014-12-29 08:48</span> | <a id="a_comment_author_3095480" href="http://www.cnblogs.com/wanghaibin/" target="_blank">海阔天空XM</a> <a href="http://msg.cnblogs.com/send/%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BAXM" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3095480" class="blog_comment_body">配置文件中配置EF, 这个有点不理解。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3095480,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3095480,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3095532,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3095532,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095532" class="layer">#2楼</a><a name="3095532" id="comment_anchor_3095532"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2014-12-29 09:39</span> | <a id="a_comment_author_3095532" href="http://www.cnblogs.com/slark/" target="_blank">Slark.NET</a> <a href="http://msg.cnblogs.com/send/Slark.NET" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3095532" class="blog_comment_body"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095480" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3095480);">@</a>
+海阔天空XM<br>配置文件解释我加上了，你看现在咋样</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3095532,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3095532,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3095532_avatar" style="display:none;">http://pic.cnblogs.com/face/690811/20141130111557.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3095689,&#39;4aFOxevncWRHMeI8wW2BxFURfIAk1v3N5kMDdC/MU/SQiyqMEH3pAg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3095689,&#39;4aFOxevncWRHMeI8wW2BxFURfIAk1v3N5kMDdC/MU/SQiyqMEH3pAg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095689" class="layer">#3楼</a><a name="3095689" id="comment_anchor_3095689"></a> <span class="comment_date">2014-12-29 11:30</span> | <a id="a_comment_author_3095689" href="http://www.cnblogs.com/ameol/" target="_blank">圣之贤者</a> <a href="http://msg.cnblogs.com/send/%E5%9C%A3%E4%B9%8B%E8%B4%A4%E8%80%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3095689" class="blog_comment_body">投食有个小bug啊，老鼠在跑圈的时候往最左边投食它不会去吃啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3095689,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3095689,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3095689_avatar" style="display:none;">http://pic.cnblogs.com/face/404599/20130416135223.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3095782,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3095782,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095782" class="layer">#4楼</a><a name="3095782" id="comment_anchor_3095782"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2014-12-29 13:46</span> | <a id="a_comment_author_3095782" href="http://www.cnblogs.com/slark/" target="_blank">Slark.NET</a> <a href="http://msg.cnblogs.com/send/Slark.NET" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3095782" class="blog_comment_body"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3095689" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3095689);">@</a>
+圣之贤者<br>嗯，好像是的。我把这个东西贴到那纯粹是好玩，供大家娱乐一下，不是我写的。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3095782,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3095782,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3095782_avatar" style="display:none;">http://pic.cnblogs.com/face/690811/20141130111557.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3096013,&#39;yMJSsETC4CI3CQ6BoLGKm/xQFohSXH1o0xxB32eYik9K9koaOLde6A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3096013,&#39;yMJSsETC4CI3CQ6BoLGKm/xQFohSXH1o0xxB32eYik9K9koaOLde6A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3096013" class="layer">#5楼</a><a name="3096013" id="comment_anchor_3096013"></a> <span class="comment_date">2014-12-29 17:52</span> | <a id="a_comment_author_3096013" href="http://home.cnblogs.com/u/679989/" target="_blank">kayshao</a> <a href="http://msg.cnblogs.com/send/kayshao" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3096013" class="blog_comment_body">很好，讲的很仔细，学习</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3096013,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3096013,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3096036,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3096036,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3096036" class="layer">#6楼</a><a name="3096036" id="comment_anchor_3096036"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2014-12-29 18:34</span> | <a id="a_comment_author_3096036" href="http://www.cnblogs.com/slark/" target="_blank">Slark.NET</a> <a href="http://msg.cnblogs.com/send/Slark.NET" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3096036" class="blog_comment_body"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3096013" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3096013);">@</a>
+kayshao<br>谢谢，力求让大家都看懂。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3096036,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3096036,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3096036_avatar" style="display:none;">http://pic.cnblogs.com/face/690811/20141130111557.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3102103,&#39;CAcIS58WIocSBBxFOfGxvIC0qP6qGdmMp+IXc+U/QjEbjcftNTJcEw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3102103,&#39;CAcIS58WIocSBBxFOfGxvIC0qP6qGdmMp+IXc+U/QjEbjcftNTJcEw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3102103" class="layer">#7楼</a><a name="3102103" id="comment_anchor_3102103"></a> <span class="comment_date">2015-01-07 15:24</span> | <a id="a_comment_author_3102103" href="http://www.cnblogs.com/Yan-Zhiwei/" target="_blank">楚人游子</a> <a href="http://msg.cnblogs.com/send/%E6%A5%9A%E4%BA%BA%E6%B8%B8%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3102103" class="blog_comment_body">学习，期待后续章节，谢谢楼主～</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3102103,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3102103,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3102103_avatar" style="display:none;">http://pic.cnblogs.com/face/611903/20150608090510.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3110817,&#39;tTMeIX/6qd4vwcUV96GlfL+HvaFTCkpP7udw002Ka83zl3bimfJWyg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3110817,&#39;tTMeIX/6qd4vwcUV96GlfL+HvaFTCkpP7udw002Ka83zl3bimfJWyg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3110817" class="layer">#8楼</a><a name="3110817" id="comment_anchor_3110817"></a> <span class="comment_date">2015-01-20 17:00</span> | <a id="a_comment_author_3110817" href="http://www.cnblogs.com/rose0705/" target="_blank">茗::流</a> <a href="http://msg.cnblogs.com/send/%E8%8C%97%3A%3A%E6%B5%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3110817" class="blog_comment_body">不错的文章</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3110817,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3110817,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3110817_avatar" style="display:none;">http://pic.cnblogs.com/face/88395/20160805005342.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3123592,&#39;Y+emyHy5ihgXKbNIMH81FcPvPD02vqeOYlJoa75kfCH76ypl/Reh1g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3123592,&#39;Y+emyHy5ihgXKbNIMH81FcPvPD02vqeOYlJoa75kfCH76ypl/Reh1g==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3123592" class="layer">#9楼</a><a name="3123592" id="comment_anchor_3123592"></a> <span class="comment_date">2015-02-04 22:59</span> | <a id="a_comment_author_3123592" href="http://www.cnblogs.com/jjoo/" target="_blank">eesee</a> <a href="http://msg.cnblogs.com/send/eesee" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3123592" class="blog_comment_body">name="CompanyContext"是连接字符串的名字，这个要和CompanyContext.cs 里的base("CompanyContext")函数的参数一样？？？不一样也不会出错哦，怎么回事？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3123592,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3123592,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3123592_avatar" style="display:none;">http://pic.cnblogs.com/face/165815/20170427063601.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3134515,&#39;46dkqiDJKRM33r3G7UzXZKyLE3Tqt0Ie6zjyCsZ+niAxPZ7J+mX+NQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3134515,&#39;46dkqiDJKRM33r3G7UzXZKyLE3Tqt0Ie6zjyCsZ+niAxPZ7J+mX+NQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3134515" class="layer">#10楼</a><a name="3134515" id="comment_anchor_3134515"></a> <span class="comment_date">2015-03-03 16:55</span> | <a id="a_comment_author_3134515" href="http://www.cnblogs.com/MrALei/" target="_blank">阿磊ing</a> <a href="http://msg.cnblogs.com/send/%E9%98%BF%E7%A3%8Aing" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3134515" class="blog_comment_body">博主，我的按照你的敲的，但是报错o(︶︿︶)o 唉 <img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/031655257389177.png" alt="" border="0" "=""><br><div class="cnblogs_Highlighter sh-gutter"><div><div id="highlighter_88912" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">&lt;entityFramework&gt;</code></div><div class="line number2 index1 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">&lt;contexts&gt;</code></div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">&lt;context type=</code><code class="csharp string">"Asp.NetMVC5.DAL.CompanyContext,Asp.NetMVC5"</code><code class="csharp plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">&lt;databaseInitializer type=</code><code class="csharp string">"Asp.NetMVC5.DAL.CompanyInitializer,Asp.NetMVC5"</code><code class="csharp plain">/&gt;</code></div><div class="line number5 index4 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">&lt;/context&gt;</code></div><div class="line number6 index5 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">&lt;/contexts&gt;</code></div><div class="line number7 index6 alt2"><code class="csharp plain">&lt;/entityFramework&gt;</code></div></div></td></tr></tbody></table></div></div></div></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3134515,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3134515,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3134515_avatar" style="display:none;">http://pic.cnblogs.com/face/330300/20150325110107.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3136639,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3136639,&#39;ss2USYPIwaN4C+Owfao1qqmRkq+Q1J9IRbDeclwnAMR7qrDTeTDEsA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3136639" class="layer">#11楼</a><a name="3136639" id="comment_anchor_3136639"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2015-03-06 18:08</span> | <a id="a_comment_author_3136639" href="http://www.cnblogs.com/slark/" target="_blank">Slark.NET</a> <a href="http://msg.cnblogs.com/send/Slark.NET" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3136639" class="blog_comment_body"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3134515" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3134515);">@</a>
+阿耒<br>你这个得配置iis，我没碰到这个问题，所以我也不好说怎么解决。你搜搜</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3136639,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3136639,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3136639_avatar" style="display:none;">http://pic.cnblogs.com/face/690811/20141130111557.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3144686,&#39;QFHL0Uu1IFrMcU3edWCkvnRedRh4L+sl06TTxsyM1VqS9+sJMBspUw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3144686,&#39;QFHL0Uu1IFrMcU3edWCkvnRedRh4L+sl06TTxsyM1VqS9+sJMBspUw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3144686" class="layer">#12楼</a><a name="3144686" id="comment_anchor_3144686"></a> <span class="comment_date">2015-03-19 21:03</span> | <a id="a_comment_author_3144686" href="http://www.cnblogs.com/ganmk--jy/" target="_blank">烂屁股猴围观星星</a> <a href="http://msg.cnblogs.com/send/%E7%83%82%E5%B1%81%E8%82%A1%E7%8C%B4%E5%9B%B4%E8%A7%82%E6%98%9F%E6%98%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3144686" class="blog_comment_body">@阿耒 <br>这个问题怎么解决的<br><br>我 也遇到这种情况 ，F5 直接提示 配置文件 ；<br>我是在之前 没有找到 entityFramework 节点；<br>直接添加 的 这个节点；<br><br>找到原因了，需要跟新一下  包；<br>EntityFramework.zh-Hans</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3144686,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3144686,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3144686_avatar" style="display:none;">http://pic.cnblogs.com/face/600048/20160823215319.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3164905,&#39;wgVXIKpKML3KKyrHX6rP7dMhpH6yS3zK0PxQsZw13FEdanXD+0lqYw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3164905,&#39;wgVXIKpKML3KKyrHX6rP7dMhpH6yS3zK0PxQsZw13FEdanXD+0lqYw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3164905" class="layer">#13楼</a><a name="3164905" id="comment_anchor_3164905"></a> <span class="comment_date">2015-04-17 15:30</span> | <a id="a_comment_author_3164905" href="http://home.cnblogs.com/u/746187/" target="_blank">老郭师</a> <a href="http://msg.cnblogs.com/send/%E8%80%81%E9%83%AD%E5%B8%88" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3164905" class="blog_comment_body">写得真好,看后的确有些提升.<br>有个问题问下,worker 类的 ID属性,在定义时看不出有什么过人之处,怎么到了数据库里自动变成主键,还自动增长.是MVC内定的,凡是属性名为ID的,都被指派为主键?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3164905,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3164905,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3166239,&#39;nYJ/du+DssJ4R5fxGACbdz6+nV4aYgzSfc4p/Xor7/UdICJZ6Ql8ng==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3166239,&#39;nYJ/du+DssJ4R5fxGACbdz6+nV4aYgzSfc4p/Xor7/UdICJZ6Ql8ng==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3166239" class="layer">#14楼</a><a name="3166239" id="comment_anchor_3166239"></a> <span class="comment_date">2015-04-20 13:06</span> | <a id="a_comment_author_3166239" href="http://home.cnblogs.com/u/727240/" target="_blank">JMRwen</a> <a href="http://msg.cnblogs.com/send/JMRwen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3166239" class="blog_comment_body">每次调试的时候都提示我“不能删除数据库因为数据库正在使用中”</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3166239,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3166239,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3670178,&#39;Lskp0JhNXo3aUIYKNOUT4l5yLfodMPUTn34ZO/q1/Ie8ln21SdDC6A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3670178,&#39;Lskp0JhNXo3aUIYKNOUT4l5yLfodMPUTn34ZO/q1/Ie8ln21SdDC6A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3670178" class="layer">#15楼</a><a name="3670178" id="comment_anchor_3670178"></a> <span class="comment_date">2017-04-17 15:55</span> | <a id="a_comment_author_3670178" href="http://home.cnblogs.com/u/1147085/" target="_blank">kacity</a> <a href="http://msg.cnblogs.com/send/kacity" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3670178" class="blog_comment_body">web.config 中配置大小写一定不能写错，否则很坑</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3670178,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3670178,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3828494,&#39;Nw9TSYMTN67iqZOkg7jfT3Y/0qwv3DrX7B7cFstir9tyTMU9cIDJMw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3828494,&#39;Nw9TSYMTN67iqZOkg7jfT3Y/0qwv3DrX7B7cFstir9tyTMU9cIDJMw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3828494" class="layer">#16楼</a><a name="3828494" id="comment_anchor_3828494"></a><span id="comment-maxId" style="display:none;">3828494</span><span id="comment-maxDate" style="display:none;">2017/11/2 0:27:15</span> <span class="comment_date">2017-11-02 00:27</span> | <a id="a_comment_author_3828494" href="http://www.cnblogs.com/wildcatii/" target="_blank">彼岸1987</a> <a href="http://msg.cnblogs.com/send/%E5%BD%BC%E5%B2%B81987" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3828494" class="blog_comment_body"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#3134515" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3134515);">@</a>
+阿磊ing<br><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/410314-20171102002304138-1976377775.png" alt="" border="0" "=""><br>检查web.config是否缺少了这一节，具体内容是<br>&lt;configSections&gt;<br>    &lt;section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" /&gt;<br>  &lt;/configSections&gt;<br>注意这个应该和你具体安装的EntityFramework的版本相关的，前辈们可能都已经解决了这个问题，请忽略，只为后来者一个参考</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3828494,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3828494,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3828494_avatar" style="display:none;">http://pic.cnblogs.com/face/410314/20130306165155.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586038/" target="_blank">假如6年前买了1万块钱比特币，相当于我在阿里工作了1.6万年</a><br> ·  <a href="https://news.cnblogs.com/n/586007/" target="_blank">最全盘点：2017年，深度学习领域有哪些成就？</a><br> ·  <a href="https://news.cnblogs.com/n/586021/" target="_blank">英伟达回应禁令：研究人员放心用，不更新驱动就没影响</a><br> ·  <a href="https://news.cnblogs.com/n/585998/" target="_blank">特斯拉超跑已进入猎鹰重型火箭内，准备和火星相见欢</a><br> ·  <a href="https://news.cnblogs.com/n/586012/" target="_blank">要建立新的商业壁垒，你必须学会购买别人的时间</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div style="text-align:center; margin:0; padding:0; width:180px;"><embed src="//ra.revolvermaps.com/f/f.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowscriptaccess="always" allownetworking="all" width="180" height="90" flashvars="m=0&amp;i=01bje4m8d3i&amp;r=30&amp;c=007eff"><br><img src="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/01bje4m8d3i.gif" width="1" height="1" alt=""><a href="http://www.revolvermaps.com/?target=enlarge&amp;i=01bje4m8d3i&amp;color=007eff&amp;m=0">Large Visitor Map</a></div>
+<embed wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="160" height="70" name="honehoneclock" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+<object type="application/x-shockwave-flash" style="outline:none;" data="./MVC5 + EF6 + Bootstrap3 (10) 数据查询页面_files/hamster.swf.下载" width="200" height="160">
+<param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?up_bodyColor=f0e9cc&amp;up_feetColor=D4C898&amp;up_eyeColor=000567&amp;up_wheelSpokeColor=DEDEDE&amp;up_wheelColor=FFFFFF&amp;up_waterColor=E0EFFF&amp;up_earColor=b0c4de&amp;up_wheelOuterColor=FF4D4D&amp;up_snoutColor=F7F4E9&amp;up_bgColor=F0E4E4&amp;up_foodColor=cba920&amp;up_wheelCenterColor=E4EB2E&amp;up_tailColor=E6DEBE&amp;">
+<param name="AllowScriptAccess" value="always">
+<param name="wmode" value="opaque"></object>
+<span style="color: #3E8BD6;font-size: 9pt;"><br>求投食~（点图即可）</span><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/slark/">Slark.NET</a><br>园龄：<a href="https://home.cnblogs.com/u/slark/" title="入园时间：2014-11-09">3年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/slark/followers/">458</a><br>关注：<a href="https://home.cnblogs.com/u/slark/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;62846916-f367-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalTodayDay" align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-client-side-validation.html">1. MVC5 + EF6 + Bootstrap3 (16) 客户端验证</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-server-side-validation.html">2. MVC5 + EF6 + Bootstrap3 (15) 应用ModelState和Data Annotation做服务器端数据验证</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-partialview.html">3. MVC5 + EF6 + Bootstrap3 (14) 分部视图PartialView</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-rud.html">4. MVC5 + EF6 + Bootstrap3 (13) 查看详情、编辑数据、删除数据</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-create.html">5. MVC5 + EF6 + Bootstrap3 (12) 新建数据</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-pagedlist.html">6. MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页</a></li><li><a href="http://www.cnblogs.com/slark/p/CSharp-focus-1.html">7. [C#详解] (1) 自动属性、初始化器、扩展方法</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html">8. MVC5 + EF6 + Bootstrap3 (10) 数据查询页面</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html">9. MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part1.html">10. MVC5 + EF6 + Bootstrap3 (8) HtmlHelper用法大全(上)</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(17)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/slark/category/645951.html">[C#详解](1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/slark/category/636030.html">MVC5 + EF6 + Bootstrap3(16)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(21)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/slark/archive/2015/05.html">2015年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/slark/archive/2015/01.html">2015年1月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/slark/archive/2014/12.html">2014年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/slark/archive/2014/11.html">2014年11月 (6)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	60721
+	</li><li class="liRank">
+		排名 -	5556
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-client-side-validation.html#3865608">1. Re:MVC5 + EF6 + Bootstrap3 (16) 客户端验证</a></li>
+        <li class="recent_comment_body">写的很好，很适合我们初学者入门。</li>
+        <li class="recent_comment_author">--贝壳旁</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-pagedlist.html#3856930">2. Re:MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页</a></li>
+        <li class="recent_comment_body">如果model里面没有pagecount pagenumber 呢？</li>
+        <li class="recent_comment_author">--newRohLzy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-client-side-validation.html#3852590">3. Re:MVC5 + EF6 + Bootstrap3 (16) 客户端验证</a></li>
+        <li class="recent_comment_body">虽然lz 不在了还是感谢lz</li>
+        <li class="recent_comment_author">--风格不同</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html#3852541">4. Re:MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)</a></li>
+        <li class="recent_comment_body">来自远古2017年的点赞</li>
+        <li class="recent_comment_author">--风格不同</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-client-side-validation.html#3852222">5. Re:MVC5 + EF6 + Bootstrap3 (16) 客户端验证</a></li>
+        <li class="recent_comment_body">@肯定自己@Html.ValidationMessageFor(x =&gt; x.Name, null, new { @style = "color:red" })直接增加样式就可以了......</li>
+        <li class="recent_comment_author">--Kenton</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-pagedlist.html">1. MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页(23434)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html">2. MVC5 + EF6 + Bootstrap3 (10) 数据查询页面(17749)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-get-started-model.html">3. ASP.NET MVC5 + EF6 入门教程 (5) Model和Entity Framework(17535)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part1.html">4. MVC5 + EF6 + Bootstrap3 (8) HtmlHelper用法大全(上)(17401)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-grid.html">5. MVC5 + EF6 + Bootstrap3 (7) Bootstrap的栅格系统(15825)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-get-started-model.html">1. ASP.NET MVC5 + EF6 入门教程 (5) Model和Entity Framework(45)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-pagedlist.html">2. MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页(40)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html">3. MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)(39)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-grid.html">4. MVC5 + EF6 + Bootstrap3 (7) Bootstrap的栅格系统(35)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-client-side-validation.html">5. MVC5 + EF6 + Bootstrap3 (16) 客户端验证(28)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part1.html">1. MVC5 + EF6 + Bootstrap3 (8) HtmlHelper用法大全(上)(82)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-pagedlist.html">2. MVC5 + EF6 + Bootstrap3 (11) 排序、搜索、分页(71)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc-5-get-started-view.html">3. ASP.NET MVC 5 入门教程 (4) View和ViewBag(61)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-httphelper-part2.html">4. MVC5 + EF6 + Bootstrap3 (9) HtmlHelper用法大全(下)(54)</a></li><li><a href="http://www.cnblogs.com/slark/p/mvc5-ef6-bs3-get-started-search-page.html">5. MVC5 + EF6 + Bootstrap3 (10) 数据查询页面(52)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 Slark.NET
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

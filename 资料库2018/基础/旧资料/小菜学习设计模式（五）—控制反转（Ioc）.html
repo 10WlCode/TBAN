@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.cnblogs.com/xishuai/p/3666276.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./小菜学习设计模式（五）—控制反转（Ioc）_files/ckepop.js.下载" charset="utf-8"></script><script src="./小菜学习设计模式（五）—控制反转（Ioc）_files/shares.php" charset="utf-8"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/encoder.js.下载"></script><script async="" src="http://www.google-analytics.com/analytics.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小菜学习设计模式（五）—控制反转（Ioc） - 田园里的蟋蟀 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./小菜学习设计模式（五）—控制反转（Ioc）_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./小菜学习设计模式（五）—控制反转（Ioc）_files/bundle-BlackLowKey.css">
+<link type="text/css" rel="stylesheet" href="./小菜学习设计模式（五）—控制反转（Ioc）_files/124657.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./小菜学习设计模式（五）—控制反转（Ioc）_files/bundle-BlackLowKey-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/xishuai/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/xishuai/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/xishuai/wlwmanifest.xml">
+<script src="./小菜学习设计模式（五）—控制反转（Ioc）_files/jquery.js.下载" type="text/javascript"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root .footer > #box[style="width:100%;height:100%;position:fixed;top:0"]
+{display:none !important;}</style>  
+<script type="text/javascript">var currentBlogApp = 'xishuai', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./小菜学习设计模式（五）—控制反转（Ioc）_files/blog-common.js.下载" type="text/javascript"></script>
+<link id="http://common.cnblogs.com/scripts/artDialog/ui-dialog.css" rel="stylesheet" href="./小菜学习设计模式（五）—控制反转（Ioc）_files/ui-dialog.css"><script id="http://common.cnblogs.com/scripts/artDialog/dialog-min.js" type="text/javascript" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/dialog-min.js.下载"></script><script id="http://common.cnblogs.com/scripts/artDialog/dialog-plus-min.js" type="text/javascript" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/dialog-plus-min.js.下载"></script></head>
+<body><link href="./小菜学习设计模式（五）—控制反转（Ioc）_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./小菜学习设计模式（五）—控制反转（Ioc）_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: block; opacity: 0; top: 8419px; left: 369px; width: 242px; height: 269px;" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/saved_resource.html"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: block; overflow: auto; top: 8418.8px; left: 368.788px;"><div class="jiadiv_01"><div style="width:100%;background:#F2F2F2;border-bottom:1px solid #E5E5E5;line-height:200%;padding-left:5px;font-size:12px"><table width="100%"><tbody><tr class="jt_sharetitle"><td align="left" style="text-align:left;line-height:25px;font-size:14px;font-weight:bold;color:#000000;">分享到...</td><td align="right" style="text-align:right;"></td></tr></tbody></table></div><div class="jiadiv_02" style="width:100%;" id="jiathis_sers"><a href="javascript:;" onclick="jiathis_sendto(&#39;weixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_weixin">微信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">微博</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_cqq">QQ好友</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">印象笔记</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">领英</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ishare&#39;);return false;" class="jiatitle"><span class="jtico jtico_ishare">一键分享</span></a><a href="javascript:;" onclick="$CKE.center(this);return false;" class="jiatitle"><span class="jtico jtico_jiathis">查看更多(96)</span></a><div style="clear:both"></div></div><div class="ckepopBottom" style="width:100%;"><div style="float:left;font-size:10px"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;display:none;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 5px 0 0;"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/img_012.gif" align="absmiddle" border="0"><a href="http://www.jiathis.com/index2" style="color:#333333;padding:0 3px;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div><iframe frameborder="0" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/jiathis_utility.html" style="display: none;"></iframe>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--github彩条-->
+<a href="https://github.com/yuezhongxin" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/131337049339339.png" alt="Fork me on GitHub" data-canonical-src="http://images.cnitblog.com/blog2015/435188/201503/131337049339339.png"></a>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/xishuai/"><img id="blogLogo" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/xishuai/">田园里的蟋蟀</a></h1>
+<h2>写代码，写博客，学英语。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/xishuai/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/xishuai/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/xishuai/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 340&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 4601</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xishuai/p/3666276.html">小菜学习设计模式（五）—控制反转（Ioc）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>写在前面</h2>
+<p><span style="font-size: 16px;">设计模式目录：</span></p>
+<ul>
+<li><span style="font-size: 15px;"><a id="PostsList1_rpPosts_TitleUrl_4" href="http://www.cnblogs.com/xishuai/p/3497418.html" target="_blank">小菜学习设计模式（一）—模板方法（Template）模式</a></span></li>
+<li><span style="font-size: 15px;"><a id="PostsList1_rpPosts_TitleUrl_3" href="http://www.cnblogs.com/xishuai/p/3509346.html" target="_blank">小菜学习设计模式（二）—单例（Singleton）模式</a></span></li>
+<li><span style="font-size: 15px;"><a id="PostsList1_rpPosts_TitleUrl_2" href="http://www.cnblogs.com/xishuai/p/3527083.html" target="_blank">小菜学习设计模式（三）—工厂方法（Factory Method）模式</a></span></li>
+<li><span style="font-size: 15px;"><a id="PostsList1_rpPosts_TitleUrl_1" href="http://www.cnblogs.com/xishuai/p/3543173.html" target="_blank">小菜学习设计模式（四）—原型（Prototype）模式</a></span></li>
+<li><span style="font-size: 15px;"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xishuai/p/3666276.html" target="_blank">小菜学习设计模式（五）—控制反转（Ioc）</a></span></li>
+<li><span style="font-size: 15px;">持续更新中。。。</span></li>
+</ul>
+<p><span style="font-size: 16px;">本篇目录：</span></p>
+<ul>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h1"><span style="font-size: 15px;">压水井</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h2"><span style="font-size: 15px;">自来水厂</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h3"><span style="font-size: 15px;">压水井的问题-依赖</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h4"><span style="font-size: 15px;">压水井的问题解决-依赖倒置</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h5"><span style="font-size: 15px;">自来水厂-Ioc</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h6"><span style="font-size: 15px;">自来水厂运行-DI</span></a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xishuai/p/3666276.html#xishuai_h7"><span style="font-size: 15px;">后记</span></a></p>
+</li>
+</ul>
+<p><span style="font-size: 15px;">　　好长时间没有更新设计模式系列了，不是不想写，奈何小菜功力有限，这段时间也在给自己充电，毕竟路要一步一步走，急不得。</span></p>
+<p><span style="font-size: 15px;">　　<strong>控制反转</strong>（Inversion of Control）是解决程序耦合问题的一种方案，还有种叫法是<strong>依赖注入</strong>（Dependency Injection），但我感觉<span style="font-size: 15px;">Ioc</span>（<span style="font-size: 15px;"><span style="font-size: 15px;">控制反转</span></span>）是一种思想，DI（<span style="font-size: 15px;">依赖注入</span>）是实现这种思想的一种方式，或者说Ioc是一种概念，DI是这种概念的思想，不知道我这样理解的对不对。可能一开始接触这些东西有点莫名其妙，园友们写的一些东西也看得头疼，至少我当时是这样，如果你是像我一样的菜鸟，请跟我一起学习下，不看代码，我们先看一个生活中的例子-<strong>压水井和自来水厂的故事</strong>。</span></p>
+<p><span style="font-size: 15px;">　　内容有点多，请坚持往下看哦！</span></p>
+<h2 id="xishuai_h1">压水井</h2>
+<p><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/151530449789451.gif" alt=""></p>
+<p><span style="font-size: 15px;">　　小时候在农村喝水都是自家打井或是用电水泵取水，想什么时候喝就什么时候喝，想喝多少就喝多少，很方便，而且不用花钱。但是有个问题是，家里面的房子要装修或是重建，原来打的井已经不适合新建的房子了，也就是说需要重新打井，这就很麻烦，建多少次房子，需要打多少次的井（当然土豪才这样）。</span></p>
+<p><span style="font-size: 15px;">　　我们先看这个小示例，其实如果抽象一点的话，有点类似工厂模式，为什么？我们分析下：上面例子中的水可以看成一个产品，每家的井或是电水泵可以看成一个工厂，自己根据自家的情况来“生产”出来水，只有一家有井或是<span style="font-size: 15px;">电水泵</span>还好（其他家去他家取水，但不现实），如果每家都有一个井或是<span style="font-size: 15px;">电水泵</span>，就有点<strong>工厂泛滥</strong>的情况发生了，可能会出现：</span></p>
+<ul>
+<li><span style="font-size: 15px;"><strong>水污染</strong>：每家都吃不上水，这里面的水出现问题就是产品出现问题，这样我们就需要在每个工厂里面进行处理，就比如需要在每家的井或<span style="font-size: 15px;"><span style="font-size: 15px;">电水泵</span></span>上安装一个净水器，显然代价比较大，也不太现实。</span></li>
+<li><span style="font-size: 15px;"><strong>整体搬迁</strong>：原来的<span style="font-size: 15px;">井或电水泵</span>用不了了，每家的井或电水泵就需要重新搞，可能不太现实，当然只是做个假设，细想一下，这个问题的根源其实就是井或电水泵太多了，也就是工厂泛滥。</span></li>
+</ul>
+<p><span style="font-size: 15px;">　　上面所说的问题为什么会出现？其实就是依赖关系作祟，每一家都要依赖自家的<span style="font-size: 15px;">井或<span style="font-size: 15px;"><span style="font-size: 15px;">电水泵</span></span></span>，也没办法，毕竟人要喝水，总不能跑到地下暗河去喝吧，只能通过<span style="font-size: 15px;"><span style="font-size: 15px;">井或<span style="font-size: 15px;"><span style="font-size: 15px;">电水泵</span></span></span></span>（工厂）来取水（调用），这个问题在编程中就是依赖倒置原则的反例，何为<strong>依赖倒置原则</strong>：</span></p>
+<ul>
+<li class="para"><span style="font-size: 15px;">高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象。</span></li>
+<li class="para"><span style="font-size: 15px;">抽象不应该依赖于具体，具体应该依赖于抽象。</span></li>
+</ul>
+<p><span style="font-size: 15px;">　　第一点：高层次模块（使用者）就是每户人家，低层次模块（被使用者）就是压水井或电水泵，可以看出他们都是依赖于具体的对象，而并非依赖于抽象；第二点：水（抽象）依赖压水井或电水泵（具体），人（具体）依赖压水井（具体），而并非具体依赖于抽象。可以看出这两点完全不设和依赖倒置原则，怎么解决问题呢？请看下面。</span></p>
+<h2 id="xishuai_h2">自来水厂</h2>
+<p><span style="font-size: 15px;">　　上面的示例中其实有个三个对象：每户人家、压水井或<span style="font-size: 15px;">电水泵</span>、水，就是在探讨他们三个这之间的依赖关系，明确这一点很重要。</span></p>
+<p><span style="font-size: 15px;"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/151615499324442.jpg" alt=""></span></p>
+<p><span style="font-size: 15px;">　　随着时代的发展，压水井和<span style="font-size: 15px;"><span style="font-size: 15px;">电水泵</span></span>慢慢消失在我们的视野中（当然现在还有很多落后的地方在用，比如像我老家），政府就在每个村庄或是几个村庄之间建设自来水厂，为什么政府要建设自来水厂？难道他们都是搞编程的？知道工厂泛滥的坏处？哈哈，我觉得应该是多收点钱吧，你觉得呢？开个玩笑。</span></p>
+<p><span style="font-size: 15px;">　　不管政府目的如何，但好像解决了工厂泛滥的一些问题，我们再来分析下有了自来水厂会有什么不同，我们画个示意图看下：</span></p>
+<p><span style="font-size: 15px;"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/151701453071293.jpg" alt=""></span></p>
+<p><span style="font-size: 15px;">　　画的比较丑（莫笑），但是简单的意思还是可以表达的，图中的人和水都是抽象的，地下水和水库依赖于于抽象的水，A村的人和B村的人依赖于抽象的人，人和水怎么关系呢？这个就有自来水厂决定了，它让你喝地下水，你就不能喝水库的水。这就基本符合<span style="font-size: 15px;">依赖倒置原则</span>：<strong>抽象不依赖于具体，具体依赖于抽象</strong>。</span></p>
+<p><span style="font-size: 15px;">　　这中间关键在于自来水厂，没了压水井，有了自来水厂，我们看看上面压水井的“工厂泛滥”问题能不能解决？</span></p>
+<ul>
+<li><span style="font-size: 15px;"><strong>水污染</strong>：比如地下水出现问题，因为自来水厂不依赖地下水，而是依赖于抽象的水，地下水有问题，那我用水库的水，水库的水如果有问题，那我们用雨水净化。。。我们人喝到的不管什么水？反正都是水，不影响我们喝水就行了。</span></li>
+<li><span style="font-size: 15px;"><strong>整体搬迁：</strong></span><span style="font-size: 15px;">比如A村的人因为某些原因，要搬到B村，如果是上面压水井的模式，帮过去就需要重新打井了，但是有了自来水厂，我只需要接个管线，按个水龙头就行了，就这么简单。</span></li>
+</ul>
+<p><span style="font-size: 15px;">　　从上面的分析来看，建设自来水厂确实比压水井可靠多了，回到我们这篇要讲的正题-控制反转（Ioc），你可能也有些明白了，其实自来水厂就可以看做是Ioc，用什么样的水？给什么样的人？都是自来水厂决定，好处就不用多说了，上面已经讲明，套用到编程里面是相同的道理，只可意会哦。</span></p>
+<p><span style="font-size: 15px;">　　说到这里，你不禁有些惊讶，难道政府里面有系统架构师？哈哈笑过。</span></p>
+<p><span style="font-size: 15px;">　　上面的示例，下面我们再来用代码复述一下，毕竟理论要结合实践。</span></p>
+<h2 id="xishuai_h3">压水井的问题-依赖</h2>
+<p><span style="font-size: 15px;">　　压水井模式有三个对象：人、压水井、水，我们就用常规的方式简单写下代码：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;"> 2</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 村民
+</span><span style="color: #008080;"> 3</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> VillagePeople
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 6</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> DrinkWater()
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;"> 8</span>                 PressWater pw = <span style="color: #0000ff;">new</span><span style="color: #000000;"> PressWater();
+</span><span style="color: #008080;"> 9</span>                 UndergroundWater uw =<span style="color: #000000;"> pw.returnWater();
+</span><span style="color: #008080;">10</span>                 <span style="color: #0000ff;">if</span> (uw!=<span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">                {
+</span><span style="color: #008080;">12</span>                     Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">地下水好甜啊！！！</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">16</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">17</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 压水井
+</span><span style="color: #008080;">18</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">19</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> PressWater
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">21</span>             <span style="color: #0000ff;">public</span><span style="color: #000000;"> UndergroundWater returnWater()
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">23</span>                 <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> UndergroundWater();
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">26</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">27</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 地下水
+</span><span style="color: #008080;">28</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">29</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UndergroundWater
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">        { 
+</span><span style="color: #008080;">31</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　上面的代码就是简单演示村民通过压水井喝水的过程，因为<span style="font-size: 15px;">村民</span>不能直接取得水，只能通过压水井取得地下水，很明显我们可以看出之间的依赖关系：</span></p>
+<ul>
+<li><span style="font-size: 15px;">VillagePeople依赖于PressWater</span></li>
+<li><span style="font-size: 15px;">VillagePeople</span><span style="font-size: 15px;">依赖于UndergroundWater</span></li>
+<li><span style="font-size: 15px;">PressWater</span><span style="font-size: 15px;">依赖于UndergroundWater</span></li>
+</ul>
+<p><span style="font-size: 15px;">　　我们在做业务处理的时候，简单的依赖关系可以用上面的方式处理，如果太复杂的话就不行了，牵一发而动全身总归不是很好。</span></p>
+<p><span style="font-size: 15px;">　　大家可能说，上面不是讲到“工厂泛滥”问题，这边怎么没指出？因为<span style="color: #000000;">PressWater某一方面</span>其实就可以看做一个小工厂，每家的压水井不一样，这边只是说某一种，“工厂泛滥”其实就是依赖作祟，上面的例子说明的是依赖关系，一样的道理，所以下面就用这个例子来做一些东西。</span></p>
+<h2 id="xishuai_h4">压水井的问题解决-依赖倒置</h2>
+<p><span style="font-size: 15px;">　　我们在讲压水井的时候提到过依赖倒置原则，这边就不再说了，<span style="font-size: 15px;">因为<span style="font-size: 15px;">VillagePeople依赖于PressWater</span>、</span></span><span style="font-size: 15px;">VillagePeople</span><span style="font-size: 15px;">依赖于UndergroundWater、</span><span style="font-size: 15px;">PressWater</span><span style="font-size: 15px;">依赖于UndergroundWater，我们可以把<span style="font-size: 15px;">PressWater（压水井）</span>和<span style="font-size: 15px;">UndergroundWater（地下水）抽象出来，<span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;">UndergroundWater</span></span></span></span></span></span>属于水的一种，可以抽象为I<span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;">Water</span></span></span></span>，<span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;">PressWater</span></span></span></span>因为是获取水的方式之一，可以抽象为I<span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="font-size: 15px;">Water</span></span></span></span></span></span>Tool，这边就要面向接口编程了，根据<span style="font-size: 15px;">依赖倒置原则</span>，我们把上面的代码修改一下：</span></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;"> 2</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 村民
+</span><span style="color: #008080;"> 3</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> VillagePeople
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 6</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> DrinkWater()
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;"> 8</span>                 IWaterTool pw = <span style="color: #0000ff;">new</span><span style="color: #000000;"> PressWater();
+</span><span style="color: #008080;"> 9</span>                 IWater uw =<span style="color: #000000;"> pw.returnWater();
+</span><span style="color: #008080;">10</span>                 <span style="color: #0000ff;">if</span> (uw != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">                {
+</span><span style="color: #008080;">12</span>                     Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">水好甜啊！！！</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">16</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">17</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 压水井
+</span><span style="color: #008080;">18</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">19</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> PressWater : IWaterTool
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">21</span>             <span style="color: #0000ff;">public</span><span style="color: #000000;"> IWater returnWater()
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">23</span>                 <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span><span style="color: #000000;"> UndergroundWater();
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">26</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">27</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 获取水方式接口
+</span><span style="color: #008080;">28</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">29</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> IWaterTool
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">            IWater returnWater();
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">33</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">34</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 地下水
+</span><span style="color: #008080;">35</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">36</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> UndergroundWater : IWater
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">        { }
+</span><span style="color: #008080;">38</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">39</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 水接口
+</span><span style="color: #008080;">40</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">41</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> IWater
+</span><span style="color: #008080;">42</span>         { }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　从上面的代码可以看出，UndergroundWater依赖接口IWater，PressWater依赖IWaterTool和<span style="font-size: 15px;">IWater</span>，VillagePeople依赖IWaterTool和<span style="font-size: 15px;"><span style="font-size: 15px;">IWater</span></span>，这样就符合依赖倒置原则了，都是依赖于抽象，从而降低耦合度，这样当一个方式变化了不会影响到其他，地下水污染了，我可以通过别的获取工具获取水，而不至于没水喝。</span></p>
+<p><span style="font-size: 15px;"><span style="font-size: 15px;">　　但是上面说的忽略了个问题，接口总是会被实现的，也就是总会执行：IWaterTool pw = <span style="color: #0000ff;">new</span><span style="color: #000000;"> PressWater();</span>这样耦合度就产生了，也就是<span style="color: #000000;">VillagePeople</span>依赖于<span style="font-size: 15px;"><span style="font-size: 15px;"><span style="color: #000000;">PressWater</span></span></span>，我们可以通过工厂参数来产生不同的获取工具对象，这种方式表面上虽然解决了问题，但是实质上代码耦合度并没有改变，怎么办呢？请接着往下看。</span></span></p>
+<h2 id="xishuai_h5">自来水厂-Ioc</h2>
+<p><span style="font-size: 15px;">　　通过Ioc模式可以彻底解决上面我们提到耦合的问题，它把耦合从代码中移出去，放到统一的XML文件中，通过一个容器在需要的时候把这个依赖关系形成，即把需要的接口实现注入到需要它的类中。就像自来水厂一样，水的来源、水的去处都是它来决定，人们只要通过它来喝水就行了，而不需要考虑的太多。</span></p>
+<p><span style="font-size: 15px;">　　早在微软提供的一个示例框架PetShop中就有Ioc的体现，只不过那时候不太懂，PetShop是通过反射创建对象，上面的代码我们修改一下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;"> 2</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 村民
+</span><span style="color: #008080;"> 3</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> VillagePeople
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 6</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> DrinkWater()
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;"> 8</span>                 IWaterTool pw = (IWaterTool)Assembly.Load(ConfigurationManager.AppSettings[<span style="color: #800000;">"</span><span style="color: #800000;">AssemName</span><span style="color: #800000;">"</span>]).CreateInstance(ConfigurationManager.AppSettings[<span style="color: #800000;">"</span><span style="color: #800000;">WaterToolName</span><span style="color: #800000;">"</span><span style="color: #000000;">]);
+</span><span style="color: #008080;"> 9</span>                 IWater uw =<span style="color: #000000;"> pw.returnWater();
+</span><span style="color: #008080;">10</span>                 <span style="color: #0000ff;">if</span> (uw != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">                {
+</span><span style="color: #008080;">12</span>                     Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">水好甜啊！！！</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">15</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　上面代码中我们只需要在配置文件中添加获取水工具的名称WaterToolName就行了，因为一种工具对应获取特定的一种水，所以水的种类不需要配置。地下水污染了，我们只需要在配置文件中修改一下<span style="font-size: 15px;">WaterToolName</span>就可以了。</span></p>
+<p><span style="font-size: 15px;">　　Ioc模式，系统中通过引入实现了Ioc模式的<span style="font-size: 15px;">Ioc</span>容器，即可由<span style="font-size: 15px;">Ioc</span>容器来管理对象的生命周期、依赖关系等，从而使得应用程序的配置和依赖性规范与实际的应用程序代码分开。其中一个特点就是通过文本的配置文件进行应用程序组件间相互关系的配置，而不用重新修改并编译具体的代码。</span></p>
+<p><span style="font-size: 15px;">　　看到这里，是不是感觉Ioc模式有点“热插拔”的意思？有点像USB一样呢？</span></p>
+<h2 id="xishuai_h6">自来水厂运行-DI</h2>
+<p><span style="font-size: 15px;">　　如果把自来水厂看做Ioc，那我觉得依赖注入（DI）就是这个自来水厂的运行模式，当然其实是一个意思，依赖注入是什么？全称Dependency Injection，我们从字面上理解下：需要的接口实现注入到需要它的类中，这就是依赖注入的意思。自来水厂获取水源的时候，控制这个获取水源的开关可以看做是依赖注入的一种体现，话不多说，懂得就好。</span></p>
+<p><span style="font-size: 15px;">　　依赖注入的方式有很多，就像控制获取水源的开关有很多一样。</span></p>
+<ul>
+<li><span style="font-size: 15px;">构造器注入（Constructor Injection）：Ioc容器会智能地选择选择和调用适合的构造函数以创建依赖的对象。如果被选择的构造函数具有相应的参数，Ioc容器在调用构造函数之前解析注册的依赖关系并自行获得相应参数对象；</span></li>
+<li><span style="font-size: 15px;">属性注入（Property Injection）：如果需要使用到被依赖对象的某个属性，在被依赖对象被创建之后，Ioc容器会自动初始化该属性；</span></li>
+<li><span style="font-size: 15px;">方法注入（Method Injection）：如果被依赖对象需要调用某个方法进行相应的初始化，在该对象创建之后，Ioc容器会自动调用该方法。</span></li>
+</ul>
+<p><span style="font-size: 15px;">　　有时间可以好好研究下依赖注入的各种方式，这边我们就使用微软提供的Unity实现依赖注入，方式是构造器注入，首先使用Nuget工具将<span style="font-size: 15px;">Unity</span>添加到项目中，安装<span style="font-size: 15px;"><span style="font-size: 15px;">Unity</span></span>需要.net framework4.5支持。</span></p>
+<p><span style="font-size: 15px;"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/152120598853981.jpg" alt=""></span></p>
+<p><span style="font-size: 15px;">　　添加完之后，发下项目中多了Microsoft.Practices.Unity和Microsoft.Practices.Configuation两个dll，代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;"> 2</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 人接口
+</span><span style="color: #008080;"> 3</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> IPeople
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 6</span>             <span style="color: #0000ff;">void</span><span style="color: #000000;"> DrinkWater();
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 8</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;"> 9</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 村民
+</span><span style="color: #008080;">10</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">11</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> VillagePeople : IPeople
+</span><span style="color: #008080;">12</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">            IWaterTool _pw;
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">public</span><span style="color: #000000;"> VillagePeople(IWaterTool pw)
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">16</span>                 _pw =<span style="color: #000000;"> pw;
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">18</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> DrinkWater()
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">20</span>                 IWater uw =<span style="color: #000000;"> _pw.returnWater();
+</span><span style="color: #008080;">21</span>                 <span style="color: #0000ff;">if</span> (uw != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">                {
+</span><span style="color: #008080;">23</span>                     Console.WriteLine(<span style="color: #800000;">"</span><span style="color: #800000;">水好甜啊！！！</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">25</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">26</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　调用代码：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">1</span>         <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span><span style="color: #000000;">[] args)
+</span><span style="color: #008080;">2</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">3</span>             UnityContainer container = <span style="color: #0000ff;">new</span><span style="color: #000000;"> UnityContainer();
+</span><span style="color: #008080;">4</span>             container.RegisterType&lt;TestFour.IWaterTool, TestFour.PressWater&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">5</span>             TestFour.IPeople people = container.Resolve&lt;TestFour.VillagePeople&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">6</span> <span style="color: #000000;">            people.DrinkWater();
+</span><span style="color: #008080;">7</span>         }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　首先我们创建一个Unity容器，接下来我们需要在容器中注册一种类型，它是一个类型的映射，接口类型是IWaterTool，返回类型为PressWater，这个过程中就是要告诉容易我要注册的类型。</span></p>
+<p><span style="font-size: 15px;">　　比如自来水厂要用地下水作为水源，这时候操作员输入命令，就是<strong>RegisterType，参数为IWaterTool、PressWater</strong>，下面就是调用Resolve生成对象，这个过程表示要把水输送到哪户人家，命令是<strong>Resolve，</strong><span style="font-size: 15px;"><strong>参数为VillagePeople</strong>，接下来就是直接打开水龙头喝水了，很方便吧。</span></span></p>
+<p><span style="font-size: 15px;"><span style="font-size: 15px;">　　关于依赖注入其实有很多的东西，上面的示例只是抛砖引玉，有时间的话好好研究下，比如依赖注入的其他方式等等。</span></span></p>
+<h2 id="xishuai_h7">后记</h2>
+<p><span style="font-size: 15px;">　　上面的示例代码没多少东西，如果有感兴趣的朋友可以下载看看，地址：<a href="http://pan.baidu.com/s/1ntK61wl" target="_blank">http://pan.baidu.com/s/1ntK61wl</a></span></p>
+<p><span style="font-size: 15px;">　　这篇写完，关于创建对象型模式就差不多了，接下来就是构建复杂结构型模式了，学习这些东西，都是为了写出更好的代码，当然<span style="font-size: 15px;">还有很长的路要走，</span>革命尚未成功，同志仍需努力，也希望你与我共勉。</span></p>
+<p><span style="font-size: 15px;"><span style="color: #ff0000;">　　如果你觉得本篇文章对你有所帮助，请点击右下部“推荐”，^_^</span></span></p>
+<p>&nbsp;</p></div><div id="MySignature" style="display: block;"><!-- <span style="font-size: 14px">注：如果你对领域驱动设计、微服务、以及MVVM开发感兴趣，欢迎<a href="http://jobs.51job.com/all/co3926692.html" target="_blank">加入我们</a>。:)</span>
+<br> -->
+<div id="xishuai_qianming">
+作者：<a href="http://www.cnblogs.com/xishuai/">田园里的蟋蟀</a>
+<br>出处：<a href="http://www.cnblogs.com/xishuai/">http://www.cnblogs.com/xishuai/</a> 
+<br>
+本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接。
+</div>
+
+<br>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jiathis_separator jtico jtico_qzone">QQ空间</span></a>
+	<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jiathis_separator jtico jtico_tsina">新浪微博</span></a>
+	<a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jiathis_separator jtico jtico_tqq">腾讯微博</span></a>
+	<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jiathis_separator jtico jtico_weixin">微信</span></a>
+	<a class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" href="http://www.jiathis.com/share" target="_blank" style="">更多</a>
+	<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_42" title="累计分享2次">2</span></a>
+</div>
+
+<!-- JiaThis Button END --></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/xishuai/category/544557.html" target="_blank">[24]设计模式</a>,<a href="http://www.cnblogs.com/xishuai/category/572886.html" target="_blank">[06]IoC/DI</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/xishuai/tag/%5B09%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">[09]小菜学习编程-设计模式</a>, <a href="http://www.cnblogs.com/xishuai/tag/%5B16%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-IoC%2FDI/">[16]小菜学习编程-IoC/DI</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3666276,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <span style="color:red">关注成功</span>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xishuai/" target="_blank"><img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/20130715165802.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xishuai/">田园里的蟋蟀</a><br>
+            <a href="http://home.cnblogs.com/u/xishuai/followees">关注 - 122</a><br>
+            <a href="http://home.cnblogs.com/u/xishuai/followers">粉丝 - 2588</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow"><span style="color:red">关注成功</span></div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3666276,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">36</span>
+    </div>
+    <div class="buryit" onclick="votePost(3666276,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/xishuai/p/3656363.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/xishuai/p/3656363.html" title="发布于2014-04-14 09:18">程序员的人性思考（续）</a><br><a href="http://www.cnblogs.com/xishuai/p/3670292.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/xishuai/p/3670292.html" title="发布于2014-04-21 09:13">Unity依赖注入使用详解</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-04-16 10:08</span> <a href="http://www.cnblogs.com/xishuai/">田园里的蟋蟀</a> 阅读(<span id="post_view_count">6981</span>) 评论(<span id="post_comment_count">15</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3666276" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/xishuai/p/3666276.html#" onclick="AddToWz(3666276);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=124657,cb_entryId=3666276,cb_blogApp=currentBlogApp,cb_blogUserGuid='3d3b4137-4ae0-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/4/16 10:08:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2919006,&#39;xavTWEW4VJLsw5LYbwQQ3TcgVGbuIKnduZZizNDGOml2/Os/6cWyYg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2919006,&#39;xavTWEW4VJLsw5LYbwQQ3TcgVGbuIKnduZZizNDGOml2/Os/6cWyYg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2919006" class="layer">#1楼</a><a name="2919006" id="comment_anchor_2919006"></a>  <span class="comment_date">2014-04-16 11:23</span> <a id="a_comment_author_2919006" href="http://www.cnblogs.com/wohexiaocai/" target="_blank">云测试</a> <a href="http://msg.cnblogs.com/send/%E4%BA%91%E6%B5%8B%E8%AF%95" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2919006" class="blog_comment_body">很好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2919006,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2919006,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2919006_avatar" style="display:none;">http://pic.cnblogs.com/face/523928/20160607103029.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2919009,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2919009,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2919009" class="layer">#2楼</a><a name="2919009" id="comment_anchor_2919009"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-04-16 11:26</span> <a id="a_comment_author_2919009" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2919009" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2919006" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2919006);">@</a>
+我和小菜<br>看了好久，我觉得有点熟悉，原来是你。:)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2919009,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2919009,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2919009_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2929535,&#39;KQrIqJ+0F6eMNJ7fIpSHtQBJ9IMYMPY872TRTw4z6s26uQMQCQ5iBA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2929535,&#39;KQrIqJ+0F6eMNJ7fIpSHtQBJ9IMYMPY872TRTw4z6s26uQMQCQ5iBA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929535" class="layer">#3楼</a><a name="2929535" id="comment_anchor_2929535"></a>  <span class="comment_date">2014-05-02 09:42</span> <a id="a_comment_author_2929535" href="http://www.cnblogs.com/StevenLi/" target="_blank">不能飚车</a> <a href="http://msg.cnblogs.com/send/%E4%B8%8D%E8%83%BD%E9%A3%9A%E8%BD%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2929535" class="blog_comment_body">赞认真态度，不过.net 4.5不是必须，体验Unity的话可以装EntLib 5，.net 3.5都可以用。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2929535,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2929535,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2929535_avatar" style="display:none;">http://pic.cnblogs.com/face/u27647.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2929553,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2929553,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929553" class="layer">#4楼</a><a name="2929553" id="comment_anchor_2929553"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-05-02 10:15</span> <a id="a_comment_author_2929553" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2929553" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929535" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2929535);">@</a>
+不能飚车<br>多谢兄台指教。:)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2929553,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2929553,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2929553_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2929852,&#39;qYxHdcrKnTrEk00CXgIUvAvdYTXtUW7e8tK9Yll84c9O2rq5a6LHBw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2929852,&#39;qYxHdcrKnTrEk00CXgIUvAvdYTXtUW7e8tK9Yll84c9O2rq5a6LHBw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929852" class="layer">#5楼</a><a name="2929852" id="comment_anchor_2929852"></a>  <span class="comment_date">2014-05-02 22:44</span> <a id="a_comment_author_2929852" href="http://www.cnblogs.com/skydreamteam/" target="_blank">DreamTop</a> <a href="http://msg.cnblogs.com/send/DreamTop" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2929852" class="blog_comment_body">很赞很赞博主好认真啊，我要慢慢读您写的文章，这简直是范例啊~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2929852,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2929852,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2929855,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2929855,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929855" class="layer">#6楼</a><a name="2929855" id="comment_anchor_2929855"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-05-02 22:49</span> <a id="a_comment_author_2929855" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2929855" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929852" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2929852);">@</a>
+DreamTop<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2929852" title="查看引用原文">引用</a></legend>很赞很赞博主好认真啊，我要慢慢读您写的文章，这简直是范例啊~</fieldset><br>付出总是有代价的，别人51在外潇洒，本人现在这个时间还在苦逼的写博，兄台这是给我向前的动力啊，与你共勉。:)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2929855,&#39;Digg&#39;,this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2929855,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2929855_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2967519,&#39;jsJgHWN8/qrj+0B1q8a1CnD7ESjniZRDnzesgrhJbTzZbIG6SQRymg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2967519,&#39;jsJgHWN8/qrj+0B1q8a1CnD7ESjniZRDnzesgrhJbTzZbIG6SQRymg==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2967519" class="layer">#7楼</a><a name="2967519" id="comment_anchor_2967519"></a>  <span class="comment_date">2014-06-19 09:55</span> <a id="a_comment_author_2967519" href="http://www.cnblogs.com/ForOne/" target="_blank">ForOne</a> <a href="http://msg.cnblogs.com/send/ForOne" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2967519" class="blog_comment_body">不错,好文！请问博主写博用的是什么工具？Word还是Live writer?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2967519,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2967519,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2967519_avatar" style="display:none;">http://pic.cnblogs.com/face/609198/20140623125315.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2967522,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2967522,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2967522" class="layer">#8楼</a><a name="2967522" id="comment_anchor_2967522"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-06-19 09:57</span> <a id="a_comment_author_2967522" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2967522" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2967519" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2967519);">@</a>
+ForOne<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2967519" title="查看引用原文">引用</a></legend>不错,好文！请问博主写博用的是什么工具？Word还是Live writer?</fieldset><br>感谢兄台支持，就是博客园后台管理的编辑器。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2967522,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2967522,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2967522_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2995857,&#39;8KoPOEtfDjsFyys6b50XuCaVOQH2qQpWJpkcdYtgwdtnK1z3ndT0SA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2995857,&#39;8KoPOEtfDjsFyys6b50XuCaVOQH2qQpWJpkcdYtgwdtnK1z3ndT0SA==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2995857" class="layer">#9楼</a><a name="2995857" id="comment_anchor_2995857"></a>  <span class="comment_date">2014-07-28 13:55</span> <a id="a_comment_author_2995857" href="http://www.cnblogs.com/yuahlee/" target="_blank">Murphyli</a> <a href="http://msg.cnblogs.com/send/Murphyli" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2995857" class="blog_comment_body">看了下，通俗易懂....</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2995857,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2995857,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2995857_avatar" style="display:none;">http://pic.cnblogs.com/face/479536/20140924201727.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2995866,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2995866,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#2995866" class="layer">#10楼</a><a name="2995866" id="comment_anchor_2995866"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-07-28 14:00</span> <a id="a_comment_author_2995866" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2995866" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#2995857" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2995857);">@</a>
+yuahlee<br>这是写博的追求。:)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2995866,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2995866,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2995866_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3106873,&#39;fjzE84wX50MXR1dqOt1BdRoLVmtuZjj0Mco+OxpG1In6kEAfY/wJ9A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3106873,&#39;fjzE84wX50MXR1dqOt1BdRoLVmtuZjj0Mco+OxpG1In6kEAfY/wJ9A==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#3106873" class="layer">#11楼</a><a name="3106873" id="comment_anchor_3106873"></a>  <span class="comment_date">2015-01-14 17:22</span> <a id="a_comment_author_3106873" href="http://home.cnblogs.com/u/366097/" target="_blank">模拟人生</a> <a href="http://msg.cnblogs.com/send/%E6%A8%A1%E6%8B%9F%E4%BA%BA%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3106873" class="blog_comment_body">最喜欢故事了，关联生活，32个人赞~~~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3106873,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3106873,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3106875,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3106875,&#39;4cSClyE4Z6kwNllN6UYZQAuSzhXIet9CpCcqTJYsSIRKVf8yi4eu0w==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#3106875" class="layer">#12楼</a><a name="3106875" id="comment_anchor_3106875"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-01-14 17:25</span> <a id="a_comment_author_3106875" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3106875" class="blog_comment_body"><a href="http://www.cnblogs.com/xishuai/p/3666276.html#3106873" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3106873);">@</a>
+模拟人生<br>共勉。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3106875,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3106875,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3106875_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3279147,&#39;sr6ardzU5ovbdufK3dr6zvj6H0mOOSP0ZuuDZWFdWGfb1jaxjs22tQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3279147,&#39;sr6ardzU5ovbdufK3dr6zvj6H0mOOSP0ZuuDZWFdWGfb1jaxjs22tQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#3279147" class="layer">#13楼</a><a name="3279147" id="comment_anchor_3279147"></a>  <span class="comment_date">2015-10-06 23:00</span> <a id="a_comment_author_3279147" href="http://www.cnblogs.com/xiuguang/" target="_blank">听海船说</a> <a href="http://msg.cnblogs.com/send/%E5%90%AC%E6%B5%B7%E8%88%B9%E8%AF%B4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3279147" class="blog_comment_body">通俗易懂，示例很接地气</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3279147,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3279147,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3279147_avatar" style="display:none;">http://pic.cnblogs.com/face/478531/20170313141900.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3460991,&#39;nDEHEse0WDYw68q2tWSq0OdalfFTaT45hts4dXEFekHvgQXyHqfjoQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3460991,&#39;nDEHEse0WDYw68q2tWSq0OdalfFTaT45hts4dXEFekHvgQXyHqfjoQ==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#3460991" class="layer">#14楼</a><a name="3460991" id="comment_anchor_3460991"></a>  <span class="comment_date">2016-06-29 14:37</span> <a id="a_comment_author_3460991" href="http://www.cnblogs.com/imhello/" target="_blank">哇刚好六个字</a> <a href="http://msg.cnblogs.com/send/%E5%93%87%E5%88%9A%E5%A5%BD%E5%85%AD%E4%B8%AA%E5%AD%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3460991" class="blog_comment_body">例子举得不合适</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3460991,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3460991,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3460991_avatar" style="display:none;">http://pic.cnblogs.com/face/608688/20161116144941.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3661813,&#39;Y0t4Y22jlSi9BZz18SSx8Iwac5zzKQiKu2VtcPY3GczMS8o/YNixGw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3661813,&#39;Y0t4Y22jlSi9BZz18SSx8Iwac5zzKQiKu2VtcPY3GczMS8o/YNixGw==&#39;)">引用</a></span>
+				</div>
+				<a href="http://www.cnblogs.com/xishuai/p/3666276.html#3661813" class="layer">#15楼</a><a name="3661813" id="comment_anchor_3661813"></a><span id="comment-maxId" style="display:none;">3661813</span><span id="comment-maxDate" style="display:none;">2017/4/7 17:31:16</span>  <span class="comment_date">2017-04-07 17:31</span> <a id="a_comment_author_3661813" href="http://www.cnblogs.com/liuqiyun/" target="_blank">刘奇云</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E5%A5%87%E4%BA%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3661813" class="blog_comment_body">感觉自己还是差点，道行不够啊...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3661813,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3661813,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3661813_avatar" style="display:none;">http://pic.cnblogs.com/face/937151/20160415120337.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/xishuai/p/3666276.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/xishuai/p/3666276.html#top">返回顶部</a></div>
+<div id="comment_form_container">
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./小菜学习设计模式（五）—控制反转（Ioc）_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/585054/" target="_blank">还花一两个小时挑房源？Airbnb将推新技术让你全方位无死角了解房源</a><br> ·  <a href="https://news.cnblogs.com/n/585070/" target="_blank">方舟子：贾跃亭以老赖第一人身份登上纽约时报</a><br> ·  <a href="https://news.cnblogs.com/n/585069/" target="_blank">JS开发者：最喜欢React，Vue.js比Angular值得尝试</a><br> ·  <a href="https://news.cnblogs.com/n/585066/" target="_blank">5分钟将药送上800米悬崖 京东无人机立功</a><br> ·  <a href="https://news.cnblogs.com/n/585064/" target="_blank">苹果比以往任何时候都更愿意大手笔投资或收购供应商和初创公司</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><!--<div style="display: none" id="__document_write_ajax_div-1"></div><script charset="Shift_JIS" >window['__document_write_ajax_callbacks__']['1']();</script>-->
+
+<a target="_blank" title="Microsoft MVP: ASP.NET/IIS" href="https://mvp.microsoft.com/en-us/PublicProfile/5001476?fullName=Zhongxin%20%20Yue">
+<img src="./小菜学习设计模式（五）—控制反转（Ioc）_files/121035578149076.png" style="max-width: 100%;"></a>
+
+<!--<div id="clicki_widget_6830" ></div>-->
+
+<!--jiathis分享代码-->
+<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/xishuai/">田园里的蟋蟀</a><br>园龄：<a href="http://home.cnblogs.com/u/xishuai/" title="入园时间：2012-08-07">5年4个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/xishuai/followers/">2588</a><br>关注：<a href="http://home.cnblogs.com/u/xishuai/followees/">122</a><div id="p_b_follow"><span style="color:red">关注成功</span></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/11/01&#39;);return false;">&lt;</a></td><td align="center">2017年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center"><a href="http://www.cnblogs.com/xishuai/archive/2017/12/06.html"><u>6</u></a></td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalTodayDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xishuai/p/docker-swarm.html">1. Docker 三剑客之 Docker Swarm</a></li><li><a href="http://www.cnblogs.com/xishuai/p/docker-compose.html">2. Docker 三剑客之 Docker Compose</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ubuntu-docker-consul-fabio-aspnet-core.html">3. Docker &amp; Consul &amp; Fabio &amp; ASP.NET Core 2.0 微服务跨平台实践</a></li><li><a href="http://www.cnblogs.com/xishuai/p/asp-net-core-webapi-json-convert-empty-string-instead-of-null.html">4. ASP.NET Core WebApi 返回统一格式参数（Json 中 Null 替换为空字符串）</a></li><li><a href="http://www.cnblogs.com/xishuai/p/identityserver4-get-user-claims-by-token.html">5. IdentityServer4 通过 AccessToken 获取 UserClaims</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ubuntu-gitlab-ci-docker-aspnet-core-part-2.html">6. Ubuntu &amp; GitLab CI &amp; Docker &amp; ASP.NET Core 2.0 自动化发布和部署（2）</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ubuntu-docker-registry.html">7. Ubuntu Docker Registry 搭建私有仓库</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ubuntu-gitlab-ci-docker-aspnet-core-part-1.html">8. Ubuntu &amp; GitLab CI &amp; Docker &amp; ASP.NET Core 2.0 自动化发布和部署（1）</a></li><li><a href="http://www.cnblogs.com/xishuai/p/7458191.html">9. Ubuntu SSH root 登录 Permission denied 错误</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ubuntu-install-supervisor.html">10. Ubuntu 安装和使用 Supervisor（进程管理）</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xishuai/tag/%5B20%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-ASP.NET%20vNext/">[20]小菜学习编程-ASP.NET vNext</a>(72)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B17%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-DDD/">[17]小菜学习编程-DDD</a>(43)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B14%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-EntityFramework/">[14]小菜学习编程-EntityFramework</a>(42)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B15%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-MVC/">[15]小菜学习编程-MVC</a>(35)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B05%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-.Net/">[05]小菜学习编程-.Net</a>(30)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B23%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-ASP.NET/">[23]小菜学习编程-ASP.NET</a>(27)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B12%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-JavaScript/">[12]小菜学习编程-JavaScript</a>(23)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B31%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-Linux/">[31]小菜学习编程-Linux</a>(16)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B24%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-%E8%90%BD%E7%BD%91/">[24]小菜学习编程-落网</a>(15)</li><li><a href="http://www.cnblogs.com/xishuai/tag/%5B27%5D%E5%B0%8F%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[27]小菜学习编程-架构设计</a>(14)</li><li><a href="http://www.cnblogs.com/xishuai/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(440)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/xishuai/category/526208.html">[01]C(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/xishuai/category/477810.html">[02]Java(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/xishuai/category/540158.html">[03].Net(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/xishuai/category/558994.html">[04]Git/GitLab(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/xishuai/category/542186.html">[05]CLR(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/xishuai/category/572886.html">[06]IoC/DI(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/xishuai/category/572887.html">[07]DDD(42)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/xishuai/category/577114.html">[08]DTO/AutoMapper(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/xishuai/category/552140.html">[09]CSS/JavaScript(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/xishuai/category/553676.html">[10]ControlDesign(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/xishuai/category/610156.html">[11]ASP.NET(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/xishuai/category/565076.html">[12]ASP.NET MVC(35)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/xishuai/category/586918.html">[13]ASP.NET Core(72)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/xishuai/category/565075.html">[14]EntityFramework(42)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/xishuai/category/540932.html">[15]Winform(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/xishuai/category/477803.html">[16]DatabaseDesign(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/xishuai/category/579308.html">[17]UnitTest/NUint/xUnit(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/xishuai/category/1025768.html">[18]OAuth2.0/IdentityServer4(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/xishuai/category/587647.html">[19]VisualStudio(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/xishuai/category/929913.html">[20]Mac OS/Linux(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/xishuai/category/704413.html">[21]Google(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/xishuai/category/600779.html">[22]CNBlogs(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/xishuai/category/906056.html">[23]架构设计(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/xishuai/category/544557.html">[24]设计模式(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/xishuai/category/580396.html">[25]建站四部曲(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/xishuai/category/468999.html">[26]程序人生(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/xishuai/category/541443.html">[27]杂谈(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/xishuai/category/701506.html">[28]落网(15)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(340)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/xishuai/archive/2017/12.html">2017年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/xishuai/archive/2017/11.html">2017年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/xishuai/archive/2017/09.html">2017年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/xishuai/archive/2017/08.html">2017年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/xishuai/archive/2017/06.html">2017年6月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/xishuai/archive/2017/05.html">2017年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/xishuai/archive/2017/04.html">2017年4月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/xishuai/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/xishuai/archive/2017/01.html">2017年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/xishuai/archive/2016/12.html">2016年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/xishuai/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/xishuai/archive/2016/10.html">2016年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/xishuai/archive/2016/09.html">2016年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/xishuai/archive/2016/08.html">2016年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/xishuai/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/xishuai/archive/2016/06.html">2016年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/xishuai/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/xishuai/archive/2016/04.html">2016年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/xishuai/archive/2016/03.html">2016年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/xishuai/archive/2016/02.html">2016年2月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/xishuai/archive/2016/01.html">2016年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/xishuai/archive/2015/12.html">2015年12月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/xishuai/archive/2015/11.html">2015年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/xishuai/archive/2015/10.html">2015年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/xishuai/archive/2015/09.html">2015年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/xishuai/archive/2015/08.html">2015年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/xishuai/archive/2015/07.html">2015年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/xishuai/archive/2015/06.html">2015年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/xishuai/archive/2015/05.html">2015年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/xishuai/archive/2015/04.html">2015年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/xishuai/archive/2015/03.html">2015年3月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/xishuai/archive/2015/02.html">2015年2月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/xishuai/archive/2015/01.html">2015年1月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/xishuai/archive/2014/12.html">2014年12月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/xishuai/archive/2014/11.html">2014年11月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/xishuai/archive/2014/10.html">2014年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/xishuai/archive/2014/09.html">2014年9月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/xishuai/archive/2014/08.html">2014年8月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/xishuai/archive/2014/07.html">2014年7月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/xishuai/archive/2014/06.html">2014年6月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/xishuai/archive/2014/05.html">2014年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/xishuai/archive/2014/04.html">2014年4月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/xishuai/archive/2014/03.html">2014年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/xishuai/archive/2014/02.html">2014年2月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/xishuai/archive/2014/01.html">2014年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/xishuai/archive/2013/12.html">2013年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/xishuai/archive/2013/11.html">2013年11月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/xishuai/archive/2013/10.html">2013年10月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/xishuai/archive/2013/07.html">2013年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_49" href="http://www.cnblogs.com/xishuai/archive/2013/05.html">2013年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_50" href="http://www.cnblogs.com/xishuai/archive/2013/02.html">2013年2月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xishuai/p/ddd-repository-iunitofwork-and-idbcontext.html#3864927">1. Re:DDD 领域驱动设计－谈谈 Repository、IUnitOfWork 和 IDbContext 的实践（1）</a></li>
+        <li class="recent_comment_body">unitofwork就是包了一层啊，save时提交到数据库。<br>把多个操作视为一个原子级（unit单元）。<br>这个和DDD感觉没啥关联?</li>
+        <li class="recent_comment_author">--周德伦</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xishuai/archive/2013/02/27/2921416.html#3862101">2. Re:小菜的程序员道路（二）</a></li>
+        <li class="recent_comment_body">很佩服你，跟你同一届毕业的，差距很大啊</li>
+        <li class="recent_comment_author">--恋禾梦颖</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xishuai/archive/2013/02/27/2921416.html#3862098">3. Re:小菜的程序员道路（二）</a></li>
+        <li class="recent_comment_body">亮剑.NET我大四的时候也在网上淘了一本，看了一遍没动过，现在还在家躺着</li>
+        <li class="recent_comment_author">--恋禾梦颖</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xishuai/p/docker-swarm.html#3859318">4. Re:Docker 三剑客之 Docker Swarm</a></li>
+        <li class="recent_comment_body">mark一下</li>
+        <li class="recent_comment_author">--晓晨Master</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/xishuai/p/docker-swarm.html#3859172">5. Re:Docker 三剑客之 Docker Swarm</a></li>
+        <li class="recent_comment_body">@海淀游民啥意思？我是装了VirtualBox软件。...</li>
+        <li class="recent_comment_author">--田园里的蟋蟀</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/xishuai/p/3625859.html">1. C#开发微信公众平台-就这么简单（附Demo）(60777)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3620327.html">2. 初试JqueryEasyUI（附Demo）(23308)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3554594.html">3. DevExpress控件安装、汉化使用教程(20853)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/gitlab-ci.html">4. 劈荆斩棘：Gitlab 部署 CI 持续集成(19433)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3712361.html">5. 恋爱虽易，相处不易：当EntityFramework爱上AutoMapper(15595)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/mono-dotnetcore.html">6. 魅力 .NET：从 Mono、.NET Core 说起(15194)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/aspnet-webapi-owin-oauth2.html">7. ASP.NET WebApi OWIN 实现 OAuth 2.0(14774)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/visual-studio-2015-preview-asp-net-5-change.html">8. Visual Studio 2015 开发 ASP.NET 5 有何变化？(13446)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ddd_repository.html">9. Repository 仓储，你的归宿究竟在哪？（一）－仓储的概念(13058)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/understand-dotnet-platform-standard.html">10. 理解 .NET Platform Standard(12396)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3762826.html">11. 我的“第一次”，就这样没了：DDD（领域驱动设计）理论结合实践(12320)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3782613.html">12. 分享我对 ASP.NET vNext 的一些感受，也许多年回过头看 So Easy！(11868)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3789335.html">13. POCO Controller 你这么厉害，ASP.NET vNext 知道吗？(10770)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3670292.html">14. Unity依赖注入使用详解(10268)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3651370.html">15. 初试ASP.NET Web API/MVC API（附Demo）(10159)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/Visual-Studio-2015-CTP5-ASP-NET5-Beta2-NET-Framework-4-6.html">16. 升级 Visual Studio 2015 CTP 5 的坑、坑、坑(9910)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3635192.html">17. EasyUI+MVC+EF简单用户管理Demo（问题及解决）(9385)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ef7-develop-note.html">18. EntityFramework 7 开发纪录(9235)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/mvc-mvp-mvvm-angularjs-knockoutjs-backbonejs-reactjs-emberjs-avalonjs.html">19. MVC、MVP、MVVM、Angular.js、Knockout.js、Backbone.js、React.js、Ember.js、Avalon.js、Vue.js 概念摘录(9176)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/restful-webapi-uri-design.html">20. RESTful API URI 设计的一些总结(9175)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/xishuai/p/3625859.html">1. C#开发微信公众平台-就这么简单（附Demo）(219)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/repository-return-iqueryable-or-ienumerable.html">2. Repository 返回 IQueryable？还是 IEnumerable？(123)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3947897.html">3. Repository 仓储，你的归宿究竟在哪？（三）－SELECT 某某某。。。(113)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ddd_repository.html">4. Repository 仓储，你的归宿究竟在哪？（一）－仓储的概念(105)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3972802.html">5. DDD 领域驱动设计－看我如何应对业务需求变化，愚蠢的应对？(104)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/domain_model_repository.html">6. 设计窘境：来自 Repository 的一丝线索，Domain Model 再重新设计(98)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/mono-dotnetcore.html">7. 魅力 .NET：从 Mono、.NET Core 说起(98)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3656363.html">8. 程序员的人性思考（续）(93)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3564881.html">9. 程序员的人性思考（下）(93)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ef7-code-first-new-platforms-new-data-stores.html">10. EF7 Code First Only－所引发的一些“臆想”(92)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ddd-entity-value-object.html">11. DDD 领域驱动设计－三个问题思考实体和值对象(91)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3820041.html">12. 拨开迷雾，找回自我：DDD 应对具体业务场景，Domain Model 到底如何设计？(88)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3712361.html">13. 恋爱虽易，相处不易：当EntityFramework爱上AutoMapper(86)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3827216.html">14. No zuo no die：DDD 应对具体业务场景，Domain Model 重新设计(81)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/Visual-Studio-2015-CTP5-ASP-NET5-Beta2-NET-Framework-4-6.html">15. 升级 Visual Studio 2015 CTP 5 的坑、坑、坑(78)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3934412.html">16. Repository 仓储，你的归宿究竟在哪？（二）－这样的应用层代码，你能接受吗？(72)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3762826.html">17. 我的“第一次”，就这样没了：DDD（领域驱动设计）理论结合实践(69)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ddd-repository-iunitofwork-and-idbcontext.html">18. DDD 领域驱动设计－谈谈 Repository、IUnitOfWork 和 IDbContext 的实践（1）(64)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/ddd-repository-iunitofwork-and-idbcontext-part-2.html">19. DDD 领域驱动设计－谈谈 Repository、IUnitOfWork 和 IDbContext 的实践（2）(63)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/visual-studio-for-mac.html">20. Visual Studio for Mac 初体验(61)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/xishuai/p/3625859.html">1. C#开发微信公众平台-就这么简单（附Demo）(281)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3656363.html">2. 程序员的人性思考（续）(125)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3712361.html">3. 恋爱虽易，相处不易：当EntityFramework爱上AutoMapper(117)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3782613.html">4. 分享我对 ASP.NET vNext 的一些感受，也许多年回过头看 So Easy！(89)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/mono-dotnetcore.html">5. 魅力 .NET：从 Mono、.NET Core 说起(89)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3564881.html">6. 程序员的人性思考（下）(86)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3762826.html">7. 我的“第一次”，就这样没了：DDD（领域驱动设计）理论结合实践(83)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/4715000.html">8. 2015－写给明年现在的自己(70)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3789335.html">9. POCO Controller 你这么厉害，ASP.NET vNext 知道吗？(67)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3880018.html">10. CNBlogs－博客园，简简单单三个字，对于你的意义是什么？(62)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3620327.html">11. 初试JqueryEasyUI（附Demo）(59)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3670292.html">12. Unity依赖注入使用详解(57)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/visual-studio-2015-preview-asp-net-5-change.html">13. Visual Studio 2015 开发 ASP.NET 5 有何变化？(52)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3564202.html">14. 程序员的人性思考（上）(51)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3820041.html">15. 拨开迷雾，找回自我：DDD 应对具体业务场景，Domain Model 到底如何设计？(48)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/aspnet-webapi-owin-oauth2.html">16. ASP.NET WebApi OWIN 实现 OAuth 2.0(47)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/repository-return-iqueryable-or-ienumerable.html">17. Repository 返回 IQueryable？还是 IEnumerable？(45)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/asp-net-vnext-mac-os.html">18. 让 ASP.NET vNext 在 Mac OS 中飞呀飞。。。(44)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/3800656.html">19. 一缕阳光：DDD（领域驱动设计）应对具体业务场景，如何聚焦 Domain Model（领域模型）？(43)</a></li><li><a href="http://www.cnblogs.com/xishuai/p/microsoft-build-2015.html">20. Microsoft Build 2015 汇总(38)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 田园里的蟋蟀
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!--<script type='text/javascript'>
+(function() {
+    var c = document.createElement('script'); 
+    c.type = 'text/javascript';
+    c.async = true;
+    c.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'noscript.cnitblog.com/boot/50096';
+    var h = document.getElementsByTagName('script')[0];
+    h.parentNode.insertBefore(c, h);
+})();
+</script>-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58935471-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!--PageEndHtml Block End-->
+
+
+<iframe src="./小菜学习设计模式（五）—控制反转（Ioc）_files/saved_resource(1).html" name="1513391550538" width="100%" height="100%" allowtransparency="yes" frameborder="no" scrolling="no" style="display: none;"></iframe></body></html>

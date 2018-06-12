@@ -1,0 +1,41 @@
+1.动软生成基本三层代码
+先连接数据库，然后点左边的数据库，右键新建net项目，然后选简单三层结构。然后把表全都选过去，其他都是默认，生成代码版本比较弱，升级一下就行。修改APPsetting，把数据库连接字符串从appsetting里取出来到connectionStrings里， add进去。
+
+<connectionStrings>
+    <add name="ConnectionString" connectionString="server=.;uid=home;pwd=123456;database=HotalDataBase"/>
+  </connectionStrings>
+
+然后在DBhelperSQL里面找到pubConstant转到定义然后把ConnectionString 改成  string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+2.用户注册，校验验证码
+先在Web层创建一个Member文件夹，然后在下面创建模板页Reg.Master,然后建一个带模板页的web窗体Rigister。把美工给的Header和Footer的HTML粘贴进模板页。然后把表单的HTML黏贴到Register.aspx 把validate Copy进common文件夹，然后完成验证码验证。
+
+先利用IsPostBack判断是否是用户提交，然后先If（CheckCode（））然后生成CheckCode方法。对比vCode和txtCode是否相同if (vCode.Equals(txtCode, StringComparison.InvariantCultureIgnoreCase))。然后利用model把表单里面的数据取出来 Model.Users model = new Model.Users();这里可能需要修改动软自动生成的UserStates类(有点疑问)，然后再利BLL里的Add方法BLL.Users bll = new BLL.Users();，这里需要修改生成的Add方法，在里面加一个判断用户是否存在 int i = bll.Add(model, out msg);用 然后在Add方法里还要再生成一个在DAL里的CheckUserName。
+/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int  Add(hem9.bookshop.Model.Users model, out string msg)
+		{
+            if (CheckUserName(model.LoginId))
+            {
+                msg = "User esist";
+                return -1;
+            }
+            else{
+                msg = "register success";
+                return dal.Add(model);
+            }
+		}
+
+        private bool CheckUserName(string userName)
+        {
+            return dal.CheckUserName(userName);
+        }
+
+        
+public bool CheckUserName(object userName)
+        {
+            string sql = "select count(1) from Users where LoginId=@LoginId";
+            object obj = DbHelperSQL.GetSingle(sql, new SqlParameter("@LoginId", userName));
+            return Convert.ToInt32(obj) > 0;
+        }

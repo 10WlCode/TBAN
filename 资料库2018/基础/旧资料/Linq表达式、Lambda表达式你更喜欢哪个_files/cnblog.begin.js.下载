@@ -1,0 +1,53 @@
+﻿/// <reference path="../../../../../学习/svn/demo/javascript/code/code/scripts/jquery-1.8.2.js" />
+
+//***********因为博客园屏蔽了alert函数，这里自己实现一个消息框******************
+   //添加一个消息框div
+        $("body").append("<div class='alertMsg'></div>");
+
+        function MyAlert() {
+            this.textList = [];
+            this.index = 0;
+        }
+        //定义alert函数
+        MyAlert.prototype = {
+            tempAlert: function (value) {
+                //给消息框赋值，并弹出
+                var mythis = this;
+                $(".alertMsg").text(String(value)).dialog({
+                    buttons: {
+                        "确定": function () {
+                            $(this).dialog('close');
+                            mythis.Hidden();
+                        },
+                        "关闭": function () {
+                            $(this).dialog('close');
+                            mythis.textList = [];
+                            mythis.index = 0;
+                        }
+                    }
+                });
+            },
+            Show: function (text) {
+                this.index++;
+                this.textList.push(text);
+                if (this.textList.length == 1) {
+                    this.Operater();
+                }
+            },
+            Operater: function (text) {
+                if (this.textList.length > 0) {
+                    this.tempAlert(this.textList[0]);
+                }
+            },
+            Hidden: function () {
+                this.textList.shift();
+                if (this.textList.length > 0) {
+                    this.Operater();
+                }
+            }
+        }
+        var myAlert = new MyAlert();
+        alert = function (msg) {
+            myAlert.Show(msg);
+        }
+//***********因为博客园屏蔽了alert函数，这里自己实现一个消息框******************

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://s.codepen.io/dcorb/fullembedgrid/XXPjpd?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Debounce Resize Event Example</title>
+  
+  
+  
+  
+      <style>
+      body {
+  background: #444444;
+  color: white;
+  font: 15px/1.51 Helvetica, sans-serif;
+  margin:0 auto;
+}
+.left-panel,
+.right-panel {  
+  padding:2%;
+  margin:0;
+  width:46%;
+  float:left;
+  min-height:100vh;
+  text-align:center;
+}
+
+.left-panel {
+  background: #ccc;
+  color:black;
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+<style type="text/css">:root .ad
+{display:none !important;}</style></head>
+
+<body translate="no">
+
+  <div class="left-panel">Raw resize events<br></div>
+<div class="right-panel">Debounced events<br></div>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  <script src="./jquery.min.js.下载"></script>
+<script src="./lodash.min.js(1).下载"></script>
+
+  
+
+    <script>
+      // Based on http://www.paulirish.com/2009/throttled-smartresize-jquery-event-handler/
+$(document).ready(function(){
+  
+  var $win = $(window);
+  var $left_panel = $('.left-panel');
+  var $right_panel = $('.right-panel');
+  
+  function display_info($div) {
+    $div.append($win.width() + ' x ' + $win.height() +  '<br>');
+  }
+                
+  $(window).on('resize', function(){
+    display_info($left_panel);
+  });
+  
+  $(window).on('resize', _.debounce(function() {
+    display_info($right_panel);
+  }, 400));
+});
+      //# sourceURL=pen.js
+    </script>
+
+
+
+  
+  
+
+
+
+
+ </body></html>

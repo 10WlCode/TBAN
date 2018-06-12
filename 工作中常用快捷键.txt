@@ -1,0 +1,19 @@
+Windows
+Win + Ctrl + 左/右 切换桌面
+alt +space 打开Wix
+------------------------------------
+Win + VScode
+ctrl k + ctrl s = 打开快捷键一览表。
+ctrl + D 多点编辑 
+ctrl + Backspace删除整个单词
+ctrl + enter 切换到下一行
+alt + 上下 上下移动这一行代码
+ctrl k+ ctrl F 格式化选定代码
+ctrl + shift + F 格式化文件
+安装JSLint之后
+imp 直接引用整个库
+imd 引用部分库
+-------------------------------------
+Mac
+-------------------------------------
+Mac + VSCode

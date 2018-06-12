@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.cnblogs.com/lunlunshiwo/p/8461426.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>js作用域的相关知识 - 阿尔卑斯de秘密 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./js作用域的相关知识_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./js作用域的相关知识_files/bundle-fighting.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./js作用域的相关知识_files/bundle-fighting-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/lunlunshiwo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/lunlunshiwo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/lunlunshiwo/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./js作用域的相关知识_files/encoder.js.下载"></script><script src="./js作用域的相关知识_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'lunlunshiwo', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./js作用域的相关知识_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/lunlunshiwo/"><img id="blogLogo" src="./js作用域的相关知识_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/lunlunshiwo/">阿尔卑斯de秘密</a></h1>
+<h2>左手撸码，右手投篮</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+				<li><a href="http://q.cnblogs.com/" target="_blank">博问</a></li>
+                <li><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/lunlunshiwo/">首页</a></li>
+				<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%98%BF%E5%B0%94%E5%8D%91%E6%96%AFde%E7%A7%98%E5%AF%86">联系</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/lunlunshiwo/rss">订阅</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/lunlunshiwo/rss"><img src="./js作用域的相关知识_files/xml.gif" alt="订阅"></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 2&nbsp;
+文章- 1&nbsp;
+评论- 0&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/lunlunshiwo/p/8461426.html">js作用域的相关知识</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　众所周知，在ES6之前，JavaScript是没有<strong>块级作用域</strong>的，如下图所示：</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223093954480-565427475.png" alt="" width="423" height="170"></span></p>
+<p style="text-align: left"><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　学过其他语言的同学肯定有点诧异，为什么会这样呢？因为js还是不同于其他语言的，在ES5中，只有全局作用域和函数作用域，并没有块作用域，当然我们可以实现块作用域的功能。看下面代码:</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223094338077-1524370522.png" alt="" width="741" height="167"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　在这段段代码中，我们使用立即执行函数（IIFE）创建了一个局部函数来模仿块级作用域。在ES5时代，JavaScript的作用域只有用全局作用域和局部作用域的说法。到了ES6时代，块级作用域的登场。</span></p>
+<h2><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　<span style="font-size: 18px">一、关于ES5时代</span></span></h2>
+<h3><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　<span style="font-size: 16px">1.变量提升</span></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　说到js的变量提升，就不得不说一下js的词法分析。<span class="s1"><span class="Apple-tab-span">总所周知js代码自上而下执行，但<span class="s5">是在<span class="s6">js<span class="s5">代码执行前，会先进行词法分析。所以<span class="s6">js<span class="s5">运行要分为<strong>词法分析</strong>和<strong>程序执行</strong>两个阶段。</span></span></span></span></span></span></span></span></p>
+<p class="p3"><span class="s7" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><span class="Apple-tab-span">　　　　　　js<span class="s1">词法分析主要分为<span class="s7">3<span class="s1">个步骤：</span></span></span></span></span></p>
+<p class="p3"><span class="s7" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　　　1.分析形参：如果函数有形参，则给当前活动对象增加形参属性，默认为undefined。</span></p>
+<p class="p3"><span class="s1" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　　　2.分析变量声明：如果有类似var a&nbsp; 之类的声明，若没有该属性则增加属性，若已存在则不做操作。默认为undefined。变量的赋值在执行阶段才进行，即执行到该变量的时候才有 a ＝ 11。</span></p>
+<p class="p3"><span class="s1" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　　　3.分析函数声明：类似 function a（）{}，若当前活动对象没有该属性则新增否则重写该属性为方法a。</span></p>
+<p class="p3" style="text-align: left"><span class="s1" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　如图所示，在这段代码中，按照一般的逻辑，第一个console.log会报错为“a is not defined”。</span></p>
+<p class="p3"><span class="s1" style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223095653596-1769361317.png" alt="" width="477" height="138"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　但是事实上，根据js词法分析的第二步，var a这个声明会被提前到代码的顶部。但是a=1这个赋值却不会，所以这段函数正确的步骤为：</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223100228141-2134850930.png" alt="" width="472" height="125"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　这就是所谓的变量提升。</span></p>
+<h3><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　<span style="font-size: 16px">2.函数提升</span></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　在js中，我们常见的常见函数的创建方式有三种——函数构造式（不推荐使用，此处不做分析），函数声明式和函数表达式。下面第一行的代码为函数声明式，第二个为函数表达式。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　</span></p>
+<div class="cnblogs_code" style="text-align: left">
+<pre><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><span style="color: #008080">1</span> <span style="color: #0000ff">function</span><span style="color: #000000"> fn1(){}
+</span><span style="color: #008080">2</span> <span style="color: #0000ff">var</span> fn2=<span style="color: #0000ff">function</span>(){};</span></pre>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　在以上两种创建方式中，函数表达式的常见方式与普通变量var a=1的创建方式相同，因此它也会受变量提升的影响。而另一种，函数声明式会存在函数提升的情况，并且函数提升比变量提升优先级高！因此分别在创建前打印上述fn1和fn2得到以下结果：</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223101702798-1974319836.png" alt="" width="462" height="127"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　根据变量提升和函数提升的分析得：</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223101859623-1493237386.png" alt="" width="446" height="122"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　因此，fn1是作为函数声明被提升到最前面，而fn2先被作为变量创建并提到顶部，然后在相应位置被赋值的。</span></p>
+<h3><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　<span style="font-size: 16px">3.作用域链</span></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　我们在上面说到js在ES5时代没有块级作用域，只有局部作用域和全局作用域。作用域链用于保证对执行环境有权访问的所有变量和函数的有序访问。看下图，按照一般的思路，b输出为3。这里就用到了作用域链的知识。</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223104545040-627700556.png" alt="" width="435" height="221"></span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　当函数在执行的过程中，先从自己内部找变量。如果找不到，再从<strong>创建当前函数所在的作用域</strong>去找, 以此往上。因此我们分析调整函数得到下图。在这个函数中给fn赋值为fn1()，即fn1的返回值fn2。在运行fn时，即运行fn2。此时fn2的内部是没用b的，因此我们要去fn2的<strong>创建环境</strong>中找b=2。所以此处输出为2.</span></p>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><img style="display: block; margin-left: auto; margin-right: auto" src="./js作用域的相关知识_files/1186411-20180223104945018-1801970126.png" alt="" width="394" height="275"></span></p>
+<h2><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　<span style="font-size: 18px">二、ES6时代</span></span></h2>
+<h3><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　<span style="font-size: 16px">1.let和const的来临</span></span></h3>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　首先<code>let</code> 和 <code>const的作用和var是相同的，但是</code>都是<strong>不存在提升</strong>，声明的都是<strong>块级标识符</strong>。大括号内部即形成块级作用域，此时let声明的a在块级作用域外是访问调用不到的</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> <span style="color: #000000">{
+</span><span style="color: #008080">2</span>   let a=1<span style="color: #000000">;     
+</span><span style="color: #008080">3</span> <span style="color: #000000">}
+</span><span style="color: #008080">4</span> console.log(a)<span style="color: #008000">//</span><span style="color: #008000">报错</span></pre>
+</div>
+<p><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　并且let和const</span><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">都<strong>禁止重复声明</strong>的：</span></p>
+<div>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> <span style="color: #0000ff">var</span> a = 30<span style="color: #000000">;
+</span><span style="color: #008080">2</span> <span style="color: #0000ff">var</span> message = 2<span style="color: #000000">;
+</span><span style="color: #008080">3</span> <span style="color: #008000">//</span><span style="color: #008000"> 这两条都会抛出语法错误</span>
+<span style="color: #008080">4</span> let a = 40<span style="color: #000000">; 
+</span><span style="color: #008080">5</span> const message = 1; </pre>
+</div>
+<span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　每个<code>const</code>声明的常量<strong>必须进行初始化</strong>，<code>const</code>定义的<strong>常量</strong>不能修改，但是用const声明的<strong>对象</strong>可以<strong>修改值</strong>，即</span></div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js作用域的相关知识_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> const a; <span style="color: #008000">//</span><span style="color: #008000"> 语法错误：常量未初始化</span>
+<span style="color: #008080"> 2</span> const b =<span style="color: #000000"> {
+</span><span style="color: #008080"> 3</span>     name: 'a'
+<span style="color: #008080"> 4</span> <span style="color: #000000">};
+</span><span style="color: #008080"> 5</span> b.name = 'b';  <span style="color: #008000">//</span><span style="color: #008000"> 可以修改</span>
+<span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span> <span style="color: #008000">//</span><span style="color: #008000"> SyntaxError: "person" is read-only</span>
+<span style="color: #008080"> 8</span> b =<span style="color: #000000"> {
+</span><span style="color: #008080"> 9</span>     name: '<span style="color: #000000">c
+</span><span style="color: #008080">10</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js作用域的相关知识_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px"><code>　　　　　　let</code>和<code>const</code>声明<strong>不会</strong>像<code>var</code>一样提升到作用域顶部，如果在声明之前访问这些变量，会形成所谓的<strong>临时死区(Temporal Dead Zone)</strong>即使是相对安全的<code>typeof</code>操作符也会触发引用错误。用<code>let</code>来举例（const也一样）：</span></span></div>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> console.log(<span style="color: #0000ff">typeof</span><span style="color: #000000"> value);
+</span><span style="color: #008080">2</span> let value = 1;</pre>
+</div>
+<span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　在上面的代码中，let无变量提升的作用，即在let value=1之前的代码出现临时死区(Temporal Dead Zone)，即报错value is not defined而不是undefined。</span></div>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> console.log(<span style="color: #0000ff">typeof</span><span style="color: #000000"> a);
+</span><span style="color: #008080">2</span> <span style="color: #0000ff">if</span>(1<span style="color: #000000">){
+</span><span style="color: #008080">3</span>   let a=1<span style="color: #000000">;
+</span><span style="color: #008080">4</span> }</pre>
+</div>
+<p>　　　　　　而在上述的代码中，let在块级作用域中，因此在全局作用域中不存在所谓的死区，因此此处打印出undefined。</p>
+</div>
+<div>
+<h3><span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　<span style="font-size: 16px">2.全局块作用域绑定</span></span></h3>
+<span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　在全局作用域中，var 声明的变量会成为全局对象（浏览器环境中的window）的属性。这意味着var很可能会无意中覆盖一个已经存在的全局变量。</span>
+<pre class="hljs javascript"></pre>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> <span style="color: #0000ff">var</span> Test=1<span style="color: #000000">;
+</span><span style="color: #008080">2</span> window.Test === Test; <span style="color: #008000">//</span><span style="color: #008000"> true</span></pre>
+</div>
+<span style="font-family: &quot;Microsoft YaHei&quot;; font-size: 14px">　　　　　　如果在全局作用域中使用let或const，会在全局作用域下创建一个新的绑定，但该绑定不会添加为全局对象的属性。换句话说，用<code>let</code>或<code>const</code>不能覆盖全局变量，而只能遮蔽它。</span>
+<pre class="hljs javascript"></pre>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> const foo = 1<span style="color: #000000">;
+</span><span style="color: #008080">2</span> window.foo = 2<span style="color: #000000">;
+</span><span style="color: #008080">3</span> console.log(foo); <span style="color: #008000">//</span><span style="color: #008000"> 1</span>
+<span style="color: #008080">4</span> console.log(window.foo); <span style="color: #008000">//</span><span style="color: #008000"> 2</span></pre>
+</div>
+<h3>&nbsp;</h3>
+<p>　　在实际开发中，<code>let</code>实际上与我们所用的的<code>var的用法是一样的</code>，直接替换符合逻辑。对于需要些保护的变量，我们要使用const。默认使用const，只有确实需要改变变量的值时使用<code>let</code>。</p>
+</div>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/lunlunshiwo/tag/Javascript/">Javascript</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(8461426,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;ec2128f3-683c-42a4-f138-08d49c352df2&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./js作用域的相关知识_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./js作用域的相关知识_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/lunlunshiwo/" target="_blank"><img src="./js作用域的相关知识_files/20171115104213.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/lunlunshiwo/">阿尔卑斯de秘密</a><br>
+            <a href="http://home.cnblogs.com/u/lunlunshiwo/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/lunlunshiwo/followers">粉丝 - 0</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;ec2128f3-683c-42a4-f138-08d49c352df2&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(8461426,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(8461426,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/lunlunshiwo/p/8407151.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/lunlunshiwo/p/8407151.html" title="发布于2018-02-02 23:38">Vue的土著指令和自定义指令</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2018-02-23 11:47</span> <a href="http://www.cnblogs.com/lunlunshiwo/">阿尔卑斯de秘密</a> 阅读(<span id="post_view_count">22</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=8461426" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/lunlunshiwo/p/8461426.html#" onclick="AddToWz(8461426);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=378482,cb_entryId=8461426,cb_blogApp=currentBlogApp,cb_blogUserGuid='ec2128f3-683c-42a4-f138-08d49c352df2',cb_entryCreatedDate='2018/2/23 11:47:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/lunlunshiwo/p/8461426.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/lunlunshiwo/p/8461426.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./js作用域的相关知识_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./js作用域的相关知识_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./js作用域的相关知识_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./js作用域的相关知识_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./js作用域的相关知识_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./js作用域的相关知识_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./js作用域的相关知识_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/590217/" target="_blank">为提升用户体验 苹果地图故意延长预估达到时间</a><br> ·  <a href="https://news.cnblogs.com/n/590216/" target="_blank">港媒：香港同股不同权公司上市或于4月份生效</a><br> ·  <a href="https://news.cnblogs.com/n/590215/" target="_blank">摩拜ofo均取消月卡优惠 恢复到20元</a><br> ·  <a href="https://news.cnblogs.com/n/590214/" target="_blank">外卖员的酸甜苦辣：有人让帮倒垃圾 一个投诉扣600元</a><br> ·  <a href="https://news.cnblogs.com/n/590213/" target="_blank">中科院阿里云发布国内首个超导量子处理器</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br> ·  <a href="http://kb.cnblogs.com/page/586236/" target="_blank">领域驱动设计在互联网业务开发中的实践</a><br> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/lunlunshiwo/">阿尔卑斯de秘密</a><br>园龄：<a href="https://home.cnblogs.com/u/lunlunshiwo/" title="入园时间：2017-06-21">8个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/lunlunshiwo/followers/">0</a><br>关注：<a href="https://home.cnblogs.com/u/lunlunshiwo/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;ec2128f3-683c-42a4-f138-08d49c352df2&#39;)">+加关注</a></div><script>getFollowStatus('ec2128f3-683c-42a4-f138-08d49c352df2')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/01/01&#39;);return false;">&lt;</a></td><td align="center">2018年2月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/03/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center"><a href="http://www.cnblogs.com/lunlunshiwo/archive/2018/02/02.html"><u>2</u></a></td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalTodayDay" align="center"><a href="http://www.cnblogs.com/lunlunshiwo/archive/2018/02/23.html"><u>23</u></a></td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/lunlunshiwo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/lunlunshiwo/p/8461426.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/lunlunshiwo/p/8461426.html">1. js作用域的相关知识</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/p/8407151.html">2. Vue的土著指令和自定义指令</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/p/7476031.html">3. vue环境搭建与创建第一个vuejs文件</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/lunlunshiwo/tag/Vue.js/">Vue.js</a>(3)</li><li><a href="http://www.cnblogs.com/lunlunshiwo/tag/Javascript/">Javascript</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/lunlunshiwo/archive/2018/02.html">2018年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/lunlunshiwo/archive/2017/09.html">2017年9月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleArchive">
+<h3 class="catListTitle">文章档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/lunlunshiwo/archives/2017/09.html" rel="nofollow">2017年9月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListImageCategory">
+<h3 class="catListTitle">相册</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/lunlunshiwo/gallery/1115009.html" rel="nofollow">页面图片(1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	317
+	</li><li class="liRank">
+		排名 -	150835
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/lunlunshiwo/p/7476031.html">1. vue环境搭建与创建第一个vuejs文件(253)</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/p/8407151.html">2. Vue的土著指令和自定义指令(57)</a></li><li><a href="http://www.cnblogs.com/lunlunshiwo/p/8461426.html">3. js作用域的相关知识(21)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/lunlunshiwo/p/8407151.html">1. Vue的土著指令和自定义指令(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+		<div class="clear"></div>
+<div id="footer">
+	
+<!--done-->
+Copyright ©2018 阿尔卑斯de秘密
+</div><!--end: footer -->
+</center>
+
+
+</body></html>

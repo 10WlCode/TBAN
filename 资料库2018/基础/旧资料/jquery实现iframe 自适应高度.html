@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.cnblogs.com/leejersey/p/3772839.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jquery 实现iframe 自适应高度 - leejersey - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./jquery实现iframe 自适应高度_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./jquery实现iframe 自适应高度_files/bundle-ThinkInside.css">
+<link type="text/css" rel="stylesheet" href="./jquery实现iframe 自适应高度_files/101792.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./jquery实现iframe 自适应高度_files/bundle-ThinkInside-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/leejersey/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/leejersey/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/leejersey/wlwmanifest.xml">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./jquery实现iframe 自适应高度_files/encoder.js.下载"></script><script src="./jquery实现iframe 自适应高度_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'leejersey', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./jquery实现iframe 自适应高度_files/blog-common.js.下载" type="text/javascript"></script>
+<link id="http://common.cnblogs.com/scripts/artDialog/ui-dialog.css" rel="stylesheet" href="./jquery实现iframe 自适应高度_files/ui-dialog.css"><script id="http://common.cnblogs.com/scripts/artDialog/dialog-min.js" type="text/javascript" src="./jquery实现iframe 自适应高度_files/dialog-min.js.下载"></script><script id="http://common.cnblogs.com/scripts/artDialog/dialog-plus-min.js" type="text/javascript" src="./jquery实现iframe 自适应高度_files/dialog-plus-min.js.下载"></script></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/leejersey/"><img id="blogLogo" src="./jquery实现iframe 自适应高度_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/leejersey/">专注WEB前端开发</a></h1>
+<h2>爱设计，爱编程，专注WEB前端开发</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/leejersey/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/leejersey">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/leejersey/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/leejersey/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 380&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 112</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/leejersey/p/3772839.html">jquery 实现iframe 自适应高度</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span>超级简单的方法，也不用写什么判断浏览器高度、宽度啥的。</span><br><span>下面的两种方法自选其一就行了。一个是放在和iframe同页面的，一个是放在test.html页面的。<br>注意别放错地方了哦。</span><br><br><br><span>iframe代码，</span><span>注意要写ID</span><br><br></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">iframe </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="test.html"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="main"</span><span style="color: #ff0000;"> width</span><span style="color: #0000ff;">="700"</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">="300"</span><span style="color: #ff0000;"> frameborder</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> scrolling</span><span style="color: #0000ff;">="auto"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">iframe</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>jquery代码１：</strong><br><br></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">注意：下面的代码是放在test.html调用</span>
+$(window.parent.document).find("#main").load(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #0000ff;">var</span> main = $(window.parent.document).find("#main"<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> thisheight = $(document).height()+30<span style="color: #000000;">;
+main.height(thisheight);
+});</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>jquery代码２：</strong><br><br></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">注意：下面的代码是放在和iframe同一个页面调用</span>
+$("#main").load(<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+</span><span style="color: #0000ff;">var</span> mainheight = $(<span style="color: #0000ff;">this</span>).contents().find("body").height()+30<span style="color: #000000;">;
+$(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">).height(mainheight);
+}); </span></pre>
+</div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/leejersey/tag/javascript/">javascript</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3772839,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <span style="color:red">关注成功</span>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./jquery实现iframe 自适应高度_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./jquery实现iframe 自适应高度_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/leejersey/" target="_blank"><img src="./jquery实现iframe 自适应高度_files/20141211145528.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/leejersey/">leejersey</a><br>
+            <a href="http://home.cnblogs.com/u/leejersey/followees">关注 - 63</a><br>
+            <a href="http://home.cnblogs.com/u/leejersey/followers">粉丝 - 405</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow"><span style="color:red">关注成功</span></div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3772839,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(3772839,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/leejersey/p/3750448.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/leejersey/p/3750448.html" title="发布于2014-05-24 21:17">$.jsonp()的简单使用</a><br><a href="http://www.cnblogs.com/leejersey/p/3780415.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/leejersey/p/3780415.html" title="发布于2014-06-10 17:33">未知高度的图片在div设置垂直居中</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-06-06 16:05</span> <a href="http://www.cnblogs.com/leejersey/">leejersey</a> 阅读(<span id="post_view_count">155</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3772839" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/leejersey/p/3772839.html#" onclick="AddToWz(3772839);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=101792,cb_entryId=3772839,cb_blogApp=currentBlogApp,cb_blogUserGuid='98e3e308-350f-e111-b422-842b2b196315',cb_entryCreatedDate='2014/6/6 16:05:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/leejersey/p/3772839.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/leejersey/p/3772839.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./jquery实现iframe 自适应高度_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./jquery实现iframe 自适应高度_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./jquery实现iframe 自适应高度_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./jquery实现iframe 自适应高度_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./jquery实现iframe 自适应高度_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./jquery实现iframe 自适应高度_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./jquery实现iframe 自适应高度_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/586236/" target="_blank">领域驱动设计在互联网业务开发中的实践</a><br> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&lt;</a></td><td align="center">2018年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/leejersey/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/leejersey/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/leejersey/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/leejersey/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/leejersey/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/leejersey/tag/javascript/">javascript</a>(126)</li><li><a href="http://www.cnblogs.com/leejersey/tag/CSS/">CSS</a>(59)</li><li><a href="http://www.cnblogs.com/leejersey/tag/jquery/">jquery</a>(47)</li><li><a href="http://www.cnblogs.com/leejersey/tag/CSS%20%20IE6BUG/">CSS  IE6BUG</a>(18)</li><li><a href="http://www.cnblogs.com/leejersey/tag/angular/">angular</a>(17)</li><li><a href="http://www.cnblogs.com/leejersey/tag/javascript%20%E5%B0%81%E8%A3%85%E5%87%BD%E6%95%B0/">javascript 封装函数</a>(17)</li><li><a href="http://www.cnblogs.com/leejersey/tag/%E8%AE%BE%E8%AE%A1/">设计</a>(12)</li><li><a href="http://www.cnblogs.com/leejersey/tag/%E9%85%8D%E8%89%B2/">配色</a>(11)</li><li><a href="http://www.cnblogs.com/leejersey/tag/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a>(9)</li><li><a href="http://www.cnblogs.com/leejersey/tag/%E7%A7%BB%E5%8A%A8web%E5%BC%80%E5%8F%91/">移动web开发</a>(8)</li><li><a href="http://www.cnblogs.com/leejersey/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(380)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/leejersey/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/leejersey/archive/2016/08.html">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/leejersey/archive/2016/05.html">2016年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/leejersey/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/leejersey/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/leejersey/archive/2016/02.html">2016年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/leejersey/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/leejersey/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/leejersey/archive/2015/09.html">2015年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/leejersey/archive/2015/08.html">2015年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/leejersey/archive/2015/07.html">2015年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/leejersey/archive/2015/06.html">2015年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/leejersey/archive/2015/05.html">2015年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/leejersey/archive/2015/04.html">2015年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/leejersey/archive/2015/03.html">2015年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/leejersey/archive/2015/02.html">2015年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/leejersey/archive/2015/01.html">2015年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/leejersey/archive/2014/12.html">2014年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/leejersey/archive/2014/11.html">2014年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/leejersey/archive/2014/10.html">2014年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/leejersey/archive/2014/09.html">2014年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/leejersey/archive/2014/08.html">2014年8月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/leejersey/archive/2014/07.html">2014年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/leejersey/archive/2014/06.html">2014年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/leejersey/archive/2014/05.html">2014年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/leejersey/archive/2014/04.html">2014年4月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/leejersey/archive/2014/03.html">2014年3月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/leejersey/archive/2014/02.html">2014年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/leejersey/archive/2014/01.html">2014年1月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/leejersey/archive/2013/12.html">2013年12月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/leejersey/archive/2013/11.html">2013年11月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/leejersey/archive/2013/10.html">2013年10月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/leejersey/archive/2013/09.html">2013年9月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/leejersey/archive/2013/08.html">2013年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/leejersey/archive/2013/07.html">2013年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/leejersey/archive/2013/06.html">2013年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/leejersey/archive/2013/05.html">2013年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/leejersey/archive/2013/04.html">2013年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/leejersey/archive/2013/03.html">2013年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/leejersey/archive/2013/02.html">2013年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/leejersey/archive/2013/01.html">2013年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/leejersey/archive/2012/12.html">2012年12月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/leejersey/archive/2012/11.html">2012年11月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/leejersey/archive/2012/10.html">2012年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/leejersey/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/leejersey/archive/2012/08.html">2012年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/leejersey/archive/2012/07.html">2012年7月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/leejersey/archive/2012/06.html">2012年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/leejersey/archive/2012/04.html">2012年4月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/leejersey/archive/2012/03.html">2012年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/leejersey/archive/2012/02.html">2012年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/leejersey/archive/2012/01.html">2012年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/leejersey/archive/2011/12.html">2011年12月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/leejersey/archive/2011/11.html">2011年11月 (6)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/leejersey/p/3601511.html#3880381">1. Re:jQuery实现遮罩层</a></li>
+        <li class="recent_comment_body">非常好用，很给力 ，谢谢楼主！！！！！！！！11</li>
+        <li class="recent_comment_author">--豆芽胡</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/leejersey/p/4047492.html#3874068">2. Re:Jquery怎么获取select选中项 自定义属性的值</a></li>
+        <li class="recent_comment_body">谢谢</li>
+        <li class="recent_comment_author">--笨笨鱼~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/leejersey/p/3662612.html#3865752">3. Re:彻底弄懂css中单位px和em,rem的区别</a></li>
+        <li class="recent_comment_body">兼容IE? 不会的, 这辈子都不会兼容的IE的</li>
+        <li class="recent_comment_author">--PajamaCat</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/leejersey/p/3999630.html#3816340">4. Re:javaScript:让文本框内的最后一个文字的后面获得焦点</a></li>
+        <li class="recent_comment_body">上面那串没什么用，也许是google不兼容的原因，不过我喜欢下面那个写法，很有效。直接内容剪切拷贝。</li>
+        <li class="recent_comment_author">--Danlis</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/leejersey/archive/2012/04/29/2476103.html#3778681">5. Re:使IE6正常显示PNG-24格式图片代码</a></li>
+        <li class="recent_comment_body">终于找到你</li>
+        <li class="recent_comment_author">--心梦-2017</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/leejersey/p/3662612.html">1. 彻底弄懂css中单位px和em,rem的区别(247159)</a></li><li><a href="http://www.cnblogs.com/leejersey/archive/2012/11/09/2762851.html">2. JS三元运算符(221339)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3545372.html">3. jQuery on()方法(184207)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3663278.html">4. JS函数调用的四种方法(141888)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3750259.html">5. jQuery ajax()使用serialize()提交form数据(134755)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/leejersey/p/3662612.html">1. 彻底弄懂css中单位px和em,rem的区别(11)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3660202.html">2. jQuery图片上传前先在本地预览(11)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/4220588.html">3. 【转】移动Web单页应用开发实践——页面结构化(7)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3545372.html">4. jQuery on()方法(7)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3187039.html">5. IE兼容CSS3圆角border-radius的方法（同时兼容box-shadow，text-shadow）(6)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/leejersey/p/3662612.html">1. 彻底弄懂css中单位px和em,rem的区别(44)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3545372.html">2. jQuery on()方法(34)</a></li><li><a href="http://www.cnblogs.com/leejersey/archive/2012/11/27/2790998.html">3. 利用 Console 来学习、调试JavaScript(13)</a></li><li><a href="http://www.cnblogs.com/leejersey/archive/2012/07/11/2586506.html">4. IE6/IE7下：inline-block解决方案(11)</a></li><li><a href="http://www.cnblogs.com/leejersey/p/3801452.html">5. js中的事件委托(11)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 leejersey
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+<iframe src="./jquery实现iframe 自适应高度_files/saved_resource.html" name="1516604711135" width="100%" height="100%" allowtransparency="yes" frameborder="no" scrolling="no" style="display: none;"></iframe></body></html>
