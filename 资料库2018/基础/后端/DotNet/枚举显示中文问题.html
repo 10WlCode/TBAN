@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>枚举显示中文问题 - 停留的风 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./枚举显示中文问题_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./枚举显示中文问题_files/bundle-KJC.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./枚举显示中文问题_files/bundle-KJC-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yank/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yank/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yank/wlwmanifest.xml">
+<script async="" src="./枚举显示中文问题_files/analytics.js.下载"></script><script type="text/javascript" src="./枚举显示中文问题_files/encoder.js.下载"></script><script src="./枚举显示中文问题_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'yank', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./枚举显示中文问题_files/blog-common.js.下载" type="text/javascript"></script>
+</head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+
+<table class="Framework" cellspacing="0" cellpadding="0" width="100%">
+	<tbody><tr>
+		<td colspan="3">
+			
+<div id="top">
+<table cellpadding="10" cellspacing="0">
+	<tbody><tr>
+		<td nowrap="">
+			<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/yank/">停留的风</a></h1>
+			
+		</td>
+	</tr>
+</tbody></table>
+</div>
+<div id="sub">
+	<div id="sub-right"><div id="blog_stats">
+<div class="BlogStats">posts - 234, comments - 1252, trackbacks - 5, articles - 27</div></div></div>
+	
+&nbsp;
+ 
+<a id="blog_nav_myhome" href="http://www.cnblogs.com/yank/">首页</a>&nbsp;::
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;::
+<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%81%9C%E7%95%99%E7%9A%84%E9%A3%8E">联系</a>&nbsp;::
+<a id="blog_nav_rss" href="http://www.cnblogs.com/yank/rss">订阅</a>
+<a id="blog_nav_rss_image" class="XMLLink" href="http://www.cnblogs.com/yank/rss"><img src="./枚举显示中文问题_files/xml.gif" alt="订阅"></a>&nbsp;::
+<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+
+</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="LeftCell">
+			<div id="leftmenu">
+            	
+		            <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&lt;</a></td><td align="center">2018年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalTodayDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		            
+<div id="cell">
+<img src="./枚举显示中文问题_files/icon-group.jpg" hspace="5" align="left" vspace="2"><h3>公告</h3>
+<div id="news">
+	<div id="blog-news">一起学习，一起成长！<br><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/yank/">停留的风</a><br>园龄：<a href="https://home.cnblogs.com/u/yank/" title="入园时间：2007-05-08">11年2个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/yank/followers/">1455</a><br>关注：<a href="https://home.cnblogs.com/u/yank/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0e733d0b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div><script>getFollowStatus('0e733d0b-63cf-dd11-9e4d-001cf0cd104b')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+
+	            
+	            <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="cell">
+<img src="./枚举显示中文问题_files/icon-group.jpg" hspace="5" align="left" vspace="2">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div></div><div id="sidebar_categories">
+		<div id="cell">
+		<img src="./枚举显示中文问题_files/icon-group.jpg" hspace="5" align="left" vspace="2"><h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/yank/category/654668.html">Android</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/yank/category/127063.html">Bug(12)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/yank/category/550327.html">C#编程总结(14)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/yank/category/797749.html">Java基础</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/yank/category/797750.html">MySQL</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/yank/category/175068.html">Ruby(11)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/yank/category/583618.html">SQL总结(7)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/yank/category/568085.html">WCF入门(5)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/yank/category/115037.html">windows应用(10)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/yank/category/111649.html">多线程技术(9)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/yank/category/411638.html">管理愚见(3)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/yank/category/567118.html">架构设计(1)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/yank/category/797737.html">开源框架(1)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/yank/category/104903.html">数据库技术(27)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/yank/category/133840.html">网络技术(4)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/yank/category/539657.html">微信公众平台(12)</a>
+				</li>
+			
+				<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/yank/category/754156.html">系统框架(1)</a>
+				</li>
+			
+				</ul>
+			</div>
+	</div><div id="sidebar_scorerank" class="sidebar-block">
+<div id="cell">
+<img src="./枚举显示中文问题_files/icon-group.jpg" hspace="5" align="left" vspace="2"><h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		420949
+	</li><li>
+		排名 -
+		375
+	</li>
+</ul>
+</div>
+</div><div id="recent_comments_wrap">
+    <div id="cell">
+        <img src="./枚举显示中文问题_files/icon-group.jpg" hspace="5" align="left" vspace="2">
+        <h3>最新评论</h3>
+        <div class="RecentComment">
+            <div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/3227324.html#3993953">1. Re:C#编程总结（三）线程同步</a></li>
+        <li class="recent_comment_body">用心了。</li>
+        <li class="recent_comment_author">--stagebo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4193820.html#3993189">2. Re:SQL总结（六）触发器</a></li>
+        <li class="recent_comment_body">明明是限制学生年龄的新增触发器，执行语句的@age=COUNT(Students.ID)这取得的结果和insert的age年龄大小有关系？？，应该是@age=Students.Age吧！！！！</li>
+        <li class="recent_comment_author">--James·Joshua</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/3926643.html#3982198">3. Re:Dos命令完成文件拷贝</a></li>
+        <li class="recent_comment_body">怎么copy 到多个目录 比如这个：怎么写成一条语句xcopy C:\test D:\test1 /D/Yxcopy C:\test D:\test2 /D/Yxcopy C:\test D:\t........</li>
+        <li class="recent_comment_author">--lovejean</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/3239813.html#3946704">4. Re:C#编程总结（五）多线程带给我们的一些思考</a></li>
+        <li class="recent_comment_body">文中IIS那张图，CLR是被加载到进程中的，而非CLR包含进程</li>
+        <li class="recent_comment_author">--雪飞鸿</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/DigitalCertification.html#3917095">5. Re:C#编程总结（十一）数字证书</a></li>
+        <li class="recent_comment_body">mark</li>
+        <li class="recent_comment_author">--xujiery</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/3507326.html#3906033">6. Re:微信公众平台开发教程（二） 基本原理及消息接口</a></li>
+        <li class="recent_comment_body">为什么有张图片加载不到呢？<br>就是点击申请下边的图片图片后面只有一个填写信息。</li>
+        <li class="recent_comment_author">--飞舞的思绪</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4477204.html#3899745">7. Re:SpringMVC访问静态资源</a></li>
+        <li class="recent_comment_body">楼主：配置了 这些标签，在里面还需要配置么？...</li>
+        <li class="recent_comment_author">--白棱镜</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/3653160.html#3878401">8. Re:WCF入门教程（一）简介</a></li>
+        <li class="recent_comment_body">精彩大片，简单易懂，条理清晰，认真学习了</li>
+        <li class="recent_comment_author">--红焖肉</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4235609.html#3863054">9. Re:SQL总结（五）存储过程</a></li>
+        <li class="recent_comment_body">好像不是mysql语法吧，不同数据库存储过程语法差异比较大例如：drop procedure if exists down;delimiter ;;create procedure down(in c......</li>
+        <li class="recent_comment_author">--huanghe0351</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/Compress.html#3850591">10. Re:C#编程总结（十三）数据压缩</a></li>
+        <li class="recent_comment_body">您好，看到您写的这篇关于文件解压缩的博客感觉写的非常的不错，我最近在项目中也使用同样的 方法对多个Excel 文件进行压缩，但是在解压的时候，文件丢失，只剩下第一个，并且提示“文件末端受损”，“文件已......</li>
+        <li class="recent_comment_author">--梦，，，</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/archive/2009/01/18/1377720.html#3826107">11. Re:aspnet_isapi.dll' 报告它自身有问题，原因如下: '检测到死锁'。</a></li>
+        <li class="recent_comment_body"><a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html" target="_blank"></a> <br>被爬虫搞了</li>
+        <li class="recent_comment_author">--LosPollos_Gus</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4476805.html#3815403">12. Re:Spring mvc创建的web项目，如何获知其web的项目名称，访问具体的链接地址？</a></li>
+        <li class="recent_comment_body">博主你好，最近在学习spring boot,感觉它的项目结构很复杂啊，不知道文件怎么放置,能详细说下它的项目文件都有哪些作用，放置哪些文件吗？</li>
+        <li class="recent_comment_author">--JackZhouMine</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4235609.html#3806567">13. Re:SQL总结（五）存储过程</a></li>
+        <li class="recent_comment_body">IF OBJECT_ID (N'PROC_SELECT_BY_PAGE_WITH_TOP', N'P')<br><br>N 和N'P'表示什么</li>
+        <li class="recent_comment_author">--chendf</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/archive/2009/02/27/1399423.html#3804678">14. Re:C#的Enum——枚举</a></li>
+        <li class="recent_comment_body">有没有获取枚举的值的方法呢？比如，TimeOfDay.Moning，怎么从这个枚举获取到0？</li>
+        <li class="recent_comment_author">--夜黔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yank/p/4235609.html#3798862">15. Re:SQL总结（五）存储过程</a></li>
+        <li class="recent_comment_body">怎么找不到收藏</li>
+        <li class="recent_comment_author">--swifthua</li>
+</ul>
+</div>
+        </div>
+    </div>
+</div>
+</div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+		</td>
+		<td class="MainCell">
+			<div id="main">
+				
+<div id="post_detail">
+	<div class="post">
+		<div class="posthead">
+			<h2>
+				<a id="cb_post_title_url" class="singleposttitle" href="https://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html">枚举显示中文问题</a>
+			</h2>
+ 			Posted on <span id="post-date">2011-09-08 10:41</span> <a href="http://www.cnblogs.com/yank/">停留的风</a> 阅读(<span id="post_view_count">6838</span>) 评论(<span id="post_comment_count">4</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2170971" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#" onclick="AddToWz(2170971);return false;">收藏</a>
+			<script type="text/javascript">var allowComments=true,cb_blogId=26349,cb_entryId=2170971,cb_blogApp=currentBlogApp,cb_blogUserGuid='0e733d0b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2011/9/8 10:41:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+			
+		</div>
+		<div class="postbody"><div id="cnblogs_post_body" class="blogpost-body"><p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;"><strong>示例：</strong></p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">有人为了显示中文，这样定义枚举吗？</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">public</span><span style="color: #0000ff;">enum</span><span style="color: #000000;"> TimeOfDay<br>    {<br>        上午,<br>        下午,<br>        晚上<br>    };</span></pre>
+</div>
+<p>这样定义，很别扭，特别是在使用的时候，</p>
+<p><span style="color: #ff0000;">比如，this.Time = TimeOfDay.上午;</span></p>
+<p>而且你会逐渐发现它的局限性。</p>
+<p>&nbsp;</p>
+<p><strong>枚举定义很头疼：</strong></p>
+<p>在系统开发中，我们经常使用枚举，但是定义枚举是个头疼的问题。</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">按照习惯我们习惯将枚举项定义为英语，但是，在使用的时候，特别针对国内客户的时候，如果显示的英文，则不符合要求，不易于用户使用。</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">尽管现在枚举定义也能定义中文枚举项，但在优雅的英文代码中穿插着中语，确实很不爽。如果涉及多语，很难扩展。</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">也有人经常用到常量来代替枚举，但这种方法在系统开发中不太可取，具体见：<a href="http://www.cnblogs.com/yank/archive/2009/02/27/1399423.html">枚举与常量</a>。</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">&nbsp;</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">这时候我们肯定在埋怨：<span style="color: #ff0000;"><strong>如果是计算机是咱们中国人发明的，也许我们就没这个问题。</strong></span></p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;"><span style="color: #ff0000;"><strong><br></strong></span></p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;"><strong>解决方案：</strong></p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">但是这是没法改变的事实。我们只能加点转换功能变成我们想要的东西了。下面提供解决方案：</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">为了方便用户使用，&nbsp;希望能够找到一种比较好的方法，将枚举转为我们想要的集合。通过反射，得到针对某一枚举类型的描述。</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">枚举的定义中加入描述，如果要支持多语，则直接修改枚举描述即可。也不用修改其他代码。</p>
+<div class="cnblogs_code" style="background-color: #f5f5f5; font-family: &#39;Courier New&#39;; font-size: 13px; word-break: break-all; overflow-x: auto; overflow-y: auto; width: 975px; border-width: 1px; border-color: #cccccc; border-style: solid; padding: 5px;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./枚举显示中文问题_files/copycode.gif" alt="复制代码"></a></span></div><span style="color: #0000ff;">using</span><span style="color: #000000;">&nbsp;System;<br></span><span style="color: #0000ff;">using</span><span style="color: #000000;">&nbsp;System.ComponentModel;<br><br></span><span style="color: #0000ff;">public</span><span style="color: #000000;">&nbsp;</span><span style="color: #0000ff;">enum</span><span style="color: #000000;">&nbsp;TimeOfDay<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;[Description(</span><span style="color: #800000;">"</span><span style="color: #800000;">上午</span><span style="color: #800000;">"</span><span style="color: #000000;">)]<br>&nbsp;&nbsp;&nbsp;&nbsp;Moning,<br>&nbsp;&nbsp;&nbsp;&nbsp;[Description(</span><span style="color: #800000;">"</span><span style="color: #800000;">下午</span><span style="color: #800000;">"</span><span style="color: #000000;">)]<br>&nbsp;&nbsp;&nbsp;&nbsp;Afternoon,<br>&nbsp;&nbsp;&nbsp;&nbsp;[Description(</span><span style="color: #800000;">"</span><span style="color: #800000;">晚上</span><span style="color: #800000;">"</span><span style="color: #000000;">)]<br>&nbsp;&nbsp;&nbsp;&nbsp;Evening,<br>};</span><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./枚举显示中文问题_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;">&nbsp;</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;"><strong>方法1：</strong>&nbsp;</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;8b178338-30c4-4bd7-80ac-e132ec30a23f&#39;)"><img id="code_img_closed_8b178338-30c4-4bd7-80ac-e132ec30a23f" class="code_img_closed" src="./枚举显示中文问题_files/ContractedBlock.gif" alt=""><img id="code_img_opened_8b178338-30c4-4bd7-80ac-e132ec30a23f" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;8b178338-30c4-4bd7-80ac-e132ec30a23f&#39;,event)" src="./枚举显示中文问题_files/ExpandedBlockStart.gif" alt=""><span class="cnblogs_code_collapse">获取枚举项+描述</span>
+<div id="cnblogs_code_open_8b178338-30c4-4bd7-80ac-e132ec30a23f" class="cnblogs_code_hide">
+<pre><span style="color: #808080;">///</span><span style="color: #808080;">&lt;summary&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #008000;"> 返回 Dic</span><span style="color: #808080;">&lt;枚举项，描述&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;/summary&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;param name="enumType"&gt;&lt;/param&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">Dic</span><span style="color: #808080;">&lt;枚举项，描述&gt;&lt;/returns&gt;</span><span style="color: #808080;"><br></span><span style="color: #0000ff;">public</span><span style="color: #0000ff;">static</span><span style="color: #000000;"> Dictionary</span><span style="color: #000000;">&lt;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">, </span><span style="color: #0000ff;">string</span><span style="color: #000000;">&gt;</span><span style="color: #000000;"> GetEnumDic(Type enumType)<br>        {<br>            Dictionary</span><span style="color: #000000;">&lt;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">, </span><span style="color: #0000ff;">string</span><span style="color: #000000;">&gt;</span><span style="color: #000000;"> dic </span><span style="color: #000000;">=</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Dictionary</span><span style="color: #000000;">&lt;</span><span style="color: #0000ff;">string</span><span style="color: #000000;">, </span><span style="color: #0000ff;">string</span><span style="color: #000000;">&gt;</span><span style="color: #000000;">();<br>            FieldInfo[] fieldinfos </span><span style="color: #000000;">=</span><span style="color: #000000;"> enumType.GetFields();<br>            </span><span style="color: #0000ff;">foreach</span><span style="color: #000000;"> (FieldInfo field </span><span style="color: #0000ff;">in</span><span style="color: #000000;"> fieldinfos)<br>            {<br>                </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (field.FieldType.IsEnum)<br>                {<br>                    Object[] objs </span><span style="color: #000000;">=</span><span style="color: #000000;"> field.GetCustomAttributes(</span><span style="color: #0000ff;">typeof</span><span style="color: #000000;">(DescriptionAttribute), </span><span style="color: #0000ff;">false</span><span style="color: #000000;">);<br><br>                    dic.Add(field.Name, ((DescriptionAttribute)objs[</span><span style="color: #800080;">0</span><span style="color: #000000;">]).Description);<br>                }<br><br>            }<br><br>            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> dic;<br>        }</span></pre>
+</div>
+</div>
+<p>　</p>
+<p style="margin-top: 10px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-indent: 0px;"><strong>方法2：</strong>　获得值和表述的键值对</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;8f49c3ab-8990-4c02-92ea-3243426d1a42&#39;)"><img id="code_img_closed_8f49c3ab-8990-4c02-92ea-3243426d1a42" class="code_img_closed" src="./枚举显示中文问题_files/ContractedBlock.gif" alt=""><img id="code_img_opened_8f49c3ab-8990-4c02-92ea-3243426d1a42" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;8f49c3ab-8990-4c02-92ea-3243426d1a42&#39;,event)" src="./枚举显示中文问题_files/ExpandedBlockStart.gif" alt=""><span class="cnblogs_code_collapse">获得---值+描述</span>
+<div id="cnblogs_code_open_8f49c3ab-8990-4c02-92ea-3243426d1a42" class="cnblogs_code_hide">
+<pre><span style="color: #808080;">///</span><span style="color: #808080;">&lt;summary&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #008000;"> 从枚举类型和它的特性读出并返回一个键值对<br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;/summary&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;param name="enumType"&gt;</span><span style="color: #008000;">Type,该参数的格式为typeof(需要读的枚举类型)</span><span style="color: #808080;">&lt;/param&gt;</span><span style="color: #008000;"><br>        </span><span style="color: #808080;">///</span><span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">键值对</span><span style="color: #808080;">&lt;/returns&gt;</span><span style="color: #808080;"><br></span><span style="color: #0000ff;">public</span><span style="color: #0000ff;">static</span><span style="color: #000000;"> NameValueCollection GetNVCFromEnumValue(Type enumType)<br>        {<br>            NameValueCollection nvc </span><span style="color: #000000;">=</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> NameValueCollection();<br>            Type typeDescription </span><span style="color: #000000;">=</span><span style="color: #0000ff;">typeof</span><span style="color: #000000;">(DescriptionAttribute);<br>            System.Reflection.FieldInfo[] fields </span><span style="color: #000000;">=</span><span style="color: #000000;"> enumType.GetFields();<br>            </span><span style="color: #0000ff;">string</span><span style="color: #000000;"> strText </span><span style="color: #000000;">=</span><span style="color: #0000ff;">string</span><span style="color: #000000;">.Empty;<br>            </span><span style="color: #0000ff;">string</span><span style="color: #000000;"> strValue </span><span style="color: #000000;">=</span><span style="color: #0000ff;">string</span><span style="color: #000000;">.Empty;<br>            </span><span style="color: #0000ff;">foreach</span><span style="color: #000000;"> (FieldInfo field </span><span style="color: #0000ff;">in</span><span style="color: #000000;"> fields)<br>            {<br>                </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (field.FieldType.IsEnum)<br>                {<br>                    strValue </span><span style="color: #000000;">=</span><span style="color: #000000;"> ((</span><span style="color: #0000ff;">int</span><span style="color: #000000;">)enumType.InvokeMember(field.Name, BindingFlags.GetField, </span><span style="color: #0000ff;">null</span><span style="color: #000000;">, </span><span style="color: #0000ff;">null</span><span style="color: #000000;">, </span><span style="color: #0000ff;">null</span><span style="color: #000000;">)).ToString();<br>                    </span><span style="color: #0000ff;">object</span><span style="color: #000000;">[] arr </span><span style="color: #000000;">=</span><span style="color: #000000;"> field.GetCustomAttributes(typeDescription, </span><span style="color: #0000ff;">true</span><span style="color: #000000;">);<br>                    </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (arr.Length </span><span style="color: #000000;">&gt;</span><span style="color: #800080;">0</span><span style="color: #000000;">)<br>                    {<br>                        DescriptionAttribute aa </span><span style="color: #000000;">=</span><span style="color: #000000;"> (DescriptionAttribute)arr[</span><span style="color: #800080;">0</span><span style="color: #000000;">];<br>                        strText </span><span style="color: #000000;">=</span><span style="color: #000000;"> aa.Description;<br>                    }<br>                    </span><span style="color: #0000ff;">else</span><span style="color: #000000;"><br>                    {<br>                        strText </span><span style="color: #000000;">=</span><span style="color: #000000;"> field.Name;<br>                    }<br>                    nvc.Add(strValue,strText);<br>                }<br>            }<br>            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> nvc;<br>        }</span></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>具体用例下载地址：<a href="http://files.cnblogs.com/yank/EnumApp.rar">http://files.cnblogs.com/yank/EnumApp.rar</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/yank/tag/%E6%9E%9A%E4%B8%BE/">枚举</a>, <a href="http://www.cnblogs.com/yank/tag/%E4%B8%AD%E6%96%87/">中文</a>, <a href="http://www.cnblogs.com/yank/tag/enum/">enum</a>, <a href="http://www.cnblogs.com/yank/tag/%E6%9E%9A%E4%B8%BE%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87/">枚举显示中文</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2170971,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0e733d0b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./枚举显示中文问题_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./枚举显示中文问题_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yank/" target="_blank"><img src="./枚举显示中文问题_files/20140126170043.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yank/">停留的风</a><br>
+            <a href="http://home.cnblogs.com/u/yank/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/yank/followers">粉丝 - 1455</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0e733d0b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2170971,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">4</span>
+    </div>
+    <div class="buryit" onclick="votePost(2170971,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/yank/archive/2011/06/09/2076013.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yank/archive/2011/06/09/2076013.html" title="发布于2011-06-09 09:19">Directx简介</a><br><a href="http://www.cnblogs.com/yank/archive/2011/09/17/PropertyGrid_Enum.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yank/archive/2011/09/17/PropertyGrid_Enum.html" title="发布于2011-09-17 14:01">PropertyGrid中的枚举显示为中文</a><br></div>
+</div>
+
+</div>
+	</div></div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<h3>Feedback</h3>
+	
+			<div class="post">
+				<div class="posthead">
+					<h2>
+						<a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#2198858" class="layer">#1楼</a><a name="2198858" id="comment_anchor_2198858"></a>
+						&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2198858,&#39;y9Hq1JNV0YkMeXDrU8BSFPRLnjDUdF3nb7gsXt5FMLv/8pS+Ul72Ww==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2198858,&#39;y9Hq1JNV0YkMeXDrU8BSFPRLnjDUdF3nb7gsXt5FMLv/8pS+Ul72Ww==&#39;)">引用</a></span>
+					</h2>
+					 <span class="comment_date">2011-09-14 11:58</span> by <a id="a_comment_author_2198858" href="http://www.cnblogs.com/touchsunlight/" target="_blank">笨熊蜗居地</a> <a href="http://msg.cnblogs.com/send/%E7%AC%A8%E7%86%8A%E8%9C%97%E5%B1%85%E5%9C%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div class="postbody"><div id="comment_body_2198858" class="blog_comment_body">好方法</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2198858,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2198858,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2198858_avatar" style="display:none;">http://pic.cnblogs.com/face/u120550.jpg</span></div>
+			</div>
+		
+			<div class="post">
+				<div class="posthead">
+					<h2>
+						<a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#2201495" class="layer">#2楼</a><a name="2201495" id="comment_anchor_2201495"></a>
+						&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2201495,&#39;2q2FGT9SQX3CAMmSfo1vLR6SDEkx01+/ZMaNi7qHyW3Lb3fr8eekTw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2201495,&#39;2q2FGT9SQX3CAMmSfo1vLR6SDEkx01+/ZMaNi7qHyW3Lb3fr8eekTw==&#39;)">引用</a></span>
+					</h2>
+					 <span class="comment_date">2011-09-17 15:02</span> by <a id="a_comment_author_2201495" href="http://www.cnblogs.com/azkaser/" target="_blank">猫科动物</a> <a href="http://msg.cnblogs.com/send/%E7%8C%AB%E7%A7%91%E5%8A%A8%E7%89%A9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div class="postbody"><div id="comment_body_2201495" class="blog_comment_body">会不会有性能问题？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201495,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201495,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+			</div>
+		
+			<div class="post">
+				<div class="posthead">
+					<h2>
+						<a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#2210749" class="layer">#3楼</a><a name="2210749" id="comment_anchor_2210749"></a>
+						&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2210749,&#39;fGI9c8hGMExGVNrVmYEm53bPG9OfQGDZh6ITZXsmZ/4sba/vlHL9Dg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2210749,&#39;fGI9c8hGMExGVNrVmYEm53bPG9OfQGDZh6ITZXsmZ/4sba/vlHL9Dg==&#39;)">引用</a></span>
+					</h2>
+					 <span class="comment_date">2011-09-29 12:16</span> by <a id="a_comment_author_2210749" href="http://www.cnblogs.com/happymouse/" target="_blank">HappyMouse</a> <a href="http://msg.cnblogs.com/send/HappyMouse" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div class="postbody"><div id="comment_body_2210749" class="blog_comment_body">额，经常性使用中文枚举。优雅单说， 多语言的扩展比较麻烦</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2210749,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2210749,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+			</div>
+		
+			<div class="post">
+				<div class="posthead">
+					<h2>
+						<a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#2489285" class="layer">#4楼</a><a name="2489285" id="comment_anchor_2489285"></a><span id="comment-maxId" style="display:none;">2489285</span><span id="comment-maxDate" style="display:none;">2012/10/9 15:12:49</span>
+						&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2489285,&#39;+QdoGc6mq/bThqcRMH7Z6X2rr+APzTsqhJQyID757wiC3kEGpG4uNg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2489285,&#39;+QdoGc6mq/bThqcRMH7Z6X2rr+APzTsqhJQyID757wiC3kEGpG4uNg==&#39;)">引用</a></span>
+					</h2>
+					 <span class="comment_date">2012-10-09 15:12</span> by <a id="a_comment_author_2489285" href="http://www.cnblogs.com/ewyb/" target="_blank">ewyb</a> <a href="http://msg.cnblogs.com/send/ewyb" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div class="postbody"><div id="comment_body_2489285" class="blog_comment_body">很好，受教了。感谢！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2489285,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2489285,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2489285_avatar" style="display:none;">http://pic.cnblogs.com/face/u83667.jpg</span></div>
+			</div>
+		<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yank/archive/2011/09/08/EnumDisplayInChinese.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./枚举显示中文问题_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./枚举显示中文问题_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./枚举显示中文问题_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./枚举显示中文问题_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./枚举显示中文问题_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./枚举显示中文问题_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./枚举显示中文问题_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/601446/" target="_blank">蓝箭航天：朱雀二号火箭研发完毕，计划2020年首飞</a><br> ·  <a href="https://news.cnblogs.com/n/601444/" target="_blank">英国Openreach宣布将携手华为诺基亚部署FTTH网络</a><br> ·  <a href="https://news.cnblogs.com/n/601443/" target="_blank">Firefox用Clang编译器编译Windows版本</a><br> ·  <a href="https://news.cnblogs.com/n/601442/" target="_blank">苹果3D摄像头的方案 让安卓器件供应商奥比迎来曙光</a><br> ·  <a href="https://news.cnblogs.com/n/601441/" target="_blank">专访初敏：思必驰入局企业智慧服务领域，推会话精灵</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/598963/" target="_blank">危害程序员职业生涯的三大观念</a><br> ·  <a href="http://kb.cnblogs.com/page/601061/" target="_blank">断点单步跟踪是一种低效的调试方法</a><br> ·  <a href="http://kb.cnblogs.com/page/600804/" target="_blank">测试 | 让每一粒尘埃有的放矢</a><br> ·  <a href="http://kb.cnblogs.com/page/599854/" target="_blank">从Excel到微服务</a><br> ·  <a href="http://kb.cnblogs.com/page/522513/" target="_blank">如何提升你的能力？给年轻程序员的几条建议</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="FooterCell">
+			
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © 停留的风
+</p>
+
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+</body></html>

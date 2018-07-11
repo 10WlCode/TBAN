@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.cnblogs.com/akwwl/p/3680376.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HashTable、HashSet和Dictionary的区别 - @大龙哥 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./HashTable、HashSet和Dictionary的区别_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./HashTable、HashSet和Dictionary的区别_files/bundle-clover.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./HashTable、HashSet和Dictionary的区别_files/bundle-clover-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/akwwl/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/akwwl/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/akwwl/wlwmanifest.xml">
+<script async="" src="./HashTable、HashSet和Dictionary的区别_files/analytics.js.下载"></script><script type="text/javascript" src="./HashTable、HashSet和Dictionary的区别_files/encoder.js.下载"></script><script src="./HashTable、HashSet和Dictionary的区别_files/jquery-2.2.0.min.js.下载"></script><style type="text/css">
+:root .sidebar-image,
+:root .my_money,
+:root .h_ads,
+:root .focus-gg,
+:root .ad_right,
+:root .adPopup
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'akwwl', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./HashTable、HashSet和Dictionary的区别_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">
+:root .footer > #box[style="width:100%;height:100%;position:fixed;top:0"]
+{ display: none !important; }</style></head><div style="display: block; opacity: 1;"></div>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tbody><tr>
+	<td width="299" background="./HashTable、HashSet和Dictionary的区别_files/banner1.jpg"></td>
+	<td background="./HashTable、HashSet和Dictionary的区别_files/banner.jpg">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/akwwl/">大龙哥</a><br>
+		每天一小步，人生一大步！
+	</div>
+</div>
+</td>
+	<td width="296" background="./HashTable、HashSet和Dictionary的区别_files/banner2.jpg"></td>
+</tr>
+</tbody></table>
+<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp; &nbsp;
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/akwwl/">首页</a>&nbsp; &nbsp;
+<a href="http://q.cnblogs.com/" class="menu" target="_blank">博问</a>&nbsp; &nbsp;
+<a href="http://home.cnblogs.com/ing/" class="menu" target="_blank">闪存</a>&nbsp; &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp; &nbsp;
+<a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/akwwl/rss">订阅</a>
+<a id="blog_nav_rss_image" href="http://www.cnblogs.com/akwwl/rss"><img src="./HashTable、HashSet和Dictionary的区别_files/xml.gif" alt="订阅"></a>&nbsp; &nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+<!-- <a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%40%E5%A4%A7%E9%BE%99%E5%93%A5">联系</a>&nbsp;&nbsp;&nbsp; -->
+</div>
+<div id="mytopmenu">
+	
+		<div id="mystats">
+			<div id="blog_stats">
+<!--done-->
+<div class="blogStats">
+posts - 64,&nbsp;
+comments - 194,&nbsp;
+trackbacks - 0
+
+</div></div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/akwwl/p/3680376.html">HashTable、HashSet和Dictionary的区别</a>
+	</div>
+	<div id="cnblogs_post_body" class="blogpost-body"><p>　　今天又去面试了，结果依然很悲催，平时太过于关注表面上的东西，有些实质却不太清楚，遇到HashTable和Dictionary相关的知识，记录下来，希望对后来人有所帮助，以及对自己以后复习可以参考。</p>
+<p>　　<strong>1.HashTable</strong></p>
+<p>　　<span>哈希表(HashTable)<span>表示键/值对的集合。<span><span>在.NET Framework中，Hashtable是System.Collections命名空间提供的一个容器，用于处理和表现类似key-value的键值对，其中key通常可用来快速查找，同时key是区分大小写；value用于存储对应于key的值。Hashtable中key-value键值对均为object类型，所以Hashtable可以支持任何类型的keyvalue键值对，任何非 null 对象都可以用作键或值。</span></span></span></span><span><br></span></p>
+<p>　　在哈希表中添加一个key/键值对：HashtableObject.Add(key,);　</p>
+<p>　　在哈希表中去除某个key/键值对：HashtableObject.Remove(key);</p>
+<p>　　从哈希表中移除所有元素： HashtableObject.Clear();</p>
+<p>　　判断哈希表是否包含特定键key： HashtableObject.Contains(key);</p>
+<p>　　<strong>2.HashSet</strong></p>
+<p>　　HashSet&lt;T&gt;类主要是设计用来做高性能集运算的，例如对两个集合求交集、并集、差集等。集合中包含一组不重复出现且无特性顺序的元素，<span>HashSet拒绝接受重复的对象</span>。</p>
+<p>　　HashSet&lt;T&gt;的一些特性如下:</p>
+<p>　　a. HashSet&lt;T&gt;中的值不能重复且没有顺序。</p>
+<p>　　b. HashSet&lt;T&gt;的容量会按需自动添加。</p>
+<p>　　<strong>3.Dictionary</strong></p>
+<p>　　Dictionary<span>表示键和值的集合。</span></p>
+<p><span>　　</span>Dictionary&lt;string, string&gt;是一个泛型</p>
+<p>　　他本身有集合的功能有时候可以把它看成数组</p>
+<p>　　他的结构是这样的：Dictionary&lt;[key], [value]&gt;</p>
+<p>　　他的特点是存入对象是需要与[key]值一一对应的存入该泛型</p>
+<p>　　通过某一个一定的[key]去找到对应的值</p>
+<p>　　<strong>4.HashTable和Dictionary的区别：</strong></p>
+<p>　　(1).HashTable不支持泛型，而Dictionary支持泛型。</p>
+<p>　　(2).<span>&nbsp;<span>Hashtable 的元素属于 Object 类型，所以在存储或检索值类型时通常发生装箱和拆箱的操作，</span>所以你可能需要进行一些类型转换的操作，而且对于int,float这些值类型还需要进行装箱等操作，非常耗时。</span></p>
+<p><span>　　(3).</span>单线程程序中推荐使用 Dictionary, 有泛型优势, 且读取速度较快, 容量利用更充分。多线程程序中推荐使用 Hashtable, 默认的 Hashtable 允许单线程写入, 多线程读取, 对 Hashtable 进一步调用 Synchronized() 方法可以获得完全线程安全的类型. 而 Dictionary 非线程安全, 必须人为使用 lock 语句进行保护, 效率大减。</p>
+<p>　　(4)在通过代码测试的时候发现key是整数型Dictionary的效率比Hashtable快，如果key是字符串型，Dictionary的效率没有Hashtable快。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./HashTable、HashSet和Dictionary的区别_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> IntMethod()
+        {
+            </span><span style="color: #0000ff;">int</span> count = <span style="color: #800080;">1000000</span><span style="color: #000000;">;
+            Dictionary</span>&lt;<span style="color: #0000ff;">int</span>, <span style="color: #0000ff;">int</span>&gt; dictionary = <span style="color: #0000ff;">new</span> Dictionary&lt;<span style="color: #0000ff;">int</span>, <span style="color: #0000ff;">int</span>&gt;<span style="color: #000000;">();
+            Hashtable hashtable </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Hashtable();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                dictionary.Add(i,i);
+                hashtable.Add(i,i);
+            }
+
+            Stopwatch stopwatch </span>=<span style="color: #000000;"> Stopwatch.StartNew();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">int</span> value =<span style="color: #000000;"> dictionary[i];
+            }
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
+            stopwatch </span>=<span style="color: #000000;"> Stopwatch.StartNew();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">object</span> value =<span style="color: #000000;"> hashtable[i];
+            }
+            stopwatch.Stop();
+
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+ 
+        }
+
+        </span><span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> MethodString()
+        {
+            </span><span style="color: #0000ff;">int</span> count = <span style="color: #800080;">1000000</span><span style="color: #000000;">;
+            Dictionary</span>&lt;<span style="color: #0000ff;">string</span>, <span style="color: #0000ff;">string</span>&gt; dictionary = <span style="color: #0000ff;">new</span> Dictionary&lt;<span style="color: #0000ff;">string</span>, <span style="color: #0000ff;">string</span>&gt;<span style="color: #000000;">();
+            Hashtable hashtable</span>=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Hashtable();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                dictionary.Add(i.ToString(),</span><span style="color: #800000;">"</span><span style="color: #800000;">aaa</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+                hashtable.Add(i.ToString(),</span><span style="color: #800000;">"</span><span style="color: #800000;">aaa</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+
+            Stopwatch stopwatch </span>=<span style="color: #000000;"> Stopwatch.StartNew();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">string</span> value=<span style="color: #000000;">dictionary[i.ToString()];
+            }
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
+            stopwatch </span>=<span style="color: #000000;"> Stopwatch.StartNew();
+            </span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span>; i &lt; count; i++<span style="color: #000000;">)
+            {
+                </span><span style="color: #0000ff;">object</span> value =<span style="color: #000000;"> hashtable[i.ToString()];
+            }
+            stopwatch.Stop();
+
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./HashTable、HashSet和Dictionary的区别_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>　　</p>
+<p>　　今天面试最大的收获，不是总结以上的东西，而是让我明白了许多东西不要追求表面的，不是为了完成什么功能，而学习某种技术，更应该深入的去理解它的本质，基础很重要。三位面试官，都非常出色，讲了许多我平常很少用到的东西，和他们在一起交流，会学到不少的东西，真希望以后能进入像这样的公司，让自己快速的成长起来。</p>
+<p>　　面试，不止是为了找一份满意的工作，从中可以让你学会如何沟通，如何去推销自己，更重要的是让自己了解自己的不足，自己在哪些方面还欠缺，还有待提高。</p>
+<p>　　知行情，知不足，知自己。</p>
+<p>　　明天继续挑战，希望一切都顺利！！！</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/akwwl/category/572532.html" target="_blank">面试问题</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/akwwl/tag/HashTable/">HashTable</a>, <a href="http://www.cnblogs.com/akwwl/tag/HashSet/">HashSet</a>, <a href="http://www.cnblogs.com/akwwl/tag/Dictionary/">Dictionary</a>, <a href="http://www.cnblogs.com/akwwl/tag/%E5%8C%BA%E5%88%AB/">区别</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3680376,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;03f018db-28cc-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./HashTable、HashSet和Dictionary的区别_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./HashTable、HashSet和Dictionary的区别_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/akwwl/" target="_blank"><img src="./HashTable、HashSet和Dictionary的区别_files/u427057.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/akwwl/">@大龙哥</a><br>
+            <a href="http://home.cnblogs.com/u/akwwl/followees">关注 - 47</a><br>
+            <a href="http://home.cnblogs.com/u/akwwl/followers">粉丝 - 131</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;03f018db-28cc-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3680376,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">20</span>
+    </div>
+    <div class="buryit" onclick="votePost(3680376,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/akwwl/p/3679542.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/akwwl/p/3679542.html" title="发布于2014-04-21 23:59">判断闰年的方法以及如何获得单链表的倒数第K个元素</a><br><a href="http://www.cnblogs.com/akwwl/p/3691974.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/akwwl/p/3691974.html" title="发布于2014-04-26 19:56">将为知笔记服务端部署在企业内部</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2014-04-22 23:36</span> <a href="http://www.cnblogs.com/akwwl/">@大龙哥</a> 阅读(<span id="post_view_count">35353</span>) 评论(<span id="post_comment_count">18</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3680376" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/akwwl/p/3680376.html#" onclick="AddToWz(3680376);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=124305,cb_entryId=3680376,cb_blogApp=currentBlogApp,cb_blogUserGuid='03f018db-28cc-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/4/22 23:36:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>FeedBack:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923379" class="layer">#1楼</a><a name="2923379" id="comment_anchor_2923379"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 09:18</span> | <a id="a_comment_author_2923379" href="http://www.cnblogs.com/afutureBoss/" target="_blank">firtuss</a> <a href="http://msg.cnblogs.com/send/firtuss" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923379" class="blog_comment_body">今年行情不好，楼主表灰心！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923379,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923379,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2923379_avatar" style="display:none;">http://pic.cnblogs.com/face/260279/20151016095130.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923379,&#39;HVbQ+A7U6c9wAXoHzPtux5hmWadqAZSJUokY8DE5KoNsMV9KRjEZgw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923379,&#39;HVbQ+A7U6c9wAXoHzPtux5hmWadqAZSJUokY8DE5KoNsMV9KRjEZgw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923412" class="layer">#2楼</a><a name="2923412" id="comment_anchor_2923412"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 09:34</span> | <a id="a_comment_author_2923412" href="http://www.cnblogs.com/Fashion/" target="_blank">小小搬运工</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%B0%8F%E6%90%AC%E8%BF%90%E5%B7%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923412" class="blog_comment_body">顶个!懂得总结不错哈..我就不知道总结!浑浑噩噩的混日子 娃哈哈.....</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923412,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923412,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2923412_avatar" style="display:none;">http://pic.cnblogs.com/face/u351524.gif?id=05083607</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923412,&#39;LJiux1p27a6uWeAx/VJND4f7dav+emOabbg4yaJPoVMmCJkxFdMLXQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923412,&#39;LJiux1p27a6uWeAx/VJND4f7dav+emOabbg4yaJPoVMmCJkxFdMLXQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923520" class="layer">#3楼</a><a name="2923520" id="comment_anchor_2923520"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 10:48</span> | <a id="a_comment_author_2923520" href="http://www.cnblogs.com/CrazyDog/" target="_blank">楼主的跟屁虫</a> <a href="http://msg.cnblogs.com/send/%E6%A5%BC%E4%B8%BB%E7%9A%84%E8%B7%9F%E5%B1%81%E8%99%AB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923520" class="blog_comment_body">加油哦，楼主，学会推销自己真的很重要，会有好工作的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923520,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923520,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2923520_avatar" style="display:none;">http://pic.cnblogs.com/face/504703/20130314151916.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923520,&#39;bqQvPvo1mtazexqMEv6TTh75+8i0me4YqkUHDEiQl4HjkiaylK4r/w==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923520,&#39;bqQvPvo1mtazexqMEv6TTh75+8i0me4YqkUHDEiQl4HjkiaylK4r/w==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923633" class="layer">#4楼</a><a name="2923633" id="comment_anchor_2923633"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 12:04</span> | <a id="a_comment_author_2923633" href="http://home.cnblogs.com/u/118483/" target="_blank">dyrne</a> <a href="http://msg.cnblogs.com/send/dyrne" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923633" class="blog_comment_body">啥公司这么好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923633,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923633,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923633,&#39;HGpuaOpGJvL6OCKhm4PrB3AcVFAXafkd2XqLN4dre20CSEm8iTZY2A==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923633,&#39;HGpuaOpGJvL6OCKhm4PrB3AcVFAXafkd2XqLN4dre20CSEm8iTZY2A==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923675" class="layer">#5楼</a><a name="2923675" id="comment_anchor_2923675"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 12:55</span> | <a id="a_comment_author_2923675" href="http://home.cnblogs.com/u/611203/" target="_blank">boyxq</a> <a href="http://msg.cnblogs.com/send/boyxq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923675" class="blog_comment_body">楼主总结得不够深入啊，连hash算法都没有提及，还是比较表面的哦，线程安全倒时要注意的。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923675,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923675,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923675,&#39;0iTGldghUsTL3p/9aFQyI6PkX7RMoJag3jmRxPUtWs9PTq6enKJaKw==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923675,&#39;0iTGldghUsTL3p/9aFQyI6PkX7RMoJag3jmRxPUtWs9PTq6enKJaKw==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923690" class="layer">#6楼</a><a name="2923690" id="comment_anchor_2923690"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 13:08</span> | <a id="a_comment_author_2923690" href="http://www.cnblogs.com/fo0ol/" target="_blank">fo0ol</a> <a href="http://msg.cnblogs.com/send/fo0ol" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923690" class="blog_comment_body">上海的吗</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923690,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923690,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2923690_avatar" style="display:none;">http://pic.cnblogs.com/face/493583/20140412110745.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923690,&#39;/bjL4C1nvrQPhesWESw05VMogJl4vckq45FqqWfd0Yk4vE0y8c7jug==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923690,&#39;/bjL4C1nvrQPhesWESw05VMogJl4vckq45FqqWfd0Yk4vE0y8c7jug==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923713" class="layer">#7楼</a><a name="2923713" id="comment_anchor_2923713"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 13:21</span> | <a id="a_comment_author_2923713" href="http://www.cnblogs.com/clark-lee/" target="_blank">李广难封</a> <a href="http://msg.cnblogs.com/send/%E6%9D%8E%E5%B9%BF%E9%9A%BE%E5%B0%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923713" class="blog_comment_body">楼主，Dictionary也可以实现线程安全，只不过要用ConcurrentDictionary.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923713,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923713,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923713,&#39;USZuavhELqQpdnvBrjxOk7k3RNkYOnLFfM4P2dZHqbdjy/VTu927eg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923713,&#39;USZuavhELqQpdnvBrjxOk7k3RNkYOnLFfM4P2dZHqbdjy/VTu927eg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2923762" class="layer">#8楼</a><a name="2923762" id="comment_anchor_2923762"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-23 14:23</span> | <a id="a_comment_author_2923762" href="http://www.cnblogs.com/xingxiaobai/" target="_blank">Json</a> <a href="http://msg.cnblogs.com/send/Json" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2923762" class="blog_comment_body">加油！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2923762,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2923762,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2923762_avatar" style="display:none;">http://pic.cnblogs.com/face/u290610.jpg?id=09223729</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2923762,&#39;hN0UNapLp4GP8ulekxMV9dcIbYJdIoF09be/SiCId8g0/QFlbnM/Fg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2923762,&#39;hN0UNapLp4GP8ulekxMV9dcIbYJdIoF09be/SiCId8g0/QFlbnM/Fg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2924757" class="layer">#9楼</a><a name="2924757" id="comment_anchor_2924757"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-24 17:50</span> | <a id="a_comment_author_2924757" href="http://www.cnblogs.com/e8sp/" target="_blank">寒@鹏</a> <a href="http://msg.cnblogs.com/send/%E5%AF%92%40%E9%B9%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2924757" class="blog_comment_body">Dictionary 功能更大 可以嵌套 Dictionary&lt;string Dictionary&lt;,&gt;&gt;<br>第一次看见当时 郁闷半天</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924757,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924757,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2924757_avatar" style="display:none;">http://pic.cnblogs.com/face/28349/20171208085716.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2924757,&#39;9mGquIbJ06sKAExtHKMjEzrd4FJYWrcFx+YDDydx1pOb2Qt/eqpgHA==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2924757,&#39;9mGquIbJ06sKAExtHKMjEzrd4FJYWrcFx+YDDydx1pOb2Qt/eqpgHA==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#2924779" class="layer">#10楼</a><a name="2924779" id="comment_anchor_2924779"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-04-24 18:25</span> | <a id="a_comment_author_2924779" href="http://www.cnblogs.com/amoshu/" target="_blank">AmosHs丶</a> <a href="http://msg.cnblogs.com/send/AmosHs%E4%B8%B6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2924779" class="blog_comment_body">我都是用Dictionary  Hashtable 基本上没有用过...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924779,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924779,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2924779_avatar" style="display:none;">http://pic.cnblogs.com/face/259735/20150109095735.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(2924779,&#39;OBltPUnjei77/5rfjV1+h9hNzLkLlQ74WYkZOfJ4lBHgJqsf9Bl33Q==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(2924779,&#39;OBltPUnjei77/5rfjV1+h9hNzLkLlQ74WYkZOfJ4lBHgJqsf9Bl33Q==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3086501" class="layer">#11楼</a><a name="3086501" id="comment_anchor_3086501"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2014-12-15 16:52</span> | <a id="a_comment_author_3086501" href="http://home.cnblogs.com/u/697192/" target="_blank">wujf</a> <a href="http://msg.cnblogs.com/send/wujf" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3086501" class="blog_comment_body">讲的挺好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3086501,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3086501,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3086501,&#39;Ds5HWkqtioMPRSj1ohEAXcQJXb8OFT6JRmg5Nqz1M1bLoOLBJ9NpMg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3086501,&#39;Ds5HWkqtioMPRSj1ohEAXcQJXb8OFT6JRmg5Nqz1M1bLoOLBJ9NpMg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163260" class="layer">#12楼</a><a name="3163260" id="comment_anchor_3163260"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 16:58</span> | <a id="a_comment_author_3163260" href="http://www.cnblogs.com/y-z-x/" target="_blank">Zero丨丶小余</a> <a href="http://msg.cnblogs.com/send/Zero%E4%B8%A8%E4%B8%B6%E5%B0%8F%E4%BD%99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163260" class="blog_comment_body">代码怎么用不了？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163260,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163260,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163260_avatar" style="display:none;">http://pic.cnblogs.com/face/696593/20180311002012.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163260,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163260,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163266" class="layer">#13楼</a><a name="3163266" id="comment_anchor_3163266"></a>[<span class="louzhu">楼主</span>]</div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 17:01</span> | <a id="a_comment_author_3163266" href="http://www.cnblogs.com/akwwl/" target="_blank">@大龙哥</a> <a href="http://msg.cnblogs.com/send/%40%E5%A4%A7%E9%BE%99%E5%93%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163266" class="blog_comment_body"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163260" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3163260);">@</a>
+Zero丨丶小余<br>用不了？你指的什么用不了？完全可以用啊！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163266,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163266,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163266_avatar" style="display:none;">http://pic.cnblogs.com/face/u427057.jpg?id=02231440</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163266,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163266,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163275" class="layer">#14楼</a><a name="3163275" id="comment_anchor_3163275"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 17:10</span> | <a id="a_comment_author_3163275" href="http://www.cnblogs.com/y-z-x/" target="_blank">Zero丨丶小余</a> <a href="http://msg.cnblogs.com/send/Zero%E4%B8%A8%E4%B8%B6%E5%B0%8F%E4%BD%99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163275" class="blog_comment_body"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163266" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3163266);">@</a>
+@大龙哥<br>上下文不存在Stopwatch</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163275,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163275,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163275_avatar" style="display:none;">http://pic.cnblogs.com/face/696593/20180311002012.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163275,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163275,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163281" class="layer">#15楼</a><a name="3163281" id="comment_anchor_3163281"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 17:16</span> | <a id="a_comment_author_3163281" href="http://www.cnblogs.com/y-z-x/" target="_blank">Zero丨丶小余</a> <a href="http://msg.cnblogs.com/send/Zero%E4%B8%A8%E4%B8%B6%E5%B0%8F%E4%BD%99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163281" class="blog_comment_body"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163266" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3163266);">@</a>
+@大龙哥<br>用在哪里  主函数里？？  有2错误！放到主函数外还是有11错误</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163281,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163281,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163281_avatar" style="display:none;">http://pic.cnblogs.com/face/696593/20180311002012.png</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163281,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163281,&#39;/QXEO+gUhatn8q6tt7gXQUGbHb6FTK9k3EREur4DPdnV6WZqIDOqZg==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163313" class="layer">#16楼</a><a name="3163313" id="comment_anchor_3163313"></a>[<span class="louzhu">楼主</span>]</div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 17:38</span> | <a id="a_comment_author_3163313" href="http://www.cnblogs.com/akwwl/" target="_blank">@大龙哥</a> <a href="http://msg.cnblogs.com/send/%40%E5%A4%A7%E9%BE%99%E5%93%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163313" class="blog_comment_body"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163275" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3163275);">@</a>
+Zero丨丶小余<br>找不到的话要添加引用，系统的，直接添加。。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163313,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163313,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163313_avatar" style="display:none;">http://pic.cnblogs.com/face/u427057.jpg?id=02231440</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163313,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163313,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163316" class="layer">#17楼</a><a name="3163316" id="comment_anchor_3163316"></a>[<span class="louzhu">楼主</span>]</div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-15 17:39</span> | <a id="a_comment_author_3163316" href="http://www.cnblogs.com/akwwl/" target="_blank">@大龙哥</a> <a href="http://msg.cnblogs.com/send/%40%E5%A4%A7%E9%BE%99%E5%93%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3163316" class="blog_comment_body"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3163281" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3163281);">@</a>
+Zero丨丶小余<br>汗。。。。<br>在Main()中直接调用就可以了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3163316,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3163316,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3163316_avatar" style="display:none;">http://pic.cnblogs.com/face/u427057.jpg?id=02231440</span>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3163316,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3163316,&#39;KjatPCOfKaAIs0NJ2k3+X6nHPAqH+i8xLZC0Z54YtlSduQ4tY4CVfQ==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="https://www.cnblogs.com/akwwl/p/3680376.html#3214185" class="layer">#18楼</a><a name="3214185" id="comment_anchor_3214185"></a><span id="comment-maxId" style="display:none;">3214185</span><span id="comment-maxDate" style="display:none;">2015/6/24 13:46:54</span></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-06-24 13:46</span> | <a id="a_comment_author_3214185" href="http://home.cnblogs.com/u/650690/" target="_blank">闲音</a> <a href="http://msg.cnblogs.com/send/%E9%97%B2%E9%9F%B3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3214185" class="blog_comment_body">楼主，你调整一下dictionary和hashtable执行顺序，执行结果就不一样了。<br>string的时候dictionary还是快一下。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3214185,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3214185,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3214185,&#39;rwrYweif+2SrI19PCyp2EGHmWQkyVhoj22xomuwyo1IJ3PZUnacj3g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3214185,&#39;rwrYweif+2SrI19PCyp2EGHmWQkyVhoj22xomuwyo1IJ3PZUnacj3g==&#39;)">引用</a></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/akwwl/p/3680376.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/akwwl/p/3680376.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./HashTable、HashSet和Dictionary的区别_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./HashTable、HashSet和Dictionary的区别_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://dnspod.cloud.tencent.com/act/yearendsales?from=IT&amp;fromSource=gwzcw.951778.951778.951778" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-腾讯云&#39;)">【推荐】腾讯云新注册用户域名抢购1元起</a><br><a href="http://clickc.admaster.com.cn/c/a105960,b2436453,c1705,i0,m101,8a1,8b2,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-华为云&#39;)">【活动】华为云社区全云总动员，华为云女郎邀您为她打call！</a><br><a href="https://www.upyun.com/products/prismcdn?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_campaign=prismcdn&amp;utm_content=0614" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-upyun&#39;)">【推荐】又拍云强势推出超低价、低延时、超强兼容的 P2P-CDN！</a><br><a href="http://challenge.xfyun.cn/?ch=bk" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-xfyun&#39;)">【大赛】2018首届“顶天立地”AI开发者大赛</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/freetier?fromSource=gwzcw.1027255.1027255.1027255" target="_blank"><img width="300" height="250" src="./HashTable、HashSet和Dictionary的区别_files/24442-20180611171134854-1629599186.jpg" alt="腾讯云0611" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/599457/" target="_blank">华谊兄弟的至暗时刻：“兄弟”出走 又掀质押风波</a><br> ·  <a href="https://news.cnblogs.com/n/599453/" target="_blank">浑水猎杀中国市值最高教育上市公司，好未来未来在哪</a><br> ·  <a href="https://news.cnblogs.com/n/599456/" target="_blank">万科来到城中村 富士康员工慌了</a><br> ·  <a href="https://news.cnblogs.com/n/599455/" target="_blank">共享轮椅也来了！这家公司说不靠租金盈利</a><br> ·  <a href="https://news.cnblogs.com/n/599454/" target="_blank">库克：我不后悔公布自己是同性恋</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/522513/" target="_blank">如何提升你的能力？给年轻程序员的几条建议</a><br> ·  <a href="http://kb.cnblogs.com/page/553361/" target="_blank">程序员的那些反模式</a><br> ·  <a href="http://kb.cnblogs.com/page/598335/" target="_blank">程序员的宇宙时间线</a><br> ·  <a href="http://kb.cnblogs.com/page/597877/" target="_blank">突破程序员思维</a><br> ·  <a href="http://kb.cnblogs.com/page/597631/" target="_blank">云、雾和霭计算如何一起工作</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/akwwl/">@大龙哥</a><br>园龄：<a href="https://home.cnblogs.com/u/akwwl/" title="入园时间：2012-07-12">5年11个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/akwwl/followers/">131</a><br>关注：<a href="https://home.cnblogs.com/u/akwwl/followees/">47</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;03f018db-28cc-e111-aa3f-842b2b196315&#39;)">+加关注</a></div><script>getFollowStatus('03f018db-28cc-e111-aa3f-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+<br>			
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/05/01&#39;);return false;">&lt;</a></td><td align="center">2018年6月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/07/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalTodayDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/akwwl/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/akwwl/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/akwwl/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/akwwl/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/akwwl/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/akwwl/p/4933770.html">1. MVC  View显示详解(RenderBody,RenderPage,RenderSection,Partial)</a></li><li><a href="http://www.cnblogs.com/akwwl/p/6222606.html">2. PDFsharp Samples</a></li><li><a href="http://www.cnblogs.com/akwwl/p/5694592.html">3. C#获取程序集自动增加的版本号和编译时间</a></li><li><a href="http://www.cnblogs.com/akwwl/p/5230639.html">4. Highchart  URL</a></li><li><a href="http://www.cnblogs.com/akwwl/p/5238975.html">5. MVC后台数据赋值给前端JS对象</a></li><li><a href="http://www.cnblogs.com/akwwl/p/5237687.html">6. Bootstrap Table Examples</a></li><li><a href="http://www.cnblogs.com/akwwl/p/5216835.html">7. JS Encode and Decode URL</a></li><li><a href="http://www.cnblogs.com/akwwl/p/4026043.html">8. Register DLL Assembly   Gacutil.exe（全局程序集缓存工具）</a></li><li><a href="http://www.cnblogs.com/akwwl/p/3759952.html">9. Visual Studio 2010 插件之Resharper</a></li><li><a href="http://www.cnblogs.com/akwwl/p/3761024.html">10. 控制反转IOC与依赖注入DI</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/akwwl/tag/Metro/">Metro</a>(17)</li><li><a href="http://www.cnblogs.com/akwwl/tag/C%23/">C#</a>(8)</li><li><a href="http://www.cnblogs.com/akwwl/tag/Windows8/">Windows8</a>(6)</li><li><a href="http://www.cnblogs.com/akwwl/tag/WPF/">WPF</a>(5)</li><li><a href="http://www.cnblogs.com/akwwl/tag/Silverlight/">Silverlight</a>(5)</li><li><a href="http://www.cnblogs.com/akwwl/tag/SQLite/">SQLite</a>(5)</li><li><a href="http://www.cnblogs.com/akwwl/tag/Binding/">Binding</a>(2)</li><li><a href="http://www.cnblogs.com/akwwl/tag/Windwos8/">Windwos8</a>(2)</li><li><a href="http://www.cnblogs.com/akwwl/tag/JS/">JS</a>(2)</li><li><a href="http://www.cnblogs.com/akwwl/tag/XML%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/">XML文件的操作</a>(2)</li><li><a href="http://www.cnblogs.com/akwwl/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(73)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="https://www.cnblogs.com/akwwl/category/402537.html">.Net(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="https://www.cnblogs.com/akwwl/category/496749.html">ASP.NET(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="https://www.cnblogs.com/akwwl/category/402538.html">C#(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="https://www.cnblogs.com/akwwl/category/796347.html">Cache</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="https://www.cnblogs.com/akwwl/category/508403.html">Kinect(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="https://www.cnblogs.com/akwwl/category/574007.html">Linux(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="https://www.cnblogs.com/akwwl/category/796349.html">Memcached</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="https://www.cnblogs.com/akwwl/category/411104.html">MVC(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="https://www.cnblogs.com/akwwl/category/474016.html">NPOI(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="https://www.cnblogs.com/akwwl/category/796348.html">Redis</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="https://www.cnblogs.com/akwwl/category/402536.html">Silverlight(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="https://www.cnblogs.com/akwwl/category/404301.html">SQL Server(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="https://www.cnblogs.com/akwwl/category/435801.html">SQLite(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="https://www.cnblogs.com/akwwl/category/416021.html">Windows Metro(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="https://www.cnblogs.com/akwwl/category/416020.html">Windows Phone(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="https://www.cnblogs.com/akwwl/category/583549.html">WinForm(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="https://www.cnblogs.com/akwwl/category/404548.html">WPF(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="https://www.cnblogs.com/akwwl/category/572532.html">面试问题(2)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(64)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2017/02.html">2017年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2016/12.html">2016年12月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2016/07.html">2016年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2016/03.html">2016年3月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2016/02.html">2016年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2015/06.html">2015年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2014/05.html">2014年5月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2014/04.html">2014年4月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2014/03.html">2014年3月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2014/02.html">2014年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/11.html">2013年11月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/10.html">2013年10月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/09.html">2013年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/08.html">2013年8月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/07.html">2013年7月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_15" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/06.html">2013年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_16" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/04.html">2013年4月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_17" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/02.html">2013年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_18" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2013/01.html">2013年1月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_19" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2012/12.html">2012年12月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_20" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2012/11.html">2012年11月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_21" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2012/09.html">2012年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_22" class="listitem" href="https://www.cnblogs.com/akwwl/archive/2012/08.html">2012年8月 (6)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(16)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_0" class="listitem" href="https://www.cnblogs.com/akwwl/category/401326.html">ASP.NET</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_1" class="listitem" href="https://www.cnblogs.com/akwwl/category/401325.html">C#(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_2" class="listitem" href="https://www.cnblogs.com/akwwl/category/416833.html">Metro(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_3" class="listitem" href="https://www.cnblogs.com/akwwl/category/401328.html">Silverlight(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_4" class="listitem" href="https://www.cnblogs.com/akwwl/category/401327.html">SQL Server(2)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(18)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_0" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2014/05.html" rel="nofollow">2014年5月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_1" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2014/03.html" rel="nofollow">2014年3月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_2" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/09.html" rel="nofollow">2013年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_3" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/08.html" rel="nofollow">2013年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_4" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/07.html" rel="nofollow">2013年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_5" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/06.html" rel="nofollow">2013年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_6" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/05.html" rel="nofollow">2013年5月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_7" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2013/04.html" rel="nofollow">2013年4月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_8" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2012/10.html" rel="nofollow">2012年10月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_9" class="listitem" href="https://www.cnblogs.com/akwwl/archives/2012/09.html" rel="nofollow">2012年9月 (3)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		134820
+	</li><li>
+		排名 -
+		2281
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/akwwl/p/3757845.html#3889213">1. Re:Winform 中DataGridView的checkbox列，当修改checkbox状态时实时获得其状态值</a></li>
+        <li class="recent_comment_body">感谢！</li>
+        <li class="recent_comment_author">--Afresh</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/akwwl/p/3566445.html#3784165">2. Re:代码编辑器Sublime Text 3 免费使用方法与简体中文汉化包下载</a></li>
+        <li class="recent_comment_body">支持一个<br>Sublime Text快捷键大全:<a href="https://www.cnblogs.com/akwwl/p/3680376.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--真的见证</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/akwwl/p/3232679.html#3760379">3. Re:C#委托的介绍(delegate、Action、Func、predicate)</a></li>
+        <li class="recent_comment_body">好文章，受教即留言！</li>
+        <li class="recent_comment_author">--pqmzky</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/akwwl/p/3191713.html#3730150">4. Re:C#邮件发送</a></li>
+        <li class="recent_comment_body">@@大龙哥QQ问题已解决：server为stmp.qq.com EnableSsl设为true，端口587，QQ密码为授权码outlook问题也已解决，EnableSsl设为true，端口587，se......</li>
+        <li class="recent_comment_author">--爱思考的95后</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/akwwl/p/3191713.html#3729951">5. Re:C#邮件发送</a></li>
+        <li class="recent_comment_body">@爱思考的95后这个我当初做的时候，使用的是QQ密码，也写了端口号。Outlook服务器: pop3.live.com发件服务器: smtp.live.com启用ssl安全链接，端口25或者587账户......</li>
+        <li class="recent_comment_author">--@大龙哥</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/akwwl/p/3240813.html">1. C#读写txt文件的两种方法介绍(399643)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3566445.html">2. 代码编辑器Sublime Text 3 免费使用方法与简体中文汉化包下载(200955)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3232679.html">3. C#委托的介绍(delegate、Action、Func、predicate)(81248)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3680376.html">4. HashTable、HashSet和Dictionary的区别(35354)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3573230.html">5. .net C#中页面之间传值传参的六种方法(27899)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/akwwl/p/3184239.html">1. ASP.NET 文件上传于下载(20)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3680376.html">2. HashTable、HashSet和Dictionary的区别(18)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3191713.html">3. C#邮件发送(16)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3232679.html">4. C#委托的介绍(delegate、Action、Func、predicate)(14)</a></li><li><a href="https://www.cnblogs.com/akwwl/archive/2012/08/12/2635614.html">5. Silverlight中如何实现上下标的显示(11)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/akwwl/p/3232679.html">1. C#委托的介绍(delegate、Action、Func、predicate)(21)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3680376.html">2. HashTable、HashSet和Dictionary的区别(20)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3566445.html">3. 代码编辑器Sublime Text 3 免费使用方法与简体中文汉化包下载(12)</a></li><li><a href="https://www.cnblogs.com/akwwl/p/3240813.html">4. C#读写txt文件的两种方法介绍(12)</a></li><li><a href="https://www.cnblogs.com/akwwl/archive/2013/04/24/3041282.html">5. NPOI创建Excel﹑合并单元格﹑设置单元格样式﹑边框(5)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+
+<!--done-->
+<div class="footer">
+	
+	Copyright ©2018 @大龙哥 Powered By<a href="https://www.cnblogs.com/">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+</div>
+
+
+</body></html>

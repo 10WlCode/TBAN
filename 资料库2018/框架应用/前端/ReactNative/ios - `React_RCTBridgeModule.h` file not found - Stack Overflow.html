@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041 -->
+<html itemscope="" itemtype="http://schema.org/QAPage" class="html__responsive"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>ios - `React/RCTBridgeModule.h` file not found - Stack Overflow</title>
+        <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+        <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+        <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://stackoverflow.com/opensearch.xml">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041">
+        <meta property="og:site_name" content="Stack Overflow">
+        <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:domain" content="stackoverflow.com">
+        <meta name="twitter:title" property="og:title" itemprop="title name" content="`React/RCTBridgeModule.h` file not found">
+        <meta name="twitter:description" property="og:description" itemprop="description" content="QUICK FIX (not the best)
+
+Change the import react-native header lines:
+
+ #import &amp;lt;React/RCTBridgeModule.h&amp;gt;
+ #import &amp;lt;React/RCTLog.h&amp;gt;
+To:
+
+ #import &quot;RCTBridgeModule.h&quot;
+ #import &quot;RCTLog....">
+        <script async="" src="https://secure.quantserve.com/quant.js"></script><script async="" src="https://sb.scorecardresearch.com/beacon.js"></script><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/analytics.js.下载"></script><script src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/jquery.min.js.下载"></script><style type="text/css">
+:root div[id^="adzerk"]
+{ display: none !important; }</style>
+        <script src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/stub.en.js.下载"></script>
+    
+    <link rel="stylesheet" type="text/css" href="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/stacks.css">
+        <link rel="stylesheet" type="text/css" href="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/primary-unified.css">
+    
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;`React/RCTBridgeModule.h` file not found&#39;" href="https://stackoverflow.com/feeds/question/41663002">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:41663002});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '41663002');
+                // TODO: There's a CR for replacing this with inline info on the question for moderators
+                // https://trello.com/c/ynDHhvrB/158-cr-move-the-mod-info-out-of-the-margin-and-into-the-post-estimate-needed
+                // Before we roll out the sidebar everywhere (or at least shortly after that?), we should implement it.
+                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+        
+        
+        
+        
+        
+        
+                <script>
+        StackExchange.init({"locale":"en","serverTime":1528886076,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"5e38d33046a3e0189b0fd1005406b4dc24c6c5f2b281511eb28ca1e5a801492e","tid":"2651d51a-a3d4-7f83-1a19-57eae31a51d8","rep":1,"isRegistered":true,"userType":3,"userId":3439734,"accountId":4199136,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"https://i.stack.imgur.com/Hjkaa.jpg?s=32&amp;g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"https://stackoverflow.com/users/3439734/zerel","canSeeDeletedPosts":false},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"commentHighlightingWithCSS":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"userMessaging":{"showNewFeatureNotice":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"paths":{},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"slack":{"sidebarAdDismissCookie":"slack-sidebar-ad"}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"fa100e6ef02a","js/moderator.en.js":"5bbd53752086","js/full-anon.en.js":"76ab3e337869","js/full.en.js":"eea1ade8c3cd","js/wmd.en.js":"c260d0b83669","js/third-party/jquery.autocomplete.min.js":"bdb258e949a8","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"13ddd7009887","js/help.en.js":"a1c2d4ed1321","js/tageditor.en.js":"1e70948006ab","js/tageditornew.en.js":"612867a93fe3","js/inline-tag-editing.en.js":"a3c751e52701","js/revisions.en.js":"d059a98114ef","js/review.en.js":"be5a43ede32d","js/tagsuggestions.en.js":"505ddd862f8f","js/post-validation.en.js":"2ee01deae807","js/explore-qlist.en.js":"ad4c7afc1df4","js/events.en.js":"7e88c3e94986","js/keyboard-shortcuts.en.js":"25f94695e28d","js/external-editor.en.js":"43fc5e42a913","js/adops.en.js":"22a9bd59b1e9","js/external-editor.en.js":"43fc5e42a913","js/snippet-javascript.en.js":"d8d5da3c34d1","js/snippet-javascript-codemirror.en.js":"e22deccac344"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    <noscript id="noscript-css">&lt;style&gt;body,.top-bar{margin-top:1.9em}&lt;/style&gt;</noscript>
+    <script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/full.en.js.下载"></script><style type="text/css">
+:root header + .container > .ads:first-child,
+:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle,
+:root #dfp-tlb
+{ display: none !important; }
+:root *[lr2x0tg][hidden] { display: none !important; }</style><link rel="stylesheet" href="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/clc.min.css" type="text/css"><style type="text/css">
+:root .adsbox
+{ display: none !important; }</style><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/snippet-javascript.en.js.下载"></script><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/post-validation.en.js.下载"></script><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/prettify-full.en.js.下载"></script><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/external-editor.en.js.下载"></script><script async="" src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/wmd.en.js.下载"></script><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style></head><div style="display: block; opacity: 1;"></div>
+        <body class="question-page unified-theme new-topbar">
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed top-bar__network">
+    <div class="-container">
+        <div class="-main">
+                <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="left-sidebar-toggle p0 ai-center jc-center js-left-sidebar-toggle"><span class="ps-relative"></span></a>
+                                <a href="https://stackoverflow.com/" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                        <span class="-img _glyph">Stack Overflow</span>
+                    </a>
+
+
+
+        </div>
+
+            <form id="search" action="https://stackoverflow.com/search" method="get" class="searchbar js-searchbar " autocomplete="off" role="search">
+                    <div class="ps-relative">
+                        <input name="q" type="text" placeholder="Search…" value="" autocomplete="off" maxlength="240" class="f-input js-search-field">
+                        <button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+                    </div>
+            </form>
+
+        
+
+
+
+
+
+<ol class="-secondary js-secondary-topbar-links drop-icons-responsively the-js-is-handling-responsiveness">
+        <li class="-item searchbar-trigger js-searchbar-trigger"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></a></li>
+                <li class="-item">
+                <a href="https://stackoverflow.com/users/3439734/zerel" class="my-profile js-gps-track" data-gps-track="profile_summary.click()">
+                <div class="gravatar-wrapper-24" title="ZereL"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/Hjkaa.jpg" alt="" width="24" height="24" class="-avatar js-avatar-me"></div>
+                    <div class="-rep js-header-rep" title="your reputation: 1">1</div>
+                        <div class="-badges">
+                        </div>
+                </a>
+            </li>
+        <li class="-item">
+        <a href="https://stackexchange.com/users/4199136?tab=inbox" class="-link js-inbox-button" title="Recent inbox messages">
+            <svg aria-hidden="true" class="svg-icon iconInbox" width="20" height="18" viewBox="0 0 20 18"><path d="M15.19 1H4.63c-.85 0-1.6.54-1.85 1.35L0 10.79V15c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2v-4.21l-2.87-8.44A2 2 0 0 0 15.19 1zm-.28 10l-2 2h-6l-2-2H1.96L4.4 3.68A1 1 0 0 1 5.35 3h9.12a1 1 0 0 1 .95.68L17.86 11h-2.95z"></path></svg>
+            <span class="indicator-badge js-unread-count _important" style="display: none;"></span>
+        </a>
+    </li>
+    <li class="-item">
+        <a href="https://stackexchange.com/users/4199136?tab=reputation" class="-link js-achievements-button" title="Recent achievements: reputation, badges, and privileges earned" data-unread-class="_highlighted-positive">
+            <svg aria-hidden="true" class="svg-icon iconAchievements" width="18" height="18" viewBox="0 0 18 18"><path d="M15 2V1H3v1H0v4c0 1.6 1.4 3 3 3v1c.4 1.5 3 2.6 5 3v2H5s-1 1.5-1 2h10c0-.4-1-2-1-2h-3v-2c2-.4 4.6-1.5 5-3V9c1.6-.2 3-1.4 3-3V2h-3zM3 7c-.5 0-1-.5-1-1V4h1v3zm8.4 2.5L9 8 6.6 9.4l1-2.7L5 5h3l1-2.7L10 5h2.8l-2.3 1.8 1 2.7h-.1zM16 6c0 .5-.5 1-1 1V4h1v2z"></path></svg>
+            <span class="indicator-badge js-unread-count _positive" style="display: none;"></span>
+        </a>
+    </li>
+
+    <li class="-item help-button-item" data-remove-order="1"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg>
+    </a></li>
+
+    <li class="-item">
+        <a href="https://stackexchange.com/" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 174 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewBox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg>
+        </a>
+    </li>
+
+
+    <li class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="https://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li class="grid">
+                            <div class="fl1">
+            <a href="https://stackoverflow.com/" class="current-site-link site-link js-gps-track grid gs8 gsx" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon grid--cell" title="Stack Overflow"></div>
+        <span class="grid--cell fl1">
+            Stack Overflow
+        </span>
+    </a>
+
+    </div>
+    <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="https://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+                    </li>
+                    <li class="related-site grid">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                            <a href="https://meta.stackoverflow.com/" class="site-link js-gps-track grid gs8 gsx" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon grid--cell" title="Meta Stack Overflow"></div>
+        <span class="grid--cell fl1">
+            Meta Stack Overflow
+        </span>
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+                    <a href="https://stackexchange.com/users/4199136/?tab=accounts">your communities</a>
+            </h3>
+
+                <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" id="edit-pinned-sites">edit</a>
+                <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <ul class="my-sites">
+                        <li>
+                                <a href="https://stackoverflow.com/" class="site-link js-gps-track grid gs8 gsx" data-id="1" data-gps-track="site.switch({ target_site:1, item_type:3 }),site_switcher.click({ item_type:1 })">
+        <div class="favicon favicon-stackoverflow site-icon grid--cell" title="Stack Overflow"></div>
+        <span class="grid--cell fl1">
+            Stack Overflow
+        </span>
+            <span class="rep-score grid--cell">1</span>
+    </a>
+
+                        </li>
+                </ul>
+                    <div class="pinned-site-editor-container" style="display: none;">
+                        <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                        <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                        <ul class="js-found-sites found-sites"></ul>
+                        <ul class="pinned-site-list sortable" data-custom-list="False">
+                        </ul>
+                        <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                        <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" id="reset-pinned-sites">reset to default list</a>
+                    </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+            <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="https://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+                    <div class="topbar-dialog leftnav-dialog js-leftnav-dialog dno">
+                <div class="left-sidebar js-unpinned-left-sidebar" data-can-be="left-sidebar" data-is-here-when="sm"></div>
+            </div>
+    </li>
+</ol>
+
+    </div>
+</header>
+    <div id="js-gdpr-consent-banner" class="p16 bg-black-700 fc-white ps-fixed b0 l0 r0 z-banner" role="banner" aria-hidden="false">
+        <div class="wmx10 mx-auto grid grid__center jc-spacebetween gs8 gsx" role="alertdialog" aria-describedby="notice-message">
+            <div class="grid--cell" aria-label="notice-message">
+                <p class="mb0 lh-lg">
+                    This site uses cookies to deliver our services and to show you relevant ads and job listings. 
+By using our site, you acknowledge that you have read and understand our <a class="s-link s-link__inherit td-underline fc-white" target="_blank" href="https://stackoverflow.com/legal/cookie-policy">Cookie Policy</a>, <a class="s-link s-link__inherit td-underline fc-white" target="_blank" href="https://stackoverflow.com/legal/privacy-policy">Privacy Policy</a>, and our <a class="s-link s-link__inherit td-underline fc-white" target="_blank" href="https://stackoverflow.com/legal/terms-of-service/public">Terms of Service</a>. 
+Your use of Stack Overflow’s Products and Services, including the Stack Overflow Network, is subject to these policies and terms.
+                </p>
+            </div>
+            <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                <button class="s-btn s-btn__inverted fc-white bg-black-700 baw0 p16 js-notice-close" role="status" aria-hidden="true">
+                    <svg aria-hidden="true" class="svg-icon m0 iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init({ observeSize: true }); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+
+    
+
+
+    <div class="container  ">
+                
+
+
+
+<div id="left-sidebar" data-is-here-when="md lg" class="left-sidebar js-pinned-left-sidebar">
+    <nav role="navigation">
+        <ol class="nav-links">
+            <li>    </li><li>
+        <a href="https://stackoverflow.com/" class="pl8 js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+Home        </a>
+    </li>
+
+            <li>
+                <ol class="nav-links">
+                        <li class="fs-fine tt-uppercase ml8 mt16 mb4 fc-light">Public</li>
+                        <li class=" youarehere">
+        <a id="nav-questions" href="https://stackoverflow.com/questions" class="pl8 js-gps-track nav-links--link -link__with-icon" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">
+<svg aria-hidden="true" class="svg-icon iconGlobe" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zM8 15.32a6.4 6.4 0 0 1-5.23-7.75L7 11.68v.8c0 .88.12 1.32 1 1.32v1.52zm5.72-2c-.2-.66-1-1.32-1.72-1.32h-1v-2c0-.44-.56-1-1-1H6V7h1c.44 0 1-.56 1-1V5h2c.88 0 1.4-.72 1.4-1.6v-.33a6.4 6.4 0 0 1 2.32 10.24z"></path></svg>                <span class="-link--channel-name">Stack Overflow</span>
+        </a>
+    </li>
+
+    <li>
+        <a id="nav-tags" href="https://stackoverflow.com/tags" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">
+Tags        </a>
+    </li>
+    <li>
+        <a id="nav-users" href="https://stackoverflow.com/users" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">
+Users        </a>
+    </li>
+    <li>
+        <a id="nav-jobs" href="https://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class=" js-gps-track nav-links--link" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">
+Jobs        </a>
+    </li>
+                                    </ol>
+            </li>
+                <li>
+                    <ol class="nav-links">
+                        <li class="fs-fine tt-uppercase ml8 mt24 mb4 fc-light">
+                            Teams
+                        </li>
+    <li>
+        <a href="https://stackoverflow.com/teams" class="pl8 js-gps-track nav-links--link -link__with-icon" data-gps-track="top_nav.click({is_current:false, location:2, destination:10})">
+<svg aria-hidden="true" class="svg-icon iconPlus" width="18" height="18" viewBox="0 0 18 18"><path d="M10 2H8v6H2v2h6v6h2v-6h6V8h-6z"></path></svg>                <span class="-link--channel-name">Create Team</span>
+        </a>
+    </li>
+                    </ol>
+                </li>
+        </ol>
+    </nav>
+</div>
+        <div id="content" class="snippet-hidden">
+
+
+            
+
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+    <div class="inner-content clearfix">
+<style>.everyoneloves__top-leaderboard:empty,.everyoneloves__mid-leaderboard:empty{                height:90px;width:728px;box-sizing:border-box;
+}</style>
+        <div id="dfp-tlb" class="everyonelovesstackoverflow everyoneloves__top-leaderboard" lr2x0tg="" hidden="" style="display: none;"></div>            <div id="question-header" class="grid">
+                    <h1 itemprop="name" class="grid--cell fs-headline1 fl1"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found" class="question-hyperlink">`React/RCTBridgeModule.h` file not found</a></h1>
+
+            
+
+
+
+<div class="pl8 aside-cta grid--cell" role="navigation" aria-label="ask new question">
+            <a href="https://stackoverflow.com/questions/ask" class="d-inline-flex ai-center ws-nowrap s-btn s-btn__primary">Ask Question</a>
+</div>
+
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="41663002" id="question">
+
+    
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="41663002">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">31</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" title="Click to mark as favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>9</b></div>
+
+
+</div>
+
+            </div>
+
+            
+<div class="postcell post-layout--right">
+    <div class="post-text" itemprop="text">
+
+<p>Getting this error while building a react-native iOS app on xcode.</p>
+
+<p><a href="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/3stNm.png"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/3stNm.png" alt="enter image description here"></a></p>
+
+<p>Started getting this error after npm install and rpm linking <a href="https://github.com/johanneslumpe/react-native-fs">react-native-fs</a> library. But after searching online for a solution, I noticed that many people are getting the same error while installing other react native libraries.</p>
+
+<p>A <strong>possible solution</strong> suggested by many is, 
+Adding the following under "Build Settings" -&gt; "Header Search Paths".</p>
+
+<p><code>$(SRCROOT)/../node_modules/react-native/React</code> - (Recursive)</p>
+
+<p>But no luck with this solution, still getting the same error</p>
+    </div>
+    <div class="post-taglist">
+        <a href="https://stackoverflow.com/questions/tagged/ios" class="post-tag js-gps-track" title="show questions tagged &#39;ios&#39;" rel="tag">ios</a> <a href="https://stackoverflow.com/questions/tagged/xcode" class="post-tag js-gps-track" title="show questions tagged &#39;xcode&#39;" rel="tag">xcode</a> <a href="https://stackoverflow.com/questions/tagged/reactjs" class="post-tag js-gps-track" title="show questions tagged &#39;reactjs&#39;" rel="tag">reactjs</a> <a href="https://stackoverflow.com/questions/tagged/native" class="post-tag js-gps-track" title="show questions tagged &#39;native&#39;" rel="tag">native</a> <a href="https://stackoverflow.com/questions/tagged/react-native-ios" class="post-tag js-gps-track" title="show questions tagged &#39;react-native-ios&#39;" rel="tag">react-native-ios</a> 
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/q/41663002/3439734" title="short permalink to this question" class="short-link" id="link-post-41663002">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/41663002/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </div>
+
+    <div class="post-signature owner grid--cell fl0">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2017-01-15 15:47:31Z" class="relativetime">Jan 15 '17 at 15:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/3152113/simar"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/7d2340c4d1c6287e9ebc3ea83ff9bd9c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/3152113/simar">Simar</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">569</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+
+                
+    <div class="post-layout--right">
+	    <div id="comments-41663002" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-71771693" class="comment js-comment " data-comment-id="71771693">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'm getting this same error with v0.41.2, it should work with &lt;React/RCT...&gt; but it doesn't :/</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/4984618/camou" title="644 reputation" class="comment-user">camou</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment71771693_41663002"><span title="2017-02-17 22:18:05Z" class="relativetime-clean">Feb 17 '17 at 22:18</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-71776582" class="comment js-comment " data-comment-id="71776582">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@camou see my answer below; it may help</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/56817/lawrence" title="5,175 reputation" class="comment-user">lawrence</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment71776582_41663002"><span title="2017-02-18 04:10:44Z" class="relativetime-clean">Feb 18 '17 at 4:10</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-41663002" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>        </div>
+</div>
+
+
+
+        <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2 data-answercount="7">
+                                7 Answers
+                                <span style="display:none;" itemprop="answerCount">7</span>
+                        </h2>
+                        <div>
+                            
+<div id="tabs">
+        <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere " href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+    </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+  
+<a name="43340802"></a>
+<div id="answer-43340802" class="answer accepted-answer" data-answerid="43340802" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="43340802">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">37</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>In my case this particular problem happened when I was trying to archive a 0.40+ react-native app for iOs (solution was found here: <a href="https://github.com/facebook/react-native/issues/11721#issuecomment-270672904" rel="noreferrer">https://github.com/facebook/react-native/issues/11721#issuecomment-270672904</a>).</p>
+
+<p>What happened was that <strong><em>xCode</em></strong><em> was trying to build the react-native libraries in parallel</em> and was building libraries with implicit react dependencies <em>before</em> actually building the react library.</p>
+
+<p>The solution in my case was to:</p>
+
+<ol>
+<li><p>Disable the parallel builds:</p>
+
+<ul>
+<li>xCode menu -&gt; Product -&gt; Scheme -&gt; Manage Shemes...</li>
+<li>Double click on your application </li>
+<li>Build tab -&gt; clear the tick on Pallelize Build</li>
+</ul></li>
+<li><p>Add react as a project dependecy</p>
+
+<ul>
+<li>xCode Project Navigator -&gt; drag React.xcodeproj from Libraries to root tree</li>
+<li>Build Phases Tab -&gt; Target Dependencies -&gt; + -&gt; add <strong>React</strong></li>
+</ul></li>
+</ol>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/43340802/3439734" title="short permalink to this answer" class="short-link" id="link-post-43340802">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/43340802/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-04-11 08:38:49Z" class="relativetime">Apr 11 '17 at 8:38</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1823183/zanyinj"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/iZuJa.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1823183/zanyinj">Zanyinj</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">528</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-43340802" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-73978564" class="comment js-comment " data-comment-id="73978564">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Adding react as an explicit dependency worked great.  Thank you!</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/194065/sean-adkinson" title="6,411 reputation" class="comment-user">Sean Adkinson</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment73978564_43340802"><span title="2017-04-17 23:47:40Z" class="relativetime-clean">Apr 17 '17 at 23:47</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-74001322" class="comment js-comment " data-comment-id="74001322">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I have discovered that this only happens when you're upgrading to react-native 0.40+ from below. Project that are initilized with the 0.40+ RN already have parallel builds turned off.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1823183/zanyinj" title="528 reputation" class="comment-user">Zanyinj</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment74001322_43340802"><span title="2017-04-18 13:14:23Z" class="relativetime-clean">Apr 18 '17 at 13:14</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-76499068" class="comment js-comment " data-comment-id="76499068">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What does "drag to root tree" mean?  And the "Build Phases Tab" ... is this the Build Phases of React.xcodeproj?</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/554807/greenasjade" title="9,664 reputation" class="comment-user">GreenAsJade</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment76499068_43340802"><span title="2017-06-26 12:02:24Z" class="relativetime-clean">Jun 26 '17 at 12:02</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-77461238" class="comment js-comment " data-comment-id="77461238">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks @Zanyinj .  Once again Facebook causes headaches and SO community provides the answers.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/705483/pmont" title="1,618 reputation" class="comment-user">pmont</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment77461238_43340802"><span title="2017-07-21 22:27:56Z" class="relativetime-clean">Jul 21 '17 at 22:27</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-79681505" class="comment js-comment " data-comment-id="79681505">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">works. helped me just dragging  the React.xcodeproj to the project root.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/3259229/enterx" title="616 reputation" class="comment-user">enterx</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment79681505_43340802"><span title="2017-09-22 09:09:14Z" class="relativetime-clean">Sep 22 '17 at 9:09</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-43340802" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </div>    </div>
+</div>
+<div id="dfp-mlb" class="everyonelovesstackoverflow everyoneloves__mid-leaderboard" style="display: none;"></div>
+  
+<a name="41664041"></a>
+<div id="answer-41664041" class="answer" data-answerid="41664041" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="41664041">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">17</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>QUICK FIX (not the best)</p>
+
+<p>Change the import react-native header lines:
+<code>
+ #import &lt;React/RCTBridgeModule.h&gt;
+ #import &lt;React/RCTLog.h&gt;
+</code></p>
+
+<p>To:
+<code>
+ #import "RCTBridgeModule.h"
+ #import "RCTLog.h"
+</code></p>
+
+<p>Here is an example of changes I had to make for the library I was trying to use: <a href="https://github.com/johanneslumpe/react-native-fs/pull/238/files" rel="noreferrer">https://github.com/johanneslumpe/react-native-fs/pull/238/files</a></p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/41664041/3439734" title="short permalink to this answer" class="short-link" id="link-post-41664041">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/41664041/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+    <div class="post-signature grid--cell fl0">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/41664041/revisions" title="show all edits to this post">edited <span title="2017-02-12 14:52:27Z" class="relativetime">Feb 12 '17 at 14:52</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </div>
+            
+
+
+    <div class="post-signature owner grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-01-15 17:24:49Z" class="relativetime">Jan 15 '17 at 17:24</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/3152113/simar"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/7d2340c4d1c6287e9ebc3ea83ff9bd9c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/3152113/simar">Simar</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">569</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-41664041" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-70894492" class="comment js-comment " data-comment-id="70894492">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="warm">11</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">If you read the release notes carefully, I think it's actually the other way -- the new / approved way is <code>#import &lt;React/RCT...h&gt;</code>? <a href="https://github.com/facebook/react-native/commit/e1577df1fd70049ce7f288f91f6e2b18d512ff4d" rel="nofollow noreferrer">commit here</a></span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1370384/user" title="2,149 reputation" class="comment-user">user</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment70894492_41664041"><span title="2017-01-25 15:29:12Z" class="relativetime-clean">Jan 25 '17 at 15:29</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-71539909" class="comment js-comment " data-comment-id="71539909">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks, I updated the solution</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/3152113/simar" title="569 reputation" class="comment-user owner">Simar</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment71539909_41664041"><span title="2017-02-12 14:53:02Z" class="relativetime-clean">Feb 12 '17 at 14:53</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-72757480" class="comment js-comment " data-comment-id="72757480">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I know it seems backwards to what the docs recommend, but the specified format <code>#import "RCTBridgeModule.h"</code> really did work better for me today.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/2044952/paws" title="618 reputation" class="comment-user">paws</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment72757480_41664041"><span title="2017-03-16 00:02:06Z" class="relativetime-clean">Mar 16 '17 at 0:02</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-41664041" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+  
+<a name="41727761"></a>
+<div id="answer-41727761" class="answer" data-answerid="41727761" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="41727761">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>Latest releases of react-native libraries as explained in previous posts and <a href="https://github.com/facebook/react-native/releases/tag/v0.40.0" rel="nofollow noreferrer">here</a> have breaking compatibility changes. If you do not plan to upgrade to react-native 0.40+ yet you can force install previous version of the library, for example with react-native-fs:</p>
+
+<pre class="default prettyprint prettyprinted" style=""><code><span class="pln">npm install </span><span class="pun">--</span><span class="pln">save </span><span class="pun">-</span><span class="pln">E react</span><span class="pun">-</span><span class="kwd">native</span><span class="pun">-</span><span class="pln">fs@1</span><span class="pun">.</span><span class="lit">5.1</span></code></pre>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/41727761/3439734" title="short permalink to this answer" class="short-link" id="link-post-41727761">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/41727761/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-01-18 19:23:02Z" class="relativetime">Jan 18 '17 at 19:23</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/7106958/max-vorobjev"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/picture" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/7106958/max-vorobjev">Max Vorobjev</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">914</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-41727761" class="comments js-comments-container  dno">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+            </ul>
+	    </div>
+
+        <div id="comments-link-41727761" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+  
+<a name="45120593"></a>
+<div id="answer-45120593" class="answer" data-answerid="45120593" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="45120593">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>If <code>Libraries/React.xcodeproj</code> are red in xcode then reinstall node_modules</p>
+
+<pre class="default prettyprint prettyprinted" style=""><code><span class="pln">rm </span><span class="pun">-</span><span class="pln">rf node_modules </span><span class="pun">&amp;&amp;</span><span class="pln"> yarn</span></code></pre>
+
+<p>My newly created project from react-native 0.46.3 was red :S I have npm 5.3.0 and yarn 0.24.5 when I did react-native init</p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/45120593/3439734" title="short permalink to this answer" class="short-link" id="link-post-45120593">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/45120593/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-07-15 16:46:52Z" class="relativetime">Jul 15 '17 at 16:46</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/304894/codler"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/d400866ed03267fc211e1bdd1010ca96" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/304894/codler">Codler</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">7,079</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="38 silver badges"><span class="badge2"></span><span class="badgecount">38</span></span><span title="58 bronze badges"><span class="badge3"></span><span class="badgecount">58</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-45120593" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-83554885" class="comment js-comment " data-comment-id="83554885">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thank you, i was pushing my project to github. And when cloning it again i was missing the React libraries that were showing in red. your command is working. 👍</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1256877/rifinio" title="726 reputation" class="comment-user">Rifinio</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment83554885_45120593"><span title="2018-01-16 16:04:07Z" class="relativetime-clean">Jan 16 at 16:04</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-45120593" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+  
+<a name="42310939"></a>
+<div id="answer-42310939" class="answer" data-answerid="42310939" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="42310939">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>For viewers who got this error after upgrading React Native to 0.40+, you may need to run <code>react-native upgrade</code> on the command line.</p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/42310939/3439734" title="short permalink to this answer" class="short-link" id="link-post-42310939">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/42310939/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-02-18 04:09:34Z" class="relativetime">Feb 18 '17 at 4:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/56817/lawrence"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/25275f9244a3efac972dff4bfd4136eb" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/56817/lawrence">lawrence</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,175</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="31 silver badges"><span class="badge2"></span><span class="badgecount">31</span></span><span title="46 bronze badges"><span class="badge3"></span><span class="badgecount">46</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-42310939" class="comments js-comments-container ">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <li id="comment-71897616" class="comment js-comment " data-comment-id="71897616">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+                    <span title="number of &#39;useful comment&#39; votes received" class="cool">4</span>
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'm trying this right now. What about using <a href="https://github.com/facebook/react-native/tree/master/react-native-git-upgrade" rel="nofollow noreferrer">react-native-git-upgrade</a> instead?</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/4984618/camou" title="644 reputation" class="comment-user">camou</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment71897616_42310939"><span title="2017-02-21 17:32:04Z" class="relativetime-clean">Feb 21 '17 at 17:32</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+    <li id="comment-71905196" class="comment js-comment " data-comment-id="71905196">
+        <div class="js-comment-actions comment-actions">
+            <div class="comment-score">
+            </div>
+                    </div>
+        <div class="comment-text js-comment-text-and-form">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Right, that's the other option. I think they'll both work.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/56817/lawrence" title="5,175 reputation" class="comment-user">lawrence</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#comment71905196_42310939"><span title="2017-02-21 21:12:51Z" class="relativetime-clean">Feb 21 '17 at 21:12</span></a></span>
+                                                                            </div>
+        </div>
+    </li>
+            </ul>
+	    </div>
+
+        <div id="comments-link-42310939" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+  
+<a name="44772781"></a>
+<div id="answer-44772781" class="answer" data-answerid="44772781" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="44772781">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>I was able to build a debug, but I was unable to build an archive. </p>
+
+<p>I solved this issue by dragging <code>React.xcodeproj</code> found in /node_modules/react-native/React to my root directory in Xcode, then added React as a target dependancy in build phases &gt; target dependencies.</p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/44772781/3439734" title="short permalink to this answer" class="short-link" id="link-post-44772781">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/44772781/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-06-27 05:27:22Z" class="relativetime">Jun 27 '17 at 5:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/4276007/buffmcbighuge"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/xV4Jp.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/4276007/buffmcbighuge">BuffMcBigHuge</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">162</span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-44772781" class="comments js-comments-container  dno">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+            </ul>
+	    </div>
+
+        <div id="comments-link-44772781" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+
+  
+<a name="41663126"></a>
+<div id="answer-41663126" class="answer" data-answerid="41663126" itemscope="" itemtype="http://schema.org/Answer">
+    <div class="post-layout">
+            <div class="votecell post-layout--left">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="41663126">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </div>
+            
+
+
+<div class="answercell post-layout--right">
+    <div class="post-text" itemprop="text">
+<p>What you can do to get it right is:</p>
+
+<p>1) <code>npm uninstall reat-native-fs</code> to uninstall library</p>
+
+<p>2)<code>npm unlink react-native-fs</code> to unlink the library</p>
+
+<p>Now the library is successfully removed and now install the lib again in your project and this time link everything manually. Sometime automatic linking causes this error. </p>
+    </div>
+    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    <div class="grid--cell mr16" style="flex: 1 1 100px;">
+<div class="post-menu"><a href="https://stackoverflow.com/a/41663126/3439734" title="short permalink to this answer" class="short-link" id="link-post-41663126">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/41663126/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </div>
+    <div class="post-signature grid--cell fl0">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/41663126/revisions" title="show all edits to this post">edited <span title="2017-07-04 11:13:00Z" class="relativetime">Jul 4 '17 at 11:13</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1977847/h%c3%a5ken-lid"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/2zWQh.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1977847/h%c3%a5ken-lid">Håken Lid</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">7,304</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="36 bronze badges"><span class="badge3"></span><span class="badgecount">36</span></span>
+        </div>
+    </div>
+</div>    </div>
+            
+
+
+    <div class="post-signature grid--cell fl0">
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2017-01-15 16:00:17Z" class="relativetime">Jan 15 '17 at 16:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/7310960/codesingh"><div class="gravatar-wrapper-32"><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/sibMk.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/7310960/codesingh">Codesingh</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,210</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    
+    <div class="post-layout--right">
+	    <div id="comments-41663126" class="comments js-comments-container  dno">
+            <ul class="comments-list js-comments-list" data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+            </ul>
+	    </div>
+
+        <div id="comments-link-41663126" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" onclick=""></a>
+        </div>         
+    </div>    </div>
+</div>
+                                    <a name="new-answer"></a>
+                        <form id="post-form" action="https://stackoverflow.com/questions/41663002/answer/submit" method="post" class="post-form">
+                            <input type="hidden" id="post-id" value="41663002">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="">
+                            <h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        var channelOptions = {
+            tags: "".split(" "),
+            id: "1"
+        };
+        initTagRenderer("".split(" "), "".split(" "), channelOptions);
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                noModals: false,
+                showLowRepImageUploadWarning: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true,userId:3439734
+                    });
+                
+
+        }
+    });
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;"> 
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" id="wmd-snippet-button" title="JavaScript/HTML/CSS snippet Ctrl-M"><span style="background-image: url(&quot;/content/Shared/balsamiq/wmd-mockup-button.png&quot;);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y"><span style="background-position: -220px -20px;"></span></li><li class="wmd-spacer wmd-spacer-max"></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li></ul></div><div id="mdhelp" class="mdhelp" style="">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="https://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links"><div class="mdhelp-tab--content">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit https://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;https://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: https://notfound.stackexchange.com/
+ [question]: https://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre>Click [here](https://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")!
+This works with [reference links][blog] as well.
+
+ [blog]: https://stackoverflow.blog/<span class="spaces">&nbsp;</span>"click here for updates"
+</pre>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-images"><div class="mdhelp-tab--content">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](https://cdn.sstatic.net/Sites/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: https://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div></div>
+    <div class="mdhelp-tab" id="mdhelp-styles"><div class="mdhelp-tab--content">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+        </div>
+
+    </div></div>
+    <div class="mdhelp-tab" id="mdhelp-lists"><div class="mdhelp-tab--content">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre>-<span class="spaces">&nbsp;</span>Use a minus sign for a bullet
++<span class="spaces">&nbsp;</span>Or plus sign
+*<span class="spaces">&nbsp;</span>Or an asterisk
+
+1.<span class="spaces">&nbsp;</span>Numbered lists are easy
+2.<span class="spaces">&nbsp;</span>Markdown keeps track of
+   the numbers for you
+7.<span class="spaces">&nbsp;</span>So this will be item 3.
+</pre>
+        </div>
+        <div class="col2">
+<pre>1.<span class="spaces">&nbsp;</span>Lists in a list item:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again.
+2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items.
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent.
+</pre>        
+        </div>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes"><div class="mdhelp-tab--content">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-code"><div class="mdhelp-tab--content">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](https://example.com)
+</pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre>1. This is normal text.
+2. So is this, but now follows a code block:
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block.
+</pre>
+    </div></div>
+
+    <div class="mdhelp-tab" id="mdhelp-html"><div class="mdhelp-tab--content">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="https://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre>&lt;pre&gt;
+    You can &lt;em&gt;not&lt;/em&gt; use Markdown in here.
+&lt;/pre&gt;
+</pre>
+    </div></div>
+
+    <div class="cbt"></div>
+</div>
+            <textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: 0px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="5e38d33046a3e0189b0fd1005406b4dc24c6c5f2b281511eb28ca1e5a801492e">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+
+                            <div style="position: relative;">
+                                
+                                
+                            </div>
+
+                                                            <div class="form-submit cbt grid gsx gs4">
+                                        <button id="submit-button" class="grid--cell s-btn s-btn__primary" type="submit" tabindex="120" autocomplete="off">
+Post Your Answer                                        </button>
+                                        <button class="grid--cell s-btn s-btn__danger discard-answer dno">Discard</button>
+                                                                    </div>
+                        </form>
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/ios" class="post-tag" title="show questions tagged &#39;ios&#39;" rel="tag">ios</a> <a href="https://stackoverflow.com/questions/tagged/xcode" class="post-tag" title="show questions tagged &#39;xcode&#39;" rel="tag">xcode</a> <a href="https://stackoverflow.com/questions/tagged/reactjs" class="post-tag" title="show questions tagged &#39;reactjs&#39;" rel="tag">reactjs</a> <a href="https://stackoverflow.com/questions/tagged/native" class="post-tag" title="show questions tagged &#39;native&#39;" rel="tag">native</a> <a href="https://stackoverflow.com/questions/tagged/react-native-ios" class="post-tag" title="show questions tagged &#39;react-native-ios&#39;" rel="tag">react-native-ios</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free.</p><p>Got a question about the site itself? <a href="https://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="https://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="https://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="https://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>                            <div class="module question-stats">
+                    <table id="qinfo">
+                        <tbody><tr>
+                            <td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2017-01-15 15:47:31Z"><b>1 year, 4 months ago</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>16,806 times</b>
+                                </p>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041?lastactivity" class="lastactivity-link" title="2017-07-15 16:46:52Z">11 months ago</a></b></p>
+                                </td>
+                            </tr>
+                    </tbody></table>
+                </div>
+            <div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Featured on Meta
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://meta.stackexchange.com/questions/305560/2018-monthly-product-team-updates?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/305560/2018-monthly-product-team-updates&quot;,null,null]">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackexchange.com/questions/305560/2018-monthly-product-team-updates?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/305560/2018-monthly-product-team-updates&quot;,null,null]">2018 monthly product team updates</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://meta.stackexchange.com/questions/310908/live-left-nav-new-theming-and-responsiveness?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/310908/live-left-nav-new-theming-and-responsiveness&quot;,null,null]">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackexchange.com/questions/310908/live-left-nav-new-theming-and-responsiveness?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Featured on Meta&quot;,&quot;https://meta.stackexchange.com/questions/310908/live-left-nav-new-theming-and-responsiveness&quot;,null,null]">Live: Left nav, new theming and responsiveness</a>
+        </div>
+        <br class="cbt">
+    </div>
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">94</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/369292/how-can-i-remove-crossover-from-my-emailed-occasional-jobs?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/369292/how-can-i-remove-crossover-from-my-emailed-occasional-jobs&quot;,null,null]">How can I remove Crossover from my emailed “occasional jobs”?</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">31</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/369318/what-should-happen-with-this-mess?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/369318/what-should-happen-with-this-mess&quot;,null,null]">What should happen with this mess?</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">38</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/369338/left-nav-bar-thingy-has-too-much-whitespace?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/369338/left-nav-bar-thingy-has-too-much-whitespace&quot;,null,null]">Left nav bar thingy has too much whitespace</a>
+        </div>
+        <br class="cbt">
+    </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">5</span>
+        </div>
+        <div class="bulletin-item-content">
+            <a href="https://meta.stackoverflow.com/questions/369336/update-the-answer-completely-or-include-the-desired-answer?cb=1" class="question-hyperlink" data-ga="[&quot;community bulletin board&quot;,&quot;Hot Meta Posts&quot;,&quot;https://meta.stackoverflow.com/questions/369336/update-the-answer-completely-or-include-the-desired-answer&quot;,null,null]">Update the answer completely or include the desired answer?</a>
+        </div>
+        <br class="cbt">
+    </div>
+    </div>
+</div>
+            
+<div id="dfp-tsb" class="everyonelovesstackoverflow everyoneloves__top-sidebar"></div>
+            <div id="hireme" class="blue tagged tex2jax_ignore x-rem clc-jobs-multi"><a class="top " href="https://stackoverflow.com/jobs/remote-developer-jobs" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=10439&amp;ct=1&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fremote-developer-jobs%3Fmed=clc&amp;sig=oc4gMasHbRoD5A"><svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46"><g fill="#FFF"><path d="M33.35 25.265H11.955c-3.036.182-5.642-2.15-5.823-5.211-.18-3.06 2.133-5.69 5.168-5.871.323-4.711 3.746-8.615 8.343-9.514 4.597-.9 9.22 1.43 11.266 5.677a7.54 7.54 0 0 1 7.96 2.15 7.694 7.694 0 0 1 1.313 8.204 7.58 7.58 0 0 1-6.887 4.565h.055z" opacity=".3"></path><path d="M39.181 18.453a7.301 7.301 0 0 0-1.245-7.784 7.148 7.148 0 0 0-7.546-2.04.392.392 0 0 1-.477-.205c-1.948-4.128-6.418-6.405-10.868-5.536-4.45.87-7.755 4.664-8.035 9.229a.393.393 0 0 1-.368.368c-2.819.169-4.968 2.611-4.8 5.456.168 2.844 2.59 5.011 5.43 4.841h21.381a7.188 7.188 0 0 0 6.528-4.33zm-.66-8.309a8.087 8.087 0 0 1 1.38 8.624 7.973 7.973 0 0 1-7.244 4.8h-21.36c-3.253.194-6.045-2.305-6.239-5.581-.186-3.16 2.113-5.892 5.194-6.256.44-4.77 3.95-8.698 8.643-9.614 4.692-.916 9.404 1.407 11.578 5.667 2.9-.81 6.019.095 8.048 2.36z"></path><path d="M18.948 5.75l.614-.151a.393.393 0 0 0-.188-.763l-.613.151a.393.393 0 0 0 .187.763zm-4.977 5.15a7.252 7.252 0 0 1 2.807-4.083.393.393 0 0 0-.456-.64 8.038 8.038 0 0 0-3.11 4.525.393.393 0 0 0 .759.198zm14.841 18.6v7.659a2.346 2.346 0 0 1-2.335 2.357h-9.695a2.346 2.346 0 0 1-2.335-2.357V29.5a.393.393 0 1 0-.785 0v7.659c0 1.735 1.396 3.143 3.12 3.143h9.695c1.724 0 3.12-1.408 3.12-3.143V29.5a.393.393 0 1 0-.785 0z"></path><path d="M16.904 29.431v-6.256a.393.393 0 1 0-.785 0v6.256a.393.393 0 1 0 .785 0zm9.419 0v-6.256a.393.393 0 1 0-.785 0v6.256a.393.393 0 1 0 .785 0zm-4.7 8.052c-.978 0-1.77-.798-1.77-1.782 0-.983.792-1.781 1.77-1.781s1.77.798 1.77 1.781c0 .984-.792 1.782-1.77 1.782zm0-.786a.99.99 0 0 0 .985-.996.99.99 0 0 0-.985-.996.99.99 0 0 0-.985.996c0 .55.441.996.985.996z"></path><path d="M11.955 29.631h19.322a.393.393 0 0 0 0-.786H11.955a.393.393 0 0 0 0 .786zm28.295 8.455h-2.073c-1.723 0-3.12 1.408-3.12 3.143v1.375a2.346 2.346 0 0 1-2.334 2.357h-8.346a2.346 2.346 0 0 1-2.335-2.357v-2.75a.393.393 0 1 0-.784 0v2.75c0 1.735 1.396 3.143 3.12 3.143h8.345c1.723 0 3.12-1.408 3.12-3.143v-1.375a2.346 2.346 0 0 1 2.334-2.357h2.073a.393.393 0 0 0 0-.786z"></path></g></svg><span>Work from anywhere</span></a><div class="middle"><ul class="jobs"><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Full Stack Engineer - .NET and ReactJS at Modus Create. Click to learn more." href="https://stackoverflow.com/jobs/168849/full-stack-engineer-net-and-reactjs-modus-create" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=318738&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F168849%2Ffull-stack-engineer-net-and-reactjs-modus-create%3Fmed=clc&amp;sig=DlPIeKLhrAkptg"><div class="title">Full Stack Engineer - .NET and ReactJS</div><div><span class="company">Modus Create</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="post-tag">javascript</span><span class="post-tag highlight">c#</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=318738&amp;ct=-1&amp;sig=GKkvd55AdvdCSw" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Software Architect (C#, .NET) at Crossover. Click to learn more." href="https://stackoverflow.com/jobs/193625/software-architect-c-sharp-net-crossover" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=345674&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F193625%2Fsoftware-architect-c-sharp-net-crossover%3Fmed=clc&amp;sig=exbF1cqH04KzlQ"><div class="title">Software Architect (C#, .NET)</div><div><span class="company">Crossover</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt salary"><span>$60k - $60k</span></span><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="post-tag highlight">c#</span><span class="post-tag">javascript</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=345674&amp;ct=-1&amp;sig=kgKucEvYvBrRQA" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Front End Engineer at Zapier. Click to learn more." href="https://stackoverflow.com/jobs/191824/front-end-engineer-zapier" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=343757&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F191824%2Ffront-end-engineer-zapier%3Fmed=clc&amp;sig=_HiX5B14KamTfA"><div class="title">Front End Engineer</div><div><span class="company">Zapier</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="post-tag">javascript</span><span class="post-tag">reactjs</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=343757&amp;ct=-1&amp;sig=vUZcl5SpwS0hcw" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="clc-dismissable"><div class="job-wrap"><a class="job" title="Remote Javascript Developer - React - Help our million+ active users at Purepoint. Click to learn more." href="https://stackoverflow.com/jobs/193535/remote-javascript-developer-react-help-our-purepoint" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=345551&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F193535%2Fremote-javascript-developer-react-help-our-purepoint%3Fmed=clc&amp;sig=qVqdEsFSKKdB2A"><div class="title">Remote Javascript Developer - React - Help our million+ active users</div><div><span class="company">Purepoint</span><span class="location"><svg viewBox="0 0 12 12"><path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z"></path></svg><span>No office location</span></span></div><div class="opts"><span class="opt salary"><span>$86k - $112k</span></span><span class="opt remote"><svg viewBox="0 0 12 12"><path d="M6 9.8L3.9 7.7c1.3-.9 3-.9 4.2 0L6 9.8zm3-3a4.81 4.81 0 0 0-6 0L2.2 6c2.2-1.8 5.5-1.8 7.7 0l-.9.8zm1.7-1.7a7.27 7.27 0 0 0-9.4 0l-.9-.8c3.2-2.8 7.9-2.8 11.1 0l-.8.8z"></path></svg><span>Remote</span></span></div><span class="post-tag">javascript</span><span class="post-tag">reactjs</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=345551&amp;ct=-1&amp;sig=4yrLfvbmHQx6_w" data-clc-meta-target="-1"><svg viewBox="0 0 13.6 13.6"><path d="M11.4 2.3C8.9-.2 4.8-.2 2.3 2.3s-2.5 6.6 0 9.1 6.6 2.5 9.1 0 2.5-6.6 0-9.1zM8.6 9.5L6.8 7.7 5 9.5l-.9-.9 1.8-1.8L4.1 5l.9-.9 1.8 1.8 1.8-1.8.9.9-1.8 1.8 1.8 1.8-.9.9z"></path></svg><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="x-rem-footer"><p>Work remotely - from home or wherever you choose.</p><a class="x-rem-cta" href="https://stackoverflow.com/jobs/remote-developer-jobs" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=44rO_OwsefGqh-7Z0ig_JiaWWV_eCT9Y2sD02cpnrfTRU6bZjB_9bgccD2SQZOjZwMDQYM_IyMAym2nFPY5_p7gm7RLmlmRIOWBWtc5yW463PSNTsvJspv0zub7P4TnVI8oAkov7PtFymRQXWE6a6V83169enrN_RcByJtX9lg17heylmZ7O4Po9m-d8N0TPhnnrLfOOW9kzbHt28-VNybXbvlgAAA&amp;cr=10439&amp;ct=2&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2Fremote-developer-jobs%3Fmed=clc&amp;sig=u6--cUKK6eaXHQ">Browse remote jobs</a></li></ul></div><img src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/impression.gif" class="impression" style="display: none;"></div>
+<script>;try{(function(a){function b(a){return'string'==typeof a?document.getElementById(a):a}function c(a){return a=b(a),!!a&&'none'===getComputedStyle(a).display}function d(a){return!c(a)}function e(a){return!!a}function f(a){return /^\s*$/.test(b(a).innerHTML)}function g(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none',[].forEach.call(a.children,g)}function h(a,b){var c;return function(){return a&&(c=a.call(b||this,arguments),a=null),c}}function i(a){var b=document.createElement('script');b.src=a,document.body.appendChild(b)}function j(a){return k([],a)}function k(a,b){return a.push=function(a){return b(),delete this.push,this.push(a)},a}function l(){try{return!new Function('return async()=>{};')}catch(a){return!0}}function m(){return'undefined'!=typeof googletag&&!!googletag.apiReady}function n(){m()||(googletag={cmd:j(A)})}function o(){var a=document.createElement('div');a.className='adsbox',a.id='clc-abd',a.style.position='absolute',a.style.pointerEvents='none',a.innerHTML='&nbsp;',document.body.appendChild(a)}function p(a){var b=a.serviceName,c=a.slot,d=a.lineItemId;try{var e=c.getSlotElementId(),f=[];e||f.push('id=0');var h=document.getElementById(e);if(!e||h?h.hasAttribute('data-clc-stalled')&&f.push('st=1'):f.push('el=0'),0!==f.length)return void B(f.join('&'));-1===x.dh.indexOf(d)?h.setAttribute('data-clc-prefilled','true'):g(h),h.setAttribute('data-clc-ready','true')}catch(a){var i=document.querySelector('#dfp-tsb, #dfp-isb, #clc-tsb');i&&i.setAttribute('data-clc-ready','true'),B('e=1')}}function q(){return Object.keys(F.ids)}function r(a){var b=F.ids[a],c=F.slots[b];'function'==typeof c&&(c=c(a));return{path:'/'+C+'/'+E+'/'+b+'/'+D,sizes:c,zone:b}}function s(a){return!(clc.collapse&&void 0!==clc.collapse[a])||!!clc.collapse[a]}function t(a,b){'dfp-isb'===a&&b.setTargeting('Sidebar',['Inline']),'dfp-tsb'===a&&b.setTargeting('Sidebar',['Right']);var c=r(a),d=c.path,e=c.sizes,f=c.zone,g=googletag.defineSlot(d,e,a);s(f)&&g.setCollapseEmptyDiv(!0,!0),g.addService(b),!1}function u(b){var c=a.dfp&&a.dfp.targeting||{};Object.keys(c).forEach(function(a){b.setTargeting(a,c[a])})}function v(a){var g=a.map(b).filter(e);return{eligible:g.filter(f).filter(d).map(function(a){return a.id}),ineligible:g.filter(c)}}function w(b){if(void 0===b&&(b=q()),!m())return n(),void googletag.cmd.push(function(){return w(b)});var c=v(b),d=c.eligible,e=c.ineligible;if(e.forEach(g),0!==d.length){o(),googletag.destroySlots();var f=googletag.pubads();f.enableSingleRequest(),a.sreEvent||(f.addEventListener('slotRenderEnded',p),a.sreEvent=!0),u(f),d.forEach(function(a){return t(a,f)}),googletag.enableServices(),d.forEach(function(a){googletag.display(a)})}}var x=function(a){for(var b=[],c=1;c<arguments.length;c++)b[c-1]=arguments[c];for(var d,e=0,f=b;e<f.length;e++)for(var g in d=f[e],d)a[g]=d[g];return a}({"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=04d772c81312","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=8a0a093a431f","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"dh":[4385506061,4386578282,4386579572]},a.options||{}),y=h(function(){i(l()?x.lib.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,'.ie$1.js$2'):x.lib)}),z=a.cmd||[];Array.isArray(z)&&(0<z.length?y():k(z,y));var A=h(function(){i('https://www.googletagservices.com/tag/js/gpt.js')}),B=function(a){new Image().src='https://'+x.h+'/stalled.gif?'+a},C='248424177',D=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?'tag-pages':'question-pages',E=location.hostname;var F={slots:{lb:[[728,90]],mlb:[[728,90]],sb:function(a){return'dfp-tsb'===a?[[300,250],[300,600]]:[[300,250]]},"tag-sponsorship":[[730,135]],"mobile-below-question":[[320,50],[300,250]]},ids:{"dfp-tlb":'lb',"dfp-mlb":'mlb',"dfp-tsb":'sb',"dfp-isb":'sb',"dfp-tag":'tag-sponsorship',"dfp-m-aq":'mobile-below-question',"clc-tlb":'lb',"clc-mlb":'mlb',"clc-tsb":'sb'}};(function(){x.al&&z.push(function(){return a.load()})})(),n();a.cmd=z,a.dfp={load:w},a.options=x})(this.clc=this.clc||{})}catch(a){window.console.error(a)}</script>            <script>
+                var clc = clc || {};
+                clc.collapse = { sb: !0,'tag-sponsorship':!0,lb:!1,mlb:!1,'mobile-below-question':!0};
+                clc.cmd = clc.cmd || [];
+                clc.cmd.push(function () { window.clc_request='AlrwrEIZ0dUI4BJAABq6ewICAAAAAgAAAAMrAAAAfGlvc3x4Y29kZXxyZWFjdGpzfG5hdGl2ZXxyZWFjdC1uYXRpdmUtaW9zfACgOKwrEj-p4FaR'; clc.load(); });
+                                clc.dfp = clc.dfp || {};
+                clc.dfp.targeting = {Registered:['true'],'so-tag':['ios','xcode','reactjs','native','react-native-ios']};
+                
+                var googletag = googletag || {};
+                googletag.cmd = googletag.cmd || [];
+                googletag.cmd.push(function () { clc.dfp.load(); });
+            </script>
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/49308388?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/49308388/rn-0-38-0-react-rctbridgemodule-h-file-not-found?noredirect=1&amp;lq=1" class="question-hyperlink">RN 0.38.0 React/RCTBridgeModule.h' file not found</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/50402243?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/50402243/where-is-the-targets-section-in-xcode?noredirect=1&amp;lq=1" class="question-hyperlink">Where is the 'Targets' section in Xcode?</a>
+</div>
+<div class="spacer">
+	<a href="https://stackoverflow.com/q/50358221?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="https://stackoverflow.com/questions/50358221/clang-error-no-such-file-or-directory-ios-rnvectoriconsmanager-rnvectoricons?noredirect=1&amp;lq=1" class="question-hyperlink">clang: error: no such file or directory: 'ios/RNVectorIconsManager/RNVectorIconsManager.m'</a>
+</div>			</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/37189081?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">32</div></a><a href="https://stackoverflow.com/questions/37189081/react-native-command-not-found?rq=1" class="question-hyperlink">react-native: command not found</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/38737926?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">6</div></a><a href="https://stackoverflow.com/questions/38737926/react-native-command-not-found?rq=1" class="question-hyperlink">React native command not found</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/40222354?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/40222354/terminating-with-uncaught-exception-of-type-nsexception-react-native?rq=1" class="question-hyperlink">terminating with uncaught exception of type NSException react-native</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/41190788?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">13</div></a><a href="https://stackoverflow.com/questions/41190788/cant-find-ios-framework-headers-in-react-native-module-library?rq=1" class="question-hyperlink">can't find ios framework headers in react native module library</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/42915201?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/42915201/react-native-ios-enoent-no-such-file-or-directory-found?rq=1" class="question-hyperlink">React-native - ios - Enoent - No such file or directory found</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/42930809?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/42930809/react-native-ios-module-name-prefixes-error-with-rctjscexecutor?rq=1" class="question-hyperlink">React-native - iOS - Module name prefixes error with RCTJSCExecutor</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/45252182?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">6</div></a><a href="https://stackoverflow.com/questions/45252182/react-native-build-failed-due-to-double-conversion?rq=1" class="question-hyperlink">React-native - Build failed due to double-conversion</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/46738300?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">11</div></a><a href="https://stackoverflow.com/questions/46738300/react-rctdefines-h-file-not-found?rq=1" class="question-hyperlink">&lt;React/RCTDefines.h&gt; file not found</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/46846166?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">6</div></a><a href="https://stackoverflow.com/questions/46846166/react-native-firebase-error-thread-1-sigabrt-ios?rq=1" class="question-hyperlink">React Native Firebase error Thread 1 SIGABRT - iOS</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/47833082?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/47833082/rctbridgemodule-h-file-not-found?rq=1" class="question-hyperlink">'RCTBridgeModule.h' file not found</a></div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/114832/mosquito-armageddon" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Mosquito Armageddon
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="https://workplace.stackexchange.com/questions/113807/should-a-technical-interviewer-read-the-resume-cv" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should a technical interviewer read the resume/CV?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a href="https://interpersonal.stackexchange.com/questions/15439/what-to-do-tell-guests-when-you-dont-have-enough-food-for-all-of-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What to do / tell guests when you don't have enough food for all of them?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/124309/handling-critical-hits-easily-when-using-average-damage" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Handling critical hits easily when using average damage
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-hinduism" title="Hinduism Stack Exchange"></div><a href="https://hinduism.stackexchange.com/questions/27944/what-are-the-different-sources-that-describe-vedangas-or-limbs-of-the-vedas" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:567 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the different sources that describe vedangas or limbs of the vedas?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-graphicdesign" title="Graphic Design Stack Exchange"></div><a href="https://graphicdesign.stackexchange.com/questions/110460/what-restrictions-can-i-put-in-my-contract-when-designing-a-logo-for-a-non-profi" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:174 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What restrictions can I put in my contract when designing a logo for a non-profit?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/124367/do-arcane-wards-starting-hit-points-include-the-int-modifier-once-or-twice" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do Arcane Ward's starting hit points include the INT modifier once or twice?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/189445/are-squibs-generally-looked-down-upon-in-the-wizarding-world-more-so-than-mugg" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are squibs generally looked down upon in the wizarding world - more so than Muggles or Muggle-borns?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/189438/why-is-river-song-surprised-when-the-doctor-doesnt-recognize-her" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is River Song surprised when the Doctor doesn't recognize her?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="https://workplace.stackexchange.com/questions/113867/hr-is-asking-for-verification-of-a-degree-i-lied-about-what-can-i-do" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    HR is asking for verification of a degree I lied about. What can I do?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="https://security.stackexchange.com/questions/187556/what-stops-google-from-saving-all-the-information-on-my-computer-through-google" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What stops Google from saving all the information on my computer through Google Chrome?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="https://ell.stackexchange.com/questions/169325/threw-me-in-a-cage-like-an-animal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    threw me in a cage like an animal
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a href="https://interpersonal.stackexchange.com/questions/15448/responding-to-people-questioning-my-single-status" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Responding to people questioning my single status?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/436237/how-to-make-the-following-directed-graph-with-text" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to make the following directed graph with text?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="https://electronics.stackexchange.com/questions/379638/best-way-to-power-a-microcontroller-smps-vs-linear-regulator" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Best way to power a microcontroller, SMPS vs Linear Regulator
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/116626/uk-usa-passports-which-to-use-when-leaving-nz-with-transit-in-lax-to-the-uk-as" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    UK/USA passports: which to use when leaving NZ with transit in LAX to the UK as UK resident?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="https://aviation.stackexchange.com/questions/52559/what-is-wrong-with-a-high-speed-landing-for-an-ultralight-or-ga-aircraft" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is wrong with a high-speed landing for an ultralight or GA aircraft?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2817635/why-is-the-derivative-important" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is the derivative important?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a href="https://interpersonal.stackexchange.com/questions/15469/how-can-i-handle-my-father-challenging-everything-i-say" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I handle my father challenging everything I say?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/124355/how-to-explain-bard-getting-college-education-suddenly" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to explain Bard getting College education suddenly?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="https://skeptics.stackexchange.com/questions/41442/in-the-american-west-the-world-of-cowboys-and-cowhands-was-ammunition-traded-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In the American west—the world of cowboys and cowhands—was ammunition traded for alcoholic “shots” of a drink?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="https://workplace.stackexchange.com/questions/113658/i-prepared-my-cv-in-latex-and-exported-it-to-pdf-how-to-deal-with-a-recruiter-w" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I prepared my CV in LaTeX and exported it to PDF. How to deal with a recruiter who insists on CV in Word format?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-retrocomputing" title="Retrocomputing Stack Exchange"></div><a href="https://retrocomputing.stackexchange.com/questions/6705/what-are-the-software-logos-in-moricons-dll" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:648 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the software logos in MORICONS.DLL?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/114988/why-would-underground-dwelling-drow-have-dark-skin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why would underground dwelling Drow have dark skin?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+
+<div id="feed-link">
+    <a href="https://stackoverflow.com/feeds/question/41663002" title="feed of this question and its answers">
+        <svg aria-hidden="true" class="svg-icon fc-orange-400 iconRss" width="18" height="18" viewBox="0 0 18 18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0 1 10 10h2.5zm-5 0A7.5 7.5 0 0 0 3 7.5V10a5 5 0 0 1 5 5h2.5zm-5 0A2.5 2.5 0 0 0 3 12.5V15h2.5z"></path></svg>
+        question feed
+    </a>
+</div>
+        </div>
+    </div>
+<script>StackExchange.ready(function(){$.get('/posts/41663002/ivc/4dd9');});</script>
+<noscript>&lt;div&gt;&lt;img src="/posts/41663002/ivc/4dd9" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+        </div>
+    </div><script src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/clc.min.js.下载"></script><script src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/gpt.js.下载"></script>
+
+    <footer id="footer" class="site-footer js-footer" role="contentinfo">
+        <div class="site-footer--container">
+                <div class="site-footer--logo">
+
+                    <a href="https://stackoverflow.com/"><svg aria-hidden="true" class="svg-icon native iconLogoGlyphMd" width="32" height="37" viewBox="0 0 32 37"><g><path fill="#BCBBBB" d="M26 33v-9h4v13H0V24h4v9z"></path><path d="M23.1 25.99l.68-2.95-16.1-3.35L7 23l16.1 2.99zM9.1 15.2l15 7 1.4-3-15-7-1.4 3zm4.2-7.4L26 18.4l2.1-2.5L15.4 5.3l-2.1 2.5zM21.5 0l-2.7 2 9.9 13.3 2.7-2L21.5 0zM7 30h16v-3H7v3z" fill="#F48024"></path></g></svg></a>
+                </div>
+            
+            <nav class="site-footer--nav">
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://stackoverflow.com/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list js-primary-footer-links">
+                            <li class="-item"><a href="https://stackoverflow.com/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="https://stackoverflow.com/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick="StackExchange.switchMobile(&quot;on&quot;)" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        <li class="-item"><a class="-link" role="button">Disable Responsiveness</a></li></ul>
+                    </div>
+                    <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                        <h5 class="-title"><a href="https://www.stackoverflowbusiness.com/" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Products</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://stackoverflow.com/teams" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 29 })">Teams</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Engagement</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                        </ul>
+                    </div>
+                <div class="site-footer--col site-footer--col__visible js-footer-col" data-name="default">
+                    <h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackoverflow.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackoverflow.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer--col site-footer--categories-nav site-footer--col__visible">
+                    <a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="site-footer--back js-footer-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewBox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com/">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+                            <li class="-item"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="https://stackoverflow.com/questions/41663002/react-rctbridgemodule-h-file-not-found/41664041#" class="-link _expandable js-footer-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="site-footer--categories">
+                    <div class="site-footer--col site-footer--category js-footer-col" data-name="Technology">
+        <ul class="-list">
+                <li class="-item"><a href="https://stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://tex.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://android.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                <li class="-item"><a href="https://mathematica.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://salesforce.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Português</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                <li class="-item"><a href="https://codereview.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://magento.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="программистов">Stack Overflow на русском</a></li>
+                <li class="-item"><a href="https://codegolf.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Technology"><ul class="-list">
+                <li class="-item"><a href="https://es.stackoverflow.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="programadores y profesionales de la informática">Stack Overflow en español</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 26 })">
+                        <strong>
+                            more (30)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts">
+        <ul class="-list">
+                <li class="-item"><a href="https://photo.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Life / Arts"><ul class="-list">
+                <li class="-item"><a href="https://diy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 26 })">
+                        <strong>
+                            more (15)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation">
+        <ul class="-list">
+                <li class="-item"><a href="https://english.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Culture / Recreation"><ul class="-list">
+                <li class="-item"><a href="https://gaming.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 26 })">
+                        <strong>
+                            more (33)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Science">
+        <ul class="-list">
+                <li class="-item"><a href="https://mathoverflow.net/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></div><div class="site-footer--col site-footer--category js-footer-col" data-name="Science"><ul class="-list">
+                <li class="-item"><a href="https://cs.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="site-footer--col site-footer--category js-footer-col" data-name="Other">
+        <ul class="-list">
+                <li class="-item"><a href="https://meta.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com/" class="-link js-gps-track" data-gps-track="footer.click({ location: 4, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul>
+    </div>
+                </div>
+            </nav>
+            <div class="site-footer--copyright fs-fine">
+                <ul class="-list">
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog/?blb=1">Blog</a></li>
+                    <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                    <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                    <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                </ul>
+
+                <p class="mt-auto mb24">
+site design / logo © 2018 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>
+                            with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license">attribution required</a>.
+                    <span id="svnrev">rev&nbsp;2018.6.13.30738</span>
+                </p>
+            </div>
+        </div>
+
+            </footer>
+            <script>StackExchange.ready(function () { StackExchange.responsiveness.addSwitcher(); })</script>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled
+            &lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;
+        &lt;/div&gt;
+    </noscript>
+
+<script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            StackExchange.ready(function () {
+
+                StackExchange.ga.init({
+                    sendTitles: true,
+                    tracker: window.ga,
+                    trackingCodes: [
+                        'UA-108242619-1'
+                    ]
+                });
+
+                    StackExchange.ga.setDimension('dimension1', '4199136');
+
+
+                    StackExchange.ga.setDimension('dimension2', '|ios|xcode|reactjs|native|react-native-ios|');
+
+                    StackExchange.ga.setDimension('dimension3', 'Questions/Show');
+
+
+                StackExchange.ga.trackPageView();
+            });
+            
+/**/
+            
+            var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+            (function() {
+                var ssl = 'https:' == document.location.protocol,
+                    s = document.getElementsByTagName('script')[0],
+                    qc = document.createElement('script');
+                 qc.async = true;
+                    qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    s.parentNode.insertBefore(qc, s);
+                    _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+/**/
+                 var sc = document.createElement('script');
+                    sc.async = true;
+                    sc.src = (ssl ? 'https://sb' : 'http://b') + '.scorecardresearch.com/beacon.js';
+                    s.parentNode.insertBefore(sc, s);
+                    _comscore.push({ c1: "2", c2: "17440561" });
+            })();
+            
+
+</script>
+            
+    
+    
+<div class="adsbox" id="clc-abd" style="position: absolute; pointer-events: none;" lr2x0tg="" hidden="">&nbsp;</div><script src="./ios - `React_RCTBridgeModule.h` file not found - Stack Overflow_files/markup.js.下载"></script></body></html>
