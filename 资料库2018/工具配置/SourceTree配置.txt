@@ -1,0 +1,6 @@
+Mac
+SourcTree输入一次会自动记忆你输入的密码, 如果想重新输入密码, 只能掏mac上的sourcetree-偏好设置-高级. 把主机名和用户名字删了, 然后再操作时, 就会重新问你用户名和密码了. 用户名写你在visual studio online上创建的credentials的second name 和 password
+
+丢弃改过的uncommit change在左下有一个框的右上有个"三"一样的东西, 然后上面有掉漆文件, 点击.
+
+Windows
