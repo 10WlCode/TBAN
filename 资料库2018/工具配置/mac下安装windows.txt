@@ -1,0 +1,5 @@
+mac下安装windows
+finer-utilitys-bootCamp assisstant 一步一来 得重新创建启动盘 安装完windows 还得确定安装了bootCamp, 没有的话在apple下载, 然后找到bootCamp/setup/ 安装.
+还是不行再去windows下跑一下apple software update.
+
+在bootCamp选择系统或者开机的时候点option就能切换系统
