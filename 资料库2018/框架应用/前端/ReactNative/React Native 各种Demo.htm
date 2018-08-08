@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/shaoting/p/7148240.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>React Native 继续学习 - 程序猿--少停 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./React Native 各种Demo_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./React Native 各种Demo_files/bundle-redcross.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./React Native 各种Demo_files/bundle-redcross-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/shaoting/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/shaoting/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/shaoting/wlwmanifest.xml">
+<script async="" src="./React Native 各种Demo_files/analytics.js"></script><script type="text/javascript" src="./React Native 各种Demo_files/encoder.js"></script><script src="./React Native 各种Demo_files/jquery-2.2.0.min.js"></script><style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style><style type="text/css">img[src="https://gw.alicdn.com/tfs/TB1iQKbhqmWBuNjy1XaXXXCbXXa-468-60.jpg"],
+img[src="http://xyz.freelogs.com/counter/index.php?u=topbirds&s=7seg"],
+img[src="https://gw.alicdn.com/tfs/TB1gBPhgZLJ8KJjy0FnXXcFDpXa-468-60.jpg"]
+{display:none !important;}</style>
+<script type="text/javascript">var currentBlogApp = 'shaoting', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="./React Native 各种Demo_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"><a href="https://github.com/pheromone" target="_blank">
+　　<img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1;" src="./React Native 各种Demo_files/o_github.png">
+</a>
+
+<!-- 分享 -->
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['1']();</script>
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['5']();</script><script type="text/javascript" charset="utf-8">window['__document_write_ajax_callbacks__']['2']();</script>
+<!-- JiaThis Button END --></div><script>load_page_begin_html();</script>
+
+<table id="wrapper" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td colspan="2">
+            
+                <table id="header_wrapper" cellspacing="0" cellpadding="5" border="0">
+                    <tbody><tr>
+                        <td id="header_wrapper_left" valign="top">
+                            <div align="right">
+                                <div id="blog_stats">
+随笔：161
+文章：1
+评论：57
+引用：0</div>
+                            </div>
+                            
+<div id="header" style="padding-top:44px">
+	<span>
+		<a id="Header1_HeaderTitle" href="http://www.cnblogs.com/shaoting/"></a><br>
+		<div class="sub"></div>
+	</span>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="header_wrapper_right" align="right">
+                            
+<table width="190" style="border: solid 0px #C60000">
+    <tbody><tr>
+        <td align="center" id="my_links">
+            <a id="blog_nav_sitehome" class="mainmenu" href="http://www.cnblogs.com/">博客园</a> 
+            <a id="blog_nav_myhome" class="mainmenu" href="http://www.cnblogs.com/shaoting/">首页</a> 
+            <a id="blog_nav_newpost" class="mainmenu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a><br>
+            <a id="MyLinks1_NewArticleLink" class="mainmenu" href="http://www.cnblogs.com/EnterMyBlog.aspx?NewArticle=1">新文章</a> 
+            
+            <a id="blog_nav_rss" class="mainmenu" href="http://www.cnblogs.com/shaoting/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/shaoting/rss"><img src="./React Native 各种Demo_files/xml.gif" alt="订阅"></a> 
+            <a id="blog_nav_admin" class="mainmenu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+        </td>
+    </tr>
+</tbody></table>
+
+                        </td>
+                    </tr>
+                </tbody></table>
+            
+        </td>
+    </tr>
+    <tr>
+        <td id="main_wrapper" valign="top">
+            <table id="main" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td>
+                        
+<div id="post_detail">
+<div class="block">
+	<h1 class="block_title"><a id="cb_post_title_url" href="https://www.cnblogs.com/shaoting/p/7148240.html">React Native 继续学习</a></h1>
+	<div class="post">
+		<div class="postcontent">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>下一个项目公司也打算使用react native.大致看了下原型设计,写几个小demo先试试水.特此记录下.</p>
+<p>1.微信及朋友圈分享.QQ及朋友圈分享,微博分享,微信支付,支付宝支付.</p>
+<p>2.导航条渐隐</p>
+<p>3.通讯录</p>
+<p>4.卡片式轮播</p>
+<p>5.时间轴</p>
+<p>6.图片+列表的组合效果</p>
+<p>7.图片下拉放大</p>
+<p>8.原生视频播放器</p>
+<p>9.react-navigation的使用和变更</p>
+<p>10.倒计时</p>
+<p>11.多张图片查看</p>
+<p>12.自定义页面加载指示器</p>
+<p>......</p>
+<p>1.微信及朋友圈分享,微信支付:&nbsp;<a href="https://github.com/yorkie/react-native-wechat" target="_blank">https://github.com/yorkie/react-native-wechat</a></p>
+<p>&nbsp; QQ分享:<a href="https://github.com/reactnativecn/react-native-qq" target="_blank">https://github.com/reactnativecn/react-native-qq</a></p>
+<p>&nbsp; 微博分享:&nbsp;<a href="https://github.com/reactnativecn/react-native-weibo" target="_blank">https://github.com/reactnativecn/react-native-weibo</a></p>
+<p>&nbsp; &nbsp;支付宝支付:<a href="https://github.com/react-native-component/react-native-smart-alipay" target="_blank">&nbsp;react-native-smart-alipay</a>&nbsp;或者&nbsp;<a href="https://github.com/myoula/react-native-payment-alipay" target="_blank">react-native-payment-alipay</a>&nbsp;或者<a href="https://github.com/0x5e/react-native-alipay" target="_blank">&nbsp;react-native-alipay</a></p>
+<p>&nbsp; &nbsp;微信支付:&nbsp;<a href="https://github.com/yorkie/react-native-wechat" target="_blank">react-native-wechat</a></p>
+<p>&nbsp; 想要秀操作,通过交互原生支付也可以.</p>
+<p>&nbsp; &nbsp;大神刚出炉的React Native 分享功能封装【一行代码，双平台分享】 支持平台：【QQ】【QQ空间】【微信】【朋友圈】【微博】 &nbsp; &nbsp; &nbsp; &nbsp; <a href="https://github.com/songxiaoliang/react-native-share" target="_blank">https://github.com/songxiaoliang/react-native-share</a></p>
+<p>2.导航条渐隐,该项目我们打算使用react-navigation,但是该库的导航条使用不了渐隐,于是只能在需要导航条渐隐的地方,改用自己定义的导航条.</p>
+<p>基本代码如下:</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">  1</span> <span style="color: #008000;">/*</span><span style="color: #008000;">*
+</span><span style="color: #008080;">  2</span> <span style="color: #008000;"> * Created by shaotingzhou on 2017/5/9.
+</span><span style="color: #008080;">  3</span>  <span style="color: #008000;">*/</span>
+<span style="color: #008080;">  4</span> import React, { Component } from 'react'<span style="color: #000000;">;
+</span><span style="color: #008080;">  5</span> <span style="color: #000000;">import {
+</span><span style="color: #008080;">  6</span> <span style="color: #000000;">    AppRegistry,
+</span><span style="color: #008080;">  7</span> <span style="color: #000000;">    StyleSheet,
+</span><span style="color: #008080;">  8</span> <span style="color: #000000;">    Text,
+</span><span style="color: #008080;">  9</span> <span style="color: #000000;">    View,
+</span><span style="color: #008080;"> 10</span> <span style="color: #000000;">    Image,
+</span><span style="color: #008080;"> 11</span> <span style="color: #000000;">    TouchableOpacity,
+</span><span style="color: #008080;"> 12</span> <span style="color: #000000;">    Platform,
+</span><span style="color: #008080;"> 13</span> <span style="color: #000000;">    Dimensions,
+</span><span style="color: #008080;"> 14</span> <span style="color: #000000;">    RefreshControl,
+</span><span style="color: #008080;"> 15</span> <span style="color: #000000;">    FlatList,
+</span><span style="color: #008080;"> 16</span> <span style="color: #000000;">    ActivityIndicator,
+</span><span style="color: #008080;"> 17</span> <span style="color: #000000;">    ScrollView,
+</span><span style="color: #008080;"> 18</span> <span style="color: #000000;">    TextInput
+</span><span style="color: #008080;"> 19</span> } from 'react-native'<span style="color: #000000;">;
+</span><span style="color: #008080;"> 20</span> <span style="color: #0000ff;">var</span> {width,height} = Dimensions.get('window'<span style="color: #000000;">);
+</span><span style="color: #008080;"> 21</span> <span style="color: #0000ff;">var</span> dataAry =<span style="color: #000000;"> []
+</span><span style="color: #008080;"> 22</span> <span style="color: #0000ff;">var</span> start  = 0
+<span style="color: #008080;"> 23</span> 
+<span style="color: #008080;"> 24</span> export <span style="color: #0000ff;">default</span><span style="color: #000000;"> class OneDetailsFlat extends Component{
+</span><span style="color: #008080;"> 25</span>     <span style="color: #008000;">//</span><span style="color: #008000;">返回首页方法需要修改react-navigation库的源码.修改方法见:http://www.jianshu.com/p/2f575cc35780</span>
+<span style="color: #008080;"> 26</span>     static navigationOptions = ({ navigation }) =&gt;<span style="color: #000000;"> ({
+</span><span style="color: #008080;"> 27</span>         header:<span style="color: #0000ff;">null</span><span style="color: #000000;">,
+</span><span style="color: #008080;"> 28</span>         title: 'FlatList'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 29</span>         headerStyle:{backgroundColor:'rgba(255,255,255,0.0)'<span style="color: #000000;">},
+</span><span style="color: #008080;"> 30</span>         headerTintColor: 'black'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 31</span> <span style="color: #000000;">        headerLeft:(
+</span><span style="color: #008080;"> 32</span>             &lt;Text onPress={()=&gt;navigation.goBack("Tab")}&gt;返回首页&lt;/Text&gt;
+<span style="color: #008080;"> 33</span> <span style="color: #000000;">        ),
+</span><span style="color: #008080;"> 34</span> <span style="color: #000000;">    })
+</span><span style="color: #008080;"> 35</span> 
+<span style="color: #008080;"> 36</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 构造</span>
+<span style="color: #008080;"> 37</span> <span style="color: #000000;">    constructor(props) {
+</span><span style="color: #008080;"> 38</span> <span style="color: #000000;">        super(props);
+</span><span style="color: #008080;"> 39</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 初始状态</span>
+<span style="color: #008080;"> 40</span>         <span style="color: #0000ff;">for</span>(start = 0;start&lt;20;start++<span style="color: #000000;">){
+</span><span style="color: #008080;"> 41</span>             <span style="color: #0000ff;">var</span> obj =<span style="color: #000000;"> {}
+</span><span style="color: #008080;"> 42</span>             obj.key =<span style="color: #000000;"> start
+</span><span style="color: #008080;"> 43</span> <span style="color: #000000;">            dataAry.push(obj)
+</span><span style="color: #008080;"> 44</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 45</span> 
+<span style="color: #008080;"> 46</span>         <span style="color: #0000ff;">this</span>.state =<span style="color: #000000;"> {
+</span><span style="color: #008080;"> 47</span>             opacity:0<span style="color: #000000;">,
+</span><span style="color: #008080;"> 48</span> <span style="color: #000000;">            dataAry: dataAry,
+</span><span style="color: #008080;"> 50</span> <span style="color: #000000;">        };
+</span><span style="color: #008080;"> 51</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 52</span> <span style="color: #000000;">    render() {
+</span><span style="color: #008080;"> 53</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> (
+</span><span style="color: #008080;"> 54</span>             &lt;View&gt;
+<span style="color: #008080;"> 55</span>                 &lt;<span style="color: #000000;">FlatList
+</span><span style="color: #008080;"> 56</span>                     onScroll = {(e)=&gt;{<span style="color: #0000ff;">this</span><span style="color: #000000;">.onScroll(e)}}
+</span><span style="color: #008080;"> 57</span>                     data = {<span style="color: #0000ff;">this</span><span style="color: #000000;">.state.dataAry}
+</span><span style="color: #008080;"> 58</span>                     renderItem = {(item) =&gt; <span style="color: #0000ff;">this</span><span style="color: #000000;">.renderRow(item)}
+</span><span style="color: #008080;"> 59</span>                 /&gt;
+<span style="color: #008080;"> 60</span>                 &lt;View style={{width:width,height:69,alignItems:'center',flexDirection:'row',position:'absolute',top:0,backgroundColor:'rgba(122,233,111,' + <span style="color: #0000ff;">this</span>.state.opacity + ')'}}&gt;
+<span style="color: #008080;"> 61</span>                     &lt;Text style={{width:60,color:'red'}} onPress={()=&gt;<span style="color: #0000ff;">this</span>.props.navigation.goBack(<span style="color: #0000ff;">null</span>)}&gt;返回&lt;/Text&gt;
+<span style="color: #008080;"> 62</span>                 &lt;/View&gt;
+<span style="color: #008080;"> 63</span>             &lt;/View&gt;
+<span style="color: #008080;"> 64</span> <span style="color: #000000;">        );
+</span><span style="color: #008080;"> 65</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 66</span> 
+<span style="color: #008080;"> 67</span>     <span style="color: #008000;">//</span><span style="color: #008000;">listView的renderRow</span>
+<span style="color: #008080;"> 68</span>     renderRow =(item) =&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;"> 69</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;"> 70</span>                 &lt;View style={{flexDirection:'row',marginTop:5,marginLeft:5,borderWidth:1,marginRight:5,borderColor:'#DEDEDE',backgroundColor:'white'}}&gt;
+<span style="color: #008080;"> 71</span>                     &lt;Image source={require('../image/one_selected.png')} style={{width:60,height:60,borderRadius:30,marginTop:5,marginBottom:5}}/&gt;
+<span style="color: #008080;"> 72</span>                     &lt;View style={{flexDirection:'column',justifyContent:'space-around',marginLeft:5}}&gt;
+<span style="color: #008080;"> 73</span>                         &lt;Text style={{fontSize:16}}&gt;歌名: 彩虹彼岸&lt;/Text&gt;
+<span style="color: #008080;"> 74</span>                         &lt;View style={{flexDirection:'row'}}&gt;
+<span style="color: #008080;"> 75</span>                             &lt;Text style={{fontSize:14,color:'#BDBDBD'}}&gt;歌手:虚拟歌姬&lt;/Text&gt;
+<span style="color: #008080;"> 76</span>                             &lt;Text style={{fontSize:14,color:'#BDBDBD',marginLeft:10}}&gt;专辑:react native&lt;/Text&gt;
+<span style="color: #008080;"> 77</span>                         &lt;/View&gt;
+<span style="color: #008080;"> 78</span>                     &lt;/View&gt;
+<span style="color: #008080;"> 79</span>                 &lt;/View&gt;
+<span style="color: #008080;"> 80</span> <span style="color: #000000;">            )
+</span><span style="color: #008080;"> 81</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 82</span>     onScroll =(e) =&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;"> 83</span>         let y =<span style="color: #000000;"> e.nativeEvent.contentOffset.y;
+</span><span style="color: #008080;"> 84</span>         <span style="color: #0000ff;">if</span>(y &lt; 10<span style="color: #000000;"> ){
+</span><span style="color: #008080;"> 85</span>             <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;"> 86</span>                 opacity:0
+<span style="color: #008080;"> 87</span> <span style="color: #000000;">            })
+</span><span style="color: #008080;"> 88</span>         }<span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span>( y &lt;= 69 &amp;&amp; y&gt;= 10<span style="color: #000000;">){
+</span><span style="color: #008080;"> 89</span>             console.log(y/100)
+<span style="color: #008080;"> 90</span>             <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;"> 91</span>                 opacity:y/100
+<span style="color: #008080;"> 92</span> <span style="color: #000000;">            })
+</span><span style="color: #008080;"> 93</span>         }<span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;"> 94</span>             <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;"> 95</span>                 opacity:1
+<span style="color: #008080;"> 96</span> <span style="color: #000000;">            })
+</span><span style="color: #008080;"> 97</span> <span style="color: #000000;">         }
+</span><span style="color: #008080;"> 98</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 99</span> 
+<span style="color: #008080;">100</span> <span style="color: #000000;">};
+</span><span style="color: #008080;">101</span> 
+<span style="color: #008080;">102</span> <span style="color: #0000ff;">var</span> styles =<span style="color: #000000;"> StyleSheet.create({
+</span><span style="color: #008080;">103</span> <span style="color: #000000;">    container: {
+</span><span style="color: #008080;">104</span>         flex: 1<span style="color: #000000;">,
+</span><span style="color: #008080;">105</span>         backgroundColor: '#F5FCFF'<span style="color: #000000;">,
+</span><span style="color: #008080;">106</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">107</span> <span style="color: #000000;">    welcome: {
+</span><span style="color: #008080;">108</span>         fontSize: 20<span style="color: #000000;">,
+</span><span style="color: #008080;">109</span>         textAlign: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">110</span>         margin: 10<span style="color: #000000;">,
+</span><span style="color: #008080;">111</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">112</span> <span style="color: #000000;">    instructions: {
+</span><span style="color: #008080;">113</span>         textAlign: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">114</span>         color: '#333333'<span style="color: #000000;">,
+</span><span style="color: #008080;">115</span>         marginBottom: 5<span style="color: #000000;">,
+</span><span style="color: #008080;">116</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">117</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><img src="./React Native 各种Demo_files/781239-20170714121156181-1382282940.gif" alt=""></p>
+<p>&nbsp;</p>
+<p>3.通讯录采用三方库即可满足.h<a href="https://github.com/sunnylqm/react-native-alphabetlistview" target="_blank">ttps://github.com/sunnylqm/react-native-alphabetlistview</a></p>
+<p>4.卡片式轮播采用三方库即可满足.<a href="https://github.com/archriss/react-native-snap-carousel" target="_blank">https://github.com/archriss/react-native-snap-carousel</a></p>
+<p>5.时间轴效果. 该效果采用FlatList打造即可.</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre></pre>
+<pre>/**<br> * Created by shaotingzhou on 2017/7/10.<br> */<br>import React, { Component } from 'react';<br>import {<br>    AppRegistry,<br>    StyleSheet,<br>    Text,<br>    View,<br>    FlatList,<br>    Dimensions,<br>    Image<br>} from 'react-native';<br>var {width,height} = Dimensions.get('window');<br>var dataAry = []<br>import data from './data.json'<br>export default class TimerShaft extends Component {<br>    // 构造<br>    constructor(props) {<br>        super(props);<br>        // 初始状态<br>        this.state = {<br>            dataAry: dataAry,<br>        };<br>    }<br><br>    render() {<br>        return (<br>            &lt;View style={{marginTop:30}}&gt;<br>            &lt;FlatList<br>                data = {this.state.dataAry}<br>                renderItem = {(item) =&gt; this.renderRow(item)}<br>                keyExtractor={this.keyExtractor}<br>            /&gt;<br>            &lt;View style={{width:1,height:height,backgroundColor:'red',position:'absolute',left:50}}&gt;&lt;/View&gt;<br>            &lt;/View&gt;<br>        );<br>    }<br><br>    renderRow =(item) =&gt;{<br>        if(item.item.text){<br>            return(<br>                &lt;View style={{marginBottom:10,marginLeft:60}}&gt;<br>                    &lt;Text&gt;{item.item.text}&lt;/Text&gt;<br>                &lt;/View&gt;<br>            )<br>        }else{<br>            return(<br>                &lt;View style={{flexDirection:'row',marginBottom:10}}&gt;<br>                    {/*左边*/}<br>                    &lt;View style={{width:60,marginBottom:10}}&gt;<br>                        &lt;View style={{flexDirection:'row',alignItems:'center'}}&gt;<br>                            &lt;Text&gt;{item.item.time}&lt;/Text&gt;<br>                            &lt;View style={{width:10,height:10,borderRadius:5,backgroundColor:'red',position:'absolute',left:45}}&gt;&lt;/View&gt;<br>                        &lt;/View&gt;<br>                    &lt;/View&gt;<br>                    {/*右边*/}<br>                    &lt;View style={{backgroundColor:"#F2F2F2",marginLeft:5,width:width-70}} onLayout = {(event)=&gt;this.onLayout(event)} &gt;<br>                        &lt;Text style={{}}&gt;{item.item.content}&lt;/Text&gt;<br>                        &lt;View style={{flexDirection:'row',flexWrap:'wrap'}}&gt;<br>                            {this.renderImg(item.item.image)}<br>                        &lt;/View&gt;<br>                    &lt;/View&gt;<br>                &lt;/View&gt;<br>            )<br><br>        }<br><br><br><br>    }<br><br>    keyExtractor(item: Object, index: number) {<br>        return item.id<br>    }<br><br>    onLayout = (event)=&gt;{<br>        console.log(event.nativeEvent.layout.height)<br>    }<br><br>    renderImg = (imgAry) =&gt;{<br>        var renderAry = []<br>        for(var i = 0;i &lt; imgAry.length; i++){<br>            if(imgAry.length == 1){<br>                renderAry.push(<br>                    &lt;Image key={i} source={{uri:imgAry[0].url}} style={{width:200,height:200}}/&gt;<br>                )<br>            }else if(imgAry.length == 2 || imgAry.length == 4){<br>                renderAry.push(<br>                    &lt;Image key={i} source={{uri:imgAry[i].url}} style={{width:(width-70)*0.5-2,height:(width-70)*0.5-2,marginLeft:1,marginTop:1}}/&gt;<br>                )<br>            }else {<br>                renderAry.push(<br>                    &lt;Image key={i} source={{uri:imgAry[i].url}} style={{width:(width-70)/3-2,height:(width-70)/3-2,marginLeft:1,marginTop:1}}/&gt;<br>                )<br>            }<br>        }<br><br>        return renderAry<br>    }<br><br>    componentDidMount() {<br>        this.setState({<br>            dataAry:data<br>        })<br>    }<br>}<br><br>const styles = StyleSheet.create({<br>    container: {<br>        flex: 1,<br>        justifyContent: 'center',<br>        alignItems: 'center',<br>        backgroundColor: '#F5FCFF',<br>    },<br>    welcome: {<br>        fontSize: 20,<br>        textAlign: 'center',<br>        margin: 10,<br>    },<br>    instructions: {<br>        textAlign: 'center',<br>        color: '#333333',<br>        marginBottom: 5,<br>    },<br>});</pre>
+<pre></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;这个是数据:</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_930804" class="syntaxhighlighter collapsed  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/shaoting/p/7148240.html#" class="toolbar_item command_expandSource expandSource">+ View Code</a></span><span><a href="http://www.cnblogs.com/shaoting/p/7148240.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div><div class="line number82 index81 alt1">82</div><div class="line number83 index82 alt2">83</div><div class="line number84 index83 alt1">84</div><div class="line number85 index84 alt2">85</div><div class="line number86 index85 alt1">86</div><div class="line number87 index86 alt2">87</div><div class="line number88 index87 alt1">88</div><div class="line number89 index88 alt2">89</div><div class="line number90 index89 alt1">90</div><div class="line number91 index90 alt2">91</div><div class="line number92 index91 alt1">92</div><div class="line number93 index92 alt2">93</div><div class="line number94 index93 alt1">94</div><div class="line number95 index94 alt2">95</div><div class="line number96 index95 alt1">96</div><div class="line number97 index96 alt2">97</div><div class="line number98 index97 alt1">98</div><div class="line number99 index98 alt2">99</div><div class="line number100 index99 alt1">100</div><div class="line number101 index100 alt2">101</div><div class="line number102 index101 alt1">102</div><div class="line number103 index102 alt2">103</div><div class="line number104 index103 alt1">104</div><div class="line number105 index104 alt2">105</div><div class="line number106 index105 alt1">106</div><div class="line number107 index106 alt2">107</div><div class="line number108 index107 alt1">108</div><div class="line number109 index108 alt2">109</div><div class="line number110 index109 alt1">110</div><div class="line number111 index110 alt2">111</div><div class="line number112 index111 alt1">112</div><div class="line number113 index112 alt2">113</div><div class="line number114 index113 alt1">114</div><div class="line number115 index114 alt2">115</div><div class="line number116 index115 alt1">116</div><div class="line number117 index116 alt2">117</div><div class="line number118 index117 alt1">118</div><div class="line number119 index118 alt2">119</div><div class="line number120 index119 alt1">120</div><div class="line number121 index120 alt2">121</div><div class="line number122 index121 alt1">122</div><div class="line number123 index122 alt2">123</div><div class="line number124 index123 alt1">124</div><div class="line number125 index124 alt2">125</div><div class="line number126 index125 alt1">126</div><div class="line number127 index126 alt2">127</div><div class="line number128 index127 alt1">128</div><div class="line number129 index128 alt2">129</div><div class="line number130 index129 alt1">130</div><div class="line number131 index130 alt2">131</div><div class="line number132 index131 alt1">132</div><div class="line number133 index132 alt2">133</div><div class="line number134 index133 alt1">134</div><div class="line number135 index134 alt2">135</div><div class="line number136 index135 alt1">136</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">[</code></div><div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:1,</code></div><div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"01-05"</code><code class="javascript plain">,</code></div><div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"今天,带二哈去节育,再不节育的话,就要被泰迪榨干了(ps:只有累死的牛,没有耕坏的地),关键一路上,那只小区里面的泰迪一路尾随.....这..这个.这是哪个女人养的泰迪,请告诉我你的职业和联系方式,你对我二哈做的,我十倍还你!!!夕阳西下,俩狗一路走,二哈好像知道自己的下场,一脸委屈的看着我,就像许仙看法海似得看着我,二哈,不是哥不成全你们俩,而是哥看着你心疼啊..........."</code><code class="javascript plain">,</code></div><div class="line number6 index5 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number7 index6 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number8 index7 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:47,</code></div><div class="line number9 index8 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/mw690/610dc034ly1ffwb7npldpj20u00u076z.jpg"</code></div><div class="line number10 index9 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number11 index10 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number12 index11 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number13 index12 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number14 index13 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:2,</code></div><div class="line number15 index14 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"01-04"</code><code class="javascript plain">,</code></div><div class="line number16 index15 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"今天在家躺尸,二哈在家吃刚买的狗粮,我蹲在旁边看着它吃,二哈看看我,看看碗,于是往旁边挪了挪"</code><code class="javascript plain">,</code></div><div class="line number17 index16 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number18 index17 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number19 index18 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:3,</code></div><div class="line number20 index19 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034gy1fh9utulf4kj20u011itbo.jpg"</code></div><div class="line number21 index20 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number22 index21 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number23 index22 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:4,</code></div><div class="line number24 index23 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg"</code></div><div class="line number25 index24 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number26 index25 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number27 index26 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:5,</code></div><div class="line number28 index27 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fh7hwi9lhzj20u011hqa9.jpg"</code></div><div class="line number29 index28 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number30 index29 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number31 index30 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:6,</code></div><div class="line number32 index31 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgj7jho031j20u011itci.jpg"</code></div><div class="line number33 index32 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number34 index33 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number35 index34 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number36 index35 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number37 index36 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:3,</code></div><div class="line number38 index37 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"01-03"</code><code class="javascript plain">,</code></div><div class="line number39 index38 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"今天上班,把狗丢在家里,回来家没了~~~"</code><code class="javascript plain">,</code></div><div class="line number40 index39 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number41 index40 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number42 index41 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:7,</code></div><div class="line number43 index42 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgi3vd6irmj20u011i439.jpg"</code></div><div class="line number44 index43 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number45 index44 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number46 index45 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:8,</code></div><div class="line number47 index46 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgepc1lpvfj20u011i0wv.jpg"</code></div><div class="line number48 index47 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number49 index48 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number50 index49 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:9,</code></div><div class="line number51 index50 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgchgnfn7dj20u00uvgnj.jpg"</code></div><div class="line number52 index51 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number53 index52 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number54 index53 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:10,</code></div><div class="line number55 index54 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fga6auw8ycj20u00u00uw.jpg"</code></div><div class="line number56 index55 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number57 index56 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number58 index57 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:11,</code></div><div class="line number59 index58 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/d23c7564ly1fg7ow5jtl9j20pb0pb4gw.jpg"</code></div><div class="line number60 index59 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number61 index60 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number62 index61 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:12,</code></div><div class="line number63 index62 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgepc1lpvfj20u011i0wv.jpg"</code></div><div class="line number64 index63 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number65 index64 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number66 index65 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:13,</code></div><div class="line number67 index66 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/d23c7564ly1fg6qckyqxkj20u00zmaf1.jpg"</code></div><div class="line number68 index67 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number69 index68 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number70 index69 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:14,</code></div><div class="line number71 index70 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1ffyp4g2vwxj20u00tu77b.jpg"</code></div><div class="line number72 index71 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number73 index72 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number74 index73 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:15,</code></div><div class="line number75 index74 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1ffxjlvinj5j20u011igri.jpg"</code></div><div class="line number76 index75 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number77 index76 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number78 index77 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number79 index78 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number80 index79 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:4,</code></div><div class="line number81 index80 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"01-02"</code><code class="javascript plain">,</code></div><div class="line number82 index81 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"今天是2017年的第二天,两只单身狗在家附近的公园里的亭子躲雨,然后,来了只泰迪.然后亭子里就剩一只单身狗了(ps:我😆)......."</code><code class="javascript plain">,</code></div><div class="line number83 index82 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number84 index83 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number85 index84 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:17,</code></div><div class="line number86 index85 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgdmpxi7erj20qy0qyjtr.jpg"</code></div><div class="line number87 index86 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number88 index87 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number89 index88 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:27,</code></div><div class="line number90 index89 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1ffla9ostxuj20ku0q2abt.jpg"</code></div><div class="line number91 index90 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number92 index91 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number93 index92 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:37,</code></div><div class="line number94 index93 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/d23c7564ly1fg6qckyqxkj20u00zmaf1.jpg"</code></div><div class="line number95 index94 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number96 index95 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number97 index96 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number98 index97 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number99 index98 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:5,</code></div><div class="line number100 index99 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"01-01"</code><code class="javascript plain">,</code></div><div class="line number101 index100 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"养狗前,钱是我的,养狗后,钱是它的~"</code><code class="javascript plain">,</code></div><div class="line number102 index101 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number103 index102 alt2">&nbsp;</div><div class="line number104 index103 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number105 index104 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number106 index105 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number107 index106 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:6,</code></div><div class="line number108 index107 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"text"</code><code class="javascript plain">:</code><code class="javascript string">"2017"</code></div><div class="line number109 index108 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number110 index109 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number111 index110 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:7,</code></div><div class="line number112 index111 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"12-28"</code><code class="javascript plain">,</code></div><div class="line number113 index112 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">""</code><code class="javascript plain">,</code></div><div class="line number114 index113 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number115 index114 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number116 index115 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:1,</code></div><div class="line number117 index116 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fhegpeu0h5j20u011iae5.jpg"</code></div><div class="line number118 index117 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number119 index118 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number120 index119 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:2,</code></div><div class="line number121 index120 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fhb0t7ob2mj20u011itd9.jpg"</code></div><div class="line number122 index121 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number123 index122 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number124 index123 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number125 index124 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number126 index125 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"id"</code><code class="javascript plain">:8,</code></div><div class="line number127 index126 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"time"</code><code class="javascript plain">:</code><code class="javascript string">"12-25"</code><code class="javascript plain">,</code></div><div class="line number128 index127 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"content"</code><code class="javascript plain">:</code><code class="javascript string">"今天下大雨,适合逛街,途中,遇见了一只二哈,于是花了2000买了下来"</code><code class="javascript plain">,</code></div><div class="line number129 index128 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"image"</code><code class="javascript plain">:[</code></div><div class="line number130 index129 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">{</code></div><div class="line number131 index130 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"imageId"</code><code class="javascript plain">:47,</code></div><div class="line number132 index131 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript string">"url"</code><code class="javascript plain">:</code><code class="javascript string">"https://ws1.sinaimg.cn/large/610dc034ly1fgdmpxi7erj20qy0qyjtr.jpg"</code></div><div class="line number133 index132 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number134 index133 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">]</code></div><div class="line number135 index134 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number136 index135 alt1"><code class="javascript plain">]</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>　　</p>
+<p>&nbsp;</p>
+<p>&nbsp;<img src="./React Native 各种Demo_files/781239-20170714121251728-1234509053.gif" alt=""></p>
+<p>&nbsp;</p>
+<p>6.图片+列表的组合效果</p>
+<p>该效果采用ScrollView包含两个FlatList和一个ListView完成(ps:第三个横向的cell的单独使用FlatList可以,但是和其他组件搭配就错误.....)</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">  1</span> <span style="color: #008000;">/*</span><span style="color: #008000;">*
+</span><span style="color: #008080;">  2</span> <span style="color: #008000;"> * Created by shaotingzhou on 2017/7/6.
+</span><span style="color: #008080;">  3</span>  <span style="color: #008000;">*/</span>
+<span style="color: #008080;">  4</span> <span style="color: #008000;">/*</span><span style="color: #008000;">*
+</span><span style="color: #008080;">  5</span> <span style="color: #008000;"> * Sample React Native App
+</span><span style="color: #008080;">  6</span> <span style="color: #008000;"> * https://github.com/facebook/react-native
+</span><span style="color: #008080;">  7</span> <span style="color: #008000;"> * @flow
+</span><span style="color: #008080;">  8</span>  <span style="color: #008000;">*/</span>
+<span style="color: #008080;">  9</span> 
+<span style="color: #008080;"> 10</span> import React, { Component } from 'react'<span style="color: #000000;">;
+</span><span style="color: #008080;"> 11</span> <span style="color: #000000;">import {
+</span><span style="color: #008080;"> 12</span> <span style="color: #000000;">    AppRegistry,
+</span><span style="color: #008080;"> 13</span> <span style="color: #000000;">    StyleSheet,
+</span><span style="color: #008080;"> 14</span> <span style="color: #000000;">    Text,
+</span><span style="color: #008080;"> 15</span> <span style="color: #000000;">    View,
+</span><span style="color: #008080;"> 16</span> <span style="color: #000000;">    ScrollView,
+</span><span style="color: #008080;"> 17</span> <span style="color: #000000;">    Dimensions,
+</span><span style="color: #008080;"> 18</span> <span style="color: #000000;">    FlatList,
+</span><span style="color: #008080;"> 19</span> <span style="color: #000000;">    SectionList,
+</span><span style="color: #008080;"> 20</span> <span style="color: #000000;">    Image,
+</span><span style="color: #008080;"> 21</span> <span style="color: #000000;">    ListView
+</span><span style="color: #008080;"> 22</span> } from 'react-native'<span style="color: #000000;">;
+</span><span style="color: #008080;"> 23</span> <span style="color: #0000ff;">var</span> {width,height} = Dimensions.get('window'<span style="color: #000000;">);
+</span><span style="color: #008080;"> 24</span> <span style="color: #0000ff;">var</span> dataAry =<span style="color: #000000;"> []
+</span><span style="color: #008080;"> 25</span> <span style="color: #0000ff;">var</span> dataAryOne =<span style="color: #000000;"> []
+</span><span style="color: #008080;"> 26</span> <span style="color: #0000ff;">var</span> dataAryTwo =<span style="color: #000000;"> []
+</span><span style="color: #008080;"> 27</span> <span style="color: #0000ff;">var</span> ds = <span style="color: #0000ff;">new</span> ListView.DataSource({rowHasChanged:(r1,r2)=&gt; r1 !==<span style="color: #000000;"> r2});
+</span><span style="color: #008080;"> 28</span> 
+<span style="color: #008080;"> 29</span> export <span style="color: #0000ff;">default</span><span style="color: #000000;"> class Main extends Component {
+</span><span style="color: #008080;"> 30</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 构造</span>
+<span style="color: #008080;"> 31</span> <span style="color: #000000;">    constructor(props) {
+</span><span style="color: #008080;"> 32</span> <span style="color: #000000;">        super(props);
+</span><span style="color: #008080;"> 33</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 初始状态</span>
+<span style="color: #008080;"> 34</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0;i&lt;100;i++<span style="color: #000000;">){
+</span><span style="color: #008080;"> 35</span>             <span style="color: #0000ff;">var</span> obj =<span style="color: #000000;"> {}
+</span><span style="color: #008080;"> 36</span>             obj.key =<span style="color: #000000;"> i
+</span><span style="color: #008080;"> 37</span> <span style="color: #000000;">            dataAry.push(obj)
+</span><span style="color: #008080;"> 38</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 39</span> 
+<span style="color: #008080;"> 40</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 初始状态</span>
+<span style="color: #008080;"> 41</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0;i&lt;10;i++<span style="color: #000000;">){
+</span><span style="color: #008080;"> 42</span>             <span style="color: #0000ff;">var</span> obj =<span style="color: #000000;"> {}
+</span><span style="color: #008080;"> 43</span>             obj.key =<span style="color: #000000;"> i
+</span><span style="color: #008080;"> 44</span> <span style="color: #000000;">            dataAryOne.push(obj)
+</span><span style="color: #008080;"> 45</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 46</span> 
+<span style="color: #008080;"> 47</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 初始状态</span>
+<span style="color: #008080;"> 48</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0;i&lt;5;i++<span style="color: #000000;">){
+</span><span style="color: #008080;"> 49</span>             <span style="color: #0000ff;">var</span> obj =<span style="color: #000000;"> {}
+</span><span style="color: #008080;"> 50</span>             obj.key =<span style="color: #000000;"> i
+</span><span style="color: #008080;"> 51</span> <span style="color: #000000;">            dataAryTwo.push(obj)
+</span><span style="color: #008080;"> 52</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 53</span> 
+<span style="color: #008080;"> 54</span>         <span style="color: #0000ff;">this</span>.state =<span style="color: #000000;"> {
+</span><span style="color: #008080;"> 55</span>             index:1<span style="color: #000000;">,
+</span><span style="color: #008080;"> 56</span> <span style="color: #000000;">            dataAry: dataAry,
+</span><span style="color: #008080;"> 57</span> <span style="color: #000000;">            dataAryOne:dataAryOne,
+</span><span style="color: #008080;"> 58</span> <span style="color: #000000;">            dataSource:ds.cloneWithRows(dataAryTwo)
+</span><span style="color: #008080;"> 59</span> <span style="color: #000000;">        };
+</span><span style="color: #008080;"> 60</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 61</span> 
+<span style="color: #008080;"> 62</span> <span style="color: #000000;">    render() {
+</span><span style="color: #008080;"> 63</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> (
+</span><span style="color: #008080;"> 64</span>             &lt;View style={{flex:1}}&gt;
+<span style="color: #008080;"> 65</span>                 &lt;View style={{backgroundColor:'cyan',height:69,justifyContent:'center',alignItems:'center'}}&gt;
+<span style="color: #008080;"> 66</span>                     &lt;Text&gt;导航条&lt;/Text&gt;
+<span style="color: #008080;"> 67</span>                 &lt;/View&gt;
+<span style="color: #008080;"> 68</span>                 &lt;<span style="color: #000000;">ScrollView
+</span><span style="color: #008080;"> 69</span>                     style={{flex:1<span style="color: #000000;">}}
+</span><span style="color: #008080;"> 70</span>                     stickyHeaderIndices = {[1<span style="color: #000000;">]}
+</span><span style="color: #008080;"> 71</span>                 &gt;
+<span style="color: #008080;"> 72</span> 
+<span style="color: #008080;"> 73</span>                     &lt;Image source={require('./1.gif')} style={{width:width,height:200}} /&gt;
+<span style="color: #008080;"> 74</span> 
+<span style="color: #008080;"> 75</span>                     &lt;View style={{backgroundColor:'yellow'}}&gt;
+<span style="color: #008080;"> 76</span>                         &lt;View style={{flexDirection:'row',justifyContent:'space-around',marginTop:20}}&gt;
+<span style="color: #008080;"> 77</span>                             &lt;Text onPress={()=&gt;{<span style="color: #0000ff;">this</span>.onClickOne()}} style={{color:<span style="color: #0000ff;">this</span>.state.index == 1 ? 'red' : 'cyan'}}&gt;11111&lt;/Text&gt;
+<span style="color: #008080;"> 78</span>                             &lt;Text onPress={()=&gt;{<span style="color: #0000ff;">this</span>.onClickTwo()}} style={{color:<span style="color: #0000ff;">this</span>.state.index == 2 ? 'red' : 'cyan'}}&gt;22222&lt;/Text&gt;
+<span style="color: #008080;"> 79</span>                             &lt;Text onPress={()=&gt;{<span style="color: #0000ff;">this</span>.onClickThree()}} style={{color:<span style="color: #0000ff;">this</span>.state.index == 3 ? 'red' : 'cyan'}}&gt;33333&lt;/Text&gt;
+<span style="color: #008080;"> 80</span>                         &lt;/View&gt;
+<span style="color: #008080;"> 81</span>                     &lt;/View&gt;
+<span style="color: #008080;"> 82</span> 
+<span style="color: #008080;"> 83</span>                     {<span style="color: #0000ff;">this</span><span style="color: #000000;">.bottomViewRender()}
+</span><span style="color: #008080;"> 84</span> 
+<span style="color: #008080;"> 85</span>                 &lt;/ScrollView&gt;
+<span style="color: #008080;"> 86</span> 
+<span style="color: #008080;"> 87</span>             &lt;/View&gt;
+<span style="color: #008080;"> 88</span> <span style="color: #000000;">        );
+</span><span style="color: #008080;"> 89</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 90</span>     bottomViewRender = ()=&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;"> 91</span>         <span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">this</span>.state.index == 1<span style="color: #000000;">){
+</span><span style="color: #008080;"> 92</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;"> 93</span>                 &lt;<span style="color: #000000;">FlatList
+</span><span style="color: #008080;"> 94</span>                     data = {<span style="color: #0000ff;">this</span><span style="color: #000000;">.state.dataAry}
+</span><span style="color: #008080;"> 95</span>                     renderItem = {(item) =&gt; <span style="color: #0000ff;">this</span><span style="color: #000000;">.renderRow(item)}
+</span><span style="color: #008080;"> 96</span>                 /&gt;
+<span style="color: #008080;"> 97</span> <span style="color: #000000;">            )
+</span><span style="color: #008080;"> 98</span>         }<span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">this</span>.state.index == 2<span style="color: #000000;">){
+</span><span style="color: #008080;"> 99</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;">100</span>                 &lt;<span style="color: #000000;">FlatList
+</span><span style="color: #008080;">101</span>                     data = {<span style="color: #0000ff;">this</span><span style="color: #000000;">.state.dataAryOne}
+</span><span style="color: #008080;">102</span>                     renderItem = {(item) =&gt; <span style="color: #0000ff;">this</span><span style="color: #000000;">.renderRowOne(item)}
+</span><span style="color: #008080;">103</span>                 /&gt;
+<span style="color: #008080;">104</span> <span style="color: #000000;">            )
+</span><span style="color: #008080;">105</span>         }<span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">106</span>             <span style="color: #008000;">//</span><span style="color: #008000;">这里横向只能使用ListView或者SctionList.FLatList设置横向属性报错</span>
+<span style="color: #008080;">107</span>             <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;">108</span>                 &lt;<span style="color: #000000;">ListView
+</span><span style="color: #008080;">109</span>                     dataSource={<span style="color: #0000ff;">this</span><span style="color: #000000;">.state.dataSource}
+</span><span style="color: #008080;">110</span>                     renderRow={<span style="color: #0000ff;">this</span><span style="color: #000000;">.renderRowTwo}
+</span><span style="color: #008080;">111</span>                     contentContainerStyle=<span style="color: #000000;">{styles.listViewStyle}
+</span><span style="color: #008080;">112</span>                 /&gt;
+<span style="color: #008080;">113</span> <span style="color: #000000;">            )
+</span><span style="color: #008080;">114</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">115</span> 
+<span style="color: #008080;">116</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">117</span> 
+<span style="color: #008080;">118</span> 
+<span style="color: #008080;">119</span>     onClickOne =()=&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;">120</span>         <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;">121</span>             index:1<span style="color: #000000;">,
+</span><span style="color: #008080;">122</span> <span style="color: #000000;">        })
+</span><span style="color: #008080;">123</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">124</span>     onClickTwo =()=&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;">125</span>         <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;">126</span>             index:2<span style="color: #000000;">,
+</span><span style="color: #008080;">127</span> <span style="color: #000000;">        })
+</span><span style="color: #008080;">128</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">129</span>     onClickThree =()=&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;">130</span>         <span style="color: #0000ff;">this</span><span style="color: #000000;">.setState({
+</span><span style="color: #008080;">131</span>             index:3<span style="color: #000000;">,
+</span><span style="color: #008080;">132</span> <span style="color: #000000;">        })
+</span><span style="color: #008080;">133</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">134</span> 
+<span style="color: #008080;">135</span> 
+<span style="color: #008080;">136</span>     renderRow =(item) =&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;">137</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;">138</span>             &lt;View style={{flexDirection:'row',marginTop:5,marginLeft:5,borderWidth:1,marginRight:5,borderColor:'#DEDEDE',backgroundColor:'white'}}&gt;
+<span style="color: #008080;">139</span>                 &lt;View style={{flexDirection:'column',justifyContent:'space-around',marginLeft:5}}&gt;
+<span style="color: #008080;">140</span>                     &lt;Text style={{fontSize:16}}&gt;歌名: 彩虹彼岸&lt;/Text&gt;
+<span style="color: #008080;">141</span>                     &lt;View style={{flexDirection:'row'}}&gt;
+<span style="color: #008080;">142</span>                         &lt;Text style={{fontSize:14,color:'#BDBDBD'}}&gt;歌手:虚拟歌姬&lt;/Text&gt;
+<span style="color: #008080;">143</span>                         &lt;Text style={{fontSize:14,color:'#BDBDBD',marginLeft:10}}&gt;专辑:react native&lt;/Text&gt;
+<span style="color: #008080;">144</span>                     &lt;/View&gt;
+<span style="color: #008080;">145</span>                 &lt;/View&gt;
+<span style="color: #008080;">146</span>             &lt;/View&gt;
+<span style="color: #008080;">147</span> <span style="color: #000000;">        )
+</span><span style="color: #008080;">148</span> 
+<span style="color: #008080;">149</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">150</span> 
+<span style="color: #008080;">151</span>     renderRowOne =(item) =&gt;<span style="color: #000000;">{
+</span><span style="color: #008080;">152</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;">153</span>             &lt;View style={{flexDirection:'row',marginTop:5,marginLeft:5,borderWidth:1,marginRight:5,borderColor:'#DEDEDE',backgroundColor:'white'}}&gt;
+<span style="color: #008080;">154</span>                 &lt;View style={{flexDirection:'row'}}&gt;
+<span style="color: #008080;">155</span>                     &lt;Text style={{fontSize:14,color:'#BDBDBD'}}&gt;歌手:虚拟歌姬&lt;/Text&gt;
+<span style="color: #008080;">156</span>                     &lt;Text style={{fontSize:14,color:'#BDBDBD',marginLeft:10}}&gt;专辑:react native&lt;/Text&gt;
+<span style="color: #008080;">157</span>                 &lt;/View&gt;
+<span style="color: #008080;">158</span>             &lt;/View&gt;
+<span style="color: #008080;">159</span> <span style="color: #000000;">        )
+</span><span style="color: #008080;">160</span> 
+<span style="color: #008080;">161</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">162</span> 
+<span style="color: #008080;">163</span> <span style="color: #000000;">    renderRowTwo(rowData){
+</span><span style="color: #008080;">164</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;">(
+</span><span style="color: #008080;">165</span>                 &lt;View style={styles.innerViewStyle}&gt;
+<span style="color: #008080;">166</span>                     &lt;Image source={require('./2.jpeg')} style={{width:150,height:150}} /&gt;
+<span style="color: #008080;">167</span>                     &lt;Text&gt;你的名字&lt;/Text&gt;
+<span style="color: #008080;">168</span>                 &lt;/View&gt;
+<span style="color: #008080;">169</span> <span style="color: #000000;">        );
+</span><span style="color: #008080;">170</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">171</span>     <span style="color: #008000;">//
+</span><span style="color: #008080;">172</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> renderRowTwo =(item) =&gt;{</span>
+<span style="color: #008080;">173</span>     <span style="color: #008000;">//
+</span><span style="color: #008080;">174</span>     <span style="color: #008000;">//</span><span style="color: #008000;">     return (</span>
+<span style="color: #008080;">175</span>     <span style="color: #008000;">//</span><span style="color: #008000;">         &lt;View&gt;</span>
+<span style="color: #008080;">176</span>     <span style="color: #008000;">//</span><span style="color: #008000;">             {</span>
+<span style="color: #008080;">177</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                 dataAryTwo.map(function (item, i) {</span>
+<span style="color: #008080;">178</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                 return (</span>
+<span style="color: #008080;">179</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                     &lt;View style={{marginLeft:5}} key={i}&gt;</span>
+<span style="color: #008080;">180</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                         &lt;Image source={require('./2.jpeg')} style={{width:150,height:150}} /&gt;</span>
+<span style="color: #008080;">181</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                         &lt;Text&gt;你的名字&lt;/Text&gt;</span>
+<span style="color: #008080;">182</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                     &lt;/View&gt;</span>
+<span style="color: #008080;">183</span>     <span style="color: #008000;">//</span><span style="color: #008000;">                 );</span>
+<span style="color: #008080;">184</span>     <span style="color: #008000;">//</span><span style="color: #008000;">             })</span>
+<span style="color: #008080;">185</span>     <span style="color: #008000;">//</span><span style="color: #008000;">             }</span>
+<span style="color: #008080;">186</span>     <span style="color: #008000;">//</span><span style="color: #008000;">         &lt;/View&gt;</span>
+<span style="color: #008080;">187</span>     <span style="color: #008000;">//</span><span style="color: #008000;">     )</span>
+<span style="color: #008080;">188</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> }</span>
+<span style="color: #008080;">189</span> 
+<span style="color: #008080;">190</span> 
+<span style="color: #008080;">191</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">192</span> 
+<span style="color: #008080;">193</span> const styles =<span style="color: #000000;"> StyleSheet.create({
+</span><span style="color: #008080;">194</span> <span style="color: #000000;">    container: {
+</span><span style="color: #008080;">195</span>         flex: 1<span style="color: #000000;">,
+</span><span style="color: #008080;">196</span>         justifyContent: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">197</span>         alignItems: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">198</span>         backgroundColor: '#F5FCFF'<span style="color: #000000;">,
+</span><span style="color: #008080;">199</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">200</span> <span style="color: #000000;">    welcome: {
+</span><span style="color: #008080;">201</span>         fontSize: 20<span style="color: #000000;">,
+</span><span style="color: #008080;">202</span>         textAlign: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">203</span>         margin: 10<span style="color: #000000;">,
+</span><span style="color: #008080;">204</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">205</span> <span style="color: #000000;">    instructions: {
+</span><span style="color: #008080;">206</span>         textAlign: 'center'<span style="color: #000000;">,
+</span><span style="color: #008080;">207</span>         color: '#333333'<span style="color: #000000;">,
+</span><span style="color: #008080;">208</span>         marginBottom: 5<span style="color: #000000;">,
+</span><span style="color: #008080;">209</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">210</span> <span style="color: #000000;">    listViewStyle:{
+</span><span style="color: #008080;">211</span>         <span style="color: #008000;">//</span><span style="color: #008000;">改变主轴方向</span>
+<span style="color: #008080;">212</span>         flexDirection:'row'<span style="color: #000000;">,
+</span><span style="color: #008080;">213</span>         <span style="color: #008000;">//</span><span style="color: #008000;">多行显示</span>
+<span style="color: #008080;">214</span>         flexWrap:'wrap'
+<span style="color: #008080;">215</span> <span style="color: #000000;">    },
+</span><span style="color: #008080;">216</span> });</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./React Native 各种Demo_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><img src="./React Native 各种Demo_files/781239-20170714121407009-706360966.gif" alt=""></p>
+<p>7.图片上拉放大:<a href="https://github.com/lelandrichardson/react-native-parallax-view" target="_blank">https://github.com/lelandrichardson/react-native-parallax-view</a></p>
+<p>8.原生视频播放器:<a href="https://github.com/cornedor/react-native-video-player" target="_blank">https://github.com/cornedor/react-native-video-player</a></p>
+<p>9.react-navigation的使用和变更:</p>
+<p>使用介绍: &nbsp;<a href="http://www.jianshu.com/p/2f575cc35780" target="_blank">http://www.jianshu.com/p/2f575cc35780</a></p>
+<p>demo:&nbsp;<a href="https://github.com/pheromone/navigationDemo" target="_blank">https://github.com/pheromone/navigationDemo&nbsp;</a></p>
+<p>&nbsp;在使用react-navigation中遇到几个难点:</p>
+<ul>
+<li>1.跳至相应路由(如返回首页功能). &nbsp;<a href="http://www.jianshu.com/p/2f575cc35780" target="_blank">http://www.jianshu.com/p/2f575cc35780</a></li>
+<li>2.防止点击过快,跳界面两次. &nbsp;<a href="https://github.com/react-community/react-navigation/pull/1348/files" target="_blank">https://github.com/react-community/react-navigation/pull/1348/files</a></li>
+<li>3.static中使用this. &nbsp;<a href="http://www.jianshu.com/p/2f575cc35780" target="_blank">http://www.jianshu.com/p/2f575cc35780</a></li>
+</ul>
+<p>10.倒计时:<a href="https://github.com/kkkelicheng/ReactNative-CountDownButton" target="_blank">https://github.com/kkkelicheng/ReactNative-CountDownButton</a></p>
+<p>优点: &nbsp;不会因为进入后台而停止读秒</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;支持同个页面再次进入时，智能的判断读秒时间，显示是否继续计时</p>
+<p>11.多张图片查看:<a href="https://github.com/ascoders/react-native-image-viewer" target="_blank">https://github.com/ascoders/react-native-image-viewer</a></p>
+<p>12.因为下个项目是有关狗狗的,页面加载需要一个指示器.在不考虑性能上暂时使用gif图+Modal实现.</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_328908" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/shaoting/p/7148240.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div><div class="line number82 index81 alt1">82</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript comments">/**</code></div><div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;</code><code class="javascript comments">* Sample React Native App</code></div><div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;</code><code class="javascript comments">* https://github.com/facebook/react-native</code></div><div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;</code><code class="javascript comments">* @flow</code></div><div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;</code><code class="javascript comments">*/</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="javascript keyword">import</code> <code class="javascript plain">React, { Component } from </code><code class="javascript string">'react'</code><code class="javascript plain">;</code></div><div class="line number8 index7 alt1"><code class="javascript keyword">import</code> <code class="javascript plain">{</code></div><div class="line number9 index8 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">AppRegistry,</code></div><div class="line number10 index9 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">StyleSheet,</code></div><div class="line number11 index10 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">Text,</code></div><div class="line number12 index11 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">View,</code></div><div class="line number13 index12 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">Modal,</code></div><div class="line number14 index13 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">Image,</code></div><div class="line number15 index14 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">Dimensions</code></div><div class="line number16 index15 alt1"><code class="javascript plain">} from </code><code class="javascript string">'react-native'</code><code class="javascript plain">;</code></div><div class="line number17 index16 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">{width,height} = Dimensions.get(</code><code class="javascript string">'window'</code><code class="javascript plain">);</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="javascript keyword">export</code> <code class="javascript keyword">default</code> <code class="javascript keyword">class</code> <code class="javascript plain">model </code><code class="javascript keyword">extends</code> <code class="javascript plain">Component {</code></div><div class="line number20 index19 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript comments">// 构造</code></div><div class="line number21 index20 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">constructor(props) {</code></div><div class="line number22 index21 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">super</code><code class="javascript plain">(props);</code></div><div class="line number23 index22 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript comments">// 初始状态</code></div><div class="line number24 index23 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">this</code><code class="javascript plain">.state = {</code></div><div class="line number25 index24 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">visible:</code><code class="javascript keyword">true</code></div><div class="line number26 index25 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">};</code></div><div class="line number27 index26 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number28 index27 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">render() {</code></div><div class="line number29 index28 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">return</code> <code class="javascript plain">(</code></div><div class="line number30 index29 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;View&gt;</code></div><div class="line number31 index30 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;Modal</code></div><div class="line number32 index31 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">visible={</code><code class="javascript keyword">this</code><code class="javascript plain">.state.visible}&nbsp;&nbsp;&nbsp; </code><code class="javascript comments">// 根据isModal决定是否显示</code></div><div class="line number33 index32 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&gt;</code></div><div class="line number34 index33 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;View style={{backgroundColor:</code><code class="javascript string">'rgba(0,0,0,0.4)'</code><code class="javascript plain">,width:width,height:height,justifyContent:</code><code class="javascript string">'center'</code><code class="javascript plain">,alignItems:</code><code class="javascript string">'center'</code><code class="javascript plain">}}&gt;</code></div><div class="line number35 index34 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;Image source={require(</code><code class="javascript string">'./food.gif'</code><code class="javascript plain">)} style={{width:120,height:120,borderRadius:5}}/&gt;</code></div><div class="line number36 index35 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;Text style={{color:</code><code class="javascript string">'white'</code><code class="javascript plain">}}&gt;狗生思考中...&lt;/Text&gt;</code></div><div class="line number37 index36 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;/View&gt;</code></div><div class="line number38 index37 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;/Modal&gt;</code></div><div class="line number39 index38 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">&lt;/View&gt;</code></div><div class="line number40 index39 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">);</code></div><div class="line number41 index40 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number42 index41 alt1">&nbsp;</div><div class="line number43 index42 alt2">&nbsp;</div><div class="line number44 index43 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">componentDidMount() {</code></div><div class="line number45 index44 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript comments">//模拟请求数据,请求OK,把visible置为false即可</code></div><div class="line number46 index45 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">this</code><code class="javascript plain">.timer = setTimeout(</code></div><div class="line number47 index46 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">() =&gt; {</code></div><div class="line number48 index47 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">this</code><code class="javascript plain">.setState({</code></div><div class="line number49 index48 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">visible:</code><code class="javascript keyword">false</code></div><div class="line number50 index49 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">})</code></div><div class="line number51 index50 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number52 index51 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">1000</code></div><div class="line number53 index52 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">);</code></div><div class="line number54 index53 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number55 index54 alt2">&nbsp;</div><div class="line number56 index55 alt1">&nbsp;</div><div class="line number57 index56 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">componentWillUnmount() {</code></div><div class="line number58 index57 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">this</code><code class="javascript plain">.timer &amp;&amp; clearTimeout(</code><code class="javascript keyword">this</code><code class="javascript plain">.timer);</code></div><div class="line number59 index58 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div><div class="line number60 index59 alt1">&nbsp;</div><div class="line number61 index60 alt2"><code class="javascript plain">}</code></div><div class="line number62 index61 alt1">&nbsp;</div><div class="line number63 index62 alt2"><code class="javascript plain">const styles = StyleSheet.create({</code></div><div class="line number64 index63 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">container: {</code></div><div class="line number65 index64 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">flex: 1,</code></div><div class="line number66 index65 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">justifyContent: </code><code class="javascript string">'center'</code><code class="javascript plain">,</code></div><div class="line number67 index66 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">alignItems: </code><code class="javascript string">'center'</code><code class="javascript plain">,</code></div><div class="line number68 index67 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">backgroundColor: </code><code class="javascript string">'#F5FCFF'</code><code class="javascript plain">,</code></div><div class="line number69 index68 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number70 index69 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">welcome: {</code></div><div class="line number71 index70 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">fontSize: 20,</code></div><div class="line number72 index71 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">textAlign: </code><code class="javascript string">'center'</code><code class="javascript plain">,</code></div><div class="line number73 index72 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">margin: 10,</code></div><div class="line number74 index73 alt1"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number75 index74 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">instructions: {</code></div><div class="line number76 index75 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">textAlign: </code><code class="javascript string">'center'</code><code class="javascript plain">,</code></div><div class="line number77 index76 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">color: </code><code class="javascript string">'#333333'</code><code class="javascript plain">,</code></div><div class="line number78 index77 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">marginBottom: 5,</code></div><div class="line number79 index78 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">},</code></div><div class="line number80 index79 alt1"><code class="javascript plain">});</code></div><div class="line number81 index80 alt2">&nbsp;</div><div class="line number82 index81 alt1"><code class="javascript plain">AppRegistry.registerComponent(</code><code class="javascript string">'model'</code><code class="javascript plain">, () =&gt; model);</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>　　<img src="./React Native 各种Demo_files/781239-20170714121452415-1319443706.gif" alt=""></p>
+<p>其中,关于Android下使用gif图需要简单配置下,请查看<a href="http://www.cnblogs.com/shaoting/p/5934725.html" target="_blank">http://www.cnblogs.com/shaoting/p/5934725.html</a>的第25条内容.</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/shaoting/category/874729.html" target="_blank">React Native</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7148240,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8189429c-7c21-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./React Native 各种Demo_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./React Native 各种Demo_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shaoting/" target="_blank"><img src="./React Native 各种Demo_files/20170930105542.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shaoting/">程序猿--少停</a><br>
+            <a href="http://home.cnblogs.com/u/shaoting/followees">关注 - 10</a><br>
+            <a href="http://home.cnblogs.com/u/shaoting/followers">粉丝 - 44</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8189429c-7c21-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7148240,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(7148240,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/shaoting/p/7117454.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/shaoting/p/7117454.html" title="发布于2017-07-04 17:07">React Native Android打包apk</a><br><a href="http://www.cnblogs.com/shaoting/p/7337454.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/shaoting/p/7337454.html" title="发布于2017-08-10 09:25">第一次学习手游开发:Flappy Bird制作</a><br></div>
+</div>
+
+
+		</div>
+		<div class="itemdesc">
+			发表于 <span id="post-date">2017-07-11 08:59</span> <a href="http://www.cnblogs.com/shaoting/">程序猿--少停</a> 阅读(<span id="post_view_count">1640</span>) 评论(<span id="post_comment_count">6</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7148240" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/shaoting/p/7148240.html#" onclick="AddToWz(7148240);return false;">收藏</a>
+		</div>
+	</div>
+	<div class="seperator">&nbsp;</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=233966,cb_entryId=7148240,cb_blogApp=currentBlogApp,cb_blogUserGuid='8189429c-7c21-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/7/11 8:59:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<div class="post">
+<a name="评论"></a>
+<div class="moreinfo">
+	<div class="moreinfotitle">
+		评论
+	</div>
+	
+	
+			<div class="comments">
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3734073" class="layer">#1楼</a><a name="3734073" id="comment_anchor_3734073"></a>
+				</div>
+				<div class="comment_content"><div id="comment_body_3734073" class="blog_comment_body">有音乐，可我在公司。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3734073,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3734073,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+				<div class="comment_footer"><a id="a_comment_author_3734073" href="http://www.cnblogs.com/zxhycxq/" target="_blank">花未全开月未圆</a> <a href="http://msg.cnblogs.com/send/%E8%8A%B1%E6%9C%AA%E5%85%A8%E5%BC%80%E6%9C%88%E6%9C%AA%E5%9C%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-07-13 09:02</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3734073,&#39;iSOm00r7zsk+k5THKVJPqTR4MRLGC4qlxJgGpqDWKL10zG/xxdUO6g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3734073,&#39;iSOm00r7zsk+k5THKVJPqTR4MRLGC4qlxJgGpqDWKL10zG/xxdUO6g==&#39;)">引用</a></span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3734349" class="layer">#2楼</a><a name="3734349" id="comment_anchor_3734349"></a>[<span class="louzhu">楼主</span>]
+				</div>
+				<div class="comment_content"><div id="comment_body_3734349" class="blog_comment_body"><a href="http://www.cnblogs.com/shaoting/p/7148240.html#3734073" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3734073);">@</a>
+花未全开月未圆<br>听着歌撸代码才能动次打次.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3734349,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3734349,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3734349_avatar" style="display:none;">http://pic.cnblogs.com/face/781239/20170930105542.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3734349" href="http://www.cnblogs.com/shaoting/" target="_blank">程序猿--少停</a> <a href="http://msg.cnblogs.com/send/%E7%A8%8B%E5%BA%8F%E7%8C%BF--%E5%B0%91%E5%81%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-07-13 12:09</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3734349,&#39;4NyNaQE5v5vQCTR+I8S2HmKb5Ji8Gc4d3vIm13xDlCoBuAfk50dQHQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3734349,&#39;4NyNaQE5v5vQCTR+I8S2HmKb5Ji8Gc4d3vIm13xDlCoBuAfk50dQHQ==&#39;)">引用</a></span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3735933" class="layer">#3楼</a><a name="3735933" id="comment_anchor_3735933"></a>
+				</div>
+				<div class="comment_content"><div id="comment_body_3735933" class="blog_comment_body"><a href="http://www.cnblogs.com/shaoting/p/7148240.html#3734349" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3734349);">@</a>
+程序猿--少停<br>问题是，我没有戴耳机、。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3735933,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3735933,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+				<div class="comment_footer"><a id="a_comment_author_3735933" href="http://www.cnblogs.com/zxhycxq/" target="_blank">花未全开月未圆</a> <a href="http://msg.cnblogs.com/send/%E8%8A%B1%E6%9C%AA%E5%85%A8%E5%BC%80%E6%9C%88%E6%9C%AA%E5%9C%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-07-15 19:14</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3735933,&#39;iSOm00r7zsk+k5THKVJPqTR4MRLGC4qlxJgGpqDWKL10zG/xxdUO6g==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3735933,&#39;iSOm00r7zsk+k5THKVJPqTR4MRLGC4qlxJgGpqDWKL10zG/xxdUO6g==&#39;)">引用</a></span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3749018" class="layer">#4楼</a><a name="3749018" id="comment_anchor_3749018"></a>
+				</div>
+				<div class="comment_content"><div id="comment_body_3749018" class="blog_comment_body">不错!!!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3749018,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3749018,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3749018_avatar" style="display:none;">http://pic.cnblogs.com/face/1106982/20180305090747.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3749018" href="http://www.cnblogs.com/gdsblog/" target="_blank">topbrids</a> <a href="http://msg.cnblogs.com/send/topbrids" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-08-02 13:34</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3749018,&#39;t6OjwS4dQL1Jy6Q/qpxXAmrouaBEOPzNckXbCePZ/0Y3FdJdQ0XoLg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3749018,&#39;t6OjwS4dQL1Jy6Q/qpxXAmrouaBEOPzNckXbCePZ/0Y3FdJdQ0XoLg==&#39;)">引用</a></span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3749021" class="layer">#5楼</a><a name="3749021" id="comment_anchor_3749021"></a>
+				</div>
+				<div class="comment_content"><div id="comment_body_3749021" class="blog_comment_body">这是我想想中好的博客，不错不错！！！！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3749021,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3749021,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3749021_avatar" style="display:none;">http://pic.cnblogs.com/face/1106982/20180305090747.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3749021" href="http://www.cnblogs.com/gdsblog/" target="_blank">topbrids</a> <a href="http://msg.cnblogs.com/send/topbrids" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-08-02 13:37</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3749021,&#39;t6OjwS4dQL1Jy6Q/qpxXAmrouaBEOPzNckXbCePZ/0Y3FdJdQ0XoLg==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3749021,&#39;t6OjwS4dQL1Jy6Q/qpxXAmrouaBEOPzNckXbCePZ/0Y3FdJdQ0XoLg==&#39;)">引用</a></span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="http://www.cnblogs.com/shaoting/p/7148240.html#3752019" class="layer">#6楼</a><a name="3752019" id="comment_anchor_3752019"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">3752019</span><span id="comment-maxDate" style="display:none;">2017/8/7 13:50:10</span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3752019" class="blog_comment_body"><a href="http://www.cnblogs.com/shaoting/p/7148240.html#3749021" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3749021);">@</a>
+郭东生blog<br>谢谢~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3752019,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3752019,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3752019_avatar" style="display:none;">http://pic.cnblogs.com/face/781239/20170930105542.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3752019" href="http://www.cnblogs.com/shaoting/" target="_blank">程序猿--少停</a> <a href="http://msg.cnblogs.com/send/%E7%A8%8B%E5%BA%8F%E7%8C%BF--%E5%B0%91%E5%81%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-08-07 13:50</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3752019,&#39;4NyNaQE5v5vQCTR+I8S2HmKb5Ji8Gc4d3vIm13xDlCoBuAfk50dQHQ==&#39;)">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3752019,&#39;4NyNaQE5v5vQCTR+I8S2HmKb5Ji8Gc4d3vIm13xDlCoBuAfk50dQHQ==&#39;)">引用</a></span></div>
+			</div>
+		
+			</div>
+		
+</div>
+</div>
+<div class="seperator">&nbsp;</div>
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/shaoting/p/7148240.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/shaoting/p/7148240.html#top">返回顶部</a></div>
+<div id="comment_form_container"><script type="text/javascript" src="./React Native 各种Demo_files/mention.js"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="ZereL">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./React Native 各种Demo_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./React Native 各种Demo_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./React Native 各种Demo_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./React Native 各种Demo_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./React Native 各种Demo_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./React Native 各种Demo_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">退出</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-Spread&#39;)">【前端】SpreadJS表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.1087957.1087957.1087957" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2 - 腾讯云&#39;)">【推荐】如何快速搭建人工智能应用？</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.1087959.1087959.1087959" target="_blank"><img width="300" height="250" src="./React Native 各种Demo_files/24442-20180803104321581-581345267.jpg" alt="qcloud" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/603715/" target="_blank">我在2万美元买了比特币，现在每天提心吊胆</a><br> ·  <a href="https://news.cnblogs.com/n/603713/" target="_blank">特斯拉开始在上海“抢人” 开出三倍工资挖角上汽</a><br> ·  <a href="https://news.cnblogs.com/n/603726/" target="_blank">PYPL 8月IDE榜单：Eclipse还是没超过Visual Studio</a><br> ·  <a href="https://news.cnblogs.com/n/603728/" target="_blank">苹果移动浏览器称霸美国，FB内置浏览器意外受捧</a><br> ·  <a href="https://news.cnblogs.com/n/603718/" target="_blank">港媒：中国铁塔IPO定价1.26港元 筹资534亿港元</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img src="./React Native 各种Demo_files/TB1gBPhgZLJ8KJjy0FnXXcFDpXa-468-60.jpg" alt="" hidden="" style="width: 468px; height: 60px; display: none !important;"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/603533/" target="_blank">如何提高一个研发团队的“代码速度”？</a><br> ·  <a href="http://kb.cnblogs.com/page/603279/" target="_blank">成为一个有目标的学习者</a><br> ·  <a href="http://kb.cnblogs.com/page/602903/" target="_blank">历史转折中的“杭派工程师”</a><br> ·  <a href="http://kb.cnblogs.com/page/602573/" target="_blank">如何提高代码质量？</a><br> ·  <a href="http://kb.cnblogs.com/page/602486/" target="_blank">在腾讯的八年，我的职业思考</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"><b>历史上的今天:</b><br>2015-07-11 <a href="http://www.cnblogs.com/shaoting/p/4639461.html">UI基础：UITableView表视图</a><br>2015-07-11 <a href="http://www.cnblogs.com/shaoting/p/4639228.html">UI基础：UINavigationController、界面通信</a><br>2015-07-11 <a href="http://www.cnblogs.com/shaoting/p/4638173.html">UI基础:UIScrollView、UIPageControl</a><br>2015-07-11 <a href="http://www.cnblogs.com/shaoting/p/4638131.html">UI基础:UIControl及其子类</a><br>2015-07-11 <a href="http://www.cnblogs.com/shaoting/p/4638021.html">UI基础:target...action设计模式,手势识别器.UIimageview</a><br></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+</div></td>
+                </tr>
+            </tbody></table>
+        </td>
+        <td id="sidebar" valign="top">
+            
+                <table id="sidebar_news" cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td>
+                            <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/07/01&#39;);return false;">&lt;</a></td><td align="center">2018年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td class="CalTodayDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+                        </td>
+                    </tr>
+                </tbody></table>
+                
+<h1>公告</h1>
+<div align="center" style="margin-top:10px"><div id="blog-news"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=343716061&amp;site=qq&amp;menu=yes">
+　　<img align="absmiddle" border="0" src="./React Native 各种Demo_files/pa" alt="欢迎与我联系" title="欢迎与我联系">
+</a><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/shaoting/">程序猿--少停</a><br>园龄：<a href="https://home.cnblogs.com/u/shaoting/" title="入园时间：2015-07-03">3年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/shaoting/followers/">44</a><br>关注：<a href="https://home.cnblogs.com/u/shaoting/followees/">10</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8189429c-7c21-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('8189429c-7c21-e511-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script></div>
+                <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/shaoting/p/9293640.html">1. Vue开发爬坑记录</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8594627.html">2. 博客 新址:  https://pheromone.github.io/</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8353687.html">3. iOS 九宫格解锁</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8338381.html">4. iOS 指纹解锁</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8087153.html">5. swift4.0 数据转模型</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8085136.html">6. react-native-svg的使用</a></li><li><a href="http://www.cnblogs.com/shaoting/p/8006696.html">7. iOS原生 和 react native视图混编</a></li><li><a href="http://www.cnblogs.com/shaoting/p/7954451.html">8. react native 0.50与OC交互 &amp;&amp; Swift与RN交互</a></li><li><a href="http://www.cnblogs.com/shaoting/p/7899777.html">9. iOS 二维码 学习</a></li><li><a href="http://www.cnblogs.com/shaoting/p/7692094.html">10. iOS Runtime 实操练习</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+		<h1 class="listtitle">随笔分类</h1>
+		
+				<ul class="list" type="square">
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_0" class="listitem" href="https://www.cnblogs.com/shaoting/category/741495.html">iOS-OC开发(48)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_1" class="listitem" href="https://www.cnblogs.com/shaoting/category/707640.html">iOS学习 -c语言基础(14)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_2" class="listitem" href="https://www.cnblogs.com/shaoting/category/707641.html">ios学习-OC(20)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_3" class="listitem" href="https://www.cnblogs.com/shaoting/category/707642.html">iOS学习-UI(16)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_4" class="listitem" href="https://www.cnblogs.com/shaoting/category/874729.html">React Native(31)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_5" class="listitem" href="https://www.cnblogs.com/shaoting/category/820442.html">swift(14)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_6" class="listitem" href="https://www.cnblogs.com/shaoting/category/1125989.html">人工智能</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_7" class="listitem" href="https://www.cnblogs.com/shaoting/category/1055372.html">手游开发(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_8" class="listitem" href="https://www.cnblogs.com/shaoting/category/904418.html">微信小程序(3)</a> </li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		116759
+	</li><li>
+		排名 -
+		2930
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shaoting/p/4990788.html#4021498">1. Re:OC中在.h和.m中声明的属性和成员变量有何区别?</a></li>
+        <li class="recent_comment_body">写的非常好，对比的也很详细，随便是很基础的东西，但是分析的确实很细致。截图也不错~赞！！！</li>
+        <li class="recent_comment_author">--文刂士心</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shaoting/p/6565339.html#4004082">2. Re:react native 之 事件监听 和 回调函数</a></li>
+        <li class="recent_comment_body">我写了个监听成功就跳转，但现在的问题是跳转不了，但有打印出log，这是什么原因，求大神知会componentDidMount(){//注册扫描监听DeviceEventEmitter.addListe......</li>
+        <li class="recent_comment_author">--GODMA</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shaoting/p/6213806.html#3929980">3. Re:react native 之上传文件</a></li>
+        <li class="recent_comment_body">你好，这个只能上传图片么？文档可以么?</li>
+        <li class="recent_comment_author">----双儿</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shaoting/p/6705307.html#3886973">4. Re:使用react native制作的一款网络音乐播放器</a></li>
+        <li class="recent_comment_body">请问<br>react-native-video<br>怎么引入，我引入一直报错</li>
+        <li class="recent_comment_author">--谢晗阳</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shaoting/p/5934725.html#3851296">5. Re:React Native工作小技巧及填坑记录</a></li>
+        <li class="recent_comment_body">@彬彬无礼 代码已经找不到了...</li>
+        <li class="recent_comment_author">--程序猿--少停</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/shaoting/p/5933405.html">1. React Native中的网络请求fetch和简单封装(21891)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/6110202.html">2. WebStorm里面配置运行React Native的方案(19005)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/6148085.html">3. react native 之 react-native-image-picke的详细使用图解(17715)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/6051261.html">4. 微信小程序开发技巧及填坑记录(17710)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/4941634.html">5. iOS开发：icon和启动图尺寸(11755)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/shaoting/p/6051261.html">1. 微信小程序开发技巧及填坑记录(10)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/6148085.html">2. react native 之 react-native-image-picke的详细使用图解(7)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/7148240.html">3. React Native 继续学习(6)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/5934725.html">4. React Native工作小技巧及填坑记录(6)</a></li><li><a href="https://www.cnblogs.com/shaoting/p/6213806.html">5. react native 之上传文件(5)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+            
+            <br>
+            <b>Powered By:</b> <a href="http://www.cnblogs.com/">博客园</a>
+            <br>
+        </td>
+    </tr>
+</tbody></table>
+
+
+
+
+
+
+
+<script type="text/javascript">
+var jiathis_config={
+    siteNum:15,
+    sm:"copy,qzone,tsina,weixin,tqq,tsohu,renren,cqq,tieba,douban,kaixin001,t163,yixin,51,copy",
+    summary:"",
+    boldNum:6,
+    showClose:true,
+    shortUrl:false,
+    hideMore:false
+}
+</script></body><div style="display: block; opacity: 1;"></div></html>
