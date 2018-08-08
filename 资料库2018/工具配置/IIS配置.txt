@@ -1,0 +1,11 @@
+今天以前安装好的jinkeCRM系统突然不行了，查了半天以为是IIS配置问题，最后重新添加了一个网站就好了。
+
+但是还是学到一招，在右边有基本设置，然后又链接为和测试连接，这个可以输入本机的administrator账户，这样确保有凭据。
+
+WIN8 IIS无法验证对路径（XXX）的访问
+Internet 信息服务（IIS）管理器，右边有基本设置
+http://jingyan.baidu.com/article/48b37f8d6189e41a646488f4.html
+
+安装IIS
+直接百度经验
+http://jingyan.baidu.com/article/19192ad853224ce53f570748.html
