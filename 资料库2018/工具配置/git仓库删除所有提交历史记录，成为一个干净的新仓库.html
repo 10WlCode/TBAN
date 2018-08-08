@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!-- saved from url=(0251)https://yuhongjun.github.io/tech/2017/04/28/git%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95-%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%B9%B2%E5%87%80%E7%9A%84%E6%96%B0%E4%BB%93%E5%BA%93.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>git仓库删除所有提交历史记录，成为一个干净的新仓库</title>
+    
+    <meta name="description" content="git仓库删除所有提交历史记录，成为一个干净的新仓库">
+    
+    
+    <meta name="keywords" content="React">
+    
+    <meta name="author" content="Demi_YuHongJun">
+    <meta name="google-site-verification" content="Khh2sFw1NgyQxqGgvBndMmamdn0vNhMy-G1oRDubiRs">
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <!-- Le styles -->
+    <link href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/font-awesome.min.css" rel="stylesheet">
+    <link href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/syntax.css" rel="stylesheet">
+    <link href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/pygments.css" rel="stylesheet">
+    <link href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/style.css" rel="stylesheet">
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <link rel="alternate" type="application/rss+xml" title="Demi&#39;s Journey" href="https://yuhongjun.github.io/feed.xml">
+    <link href="https://yuhongjun.github.io/assets/ico/favicon.ico" rel="icon">
+<script async="" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/async-ads.js.下载"></script><script async="" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/analytics.js.下载"></script><script src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/embed.js.下载" data-timestamp="1533722680297"></script><script src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/jsapi" type="text/javascript"></script><link type="text/css" href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/default+en.css" rel="stylesheet"><link type="text/css" href="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/default.css" rel="stylesheet"><script type="text/javascript" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/default+en.I.js.下载"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.22793468229c73f9fca4769dbeac76cf.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.e63a160a6bfb2f2953b5059c50baaf15.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.21354d142caebf813d50d9d69641db45.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"><style type="text/css">
+:root .adsbox
+{ display: none !important; }
+:root *[oubw86c][hidden] { display: none !important; }</style><style type="text/css">.gsc-control-cse{font-family:Arial, sans-serif;border-color:#FFFFFF;background-color:#FFFFFF}.gsc-control-cse .gsc-table-result{font-family:Arial, sans-serif}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#2F5BB7;background-color:#357AE8;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#CCCCCC;background-color:#FFFFFF}.gsc-tabHeader.gsc-tabhActive{border-color:#CCCCCC;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#CCCCCC}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#1155CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#1155CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#1155CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#1155CC}.gsc-cursor-page{color:#1155CC}a.gsc-trailing-more-results:link{color:#1155CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#333333}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#009933}.gs-webResult div.gs-visibleUrl-short{color:#009933}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#1155CC}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#1155CC}.gsc-webResult.gsc-result.gsc-promotion{border-color:#F6F6F6;background-color:#F6F6F6}.gsc-completion-title{color:#1155CC}.gsc-completion-snippet{color:#333333}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#1155CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#1155CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#1155CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#1155CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#333333}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#009933}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><script src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/alfalfa.4a5fcca1fe50a757044dfd331b660625.js.下载" async="" charset="UTF-8"></script></head>
+
+<body style="">
+<nav class="navbar navbar-default visible-xs" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        
+        <a type="button" class="navbar-toggle nav-link" href="https://github.com/YuHongJun" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+        
+        
+        
+        <a type="button" class="navbar-toggle nav-link" href="mailto:demiyuhongjun@gmail.com">
+            <i class="fa fa-envelope"></i>
+        </a>
+        
+        <a class="navbar-brand" href="https://yuhongjun.github.io/">
+            <!--<img src="http://www.gravatar.com/avatar/2baf659d886c56f600e3df8b4b9068f1?s=35" class="img-circle" />-->
+            <img src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/16912692" class="img-circle">
+            
+            Demi的随笔和技术空间
+        </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="https://yuhongjun.github.io/">Home</a></li>
+            <li><a href="https://yuhongjun.github.io/categories.html">Categories</a></li>
+            <li><a href="https://yuhongjun.github.io/tags.html">Tags</a></li>
+            <li><a href="https://yuhongjun.github.io/resume">Resume</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<!-- nav-menu-dropdown -->
+<div class="btn-group hidden-xs" id="nav-menu">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bars"></i>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="https://yuhongjun.github.io/"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="https://yuhongjun.github.io/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+        <li><a href="https://yuhongjun.github.io/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+        <li><a href="https://yuhongjun.github.io/resume"><i class="fa fa-user"></i>Resume</a></li>
+        <li class="divider"></li>
+        <li><a href="https://yuhongjun.github.io/tech/2017/04/28/git%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95-%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%B9%B2%E5%87%80%E7%9A%84%E6%96%B0%E4%BB%93%E5%BA%93.html#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+    </ul>
+</div>
+
+<div class="col-sm-3 sidebar hidden-xs" style="min-height: 1421px;">
+    <!-- sidebar.html -->
+<!--search-->
+<div id="main">
+	<p>
+		搜索 Demi的随笔和技术空间
+	</p>
+	<p>
+	<script type="text/javascript" async="" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/f.txt"></script><script>
+			(function() {
+				var cx = '006954691666128551603:4fbvjogez8o';
+				var gcse = document.createElement('script');
+				gcse.type = 'text/javascript';
+				gcse.async = true;
+				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(gcse, s);
+			})();
+	</script>
+	<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en" dir="ltr" spellcheck="false" placeholder="Custom Search" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form></div></div>
+	</p>
+</div>
+<div>
+
+</div>
+<!--search end-->
+<header class="sidebar-header" role="banner">
+	<a href="https://yuhongjun.github.io/">
+		<!--<img src="http://www.gravatar.com/avatar/2baf659d886c56f600e3df8b4b9068f1?s=150" class="img-circle" />-->
+		<img src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/16912692(1)" class="img-circle">
+	</a>
+	<h3 class="title">
+		<a href="https://yuhongjun.github.io/"></a>
+	</h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	Demi的随笔和技术空间
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/YuHongJun" target="_blank">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:demiyuhongjun@gmail.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline" style="display: none;">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://twitter.com/demiyuhongjun" target="_blank">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://www.facebook.com/demi.yu.9022" target="_blank">
+				<i class="fa fa-facebook fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/demi0817" target="_blank">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<!--<li>-->
+			<!--<a class="btn btn-default btn-sm" href="https://yuhongjun.github.io/feed.xml">-->
+				<!--<i class="fa fa-rss fa-lg"></i>-->
+			<!--</a>-->
+		<!--</li>-->
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+</div>
+
+<div class="col-sm-9 col-sm-offset-3">
+    <div class="page-header">
+	<h1>git仓库删除所有提交历史记录，成为一个干净的新仓库 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   April 
+	   28th,
+	   
+	   2017
+	 </span>
+		<div class="article_body">
+			<hr>
+<p>把旧项目提交到Git上，但是会有一些历史记录，这些历史记录中可能会有项目密码等敏感信息。如何删除这些历史记录，形成一个全新的仓库，并且保持代码不变呢？</p>
+
+<pre><code class="language-git">1.Checkout
+
+   git checkout --orphan latest_branch
+
+2. Add all the files
+
+   git add -A
+
+3. Commit the changes
+
+   git commit -am "commit message"
+
+
+4. Delete the branch
+
+   git branch -D master
+
+5.Rename the current branch to master
+
+   git branch -m master
+
+6.Finally, force update your repository
+
+   git push -f origin master
+</code></pre>
+
+<p><a href="http://stackoverflow.com/questions/13716658/how-to-delete-all-commit-history-in-github">how-to-delete-all-commit-history-in-github</a></p>
+
+		</div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+			<li><i class="fa fa-folder-open"></i></li>
+			
+			
+			
+			<li><a href="https://yuhongjun.github.io/categories.html#Tech-ref">
+				Tech <span>(64)</span>
+				
+			</a></li>
+			
+			
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+			<li><i class="fa fa-tags"></i></li>
+			
+			
+			
+			<li>
+				<a href="https://yuhongjun.github.io/tags.html#javascript-ref">
+					javascript <span>(6)</span>
+					,
+				</a>
+			</li>
+			
+			<li>
+				<a href="https://yuhongjun.github.io/tags.html#React-ref">
+					React <span>(2)</span>
+					
+				</a>
+			</li>
+			
+			
+			
+		</ul>
+		
+
+		<hr>
+
+		<div>
+			<section class="share col-sm-6">
+				<h4 class="section-title">Share Post</h4>
+				<a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=git%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%EF%BC%8C%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%B9%B2%E5%87%80%E7%9A%84%E6%96%B0%E4%BB%93%E5%BA%93&amp;via=demiyuhongjun" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;">
+					<i class="fa fa-twitter fa-lg"></i>
+					Twitter
+				</a>
+				<a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;" target="_blank">
+					<i class="fa fa-facebook fa-lg"></i>
+					Facebook
+				</a>
+				<a class="btn btn-default btn-sm gplus" onclick="window.open(&#39;https://plus.google.com/share?url=&#39;+window.location.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;">
+					<i class="fa fa-google-plus fa-lg"></i>
+					Google+
+				</a>
+			</section>
+
+			<section class="col-sm-6 author">
+				<img src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/16912692(2)" class="img-rounded author-image">
+				<!--<img src="https://avatars1.githubusercontent.com/u/16912692?v=3&s=150" class="img-rounded author-image" />-->
+
+				<h4 class="section-title author-name">Demi_YuHongJun</h4>
+				<p class="author-bio">Demi的随笔和技术空间</p>
+			</section>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<ul class="pager">
+			
+			<li class="previous"><a href="https://yuhongjun.github.io/tech/2017/04/27/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8E%E7%BB%A7%E6%89%BF.html" title="【转】JS原型链与继承别再被问倒了">← Previous</a></li>
+			
+			
+			<li class="next"><a href="https://yuhongjun.github.io/tech/2017/05/01/Linux%E5%B8%B8%E7%94%A8%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86.html" title="【转】Linux常用文本操作命令整理">Next →</a></li>
+			
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+</article>
+<div class="clearfix"></div>
+
+<aside class="related">
+	<h2>Related Posts</h2>
+	<ul class="related-posts">
+		
+		<li>
+			<!--<a href="http://yuhongjun.github.io///tech/2018/03/14/Heroku-custom-domains.html">-->
+			<h3>
+				<a href="http://yuhongjun.github.io/tech/2018/03/14/Heroku-custom-domains.html">
+					2018-03-14-Custom Domain Names for Apps
+					<small><time datetime="2018-03-14T05:42:32+00:00">14 Mar 2018</time></small>
+				</a>
+			</h3>
+		</li>
+		
+		<li>
+			<!--<a href="http://yuhongjun.github.io///tech/2017/09/10/deploying-multiple-environments-on-heroku.html">-->
+			<h3>
+				<a href="http://yuhongjun.github.io/tech/2017/09/10/deploying-multiple-environments-on-heroku.html">
+					2017-09-10-deploying-multiple-environments-on-heroku
+					<small><time datetime="2017-09-10T05:42:32+00:00">10 Sep 2017</time></small>
+				</a>
+			</h3>
+		</li>
+		
+		<li>
+			<!--<a href="http://yuhongjun.github.io///tech/2017/08/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%9A%84KMP%E7%AE%97%E6%B3%95.html">-->
+			<h3>
+				<a href="http://yuhongjun.github.io/tech/2017/08/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%9A%84KMP%E7%AE%97%E6%B3%95.html">
+					2017-08-09-字符串匹配的KMP算法
+					<small><time datetime="2017-08-09T04:42:32+00:00">09 Aug 2017</time></small>
+				</a>
+			</h3>
+		</li>
+		
+	</ul>
+</aside>
+
+<!--<a href="http://foo.com/bar.html#disqus_thread">Link</a>-->
+<div id="disqus_thread"><iframe id="dsq-app1830" name="dsq-app1830" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 519px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script>
+
+	/**
+	 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+   var disqus_config = function () {
+   this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+   this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+   this.page.category_id=''
+   };
+
+  about: https://help.disqus.com/customer/en/portal/articles/472098-javascript-configuration-variables
+   */
+		var disqus_config = function () {
+			this.page.url = '';
+			this.page.identifier = '';
+			this.page.title = 'git仓库删除所有提交历史记录，成为一个干净的新仓库';
+		};
+	(function() { // DON'T EDIT BELOW THIS LINE
+			var disqus_shortname = 'demi-yu'; // required: replace example with your forum shortname
+			var d = document, s = d.createElement('script');
+		s.src = 'https://'+disqus_shortname+'.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="<a class="vglnk" href="https://disqus.com/?ref_noscript" rel="nofollow"><span>https</span><span>://</span><span>disqus</span><span>.</span><span>com</span><span>/?</span><span>ref</span><span>_</span><span>noscript</span></a>">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+<!--<div id="disqus_thread"></div>-->
+<!--<script type="text/javascript">-->
+	<!--/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */-->
+    <!--var disqus_shortname = 'demi-yu'; // required: replace example with your forum shortname-->
+
+	<!--/* * * DON'T EDIT BELOW THIS LINE * * */-->
+    <!--(function() {-->
+        <!--var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;-->
+        <!--dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';-->
+        <!--(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);-->
+    <!--})();-->
+<!--</script>-->
+<!--<noscript>Please enable JavaScript to view the-->
+	<!--<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>-->
+<!--</noscript>-->
+<!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+
+
+
+    <footer>
+        <hr>
+        <p>
+            © 2018 Demi_YuHongJun with Jekyll.
+        </p>
+        <!-- Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.-->
+    </footer>
+</div>
+
+<script type="text/javascript" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/bootstrap.min.js.下载"></script>
+<script type="text/javascript" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/app.js.下载"></script>
+<!--<script id="dsq-count-scr" src="//demi-yu.disqus.com/count.js" async></script>-->
+
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+	  i['GoogleAnalyticsObject'] = r;
+	  i[r] = i[r] || function() {
+			  (i[r].q = i[r].q || []).push(arguments)
+		  }, i[r].l = 1 * new Date();
+	  a = s.createElement(o),
+		  m = s.getElementsByTagName(o)[0];
+	  a.async = 1;
+	  a.src = g;
+	  m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-98475055-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<iframe style="display: none;" src="./git仓库删除所有提交历史记录，成为一个干净的新仓库_files/saved_resource(1).html"></iframe><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 250px; display: none; top: 177px; position: absolute; left: 15px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body><div style="display: block; opacity: 1;"></div></html>
