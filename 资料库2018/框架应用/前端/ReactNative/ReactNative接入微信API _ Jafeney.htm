@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://jafeney.com/2016/11/18/2016-11-17-wechat/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://jafeney.com/">
+  <title>ReactNative接入微信API | Jafeney</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写在前面上一篇简单地讲了 ReactNative 如何接入支付宝支付，那么这一篇就介绍如何接入微信API吧。我们实际用到的一般有微信登录、微信分享、微信支付这三个功能。
+准备工作微信的东西比较支付宝申请起来要略微麻烦点，步骤多，而且有些资质认证要给微信钱，心太黑。废话不多说，登录微信开放平台，创建你的App应用，改填的都填了，提交 ——  审核1～2天 —— 通过 —— 申请微信支付 —— 继续审">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative接入微信API">
+<meta property="og:url" content="http://jafeney.com/2016/11/18/2016-11-17-wechat/index.html">
+<meta property="og:site_name" content="Jafeney">
+<meta property="og:description" content="写在前面上一篇简单地讲了 ReactNative 如何接入支付宝支付，那么这一篇就介绍如何接入微信API吧。我们实际用到的一般有微信登录、微信分享、微信支付这三个功能。
+准备工作微信的东西比较支付宝申请起来要略微麻烦点，步骤多，而且有些资质认证要给微信钱，心太黑。废话不多说，登录微信开放平台，创建你的App应用，改填的都填了，提交 ——  审核1～2天 —— 通过 —— 申请微信支付 —— 继续审">
+<meta property="og:image" content="http://img.blog.csdn.net/20161118085359982">
+<meta property="og:image" content="http://img.blog.csdn.net/20161118090536065">
+<meta property="og:image" content="http://img.blog.csdn.net/20161118090915191">
+<meta property="og:image" content="http://photo.jafeney.com:9999/file/WKKziaWSvWsJAph5-znOiDkO.PNG">
+<meta property="og:updated_time" content="2017-03-28T07:18:21.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative接入微信API">
+<meta name="twitter:description" content="写在前面上一篇简单地讲了 ReactNative 如何接入支付宝支付，那么这一篇就介绍如何接入微信API吧。我们实际用到的一般有微信登录、微信分享、微信支付这三个功能。
+准备工作微信的东西比较支付宝申请起来要略微麻烦点，步骤多，而且有些资质认证要给微信钱，心太黑。废话不多说，登录微信开放平台，创建你的App应用，改填的都填了，提交 ——  审核1～2天 —— 通过 —— 申请微信支付 —— 继续审">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161118085359982">
+  
+    <link rel="alternative" href="http://jafeney.com/atom.xml" title="Jafeney" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://jafeney.com/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="./ReactNative接入微信API _ Jafeney_files/main.b07bcf.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+<script src="./ReactNative接入微信API _ Jafeney_files/hm.js"></script><script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?4c0fe03f16c08a15b32cda310c30b262";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script type="text/javascript" async="" src="http://static.duoshuo.com/embed.js" charset="UTF-8"></script><style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style></head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow" style="height: 938px;">
+    <canvas id="anm-canvas" class="anm-canvas" width="1920" height="938"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="http://jafeney.com/" class="profilepic">
+			<img src="./ReactNative接入微信API _ Jafeney_files/taX30ijPFMALFRn79XC0ZcqG.jpeg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="http://jafeney.com/">Jafeney Lou</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">like programming,like life</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="http://jafeney.com/">主页</a></li>
+	        
+				<li><a href="http://jafeney.com/archives">归档</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, &#39;innerArchive&#39;)" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, &#39;friends&#39;)" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, &#39;aboutme&#39;)" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/Jafeney" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/jafeney" title="segmentfault"><i class="icon-segmentfault"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/jafeney/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:692270687@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="./ReactNative接入微信API _ Jafeney_files/taX30ijPFMALFRn79XC0ZcqG.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">Jafeney Lou</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>like programming,like life<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Jafeney" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/jafeney" title="segmentfault"><i class="icon-segmentfault"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/jafeney/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:692270687@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="http://jafeney.com/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="http://jafeney.com/archives">归档</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionheight="100" data-contentid="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2016-11-17-wechat" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ReactNative接入微信API
+    </h1>
+  
+
+        
+        <a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/" class="archive-article-date">
+  	<time datetime="2016-11-18T09:57:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="写在前面"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2" class="headerlink" title="写在前面" target="_blank"></a>写在前面</h1><p>上一篇简单地讲了 <code>ReactNative</code> 如何接入支付宝支付，那么这一篇就介绍如何接入微信API吧。我们实际用到的一般有<strong>微信登录</strong>、<strong>微信分享</strong>、<strong>微信支付</strong>这三个功能。</p>
+<h1 id="准备工作"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C" class="headerlink" title="准备工作" target="_blank"></a>准备工作</h1><p>微信的东西比较支付宝申请起来要略微麻烦点，步骤多，而且有些资质认证要给微信钱，心太黑。废话不多说，登录微信开放平台，创建你的App应用，改填的都填了，提交 ——  审核1～2天 —— 通过 —— 申请微信支付 —— 继续审核 …  MD这步一次性通过是有多难 !</p>
+<h2 id="商户平台"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%95%86%E6%88%B7%E5%B9%B3%E5%8F%B0" class="headerlink" title="商户平台" target="_blank"></a>商户平台</h2><p>微信支付申请通过了会收到一份邮件，里面有你的微信支付商户账号的信息<strong>（记得保存）</strong>，然后用这个账号和密码登录微信商户平台。这里关键的一步是：</p>
+<blockquote>
+<p>进入 <strong>账户中心</strong> —&gt; <strong>API安全</strong> —&gt; <strong>设置一个32位的密钥</strong>  </p>
+</blockquote>
+<a id="more" target="_blank"></a>
+<h1 id="具体实现"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0" class="headerlink" title="具体实现" target="_blank"></a>具体实现</h1><p>准备工作都做好了，我们就可以开始开发了。</p>
+<h2 id="安装模块"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97" class="headerlink" title="安装模块" target="_blank"></a>安装模块</h2><p>感谢大<code>react-native</code>社区，为我们这种菜鸟提供了如此全面的微信三方模块<code>react-native-wechat</code>，完全能满足现阶段的所有微信API需求啊！</p>
+<ul>
+<li><a href="https://github.com/weflex/react-native-wechat" target="_blank" rel="external">github地址</a></li>
+<li><code>react-native-wechat</code>交流群 336021910</li>
+</ul>
+<p>支持<code>npm</code>安装：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-native-wechat --save</div></pre></td></tr></tbody></table></figure>
+<h3 id="让-ReactNative完全支持ES7"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E8%AE%A9-ReactNative%E5%AE%8C%E5%85%A8%E6%94%AF%E6%8C%81ES7" class="headerlink" title="让 ReactNative完全支持ES7" target="_blank"></a>让 <code>ReactNative</code>完全支持ES7</h3><p><code>async</code>和<code>await</code>是<code>ES7</code>比较新的提案，让<code>ReactNative</code>完全支持<code>stage-0</code>，首先我们需要安装 <code>babel-preset-react-native-stage-0</code> 模块:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-preset-react-native-stage-0 --save-dev</div></pre></td></tr></tbody></table></figure>
+<p>并设置 <code>.babelrc</code></p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="attr">"presets"</span>: [ <span class="string">"react-native-stage-0"</span> ],</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h2 id="link和配置"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#link%E5%92%8C%E9%85%8D%E7%BD%AE" class="headerlink" title="link和配置" target="_blank"></a><code>link</code>和配置</h2><p>上一篇已经介绍了 <code>react-native link</code> 命令，可以把客户端所需的模块链接到<code>IOS</code>和<code>Android</code>目录里。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-native link react-native-wechat</div></pre></td></tr></tbody></table></figure>
+<p>当然，只执行上面的命令还不够。我们还需要手动添加一些配置</p>
+<h3 id="IOS端"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#IOS%E7%AB%AF" class="headerlink" title="IOS端" target="_blank"></a><code>IOS</code>端</h3><p>微信的配置和支付宝差别不大。</p>
+<p><strong>（1）添加下面几个<code>framework</code>和<code>library</code>：</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SystemConfiguration.framework</div><div class="line">CoreTelephony.framework</div><div class="line">libsqlite3.0</div><div class="line">libc++</div><div class="line">libz</div></pre></td></tr></tbody></table></figure>
+<p><img src="./ReactNative接入微信API _ Jafeney_files/20161118085359982" alt="xcode截图"></p>
+<blockquote>
+<p>注意：<code>CoreTelephony.framework</code>、<code>libc++z</code>、<code>libz</code>，这三项和支付宝模块的重复，引一次就够了。</p>
+</blockquote>
+<p><strong>（2）添加 <code>URL Schema</code> ，值是你应用的微信<code>appid</code></strong></p>
+<p><img src="./ReactNative接入微信API _ Jafeney_files/20161118090536065" alt="xcode截图"></p>
+<p><strong>（3）给 <code>LSApplicationQueriesSchemes</code> 添加三个值 <code>alipay</code>、<code>weixin</code>、<code>wechat</code></strong></p>
+<p><img src="./ReactNative接入微信API _ Jafeney_files/20161118090915191" alt="Xcode截图"></p>
+<p>或者直接编辑 <code>Info.plist</code>：</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>LSApplicationQueriesSchemes<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">array</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>alipay<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>weixin<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>wechat<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">array</span>&gt;</span></div></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>注意：如果你不需要支付宝支付， <code>alipay</code> 可以不加</p>
+</blockquote>
+<p><strong>（4）修改 <code>AppDelegate.m</code></strong></p>
+<p>如果你不需要支付宝支付，这个函数可以这么写：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import "../Libraries/LinkingIOS/RCTLinkingManager.h"</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url</div><div class="line">sourceApplication:(NSString *)sourceApplication annotation:(id)annotation</div><div class="line">{</div><div class="line">  return [RCTLinkingManager application:application openURL:url</div><div class="line">                            sourceApplication:sourceApplication annotation:annotation];</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<p>如果你既要支付宝支付，也需要微信支付。那么应该这么写：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#import "../Libraries/LinkingIOS/RCTLinkingManager.h"</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url</div><div class="line">  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation</div><div class="line">{</div><div class="line">  if([[sourceApplication substringToIndex:10] isEqualToString:@"com.alipay"]){</div><div class="line">    [AlipayModule handleCallback:url];</div><div class="line">  }</div><div class="line">  return [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h3 id="Android端"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#Android%E7%AB%AF" class="headerlink" title="Android端" target="_blank"></a><code>Android</code>端</h3><p>（1） 修改<code>android/settings.gradle</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include <span class="string">':RCTWeChat'</span></div><div class="line">project(<span class="string">':RCTWeChat'</span>).projectDir = <span class="keyword">new</span> File(rootProject.projectDir, <span class="string">'../node_modules/react-native-wechat/android'</span>)</div></pre></td></tr></tbody></table></figure>
+<p>（2）修改<code>android/app/build.gradle</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies {</div><div class="line">  <span class="function">compile <span class="title">project</span><span class="params">(<span class="string">':RCTWeChat'</span>)</span>    <span class="comment">// Add this line only.</span></span></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<p>（3）修改<code>MainActivity.java or MainApplication.java</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> com.theweflex.react.WeChatPackage;       <span class="comment">// Add this line before public class MainActivity</span></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * A list of packages used by the app. If the app uses additional views</div><div class="line"> * or modules besides the default ones, add more packages here.</div><div class="line"> */</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> List&lt;ReactPackage&gt; <span class="title">getPackages</span><span class="params">()</span> </span>{</div><div class="line">  <span class="keyword">return</span> Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">    <span class="keyword">new</span> MainReactPackage(),</div><div class="line">    <span class="keyword">new</span> WeChatPackage()        <span class="comment">// Add this line</span></div><div class="line">  );</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<p>（4）创建一个新的<code>package</code> 取名<code>wxapi</code> ，在里面创建<code>class</code> 取名<code>WXEntryActivity</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> your.<span class="keyword">package</span>.wxapi;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.Activity;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> com.theweflex.react.WeChatModule;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WXEntryActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>{</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    WeChatModule.handleIntent(getIntent());</div><div class="line">    finish();</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<p>（5）修改<code>AndroidManifest.xml</code></p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;manifest&gt;</div><div class="line">  &lt;application&gt;</div><div class="line">    &lt;!-- 微信Activity --&gt;</div><div class="line">    &lt;activity</div><div class="line">      android:name=".wxapi.WXEntryActivity"</div><div class="line">      android:label="@string/app_name"</div><div class="line">      android:exported="true"</div><div class="line">      /&gt;</div><div class="line">  &lt;/application&gt;</div><div class="line">&lt;/manifest&gt;</div></pre></td></tr></tbody></table></figure>
+<p>（6）修改 <code>proguard-rules.pro</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">mm</span>.<span class="title">sdk</span>.** </span>{</div><div class="line">   *;</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h2 id="初始化模块"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9D%97" class="headerlink" title="初始化模块" target="_blank"></a>初始化模块</h2><p><code>react-native-wechat</code> 使用前必须初始化一次（有且仅一次）。建议放在项目的入口文件里：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...省略</span></div><div class="line">componentDidMount() {</div><div class="line">  WeChat.registerApp(<span class="string">'你的appid'</span>)</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h2 id="微信登录"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95" class="headerlink" title="微信登录" target="_blank"></a>微信登录</h2><p>微信登录需要用到的是 <code>WeChat.sendAuthRequest</code> 这个方法。</p>
+<h3 id="获取微信CODE"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1CODE" class="headerlink" title="获取微信CODE" target="_blank"></a>获取微信CODE</h3><p>首先介绍一下它参数：</p>
+<ul>
+<li><code>scope</code> (必需) 应用授权作用域，如获取用户个人信息则填写 <code>snsapi_userinfo</code></li>
+<li><code>state</code> (非必需) 用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止csrf攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加session进行校验</li>
+</ul>
+<p>执行 <code>WeChat.sendAuthRequest</code>获取CODE：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> code = <span class="keyword">await</span> WeChat.sendAuthRequest(<span class="string">"snsapi_userinfo"</span>, <span class="string">"123"</span>);</div></pre></td></tr></tbody></table></figure>
+<p><img src="./ReactNative接入微信API _ Jafeney_files/WKKziaWSvWsJAph5-znOiDkO.PNG" alt="微信授权"></p>
+<p>该方法会返回一个字符串，类似 <code>0114sg4t1F1Rc90jSw6t1Cf44t14sg4-</code> 一串CODE。</p>
+<h3 id="获取微信access-token"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1access-token" class="headerlink" title="获取微信access_token" target="_blank"></a>获取微信<code>access_token</code></h3><p>包装一个 <code>GET</code>类型的<code>fetch</code>请求，URL如下：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</span></div></pre></td></tr></tbody></table></figure>
+<p>这个接口会返回 <code>access_token</code> 和 用户的 <code>openid</code>。示例如下：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="attr">"access_token"</span>: <span class="string">"JWk5IxV5bFGOdTm2A4zhuGuIB_xGRM5cPbU5nYbkuEihHu6FClMn5zjVZ6QCTYrMv_oCMxW8szuNAOadYIYo6wiOObeesEeNgHeWNvkJolQ"</span>,</div><div class="line">  <span class="attr">"expires_in"</span>: <span class="number">7200</span>,</div><div class="line">  <span class="attr">"refresh_token"</span>: <span class="string">"WPhskoRBAmDyM1EbrPRvWSCU8LL3Ndn0Brong9ZG434L1Imkxugu2JKOghfIuP1P3JqcCyB2anxAwXRuFr7EMxP_rygeWy1Noi0zPJue_YU"</span>,</div><div class="line">  <span class="attr">"openid"</span>: <span class="string">"oDwRbw9zFEO36l3Vcq6bHXFWB13k"</span>,</div><div class="line">  <span class="attr">"scope"</span>: <span class="string">"snsapi_userinfo"</span>,</div><div class="line">  <span class="attr">"unionid"</span>: <span class="string">"o3KCIw-vFiuq0SBHe-3bhjbCQY3o"</span></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h3 id="获取微信授权后的用户信息"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E5%90%8E%E7%9A%84%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF" class="headerlink" title="获取微信授权后的用户信息" target="_blank"></a>获取微信授权后的用户信息</h3><p>包装一个 <code>GET</code>类型的<code>fetch</code>请求，URL如下：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID</span></div></pre></td></tr></tbody></table></figure>
+<p>这个接口会返回 授权用户的微信基本信息，示例如下：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="attr">"openid"</span>: <span class="string">"oDwRbw9zFEO36l3Vcq6bHXFWB13k"</span>,</div><div class="line">  <span class="attr">"nickname"</span>: <span class="string">"思^_^诚"</span>,</div><div class="line">  <span class="attr">"sex"</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">"language"</span>: <span class="string">"zh_CN"</span>,</div><div class="line">  <span class="attr">"city"</span>: <span class="string">"Hangzhou"</span>,</div><div class="line">  <span class="attr">"province"</span>: <span class="string">"Zhejiang"</span>,</div><div class="line">  <span class="attr">"country"</span>: <span class="string">"CN"</span>,</div><div class="line">  <span class="attr">"headimgurl"</span>: <span class="string">"http://wx.qlogo.cn/mmopen/PiajxSqBRaEKujUoq5z4PScxKqQESxMxj6VDYnIHT4ZibVDMmSb69dq6EbLPAUJ15mMH9pIxFNu9JZszyx1F6ibcw/0"</span>,</div><div class="line">  <span class="attr">"privilege"</span>: [],</div><div class="line">  <span class="attr">"unionid"</span>: <span class="string">"o3KCIw-vFiuq0SBHe-3bhjbCQY3o"</span></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<h2 id="微信分享"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB" class="headerlink" title="微信分享" target="_blank"></a>微信分享</h2><p>微信分享用到的是 <code>WeChat.shareToTimeline(opt)</code>(分享到朋友圈) 和 <code>WeChat.shareToSession(opt)</code>（分享给微信好友或微信群)，这两个方法的入参是一样的。</p>
+<p>为了方便，微信分享我做成了一个<code>react-native</code>组件, 感兴趣的可以点击看看 <a href="https://github.com/Jafeney/react-native-wechat-share" target="_blank" rel="external">github地址</a></p>
+<h3 id="入参列表"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%85%A5%E5%8F%82%E5%88%97%E8%A1%A8" class="headerlink" title="入参列表" target="_blank"></a>入参列表</h3><ul>
+<li><code>thumbImage</code> 分享出去的预览图</li>
+<li><code>title</code> 分享标题</li>
+<li><code>webpageUrl</code> 分享出去的网页地址</li>
+</ul>
+<h3 id="核心代码"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81" class="headerlink" title="核心代码" target="_blank"></a>核心代码</h3><figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * [分享到朋友圈]</div><div class="line"> * @param  {[Object]} opt 入参对象</div><div class="line"> * @example { thumbImage:'', title: '', webpageUrl: '' }</div><div class="line"> */</div><div class="line"><span class="keyword">async</span> handleShareWeixinCircle(opt) {</div><div class="line">  <span class="keyword">this</span>.lock = <span class="literal">true</span>  <span class="comment">/* 异步操作锁 */</span></div><div class="line">  <span class="keyword">try</span> {</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> WeChat.shareToTimeline({</div><div class="line">      <span class="attr">type</span>: <span class="string">"news"</span>,</div><div class="line">      ...opt,</div><div class="line">     });</div><div class="line">  } <span class="keyword">catch</span> (e) {</div><div class="line">    <span class="built_in">console</span>.error(e)</div><div class="line">  } <span class="keyword">finally</span> {</div><div class="line">    <span class="keyword">this</span>.lock = <span class="literal">false</span></div><div class="line">    <span class="keyword">this</span>.close()</div><div class="line">  }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * [分享给微信好友或微信群]</div><div class="line"> * @param  {[Object]} opt 入参对象</div><div class="line"> * @example { thumbImage:'', title: '', webpageUrl: '' }</div><div class="line"> */</div><div class="line"><span class="keyword">async</span> handleShareWeixinFriend(opt) {</div><div class="line">  <span class="keyword">this</span>.lock = <span class="literal">true</span>  <span class="comment">/* 异步操作锁 */</span></div><div class="line">  <span class="keyword">try</span> {</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> WeChat.shareToSession({</div><div class="line">      <span class="attr">type</span>: <span class="string">"news"</span>,</div><div class="line">      ...opt,</div><div class="line">    });</div><div class="line">  } <span class="keyword">catch</span> (e) {</div><div class="line">    <span class="built_in">console</span>.error(e)</div><div class="line">  } <span class="keyword">finally</span> {</div><div class="line">    <span class="keyword">this</span>.lock = <span class="literal">false</span></div><div class="line">    <span class="keyword">this</span>.close()</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<p>我这里用到的是分享网页，更多分享功能参见 <a href="https://github.com/weflex/react-native-wechat#sharetotimelinedata" target="_blank" rel="external">react-native-wechat</a></p>
+<h2 id="微信支付"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98" class="headerlink" title="微信支付" target="_blank"></a>微信支付</h2><p>微信支付用到的是 <code>WeChat.pay(opt)</code> 方法</p>
+<h3 id="后端的工作"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%90%8E%E7%AB%AF%E7%9A%84%E5%B7%A5%E4%BD%9C" class="headerlink" title="后端的工作" target="_blank"></a>后端的工作</h3><p>后端需要为我们提供一个支付接口  去调取微信支付的 <strong>“统一下单”</strong> 接口，然后返回下面这些东西： <a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1" target="_blank" rel="external">点击查看官方文档</a></p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="attr">appid</span>: <span class="string">''</span>,  <span class="comment">//应用id</span></div><div class="line">  partnerid: <span class="string">''</span>, <span class="comment">// 商家向财付通申请的商家id</span></div><div class="line">  prepayid: <span class="string">''</span>, <span class="comment">// 预支付订单</span></div><div class="line">  noncestr: <span class="string">''</span>, <span class="comment">// 随机串，防重发</span></div><div class="line">  timestamp: <span class="string">''</span>, <span class="comment">// 时间戳，防重发</span></div><div class="line">  package: <span class="string">''</span>, <span class="comment">// 商家根据财付通文档填写的数据和签名</span></div><div class="line">  sign: <span class="string">''</span> <span class="comment">// 商家根据微信开放平台文档对数据做的签名</span></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>注意：后端要严格区分大小写，这几个变量必须都小写。否则会报 “支付签名验证失败” 这类的错误</p>
+</blockquote>
+<h3 id="前端的工作"><a href="http://jafeney.com/2016/11/18/2016-11-17-wechat/#%E5%89%8D%E7%AB%AF%E7%9A%84%E5%B7%A5%E4%BD%9C" class="headerlink" title="前端的工作" target="_blank"></a>前端的工作</h3><p>有了<code>react-native-wechat</code>，微信支付其实也就调用一个方法的事情。类似支付宝支付的<code>action</code>，下面是最原始的实现代码（建议把<code>fetch</code>封装一下）。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">weixinPay</span>(<span class="params">opt</span>) </span>{</div><div class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> {</div><div class="line">    <span class="keyword">const</span> uri = <span class="string">`http://<span class="subst">${CONFIG.API_URI}</span>/wx/pay`</span>;  <span class="comment">/*支付接口*/</span></div><div class="line">    <span class="keyword">const</span> headers = {</div><div class="line">      ...CONFIG.HEADERS,</div><div class="line">      <span class="string">'Authorization'</span>: opt.token,</div><div class="line">    };</div><div class="line">    <span class="comment">/*发起支付请求*/</span></div><div class="line">    fetch(uri, { <span class="attr">method</span>: <span class="string">'POST'</span>, <span class="attr">headers</span>: headers, <span class="attr">body</span>: <span class="built_in">JSON</span>.stringify(opt.body)})</div><div class="line">      .then(<span class="function">(<span class="params">response</span>) =&gt;</span> {</div><div class="line">        <span class="keyword">if</span> (response.status === <span class="number">200</span>) {</div><div class="line">          <span class="keyword">return</span> response.json()</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">          <span class="keyword">return</span> {<span class="attr">code</span>: response.status}</div><div class="line">        }</div><div class="line">      })</div><div class="line">      .then(<span class="function">(<span class="params">data</span>) =&gt;</span> {</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">String</span>(data.code) == <span class="string">'0'</span>) {</div><div class="line">          <span class="comment">/*打开微信进行支付*/</span></div><div class="line">          pay(data.result, opt.success, opt.fail)</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">          <span class="comment">/*预支付失败的后续操作*/</span></div><div class="line">          opt.error &amp;&amp; opt.error(data.error.message)</div><div class="line">        }</div><div class="line">     })</div><div class="line">  }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">pay</span>(<span class="params">res, success, fail</span>) </span>{</div><div class="line">  <span class="keyword">try</span> {</div><div class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> WeChat.pay({</div><div class="line">      <span class="attr">partnerId</span>: res.partnerid,  <span class="comment">/*商家向财付通申请的商家id*/</span></div><div class="line">      prepayId: res.prepayid,    <span class="comment">/*预支付订单*/</span></div><div class="line">      nonceStr: res.noncestr,    <span class="comment">/*随机串，防重发*/</span></div><div class="line">      timeStamp: res.timestamp,  <span class="comment">/*时间戳，防重发*/</span></div><div class="line">      package: res.package,      <span class="comment">/*商家根据财付通文档填写的数据和签名*/</span></div><div class="line">      sign: res.sign,            <span class="comment">/*商家根据微信开放平台文档对数据做的签名*/</span></div><div class="line">    });</div><div class="line">    <span class="comment">/*支付成功的后续操作*/</span></div><div class="line">    success &amp;&amp; success()</div><div class="line">  } <span class="keyword">catch</span> (error) {</div><div class="line">    <span class="comment">/*支付失败的后续操作*/</span></div><div class="line">    fail &amp;&amp; fail( error ===<span class="number">-2</span> ? <span class="string">"用户取消"</span> : <span class="string">"订单支付失败"</span>)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<hr>
+<p>@欢迎关注我的 <a href="https://github.com/jafeney" target="_blank" rel="external">github</a> 和 <a href="http://jafeney.com/" target="_blank">个人博客 －Jafeney</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_blank">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>海内存知己，天涯若比邻<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="./ReactNative接入微信API _ Jafeney_files/WechatIMG3.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="./ReactNative接入微信API _ Jafeney_files/WechatIMG2.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">react-native</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="http://jafeney.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" class="article-tag-list-link color5">移动开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="./ReactNative接入微信API _ Jafeney_files/qrcode.php" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="http://jafeney.com/2016/12/12/2016-12-12-web/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          轮子篇：基于Node和React的全栈式架构
+        
+      </div>
+    </a>
+  
+  
+    <a href="http://jafeney.com/2016/11/16/2016-11-16-alipay/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ReactNative接入支付宝支付</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2016-11-17-wechat" data-title="ReactNative接入微信API" data-url="http://jafeney.com/2016/11/18/2016-11-17-wechat/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		© 2018 Jafeney Lou
+        <span class="with-love">
+          浙ICP备15041893号-1
+          <i class="icon-next-heart fa fa-heart"></i>
+        </span>
+        <br>
+        Jafeney Lou - like programming, like life. 
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,p.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function c(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function f(t,n,e,r,o){var i=u(t),f=c(t)-n;if(f-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,v.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||f)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");f(t,document.body.scrollTop,-63,2,0),f(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}var l=e(25),p=r(l),d=e(26),y=(r(d),e(96)),v=r(y),h=e(97),b=r(h),x=e(98),m=r(x),g=e(27);!function(){b.default.versions.mobile&&window.screen.width<800&&(i(),s())}(),(0,g.addLoadEvent)(function(){m.default.init()}),t.exports={}},,,,,,,,,,,,,,,,,,,,,,,,,function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},function(t,n,e){"use strict";var r=e(28),o=function(t){return t&&t.__esModule?t:{default:t}}(r),i=function(){function t(t,n,r){return n||r?String.fromCharCode(n||r):e[t]||t}function n(t){return r[t]}var e={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},r={};for(var u in e)r[e[u]]=u;return e["&apos;"]="'",r["'"]="&#39;",{encode:function(t){return t?(""+t).replace(/['<> "&]/g,n).replace(/\r?\n/g,"<br/>").replace(/\s/g,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(/<br\s*\/?>/gi,"\n").replace(/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,t).replace(/\u00a0/g," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=i.encodeObject(t[n]);else if("object"==(void 0===t?"undefined":(0,o.default)(t)))for(var r in t)t[r]=i.encodeObject(t[r]);else if("string"==typeof t)return i.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=i},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(29),i=r(o),u=e(80),c=r(u),f="function"==typeof c.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof c.default&&t.constructor===c.default&&t!==c.default.prototype?"symbol":typeof t};n.default="function"==typeof c.default&&"symbol"===f(i.default)?function(t){return void 0===t?"undefined":f(t)}:function(t){return t&&"function"==typeof c.default&&t.constructor===c.default&&t!==c.default.prototype?"symbol":void 0===t?"undefined":f(t)}},function(t,n,e){t.exports={default:e(30),__esModule:!0}},function(t,n,e){e(31),e(75),t.exports=e(79).f("iterator")},function(t,n,e){"use strict";var r=e(32)(!0);e(35)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){var r=e(33),o=e(34);t.exports=function(t){return function(n,e){var i,u,c=String(o(n)),f=r(e),a=c.length;return f<0||f>=a?t?"":void 0:(i=c.charCodeAt(f),i<55296||i>56319||f+1===a||(u=c.charCodeAt(f+1))<56320||u>57343?t?c.charAt(f):i:t?c.slice(f,f+2):u-56320+(i-55296<<10)+65536)}}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n,e){"use strict";var r=e(36),o=e(37),i=e(52),u=e(42),c=e(53),f=e(54),a=e(55),s=e(71),l=e(73),p=e(72)("iterator"),d=!([].keys&&"next"in[].keys()),y=function(){return this};t.exports=function(t,n,e,v,h,b,x){a(e,n,v);var m,g,w,O=function(t){if(!d&&t in P)return P[t];switch(t){case"keys":return function(){return new e(this,t)};case"values":return function(){return new e(this,t)}}return function(){return new e(this,t)}},S=n+" Iterator",_="values"==h,j=!1,P=t.prototype,E=P[p]||P["@@iterator"]||h&&P[h],M=E||O(h),A=h?_?O("entries"):M:void 0,T="Array"==n?P.entries||E:E;if(T&&(w=l(T.call(new t)))!==Object.prototype&&(s(w,S,!0),r||c(w,p)||u(w,p,y)),_&&E&&"values"!==E.name&&(j=!0,M=function(){return E.call(this)}),r&&!x||!d&&!j&&P[p]||u(P,p,M),f[n]=M,f[S]=y,h)if(m={values:_?M:O("values"),keys:b?M:O("keys"),entries:A},x)for(g in m)g in P||i(P,g,m[g]);else o(o.P+o.F*(d||j),n,m);return m}},function(t,n){t.exports=!0},function(t,n,e){var r=e(38),o=e(39),i=e(40),u=e(42),c=function(t,n,e){var f,a,s,l=t&c.F,p=t&c.G,d=t&c.S,y=t&c.P,v=t&c.B,h=t&c.W,b=p?o:o[n]||(o[n]={}),x=b.prototype,m=p?r:d?r[n]:(r[n]||{}).prototype;p&&(e=n);for(f in e)(a=!l&&m&&void 0!==m[f])&&f in b||(s=a?m[f]:e[f],b[f]=p&&"function"!=typeof m[f]?e[f]:v&&a?i(s,r):h&&m[f]==s?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n.prototype=t.prototype,n}(s):y&&"function"==typeof s?i(Function.call,s):s,y&&((b.virtual||(b.virtual={}))[f]=s,t&c.R&&x&&!x[f]&&u(x,f,s)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n,e){var r=e(41);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n,e){var r=e(43),o=e(51);t.exports=e(47)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(44),o=e(46),i=e(50),u=Object.defineProperty;n.f=e(47)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(45);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n,e){t.exports=!e(47)&&!e(48)(function(){return 7!=Object.defineProperty(e(49)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){t.exports=!e(48)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(45),o=e(38).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){var r=e(45);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n,e){t.exports=e(42)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n){t.exports={}},function(t,n,e){"use strict";var r=e(56),o=e(51),i=e(71),u={};e(42)(u,e(72)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n,e){var r=e(44),o=e(57),i=e(69),u=e(66)("IE_PROTO"),c=function(){},f=function(){var t,n=e(49)("iframe"),r=i.length;for(n.style.display="none",e(70).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write("<script>document.F=Object<\/script>"),t.close(),f=t.F;r--;)delete f.prototype[i[r]];return f()};t.exports=Object.create||function(t,n){var e;return null!==t?(c.prototype=r(t),e=new c,c.prototype=null,e[u]=t):e=f(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(43),o=e(44),i=e(58);t.exports=e(47)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),c=u.length,f=0;c>f;)r.f(t,e=u[f++],n[e]);return t}},function(t,n,e){var r=e(59),o=e(69);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(53),o=e(60),i=e(63)(!1),u=e(66)("IE_PROTO");t.exports=function(t,n){var e,c=o(t),f=0,a=[];for(e in c)e!=u&&r(c,e)&&a.push(e);for(;n.length>f;)r(c,e=n[f++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){var r=e(61),o=e(34);t.exports=function(t){return r(o(t))}},function(t,n,e){var r=e(62);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(60),o=e(64),i=e(65);t.exports=function(t){return function(n,e,u){var c,f=r(n),a=o(f.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if((c=f[s++])!=c)return!0}else for(;a>s;s++)if((t||s in f)&&f[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(33),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){var r=e(33),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(67)("keys"),o=e(68);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(38),o=r["__core-js_shared__"]||(r["__core-js_shared__"]={});t.exports=function(t){return o[t]||(o[t]={})}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n,e){t.exports=e(38).document&&document.documentElement},function(t,n,e){var r=e(43).f,o=e(53),i=e(72)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(67)("wks"),o=e(68),i=e(38).Symbol,u="function"==typeof i;(t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))}).store=r},function(t,n,e){var r=e(53),o=e(74),i=e(66)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(34);t.exports=function(t){return Object(r(t))}},function(t,n,e){e(76);for(var r=e(38),o=e(42),i=e(54),u=e(72)("toStringTag"),c=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],f=0;f<5;f++){var a=c[f],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n,e){"use strict";var r=e(77),o=e(78),i=e(54),u=e(60);t.exports=e(35)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){t.exports=function(){}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){n.f=e(72)},function(t,n,e){t.exports={default:e(81),__esModule:!0}},function(t,n,e){e(82),e(93),e(94),e(95),t.exports=e(39).Symbol},function(t,n,e){"use strict";var r=e(38),o=e(53),i=e(47),u=e(37),c=e(52),f=e(83).KEY,a=e(48),s=e(67),l=e(71),p=e(68),d=e(72),y=e(79),v=e(84),h=e(85),b=e(86),x=e(89),m=e(44),g=e(60),w=e(50),O=e(51),S=e(56),_=e(90),j=e(92),P=e(43),E=e(58),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k=d("_hidden"),F=d("toPrimitive"),q={}.propertyIsEnumerable,I=s("symbol-registry"),B=s("symbols"),D=s("op-symbols"),W=Object.prototype,H="function"==typeof L,K=r.QObject,R=!K||!K.prototype||!K.prototype.findChild,J=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(W,n);r&&delete W[n],A(t,n,e),r&&t!==W&&A(W,n,r)}:A,U=function(t){var n=B[t]=S(L.prototype);return n._k=t,n},G=H&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},$=function(t,n,e){return t===W&&$(D,n,e),m(t),n=w(n,!0),m(e),o(B,n)?(e.enumerable?(o(t,k)&&t[k][n]&&(t[k][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,k)||A(t,k,O(1,{})),t[k][n]=!0),J(t,n,e)):A(t,n,e)},z=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)$(t,e=r[o++],n[e]);return t},Y=function(t,n){return void 0===n?S(t):z(S(t),n)},Q=function(t){var n=q.call(this,t=w(t,!0));return!(this===W&&o(B,t)&&!o(D,t))&&(!(n||!o(this,t)||!o(B,t)||o(this,k)&&this[k][t])||n)},X=function(t,n){if(t=g(t),n=w(n,!0),t!==W||!o(B,n)||o(D,n)){var e=M(t,n);return!e||!o(B,n)||o(t,k)&&t[k][n]||(e.enumerable=!0),e}},V=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(B,n=e[i++])||n==k||n==f||r.push(n);return r},Z=function(t){for(var n,e=t===W,r=T(e?D:g(t)),i=[],u=0;r.length>u;)!o(B,n=r[u++])||e&&!o(W,n)||i.push(B[n]);return i};H||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===W&&n.call(D,e),o(this,k)&&o(this[k],t)&&(this[k][t]=!1),J(this,t,O(1,e))};return i&&R&&J(W,t,{configurable:!0,set:n}),U(t)},c(L.prototype,"toString",function(){return this._k}),j.f=X,P.f=$,e(91).f=_.f=V,e(88).f=Q,e(87).f=Z,i&&!e(36)&&c(W,"propertyIsEnumerable",Q,!0),y.f=function(t){return U(d(t))}),u(u.G+u.W+u.F*!H,{Symbol:L});for(var tt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),nt=0;tt.length>nt;)d(tt[nt++]);for(var tt=E(d.store),nt=0;tt.length>nt;)v(tt[nt++]);u(u.S+u.F*!H,"Symbol",{for:function(t){return o(I,t+="")?I[t]:I[t]=L(t)},keyFor:function(t){if(G(t))return h(I,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){R=!0},useSimple:function(){R=!1}}),u(u.S+u.F*!H,"Object",{create:Y,defineProperty:$,defineProperties:z,getOwnPropertyDescriptor:X,getOwnPropertyNames:V,getOwnPropertySymbols:Z}),N&&u(u.S+u.F*(!H||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!G(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!G(n))return n}),r[1]=n,C.apply(N,r)}}}),L.prototype[F]||e(42)(L.prototype,F,L.prototype.valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){var r=e(68)("meta"),o=e(45),i=e(53),u=e(43).f,c=0,f=Object.isExtensible||function(){return!0},a=!e(48)(function(){return f(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++c,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!f(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!f(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&y.NEED&&f(t)&&!i(t,r)&&s(t),t},y=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(38),o=e(39),i=e(36),u=e(79),c=e(43).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||c(n,t,{value:u.f(t)})}},function(t,n,e){var r=e(58),o=e(60);t.exports=function(t,n){for(var e,i=o(t),u=r(i),c=u.length,f=0;c>f;)if(i[e=u[f++]]===n)return e}},function(t,n,e){var r=e(58),o=e(87),i=e(88);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,c=e(t),f=i.f,a=0;c.length>a;)f.call(t,u=c[a++])&&n.push(u);return n}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(62);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){var r=e(60),o=e(91).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],c=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?c(t):o(r(t))}},function(t,n,e){var r=e(59),o=e(69).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n,e){var r=e(88),o=e(51),i=e(60),u=e(50),c=e(53),f=e(46),a=Object.getOwnPropertyDescriptor;n.f=e(47)?a:function(t,n){if(t=i(t),n=u(n,!0),f)try{return a(t,n)}catch(t){}if(c(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n){},function(t,n,e){e(84)("asyncIterator")},function(t,n,e){e(84)("observable")},function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){document.querySelectorAll(".article-entry a:not(.article-more-a)").forEach(function(t){t.setAttribute("target","_blank")})}var n=document.querySelector("#js-aboutme");n&&0!==n.length&&(n.innerHTML=n.innerText)}t.exports={init:e}}])</script><script src="./ReactNative接入微信API _ Jafeney_files/main.b07bcf.js"></script><script>!function(){!function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)}("/slider.583eaa.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, &#39;innerArchive&#39;)"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, &#39;friends&#39;)"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, &#39;aboutme&#39;)"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive" style="display: none;">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)" style="display: none;"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags" style="display: none;">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">NodeJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">模板引擎</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">express</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">webApp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">自动化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">react-native</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">团队建设</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">全栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">weex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">关于创业</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px; display: none;">
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            2、在根目录_config.yml里添加配置：
+</p><pre style="font-size: 12px; display: none;" q-show="jsonFail">  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          <p></p>
+          <li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/09/29/2017-09-29-weex/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative 到 Weex 的艰难一迈</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-09-30</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#weex</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/09/21/2017-09-21-react/"><i class="icon-quo-left icon"></i><span q-text="title">React专利许可证研究</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-09-21</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#React</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/09/03/20170903-rn/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative解决方案研究</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-09-03</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/08/11/2017-08-11-react/"><i class="icon-quo-left icon"></i><span q-text="title">React框架精髓</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-08-11</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#React</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/08/03/20170803/"><i class="icon-quo-left icon"></i><span q-text="title">创业后的一些反思</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-08-04</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#关于创业</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/04/30/20170430-myself/"><i class="icon-quo-left icon"></i><span q-text="title">正确的创业理由</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-05-01</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#关于创业</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2017/03/29/2017-03-29-react-native/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative开发常用的三方模块</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2017-03-29</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/12/12/2016-12-12-web/"><i class="icon-quo-left icon"></i><span q-text="title">轮子篇：基于Node和React的全栈式架构</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-12-12</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Redux</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#React</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#mysql</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#全栈</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/11/18/2016-11-17-wechat/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative接入微信API</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-11-18</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/11/16/2016-11-16-alipay/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative接入支付宝支付</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-11-16</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/11/16/2016-11-16-react-native/"><i class="icon-quo-left icon"></i><span q-text="title">ReactNative坑点——Date对象正确使用</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-11-16</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/09/20/2016-09-20-react-native/"><i class="icon-quo-left icon"></i><span q-text="title">基于Redux的ReactNative项目开发总结（二）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-09-20</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/08/15/2016-08-15-async/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript异步编程的终极演变</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-08-16</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/08/11/2016-08-11-upload/"><i class="icon-quo-left icon"></i><span q-text="title">基于Node的React图片上传组件实现</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-08-11</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#node</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/07/19/2016-07-19-this/"><i class="icon-quo-left icon"></i><span q-text="title">深入理解React中的上下文this</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-07-19</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/07/17/2016-07-17-fetch/"><i class="icon-quo-left icon"></i><span q-text="title">fetch和XMLHttpRequest讲解</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-07-17</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/07/10/2016-07-10-webpack/"><i class="icon-quo-left icon"></i><span q-text="title">如何十倍提高你的webpack构建效率</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-07-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模块化</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/07/03/2016-07-03-promise/"><i class="icon-quo-left icon"></i><span q-text="title">深入理解JavaScript的Promise</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-07-03</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/07/02/2016-07-02-design/"><i class="icon-quo-left icon"></i><span q-text="title">前端框架设计理念</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-07-02</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/06/26/2016-06-26-immutable/"><i class="icon-quo-left icon"></i><span q-text="title">Immutable 详解及 React 中实践</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-06-26</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Redux</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/06/17/2016-06-17-react-native/"><i class="icon-quo-left icon"></i><span q-text="title">基于Redux的ReactNative项目开发总结（一）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-06-17</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/06/11/2016-06-12-redux/"><i class="icon-quo-left icon"></i><span q-text="title">基于Redux架构的单页应用开发总结（三）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-06-11</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Redux</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/06/11/2016-06-11-redux/"><i class="icon-quo-left icon"></i><span q-text="title">基于Redux架构的单页应用开发总结（二）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-06-11</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Redux</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/06/08/2016-06-07-redux/"><i class="icon-quo-left icon"></i><span q-text="title">基于Redux架构的单页应用开发总结（一）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-06-08</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Redux</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/05/13/2016-05-13-manage/"><i class="icon-quo-left icon"></i><span q-text="title">互联网公司如何管理研发团队</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-05-13</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#团队建设</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/05/12/2016-05-12-redux/"><i class="icon-quo-left icon"></i><span q-text="title">Redux和Reflux研究</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-05-12</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/04/22/2016-04-22-react-ES6/"><i class="icon-quo-left icon"></i><span q-text="title">React在ES6中的用法</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-04-22</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/04/20/2016-04-20-flexbox/"><i class="icon-quo-left icon"></i><span q-text="title">Flexbox布局技术研究</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-04-20</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react-native</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/04/08/2016-04-08-es6/"><i class="icon-quo-left icon"></i><span q-text="title">［转］使用简单的JavaScript，我们为什么应该抵制ES6</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-04-08</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/03/06/2016-03-06-gulp/"><i class="icon-quo-left icon"></i><span q-text="title">深入理解gulp自动化</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-03-07</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模块化</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#自动化</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/03/03/2016-03-03-css-coding/"><i class="icon-quo-left icon"></i><span q-text="title">推荐给大家的css书写规范和顺序</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-03-03</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#css</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/02/23/2016-02-23-prototype/"><i class="icon-quo-left icon"></i><span q-text="title">理解Javascript的prototype</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-02-23</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/02/15/2016-02-15-es6/"><i class="icon-quo-left icon"></i><span q-text="title">ES6版本下JavaScript的编程风格</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-02-15</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#ES6</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/02/02/2016-02-02-webpack/"><i class="icon-quo-left icon"></i><span q-text="title">基于webpack的模块化构建</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-02-02</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模块化</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/28/2016-01-28-webapp-reset/"><i class="icon-quo-left icon"></i><span q-text="title">webApp重构之路——性能和用户体验细节总结</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-28</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#webApp</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/21/2016-01-20-cookie/"><i class="icon-quo-left icon"></i><span q-text="title">Node爬坑记——伪造cookie</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-22</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#cookie</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/16/2016-01-16-express-debug/"><i class="icon-quo-left icon"></i><span q-text="title">断点调试你的express项目</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-16</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/14/2016-01-14-tmodJS/"><i class="icon-quo-left icon"></i><span q-text="title">前端模板预编译技术——tmodJS浅谈</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-14</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模板引擎</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/11/2016-01-10-art/"><i class="icon-quo-left icon"></i><span q-text="title">ArtTemplate helper函数的使用</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-11</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模板引擎</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-singleton/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript Singleton（单例）模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-revealing/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript Revealing Module（揭示模块）模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-module/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript Module模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-constructor/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript Constructor(构造器)模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-type/"><i class="icon-quo-left icon"></i><span q-text="title">Javascript 设计模式类别</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-mod/"><i class="icon-quo-left icon"></i><span q-text="title">Javascript 反模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model/"><i class="icon-quo-left icon"></i><span q-text="title">认识JavaScript设计模式</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><span q-on="click:choseTag(e, name)" q-text="name|tagformat">#设计模式</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-js/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript内存回收机制</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-express-middleware/"><i class="icon-quo-left icon"></i><span q-text="title">NodeJS中间层搭建——楔子</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-node-middleware/"><i class="icon-quo-left icon"></i><span q-text="title">NodeJS中间层搭建——楔子</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-call/"><i class="icon-quo-left icon"></i><span q-text="title">JavaScript call和apply的区别</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#Javascript</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-jquery-q/"><i class="icon-quo-left icon"></i><span q-text="title">jQuery一些技巧总结</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#jQuery</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-model-jquery/"><i class="icon-quo-left icon"></i><span q-text="title">jQuery性能优化常用策略</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#jQuery</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-datepicker/"><i class="icon-quo-left icon"></i><span q-text="title">封装一个简单的日历组件</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#jQuery</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-webview/"><i class="icon-quo-left icon"></i><span q-text="title">Javascript调用Android方法</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#webApp</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-latest/"><i class="icon-quo-left icon"></i><span q-text="title">从jQuery到AngularJS，再到React，前端必须走在最前端</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#react</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-modal/"><i class="icon-quo-left icon"></i><span q-text="title">封装一个简单的模态组件</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#jQuery</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-node-spider/"><i class="icon-quo-left icon"></i><span q-text="title">NodeJS开发简单的爬虫程序</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#NodeJS</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-webapp/"><i class="icon-quo-left icon"></i><span q-text="title">用路由为webApp提供多入口</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#webApp</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-module/"><i class="icon-quo-left icon"></i><span q-text="title">前端模块化两兄弟——requireJS和seaJS</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模块化</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-common/"><i class="icon-quo-left icon"></i><span q-text="title">CommonJS规范和实现</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#模块化</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-timer/"><i class="icon-quo-left icon"></i><span q-text="title">封装一个简单的倒计时组件</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#jQuery</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-nosql-2/"><i class="icon-quo-left icon"></i><span q-text="title">NoSQL数据库学习（二）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#mongoDB</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-nosql/"><i class="icon-quo-left icon"></i><span q-text="title">NoSQL数据库学习（一）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#mongoDB</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-express/"><i class="icon-quo-left icon"></i><span q-text="title">深入理解express框架</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-express-3/"><i class="icon-quo-left icon"></i><span q-text="title">express搭建nodeJS中间层（三）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-express-2/"><i class="icon-quo-left icon"></i><span q-text="title">express搭建nodeJS中间层（二）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><!--q-repeat-->
+            </p>
+          </li><li class="search-li" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title" href="http://jafeney.com/2016/01/10/2016-01-10-express-1/"><i class="icon-quo-left icon"></i><span q-text="title">express搭建nodeJS中间层（一）</span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat">2016-01-10</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-on="click:choseTag(e, name)" q-text="name|tagformat">#express</span><!--q-repeat-->
+            </p>
+          </li><!--q-repeat-->
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends" style="display: none;">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.bysocket.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>强的bysocket</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://rapharino.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>豪的Rapharino</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.e2718281828459.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>黄的leo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.csdn.net/u011413061" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的csdn</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://photo.jafeney.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的图片</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://royal.jafeney.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的Royal</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme" style="display: none;">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Jafeney Lou，一个安静的代码客</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div><script src="./ReactNative接入微信API _ Jafeney_files/slider.583eaa.js"></script>
+
+</body><div style="display: block; opacity: 1;"></div></html>
