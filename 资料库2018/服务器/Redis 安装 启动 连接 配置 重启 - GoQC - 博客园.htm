@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.cnblogs.com/GoQC/p/5764201.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>Redis 安装 启动 连接 配置 重启 - GoQC - 博客园</title>
+<meta property="og:description" content="Linux下安装 启动redis服务 上面这种启动 redis使用的是默认配置，也可以通过启动参数告诉redis使用指定配置 连接redis redis配置 redis的配置文件位于Redi">
+<link type="text/css" rel="stylesheet" href="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/bundle-fighting.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/bundle-fighting-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/GoQC/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/GoQC/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/GoQC/wlwmanifest.xml">
+<script async="" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/analytics.js"></script><script type="text/javascript" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/encoder.js"></script><script src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/jquery-2.2.0.min.js"></script><style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style>
+<script type="text/javascript">var currentBlogApp = 'GoQC', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<center>
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/GoQC/"><img id="blogLogo" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/logo.gif" alt=""></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/GoQC/">GoQC</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+				<li><a href="http://q.cnblogs.com/" target="_blank">博问</a></li>
+                <li><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/GoQC/">首页</a></li>
+				<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/GoQC">联系</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/GoQC/rss">订阅</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/GoQC/rss"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/xml.gif" alt="订阅"></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 46&nbsp;
+文章- 68&nbsp;
+评论- 1&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div class="clear"></div>
+	<div id="topicList">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/GoQC/p/5764201.html">Redis 安装 启动 连接 配置 重启</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-size: 16px;"><strong>Linux下安装</strong></span></p>
+<p><span style="color: #000000;"></span></p>
+<div class="cnblogs_code">
+<pre>]# <span style="color: #0000ff;">wget</span> http:<span style="color: #008000;">//</span><span style="color: #008000;">download.redis.io/releases/redis-2.8.17.tar.gz</span>
+]# <span style="color: #0000ff;">tar</span> xzf redis-<span style="color: #800080;">2.8</span>.<span style="color: #800080;">17</span>.<span style="color: #0000ff;">tar</span><span style="color: #000000;">.gz
+]# cd redis</span>-<span style="color: #800080;">2.8</span>.<span style="color: #800080;">17</span><span style="color: #000000;">
+]# </span><span style="color: #0000ff;">make</span></pre>
+</div>
+<p><strong><span style="font-size: 16px;">启动redis服务</span></strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">]# cd src
+]# .</span>/redis-server</pre>
+</div>
+<p>上面这种启动&nbsp;redis使用的是默认配置，也可以通过启动参数告诉redis使用指定配置</p>
+<div class="cnblogs_code">
+<pre>]# ./redis-server redis.config</pre>
+</div>
+<p><span style="font-size: 16px;"><strong>连接redis</strong></span></p>
+<div class="cnblogs_code">
+<pre>[root@localhost src]# ./redis-<span style="color: #000000;">cli
+</span><span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>:<span style="color: #800080;">6379</span>&gt; </pre>
+</div>
+<p><span style="font-size: 16px;"><strong>redis配置</strong></span></p>
+<p>redis的配置文件位于Redis安装目录下，文件名为&nbsp;redis.conf。</p>
+<p>可以通过CONFIG命令查看或者设置配置项</p>
+<p>实例：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>:<span style="color: #800080;">6379</span>&gt;<span style="color: #000000;"> config get loglevel
+</span><span style="color: #800080;">1</span>) <span style="color: #800000;">"</span><span style="color: #800000;">loglevel</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">2</span>) <span style="color: #800000;">"</span><span style="color: #800000;">notice</span><span style="color: #800000;">"</span></pre>
+</div>
+<p>使用 *&nbsp;获取所有配置项</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;b486af83-bf01-4f9c-87ab-54c1d8109071&#39;)"><img id="code_img_closed_b486af83-bf01-4f9c-87ab-54c1d8109071" class="code_img_closed" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_b486af83-bf01-4f9c-87ab-54c1d8109071" class="code_img_opened" style="" onclick="cnblogs_code_hide(&#39;b486af83-bf01-4f9c-87ab-54c1d8109071&#39;,event)" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_b486af83-bf01-4f9c-87ab-54c1d8109071" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>:<span style="color: #800080;">6379</span>&gt; config get *
+  <span style="color: #800080;">1</span>) <span style="color: #800000;">"</span><span style="color: #800000;">dbfilename</span><span style="color: #800000;">"</span>
+  <span style="color: #800080;">2</span>) <span style="color: #800000;">"</span><span style="color: #800000;">dump.rdb</span><span style="color: #800000;">"</span>
+  <span style="color: #800080;">3</span>) <span style="color: #800000;">"</span><span style="color: #800000;">requirepass</span><span style="color: #800000;">"</span>
+  <span style="color: #800080;">4</span>) <span style="color: #800000;">""</span>
+  <span style="color: #800080;">5</span>) <span style="color: #800000;">"</span><span style="color: #800000;">masterauth</span><span style="color: #800000;">"</span>
+  <span style="color: #800080;">6</span>) <span style="color: #800000;">""</span>
+  <span style="color: #800080;">7</span>) <span style="color: #800000;">"</span><span style="color: #800000;">unixsocket</span><span style="color: #800000;">"</span>
+  <span style="color: #800080;">8</span>) <span style="color: #800000;">""</span>
+  <span style="color: #800080;">9</span>) <span style="color: #800000;">"</span><span style="color: #800000;">logfile</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">10</span>) <span style="color: #800000;">""</span>
+ <span style="color: #800080;">11</span>) <span style="color: #800000;">"</span><span style="color: #800000;">pidfile</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">12</span>) <span style="color: #800000;">"</span><span style="color: #800000;">/var/run/redis.pid</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">13</span>) <span style="color: #800000;">"</span><span style="color: #800000;">maxmemory</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">14</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">15</span>) <span style="color: #800000;">"</span><span style="color: #800000;">maxmemory-samples</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">16</span>) <span style="color: #800000;">"</span><span style="color: #800000;">3</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">17</span>) <span style="color: #800000;">"</span><span style="color: #800000;">timeout</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">18</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">19</span>) <span style="color: #800000;">"</span><span style="color: #800000;">tcp-keepalive</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">20</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">21</span>) <span style="color: #800000;">"</span><span style="color: #800000;">auto-aof-rewrite-percentage</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">22</span>) <span style="color: #800000;">"</span><span style="color: #800000;">100</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">23</span>) <span style="color: #800000;">"</span><span style="color: #800000;">auto-aof-rewrite-min-size</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">24</span>) <span style="color: #800000;">"</span><span style="color: #800000;">67108864</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">25</span>) <span style="color: #800000;">"</span><span style="color: #800000;">hash-max-ziplist-entries</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">26</span>) <span style="color: #800000;">"</span><span style="color: #800000;">512</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">27</span>) <span style="color: #800000;">"</span><span style="color: #800000;">hash-max-ziplist-value</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">28</span>) <span style="color: #800000;">"</span><span style="color: #800000;">64</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">29</span>) <span style="color: #800000;">"</span><span style="color: #800000;">list-max-ziplist-entries</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">30</span>) <span style="color: #800000;">"</span><span style="color: #800000;">512</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">31</span>) <span style="color: #800000;">"</span><span style="color: #800000;">list-max-ziplist-value</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">32</span>) <span style="color: #800000;">"</span><span style="color: #800000;">64</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">33</span>) <span style="color: #800000;">"</span><span style="color: #800000;">set-max-intset-entries</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">34</span>) <span style="color: #800000;">"</span><span style="color: #800000;">512</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">35</span>) <span style="color: #800000;">"</span><span style="color: #800000;">zset-max-ziplist-entries</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">36</span>) <span style="color: #800000;">"</span><span style="color: #800000;">128</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">37</span>) <span style="color: #800000;">"</span><span style="color: #800000;">zset-max-ziplist-value</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">38</span>) <span style="color: #800000;">"</span><span style="color: #800000;">64</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">39</span>) <span style="color: #800000;">"</span><span style="color: #800000;">hll-sparse-max-bytes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">40</span>) <span style="color: #800000;">"</span><span style="color: #800000;">3000</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">41</span>) <span style="color: #800000;">"</span><span style="color: #800000;">lua-time-limit</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">42</span>) <span style="color: #800000;">"</span><span style="color: #800000;">5000</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">43</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slowlog-log-slower-than</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">44</span>) <span style="color: #800000;">"</span><span style="color: #800000;">10000</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">45</span>) <span style="color: #800000;">"</span><span style="color: #800000;">latency-monitor-threshold</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">46</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">47</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slowlog-max-len</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">48</span>) <span style="color: #800000;">"</span><span style="color: #800000;">128</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">49</span>) <span style="color: #800000;">"</span><span style="color: #800000;">port</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">50</span>) <span style="color: #800000;">"</span><span style="color: #800000;">6379</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">51</span>) <span style="color: #800000;">"</span><span style="color: #800000;">tcp-backlog</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">52</span>) <span style="color: #800000;">"</span><span style="color: #800000;">511</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">53</span>) <span style="color: #800000;">"</span><span style="color: #800000;">databases</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">54</span>) <span style="color: #800000;">"</span><span style="color: #800000;">16</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">55</span>) <span style="color: #800000;">"</span><span style="color: #800000;">repl-ping-slave-period</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">56</span>) <span style="color: #800000;">"</span><span style="color: #800000;">10</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">57</span>) <span style="color: #800000;">"</span><span style="color: #800000;">repl-timeout</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">58</span>) <span style="color: #800000;">"</span><span style="color: #800000;">60</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">59</span>) <span style="color: #800000;">"</span><span style="color: #800000;">repl-backlog-size</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">60</span>) <span style="color: #800000;">"</span><span style="color: #800000;">1048576</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">61</span>) <span style="color: #800000;">"</span><span style="color: #800000;">repl-backlog-ttl</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">62</span>) <span style="color: #800000;">"</span><span style="color: #800000;">3600</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">63</span>) <span style="color: #800000;">"</span><span style="color: #800000;">maxclients</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">64</span>) <span style="color: #800000;">"</span><span style="color: #800000;">10000</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">65</span>) <span style="color: #800000;">"</span><span style="color: #800000;">watchdog-period</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">66</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">67</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slave-priority</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">68</span>) <span style="color: #800000;">"</span><span style="color: #800000;">100</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">69</span>) <span style="color: #800000;">"</span><span style="color: #800000;">min-slaves-to-write</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">70</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">71</span>) <span style="color: #800000;">"</span><span style="color: #800000;">min-slaves-max-lag</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">72</span>) <span style="color: #800000;">"</span><span style="color: #800000;">10</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">73</span>) <span style="color: #800000;">"</span><span style="color: #800000;">hz</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">74</span>) <span style="color: #800000;">"</span><span style="color: #800000;">10</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">75</span>) <span style="color: #800000;">"</span><span style="color: #800000;">no-appendfsync-on-rewrite</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">76</span>) <span style="color: #800000;">"</span><span style="color: #800000;">no</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">77</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slave-serve-stale-data</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">78</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">79</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slave-read-only</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">80</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">81</span>) <span style="color: #800000;">"</span><span style="color: #800000;">stop-writes-on-bgsave-error</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">82</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">83</span>) <span style="color: #800000;">"</span><span style="color: #800000;">daemonize</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">84</span>) <span style="color: #800000;">"</span><span style="color: #800000;">no</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">85</span>) <span style="color: #800000;">"</span><span style="color: #800000;">rdbcompression</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">86</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">87</span>) <span style="color: #800000;">"</span><span style="color: #800000;">rdbchecksum</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">88</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">89</span>) <span style="color: #800000;">"</span><span style="color: #800000;">activerehashing</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">90</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">91</span>) <span style="color: #800000;">"</span><span style="color: #800000;">repl-disable-tcp-nodelay</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">92</span>) <span style="color: #800000;">"</span><span style="color: #800000;">no</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">93</span>) <span style="color: #800000;">"</span><span style="color: #800000;">aof-rewrite-incremental-fsync</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">94</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">95</span>) <span style="color: #800000;">"</span><span style="color: #800000;">aof-load-truncated</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">96</span>) <span style="color: #800000;">"</span><span style="color: #800000;">yes</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">97</span>) <span style="color: #800000;">"</span><span style="color: #800000;">appendonly</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">98</span>) <span style="color: #800000;">"</span><span style="color: #800000;">no</span><span style="color: #800000;">"</span>
+ <span style="color: #800080;">99</span>) <span style="color: #800000;">"</span><span style="color: #800000;">dir</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">100</span>) <span style="color: #800000;">"</span><span style="color: #800000;">/home/lxg/redis/redis-2.8.17/src</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">101</span>) <span style="color: #800000;">"</span><span style="color: #800000;">maxmemory-policy</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">102</span>) <span style="color: #800000;">"</span><span style="color: #800000;">volatile-lru</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">103</span>) <span style="color: #800000;">"</span><span style="color: #800000;">appendfsync</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">104</span>) <span style="color: #800000;">"</span><span style="color: #800000;">everysec</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">105</span>) <span style="color: #800000;">"</span><span style="color: #800000;">save</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">106</span>) <span style="color: #800000;">"</span><span style="color: #800000;">3600 1 300 100 60 10000</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">107</span>) <span style="color: #800000;">"</span><span style="color: #800000;">loglevel</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">108</span>) <span style="color: #800000;">"</span><span style="color: #800000;">notice</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">109</span>) <span style="color: #800000;">"</span><span style="color: #800000;">client-output-buffer-limit</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">110</span>) <span style="color: #800000;">"</span><span style="color: #800000;">normal 0 0 0 slave 268435456 67108864 60 pubsub 33554432 8388608 60</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">111</span>) <span style="color: #800000;">"</span><span style="color: #800000;">unixsocketperm</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">112</span>) <span style="color: #800000;">"</span><span style="color: #800000;">0</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">113</span>) <span style="color: #800000;">"</span><span style="color: #800000;">slaveof</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">114</span>) <span style="color: #800000;">""</span>
+<span style="color: #800080;">115</span>) <span style="color: #800000;">"</span><span style="color: #800000;">notify-keyspace-events</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">116</span>) <span style="color: #800000;">""</span>
+<span style="color: #800080;">117</span>) <span style="color: #800000;">"</span><span style="color: #800000;">bind</span><span style="color: #800000;">"</span>
+<span style="color: #800080;">118</span>) <span style="color: #800000;">""</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">config get *</span></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;18240a3e-852e-4c96-a66f-0211f642c4a2&#39;)"><img id="code_img_closed_18240a3e-852e-4c96-a66f-0211f642c4a2" class="code_img_closed" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_18240a3e-852e-4c96-a66f-0211f642c4a2" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;18240a3e-852e-4c96-a66f-0211f642c4a2&#39;,event)" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_18240a3e-852e-4c96-a66f-0211f642c4a2" class="cnblogs_code_hide">
+<pre><span style="color: #000000;">redis.conf 配置项说明如下：
+</span><span style="color: #800080;">1</span><span style="color: #000000;">. Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程
+    daemonize no
+</span><span style="color: #800080;">2</span>. 当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/<span style="color: #000000;">redis.pid文件，可以通过pidfile指定
+    pidfile </span>/var/run/<span style="color: #000000;">redis.pid
+</span><span style="color: #800080;">3</span><span style="color: #000000;">. 指定Redis监听端口，默认端口为6379，作者在自己的一篇博文中解释了为什么选用6379作为默认端口，因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字
+    port </span><span style="color: #800080;">6379</span>
+<span style="color: #800080;">4</span><span style="color: #000000;">. 绑定的主机地址
+    bind </span><span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>
+<span style="color: #800080;">5</span><span style="color: #000000;">.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能
+    timeout </span><span style="color: #800080;">300</span>
+<span style="color: #800080;">6</span><span style="color: #000000;">. 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose
+    loglevel verbose
+</span><span style="color: #800080;">7</span>. 日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/<span style="color: #0000ff;">null</span><span style="color: #000000;">
+    logfile stdout
+</span><span style="color: #800080;">8</span>. 设置数据库的数量，默认数据库为0，可以使用SELECT &lt;dbid&gt;<span style="color: #000000;">命令在连接上指定数据库id
+    databases </span><span style="color: #800080;">16</span>
+<span style="color: #800080;">9</span><span style="color: #000000;">. 指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合
+    save </span>&lt;seconds&gt; &lt;changes&gt;<span style="color: #000000;">
+    Redis默认配置文件中提供了三个条件：
+    save </span><span style="color: #800080;">900</span> <span style="color: #800080;">1</span><span style="color: #000000;">
+    save </span><span style="color: #800080;">300</span> <span style="color: #800080;">10</span><span style="color: #000000;">
+    save </span><span style="color: #800080;">60</span> <span style="color: #800080;">10000</span><span style="color: #000000;">
+    分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。
+ 
+</span><span style="color: #800080;">10</span><span style="color: #000000;">. 指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大
+    rdbcompression yes
+</span><span style="color: #800080;">11</span><span style="color: #000000;">. 指定本地数据库文件名，默认值为dump.rdb
+    dbfilename dump.rdb
+</span><span style="color: #800080;">12</span><span style="color: #000000;">. 指定本地数据库存放目录
+    </span><span style="color: #0000ff;">dir</span> ./
+<span style="color: #800080;">13</span><span style="color: #000000;">. 设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步
+    slaveof </span>&lt;masterip&gt; &lt;masterport&gt;
+<span style="color: #800080;">14</span><span style="color: #000000;">. 当master服务设置了密码保护时，slav服务连接master的密码
+    masterauth </span>&lt;master-password&gt;
+<span style="color: #800080;">15</span>. 设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH &lt;password&gt;<span style="color: #000000;">命令提供密码，默认关闭
+    requirepass foobared
+</span><span style="color: #800080;">16</span>. 设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients <span style="color: #800080;">0</span><span style="color: #000000;">，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息
+    maxclients </span><span style="color: #800080;">128</span>
+<span style="color: #800080;">17</span><span style="color: #000000;">. 指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区
+    maxmemory </span>&lt;bytes&gt;
+<span style="color: #800080;">18</span><span style="color: #000000;">. 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no
+    appendonly no
+</span><span style="color: #800080;">19</span><span style="color: #000000;">. 指定更新日志文件名，默认为appendonly.aof
+     appendfilename appendonly.aof
+</span><span style="color: #800080;">20</span><span style="color: #000000;">. 指定更新日志条件，共有3个可选值： 
+    no：表示等操作系统进行数据缓存同步到磁盘（快） 
+    always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全） 
+    everysec：表示每秒同步一次（折衷，默认值）
+    appendfsync everysec
+ 
+</span><span style="color: #800080;">21</span><span style="color: #000000;">. 指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）
+     vm</span>-<span style="color: #000000;">enabled no
+</span><span style="color: #800080;">22</span>. 虚拟内存文件路径，默认值为/tmp/<span style="color: #000000;">redis.swap，不可多个Redis实例共享
+     vm</span>-swap-<span style="color: #0000ff;">file</span> /tmp/<span style="color: #000000;">redis.swap
+</span><span style="color: #800080;">23</span>. 将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-<span style="color: #000000;">memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0
+     vm</span>-max-memory <span style="color: #800080;">0</span>
+<span style="color: #800080;">24</span>. Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-<span style="color: #000000;">size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值
+     vm</span>-page-size <span style="color: #800080;">32</span>
+<span style="color: #800080;">25</span><span style="color: #000000;">. 设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。
+     vm</span>-pages <span style="color: #800080;">134217728</span>
+<span style="color: #800080;">26</span><span style="color: #000000;">. 设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4
+     vm</span>-max-threads <span style="color: #800080;">4</span>
+<span style="color: #800080;">27</span><span style="color: #000000;">. 设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启
+    glueoutputbuf yes
+</span><span style="color: #800080;">28</span><span style="color: #000000;">. 指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法
+    hash</span>-max-zipmap-entries <span style="color: #800080;">64</span><span style="color: #000000;">
+    hash</span>-max-zipmap-value <span style="color: #800080;">512</span>
+<span style="color: #800080;">29</span><span style="color: #000000;">. 指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）
+    activerehashing yes
+</span><span style="color: #800080;">30</span><span style="color: #000000;">. 指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件
+    include </span>/path/to/local.conf</pre>
+</div>
+<span class="cnblogs_code_collapse">参数说明</span></div>
+<p>可以通过修改redis.conf文件或者使用config&nbsp;set&nbsp;命令来修改配置</p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>:<span style="color: #800080;">6379</span>&gt; config set loglevel <span style="color: #800000;">'</span><span style="color: #800000;">notice</span><span style="color: #800000;">'</span><span style="color: #000000;">
+OK</span></pre>
+</div>
+<p><span style="font-size: 16px;"><strong>如何停止/启动/重启redis服务</strong></span></p>
+<p><span style="color: #3366ff;"><span style="color: #00ccff;">下面内容</span></span><span style="color: #00ccff;">来自：http://outofmemory.cn/code-snippet/37597/how-to-stop-start-restart-redis-server</span></p>
+<p>如果是用<code>apt-get</code>或者<code>yum install</code>安装的redis，可以直接通过下面的命令停止/启动/重启redis</p>
+<pre class="prettyprint sh prettyprinted"><span class="str">/etc/<span class="pln">init<span class="pun">.<span class="pln">d<span class="pun">/<span class="pln">redis<span class="pun">-<span class="pln">server stop
+<span class="pun">/<span class="pln">etc<span class="pun">/<span class="pln">init<span class="pun">.<span class="pln">d<span class="pun">/<span class="pln">redis<span class="pun">-<span class="pln">server start
+<span class="pun">/<span class="pln">etc<span class="pun">/<span class="pln">init<span class="pun">.<span class="pln">d<span class="pun">/<span class="pln">redis<span class="pun">-<span class="pln">server restart</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<p>如果是通过源码安装的redis，则可以通过redis的客户端程序<code>redis-cli</code>的<code>shutdown</code>命令来重启redis</p>
+<pre class="prettyprint sh prettyprinted"><span class="pln">redis<span class="pun">-<span class="pln">cli <span class="pun">-<span class="pln">h <span class="lit">127.0<span class="pun">.<span class="lit">0.1<span class="pln"> <span class="pun">-<span class="pln">p <span class="lit">6379<span class="pln"> shutdown</span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<p>如果上述方式都没有成功停止redis，则可以使用终极武器<span class="Apple-converted-space">&nbsp;<code>kill -9</code></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/GoQC/category/866598.html" target="_blank">Redis</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5764201,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;9ecd8a4e-0d7b-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/GoQC/" target="_blank"><img src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/20151025194420.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/GoQC/">GoQC</a><br>
+            <a href="http://home.cnblogs.com/u/GoQC/followees">关注 - 10</a><br>
+            <a href="http://home.cnblogs.com/u/GoQC/followers">粉丝 - 6</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;9ecd8a4e-0d7b-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5764201,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5764201,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/GoQC/p/5750300.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/GoQC/p/5750300.html" title="发布于2016-08-08 17:29">Java可变长参数方法调用问题</a><br><a href="https://www.cnblogs.com/GoQC/p/5821294.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/GoQC/p/5821294.html" title="发布于2016-08-30 11:26">List与Set的contains方法效率问题</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-08-12 11:12</span> <a href="https://www.cnblogs.com/GoQC/">GoQC</a> 阅读(<span id="post_view_count">91775</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5764201" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/GoQC/p/5764201.html#" onclick="AddToWz(5764201);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=250734,cb_entryId=5764201,cb_blogApp=currentBlogApp,cb_blogUserGuid='9ecd8a4e-0d7b-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/8/12 11:12:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/GoQC/p/5764201.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/GoQC/p/5764201.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://www.linuxprobe.com/chapter-00.html" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-linuxprobe&#39;)">【免费】要想入门学习Linux系统技术，你应该先选择一本适合自己的书籍</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-SpreadJS&#39;)">【前端】SpreadJS表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/developer/edu/major-100005?fromSource=gwzcw.1312543.1312543.1312543#course-1274" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-微信支付&#39;)">【直播】如何快速接入微信支付功能</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/special/rav?fromSource=gwzcw.1312547.1312547.1312547" target="_blank"><img width="300" height="250" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/24442-20180914091419057-283402001.jpg" alt="腾讯云" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/607410/" target="_blank">传Uber将收购中东网约车平台Careem</a><br> ·  <a href="https://news.cnblogs.com/n/607408/" target="_blank">梁建章：高铁旅游将使中国成全球最强旅游国家</a><br> ·  <a href="https://news.cnblogs.com/n/607407/" target="_blank">快递柜悄然收费从免费到5角/天，收件人被迫“买单”</a><br> ·  <a href="https://news.cnblogs.com/n/607405/" target="_blank">调查：住2天就头晕！一个月不解决问题 自如深陷“甲醛门”</a><br> ·  <a href="https://news.cnblogs.com/n/607403/" target="_blank">越贵越买，iPhone价格明年能否再涨一波？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://clickc.admaster.com.cn/c/a113319,b2799157,c1705,i0,m101,8a1,8b3,h,uhttps://activity.huaweicloud.com/hc2018-promotion/index.html?utm_source=chmarketing&amp;utm_medium=mediabuy&amp;utm_campaign=hc2018chinaimc&amp;utm_content=cnblogshcpromotionembraceai" target="_blank"><img width="468" height="60" src="./Redis 安装 启动 连接 配置 重启 - GoQC - 博客园_files/24442-20180916205959082-1265433055.jpg" alt="华为云HC0917" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C2&#39;);"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="https://kb.cnblogs.com/page/606682/" target="_blank">为什么说 Java 程序员必须掌握 Spring Boot ？</a><br> ·  <a href="https://kb.cnblogs.com/page/606645/" target="_blank">在学习中，有一个比掌握知识更重要的能力</a><br> ·  <a href="https://kb.cnblogs.com/page/603663/" target="_blank">如何招到一个靠谱的程序员</a><br> ·  <a href="https://kb.cnblogs.com/page/573614/" target="_blank">一个故事看懂“区块链”</a><br> ·  <a href="https://kb.cnblogs.com/page/603697/" target="_blank">被踢出去的用户</a><br></div>» <a href="https://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: topicList 文章列表容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/GoQC/">GoQC</a><br>园龄：<a href="https://home.cnblogs.com/u/GoQC/" title="入园时间：2015-10-25">2年10个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/GoQC/followers/">6</a><br>关注：<a href="https://home.cnblogs.com/u/GoQC/followees/">10</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;9ecd8a4e-0d7b-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('9ecd8a4e-0d7b-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/08/01&#39;);return false;">&lt;</a></td><td align="center">2018年9月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td class="CalTodayDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/GoQC/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/GoQC/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/GoQC/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/GoQC/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/GoQC/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/GoQC/p/5764201.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/GoQC/tag/%E6%A0%88/">栈</a>(2)</li><li><a href="https://www.cnblogs.com/GoQC/tag/bind/">bind</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/elasticsearch/">elasticsearch</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/freemarker%20word/">freemarker word</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/gulp/">gulp</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/idea/">idea</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/jade/">jade</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/JDBC/">JDBC</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/jQuery/">jQuery</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/JS/">JS</a>(1)</li><li><a href="https://www.cnblogs.com/GoQC/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/GoQC/category/905037.html">AngularJS(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/GoQC/category/902322.html">CentOS(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/GoQC/category/835469.html">freemarker(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/GoQC/category/905125.html">JavaScript</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/GoQC/category/874946.html">JavaSE(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/GoQC/category/926057.html">logstash(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/GoQC/category/884544.html">maven(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/GoQC/category/927965.html">mybatis(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/GoQC/category/866598.html">Redis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/GoQC/category/835422.html">SSM(4)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/GoQC/archive/2017/05.html">2017年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/GoQC/archive/2017/04.html">2017年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/GoQC/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/GoQC/archive/2017/02.html">2017年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/GoQC/archive/2017/01.html">2017年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/GoQC/archive/2016/12.html">2016年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/GoQC/archive/2016/11.html">2016年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/GoQC/archive/2016/10.html">2016年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/GoQC/archive/2016/09.html">2016年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/GoQC/archive/2016/08.html">2016年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/GoQC/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="https://www.cnblogs.com/GoQC/archive/2016/05.html">2016年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="https://www.cnblogs.com/GoQC/archive/2016/04.html">2016年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="https://www.cnblogs.com/GoQC/archive/2016/03.html">2016年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="https://www.cnblogs.com/GoQC/archive/2015/12.html">2015年12月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListArticleCategory">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://www.cnblogs.com/GoQC/category/812492.html">HTML&amp;CSS(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="https://www.cnblogs.com/GoQC/category/748191.html">Java &amp; mode(5)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="https://www.cnblogs.com/GoQC/category/768879.html">JavaScript &amp; jQuery(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="https://www.cnblogs.com/GoQC/category/748190.html">JavaSE(21)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="https://www.cnblogs.com/GoQC/category/761613.html">JDBC(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="https://www.cnblogs.com/GoQC/category/748192.html">JVM</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="https://www.cnblogs.com/GoQC/category/813498.html">maven(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="https://www.cnblogs.com/GoQC/category/864471.html">Memcached(5)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_8" href="https://www.cnblogs.com/GoQC/category/879210.html">MyBatis(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_9" href="https://www.cnblogs.com/GoQC/category/879225.html">MySQL(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_10" href="https://www.cnblogs.com/GoQC/category/806674.html">Servlet/JSP(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_11" href="https://www.cnblogs.com/GoQC/category/858964.html">Shell(9)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_12" href="https://www.cnblogs.com/GoQC/category/807438.html">SSH(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_13" href="https://www.cnblogs.com/GoQC/category/858890.html">业务逻辑(1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/GoQC/p/6216967.html#3791722">1. Re:Mybatis select返回值为map时,选取表字段的两列作为key,value</a></li>
+        <li class="recent_comment_body">这样的改写，所有返回的hashmap都被改变了吧？</li>
+        <li class="recent_comment_author">--GGGGeek</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/GoQC/p/5764201.html">1. Redis 安装 启动 连接 配置 重启(91775)</a></li><li><a href="https://www.cnblogs.com/GoQC/p/6216967.html">2. Mybatis select返回值为map时,选取表字段的两列作为key,value(15572)</a></li><li><a href="https://www.cnblogs.com/GoQC/p/6014063.html">3. 如何在Linux中查看所有正在运行的进程(13498)</a></li><li><a href="https://www.cnblogs.com/GoQC/p/6217039.html">4. MyBatis传入参数为集合、数组SQL写法(8659)</a></li><li><a href="https://www.cnblogs.com/GoQC/p/5821294.html">5. List与Set的contains方法效率问题(8370)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/GoQC/p/6216967.html">1. Mybatis select返回值为map时,选取表字段的两列作为key,value(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/GoQC/p/6216967.html">1. Mybatis select返回值为map时,选取表字段的两列作为key,value(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+		<div class="clear"></div>
+	</div><!--end: sideBar 侧边栏容器 -->
+</div><!--end: home 自定义的最大容器 -->
+		<div class="clear"></div>
+<div id="footer">
+	
+<!--done-->
+Copyright ©2018 GoQC
+</div><!--end: footer -->
+</center>
+
+
+</body><div style="display: block; opacity: 1;"></div></html>
