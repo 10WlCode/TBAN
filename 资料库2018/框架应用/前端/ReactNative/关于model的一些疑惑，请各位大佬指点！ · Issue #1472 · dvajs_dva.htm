@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://github.com/dvajs/dva/issues/1472 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+  <link rel="dns-prefetch" href="https://assets-cdn.github.com/">
+  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com/">
+  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+
+
+
+  <link crossorigin="anonymous" media="all" integrity="sha512-mjQPRAh2Y9A0sPdZzipNfPO7PT4g06mk0uZs15DbL/vsNCRGx1uRzWVzls9MJCoy2yRNjaMmEVFKJDpCui00mA==" rel="stylesheet" href="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/frameworks-df973073d880f28fbbae0263fb1ef62b.css">
+  <link crossorigin="anonymous" media="all" integrity="sha512-Pqv5U8YdJD9zAcXXbBwemgh20q7IJaqiTaC0PweqvRVcfvz3ZnrYGAJaXqAOfniKzOh3AOdktQtCxL6jl6KrTw==" rel="stylesheet" href="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/github-673bdae34018f4577d245d948a978d2a.css">
+  
+  
+  
+  
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs/dva</title>
+    <meta name="description" content="首先，这是我第一次写前端。一开始使用creat-react-app写我们的web-app，后来遇到诸多问题，比如： css写在一个文件中，并有全局效果； 路由切换数据会丢失，必须另外保存，不然后退会重新刷新页面； 于是，后来果断切换到dva重构。 但是对于model还有一些疑惑： dva中的model相当于业务模型，那我们一些必须的封装数据的数据模型放在哪里？ 在model的subscriptions中监听location的变化来请求数据，但是路由后退后数据会刷新，为了...">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    
+    <meta property="og:image" content="https://avatars3.githubusercontent.com/u/19367953?s=400&amp;v=4"><meta property="og:site_name" content="GitHub"><meta property="og:type" content="object"><meta property="og:title" content="关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs/dva"><meta property="og:url" content="https://github.com/dvajs/dva/issues/1472"><meta property="og:description" content="首先，这是我第一次写前端。一开始使用creat-react-app写我们的web-app，后来遇到诸多问题，比如： css写在一个文件中，并有全局效果； 路由切换数据会丢失，必须另外保存，不然后退会重新刷新页面； 于是，后来果断切换到dva重构。 但是对于model还有一些疑惑： dva中的model相当于业务模型，那我们一些必须的封装数据的数据模型放在哪里？ 在model的subscrip...">
+
+  <link rel="assets" href="https://assets-cdn.github.com/">
+  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MzE5MzU3ODc2OjRkZTc5MzVjMDlkOGMyNTA2MTMxZGMyMmRlNDBmMTM4MjNhYTkxNmMxMzdkNDM1MWI4YWNmYTYyZDlkNTQyMWI=--55115e5d7cfee62bccf6f1cfe1447b5a8505b3c2">
+  <meta name="pjax-timeout" content="1000">
+  <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+  <meta name="request-id" content="DE48:4C89:48FF5C0:6C21CE3:5BABF737" data-pjax-transient="">
+
+    <meta name="hovercard-subject-tag" content="issue:289855705" data-pjax-transient="">
+
+  
+
+  <meta name="selected-link" value="repo_issues" data-pjax-transient="">
+
+      <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
+
+  <meta name="octolytics-host" content="collector.githubapp.com"><meta name="octolytics-app-id" content="github"><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event"><meta name="octolytics-dimension-request_id" content="DE48:4C89:48FF5C0:6C21CE3:5BABF737"><meta name="octolytics-dimension-region_edge" content="sea"><meta name="octolytics-dimension-region_render" content="iad"><meta name="octolytics-actor-id" content="5060870"><meta name="octolytics-actor-login" content="ZereL"><meta name="octolytics-actor-hash" content="9ccb3636919dc8a659d164d3980428d1ffbfff52a942b05ab02ab4c69a82c737">
+<meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/issues/show" data-pjax-transient="true">
+
+
+
+    <meta name="google-analytics" content="UA-3769691-2">
+
+  <meta class="js-ga-set" name="userId" content="9b15b1c53079a80223fae1996a3c7749" %="">
+
+<meta class="js-ga-set" name="dimension1" content="Logged In">
+
+
+
+  
+
+      <meta name="hostname" content="github.com">
+    <meta name="user-login" content="ZereL">
+
+      <meta name="expected-hostname" content="github.com">
+    <meta name="js-proxy-site-detection-payload" content="OGE1ODljYmRlYjFmMDYyMjhkMTRiMzg5YTIwOTZlMmZjOTNkZDhmMDc4MzAwMWQxZWNmYzFlYzcxYmMxNTJjMXx7InJlbW90ZV9hZGRyZXNzIjoiMTI1LjIzNi4yMjAuMTU4IiwicmVxdWVzdF9pZCI6IkRFNDg6NEM4OTo0OEZGNUMwOjZDMjFDRTM6NUJBQkY3MzciLCJ0aW1lc3RhbXAiOjE1Mzc5OTY2MDEsImhvc3QiOiJnaXRodWIuY29tIn0=">
+
+    <meta name="enabled-features" content="DASHBOARD_V2_LAYOUT_OPT_IN,EXPLORE_DISCOVER_REPOSITORIES,UNIVERSE_BANNER,MARKETPLACE_PLAN_RESTRICTION_EDITOR,MARKETPLACE_RETARGETING,QUOTE_MARKDOWN,COLLAPSE_REPEATED_COMMENTS">
+
+  <meta name="html-safe-nonce" content="36f7bcaaa58eae720a09b34e3641a0eaadd70275">
+
+  <meta http-equiv="x-pjax-version" content="0d44be24b2286593d50bbb654bb305df">
+  
+
+      <link href="https://github.com/dvajs/dva/commits/master.atom" rel="alternate" title="Recent Commits to dva:master" type="application/atom+xml">
+
+  <meta name="go-import" content="github.com/dvajs/dva git https://github.com/dvajs/dva.git">
+
+  <meta name="octolytics-dimension-user_id" content="20552239"><meta name="octolytics-dimension-user_login" content="dvajs"><meta name="octolytics-dimension-repository_id" content="61872036"><meta name="octolytics-dimension-repository_nwo" content="dvajs/dva"><meta name="octolytics-dimension-repository_public" content="true"><meta name="octolytics-dimension-repository_is_fork" content="false"><meta name="octolytics-dimension-repository_network_root_id" content="61872036"><meta name="octolytics-dimension-repository_network_root_nwo" content="dvajs/dva"><meta name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" content="false">
+
+
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+  <meta name="u2f-support" content="true">
+
+  <link rel="manifest" href="https://github.com/manifest.json" crossorigin="use-credentials">
+
+  </head>
+
+  <body class="logged-in env-production emoji-size-boost">
+    
+
+  <div class="position-relative js-header-wrapper ">
+    <a href="https://github.com/dvajs/dva/issues/1472#start-of-content" tabindex="1" class="p-3 bg-blue text-white show-on-focus js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+    
+    
+    
+
+
+
+        
+<header class="Header  f5" role="banner">
+  <div class="d-flex flex-justify-between px-3 container-lg">
+    <div class="d-flex flex-justify-between ">
+      <div class="">
+        <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+
+      </div>
+
+    </div>
+
+    <div class="HeaderMenu d-flex flex-justify-between flex-auto">
+      <div class="d-flex">
+            <div class="">
+              <div class="header-search scoped-search site-scoped-search js-site-search position-relative js-jump-to" role="combobox" aria-owns="jump-to-results" aria-label="Search or jump to" aria-haspopup="listbox" aria-expanded="false">
+  <div class="position-relative">
+    <!-- '"` --><!-- </textarea></xmp> --><form class="js-site-search-form" data-scope-type="Repository" data-scope-id="61872036" data-scoped-search-url="/dvajs/dva/search" data-unscoped-search-url="/search" action="https://github.com/dvajs/dva/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+      <label class="form-control header-search-wrapper header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center js-chromeless-input-container">
+        <input type="text" class="form-control header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" data-hotkey="s,/" name="q" value="" placeholder="Search or jump to…" data-unscoped-placeholder="Search or jump to…" data-scoped-placeholder="Search or jump to…" autocapitalize="off" aria-autocomplete="list" aria-controls="jump-to-results" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=x2jixogAiXrxVwKLDr7mawVps6v85DZDSGyT7Sa4mPpcvzr0URcnR6fZgU5hanBC1PZn/70NlGXxEo0yoYVvaA==" spellcheck="false" autocomplete="off">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+            <img src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/search-shortcut-hint.svg" alt="" class="mr-2 header-search-key-slash">
+
+            <div class="Box position-absolute overflow-hidden d-none jump-to-suggestions js-jump-to-suggestions-container">
+              <ul class="d-none js-jump-to-suggestions-template-container">
+                <li class="d-flex flex-justify-start flex-items-center p-0 f5 navigation-item js-navigation-item" role="option">
+                  <a tabindex="-1" class="no-underline d-flex flex-auto flex-items-center p-2 jump-to-suggestions-path js-jump-to-suggestion-path js-navigation-open" href="https://github.com/dvajs/dva/issues/1472">
+                    <div class="jump-to-octicon js-jump-to-octicon mr-2 text-center d-none">
+                      <svg height="16" width="16" class="octicon octicon-repo flex-shrink-0 js-jump-to-octicon-repo d-none" title="Repository" aria-label="Repository" viewBox="0 0 12 16" version="1.1" role="img"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+                      <svg height="16" width="16" class="octicon octicon-project flex-shrink-0 js-jump-to-octicon-project d-none" title="Project" aria-label="Project" viewBox="0 0 15 16" version="1.1" role="img"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg>
+                      <svg height="16" width="16" class="octicon octicon-search flex-shrink-0 js-jump-to-octicon-search d-none" title="Search" aria-label="Search" viewBox="0 0 16 16" version="1.1" role="img"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
+                    </div>
+
+                    <img class="avatar mr-2 flex-shrink-0 js-jump-to-suggestion-avatar d-none" alt="" aria-label="Team" src="https://github.com/dvajs/dva/issues/1472" width="28" height="28">
+
+                    <div class="jump-to-suggestion-name js-jump-to-suggestion-name flex-auto overflow-hidden text-left no-wrap css-truncate css-truncate-target">
+                    </div>
+
+                    <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none js-jump-to-badge-search">
+                      <span class="js-jump-to-badge-search-text-default d-none" aria-label="in this repository">
+                        In this repository
+                      </span>
+                      <span class="js-jump-to-badge-search-text-global d-none" aria-label="in all of GitHub">
+                        All GitHub
+                      </span>
+                      <span aria-hidden="true" class="d-inline-block ml-1 v-align-middle">↵</span>
+                    </div>
+
+                    <div aria-hidden="true" class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none d-on-nav-focus js-jump-to-badge-jump">
+                      Jump to
+                      <span class="d-inline-block ml-1 v-align-middle">↵</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="d-none js-jump-to-no-results-template-container">
+                <li class="d-flex flex-justify-center flex-items-center p-3 f5 d-none">
+                  <span class="text-gray">No suggested jump to results</span>
+                </li>
+              </ul>
+
+              <ul id="jump-to-results" role="listbox" class="js-navigation-container jump-to-suggestions-results-container js-jump-to-suggestions-results-container">
+                <li class="d-flex flex-justify-center flex-items-center p-0 f5">
+                  <img src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-128.gif" alt="Octocat Spinner Icon" class="m-2" width="28">
+                </li>
+              </ul>
+            </div>
+      </label>
+</form>  </div>
+</div>
+
+            </div>
+
+          <ul class="d-flex pl-2 flex-items-center text-bold list-style-none" role="navigation">
+            <li>
+              <a class="js-selected-navigation-item HeaderNavlink px-2" data-hotkey="g p" data-ga-click="Header, click, Nav menu - item:pulls context:user" aria-label="Pull requests you created" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls" href="https://github.com/pulls">
+                Pull requests
+</a>            </li>
+            <li>
+              <a class="js-selected-navigation-item HeaderNavlink px-2" data-hotkey="g i" data-ga-click="Header, click, Nav menu - item:issues context:user" aria-label="Issues you created" data-selected-links="/issues /issues/assigned /issues/mentioned /issues" href="https://github.com/issues">
+                Issues
+</a>            </li>
+              <li>
+                <a class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:marketplace context:user" data-octo-click="marketplace_click" data-octo-dimensions="location:nav_bar" data-selected-links=" /marketplace" href="https://github.com/marketplace">
+                   Marketplace
+</a>              </li>
+            <li>
+              <a class="js-selected-navigation-item HeaderNavlink px-2" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship showcases showcases_search showcases_landing /explore" href="https://github.com/explore">
+                Explore
+</a>            </li>
+          </ul>
+      </div>
+
+      <div class="d-flex">
+        
+<ul class="user-nav d-flex flex-items-center list-style-none" id="user-links">
+  <li class="dropdown">
+    <span class="d-inline-block  px-2">
+      
+    <a aria-label="You have no unread notifications" class="notification-indicator tooltipped tooltipped-s  js-socket-channel js-notification-indicator" data-hotkey="g n" data-ga-click="Header, go to notifications, icon:read" data-channel="notification-changed:5060870" href="https://github.com/notifications">
+        <span class="mail-status "></span>
+        <svg class="octicon octicon-bell" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.99 11.991v1H0v-1l.73-.58c.769-.769.809-2.547 1.189-4.416.77-3.767 4.077-4.996 4.077-4.996 0-.55.45-1 .999-1 .55 0 1 .45 1 1 0 0 3.387 1.229 4.156 4.996.38 1.879.42 3.657 1.19 4.417l.659.58h-.01zM6.995 15.99c1.11 0 1.999-.89 1.999-1.999H4.996c0 1.11.89 1.999 1.999 1.999z"></path></svg>
+</a>
+    </span>
+  </li>
+
+  <li class="dropdown">
+    <details class="details-overlay details-reset d-flex px-2 flex-items-center">
+      <summary class="HeaderNavlink" aria-label="Create new…" data-ga-click="Header, create new, icon:add" aria-haspopup="menu">
+        <svg class="octicon octicon-plus float-left mr-1 mt-1" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg>
+        <span class="dropdown-caret mt-1"></span>
+      </summary>
+      <details-menu class="dropdown-menu dropdown-menu-sw" role="menu">
+        
+<a role="menuitem" class="dropdown-item" href="https://github.com/new" data-ga-click="Header, create new repository">
+  New repository
+</a>
+
+  <a role="menuitem" class="dropdown-item" href="https://github.com/new/import" data-ga-click="Header, import a repository">
+    Import repository
+  </a>
+
+<a role="menuitem" class="dropdown-item" href="https://gist.github.com/" data-ga-click="Header, create new gist">
+  New gist
+</a>
+
+  <a role="menuitem" class="dropdown-item" href="https://github.com/organizations/new" data-ga-click="Header, create new organization">
+    New organization
+  </a>
+
+
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-header">
+    <span title="dvajs/dva">This repository</span>
+  </div>
+    <a role="menuitem" class="dropdown-item" href="https://github.com/dvajs/dva/issues/new" data-ga-click="Header, create new issue">
+      New issue
+    </a>
+
+      </details-menu>
+    </details>
+  </li>
+
+  <li class="dropdown">
+
+    <details class="details-overlay details-reset d-flex pl-2 flex-items-center">
+      <summary class="HeaderNavlink name mt-1" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar" aria-haspopup="menu">
+        <img alt="@ZereL" class="avatar float-left mr-1" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/5060870" height="20" width="20">
+        <span class="dropdown-caret"></span>
+      </summary>
+      <details-menu class="dropdown-menu dropdown-menu-sw" role="menu">
+        <ul>
+          <li class="header-nav-current-user css-truncate"><a role="menuitem" class="no-underline user-profile-link px-3 pt-2 pb-2 mb-n2 mt-n1 d-block" href="https://github.com/ZereL" data-ga-click="Header, go to profile, text:Signed in as">Signed in as <strong class="css-truncate-target">ZereL</strong></a></li>
+          <li class="dropdown-divider"></li>
+          <li><a role="menuitem" class="dropdown-item" href="https://github.com/ZereL" data-ga-click="Header, go to profile, text:your profile">Your profile</a></li>
+          <li><a role="menuitem" class="dropdown-item" href="https://github.com/ZereL?tab=repositories" data-ga-click="Header, go to repositories, text:your repositories">Your repositories</a></li>
+          <li><a role="menuitem" class="dropdown-item" href="https://github.com/ZereL?tab=stars" data-ga-click="Header, go to starred repos, text:your stars">Your stars</a></li>
+            <li><a role="menuitem" class="dropdown-item" href="https://gist.github.com/" data-ga-click="Header, your gists, text:your gists">Your gists</a></li>
+          <li class="dropdown-divider"></li>
+          <li><a role="menuitem" class="dropdown-item" href="https://help.github.com/" data-ga-click="Header, go to help, text:help">Help</a></li>
+          <li><a role="menuitem" class="dropdown-item" href="https://github.com/settings/profile" data-ga-click="Header, go to settings, icon:settings">Settings</a></li>
+          <li>
+            <!-- '"` --><!-- </textarea></xmp> --><form class="logout-form" action="https://github.com/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="h84LQp6K9rQ8RgNoyDjlOZkea/b2SKhA0PprS1sLGy2Y+wJMEwywXugFmDP2g+ChrkaXNguRgW0bdLcrt5kNXg==">
+              <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout" role="menuitem">
+                Sign out
+              </button>
+</form>          </li>
+        </ul>
+      </details-menu>
+    </details>
+  </li>
+</ul>
+
+
+
+        <!-- '"` --><!-- </textarea></xmp> --><form class="sr-only right-0" action="https://github.com/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="WRACgJNcvUxTBYThUXom8q2a+/aiL0hEFjdZdW0f7UJGJQuOHtr7podGH7pvwSNqmsIHNl/2YWnduYUVgY37MQ==">
+          <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+            Sign out
+          </button>
+</form>      </div>
+    </div>
+  </div>
+</header>
+
+      
+
+  </div>
+
+  <div id="start-of-content" class="show-on-focus"></div>
+
+    <div id="js-flash-container">
+
+
+</div>
+
+
+
+  <div role="main" class="application-main ">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+
+
+
+  
+
+
+
+  <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav  ">
+    <div class="repohead-details-container clearfix container">
+
+      <ul class="pagehead-actions">
+  <li>
+        <!-- '"` --><!-- </textarea></xmp> --><form data-remote="true" class="js-social-form js-social-container" action="https://github.com/notifications/subscribe" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="in9gEGGJI33eY/VGd7bTb7QVVHabBRAYn7P97Giy7u68v8VfxIiyKZ8qJ4i5PN5cyRUQREdf+X2zL66RAVi2aQ==">      <input type="hidden" name="repository_id" id="repository_id" value="61872036" class="form-control">
+
+      <details class="details-reset details-overlay select-menu float-left">
+        <summary class="btn btn-sm btn-with-count select-menu-button" data-ga-click="Repository, click Watch settings, action:issues#show" aria-haspopup="menu">
+          <span data-menu-button="">
+              <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+              Watch
+          </span>
+        </summary>
+        <details-menu class="select-menu-modal position-absolute mt-5" style="z-index: 99;" role="menu">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Notifications</span>
+          </div>
+          <div class="select-menu-list">
+            <button type="submit" name="do" value="included" class="select-menu-item width-full" aria-checked="true" role="menuitemradio">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>
+              <div class="select-menu-item-text">
+                <span class="select-menu-item-heading">Not watching</span>
+                <span class="description">Be notified when participating or @mentioned.</span>
+                <span class="hidden-select-button-text" data-menu-button-contents="">
+                  <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+                  Watch
+                </span>
+              </div>
+            </button>
+
+            <button type="submit" name="do" value="subscribed" class="select-menu-item width-full" aria-checked="false" role="menuitemradio">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>
+              <div class="select-menu-item-text">
+                <span class="select-menu-item-heading">Watching</span>
+                <span class="description">Be notified of all conversations.</span>
+                <span class="hidden-select-button-text" data-menu-button-contents="">
+                  <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+                  Unwatch
+                </span>
+              </div>
+            </button>
+
+            <button type="submit" name="do" value="ignore" class="select-menu-item width-full" aria-checked="false" role="menuitemradio">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>
+              <div class="select-menu-item-text">
+                <span class="select-menu-item-heading">Ignoring</span>
+                <span class="description">Never be notified.</span>
+                <span class="hidden-select-button-text" data-menu-button-contents="">
+                  <svg class="octicon octicon-mute v-align-text-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 2.81v10.38c0 .67-.81 1-1.28.53L3 10H1c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h2l3.72-3.72C7.19 1.81 8 2.14 8 2.81zm7.53 3.22l-1.06-1.06-1.97 1.97-1.97-1.97-1.06 1.06L11.44 8 9.47 9.97l1.06 1.06 1.97-1.97 1.97 1.97 1.06-1.06L13.56 8l1.97-1.97z"></path></svg>
+                  Stop ignoring
+                </span>
+              </div>
+            </button>
+          </div>
+        </details-menu>
+      </details>
+      <a class="social-count js-social-count" href="https://github.com/dvajs/dva/watchers" aria-label="445 users are watching this repository">
+        445
+      </a>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form class="starred js-social-form" action="https://github.com/dvajs/dva/unstar" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="L6msRML8ooJXwzQRW+QwGcUFaKmqXFGV2MsDXkEq7wXc7N2a0MJ20RUWBBOl8TMZ/09ufY8UabcSGTqKlmDZiA==">
+      <input type="hidden" name="context" value="repository">
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this repository" title="Unstar dvajs/dva" data-ga-click="Repository, click unstar button, action:issues#show; text:Unstar">
+        <svg class="octicon octicon-star v-align-text-bottom" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/dvajs/dva/stargazers" aria-label="11179 users starred this repository">
+          11,179
+        </a>
+</form>
+    <!-- '"` --><!-- </textarea></xmp> --><form class="unstarred js-social-form" action="https://github.com/dvajs/dva/star" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="ldATbDWfWip2wUVR/EhIlaPO9XsQvB1Cr2otRA6VEIdxZmnUj3wq9HCSD2aeLvtAhSddlyvEwq6v0EoMqa7JnQ==">
+      <input type="hidden" name="context" value="repository">
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Star this repository" title="Star dvajs/dva" data-ga-click="Repository, click star button, action:issues#show; text:Star">
+        <svg class="octicon octicon-star v-align-text-bottom" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="https://github.com/dvajs/dva/stargazers" aria-label="11179 users starred this repository">
+          11,179
+        </a>
+</form>  </div>
+
+  </li>
+
+  <li>
+          <!-- '"` --><!-- </textarea></xmp> --><form class="btn-with-count" action="https://github.com/dvajs/dva/fork" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="hI/O7geo2p1YrrJndFT13x4+LEgudFNknwqrtKK5jKo5sVxAsGuV0+eGBDo4yOa7kiLGZLrTiXRqVnRVzB8wRw==">
+            <button type="submit" class="btn btn-sm btn-with-count" data-ga-click="Repository, show fork modal, action:issues#show; text:Fork" title="Fork your own copy of dvajs/dva to your account" aria-label="Fork your own copy of dvajs/dva to your account">
+              <svg class="octicon octicon-repo-forked v-align-text-bottom" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+              Fork
+            </button>
+</form>
+    <a href="https://github.com/dvajs/dva/network/members" class="social-count" aria-label="1905 users forked this repository">
+      1,905
+    </a>
+  </li>
+</ul>
+
+      <h1 class="public ">
+  <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a class="url fn" rel="author" href="https://github.com/dvajs">dvajs</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a data-pjax="#js-repo-pjax-container" href="https://github.com/dvajs/dva">dva</a></strong>
+
+</h1>
+
+    </div>
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax container" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a class="js-selected-navigation-item reponav-item" itemprop="url" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /dvajs/dva" href="https://github.com/dvajs/dva">
+      <svg class="octicon octicon-code" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a itemprop="url" data-hotkey="g i" class="js-selected-navigation-item selected reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /dvajs/dva/issues" href="https://github.com/dvajs/dva/issues">
+        <svg class="octicon octicon-issue-opened" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="Counter">107</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a data-hotkey="g p" itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /dvajs/dva/pulls" href="https://github.com/dvajs/dva/pulls">
+      <svg class="octicon octicon-git-pull-request" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="Counter">13</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+    <a data-hotkey="g b" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /dvajs/dva/projects" href="https://github.com/dvajs/dva/projects">
+      <svg class="octicon octicon-project" viewBox="0 0 15 16" version="1.1" width="15" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg>
+      Projects
+      <span class="Counter">0</span>
+</a>
+
+
+    <a class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /dvajs/dva/wiki" href="https://github.com/dvajs/dva/wiki">
+      <svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+      Wiki
+</a>
+  <a class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph pulse alerts /dvajs/dva/pulse" href="https://github.com/dvajs/dva/pulse">
+    <svg class="octicon octicon-graph" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Insights
+</a>
+
+</nav>
+
+
+  </div>
+
+<div class="container new-discussion-timeline experiment-repo-nav  ">
+  <div class="repository-content ">
+
+    
+  <div class="issues-listing js-check-all-container" data-pjax="">
+    
+  
+
+    <div id="show_issue" class="js-issues-results">
+
+    
+  <div id="partial-discussion-header" class="gh-header js-details-container Details js-socket-channel js-updatable-content issue" data-channel="issue:289855705" data-url="/dvajs/dva/issues/1472/show_partial?partial=issues%2Ftitle">
+
+  <div class="gh-header-show ">
+      <div class="gh-header-actions">
+
+            <a href="https://github.com/dvajs/dva/issues/new" class="btn btn-sm btn-primary float-right" data-hotkey="c" data-ga-click="Issues, create new issue, view:issue_show location:issue_header style:button logged_in:true">
+              New issue
+            </a>
+      </div>
+
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">
+        关于model的一些疑惑，请各位大佬指点！
+      </span>
+      <span class="gh-header-number">#1472</span>
+    </h1>
+  </div>
+
+
+  <div class="TableObject gh-header-meta">
+    <div class="TableObject-item">
+        <div class="State State--red">
+          <svg class="octicon octicon-issue-closed" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z"></path></svg>
+          Closed
+        </div>
+    </div>
+    <div class="TableObject-item TableObject-item--primary">
+        <a class="author" data-hovercard-user-id="19367953" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/John251314" aria-describedby="hovercard-aria-description">John251314</a>  opened this <span class="noun">Issue</span>
+        <relative-time datetime="2018-01-19T03:57:26Z" title="2018年1月19日 GMT+13 下午4:57">on 19 Jan</relative-time>
+        · 2 comments
+    </div>
+  </div>
+</div>
+
+
+    <h2 class="sr-only">Comments</h2>
+    <div id="discussion_bucket" class="clearfix">
+      <div class="discussion-sidebar">
+        <div id="partial-discussion-sidebar" class="js-socket-channel js-updatable-content" data-channel="issue:289855705" data-url="/dvajs/dva/issues/1472/show_partial?partial=issues%2Fsidebar">
+
+
+  <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="js-issue-sidebar-form" action="https://github.com/dvajs/dva/issues/1472?partial=issues%2Fsidebar%2Fshow%2Fassignees" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="U+f+bSvfu04U+PI4UlRyTWhr9WfgJzwYPbsQI69LyBnQiJVoTFpSweHawvaMc3nOs/x+fjn/9a7+nXBmMtdPzw==">
+    
+
+  <div class="discussion-sidebar-heading text-bold">
+    Assignees
+  </div>
+
+    <span class="css-truncate">
+    No one assigned
+</span>
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-labels js-discussion-sidebar-item">
+  
+
+
+  <div class="discussion-sidebar-heading text-bold">
+    Labels
+  </div>
+
+  <div aria-live="polite" aria-label="Labels">
+    <div class="labels css-truncate">
+    None yet
+</div>
+
+  </div>
+</div>
+
+    <div class="discussion-sidebar-item js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="js-issue-sidebar-form" action="https://github.com/dvajs/dva/projects/issues/1472" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="+7KwOZNb1kG9t3xPeQLI5JSGeCdfo87VsESWbgcExGA1QhFDgZnF1C8ZDQRLeZdmC1IF8830dgsyHLGkP2gn8A==">
+    
+
+  <div class="discussion-sidebar-heading text-bold">
+    Projects
+  </div>
+
+    
+<span class="css-truncate sidebar-projects">
+    None yet
+</span>
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-milestone js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="js-issue-sidebar-form" action="https://github.com/dvajs/dva/issues/1472/set_milestone?partial=issues%2Fsidebar%2Fshow%2Fmilestone" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="ZcjgoJ3I6Tjij/9R2qI/UxtTZRCvFrdyqSak8MMhMQMZ1DFctzjAtkoShz/wDqIc3+Jv5fKaWddOC+2I0CvW6w==">
+    
+
+  <div class="discussion-sidebar-heading text-bold">
+    Milestone
+  </div>
+
+      No milestone
+
+</form></div>
+
+    <div class="discussion-sidebar-item sidebar-notifications">
+    <div class="discussion-sidebar-heading text-bold">Notifications</div>
+    <div class="thread-subscription-status js-thread-subscription-status js-socket-channel js-updatable-content" data-channel="thread-subscription:289855705:5060870" data-url="/notifications/thread_subscription?repository_id=61872036&amp;thread_class=Issue&amp;thread_id=289855705">
+
+  <svg height="32" class="octicon octicon-radio-tower" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M4.79 6.11c.25-.25.25-.67 0-.92-.32-.33-.48-.76-.48-1.19 0-.43.16-.86.48-1.19.25-.26.25-.67 0-.92a.613.613 0 0 0-.45-.19c-.16 0-.33.06-.45.19-.57.58-.85 1.35-.85 2.11 0 .76.29 1.53.85 2.11.25.25.66.25.9 0zM2.33.52a.651.651 0 0 0-.92 0C.48 1.48.01 2.74.01 3.99c0 1.26.47 2.52 1.4 3.48.25.26.66.26.91 0s.25-.68 0-.94c-.68-.7-1.02-1.62-1.02-2.54 0-.92.34-1.84 1.02-2.54a.66.66 0 0 0 .01-.93zm5.69 5.1A1.62 1.62 0 1 0 6.4 4c-.01.89.72 1.62 1.62 1.62zM14.59.53a.628.628 0 0 0-.91 0c-.25.26-.25.68 0 .94.68.7 1.02 1.62 1.02 2.54 0 .92-.34 1.83-1.02 2.54-.25.26-.25.68 0 .94a.651.651 0 0 0 .92 0c.93-.96 1.4-2.22 1.4-3.48A5.048 5.048 0 0 0 14.59.53zM8.02 6.92c-.41 0-.83-.1-1.2-.3l-3.15 8.37h1.49l.86-1h4l.84 1h1.49L9.21 6.62c-.38.2-.78.3-1.19.3zm-.01.48L9.02 11h-2l.99-3.6zm-1.99 5.59l1-1h2l1 1h-4zm5.19-11.1c-.25.25-.25.67 0 .92.32.33.48.76.48 1.19 0 .43-.16.86-.48 1.19-.25.26-.25.67 0 .92a.63.63 0 0 0 .9 0c.57-.58.85-1.35.85-2.11 0-.76-.28-1.53-.85-2.11a.634.634 0 0 0-.9 0z"></path></svg>
+
+  <!-- '"` --><!-- </textarea></xmp> --><form data-remote="true" class="thread-subscribe-form js-thread-subscribe-form" action="https://github.com/notifications/thread" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="MkHJLXcStIEUpWTAFvYF0EyLM3yQvpJvSukp36ItVI7/GfToH7vJkRVvTKEL7yuRLHFjDuOQjaPhqjKxnvudrw==">    <input type="hidden" name="repository_id" value="61872036">
+    <input type="hidden" name="thread_id" value="289855705">
+    <input type="hidden" name="thread_class" value="Issue">
+    <input type="hidden" name="id" value="subscribe">
+
+    <button class="btn btn-sm" type="submit" data-disable-with="">
+      <svg class="octicon octicon-unmute" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 8.02c0 1.09-.45 2.09-1.17 2.83l-.67-.67c.55-.56.89-1.31.89-2.16 0-.85-.34-1.61-.89-2.16l.67-.67A3.99 3.99 0 0 1 12 8.02zM7.72 2.28L4 6H2c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h2l3.72 3.72c.47.47 1.28.14 1.28-.53V2.81c0-.67-.81-1-1.28-.53zm5.94.08l-.67.67a6.996 6.996 0 0 1 2.06 4.98c0 1.94-.78 3.7-2.06 4.98l.67.67A7.973 7.973 0 0 0 16 8c0-2.22-.89-4.22-2.34-5.66v.02zm-1.41 1.41l-.69.67a5.05 5.05 0 0 1 1.48 3.58c0 1.39-.56 2.66-1.48 3.56l.69.67A5.971 5.971 0 0 0 14 8.02c0-1.65-.67-3.16-1.75-4.25z"></path></svg>
+      Subscribe
+    </button>
+</form>
+  <p class="reason text-small text-gray">You’re not receiving notifications from this thread.</p>
+</div>
+
+  </div>
+
+  <div id="partial-users-participants" class="discussion-sidebar-item">
+  <div class="participation">
+
+    <div class="discussion-sidebar-heading text-bold">
+      4 participants
+    </div>
+    <div class="participation-avatars d-flex flex-wrap">
+        <a class="participant-avatar" data-hovercard-user-id="19367953" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/John251314" aria-describedby="hovercard-aria-description">
+          <img class="avatar" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/19367953" width="26" height="26" alt="@John251314"> 
+</a>        <a class="participant-avatar" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description">
+          <img class="avatar" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/28672197" width="26" height="26" alt="@yupeilin123"> 
+</a>        <a class="participant-avatar" data-hovercard-user-id="7970645" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/lidianhao123" aria-describedby="hovercard-aria-description">
+          <img class="avatar" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/7970645" width="26" height="26" alt="@lidianhao123"> 
+</a>        <a class="participant-avatar" data-hovercard-user-id="35128" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/sorrycc" aria-describedby="hovercard-aria-description">
+          <img class="avatar" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/35128" width="26" height="26" alt="@sorrycc"> 
+</a>    </div>
+  </div>
+</div>
+
+
+  
+
+</div>
+
+      </div>
+
+      <div class="discussion-timeline js-quote-selection-container" data-quote-markdown=".js-comment-body">
+
+        <div class="js-discussion js-socket-channel" data-channel="marked-as-read:issue:289855705">
+
+          <div class="timeline-comment-wrapper js-comment-container mt-0">
+            
+
+<div class="avatar-parent-child timeline-comment-avatar">
+    <a class="d-inline-block" data-hovercard-user-id="19367953" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/John251314" aria-describedby="hovercard-aria-description"><img class="avatar rounded-1" height="44" width="44" alt="@John251314" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/19367953(1)"></a>
+
+</div>
+
+
+            
+<div class="timeline-comment-group js-minimizable-comment-group" id="issue-289855705">
+  <div class="unminimized-comment comment previewable-edit js-comment js-task-list-container timeline-comment reorderable-task-lists " data-body-version="cb1a4d04f5da101c622eb551ff29464f" data-unfurl-authenticity-token="dtqITftlnGpkDACU2WVUKvQ2QOqvzR1vCgzBThPxbZ0QyjACMqHDCEseWmB4fxN8T2XLcOvPMXJ/CDM0dPFs8Q==">
+
+    
+<div class="timeline-comment-header clearfix">
+  <div class="timeline-comment-actions">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <details class="details-overlay details-reset position-relative d-inline-block js-socket-channel js-updatable-content js-dropdown-details js-reaction-popover-container js-comment-header-reaction-button" data-channel="reaction:issue:289855705" data-url="/_render_node/MDU6SXNzdWUyODk4NTU3MDU=/comments/comment_header_reaction_button">
+    <summary class="btn-link timeline-comment-action" aria-label="Add your reaction" aria-haspopup="true">
+      <svg class="octicon octicon-plus-small add-reaction-plus-icon" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg>
+      <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>
+    </summary>
+    
+<div class="dropdown-menu dropdown-menu-sw add-reaction-popover js-add-reaction-popover anim-scale-in">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="reaction-popover-form js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="RpCU3eTEZK9MS6Oi1o/gjpHO4Gmh7hj9ijUAwlHxGN/KqlIzYoL3n9BoXe2szqc6qxyc9qSxi/yCUy948x0oNw==">
+    <p class="text-gray mx-2 my-1">
+      <span class="js-reaction-description">Pick your reaction</span>
+      <img alt="" width="16" height="16" class="loading-spinner" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif">
+    </p>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="add-reactions-options mx-1 mb-1">
+      <input type="hidden" name="input[subjectId]" value="MDU6SXNzdWUyODk4NTU3MDU=">
+
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="+1" name="input[content]" aria-label="React with thumbs up emoji" value="THUMBS_UP react">
+          <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji">👍</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="-1" name="input[content]" aria-label="React with thumbs down emoji" value="THUMBS_DOWN react">
+          <g-emoji alias="-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" class="emoji">👎</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Laugh" name="input[content]" aria-label="React with laugh emoji" value="LAUGH react">
+          <g-emoji alias="smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" class="emoji">😄</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Hooray" name="input[content]" aria-label="React with hooray emoji" value="HOORAY react">
+          <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" class="emoji">🎉</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Confused" name="input[content]" aria-label="React with confused emoji" value="CONFUSED react">
+          <g-emoji alias="thinking_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" class="emoji">😕</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Heart" name="input[content]" aria-label="React with heart emoji" value="HEART react">
+          <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" class="emoji">❤️</g-emoji>
+        </button>
+    </div>
+</form></div>
+
+  </details>
+
+
+
+
+<details class="details-overlay details-reset position-relative d-inline-block js-dropdown-details " id="details-issue-289855705">
+  <summary class="btn-link timeline-comment-action" aria-haspopup="true" aria-label="Show options">
+    <svg aria-label="Show options" class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+  </summary>
+  <div class="dropdown-menu dropdown-menu-sw show-more-popover text-gray-dark anim-scale-in" role="menu">
+        <clipboard-copy class="dropdown-item btn-link" for="issue-289855705-permalink" aria-label="Copy URL" data-toggle-for="details-issue-289855705" role="menuitem" tabindex="0">
+    Copy URL
+  </clipboard-copy>
+
+        <button type="button" class="dropdown-item btn-link d-none js-comment-quote-reply" data-toggle-for="details-issue-289855705">
+    Quote reply
+  </button>
+
+      
+  </div>
+</details>
+
+  </div>
+
+    
+
+
+
+  <h3 class="timeline-comment-header-text f5 text-normal">
+
+    <strong class="css-truncate">
+      
+
+    <a class="author text-inherit css-truncate-target" data-hovercard-user-id="19367953" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/John251314" aria-describedby="hovercard-aria-description">John251314</a>
+
+    </strong>
+
+    commented
+
+    <a href="https://github.com/dvajs/dva/issues/1472#issue-289855705" id="issue-289855705-permalink" class="timestamp"><relative-time datetime="2018-01-19T03:57:26Z" title="2018年1月19日 GMT+13 下午4:57">on 19 Jan</relative-time></a>
+
+
+    <span class="js-comment-fragment">
+      <include-fragment class="js-comment-edit-history d-inline">
+      </include-fragment>
+    </span>
+  </h3>
+</div>
+
+
+    <div class="edit-comment-hide">
+
+      
+<task-lists disabled="" sortable="">
+<table class="d-block">
+  <tbody class="d-block">
+    <tr class="d-block">
+      <td class="d-block comment-body markdown-body  js-comment-body">
+
+          <p>首先，这是我第一次写前端。一开始使用creat-react-app写我们的web-app，后来遇到诸多问题，比如：</p>
+<ol>
+<li>css写在一个文件中，并有全局效果；</li>
+<li>路由切换数据会丢失，必须另外保存，不然后退会重新刷新页面；</li>
+</ol>
+<p>于是，后来果断切换到dva重构。<br>
+但是对于model还有一些疑惑：</p>
+<ol>
+<li>dva中的model相当于业务模型，那我们一些必须的封装数据的数据模型放在哪里？</li>
+<li>在model的subscriptions中监听location的变化来请求数据，但是路由后退后数据会刷新，为了解决这个问题我判断了action的类型，不知道有没有更好的方法；当前使用的是BrowserHistory；</li>
+</ol>
+<pre><code>    subscriptions: {
+        listen({ dispatch, history }) {
+            return history.listen(({ pathname }, action) =&gt; {
+                if (pathname === '/promotions' &amp;&amp; action !== 'POP') {
+                    dispatch({ type: 'fetchFistPagePromotions' });
+                }
+            })
+        }
+    },
+</code></pre>
+<ol start="3">
+<li>还是关于路由跳转的问题，假定我们的跳转关系是A-&gt;B-&gt;C-&gt;D-&gt;B-&gt;E，中间B加载了两次，最后回退到B后数据肯定发生了变化，是否有通用的方法保留历史数据？</li>
+<li>关于effects，我们一般会在effects请求数据，并在onError中统一管理异常，但是一旦抛出异常代码将不再往下执行，这就会带来一些副作用，比如头部刷新不能结束，再比如同时发起了多个请求第一个异常后续将不能获取有效数据；虽然通过try-catch可以解决，但是不知道是否有更好的解决方案？</li>
+</ol>
+<p>effects:</p>
+<pre><code>        *fetchData({ payload }, { put }) {
+            const page = 1;
+            yield put({type: 'updateRefreshing', payload: {isRefreshing: true}});
+            const adsPromise = fetchAds();
+            const promotionsPromise = fetchPromotions();
+            const goodsPromise = fetchGoodsList(page);
+            const ads = yield adsPromise;
+            const promotions = yield promotionsPromise;
+            const goodsList = yield goodsPromise;
+            yield put({type: 'updateAds', payload: { ads }});
+            yield put({type: 'updatePromotions', payload: { promotions }});
+            yield put({type: 'updateGoodsList', payload: { goodsList }});
+            yield put({type: 'updateHasNoMore', payload: {isNoMoreData: !goodsList || !goodsList.length}});
+            yield put({type: 'updatePage', payload: { page }});
+            yield put({type: 'updateRefreshing', payload: {isRefreshing: false}});
+        },
+</code></pre>
+<p>service:</p>
+<pre><code>export const fetchAds = (): Promise&lt;AdsModel[]&gt; =&gt; {
+    return NetworkEngine.fetchData(APIs.getAds, {location: '01'}).then(response =&gt; {
+        const result = response.result;
+        if (result) {
+            const retData = response.retData;
+            const pictures: {}[] = retData.pictures || [];
+            return pictures.map((item) =&gt; new AdsModel(item)).sort((a, b) =&gt; a.picNo - b.picNo);
+        } else {
+            throw new Error(response.info);
+        }
+    });
+}
+</code></pre>
+<p>onError:</p>
+<pre><code>const app = dva({
+    history: createHistory(),
+    onError: (e) =&gt; {
+        e.preventDefault();
+        Toast.info(e.message, 1);
+    },
+});
+</code></pre>
+<ol start="5">
+<li>还是关于effects，我们可能在effects中抛一个toast，比如说提交成功，加入购物车成功等，同步的当然可以在router中直接抛出，异步的可能就没有那么直接了，我的方法是利用onAction的hook来统一管理，不知道是否有更好的方案？</li>
+</ol>
+<pre><code>app.use({
+    onAction: store =&gt; next =&gt; action =&gt; {
+        const { type, payload } = action;
+        const match = type.match(/^toast\/(\w+)/);
+        if (match &amp;&amp; match.length &gt; 1) {
+            const { message, duration } = payload;
+            const method = match[1];
+            Toast[method](message, duration || 1);
+        } else {
+            return next(action);
+        }
+    },
+});
+</code></pre>
+<ol start="6">
+<li>还是关于effects，我们可能经过异步计算后要弹出一个alert，然后继续某些操作，请问各位大佬怎么解决的？</li>
+</ol>
+<p>另外请教一些其他问题：</p>
+<ol>
+<li>动态加载路由有什么好处，有没有必要用？</li>
+<li>路由重定向有没有比较好的方案，比如在所有的请求中判断登陆是否失效或者是404；</li>
+</ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</task-lists>
+
+
+        
+
+<div class="comment-reactions has-reactions js-reactions-container js-socket-channel js-updatable-content" data-channel="reaction:issue:289855705" data-url="/_render_node/MDU6SXNzdWUyODk4NTU3MDU=/comments/reactions">
+    <!-- '"` --><!-- </textarea></xmp> --><form class="js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="7MxXGSrVmbhKHSjM5bV41c4on3afTwtldU2iD1qGSRBg9pH3rJMKiNY+1oOf9D9h9Prj6ZoQmGR9K421+Gp5+A==">
+      <input type="hidden" name="input[subjectId]" value="MDU6SXNzdWUyODk4NTU3MDU=">
+
+      <div class="comment-reactions-options">
+          <button class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="input[content]" type="submit" value="THUMBS_UP react" aria-label="anuxs reacted with thumbs up emoji">
+            <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji mr-1">👍</g-emoji>
+            1
+          </button>
+      </div>
+</form>      <details class="details-overlay details-reset position-relative float-left reaction-popover-container js-reaction-popover-container">
+        <summary class="btn-link reaction-summary-item add-reaction-btn" aria-haspopup="true" aria-label="Add your reaction">
+          <svg class="octicon octicon-plus-small add-reaction-plus-icon" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg>
+          <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>
+        </summary>
+        
+<div class="dropdown-menu dropdown-menu-ne add-reaction-popover js-add-reaction-popover anim-scale-in">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="reaction-popover-form js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="axiF+Lot4M4J13VGsG05ChwrEeF6LNu1hzmNKtlMWM3nIkMWPGtz/pX0iwnKLH6+Jvltfn9zSLSPX6KQe6BoJQ==">
+    <p class="text-gray mx-2 my-1">
+      <span class="js-reaction-description">Pick your reaction</span>
+      <img alt="" width="16" height="16" class="loading-spinner" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif">
+    </p>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="add-reactions-options mx-1 mb-1">
+      <input type="hidden" name="input[subjectId]" value="MDU6SXNzdWUyODk4NTU3MDU=">
+
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="+1" name="input[content]" aria-label="React with thumbs up emoji" value="THUMBS_UP react">
+          <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji">👍</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="-1" name="input[content]" aria-label="React with thumbs down emoji" value="THUMBS_DOWN react">
+          <g-emoji alias="-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" class="emoji">👎</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Laugh" name="input[content]" aria-label="React with laugh emoji" value="LAUGH react">
+          <g-emoji alias="smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" class="emoji">😄</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Hooray" name="input[content]" aria-label="React with hooray emoji" value="HOORAY react">
+          <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" class="emoji">🎉</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Confused" name="input[content]" aria-label="React with confused emoji" value="CONFUSED react">
+          <g-emoji alias="thinking_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" class="emoji">😕</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Heart" name="input[content]" aria-label="React with heart emoji" value="HEART react">
+          <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" class="emoji">❤️</g-emoji>
+        </button>
+    </div>
+</form></div>
+
+      </details>
+</div>
+
+    </div>
+
+  </div>
+</div>
+
+          </div>
+
+          
+
+  <div id="js-timeline-progressive-loader" data-timeline-item-src="dvajs/dva/timeline?id=MDU6SXNzdWUyODk4NTU3MDU%3D&amp;variables%5Bafter%5D=Y3Vyc29yOnYyOpPPAAABY3C8kGAAqTM5MDA1OTg1Mg%3D%3D&amp;variables%5Bfirst%5D=60"></div>
+
+
+  
+  
+<div class="js-timeline-item js-timeline-progressive-focus-container" data-gid="MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==">
+  
+    
+  <div class="timeline-comment-wrapper js-comment-container">
+
+  
+
+<div class="avatar-parent-child timeline-comment-avatar">
+    <a class="d-inline-block" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description"><img class="avatar rounded-1" height="44" width="44" alt="@yupeilin123" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/28672197(1)"></a>
+
+</div>
+
+
+  
+<div class="timeline-comment-group js-minimizable-comment-group" id="issuecomment-361932348">
+    <div class="minimized-comment d-none ">
+      
+
+  <details class="Details-element details-reset border rounded-1 bg-white" data-body-version="643638d9157146c6f64d4b8250cf1851">
+    <summary class="bg-gray border-bottom-0 py-0 px-2">
+      <div class="d-flex flex-justify-between flex-items-center">
+        <h3 class="timeline-comment-header-text f5 text-gray text-normal text-italic">
+              This comment has been minimized.
+
+        </h3>
+        <div class="Details-content--closed text-gray f6"><svg class="octicon octicon-unfold position-relative mr-1" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.5 7.5L14 10c0 .55-.45 1-1 1H9v-1h3.5l-2-2h-7l-2 2H5v1H1c-.55 0-1-.45-1-1l2.5-2.5L0 5c0-.55.45-1 1-1h4v1H1.5l2 2h7l2-2H9V4h4c.55 0 1 .45 1 1l-2.5 2.5zM6 6h2V3h2L7 0 4 3h2v3zm2 3H6v3H4l3 3 3-3H8V9z"></path></svg>Show comment</div>
+        <div class="Details-content--open text-gray f6"><svg class="octicon octicon-fold position-relative mr-1" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 9l3 3H8v3H6v-3H4l3-3zm3-6H8V0H6v3H4l3 3 3-3zm4 2c0-.55-.45-1-1-1h-2.5l-1 1h3l-2 2h-7l-2-2h3l-1-1H1c-.55 0-1 .45-1 1l2.5 2.5L0 10c0 .55.45 1 1 1h2.5l1-1h-3l2-2h7l2 2h-3l1 1H13c.55 0 1-.45 1-1l-2.5-2.5L14 5z"></path></svg>Hide comment</div>
+      </div>
+    </summary>
+    <div class="review-comment border-top pt-3">
+      <div class="previewable-edit  js-task-list-container reorderable-task-lists">
+        <div class="edit-comment-hide">
+          <div class="timeline-comment-actions">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<details class="details-overlay details-reset position-relative d-inline-block js-dropdown-details " id="">
+  <summary class="btn-link timeline-comment-action" aria-haspopup="true" aria-label="Show options">
+    <svg aria-label="Show options" class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+  </summary>
+  <div class="dropdown-menu dropdown-menu-sw show-more-popover text-gray-dark anim-scale-in" role="menu">
+        <clipboard-copy class="dropdown-item btn-link" for="issuecomment-361932348-minimized-permalink" aria-label="Copy URL" data-toggle-for="details-issuecomment-361932348" role="menuitem" tabindex="0">
+    Copy URL
+  </clipboard-copy>
+
+        <button type="button" class="dropdown-item btn-link d-none js-comment-quote-reply" data-toggle-for="details-issuecomment-361932348">
+    Quote reply
+  </button>
+
+      
+  </div>
+</details>
+
+          </div>
+            <a class="float-left mt-1" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description"><img class="avatar" height="28" width="28" alt="@yupeilin123" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/28672197(2)"></a>
+          <div class="review-comment-contents">
+            <h4 class="f5 text-normal d-inline text-gray-dark">
+              <strong class="text-gray">
+                
+
+    <a class="author text-inherit css-truncate-target" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description">yupeilin123</a>
+
+              </strong>
+              <span class="text-gray">
+                  <a href="https://github.com/dvajs/dva/issues/1472#issuecomment-361932348" id="issuecomment-361932348-minimized-permalink" class="timestamp"><relative-time datetime="2018-01-31T13:30:31Z" title="2018年2月1日 GMT+13 上午2:30">on 1 Feb</relative-time></a>
+              </span>
+            </h4>
+            
+
+            <task-lists disabled="" sortable="">
+              <div class="comment-body markdown-body p-0 pt-1 js-comment-body ">
+                  <p>一些看法：<br>
+1.放在页面的state里<br>
+2.在subscriptions 直接dispatch({ type: 'fetchFistPagePromotions' });<br>
+3.同2<br>
+4.做个请求封装，参考ant-design-pro的请求封装<br>
+5.在页面上dispatch( Effects ).then( () =&gt; { Promise } )。在页面上dispatch，成功时 抛出结果，Promise接收，<br>
+6.同5<br>
+另外的问题：</p>
+<ol>
+<li>有，如果有上百个页面，npm start，将会花很多时间，动态加载则不会<br>
+2.参考ant-design-pro的路由重定向</li>
+</ol>
+              </div>
+            </task-lists>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </details>
+
+    </div>
+  <div class="unminimized-comment comment previewable-edit js-comment js-task-list-container timeline-comment reorderable-task-lists " data-body-version="643638d9157146c6f64d4b8250cf1851" data-unfurl-authenticity-token="RC5hwrlaEXl/VurU3HcD/wb2Zf8ZI3i3KF8wL7eeHioiPtmNcJ5OG1BEsCB9bUSpvaXuZV0hVKpdW8JV0J4fRg==">
+
+    
+<div class="timeline-comment-header clearfix">
+  <div class="timeline-comment-actions">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <details class="details-overlay details-reset position-relative d-inline-block js-socket-channel js-updatable-content js-dropdown-details js-reaction-popover-container js-comment-header-reaction-button" data-channel="reaction:issue-comment:361932348" data-url="/_render_node/MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==/comments/comment_header_reaction_button">
+    <summary class="btn-link timeline-comment-action" aria-label="Add your reaction" aria-haspopup="true">
+      <svg class="octicon octicon-plus-small add-reaction-plus-icon" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg>
+      <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>
+    </summary>
+    
+<div class="dropdown-menu dropdown-menu-sw add-reaction-popover js-add-reaction-popover anim-scale-in">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="reaction-popover-form js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="YAmZPNJrpvnHWtEQaFREI6gerkdmWotRntdoQTcIjLLsM1/SVC01yVt5L18SFQOXkszS2GMFGFCWsUf7leS8Wg==">
+    <p class="text-gray mx-2 my-1">
+      <span class="js-reaction-description">Pick your reaction</span>
+      <img alt="" width="16" height="16" class="loading-spinner" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif">
+    </p>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="add-reactions-options mx-1 mb-1">
+      <input type="hidden" name="input[subjectId]" value="MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==">
+
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="+1" name="input[content]" aria-label="React with thumbs up emoji" value="THUMBS_UP react">
+          <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji">👍</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="-1" name="input[content]" aria-label="React with thumbs down emoji" value="THUMBS_DOWN react">
+          <g-emoji alias="-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" class="emoji">👎</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Laugh" name="input[content]" aria-label="React with laugh emoji" value="LAUGH react">
+          <g-emoji alias="smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" class="emoji">😄</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Hooray" name="input[content]" aria-label="React with hooray emoji" value="HOORAY react">
+          <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" class="emoji">🎉</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Confused" name="input[content]" aria-label="React with confused emoji" value="CONFUSED react">
+          <g-emoji alias="thinking_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" class="emoji">😕</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Heart" name="input[content]" aria-label="React with heart emoji" value="HEART react">
+          <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" class="emoji">❤️</g-emoji>
+        </button>
+    </div>
+</form></div>
+
+  </details>
+
+
+
+
+<details class="details-overlay details-reset position-relative d-inline-block js-dropdown-details " id="details-issuecomment-361932348">
+  <summary class="btn-link timeline-comment-action" aria-haspopup="true" aria-label="Show options">
+    <svg aria-label="Show options" class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+  </summary>
+  <div class="dropdown-menu dropdown-menu-sw show-more-popover text-gray-dark anim-scale-in" role="menu">
+        <clipboard-copy class="dropdown-item btn-link" for="issuecomment-361932348-permalink" aria-label="Copy URL" data-toggle-for="details-issuecomment-361932348" role="menuitem" tabindex="0">
+    Copy URL
+  </clipboard-copy>
+
+        <button type="button" class="dropdown-item btn-link d-none js-comment-quote-reply" data-toggle-for="details-issuecomment-361932348">
+    Quote reply
+  </button>
+
+          
+<details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark ">
+  <summary class="dropdown-item" aria-haspopup="dialog">
+    
+    Open new issue
+  </summary>
+  <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast " aria-label="Open new issue" role="dialog">
+    <div class="Box-header">
+      <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog="">
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+      </button>
+      <h3 class="Box-title">Open new issue</h3>
+    </div>
+    
+      <div class="Box-body scrollable-overlay">
+        
+<!-- '"` --><!-- </textarea></xmp> --><form action="https://github.com/dvajs/dva/issues" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="0azpRu/QCSBJWxtvrY8TDbyXf2apYOPZ4HCtpEu/dS6kHB1KuSo74zD1k1o2bQkhHs9BAfh0h9h7j+8I33sHZQ==">
+  <dl class="form-group">
+    <dt><label for="convert-to-issue-title-MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==">Title</label></dt>
+    <dd><input id="convert-to-issue-title-MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==" class="form-control" type="text" name="issue[title]" value="一些看法：" aria-label="Issue title" autofocus="" required=""></dd>
+  </dl>
+  <dl class="form-group">
+    <dt><label for="convert-to-issue-body-MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==">Body</label></dt>
+    <dd><textarea id="convert-to-issue-body-MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==" name="issue[body]" class="form-control" aria-label="Issue body">1.放在页面的state里
+2.在subscriptions 直接dispatch({ type: 'fetchFistPagePromotions' });
+3.同2
+4.做个请求封装，参考ant-design-pro的请求封装
+5.在页面上dispatch( Effects ).then( () =&gt; { Promise } )。在页面上dispatch，成功时 抛出结果，Promise接收，
+6.同5
+另外的问题：
+1. 有，如果有上百个页面，npm start，将会花很多时间，动态加载则不会
+2.参考ant-design-pro的路由重定向
+
+_Originally posted by @yupeilin123 in https://github.com/dvajs/dva/issues/1472#issuecomment-361932348_</textarea></dd>
+  </dl>
+
+  <div class="d-flex d-sm-block">
+    <button type="submit" class="btn btn-primary" data-disable-with="Creating issue..." data-disable-invalid="">
+      Create issue
+    </button>
+  </div>
+</form>
+      </div>
+
+  </details-dialog>
+</details>
+
+      
+  </div>
+</details>
+
+  </div>
+
+    
+
+
+
+  <h3 class="timeline-comment-header-text f5 text-normal">
+
+    <strong class="css-truncate">
+      
+
+    <a class="author text-inherit css-truncate-target" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description">yupeilin123</a>
+
+    </strong>
+
+    commented
+
+    <a href="https://github.com/dvajs/dva/issues/1472#issuecomment-361932348" id="issuecomment-361932348-permalink" class="timestamp"><relative-time datetime="2018-01-31T13:30:31Z" title="2018年2月1日 GMT+13 上午2:30">on 1 Feb</relative-time></a>
+
+
+    <span class="js-comment-fragment">
+      <include-fragment class="js-comment-edit-history d-inline">
+            
+  <span class="d-inline-block text-gray-light">•</span>
+
+  <details class="details-overlay details-reset d-inline-block dropdown js-load-contents" data-deferred-details-content-url="/_render_node/MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==/comments/comment_edit_history_log">
+    <summary class="btn-link no-underline text-gray js-notice" aria-haspopup="menu">
+      <div class="position-relative">
+        <span>
+            edited
+        </span>
+        <svg height="11" class="octicon octicon-triangle-down v-align-middle" viewBox="0 0 12 16" version="1.1" width="8" aria-hidden="true"><path fill-rule="evenodd" d="M0 5l6 6 6-6H0z"></path></svg>
+      </div>
+    </summary>
+    <details-menu class="anim-scale-in dropdown-menu dropdown-menu-se py-0" style="width:352px" role="menu">
+      <include-fragment class="octocat-spinner my-3" aria-label="Loading..."></include-fragment>
+    </details-menu>
+  </details>
+
+      </include-fragment>
+    </span>
+  </h3>
+</div>
+
+
+    <div class="edit-comment-hide">
+
+      
+<task-lists disabled="" sortable="">
+<table class="d-block">
+  <tbody class="d-block">
+    <tr class="d-block">
+      <td class="d-block comment-body markdown-body  js-comment-body">
+
+          <p>一些看法：<br>
+1.放在页面的state里<br>
+2.在subscriptions 直接dispatch({ type: 'fetchFistPagePromotions' });<br>
+3.同2<br>
+4.做个请求封装，参考ant-design-pro的请求封装<br>
+5.在页面上dispatch( Effects ).then( () =&gt; { Promise } )。在页面上dispatch，成功时 抛出结果，Promise接收，<br>
+6.同5<br>
+另外的问题：</p>
+<ol>
+<li>有，如果有上百个页面，npm start，将会花很多时间，动态加载则不会<br>
+2.参考ant-design-pro的路由重定向</li>
+</ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</task-lists>
+
+
+        
+
+<div class="comment-reactions  js-reactions-container js-socket-channel js-updatable-content" data-channel="reaction:issue-comment:361932348" data-url="/_render_node/MDEyOklzc3VlQ29tbWVudDM2MTkzMjM0OA==/comments/reactions">
+</div>
+
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+  
+  
+<div class="js-timeline-item js-timeline-progressive-focus-container" data-gid="MDExOkNsb3NlZEV2ZW50MTU4MDc1MjY3Mg==">
+  
+        <div class="discussion-item discussion-item-closed">
+  <h3 class="discussion-item-header f5 text-normal" id="event-1580752672">
+
+    <span class="discussion-item-icon">
+      <svg class="octicon octicon-circle-slash" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm0 1.3c1.3 0 2.5.44 3.47 1.17l-8 8A5.755 5.755 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zm0 11.41c-1.3 0-2.5-.44-3.47-1.17l8-8c.73.97 1.17 2.17 1.17 3.47 0 3.14-2.56 5.7-5.7 5.7z"></path></svg>
+    </span>
+
+    
+
+        <a class="d-inline-block" data-hovercard-user-id="35128" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/sorrycc" aria-describedby="hovercard-aria-description"><img class="avatar" height="16" width="16" alt="@sorrycc" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/35128(1)"></a>
+  <a class="author text-inherit" data-hovercard-user-id="35128" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/sorrycc" aria-describedby="hovercard-aria-description">sorrycc</a>
+  
+
+
+      
+closed this
+
+
+    <a href="https://github.com/dvajs/dva/issues/1472#event-1580752672" class="timestamp"><relative-time datetime="2018-04-18T07:25:04Z" title="2018年4月18日 GMT+12 下午7:25">on 18 Apr</relative-time></a>
+
+  </h3>
+</div>
+
+  <div class="closed-banner"></div>
+
+
+
+</div>
+
+  
+  
+<div class="js-timeline-item js-timeline-progressive-focus-container" data-gid="MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">
+  
+    
+  <div class="timeline-comment-wrapper js-comment-container">
+
+  
+
+<div class="avatar-parent-child timeline-comment-avatar">
+    <a class="d-inline-block" data-hovercard-user-id="7970645" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/lidianhao123" aria-describedby="hovercard-aria-description"><img class="avatar rounded-1" height="44" width="44" alt="@lidianhao123" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/7970645(1)"></a>
+
+</div>
+
+
+  
+<div class="timeline-comment-group js-minimizable-comment-group" id="issuecomment-390059852">
+    <div class="minimized-comment d-none ">
+      
+
+  <details class="Details-element details-reset border rounded-1 bg-white" data-body-version="502924f0b45dc6961533746e181029eb">
+    <summary class="bg-gray border-bottom-0 py-0 px-2">
+      <div class="d-flex flex-justify-between flex-items-center">
+        <h3 class="timeline-comment-header-text f5 text-gray text-normal text-italic">
+              This comment has been minimized.
+
+        </h3>
+        <div class="Details-content--closed text-gray f6"><svg class="octicon octicon-unfold position-relative mr-1" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.5 7.5L14 10c0 .55-.45 1-1 1H9v-1h3.5l-2-2h-7l-2 2H5v1H1c-.55 0-1-.45-1-1l2.5-2.5L0 5c0-.55.45-1 1-1h4v1H1.5l2 2h7l2-2H9V4h4c.55 0 1 .45 1 1l-2.5 2.5zM6 6h2V3h2L7 0 4 3h2v3zm2 3H6v3H4l3 3 3-3H8V9z"></path></svg>Show comment</div>
+        <div class="Details-content--open text-gray f6"><svg class="octicon octicon-fold position-relative mr-1" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 9l3 3H8v3H6v-3H4l3-3zm3-6H8V0H6v3H4l3 3 3-3zm4 2c0-.55-.45-1-1-1h-2.5l-1 1h3l-2 2h-7l-2-2h3l-1-1H1c-.55 0-1 .45-1 1l2.5 2.5L0 10c0 .55.45 1 1 1h2.5l1-1h-3l2-2h7l2 2h-3l1 1H13c.55 0 1-.45 1-1l-2.5-2.5L14 5z"></path></svg>Hide comment</div>
+      </div>
+    </summary>
+    <div class="review-comment border-top pt-3">
+      <div class="previewable-edit  js-task-list-container reorderable-task-lists">
+        <div class="edit-comment-hide">
+          <div class="timeline-comment-actions">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<details class="details-overlay details-reset position-relative d-inline-block js-dropdown-details " id="">
+  <summary class="btn-link timeline-comment-action" aria-haspopup="true" aria-label="Show options">
+    <svg aria-label="Show options" class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+  </summary>
+  <div class="dropdown-menu dropdown-menu-sw show-more-popover text-gray-dark anim-scale-in" role="menu">
+        <clipboard-copy class="dropdown-item btn-link" for="issuecomment-390059852-minimized-permalink" aria-label="Copy URL" data-toggle-for="details-issuecomment-390059852" role="menuitem" tabindex="0">
+    Copy URL
+  </clipboard-copy>
+
+        <button type="button" class="dropdown-item btn-link d-none js-comment-quote-reply" data-toggle-for="details-issuecomment-390059852">
+    Quote reply
+  </button>
+
+      
+  </div>
+</details>
+
+          </div>
+            <a class="float-left mt-1" data-hovercard-user-id="7970645" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/lidianhao123" aria-describedby="hovercard-aria-description"><img class="avatar" height="28" width="28" alt="@lidianhao123" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/7970645(2)"></a>
+          <div class="review-comment-contents">
+            <h4 class="f5 text-normal d-inline text-gray-dark">
+              <strong class="text-gray">
+                
+
+    <a class="author text-inherit css-truncate-target" data-hovercard-user-id="7970645" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/lidianhao123" aria-describedby="hovercard-aria-description">lidianhao123</a>
+
+              </strong>
+              <span class="text-gray">
+                  <a href="https://github.com/dvajs/dva/issues/1472#issuecomment-390059852" id="issuecomment-390059852-minimized-permalink" class="timestamp"><relative-time datetime="2018-05-18T00:53:16Z" title="2018年5月18日 GMT+12 下午12:53">on 18 May</relative-time></a>
+              </span>
+            </h4>
+            
+
+            <task-lists disabled="" sortable="">
+              <div class="comment-body markdown-body p-0 pt-1 js-comment-body ">
+                  <p><a class="user-mention" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description">@yupeilin123</a><br>
+您提供5、6的解决方案个人感觉不那么符合redux。<br>
+<a class="user-mention" data-hovercard-user-id="35128" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/sorrycc" aria-describedby="hovercard-aria-description">@sorrycc</a> 大大有没有更好的方案将错误状态通知到对应组件，方便组件进行后续逻辑的处理？</p>
+              </div>
+            </task-lists>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </details>
+
+    </div>
+  <div class="unminimized-comment comment previewable-edit js-comment js-task-list-container timeline-comment reorderable-task-lists " data-body-version="502924f0b45dc6961533746e181029eb" data-unfurl-authenticity-token="PRRZWaOqN9L+0TdD9ScCIMVth1H/ZtE31Y38BJOdaKJbBOEWam5osNHDbbdUPUV2fj4My7tk/SqgiQ5+9J1pzg==">
+
+    
+<div class="timeline-comment-header clearfix">
+  <div class="timeline-comment-actions">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <details class="details-overlay details-reset position-relative d-inline-block js-socket-channel js-updatable-content js-dropdown-details js-reaction-popover-container js-comment-header-reaction-button" data-channel="reaction:issue-comment:390059852" data-url="/_render_node/MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==/comments/comment_header_reaction_button">
+    <summary class="btn-link timeline-comment-action" aria-label="Add your reaction" aria-haspopup="true">
+      <svg class="octicon octicon-plus-small add-reaction-plus-icon" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg>
+      <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>
+    </summary>
+    
+<div class="dropdown-menu dropdown-menu-sw add-reaction-popover js-add-reaction-popover anim-scale-in">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="reaction-popover-form js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="S0LZN/SKHGW9F1RUcWcodd/22xb41DERvPamIOmDxOTHeB/ZcsyPVSE0qhsLJm/B5SSnif2LohC0kImaS2/0DA==">
+    <p class="text-gray mx-2 my-1">
+      <span class="js-reaction-description">Pick your reaction</span>
+      <img alt="" width="16" height="16" class="loading-spinner" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif">
+    </p>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="add-reactions-options mx-1 mb-1">
+      <input type="hidden" name="input[subjectId]" value="MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">
+
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="+1" name="input[content]" aria-label="React with thumbs up emoji" value="THUMBS_UP react">
+          <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji">👍</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="-1" name="input[content]" aria-label="React with thumbs down emoji" value="THUMBS_DOWN react">
+          <g-emoji alias="-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" class="emoji">👎</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Laugh" name="input[content]" aria-label="React with laugh emoji" value="LAUGH react">
+          <g-emoji alias="smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" class="emoji">😄</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Hooray" name="input[content]" aria-label="React with hooray emoji" value="HOORAY react">
+          <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" class="emoji">🎉</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Confused" name="input[content]" aria-label="React with confused emoji" value="CONFUSED react">
+          <g-emoji alias="thinking_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" class="emoji">😕</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Heart" name="input[content]" aria-label="React with heart emoji" value="HEART react">
+          <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" class="emoji">❤️</g-emoji>
+        </button>
+    </div>
+</form></div>
+
+  </details>
+
+
+
+
+<details class="details-overlay details-reset position-relative d-inline-block js-dropdown-details " id="details-issuecomment-390059852">
+  <summary class="btn-link timeline-comment-action" aria-haspopup="true" aria-label="Show options">
+    <svg aria-label="Show options" class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+  </summary>
+  <div class="dropdown-menu dropdown-menu-sw show-more-popover text-gray-dark anim-scale-in" role="menu">
+        <clipboard-copy class="dropdown-item btn-link" for="issuecomment-390059852-permalink" aria-label="Copy URL" data-toggle-for="details-issuecomment-390059852" role="menuitem" tabindex="0">
+    Copy URL
+  </clipboard-copy>
+
+        <button type="button" class="dropdown-item btn-link d-none js-comment-quote-reply" data-toggle-for="details-issuecomment-390059852">
+    Quote reply
+  </button>
+
+          
+<details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark ">
+  <summary class="dropdown-item" aria-haspopup="dialog">
+    
+    Open new issue
+  </summary>
+  <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast " aria-label="Open new issue" role="dialog">
+    <div class="Box-header">
+      <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog="">
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+      </button>
+      <h3 class="Box-title">Open new issue</h3>
+    </div>
+    
+      <div class="Box-body scrollable-overlay">
+        
+<!-- '"` --><!-- </textarea></xmp> --><form action="https://github.com/dvajs/dva/issues" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="W60M/QsQZ34m2sOofTJarZumJHs6wCEEbxbGAYQI+eguHfjxXepVvV90S53m0ECBOf4aHGvURQX06YStEMyLow==">
+  <dl class="form-group">
+    <dt><label for="convert-to-issue-title-MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">Title</label></dt>
+    <dd><input id="convert-to-issue-title-MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==" class="form-control" type="text" name="issue[title]" value="@yupeilin123" aria-label="Issue title" autofocus="" required=""></dd>
+  </dl>
+  <dl class="form-group">
+    <dt><label for="convert-to-issue-body-MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">Body</label></dt>
+    <dd><textarea id="convert-to-issue-body-MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==" name="issue[body]" class="form-control" aria-label="Issue body">您提供5、6的解决方案个人感觉不那么符合redux。
+@sorrycc 大大有没有更好的方案将错误状态通知到对应组件，方便组件进行后续逻辑的处理？
+
+_Originally posted by @lidianhao123 in https://github.com/dvajs/dva/issues/1472#issuecomment-390059852_</textarea></dd>
+  </dl>
+
+  <div class="d-flex d-sm-block">
+    <button type="submit" class="btn btn-primary" data-disable-with="Creating issue..." data-disable-invalid="">
+      Create issue
+    </button>
+  </div>
+</form>
+      </div>
+
+  </details-dialog>
+</details>
+
+      
+  </div>
+</details>
+
+  </div>
+
+    
+
+
+
+  <h3 class="timeline-comment-header-text f5 text-normal">
+
+    <strong class="css-truncate">
+      
+
+    <a class="author text-inherit css-truncate-target" data-hovercard-user-id="7970645" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/lidianhao123" aria-describedby="hovercard-aria-description">lidianhao123</a>
+
+    </strong>
+
+    commented
+
+    <a href="https://github.com/dvajs/dva/issues/1472#issuecomment-390059852" id="issuecomment-390059852-permalink" class="timestamp"><relative-time datetime="2018-05-18T00:53:16Z" title="2018年5月18日 GMT+12 下午12:53">on 18 May</relative-time></a>
+
+
+    <span class="js-comment-fragment">
+      <include-fragment class="js-comment-edit-history d-inline">
+      </include-fragment>
+    </span>
+  </h3>
+</div>
+
+
+    <div class="edit-comment-hide">
+
+      
+<task-lists disabled="" sortable="">
+<table class="d-block">
+  <tbody class="d-block">
+    <tr class="d-block">
+      <td class="d-block comment-body markdown-body  js-comment-body">
+
+          <p><a class="user-mention" data-hovercard-user-id="28672197" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/yupeilin123" aria-describedby="hovercard-aria-description">@yupeilin123</a><br>
+您提供5、6的解决方案个人感觉不那么符合redux。<br>
+<a class="user-mention" data-hovercard-user-id="35128" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/sorrycc" aria-describedby="hovercard-aria-description">@sorrycc</a> 大大有没有更好的方案将错误状态通知到对应组件，方便组件进行后续逻辑的处理？</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</task-lists>
+
+
+        
+
+<div class="comment-reactions has-reactions js-reactions-container js-socket-channel js-updatable-content" data-channel="reaction:issue-comment:390059852" data-url="/_render_node/MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==/comments/reactions">
+    <!-- '"` --><!-- </textarea></xmp> --><form class="js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="ld5C5mjAfLQqYsGnVbxw93RaNz5nC9nDUIFspA9uezoZ5IQI7obvhLZBP+gv/TdDTohLoWJUSsJY50MerYJL0g==">
+      <input type="hidden" name="input[subjectId]" value="MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">
+
+      <div class="comment-reactions-options">
+          <button class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="input[content]" type="submit" value="THUMBS_UP react" aria-label="ovaldi reacted with thumbs up emoji">
+            <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji mr-1">👍</g-emoji>
+            1
+          </button>
+      </div>
+</form>      <details class="details-overlay details-reset position-relative float-left reaction-popover-container js-reaction-popover-container">
+        <summary class="btn-link reaction-summary-item add-reaction-btn" aria-haspopup="true" aria-label="Add your reaction">
+          <svg class="octicon octicon-plus-small add-reaction-plus-icon" viewBox="0 0 7 16" version="1.1" width="7" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 4H3v3H0v1h3v3h1V8h3V7H4V4z"></path></svg>
+          <svg class="octicon octicon-smiley" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4.81 12.81a6.72 6.72 0 0 1-2.17 1.45c-.83.36-1.72.53-2.64.53-.92 0-1.81-.17-2.64-.53-.81-.34-1.55-.83-2.17-1.45a6.773 6.773 0 0 1-1.45-2.17A6.59 6.59 0 0 1 1.21 8c0-.92.17-1.81.53-2.64.34-.81.83-1.55 1.45-2.17.62-.62 1.36-1.11 2.17-1.45A6.59 6.59 0 0 1 8 1.21c.92 0 1.81.17 2.64.53.81.34 1.55.83 2.17 1.45.62.62 1.11 1.36 1.45 2.17.36.83.53 1.72.53 2.64 0 .92-.17 1.81-.53 2.64-.34.81-.83 1.55-1.45 2.17zM4 6.8v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2H5.2C4.53 8 4 7.47 4 6.8zm5 0v-.59c0-.66.53-1.19 1.2-1.19h.59c.66 0 1.19.53 1.19 1.19v.59c0 .67-.53 1.2-1.19 1.2h-.59C9.53 8 9 7.47 9 6.8zm4 3.2c-.72 1.88-2.91 3-5 3s-4.28-1.13-5-3c-.14-.39.23-1 .66-1h8.59c.41 0 .89.61.75 1z"></path></svg>
+        </summary>
+        
+<div class="dropdown-menu dropdown-menu-ne add-reaction-popover js-add-reaction-popover anim-scale-in">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="reaction-popover-form js-pick-reaction" action="https://github.com/users/dvajs/reactions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="ay+AiPSouOrSidf5IYuLxQlUmxswOYut59u5IFo2jznnFUZmcu4r2k6qKbZbysxxM4bnhDVmGKzvvZaa+Nq/0Q==">
+    <p class="text-gray mx-2 my-1">
+      <span class="js-reaction-description">Pick your reaction</span>
+      <img alt="" width="16" height="16" class="loading-spinner" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif">
+    </p>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="add-reactions-options mx-1 mb-1">
+      <input type="hidden" name="input[subjectId]" value="MDEyOklzc3VlQ29tbWVudDM5MDA1OTg1Mg==">
+
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="+1" name="input[content]" aria-label="React with thumbs up emoji" value="THUMBS_UP react">
+          <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" class="emoji">👍</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="-1" name="input[content]" aria-label="React with thumbs down emoji" value="THUMBS_DOWN react">
+          <g-emoji alias="-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" class="emoji">👎</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Laugh" name="input[content]" aria-label="React with laugh emoji" value="LAUGH react">
+          <g-emoji alias="smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" class="emoji">😄</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Hooray" name="input[content]" aria-label="React with hooray emoji" value="HOORAY react">
+          <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" class="emoji">🎉</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Confused" name="input[content]" aria-label="React with confused emoji" value="CONFUSED react">
+          <g-emoji alias="thinking_face" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" class="emoji">😕</g-emoji>
+        </button>
+        <button type="submit" class="btn-link add-reactions-options-item js-reaction-option-item" data-reaction-label="Heart" name="input[content]" aria-label="React with heart emoji" value="HEART react">
+          <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" class="emoji">❤️</g-emoji>
+        </button>
+    </div>
+</form></div>
+
+      </details>
+</div>
+
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Rendered timeline since 2018-05-17 17:53:16 -->
+<div class="js-timeline-marker js-socket-channel js-updatable-content" id="partial-timeline" data-channel="issue:289855705" data-url="/_render_node/MDU6SXNzdWUyODk4NTU3MDU=/issues/unread_timeline?variables%5BhasFocusedReviewComment%5D=false&amp;variables%5BhasFocusedReviewThread%5D=false&amp;variables%5BsyntaxHighlightingEnabled%5D=true&amp;variables%5BtimelinePageSize%5D=30&amp;variables%5BtimelineSince%5D=2018-05-18T00%3A53%3A16Z" data-last-modified="Fri, 18 May 2018 00:53:16 GMT">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="d-none js-timeline-marker-form" action="https://github.com/_graphql/MarkNotificationSubjectAsRead" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Y3L4bHrW/ERTP4UZYNa1MVlVvOT7o1mh8O7wdd/+UhznoOP1pJ5UspmOtYcxLm3jxI1LkSBVgsSy/620aRSIGQ==">
+    <input type="hidden" name="variables[subjectId]" value="MDU6SXNzdWUyODk4NTU3MDU=">
+</form></div>
+
+
+        </div>
+
+
+        <div class="discussion-timeline-actions">
+              
+<div class="timeline-comment-wrapper timeline-new-comment js-comment-container ">
+  <span class="timeline-comment-avatar"><a class="d-inline-block" data-hovercard-user-id="5060870" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/ZereL" aria-describedby="hovercard-aria-description"><img class="avatar" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/5060870(1)" width="44" height="44" alt="@ZereL"></a></span>
+
+    <!-- '"` --><!-- </textarea></xmp> --><form class="js-new-comment-form js-needs-timeline-marker-header" action="https://github.com/dvajs/dva/issue_comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="5OXSFBEp4tTYs5+4+th0fZry5Y7MIp7BRk9gCzTEUaPZ1kEnWGPqCDITJuOA/eP9XTFVfLmJ4OV1ftBO005tlg==">
+      <input type="text" name="required_field_13da" id="required_field_13da" hidden="hidden" class="form-control">
+<input type="hidden" name="timestamp" value="1537996601557" class="form-control">
+<input type="hidden" name="timestamp_secret" value="1ac033937f8d1ca42ab16a4aaa53c559996f924d8b340a2d5fef2463dc60c3bb" class="form-control">
+
+      <div class="timeline-comment">
+        <input type="hidden" name="issue" value="1472">
+          <div class="js-suggester-container js-previewable-comment-form previewable-comment-form write-selected" data-preview-url="/preview?markdown_unsupported=false&amp;repository=61872036&amp;subject=1472&amp;subject_type=Issue" data-preview-authenticity-token="L3Er+9ddr7Y5HxO2/hwSv71GG5g6WmAN5k1laDzTnQiJWhp69ko/HEz3M4Zab3xZvh3LmUUWLCfJ8uwOxR6BxA==">
+  <div class="comment-form-head tabnav">
+      
+<markdown-toolbar for="new_comment_field" class="toolbar-commenting">
+  <div class="toolbar-group">
+    <md-header tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add header text" data-ga-click="Markdown Toolbar, click, header" role="button">
+      <svg class="octicon octicon-text-size" viewBox="0 0 18 16" version="1.1" width="18" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13.62 9.08L12.1 3.66h-.06l-1.5 5.42h3.08zM5.7 10.13S4.68 6.52 4.53 6.02h-.08l-1.13 4.11H5.7zM17.31 14h-2.25l-.95-3.25h-4.07L9.09 14H6.84l-.69-2.33H2.87L2.17 14H0l3.3-9.59h2.5l2.17 6.34L10.86 2h2.52l3.94 12h-.01z"></path></svg>
+    </md-header>
+
+    <md-bold tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add bold text &lt;cmd-b&gt;" data-ga-click="Markdown Toolbar, click, bold" hotkey="b" role="button">
+      <svg class="octicon octicon-bold" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1 2h3.83c2.48 0 4.3.75 4.3 2.95 0 1.14-.63 2.23-1.67 2.61v.06c1.33.3 2.3 1.23 2.3 2.86 0 2.39-1.97 3.52-4.61 3.52H1V2zm3.66 4.95c1.67 0 2.38-.66 2.38-1.69 0-1.17-.78-1.61-2.34-1.61H3.13v3.3h1.53zm.27 5.39c1.77 0 2.75-.64 2.75-1.98 0-1.27-.95-1.81-2.75-1.81h-1.8v3.8h1.8v-.01z"></path></svg>
+    </md-bold>
+
+    <md-italic tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add italic text &lt;cmd-i&gt;" data-ga-click="Markdown Toolbar, click, italic" hotkey="i" role="button">
+      <svg class="octicon octicon-italic" viewBox="0 0 6 16" version="1.1" width="6" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.81 5h1.98L3 14H1l1.81-9zm.36-2.7c0-.7.58-1.3 1.33-1.3.56 0 1.13.38 1.13 1.03 0 .75-.59 1.3-1.33 1.3-.58 0-1.13-.38-1.13-1.03z"></path></svg>
+    </md-italic>
+  </div>
+
+  <div class="toolbar-group">
+    <md-quote tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Insert a quote" data-ga-click="Markdown Toolbar, click, quote" role="button">
+      <svg class="octicon octicon-quote" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.16 3.5C3.73 5.06 2.55 6.67 2.55 9.36c.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.9 0-2.99-1.52-2.99-4.25 0-3.8 1.75-6.53 5.02-8.42L6.16 3.5zm7 0c-2.43 1.56-3.61 3.17-3.61 5.86.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.89 0-2.98-1.52-2.98-4.25 0-3.8 1.75-6.53 5.02-8.42l1.14 1.84h-.01z"></path></svg>
+    </md-quote>
+
+    <md-code tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Insert code" data-ga-click="Markdown Toolbar, click, code" role="button">
+      <svg class="octicon octicon-code" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+    </md-code>
+
+    <md-link tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add a link &lt;cmd-k&gt;" data-ga-click="Markdown Toolbar, click, link" hotkey="k" role="button">
+      <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>
+    </md-link>
+  </div>
+
+  <div class="toolbar-group">
+    <md-unordered-list tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add a bulleted list" data-ga-click="Markdown Toolbar, click, unordered list" role="button">
+      <svg class="octicon octicon-list-unordered" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2 13c0 .59 0 1-.59 1H.59C0 14 0 13.59 0 13c0-.59 0-1 .59-1h.81c.59 0 .59.41.59 1H2zm2.59-9h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1H4.59C4 2 4 2.41 4 3c0 .59 0 1 .59 1zM1.41 7H.59C0 7 0 7.41 0 8c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0-5H.59C0 2 0 2.41 0 3c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm10 5H4.59C4 7 4 7.41 4 8c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0 5H4.59C4 12 4 12.41 4 13c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01z"></path></svg>
+    </md-unordered-list>
+
+    <md-ordered-list tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add a numbered list" data-ga-click="Markdown Toolbar, click, ordered list" role="button">
+      <svg class="octicon octicon-list-ordered" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 12.99c0 .589 0 .998-.59.998H4.597c-.59 0-.59-.41-.59-.999 0-.59 0-.999.59-.999H11.4c.59 0 .59.41.59 1H12zM4.596 3.996H11.4c.59 0 .59-.41.59-1 0-.589 0-.999-.59-.999H4.596c-.59 0-.59.41-.59 1 0 .589 0 .999.59.999zM11.4 6.994H4.596c-.59 0-.59.41-.59 1 0 .589 0 .999.59.999H11.4c.59 0 .59-.41.59-1 0-.59 0-.999-.59-.999zM2.008 1h-.72C.99 1.19.71 1.25.26 1.34V2h.75v2.138H.17v.859h2.837v-.86h-.999V1zm.25 8.123c-.17 0-.45.03-.66.06.53-.56 1.14-1.249 1.14-1.888-.02-.78-.56-1.299-1.36-1.299-.589 0-.968.2-1.378.64l.58.579c.19-.19.38-.38.639-.38.28 0 .48.16.48.52 0 .53-.77 1.199-1.699 2.058v.58h2.998l-.09-.88h-.66l.01.01zm-.08 3.777v-.03c.44-.19.64-.47.64-.859 0-.7-.56-1.11-1.44-1.11-.479 0-.888.19-1.278.52l.55.64c.25-.2.44-.31.689-.31.27 0 .42.13.42.36 0 .27-.2.44-.86.44v.749c.83 0 .98.17.98.47 0 .25-.23.38-.58.38-.28 0-.56-.14-.81-.38l-.479.659c.3.36.77.56 1.409.56.83 0 1.529-.41 1.529-1.16 0-.5-.31-.809-.77-.939v.01z"></path></svg>
+    </md-ordered-list>
+
+    <md-task-list tabindex="-1" class="toolbar-item tooltipped tooltipped-n" aria-label="Add a task list" data-ga-click="Markdown Toolbar, click, task list" hotkey="L" role="button">
+      <svg class="octicon octicon-tasklist" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M15.41 9H7.59C7 9 7 8.59 7 8c0-.59 0-1 .59-1h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM9.59 4C9 4 9 3.59 9 3c0-.59 0-1 .59-1h5.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H9.59zM0 3.91l1.41-1.3L3 4.2 7.09 0 8.5 1.41 3 6.91l-3-3zM7.59 12h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H7.59C7 14 7 13.59 7 13c0-.59 0-1 .59-1z"></path></svg>
+    </md-task-list>
+  </div>
+
+  <div class="toolbar-group">
+    <md-mention tabindex="-1" class="toolbar-item tooltipped tooltipped-nw" aria-label="Directly mention a user or team" data-ga-click="Markdown Toolbar, click, mention" role="button">
+      <svg class="octicon octicon-mention" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.58 15c1.25 0 2.52-.31 3.56-.94l-.42-.94c-.84.52-1.89.83-3.03.83-3.23 0-5.64-2.08-5.64-5.72 0-4.37 3.23-7.18 6.58-7.18 3.45 0 5.22 2.19 5.22 5.2 0 2.39-1.34 3.86-2.5 3.86-1.05 0-1.36-.73-1.05-2.19l.73-3.75H8.98l-.11.72c-.41-.63-.94-.83-1.56-.83-2.19 0-3.66 2.39-3.66 4.38 0 1.67.94 2.61 2.3 2.61.84 0 1.67-.53 2.3-1.25.11.94.94 1.45 1.98 1.45 1.67 0 3.77-1.67 3.77-5C14 2.61 11.59 0 7.83 0 3.66 0 0 3.33 0 8.33 0 12.71 2.92 15 6.58 15zm-.31-5c-.73 0-1.36-.52-1.36-1.67 0-1.45.94-3.22 2.41-3.22.52 0 .84.2 1.25.83l-.52 3.02c-.63.73-1.25 1.05-1.78 1.05V10z"></path></svg>
+    </md-mention>
+
+    <md-ref tabindex="-1" class="toolbar-item tooltipped tooltipped-nw" aria-label="Reference an issue or pull request" data-ga-click="Markdown Toolbar, click, reference" role="button">
+      <svg class="octicon octicon-bookmark" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+    </md-ref>
+
+      <details class="details-reset details-overlay toolbar-item select-menu select-menu-modal-right js-saved-reply-container">
+        <summary class="menu-target" aria-label="Insert a reply" data-ga-click="Markdown Toolbar, click, saved reply" aria-haspopup="menu">
+          <svg class="octicon octicon-reply" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.5c3.92.44 8 3.125 8 10-2.312-5.062-4.75-6-8-6V11L.5 5.5 6 0v3.5z"></path></svg>
+          <span class="dropdown-caret"></span>
+        </summary>
+        <details-menu class="select-menu-modal position-absolute right-0" style="z-index: 99;" src="/settings/replies?context=issue" role="menu">
+          <div class="select-menu-header d-flex">
+            <span class="select-menu-title flex-auto">Select a reply</span>
+            <code><span class="border rounded-1 p-1 mr-2">ctrl .</span></code>
+          </div>
+          <include-fragment class="select-menu-loading-overlay anim-pulse" aria-label="Loading">
+            <svg class="octicon octicon-octoface" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14.7 5.34c.13-.32.55-1.59-.13-3.31 0 0-1.05-.33-3.44 1.3-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69 0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35 0-.76.38-1.48 1.02-2.07 1.07-.98 2.9-.46 4.96-.46 2.07 0 3.88-.52 4.96.46.65.59 1.02 1.3 1.02 2.07 0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z"></path></svg>
+          </include-fragment>
+        </details-menu>
+      </details>
+  </div>
+</markdown-toolbar>
+
+      <nav class="tabnav-tabs" role="tablist">
+        <button type="button" class="btn-link tabnav-tab write-tab js-write-tab selected" role="tab" aria-selected="true">Write</button>
+        <button type="button" class="btn-link tabnav-tab preview-tab js-preview-tab" role="tab">Preview</button>
+      </nav>
+  </div>
+
+
+  <div class="comment-form-error js-comment-form-error" style="display:none">    There was an error creating your Issue.
+</div>
+  <file-attachment class="js-upload-markdown-image is-default" data-upload-repository-id="61872036" data-upload-policy-url="/upload/policies/assets" data-upload-policy-authenticity-token="n7IqWz1BA3/KWot2gDccqTwUSrvm9okrXII8TMGVqkWcpqZUDaBINKGfuJ80UZduiqu8A7DI3nG2Jv8vFwUynA==">
+    <div class="write-content js-write-bucket upload-enabled">
+
+        <input type="hidden" name="saved_reply_id" class="js-saved-reply-id js-resettable-field" value="" data-reset-value="">
+
+      <textarea name="comment[body]" id="new_comment_field" placeholder="Leave a comment" aria-label="Comment body" class="form-control input-contrast comment-form-textarea js-comment-field js-paste-markdown js-task-list-field js-quick-submit js-size-to-fit js-suggester-field js-session-resumable js-saved-reply-shortcut-comment-field"></textarea>
+
+          <p class="drag-and-drop position-relative">
+    <input accept=".gif,.jpeg,.jpg,.png,.docx,.gz,.log,.pdf,.pptx,.txt,.xlsx,.zip" type="file" multiple="multiple" class="manual-file-chooser top-0 right-0 bottom-0 left-0 width-full ml-0 js-manual-file-chooser" aria-label="Attach files to your comment">
+    <span class="default">
+        Attach files by dragging &amp; dropping,
+        <span class="btn-link manual-file-chooser-text">selecting them</span>, or pasting
+        from the clipboard.
+    </span>
+    <span class="loading">
+      <img alt="" width="16" height="16" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/octocat-spinner-32.gif"> Uploading your files…
+    </span>
+    <span class="error bad-file">
+      We don’t support that file type.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a
+        GIF, JPEG, JPG, PNG, DOCX, GZ, LOG, PDF, PPTX, TXT, XLSX or ZIP.
+      </span>
+    </span>
+    <span class="error bad-permissions">
+      Attaching documents requires write permission to this repository.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a GIF, JPEG, JPG, PNG, DOCX, GZ, LOG, PDF, PPTX, TXT, XLSX or ZIP.
+      </span>
+    </span>
+    <span class="error repository-required">
+      We don’t support that file type.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a GIF, JPEG, JPG, PNG, DOCX, GZ, LOG, PDF, PPTX, TXT, XLSX or ZIP.
+      </span>
+    </span>
+    <span class="error too-big">
+      Yowza, that’s a big file
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file smaller than 10MB.
+      </span>
+    </span>
+    <span class="error empty">
+      This file is empty.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file that’s not empty.
+      </span>
+    </span>
+    <span class="error hidden-file">
+      This file is hidden.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with another file.
+      </span>
+    </span>
+    <span class="error failed-request">
+      Something went really wrong, and we can’t process that file.
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again.</button>
+      </span>
+    </span>
+  </p>
+
+
+      <div class="suggester-container">
+        <div class="suggester js-suggester js-navigation-container" data-url="/suggestions/issue/289855705?repository=dva&amp;user_id=dvajs" hidden="">
+        </div>
+      </div>
+    </div>
+</file-attachment>
+  <div class="preview-content overflow-auto border-bottom">
+    <input type="hidden" name="original-line" value="" class="js-original-line">
+    <input type="hidden" name="path" value="" class="js-path">
+    <input type="hidden" name="line" value="" class="js-line-number">
+    <div class="comment js-suggested-changes-container" data-thread-side="">
+  <div class="comment-body markdown-body js-preview-body">
+    <p>Nothing to preview</p>
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="float-left">
+      <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank" data-ga-click="Markdown Toolbar, click, help">
+        <svg class="octicon octicon-markdown v-align-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg>
+        Styling with Markdown is supported
+      </a>
+  </div>
+
+
+  <div class="comment-form-error comment-form-bottom js-comment-update-error"></div>
+</div>
+
+          <div class="form-actions">
+            <div id="partial-new-comment-form-actions" class="js-socket-channel js-updatable-content" data-channel="issue:289855705:state" data-url="/dvajs/dva/issues/1472/show_partial?partial=issues%2Fform_actions">
+
+  <button type="submit" class="btn btn-primary" data-disable-with="" data-disable-invalid="">
+    Comment
+  </button>
+
+    
+</div>
+
+          </div>
+      </div>
+</form>
+</div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  </div>
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+        
+<div class="footer container-lg px-3" role="contentinfo">
+  <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <ul class="list-style-none d-flex flex-wrap ">
+      <li class="mr-3">© 2018 <span title="1.14580s from unicorn-79fdfb8957-m929w">GitHub</span>, Inc.</li>
+        <li class="mr-3"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
+        <li class="mr-3"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
+        <li class="mr-3"><a href="https://help.github.com/articles/github-security/" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li class="mr-3"><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a data-ga-click="Footer, go to help, text:help" href="https://help.github.com/">Help</a></li>
+    </ul>
+
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon mr-lg-4" href="https://github.com/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+   <ul class="list-style-none d-flex flex-wrap ">
+        <li class="mr-3"><a data-ga-click="Footer, go to contact, text:contact" href="https://github.com/contact">Contact GitHub</a></li>
+        <li class="mr-3"><a href="https://github.com/pricing" data-ga-click="Footer, go to Pricing, text:Pricing">Pricing</a></li>
+      <li class="mr-3"><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li class="mr-3"><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+        <li class="mr-3"><a href="https://blog.github.com/" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
+
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+
+
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+    </button>
+    You can’t perform that action at this time.
+  </div>
+
+
+    
+    <script crossorigin="anonymous" integrity="sha512-j7P2Pw3104HznNqyNm7WuCF8Lstcf/sPX5meP6e5RFF177kmi6SAbkZ52A3ttKj0cRHLRrUbk7C1w1xtwh52zA==" type="application/javascript" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/frameworks-c163002918ede72971a36e0025f67a4a.js"></script>
+    
+    <script crossorigin="anonymous" async="async" integrity="sha512-Z5fd0dj51rMxKrjedM+9gyg1X4RM1fM8hivZbHa//bBehMC/OqElWU0NR3uedNn22O1P5Qc7ZZrQIXjijKykkA==" type="application/javascript" src="./关于model的一些疑惑，请各位大佬指点！ · Issue #1472 · dvajs_dva_files/github-d5b765c4b8bba3ff3117a438286f8445.js"></script>
+    
+    
+    
+  <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://github.com/dvajs/dva/issues/1472">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://github.com/dvajs/dva/issues/1472">Reload</a> to refresh your session.</span>
+  </div>
+  <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  <template id="site-details-dialog"></template>
+
+  <div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;" tabindex="0">
+  <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style="width:360px;">
+  </div>
+</div>
+
+<div id="hovercard-aria-description" class="sr-only">
+  Press h to open a hovercard with more details.
+</div>
+
+
+  
+
+
+</body><div style="display: block; opacity: 1;"></div></html>
