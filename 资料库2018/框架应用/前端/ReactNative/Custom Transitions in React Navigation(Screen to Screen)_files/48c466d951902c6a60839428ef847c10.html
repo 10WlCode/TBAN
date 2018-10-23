@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://medium.com/media/48c466d951902c6a60839428ef847c10?postId=c2d035aa3c63 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>TransitionConfig.js – Medium</title><meta name="description" content="GitHub is where people build software. More than 27 million people use GitHub to discover, fork, and contribute to over 80 million projects."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./3b5073bfc905a4c934380954c8643652.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-2c768148c4d27cab10fe818942078e18.css"><div id="gist88503127" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-transitionconfig-js" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-javascript ">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-transitionconfig-js-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-transitionconfig-js-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">const</span> <span class="pl-c1">TransitionConfiguration</span> <span class="pl-k">=</span> () <span class="pl-k">=&gt;</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-transitionconfig-js-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">return</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-transitionconfig-js-LC3" class="blob-code blob-code-inner js-file-line">    transitionSpec<span class="pl-k">:</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-transitionconfig-js-LC4" class="blob-code blob-code-inner js-file-line">      duration<span class="pl-k">:</span> <span class="pl-c1">750</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-transitionconfig-js-LC5" class="blob-code blob-code-inner js-file-line">      easing<span class="pl-k">:</span> <span class="pl-smi">Easing</span>.<span class="pl-en">out</span>(<span class="pl-smi">Easing</span>.<span class="pl-en">poly</span>(<span class="pl-c1">4</span>)),</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-transitionconfig-js-LC6" class="blob-code blob-code-inner js-file-line">      timing<span class="pl-k">:</span> <span class="pl-smi">Animated</span>.<span class="pl-smi">timing</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-transitionconfig-js-LC7" class="blob-code blob-code-inner js-file-line">      useNativeDriver<span class="pl-k">:</span> <span class="pl-c1">true</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-transitionconfig-js-LC8" class="blob-code blob-code-inner js-file-line">    },</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-transitionconfig-js-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-en">screenInterpolator</span><span class="pl-k">:</span> (<span class="pl-smi">sceneProps</span>) <span class="pl-k">=&gt;</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-transitionconfig-js-LC10" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">const</span> { <span class="pl-c1">layout</span>, <span class="pl-c1">position</span>, <span class="pl-c1">scene</span> } <span class="pl-k">=</span> sceneProps;</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-transitionconfig-js-LC11" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">const</span> <span class="pl-c1">width</span> <span class="pl-k">=</span> <span class="pl-smi">layout</span>.<span class="pl-smi">initWidth</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-transitionconfig-js-LC12" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">const</span> { <span class="pl-c1">index</span>, <span class="pl-c1">route</span> } <span class="pl-k">=</span> scene</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-transitionconfig-js-LC13" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">const</span> <span class="pl-c1">params</span> <span class="pl-k">=</span> <span class="pl-smi">route</span>.<span class="pl-smi">params</span> <span class="pl-k">||</span> {}; <span class="pl-c"><span class="pl-c">//</span> &lt;- That's new</span></td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-transitionconfig-js-LC14" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">const</span> <span class="pl-c1">transition</span> <span class="pl-k">=</span> <span class="pl-smi">params</span>.<span class="pl-smi">transition</span> <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>; <span class="pl-c"><span class="pl-c">//</span> &lt;- That's new</span></td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-transitionconfig-js-LC15" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">return</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-transitionconfig-js-LC16" class="blob-code blob-code-inner js-file-line">        collapseExpand<span class="pl-k">:</span> <span class="pl-en">CollapseExpand</span>(index, position),</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-transitionconfig-js-LC17" class="blob-code blob-code-inner js-file-line">        default<span class="pl-k">:</span> <span class="pl-en">SlideFromRight</span>(index, position, width),</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-transitionconfig-js-LC18" class="blob-code blob-code-inner js-file-line">      }[transition];</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-transitionconfig-js-LC19" class="blob-code blob-code-inner js-file-line">    },</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-transitionconfig-js-LC20" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-transitionconfig-js-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-transitionconfig-js-LC21" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/ashrithks/3b5073bfc905a4c934380954c8643652/raw/29060fd4434d182a361974c2de8e44b8ad52fe74/TransitionConfig.js" style="float:right">view raw</a>
+        <a href="https://gist.github.com/ashrithks/3b5073bfc905a4c934380954c8643652#file-transitionconfig-js">TransitionConfig.js</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200;function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height); resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);}maybeResize();</script></body></html>
