@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	font-family: 'Work Sans';
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: 800;
+	line-height: 1;
+	font-family: 'Poppins';
+	letter-spacing: -0.02em;
+}
+
+h1 {
+	line-height: 0.9;
+}
+
+h2 {
+	line-height: 1.1;
+}
+
+h3 {
+	font-weight: 900;
+	line-height: 1.2;
+}
+
+h5 {
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+h6 {
+	font-weight: 600;
+	font-family: 'Poppins';
+}
+
+strong {
+	font-weight: 600;
+}
+
+a {
+	font-weight: 600;
+}
