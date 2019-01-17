@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://www.jb51.net/article/104717.htm -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<title>C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="keywords" content="c#数组,arraylist,list,dictionary">
+<meta name="description" content="在工作中经常遇到C#数组、ArrayList、List、Dictionary存取数据，但是该选择哪种类型进行存储数据呢？很迷茫，今天小编抽空给大家整理下这方面的内容，需要的朋友参考下吧">
+<link rel="alternate" media="only screen and(max-width: 640px)" href="https://m.jb51.net/article/104717.htm">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://m.jb51.net/article/104717.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=https://m.jb51.net/article/104717.htm">
+<script type="text/javascript" async="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/pr.js"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/hm.js"></script><script type="text/javascript" async="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/mgkojt.js"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/push.js"></script><script type="text/javascript" async="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/dynamicFloat.js"></script><script type="text/javascript">
+var tougao="mrr",lmname="C#教程",suoyin="no";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "https://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<meta name="referrer" content="always">
+<link type="text/css" href="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/base.css" rel="stylesheet">
+<link type="text/css" href="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/common.css" rel="stylesheet">
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/jquery.min.js"></script>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='/skin/js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+</script>
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/function.js"></script> 
+<style type="text/css">
+:root .adsbygoogle,
+:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle
+{ display: none !important; }
+:root *[xstd3xc][hidden] { display: none !important; }</style></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<!--topTools Start -->
+<div class="topTools">
+    <div class="wrap clear_fix">
+		<div class="topToolsLeft">
+			<a href="https://www.jb51.net/" target="_blank">脚本之家</a>
+			<a href="http://s.jb51.net/" target="_blank" rel="nofollow">服务器常用软件</a>
+		<a href="https://www.yuanshichang.com/" target="_blank" style="color:red">源码商城</a><a href="http://idc.jb51.net/" target="_blank" style="color:red">脚本云</a><a href="http://ke.jb51.net/" target="_blank" style="color:red">脚本云课堂</a></div>
+		<div class="right">
+			<ul>
+				<li><i class="sprite md left"></i><a target="_blank" href="https://m.jb51.net/" rel="nofollow">手机版</a></li>
+				<li><i class="sprite tg left"></i><a href="http://tougao.jb51.net/" rel="nofollow" target="_blank">投稿中心</a></li>
+				<li id="wxHide"><i class="sprite wx left"></i><a href="javascript:void(0)" target="_blank">关注微信</a>
+					<div id="wxShow" class="wxHide_box"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/erwm.jpg" alt="扫一扫" width="84" hight="84" data-baiduimageplus-ignore=""></div>
+				</li>
+			</ul>
+			<!--快捷导航 开始 -->
+			<div class="text_d right" id="navHide">
+        <a rel="nofollow" href="javascript:void(0);">快捷导航 <i id="icon" class="sprite arrowRight"></i></a>
+        <div id="navBox" class="nwebNav" style="display: none;">
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4>
+                                        <a rel="nofollow" href="https://www.jb51.net/softs/" target="_blank">软件下载</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/softs/android.html" target="_blank">android</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/softs/mac.html" target="_blank">MAC</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/qudong/" target="_blank">驱动下载</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/fonts/" target="_blank">字体下载</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/dll/" target="_blank">DLL</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4>
+                                        <a rel="nofollow" href="https://www.jb51.net/codes/" target="_blank">源码下载</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/codes/php.html" target="_blank">PHP</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/codes/aspnet.html" target="_blank">ASP.NET</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/codes/asp.html" target="_blank">ASP</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/codes/jsp.html" target="_blank">JSP</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="https://www.jb51.net/list/index_84.htm" target="_blank">软件编程</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_85_1.htm" target="_blank">C#</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_134_1.htm" target="_blank">JAVA</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_159_1.htm" target="_blank">C 语言</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_206_1.htm" target="_blank">Delphi</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_233_1.htm" target="_blank">Android</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="https://www.jb51.net/list/index_1.htm" target="_blank">网络编程</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_15_1.htm" target="_blank">PHP</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_21_1.htm" target="_blank">ASP.NET</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_2_1.htm" target="_blank">ASP</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_3_1.htm" target="_blank">JavaScript</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="http://tools.jb51.net/" target="_blank">在线工具</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a>
+                                        <a rel="nofollow" href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank">JS格式化</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="https://www.jb51.net/list/index_104.htm" target="_blank">数据库</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_112_1.htm" target="_blank">MYSQL</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_113_1.htm" target="_blank">MSSQL</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_154_1.htm" target="_blank">oracle</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_155_1.htm" target="_blank">DB2</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/list/list_252_1.htm" target="_blank">MARIADB</a></dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="https://www.jb51.net/cms/" target="_blank">CMS</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/cms/list411_1.html" target="_blank">PHPCMS</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/cms/list408_1.html" target="_blank">DEDECMS</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/cms/list578_1.html" target="_blank">帝国CMS</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/cms/list419_1.html" target="_blank">WordPress</a>
+                                </dd>
+                        </dl>
+                </div>
+                <div class="ndealList clear_fix">
+                        <div class="navTitle left">
+                                <h4><a rel="nofollow" href="javascript:0;" target="_blank">常用工具</a></h4>
+                        </div>
+                        <dl class="right">
+                                <dd>
+                                        <a rel="nofollow" href="https://www.jb51.net/zt/phphuanjing.html" target="_blank">PHP开发工具</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/zt/python.html" target="_blank">python</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/zt/photoshopxz.html" target="_blank">Photoshop</a>
+                                        <a rel="nofollow" href="https://www.jb51.net/bibei/win/index.html" target="_blank">必备软件</a></dd>
+                        </dl>
+                </div>
+        </div>
+</div>
+			<!--快捷导航 结束 -->
+		</div>
+    </div>
+</div>
+<!--topTools end -->
+
+<div class="header">
+	<!-- Logo start -->
+	<div class="wrap">
+		<div class="mtb10 clearfix">
+		  <div class="logo"><a href="https://www.jb51.net/"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/logo.gif" title="脚本之家" alt="脚本之家"></a></div>
+		  <div class="logom fl"><a href="http://ke.jb51.net/" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/ke_370.gif" width="370" height="60"></a>
+</div>
+		  <div class="logor fr"><a href="https://818ps.com/?user_source=r4292&amp;route_id=15380213206763&amp;route=1" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/818ps.gif" width="370" height="60"></a>
+</div>
+		</div>
+	</div>
+	<!--Logo end -->
+	
+	<!-- 导航开始 -->
+	<div class="nav_top clearfix">
+		<ul>
+			<li><a href="https://www.jb51.net/">网站首页</a></li>
+			<li><a href="https://www.jb51.net/web/">网页制作</a></li>
+			<li><a href="https://www.jb51.net/list/index_1.htm">网络编程</a></li>
+			<li><a href="https://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+			<li><a href="https://www.jb51.net/jiaoben/">脚本下载</a></li>
+			<li><a href="https://www.jb51.net/list/index_104.htm">数据库</a></li>
+			<li><a href="https://www.jb51.net/list/list_82_1.htm">服务器</a></li>
+			<li><a href="https://www.jb51.net/books/">电子书籍</a></li>
+			<li><a href="https://www.jb51.net/os/">操作系统</a></li>
+			<li><a href="https://www.jb51.net/yunying/">网站运营</a></li>
+			<li><p><i>其它</i><span>
+				<a href="https://www.jb51.net/pingmian/">平面设计</a>
+				<a href="https://www.jb51.net/media/">媒体动画</a>
+				<a href="https://www.jb51.net/diannaojichu/">电脑基础</a>
+				<a href="https://www.jb51.net/hardware/">硬件教程</a>
+				<a href="https://www.jb51.net/hack/">网络安全</a>	
+			</span></p></li>
+		</ul>
+	</div>
+	<!--导航结束-->
+</div>
+
+<!-- 二级菜单开始 -->
+<div class="wrap">
+	<div class="subnav clearfix">
+<ul><li><a href="https://www.jb51.net/list/list_85_1.htm" title="C#教程">C#教程</a></li>
+<li><a href="https://www.jb51.net/list/list_93_1.htm" title="vb">vb</a></li>
+<li><a href="https://www.jb51.net/list/list_205_1.htm" title="vb.net">vb.net</a></li>
+<li><a href="https://www.jb51.net/list/list_159_1.htm" title="C 语言">C 语言</a></li>
+<li><a href="https://www.jb51.net/list/list_134_1.htm" title="Java编程">Java编程</a></li>
+<li><a href="https://www.jb51.net/list/list_206_1.htm" title="Delphi">Delphi</a></li>
+<li><a href="https://www.jb51.net/list/list_207_1.htm" title="java">java</a></li>
+<li><a href="https://www.jb51.net/list/list_233_1.htm" title="Android">Android</a></li>
+<li><a href="https://www.jb51.net/list/list_238_1.htm" title="IOS">IOS</a></li>
+<li><a href="https://www.jb51.net/list/list_244_1.htm" title="Swift">Swift</a></li>
+<li><a href="https://www.jb51.net/list/list_250_1.htm" title="Scala">Scala</a></li>
+<li><a href="https://www.jb51.net/list/list_254_1.htm" title="易语言">易语言</a></li>
+<li><a href="https://www.jb51.net/list/list_188_1.htm" title="其它相关">其它相关</a></li>
+</ul>
+	</div>
+</div>
+<!-- 二级菜单结束 -->	
+
+<div class="main mb10 clearfix">
+	<div class="clearfix"><div class="mainlr"><a href="https://www.xrcloud.net/ruicloud/fractive?from=6U4L76fx740W" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/xinruiyun.png" alt="xinrunyun" width="1080" height="50"></a></div><div class="blank5"></div><div class="mainlr"><a href="http://e.cn.miaozhen.com/r/k=2100231&amp;p=7IsSK&amp;dx=__IPDX__&amp;rt=2&amp;ns=__IP__&amp;ni=__IESID__&amp;v=__LOC__&amp;xa=__ADPLATFORM__&amp;tr=__REQUESTID__&amp;o=https://bearychat.com/robot?utm_source=jb51&amp;utm_medium=banner" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/chat.png" alt="chat" width="1080" height="50"></a></div><div class="blank5"></div><div id="txtlink"><ul><li><a href="http://www.2016idc.com/cdn.html" target="_blank"><span style="color: red;">◆◆◆◆◆高防免备案CDN◆◆◆◆◆</span></a></li><li><a href="http://www.zoneidc.com/" target="_blank"><span style="color: red;">1G香港/美国/韩国等十五国云9.9元/月</span></a></li><li><a href="https://m.aliyun.com/act/team1111/#/share?params=N.EN2hxhpNQG.3ow2kbko" target="_blank"><span style="color: red;">██拼团分享阿里云300万现金██</span></a></li><li><a href="https://www.eidc.cn/servers/eidc-g/hkhk.php/" target="_blank"><span style="color: red;">『秒开』380元香港★韩国★美国服务器</span></a></li><li><a href="http://www.ssf.cc/" target="_blank"><span style="color: blue;">免备vps20/百独799/双线350/45互联</span></a></li><li><a href="http://www.fxyzm.com:9000/" target="_blank"><span style="color: blue;">飞讯验证码/接码平台/低至7分/作者提成高</span></a></li><li><a href="http://www.osssnet.com/" target="_blank"><span style="color: blue;">◆50M香港/美国/日本服务器380免备案◆</span></a></li><li><a href="https://818ps.com/?user_source=r4293&amp;route_id=15380213206763&amp;route=1" target="_blank"><span style="color: blue;">██程序员设计师不学PS  3秒就出图██</span></a></li><li><a href="https://www.guowaidiaocha.com/" target="_blank"><span style="color: red;">★国外网赚月入两万，一对一教学带你★</span></a></li><li><a href="http://ok095.com/" target="_blank"><span style="color: red;">全网最新空手套白狼网赚项目实时结算</span></a></li><li><a href="http://www.hkcn2.com/51.htm" target="_blank"><span style="color: red;">**香港高防10m大带宽独服，低至999元**</span></a></li><li><a href="http://www.yima998.com/" target="_blank"><span style="color: red;">一码平台/接码平台/百万卡在线/作者提成15%</span></a></li><li><a href="http://www.pppoevps.com/" target="_blank"><span style="color: blue;">█动态拨号IP云主机，电信ADSL独享20M█ </span></a></li><li><a href="http://www.ku86.com/" target="_blank"><span style="color: blue;">百兆 12核24线程 16G内存 2T 999/月</span></a></li><li><a href="http://ke.jb51.net/" target="_blank"><span style="color: blue;">脚本之家云课堂</span></a></li><li><a href="http://ke.jb51.net/" target="_blank"><span style="color: blue;">脚本之家云课堂</span></a></li><li><a href="http://www.7yc.com/rent.html" target="_blank"><span style="color: red;">██云彩网络██100G防服务器450元</span></a></li><li><a href="https://www.50vm.com/" target="_blank"><span style="color: red;">4核独服199/16核独服360|创梦网络</span></a></li><li><a href="http://www.gwidc.com/rent/home/index.html" target="_blank"><span style="color: red;">港湾网络-徐州百独16核16G 800/月~</span></a></li><li><a href="http://t.cn/Evui3ph" target="_blank"><span style="color: red;">【10元钱】500G学习资源/python/php/java</span></a></li><li><a href="http://www.ushk.net/server.html" target="_blank"><span style="color: blue;">██美港数据██高端香港服务器租用</span></a></li><li><a href="http://vps.zzidc.com/tongji/jb51w.html" target="_blank"><span style="color: blue;">★☆云服务器5折，天天抽红包抵扣☆★</span></a></li><li><a href="http://www.enkj.com/idc/zuyong/6" target="_blank"><span style="color: blue;">【亿恩】DELL品牌服务器，月付599元起</span></a></li><li><a href="http://www.xiaozhiyun.com/2016/" target="_blank"><span style="color: blue;">韩国香港美国站群服务器 巨牛网络</span></a></li><li><a href="https://www.wsisp.net/clientcenter/shownews_852.html?indexjb" target="_blank"><span style="color: red;">█▇▆5M独享云主机599/年▆▇█</span></a></li><li><a href="http://www.qy.com.cn/" target="_blank"><span style="color: red;">群英云服务器送10M带宽30G防御,49元起</span></a></li><li><a href="http://www.tuidc.com/" target="_blank"><span style="color: red;">服务器租用/托管-域名空间/认准腾佑科技</span></a></li><li><a href="http://www.jjidc.com/" target="_blank"><span style="color: red;">九九数据 — 工信部认可正规资质IDC接入商</span></a></li><li><a href="https://www.95idc.com/" target="_blank"><span style="color: blue;">95IDC█香港沙田CN2服务器 599/月</span></a></li><li><a href="http://www.zitian.cn/" target="_blank"><span style="color: blue;">中原地区核心数据中心，月付299元起</span></a></li><li><a href="http://www.qy.cn/gfhd.html" target="_blank"><span style="color: blue;">██群英网络██◆◆◆300G高防仅需599元◆◆◆</span></a></li><li><a href="http://www.pdidc.com/" target="_blank"><span style="color: blue;">浦东数据中心上海电信4星云主机30元/月起</span></a></li><li><a href="http://www.139w.com/" target="_blank"><span style="color: red;">鼎点网络百兆独享服务器仅需999元</span></a></li><li><a href="http://www.360jq.com/hkshuang.htm" target="_blank"><span style="color: red;">[香港双高防]无视CC★DDOS/堪比广东！</span></a></li><li><a href="http://www.cyidc.cc/" target="_blank"><span style="color: red;">畅游网络 百独服务器 包跑满 998元</span></a></li><li><a href="http://www.wdw6.com/" target="_blank"><span style="color: red;">bgp多线机房、大带宽</span></a></li></ul><div class="clearfix"></div></div><div class="blank5"></div><div class="topimg"><ul><li><a href="http://www.ruixunidc.net/Promot/promdetails/details/56.html" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/ruixun.gif" width="210" height="50"></a></li><li><a href="https://www.guowaidiaocha.com/" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/wenjuan51.png" width="210" height="50"></a></li><li><a href="http://www.iis7.com/b/wzjk/?jb51.net" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/iis7.gif" width="210" height="50"></a></li><li><a href="https://www.7e.hk/vps/" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/7ehk.gif" width="210" height="50"></a></li><li><a href="http://www.plaidc.com/" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/plaidc.gif" width="210" height="50"></a></li></ul></div><div class="blank5"></div><div class="mainlr"><a href="http://27.2wk.com/" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/27pan.jpg" alt="27pan" width="1080" height="50"></a></div>
+</div>
+</div>
+<div class="main clearfix">
+	<div class="NavBar clearfix ptb10">
+		<div class="fl w690">
+			<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href="https://www.jb51.net/">首页</a> → <a href="https://www.jb51.net/list/index_84.htm" title="软件编程">软件编程</a> → <a href="https://www.jb51.net/list/list_85_1.htm" title="C#教程">C#教程</a> → 正文内容 c#数组 arraylist list dictionary用法与区别</div>
+		</div>
+		<div class="fr w300"><div class="search">
+		<form action="https://www.jb51.net/do/search.php" target="_blank">
+			<input type="hidden" name="s" value="10520733385329581432">
+			<input type="hidden" name="ie" value="gbk">
+			<input type="text" name="q" class="key_input" placeholder="请输入关键词">
+			<input type="submit" value=" " class="c_btn">
+		</form></div>
+		</div>
+	</div>
+</div>
+<!--content Star -->
+<div id="contents">
+ <!--share start-->
+ <div id="right-share" style="display: block;">
+	<div class="right-share jb-share" id="jb-share">
+		<a class="rshare-weixin" title="">微信</a>
+        <a rel="nofollow" class="rshare-qzone" target="_blank" href="https://tougao.jb51.net/" title="投稿">投稿</a>
+		<a rel="nofollow" class="rshare-sqq" target="_blank" href="http://shequ.jb51.net/" title="交流社区">交流社区</a>
+		<a rel="nofollow" class="rshare-tsina" target="_blank" href="http://tools.jb51.net/" title="在线工具">在线工具</a>
+	</div>
+	<a class="rshare-top" onclick="javascript:;"></a>
+			
+	<div id="weixin-code" class="hide">
+	<div class="popup_weixin_head"><p>关注微信公众号</p> 
+	<div id="code"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/erwm.jpg" alt="扫一扫" width="100" hight="100"></div>
+	</div>
+	</div>	
+ </div>
+<!--share end-->
+
+ <div class="main clearfix bgf">
+      <div class="w750 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)</h1>
+            <p> &nbsp;更新时间：2017年02月06日 10:43:58 &nbsp; 投稿：mrr  &nbsp; <a href="https://www.jb51.net/article/104717.htm#comments"> <img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/text-message.png" width="15" height="15"> 我要评论</a> </p>
+        </div>
+        <div class="lbd clearfix"><div id="_jaz74zcyps"><iframe width="700" frameborder="0" height="60" scrolling="no" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/xeoacgr.html"></iframe></div><script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/uphlhyovv.js"></script>
+</div>
+        <div class="art_desc mt10"><div id="art_demo">在工作中经常遇到C#数组、ArrayList、List、Dictionary存取数据，但是该选择哪种类型进行存储数据呢？很迷茫，今天小编抽空给大家整理下这方面的内容，需要的朋友参考下吧</div></div>
+        <div class="lbd clearfix"><a href="http://www.php.cn/course.html?ad51" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/phpcn.gif" width="690" height="99"></a>
+</div>
+        <div id="content">
+            <p><span style="color: #ff0000"><strong>前言</strong></span></p>
+<p>　　在工作中经常遇到C#数组、ArrayList、List、Dictionary存取数据，但是该选择哪种类型进行存储数据，对于初学者的我一直不知道该怎么取舍。于是抽空好好看了下他们的用法和比较，在这里总结下来，后面有需要改进的再更新。</p>
+<p><span style="color: #ff0000"><strong>初始化</strong></span></p>
+<p><strong>数组：</strong></p>
+<div class="jb51code">
+<div><div id="highlighter_894526" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/104717.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">int[] buff = </code><code class="js keyword">new</code> <code class="js plain">int[6];</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>ArrayList：</strong></p>
+<div class="jb51code">
+<div><div id="highlighter_39631" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/104717.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">ArrayList buff = </code><code class="js keyword">new</code> <code class="js plain">ArrayList();</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>List：</strong></p>
+<div class="jb51code">
+<div><div id="highlighter_248014" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/104717.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">List&lt;int&gt; buff = </code><code class="js keyword">new</code> <code class="js plain">List&lt;int&gt;();</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>Dictionary：</strong></p>
+<div class="jb51code">
+<div><div id="highlighter_638350" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="https://www.jb51.net/article/104717.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">Dictionary&lt;</code><code class="csharp keyword">int</code><code class="csharp plain">,</code><code class="csharp keyword">string</code><code class="csharp plain">&gt; buff = </code><code class="csharp keyword">new</code> <code class="csharp plain">Dictionary&lt;</code><code class="csharp keyword">int</code><code class="csharp plain">,</code><code class="csharp keyword">string</code><code class="csharp plain">&gt;;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><span style="color: #ff0000"><strong>分析比较</strong></span></p>
+<p>　　从上面初始化的几种类型可以看出，他们都属于引用类型。其中数组、List、Dictionary在初始化的时候需要指定其元素类型，而ArrayList不需要指定类型。而在其中只有数组在初始化时设置了其大小。</p>
+<p>　　数组：在初始化时必须指定其大小和类型，他在内存中是连续存储的，所以可以看出数组的索引速度是非常快的。在确定了数组的长度和类型后，选择数组存储数据是比较好的选择。不适合插入操作。</p>
+<p>　　ArrayList：在初始化的时候不需要指定其大小和类型。他可以存储不同的数据类型，但是在存取得过程中会引起装箱和拆箱，降低了性能。插入操作方便。</p>
+<p>　　List：在初始化的时候必须指定其类型，但是不需要指定大小，所以他不会像ArraryList那样在存取过程中引起装箱和拆箱操作。在类型相同的情况下，List和数组的性能相当。插入操作方便。</p>
+<p>　　Dictionary：在初始化的时候也必须指定其类型，而且他还需要指定一个Key,并且这个Key是唯一的。正因为这样，Dictionary的索引速度非常快。但是也因为他增加了一个Key,Dictionary占用的内存空间比其他类型要大。他是通过Key来查找元素的，元素的顺序是不定的。</p>
+<p style="text-align: center">&nbsp;<img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/201726105118347.png" alt=""></p>
+<p>注：以上所述是小编给大家介绍的C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)，希望对大家有所帮助，如果大家有任何疑问请给我留言，小编会及时回复大家的。在此也非常感谢大家对脚本之家网站的支持！</p>
+            
+            <div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="https://www.jb51.net/article/137093.htm" title="C# ListBox中的Item拖拽代码分享" target="_blank">C# ListBox中的Item拖拽代码分享</a></li><li><a href="https://www.jb51.net/article/132369.htm" title="C# lambda表达式应用如何找出元素在list中的索引" target="_blank">C# lambda表达式应用如何找出元素在list中的索引</a></li><li><a href="https://www.jb51.net/article/130148.htm" title="C#使用TcpListener及TcpClient开发一个简单的Chat工具实例" target="_blank">C#使用TcpListener及TcpClient开发一个简单的Chat工具实例</a></li><li><a href="https://www.jb51.net/article/129790.htm" title="C#实现泛型List分组输出元素的方法" target="_blank">C#实现泛型List分组输出元素的方法</a></li><li><a href="https://www.jb51.net/article/129590.htm" title="c# winform treelistview的使用(treegridview)实例详解" target="_blank">c# winform treelistview的使用(treegridview)实例详解</a></li><li><a href="https://www.jb51.net/article/128746.htm" title="C# 字符串、数组和List的截取和转换实例" target="_blank">C# 字符串、数组和List的截取和转换实例</a></li><li><a href="https://www.jb51.net/article/126455.htm" title="c#中list.FindAll与for循环的性能对比总结" target="_blank">c#中list.FindAll与for循环的性能对比总结</a></li><li><a href="https://www.jb51.net/article/125138.htm" title="C#中WPF ListView绑定数据的实例详解" target="_blank">C#中WPF ListView绑定数据的实例详解</a></li><li><a href="https://www.jb51.net/article/125137.htm" title="C# WPF ListView控件的实例详解" target="_blank">C# WPF ListView控件的实例详解</a></li><li><a href="https://www.jb51.net/article/116554.htm" title="C#入门教程之集合ArrayList用法详解" target="_blank">C#入门教程之集合ArrayList用法详解</a></li><li><a href="https://www.jb51.net/article/108323.htm" title="C#实现在listview中插入图片实例代码" target="_blank">C#实现在listview中插入图片实例代码</a></li><li><a href="https://www.jb51.net/article/107458.htm" title="C# List实现行转列的通用方案" target="_blank">C# List实现行转列的通用方案</a></li><li><a href="https://www.jb51.net/article/104244.htm" title="C# listview 点击列头排序的实例" target="_blank">C# listview 点击列头排序的实例</a></li><li><a href="https://www.jb51.net/article/104115.htm" title="C#获取鼠标在listview右键点击单元格的内容方法" target="_blank">C#获取鼠标在listview右键点击单元格的内容方法</a></li><li><a href="https://www.jb51.net/article/149569.htm" title="C#中List和SortedList的简介" target="_blank">C#中List和SortedList的简介</a></li></ul>
+</div>
+<div class="clearfix">
+
+
+</div>
+        <div class="jb51ewm"><div class="fl"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/jb51ewm.png"></div><div class="fr"><p>微信公众号搜索 “ <span>脚本之家</span> ” ，选择关注</p><p>程序猿的那些事、送书等活动等着你</p></div></div></div><!--endmain-->
+<div class="tags clearfix">
+	<i class="icon-tag"></i>
+	<ul class="meta-tags items">
+	  <li class="tag item"><a href="http://common.jb51.net/tag/c%23/1.htm" target="_blank" title="搜索关于c#的文章" rel="nofollow">c#</a></li>
+<li class="tag item"><a href="http://common.jb51.net/tag/%E6%95%B0%E7%BB%84/1.htm" target="_blank" title="搜索关于数组的文章" rel="nofollow">数组</a></li>
+<li class="tag item"><a href="http://common.jb51.net/tag/arraylist/1.htm" target="_blank" title="搜索关于arraylist的文章" rel="nofollow">arraylist</a></li>
+<li class="tag item"><a href="http://common.jb51.net/tag/list/1.htm" target="_blank" title="搜索关于list的文章" rel="nofollow">list</a></li>
+<li class="tag item"><a href="http://common.jb51.net/tag/dictionary/1.htm" target="_blank" title="搜索关于dictionary的文章" rel="nofollow">dictionary</a></li>
+
+	</ul>
+</div>        
+
+<div class="lbd clearfix">
+<div><div style="zoom:1;"><div id="lzwtdl" style="padding-bottom:0px;"><iframe width="700" frameborder="0" height="260" scrolling="no" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/aawgvd.html"></iframe><div id="qzukpkufc" style="width:0px;height:0px;visibility:visible;"></div></div></div></div><script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/1s307x.js"></script>
+
+</div>
+<div id="shoucang"></div>
+
+<div class="xgcomm clearfix">
+	<h2>相关文章</h2>
+	<ul><li class="lbd clearfix"><div><span style="display:none;"></span><iframe width="700" frameborder="0" height="120" scrolling="no" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/pblb.html"></iframe></div><script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/46pg.js"></script>
+</li><li><div class="item-inner"><a href="https://www.jb51.net/article/87610.htm" title="C#实现单链表(线性表)完整实例" class="img-wrap" target="_blank"> <img alt="C#实现单链表(线性表)完整实例" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg0.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/87610.htm" title="C#实现单链表(线性表)完整实例">C#实现单链表(线性表)完整实例</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C#实现单链表(线性表)的方法,结合完整实例形式分析了单链表的原理、实现方法与相关注意事项,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2016-06-06 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/37015.htm" title="解析c#在未出现异常情况下查看当前调用堆栈的解决方法" class="img-wrap" target="_blank"> <img alt="解析c#在未出现异常情况下查看当前调用堆栈的解决方法" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg1.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/37015.htm" title="解析c#在未出现异常情况下查看当前调用堆栈的解决方法">解析c#在未出现异常情况下查看当前调用堆栈的解决方法</a></p><div class="item-info"><div class="js">本篇文章是对c#在未出现异常情况下查看当前调用堆栈的解决方法进行了详细的分析介绍，需要的朋友参考下</div><span class="lbtn" style="float:right"> 2013-05-05 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/77212.htm" title="基于C#生成条形码操作知识汇总附源码下载" class="img-wrap" target="_blank"> <img alt="基于C#生成条形码操作知识汇总附源码下载" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg2.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/77212.htm" title="基于C#生成条形码操作知识汇总附源码下载">基于C#生成条形码操作知识汇总附源码下载</a></p><div class="item-info"><div class="js">这篇文章主要介绍了基于C#生成条形码操作知识汇总的相关资料,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2015-12-12 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/96445.htm" title="C# ComboBox控件“设置 DataSource 属性后无法修改项集合”的完美解决方法" class="img-wrap" target="_blank"> <img alt="C# ComboBox控件“设置 DataSource 属性后无法修改项集合”的完美解决方法" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg3.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/96445.htm" title="C# ComboBox控件“设置 DataSource 属性后无法修改项集合”的完美解决方法">C# ComboBox控件“设置 DataSource 属性后无法修改项集合”的完美</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C# ComboBox控件“设置 DataSource 属性后无法修改项集合”的解决方法,非常不错具有一定的参考借鉴价值，需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2016-11-11 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/80355.htm" title="C#使用DropDownList绑定添加新数据的方法汇总" class="img-wrap" target="_blank"> <img alt="C#使用DropDownList绑定添加新数据的方法汇总" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg4.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/80355.htm" title="C#使用DropDownList绑定添加新数据的方法汇总">C#使用DropDownList绑定添加新数据的方法汇总</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C#使用DropDownList绑定添加新数据的方法汇总的相关资料,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2016-03-03 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/119827.htm" title="C#请求http向网页发送接收数据的方法" class="img-wrap" target="_blank"> <img alt="C#请求http向网页发送接收数据的方法" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg5.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/119827.htm" title="C#请求http向网页发送接收数据的方法">C#请求http向网页发送接收数据的方法</a></p><div class="item-info"><div class="js">这篇文章主要为大家详细介绍了C#请求http向网页发送数据、网页接收的方法，具有一定的参考价值，感兴趣的小伙伴们可以参考一下</div><span class="lbtn" style="float:right"> 2017-07-07 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/71593.htm" title="C#使用Dispose模式实现手动对资源的释放" class="img-wrap" target="_blank"> <img alt="C#使用Dispose模式实现手动对资源的释放" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg6.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/71593.htm" title="C#使用Dispose模式实现手动对资源的释放">C#使用Dispose模式实现手动对资源的释放</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C#使用Dispose模式实现手动对资源的释放,涉及C#采用Dispose模式操作资源的技巧,具有一定参考借鉴价值,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2015-08-08 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/123036.htm" title="c#使用Socket发送HTTP/HTTPS请求的实现代码" class="img-wrap" target="_blank"> <img alt="c#使用Socket发送HTTP/HTTPS请求的实现代码" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg7.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/123036.htm" title="c#使用Socket发送HTTP/HTTPS请求的实现代码">c#使用Socket发送HTTP/HTTPS请求的实现代码</a></p><div class="item-info"><div class="js">这篇文章主要介绍了c#使用Socket发送HTTP/HTTPS请求的实现代码,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2017-09-09 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/62108.htm" title="C#实现对字符串进行大小写切换的方法" class="img-wrap" target="_blank"> <img alt="C#实现对字符串进行大小写切换的方法" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg8.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/62108.htm" title="C#实现对字符串进行大小写切换的方法">C#实现对字符串进行大小写切换的方法</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C#实现对字符串进行大小写切换的方法,涉及C#操作字符串的技巧,具有一定参考借鉴价值,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2015-03-03 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/75816.htm" title="详解C#打开和关闭可执行文件" class="img-wrap" target="_blank"> <img alt="详解C#打开和关闭可执行文件" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/bcimg9.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/75816.htm" title="详解C#打开和关闭可执行文件">详解C#打开和关闭可执行文件</a></p><div class="item-info"><div class="js">这篇文章主要介绍了C#打开和关闭可执行文件，以QQ应用程序为例，需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2015-12-12 </span></div></div></div></div></li>
+</ul>
+</div>
+<div class="lbd clearfix mt5">
+<div id="_0gvvyvhc3usq"><iframe width="700" frameborder="0" height="260" scrolling="no" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/wyjnigxaz.html"></iframe></div><script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/vc0v.js"></script>
+
+</div>
+<a href="https://www.jb51.net/article/104717.htm#comments"></a>
+<div id="comments">
+<h2>最新评论</h2>
+<div class="pd5"><div id="SOHUCS" sid="art_104717"></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w350 fr">
+<div class="article-right">
+<div class="r300 clearfix"><script async="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/f.txt"></script><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6384567588307613" data-ad-slot="2817964327" xstd3xc="" hidden=""></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">大家感兴趣的内容</h4>
+<ul class="newsList newList-in">
+<li><em class="no1">1</em><a href="https://www.jb51.net/article/35376.htm" title="C#几种截取字符串的方法小结" target="_blank">C#几种截取字符串的方法小结</a></li><li><em class="no2">2</em><a href="https://www.jb51.net/article/57156.htm" title="C#中HttpWebRequest的用法详解" target="_blank">C#中HttpWebRequest的用法详解</a></li><li><em class="no3">3</em><a href="https://www.jb51.net/article/34469.htm" title="C# DataGridView添加新行的2个方法" target="_blank">C# DataGridView添加新行的2个方</a></li><li><em class="no4">4</em><a href="https://www.jb51.net/article/32390.htm" title="C#中List〈string〉和string[]数组之间的相互转换" target="_blank">C#中List〈string〉和string[]数</a></li><li><em class="no5">5</em><a href="https://www.jb51.net/article/31639.htm" title="C# 一个WCF简单实例" target="_blank">C# 一个WCF简单实例</a></li><li><em class="no6">6</em><a href="https://www.jb51.net/article/41920.htm" title="C#连接MySql数据库的方法" target="_blank">C#连接MySql数据库的方法</a></li><li><em class="no7">7</em><a href="https://www.jb51.net/article/46384.htm" title="c#的dllimport使用方法详解" target="_blank">c#的dllimport使用方法详解</a></li><li><em class="no8">8</em><a href="https://www.jb51.net/article/34535.htm" title="C#中使用split分割字符串的几种方法小结" target="_blank">C#中使用split分割字符串的几种方</a></li><li><em class="no9">9</em><a href="https://www.jb51.net/article/48027.htm" title="c#处理3种json数据的实例" target="_blank">c#处理3种json数据的实例</a></li><li><em class="no10">10</em><a href="https://www.jb51.net/article/9986.htm" title="c#实现16进制和字符串之间转换的代码" target="_blank">c#实现16进制和字符串之间转换的</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10"><script async="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/f.txt"></script><!--thea+300*250--><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6389290466807248" data-ad-slot="6788945816" xstd3xc="" hidden=""></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><div class="blank5"></div><a href="http://27.arrowshoe.com/" target="_blank"><img alt="" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/37cdn.jpg" width="300" height="100"></a>
+</div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">最近更新的内容</h4>
+<ul class="newsListA">
+<li><a href="https://www.jb51.net/article/59063.htm" title="c#桥接模式(bridge结构模式)用法实例" target="_blank">c#桥接模式(bridge结构模式)用法实例</a></li><li><a href="https://www.jb51.net/article/37091.htm" title="解决C#获取鼠标相对当前窗口坐标的实现方法" target="_blank">解决C#获取鼠标相对当前窗口坐标的实现方</a></li><li><a href="https://www.jb51.net/article/34535.htm" title="C#中使用split分割字符串的几种方法小结" target="_blank">C#中使用split分割字符串的几种方法小结</a></li><li><a href="https://www.jb51.net/article/81960.htm" title="C#实现属于自己的QQ截图工具" target="_blank">C#实现属于自己的QQ截图工具</a></li><li><a href="https://www.jb51.net/article/147599.htm" title="C#实现斐波那契数列的几种方法整理" target="_blank">C#实现斐波那契数列的几种方法整理</a></li><li><a href="https://www.jb51.net/article/99511.htm" title="C#实现图片上传（PC端和APP）保存及 跨域上传说明" target="_blank">C#实现图片上传（PC端和APP）保存及 跨域</a></li><li><a href="https://www.jb51.net/article/81517.htm" title="C#编写的艺术字类实例代码" target="_blank">C#编写的艺术字类实例代码</a></li><li><a href="https://www.jb51.net/article/71796.htm" title="WinForm实现程序一段时间不运行自动关闭的方法" target="_blank">WinForm实现程序一段时间不运行自动关闭的</a></li><li><a href="https://www.jb51.net/article/90804.htm" title="C#使用for循环移除HTML标记" target="_blank">C#使用for循环移除HTML标记</a></li><li><a href="https://www.jb51.net/article/123721.htm" title="C#设计模式之Builder生成器模式解决带老婆配置电脑问题实例" target="_blank">C#设计模式之Builder生成器模式解决带老婆</a></li>
+</ul>
+</div>
+</div>   
+<div class="r300 clearfix mt10"><div class="idc3"><a href="http://www.021.net/" target="_blank"><h1>众生网络</h1><span>品牌服务器租用</span> </a><a href="http://www.geisnic.com/" target="_blank"><h1>集思网络</h1><span>VPS主机</span> </a><a href="http://www.33ip.com/" target="_blank"><h1>枫信科技</h1><span>IDC服务商</span> </a></div>
+</div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">常用在线小工具</h4>
+<ul class="newsListA"><li><a href="http://tools.jb51.net/code/css" target="_blank"><font color="red">CSS代码工具</font></a></li><li><a href="http://tools.jb51.net/code/js" target="_blank"><font color="red">JavaScript代码格式化工具</font></a></li><li><a href="http://tools.jb51.net/code/xmlformat" target="_blank">在线XML格式化/压缩工具</a></li><li><a href="http://tools.jb51.net/code/phpformat" target="_blank"><font color="red">php代码在线格式化美化工具</font></a></li><li><a href="http://tools.jb51.net/code/sqlcodeformat" target="_blank">sql代码在线格式化美化工具</a></li><li><a href="http://tools.jb51.net/transcoding/html_transcode" target="_blank">在线HTML转义/反转义工具</a></li><li><a href="http://tools.jb51.net/code/json" target="_blank">在线JSON代码检验/检验/美化/格式化</a></li><li><a href="http://tools.jb51.net/regex/javascript" target="_blank">JavaScript正则在线测试工具</a></li><li><a href="http://tools.jb51.net/transcoding/jb51qrcode" target="_blank">在线生成二维码工具(加强版)</a></li><li><a href="http://tools.jb51.net/" target="_blank">更多在线工具</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10 mb10"><a href="http://tuidc.com/" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/tengyou300.gif" width="300" height="100"></a><div class="blank5"></div><a href="http://www.enkj.com/special/cloud180905/" target="_blank"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/enkj300.gif" alt="云服务器" width="300" height="100"></a><div class="blank10"></div><iframe src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/zbj.html" width="300" height="100" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe>
+</div> 
+<div class="rFixedBox" style="position: static; top: 0px;">
+<script type="text/javascript">jb51_a_d("jb51xf");</script><script type="text/javascript">var cpro_id="u1397867";(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"300",rsi1:"380",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}</script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/c.js" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u1397867_0" style="width: 300px; height: 380px; display: inline-block;"><iframe id="iframeu1397867_0" name="iframeu1397867_0" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/ycpm.html" width="300" height="380" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:380px" allowtransparency="true"></iframe></div>
+</div>
+  </div>   
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a rel="nofollow" href="https://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a rel="nofollow" href="https://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a rel="nofollow" href="https://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a rel="nofollow" href="https://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a rel="nofollow" href="https://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a rel="nofollow" href="tencent://message/?uin=461478385&amp;Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a rel="nofollow" href="https://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p><a rel="nofollow" class="ba" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32031102000137"><img src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/ghs.png"> 苏公网安备 32031102000137号</a>&nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" class="ba" rel="nofollow" target="_blank">苏ICP备14036222号</a></p>
+<p>&#169;CopyRight 2006-2018 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/shThemeDefault.css">
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/shCore.js"></script>
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/shAutoloader.js"></script>
+<script type="text/javascript">
+(function(){
+	var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+/*更多导航*/
+$(".nav_top p").hover(function(){$(this).addClass("hover")},function(){$(this).removeClass("hover")});
+
+if (top.location != self.location)top.location=self.location;
+
+var varwindow=$(window);
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650 && !$(this).hasClass("nohref")){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	varwindow.scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = varwindow.height();
+        var top = varwindow.scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+	   
+	   /*右侧快捷菜单*/
+	   sideFixed();
+    });
+	var ww = varwindow.width();
+	
+	function sideFixed(){
+	var scrolltop = document.body.scrollTop || document.documentElement.scrollTop;
+	var a1 = 550;
+	if(ww>440){
+		if(a1<=scrolltop){
+			$('#right-share').slideDown();
+			}
+		else{
+			$('#right-share').slideUp();
+			}
+		}
+	}
+	$('.rshare-weixin').hover(function(){
+			$('#weixin-code').removeClass('hide');
+		},function(){
+			$('#weixin-code').addClass('hide');
+		});
+	/*二维码*/
+	$('#right-share .rshare-top').on('click',function(){
+        $('html,body').animate({'scrollTop':0},500);
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+
+if(suoyin=="ok"){
+	GenerateContentList();
+}
+
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="";
+</script>
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/arcts.js"></script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/tongji.js"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/stat.php" language="JavaScript"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1585378" target="_blank" title="站长统计">站长统计</a><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/stat(1).php" language="JavaScript"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/core(1).php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1255898164" target="_blank" title="站长统计">站长统计</a>
+</div>
+<script type="text/javascript">
+//tu+
+var cpro_id = "u1893014";
+document.write('<scri'+'pt src="//cpro.baidustatic.com/cpro/ui/i.js" type="text/javascript"></s'+'cript>');
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb":"https://jspassport.ssl.qhimg.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/i.js" type="text/javascript"></script><script src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/11.0.1.js" id="sozz"></script><script charset="utf-8" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/ab77b6ea7f3fbf79.js"></script> 
+<script type="text/javascript" src="./C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)_C#教程_脚本之家_files/pl.asp"></script>
+<script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "https://www.jb51.net/article/104717.htm",
+            "appid": "1549322409310619",
+            "title": "C#中数组、ArrayList、List、Dictionary的用法与区别浅析(存取数据)",
+            "description": "在工作中经常遇到C#数组、ArrayList、List、Dictionary存取数据，但是该选择哪种类型进行存储数据呢？很迷茫，今天小编抽空给大家整理下这方面的内容，需要的朋友参考下吧",
+            "pubDate": "2017-02-06T10:43:58",
+			"upDate": "2017-02-06T10:43:58"
+        }
+</script>
+
+
+<!-- published at 2018/10/26 8:36:28By dxycms qq:461478385  -->
+</body><div style="display: block; opacity: 1;"></div></html>
