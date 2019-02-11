@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://daveceddia.com/redux-mapdispatchtoprops-object-form/ -->
+<html class="no-js" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>You Might Not Need The mapDispatchToProps Function</title>
+<meta name="description" content="One of the top complaints among people using and learning Redux is “all the boilerplate.” And they’re not wrong… you really can end up with a lot of code across a lot of files – action constants, action creators, reducers, initializing it all, and then wiring up the components with mapStateToProps and mapDispatchToProps.
+
+">
+<meta name="keywords" content="redux, react">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="You Might Not Need The mapDispatchToProps Function">
+<meta name="twitter:description" content="One of the top complaints among people using and learning Redux is “all the boilerplate.” And they’re not wrong… you really can end up with a lot of code across a lot of files – action constants, action creators, reducers, initializing it all, and then wiring up the components with mapStateToProps and mapDispatchToProps.
+
+">
+<meta name="twitter:site" content="@dceddia">
+<meta name="twitter:creator" content="@dceddia">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://daveceddia.com/images/mapDispatchToProps-header-twitter.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="You Might Not Need The mapDispatchToProps Function">
+<meta property="og:description" content="One of the top complaints among people using and learning Redux is “all the boilerplate.” And they’re not wrong… you really can end up with a lot of code across a lot of files – action constants, action creators, reducers, initializing it all, and then wiring up the components with mapStateToProps and mapDispatchToProps.
+
+">
+
+<meta property="og:image" content="https://daveceddia.com/images/mapDispatchToProps-header.png">
+
+<meta property="og:url" content="https://daveceddia.com/redux-mapdispatchtoprops-object-form/">
+<meta property="og:site_name" content="Dave Ceddia">
+
+
+
+
+
+<link href="./You Might Not Need The mapDispatchToProps Function_files/css" rel="stylesheet">
+<link rel="canonical" href="https://daveceddia.com/redux-mapdispatchtoprops-object-form/">
+<link href="https://daveceddia.com/feed.xml" type="application/atom+xml" rel="alternate" title="Dave Ceddia Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="fb:admins" content="50205984">
+
+<meta property="dc:page_id" content="mapDispatchToProps-object">
+
+<!-- For all browsers -->
+<link rel="stylesheet" type="text/css" href="./You Might Not Need The mapDispatchToProps Function_files/site.min.css">
+
+
+
+
+<!-- Webfonts -->
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://daveceddia.com/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://daveceddia.com/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://daveceddia.com/favicon.ico?v=2">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://daveceddia.com/favicon.png?v=2">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://daveceddia.com/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://daveceddia.com/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://daveceddia.com/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://daveceddia.com/images/apple-touch-icon-144x144-precomposed.png">
+
+
+<script type="text/javascript" async="" src="./You Might Not Need The mapDispatchToProps Function_files/linkid.js"></script><script async="" src="./You Might Not Need The mapDispatchToProps Function_files/analytics.js"></script><script type="text/javascript" async="" src="./You Might Not Need The mapDispatchToProps Function_files/embed.js"></script><script async="" type="text/javascript" src="./You Might Not Need The mapDispatchToProps Function_files/count.js"></script><script type="text/javascript" async="" src="./You Might Not Need The mapDispatchToProps Function_files/js"></script><script src="./You Might Not Need The mapDispatchToProps Function_files/count-data.js"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.d49f53e192b9080ef8880a7c9b24f1c3.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.c1c826ba467260790d5c05dc3cc453f8.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.c8f0dc192ba789fde18d281769beb36d.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"><style type="text/css">
+:root .adsbox
+{ display: none !important; }
+:root *[crd3otd][hidden] { display: none !important; }</style><script src="./You Might Not Need The mapDispatchToProps Function_files/alfalfa_min.d078e4f2a4721192a99e02601a767617.js" async="" charset="UTF-8"></script></head>
+
+<body id="post">
+
+<nav role="navigation" id="site-nav">
+	<header>
+    
+		<a href="https://daveceddia.com/" class="site-logo" rel="home" title="Dave Ceddia">
+      <img src="./You Might Not Need The mapDispatchToProps Function_files/logo.png" srcset="https://daveceddia.com/images/logo@2x.png 2x" alt="Dave Ceddia logo">
+		</a>
+    
+    <h1 class="site-title"><a href="https://daveceddia.com/">Dave Ceddia</a></h1>
+		<h2 class="site-description" itemprop="description">Articles to help you learn and master frontend development with React.</h2>
+	</header>
+  <ul>
+  
+    
+    <li>
+    	<a class="nav-cta" href="https://daveceddia.com/pure-react-email-course/">Free React Course</a>
+    </li>
+  
+    
+    <li>
+    	<a href="https://daveceddia.com/archives/">All Posts</a>
+    </li>
+  
+    
+    <li>
+    	<a href="https://daveceddia.com/about/">About</a>
+    </li>
+  
+  </ul>
+</nav>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"><a href="https://daveceddia.com/tags/#redux" title="Pages tagged redux">redux</a>&nbsp;•&nbsp;<a href="https://daveceddia.com/tags/#react" title="Pages tagged react">react</a></span>
+        
+          <h1 class="entry-title">You Might Not Need The mapDispatchToProps Function</h1>
+        
+      </header>
+      <footer class="entry-meta muted-centered">
+        
+        <span class="author vcard">By <span class="fn">Dave Ceddia</span></span>
+        <span class="entry-date date published"><time datetime="2018-10-02T13:16:38+00:00"><i class="fa fa-calendar-o"></i> October 02, 2018</time></span>
+        
+        
+          <span class="entry-comments"><i class="fa fa-comment-o"></i> <a href="https://daveceddia.com/redux-mapdispatchtoprops-object-form/#disqus_thread">9 Comments</a></span>
+        
+        
+        
+      </footer>
+      <a id="twitter-follow" href="https://twitter.com/intent/follow?screen_name=dceddia" class="twitter-follow-button" target="_blank">
+	<i></i> Follow @dceddia</a>
+
+
+      <div class="entry-content">
+        
+        <p>One of the top complaints among people using and learning Redux is “all the boilerplate.” And they’re not wrong… you really can end up with a lot of code across a lot of files – action constants, action creators, reducers, initializing it all, and then wiring up the components with mapStateToProps and mapDispatchToProps.</p>
+
+<p>That last one, though, <code class="highlighter-rouge">mapDispatchToProps</code>, is what I want to talk about here. Specifically – why you might not need that function, and what you can replace it with instead.</p>
+
+<p><a href="https://twitter.com/acemarke">Mark Erikson a.k.a @acemarke</a> gave a semi-impromptu talk at the <a href="http://www.reactboston.com/">React Boston</a> conference where he mentioned this feature, and minds were blown. (his <a href="https://blog.isquaredsoftware.com/2018/10/presentation-state-of-redux/">slides are here</a>)</p>
+
+<blockquote>
+  <p>Discovered it recently and removed oodles of dispatch(blah()) statements. So much easier!</p>
+</blockquote>
+
+<blockquote>
+  <p>Literally worth the purchase ticket price for the whole conference.</p>
+</blockquote>
+
+<p>So without further ado, let’s get into it.</p>
+
+<h2 id="react-redux-and-connect">React Redux and <code class="highlighter-rouge">connect</code></h2>
+
+<p>The <code class="highlighter-rouge">react-redux</code> library supplies a function called <code class="highlighter-rouge">connect</code>, which is how you can feed data from Redux’s store into your React components. If you’re reading this, I assume you already knew that – but if not, take a few minutes and read through <a href="https://daveceddia.com/how-does-redux-work/">this Redux tutorial (there’s also a video)</a> to get the lay of the land.</p>
+
+<p>The <code class="highlighter-rouge">connect</code> function is commonly passed 1 or 2 arguments:</p>
+
+<p>First, a <code class="highlighter-rouge">mapStateToProps</code> function that plucks pieces of state out of Redux and assigns them to props that your React component will use.</p>
+
+<p>And often a second argument: a <code class="highlighter-rouge">mapDispatchToProps</code> function which binds action creator functions so that you don’t have to write <code class="highlighter-rouge">props.dispatch(actionName())</code> all over the place, you can just write <code class="highlighter-rouge">props.actionName()</code>.</p>
+
+<p>(<code class="highlighter-rouge">connect</code> actually takes <a href="https://github.com/reduxjs/react-redux/blob/1ad1667d05619c6a33e318a7837c160c06a52728/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options">up to 4</a> arguments but we’re only talking about the first two here)</p>
+
+<h2 id="without-mapdispatchtoprops">Without mapDispatchToProps</h2>
+
+<p>Here’s a common example: a simple component, connected to Redux, which needs to trigger 3 different actions depending on which button the user clicks – increment, decrement, and reset.</p>
+
+<p>(See the full working code, reducer and all, in <a href="https://codesandbox.io/s/yv6kqo1yw9">this CodeSandbox</a>)</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight language-jsx"><code class=" language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-redux"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> increment<span class="token punctuation">,</span> decrement<span class="token punctuation">,</span> reset <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./index"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">,</span> dispatch <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">decrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>Counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div>
+
+<p>Notice that the component receives a <code class="highlighter-rouge">dispatch</code> prop, which comes from <code class="highlighter-rouge">connect()</code>, and then has to use it directly to trigger the actions.</p>
+
+<h2 id="with-mapdispatchtoprops-as-a-function">With mapDispatchToProps as a function</h2>
+
+<p>You can avoid having to call action creators with <code class="highlighter-rouge">dispatch</code> by passing a second argument to connect, the <code class="highlighter-rouge">mapDispatchToProps</code> function.</p>
+
+<p>Here’s the above component rewritten with that function (but don’t stop here! keep reading! it gets better).</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight language-jsx"><code class=" language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-redux"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> increment<span class="token punctuation">,</span> decrement<span class="token punctuation">,</span> reset <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./index"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">,</span> increment<span class="token punctuation">,</span> decrement<span class="token punctuation">,</span> reset <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>decrement<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>increment<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>reset<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> dispatch <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  decrement<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">decrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  increment<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  reset<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  mapStateToProps<span class="token punctuation">,</span>
+  mapDispatchToProps
+<span class="token punctuation">)</span><span class="token punctuation">(</span>Counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div>
+
+<p>(Full code for this post is <a href="https://codesandbox.io/s/yv6kqo1yw9">in this CodeSandbox</a>)</p>
+
+<p>There are 2 major changes here.</p>
+
+<p>First, the <code class="highlighter-rouge">dispatch</code> function is no longer being passed in as a prop, and the 3 action functions have taken its place. Since they’re already bound, they can be passed as-is to the button <code class="highlighter-rouge">onClick</code> handlers, which makes the code a bit nicer to read.</p>
+
+<p>Second, you can see the new <code class="highlighter-rouge">mapDispatchToProps</code> function which is basically doing the work that we previously had to do in the <code class="highlighter-rouge">onClick</code> handlers. It takes the <code class="highlighter-rouge">dispatch</code> function as an argument, and returns an object where each property gets passed into the component as a prop.</p>
+
+<p>Now let’s streamline it further.</p>
+
+<h2 id="with-mapdispatchtoprops-as-an-object">With mapDispatchToProps as an object</h2>
+
+<p>One little-known feature of React-Redux is that <code class="highlighter-rouge">mapDispatchToProps</code> can just be a plain <em>object</em>. It doesn’t have to be a function.</p>
+
+<p>I say “little-known” because I’ve seen people blown away by how simple this can be… but then, some people seem to have learned this on Day 1 and figure everyone else knows about it 🤷</p>
+
+<p>Maybe mapDispatchToProps isn’t a good name at this point. Maybe you’d rather call it “actionCreators”, or skip naming it entirely and just pass an object literal into <code class="highlighter-rouge">connect</code>. Either way, this is what it looks like:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight language-jsx"><code class=" language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-redux"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> increment<span class="token punctuation">,</span> decrement<span class="token punctuation">,</span> reset <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./actions"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">,</span> increment<span class="token punctuation">,</span> decrement<span class="token punctuation">,</span> reset <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>decrement<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>increment<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token operator">+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>reset<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Look how simple this is now!</span>
+<span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+  decrement<span class="token punctuation">,</span>
+  increment<span class="token punctuation">,</span>
+  reset
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  mapStateToProps<span class="token punctuation">,</span>
+  mapDispatchToProps
+<span class="token punctuation">)</span><span class="token punctuation">(</span>Counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div>
+
+<p>(Full code is <a href="https://codesandbox.io/s/yv6kqo1yw9">in the same CodeSandbox</a>)</p>
+
+<p>The way this works is that each property of the object is expected to be an <em>action creator function</em> (in other words, a function that returns an action). Then, <code class="highlighter-rouge">connect</code> will go through and automatically wrap (bind) each of those functions in a call to <code class="highlighter-rouge">dispatch</code>, like we did manually before with <code class="highlighter-rouge">dispatch(increment())</code>.</p>
+
+<p>One caveat, which may or may not matter to you, is that passing one of these bound action creators as an event handler (like <code class="highlighter-rouge">onClick</code>) means that it’ll receive the “event” as an argument. If your actions don’t accept arguments, this is fine. But if you want to ignore the “event” for some reason, you’ll have to write wrapper functions to do that.</p>
+
+<h2 id="customize-the-mapdispatchtoprops-object">Customize The mapDispatchToProps Object</h2>
+
+<p>If your actions <em>do</em> need arguments, then you can just wrap those specific action creators in a function, like so:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight language-jsx"><code class=" language-jsx"><span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+  decrement<span class="token punctuation">,</span>
+  increment<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">increment</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  reset
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div>
+
+<p>And, of course, you can always fall back to passing a function as <code class="highlighter-rouge">mapDispatchToProps</code>. But for the rest of the time, save yourself some typing and use the object form 👍</p>
+
+        
+          <div class="end-post-book">
+  <p>
+    Learning React can be a struggle -- so many libraries and tools!<br>
+    My advice? Ignore all of them :)<br>
+    For a step-by-step approach, read my book <a href="https://daveceddia.com/pure-react/?utm_campaign=after-post">Pure React</a>.
+  </p>
+  <div style="text-align: left;font-size:14px;font-family: &#39;Open Sans&#39;,sans-serif;background-color: #fff;padding: 10px;border-radius: 2px;box-sizing: border-box;width: 70%;margin: 0 auto;background: #ecf5f9;">
+    <div>
+      Loved it! Very well written and put together. Love that you focused only on React. Wish I had stumbled onto your book first before I messed around with all those scary "boilerplate" projects.
+    </div>
+    <div class="person">
+      <div class="person--name" style="font-weight:600;">— John Lyon-Smith</div>
+    </div>
+  </div>
+</div>
+
+        
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+  <div class="dc_form_container ">
+    <div class="dc_success_msg" style="display:none;">
+      Success! Now check your email.
+    </div>
+
+    <!--  Form starts here  -->
+    <form class="dc_signup_form" action="https://daveceddia.com/s/signup" method="POST">
+      <h4 class="dc_title">
+Learn the basics of React in 5 days
+</h4>
+      <div class="dc_description">
+        
+<div>
+  <p>Finally understand how React works! You will:</p>
+  <div class="prec-bullet">🎉 Get something on screen</div>
+  <div class="prec-bullet">💄 Write dynamic components</div>
+  <div class="prec-bullet">🏃 Make it interactive</div>
+  <div class="prec-bullet">😎 Fetch real data</div>
+  <p class="prec-bullet">🛳 Put it online</p>
+  <p>5 days, 5 emails. Walk away with the basics and a plan!</p>
+  <p style="text-align:center;">Get Lesson 1 right now 👇 </p>
+</div>
+
+      </div>
+
+      <div class="dc_error_msg" style="display:none">
+        There was an error submitting your subscription. Please try again.
+      </div>
+
+      <div class="dc_field">
+        <label class="dc_label" for="dc_email" style="display: none">Email Address</label>
+        <input type="email" name="email" placeholder="Your email address" required="">
+      </div>
+      <div class="dc_form_field" style="position: absolute !important;left: -999em !important;">
+        <input type="text" name="last_name">
+      </div>
+      <input type="hidden" name="page_id" value="mapDispatchToProps-object">
+      <input type="hidden" name="form_id" value="pure-react-email-course">
+      <input type="hidden" name="form_version" value="3">
+      <input type="hidden" name="tag" value="734384">
+      <button class="dc_subscribe_button">
+        Send Me Lesson 1
+      </button>
+      <div class="dc_guarantee">
+        I respect your email privacy. Unsubscribe any time.
+      </div>
+    </form>
+
+    <form class="dc_gdpr_form" action="https://daveceddia.com/s/signup/gdpr" method="POST" style="display:none;">
+  <p>Before we go on, I have to ask...</p>
+  <div class="dc_form_field">
+    <label>
+      <input type="checkbox" name="confirm_answer" value="true">
+      <span>consent</span>
+    </label>
+  </div>
+  <br>
+
+  <div class="dc_error_msg" style="display:none">
+    There was an error submitting your subscription. Please try again.
+  </div>
+
+  <input type="hidden" name="email" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="firstName" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="gdpr" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="captcha" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="sign" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="confirm" value="FILL_IN_WITH_JS">
+  <input type="hidden" name="tag" value="734384">
+  <input type="hidden" name="page_id" value="mapDispatchToProps-object">
+  <input type="hidden" name="form_id" value="pure-react-email-course">
+  <input type="hidden" name="form_version" value="3">
+  <button class="dc_subscribe_button">
+    Finish
+  </button>
+</form>
+
+  </div>
+
+  <style type="text/css">
+    .dc_form_container {
+      border-top: 4px solid #3166de;
+      border-bottom: 4px solid #3166de;
+      padding: 1em;
+      background: #f8faff;
+      font-family: "Open Sans", sans-serif;
+      margin-bottom: 2.5rem;
+    }
+    .dc_form_container .dc_title {
+      margin-top: 0;
+      text-align: center;
+      font-weight: 400;
+      font-size: 30px;
+    }
+    .dc_form_container .dc_description {
+      margin-bottom: 10px;
+    }
+    .dc_signup_form, .dc_gdpr_form {
+      margin-bottom: 0;
+      position: relative;
+    }
+    .dc_signup_form input, .dc_gdpr_form input {
+      width: 100%;
+      padding: 20px 12px;
+    }
+    .dc_gdpr_form input[type="checkbox"] {
+      width: initial;
+      margin: 0;
+      margin-right: 5px;
+    }
+    .dc_subscribe_button {
+      margin: 0 auto;
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      font-size: 18px;
+      background: orange;
+      color: #fff;
+      border-color: #e29609;
+      height: auto;
+      margin-bottom: 5px;
+    }
+    .dc_subscribe_button[disabled] {
+      opacity: 0.5;
+    }
+    .dc_subscribe_button[disabled]:hover {
+      opacity: 0.5;
+      color: #fff;
+    }
+    .dc_guarantee {
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .dc_success_msg {
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #8dc74a;
+      border-radius: 2px;
+      background: #F1F8E9;
+      text-align: center;
+    }
+    .dc_error_msg {
+      background: #FFEBEE;
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 2px solid #C62828;
+    }
+  </style>
+</div>
+
+
+<style>
+img.dc_form_img {
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.prec-bullet {
+  margin-left: 15px;
+}
+</style>
+
+        
+        
+          <div id="disqus_thread"><iframe id="dsq-app5021" name="dsq-app5021" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./You Might Not Need The mapDispatchToProps Function_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 1747px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div><!-- /#disqus_thread -->
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'daveceddia'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="https://daveceddia.com/react-practice-projects/" class="btn" title="6 Fun React Projects You Can Build Today">Previous</a>
+      
+      
+        <a href="https://daveceddia.com/customize-create-react-app-structure-with-bash/" class="btn" title="Customize Create React App Structure with Bash">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper muted-centered">
+  <footer role="contentinfo">
+    
+
+<span>© 2019 Dave Ceddia.</span>
+<div class="social-icons">
+	<a href="http://twitter.com/dceddia" title="Dave Ceddia on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	<a href="http://plus.google.com/+dceddia" title="Dave Ceddia on Google+" target="_blank"><i class="fa fa-google-plus-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="http://github.com/dceddia" title="Dave Ceddia on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="https://daveceddia.com/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'https://daveceddia.com';
+</script>
+
+<script src="./You Might Not Need The mapDispatchToProps Function_files/jquery.min.js"></script>
+<script src="./You Might Not Need The mapDispatchToProps Function_files/scripts.min.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82635227-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid');
+  ga('send', 'pageview');
+
+</script>
+
+
+<!-- Asynchronous Clicky tracking code-->
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(100838734);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100838734ns.gif" /></p></noscript>
+
+
+<script>
+$(function() {
+  $('.click-to-show').click(function(e) {
+    $(e.target).parent('.click-to-show').find('.highlight').toggle();
+  });
+});
+
+function signupClicked() {
+  // if(window.clicky){ window.clicky.goal('Newsletter Signup'); }
+}
+function inlineSignupClicked() {
+  // if(window.clicky){ window.clicky.goal('[Inline] Newsletter Signup'); }
+}
+function testingInlineClicked() {
+  // if(window.clicky){ window.clicky.goal('[Inline, Testing] Newsletter Signup'); }
+}
+</script>
+
+<script src="./You Might Not Need The mapDispatchToProps Function_files/saved_resource" data-sumo-site-id="e237fc3d7a2f1c8c986e03b6b4e1f5c1689d5e40133932e1f546a3748d5d6747" async="async"></script>
+
+
+
+<iframe style="display: none;" src="./You Might Not Need The mapDispatchToProps Function_files/saved_resource(2).html"></iframe></body><div style="display: block; opacity: 1;"></div></html>

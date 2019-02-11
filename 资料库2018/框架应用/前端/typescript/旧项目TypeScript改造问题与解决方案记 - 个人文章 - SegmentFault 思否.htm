@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000015747038 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://cdn.segmentfault.com/v-5c4ec07f/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否</title><meta name="description" content="由于本次改造的项目为一个通过NPM进行发布的基础服务包，因此本次采用TypeScript进行改造的目标是移除Babel全家桶，减小包体积，同时增加强类型约束从而避免今后开发时可能的问题。"><meta name="keywords" content="javascript,typescript"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://cdn.segmentfault.com/v-5c4ec07f/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://cdn.segmentfault.com/v-5c4ec07f/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://cdn.segmentfault.com/v-5c4ec07f/global/img/touch-icon.png"><meta name="baidu_union_verify" content="bcf7fd80dca60d53d46d5b46e1b990ca"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/global.css"><link rel="stylesheet" href="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/blog.css"><link rel="stylesheet" href="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/responsive.css"><script src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/hm.js"></script><script async="" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/analytics.js"></script><script type="text/javascript" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/spcjs.php"></script><script charset="utf-8" id="ParadigmSDK" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/ParadigmSDK_v2.js" data="216" defsi="594"></script><script>
+    ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
+    ParadigmSDK.trackDetailPageShow();
+</script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://cdn.segmentfault.com/v-5c4ec07f/3rd/highlightjs/highlight.pack.js" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/highlight.pack.js"></script></head><!-- 推荐引擎 --><body data-mod="blog" class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://cdn.segmentfault.com/v-5c4ec07f/global/img/touch-icon-512.png"><div id="gridMapHoverBox" style="position:absolute; border: 1px solid #009a61; z-index:99; font-size: 10px; background:#fff"></div><div class="global-nav sf-header sf-header--index"><div class="bottom-nav visible-xs visible-sm hidden"><div class="opts"><a class="opts-group " href="https://segmentfault.com/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group " href="https://segmentfault.com/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group active" href="https://segmentfault.com/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="https://segmentfault.com/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="https://segmentfault.com/jobs">职位</a></li><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li></ul></div></div></div></div><nav class="container nav"><div class="visible-xs visible-sm header-response"><a href="https://segmentfault.com/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="https://segmentfault.com/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="https://segmentfault.com/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a></div><script>
+mobileScroll(
+    function(direction) { 
+        try {
+            if (direction === 'down') {
+                document.querySelector('.bottom-nav').classList.add('hidden')
+            } else {
+                document.querySelector('.bottom-nav').classList.remove('hidden')
+            }
+        } catch(err) {}
+    }
+);    
+function mobileScroll( fn ) {
+    var beforeScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+        fn = fn || function() {};
+    window.addEventListener("scroll", function() {
+        var afterScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+            delta = afterScrollTop - beforeScrollTop;
+        if( delta === 0 ) return false;
+        fn( delta > 0 ? "down" : "up" );
+        beforeScrollTop = afterScrollTop;
+    }, false);
+}
+</script><div class="row hidden-xs hidden-sm"><div class="col-sm-8 col-md-9 col-lg-9"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/" class="">首页</a></li><li class="menu__item"><a href="https://segmentfault.com/questions" class="">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs" class="active-nav">专栏</a></li><li class="menu__item"><a class=" " href="https://segmentfault.com/lives">讲堂</a></li><li class="menu__item"><a href="https://segmentfault.com/groups" class="">圈子</a></li><li class="menu__item menu__item--more dropdown"><a href="https://segmentfault.com/a/1190000015747038##" class="dropdown-toggle dropdownBtn" data-toggle="dropdown">
+                                        发现<i class="fa fa-caret-down" style="font-size: 14px;margin-left: 5px;" aria-hidden="true"></i></a><div class="dropdown-block hidden"><ul class="dropdown-content-menu"><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/jobs">找工作</a></li><li><a href="https://segmentfault.com/users">排行榜</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li><li><a href="https://segmentfault.com/notes">笔记</a></li><li><a href="https://docs.segmentfault.com/" target="_blank">开发手册<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li><li><a href="https://business.segmentfault.com/ads?utm_source=sf-header" target="_blank">广告投放<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li></ul></div></li><li class="menu__item visible-sm-inline-block"><a href="https://segmentfault.com/search"><span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span></a></li></ul><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs pull-right"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="搜索问题或关键字" class="form-control" value=""></form></div></div><div class="col-sm-4 col-md-3 col-lg-3 text-right"><ul class="opts list-inline hidden-xs"><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFRegister btn-signin" style="margin-bottom:2px;">立即登录</a><a href="https://segmentfault.com/user/register" class="SFLogin ml10 btn-signup" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">免费注册</a></li></ul></div></div></nav></div>
+    
+<input id="articleId" value="1190000015747038" class="hidden">
+
+<div class="wrap" data-blogid="">
+
+    <div class="text-center block hidden-xs">
+        <script type="text/javascript">
+            OA_show(2);
+        </script>
+    </div>
+    
+    <div class="container mt15" style="position:relative">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+                                <ol class="breadcrumb mb15">
+                    <li><a href="https://segmentfault.com/blogs">专栏</a></li>
+                                        <li class="active">文章详情</li>
+                </ol>
+                                <div class="post-topheader custom- pt0">
+                    <div class="mb20">
+                        <div class="block-for-right-border">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                
+
+                                    <div class="post-topheader__info" data-username="hjava" data-userslug="hjava" data-useravatar="https://avatar-static.segmentfault.com/339/538/33953861-5a79118f575bd_big64">
+
+
+                                        <div class="article__author clearfix">
+                                            <div class="article__authorleft">
+                                                <a href="https://segmentfault.com/u/hjava">
+                                                    <img class="avatar-40" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/33953861-5a79118f575bd_big64" alt="hjava">
+                                                </a>
+                                            </div>
+                                            <div class="article__authorright">
+                                                <div class="article__authormeta">
+                                                <a href="https://segmentfault.com/u/hjava" class="mr5"><strong>hjava</strong></a>
+                                        
+                                                
+                                                                                                <img src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/rp.svg" class="mr5"><span style="color:#BF7158" class="mr10">845</span>
+
+                                                
+                                                
+                                                <span class="hidden-xs">
+                                                                                                                                                            <button type="button" class="btn btn-xs btn-success follow-user" data-do="follow" data-type="user" data-id="1030000003942013">关注作者
+                                                        </button>
+                                                                                                                                                    </span>
+                                                </div>
+                                                
+                                                <span style="display: block">
+                                                    2018-07-24 发布
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <h1 class="h1 post-topheader__info--title" id="articleTitle" data-id="1190000015747038">
+                                            <a href="https://segmentfault.com/a/1190000015747038"> 旧项目TypeScript改造问题与解决方案记</a>
+                                        </h1>
+
+                                        <div class="content__tech hidden-xs">
+                                            <a href="https://segmentfault.com/a/1190000015747038" class="blog-type-common blog-type-1-before" target="_blank" data-content="
+                                                                                        原创
+                                                                                        "></a>
+                                            
+                                            <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                                                                    <li class="tagPopup mb5">
+                                                        <a class="tag" href="https://segmentfault.com/t/javascript/blogs" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/195/823/1958237468-1040000000089436_big64" data-placement="top" data-original-title="javascript" data-id="1040000000089436">
+                                                                                                                      javascript
+                                                        </a>
+                                                    </li>
+                                                                                                    <li class="tagPopup mb5">
+                                                        <a class="tag" href="https://segmentfault.com/t/typescript/blogs" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/840/817/840817990-565be8c370b0b_big64" data-placement="top" data-original-title="typescript" data-id="1040000000365394">
+                                                                                                                      typescript
+                                                        </a>
+                                                    </li>
+                                                                                            </ul>
+
+                                            <span>
+                                                2k 次阅读
+                                                &nbsp;·&nbsp;
+                                                读完需要 24 分钟 
+                                                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end .post-topheader -->
+
+                <div class="visible-lg">
+                    <div class="side-widget">
+                        <div class="stream__item-zan btn btn-default mt0 mb15 ml0 mr0 pt0 pb0 pl0 pr0 " id="side-widget-votes-btn">
+                            <span class="stream__item-zan-icon"></span>
+                            <span class="stream__item-zan-number" id="side-widget-votes-num">15</span>
+                        </div>
+
+                        <i class="fa fa-bookmark item " id="side-widget-bookmarks-btn"></i>
+                        <i class="fa fa-weibo item"></i>
+                        <i class="fa fa-weixin item" data-toggle="popover" data-placement="right" data-original-title="" title=""></i>
+                        <i class="fa fa-twitter item"></i>
+                        <i class="fa fa-facebook item"></i>
+                        <i class="fa fa-arrow-up item hidden"></i>
+                    </div>
+                </div>
+
+                
+                <div class="article fmt article__content" data-id="1190000015747038" data-license="">
+                    
+<h1 id="articleHeader0">概述</h1>
+<p>由于本次改造的项目为一个通过NPM进行发布的基础服务包，因此本次采用TypeScript进行改造的目标是移除Babel全家桶，减小包体积，同时增加强类型约束从而避免今后开发时可能的问题。</p>
+<p>本次改造使用的是TypeScript v2.9.2，采用Webpack v4.16.0进行打包编译。开发工具使用的是VSCode，使用中文语言包。预期目标是直接将TypeScript代码通过loader直接编译为ES5的代码。</p>
+<p>本文中涉及的问题有部分是TypeScript配置和使用的问题，也有部分是VSCode本身配置相关问题。</p>
+<h1 id="articleHeader1">改造问题记录与分析</h1>
+<h2 id="articleHeader2">VSCode相关</h2>
+<h3 id="articleHeader3">“无法找到相关模块”报错</h3>
+<p>在项目中，如果我们使用了webpack.alias，可能会提示找不到模块。</p>
+<p>具体错误如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="终端编译报错：TS2307: Cannot find module &#39;_utils/index&#39;.
+编辑器报错：[ts]找不到模块“_utils/index”。" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs groovy"><code>终端编译报错：<span class="hljs-string">TS2307:</span> Cannot find module <span class="hljs-string">'_utils/index'</span>.
+编辑器报错：[ts]找不到模块“_utils/index”。</code></pre>
+<p>这是由于编辑器无法读取对应的别名信息导致的。</p>
+<p>此时我们需要检查对应的模块是否存在。如果确认模块存在，且终端编译编译时不报错，而只是编辑器报错，则是因为编辑器无法读取webpack配置，我们需要增加另外的配置。</p>
+<p>解决方法：除了配置webpack.alias，还需要配置相对应的<code>tsconfig.json</code>，具体配置如下所示：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="&quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: {
+        &quot;_util/*&quot;: [
+            &quot;src/core/utils/*&quot;
+        ]
+    }
+}" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="json hljs"><code class="json"><span class="hljs-string">"compilerOptions"</span>: {
+    <span class="hljs-attr">"baseUrl"</span>: <span class="hljs-string">"."</span>,
+    <span class="hljs-attr">"paths"</span>: {
+        <span class="hljs-attr">"_util/*"</span>: [
+            <span class="hljs-string">"src/core/utils/*"</span>
+        ]
+    }
+}</code></pre>
+<p><strong>注：如果配置了<code>tsconfig.json</code>以后还是报错的话，需要重启下VSCode，猜测是由于VSCode只在项目加载时读取相关配置信息。在JavaScript项目中的<code>jsconfig.json</code>同理。</strong></p>
+<h2 id="articleHeader4">TypeScript相关</h2>
+<h3 id="articleHeader5">对象属性赋值报错</h3>
+<p>在JavaScript中，我们经常会声明一个空对象，然后再给这个属性进行赋值。但是这个操作放在TypeScript中是会发生报错的:</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="let a = {};
+
+a.b = 1;
+// 终端编译报错：TS2339: Property &#39;b&#39; does not exist on type &#39;{}&#39;.
+// 编辑器报错：[ts] 类型“{}”上不存在属性“b”。" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="typescript hljs"><code class="typescript"><span class="hljs-keyword">let</span> a = {};
+
+a.b = <span class="hljs-number">1</span>;
+<span class="hljs-comment">// 终端编译报错：TS2339: Property 'b' does not exist on type '{}'.</span>
+<span class="hljs-comment">// 编辑器报错：[ts] 类型“{}”上不存在属性“b”。</span></code></pre>
+<p>这是因为TypeScript不允许增加没有声明的属性。</p>
+<p>因此，我们有两个办法来解决这个报错：</p>
+<ol>
+<li>在对象中增加属性定义（推荐）。具体方式为：<code>let a = {b: void 0};。</code>这个方法能够从根本上解决当前问题，也能够避免对象被随意赋值的问题。</li>
+<li><p>在对象中添加类型定义（推荐）。具体方式为如下：</p></li>
+</ol>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="   [propName: string]: any" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code style="word-break: break-word; white-space: initial;">   [propName: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">any</span></code></pre>
+<p>};<br>   let a: obj = {};</p>
+<p>a.a = 1;</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这样也能够避免报错问题，并且不引入全对象any情况。
+
+3. 给`a`对象增加any属性（应急）。具体方式为：`let a: any = {};`。这个方法能够让TypeScript类型检查时忽略这个对象，从而编译通过不报错。这个方法适用于大量旧代码改造的情况。
+
+### Window对象属性赋值报错
+
+与上一个情况类似，我们给一个对象中赋值一个不存在的属性，会出现编辑器和编译报错：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>
+这样也能够避免报错问题，并且不引入全对象<span class="hljs-built_in">any</span>情况。
+
+<span class="hljs-number">3.</span> 给<span class="hljs-string">`a`</span>对象增加<span class="hljs-built_in">any</span>属性（应急）。具体方式为：<span class="hljs-string">`let a: any = {};`</span>。这个方法能够让TypeScript类型检查时忽略这个对象，从而编译通过不报错。这个方法适用于大量旧代码改造的情况。
+
+### Window对象属性赋值报错
+
+与上一个情况类似，我们给一个对象中赋值一个不存在的属性，会出现编辑器和编译报错：
+</code></pre>
+<p>window.a = 1;<br>// 终端编译报错：TS2339: Property 'a' does not exist on type 'Window'.<br>// 编辑器报错：[ts] 类型“Window”上不存在属性“a”。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这也是因为TypeScript不允许增加没有声明的属性导致的。
+
+由于我们没有办法声明windows属性的值（或者说很困难），因此我们需要通过下面这一种方式来解决：
+
+1. 我们在windows使用时增加一个类型转换，即`(window as any).a = 1;`。这样就能够保证编辑器和编译时不会出错。不过该方法只建议用于旧项目改造，我们还是要尽量避免在window对象上面增加属性，应该通过一个全局的数据管理器来进行数据存取。
+
+### ES2015 Object新增的原型链上的方法报错
+
+在项目中，使用到了一些Object原型链上面的一些ES2015新增的方法，如`Object.assign`和`Object.values`等，此时编译会失败，同时VSCode会提示报错：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs dart"><code>
+这也是因为TypeScript不允许增加没有声明的属性导致的。
+
+由于我们没有办法声明windows属性的值（或者说很困难），因此我们需要通过下面这一种方式来解决：
+
+<span class="hljs-number">1.</span> 我们在windows使用时增加一个类型转换，即`(<span class="hljs-built_in">window</span> <span class="hljs-keyword">as</span> any).a = <span class="hljs-number">1</span>;`。这样就能够保证编辑器和编译时不会出错。不过该方法只建议用于旧项目改造，我们还是要尽量避免在<span class="hljs-built_in">window</span>对象上面增加属性，应该通过一个全局的数据管理器来进行数据存取。
+
+### ES2015 <span class="hljs-built_in">Object</span>新增的原型链上的方法报错
+
+在项目中，使用到了一些<span class="hljs-built_in">Object</span>原型链上面的一些ES2015新增的方法，如`<span class="hljs-built_in">Object</span>.assign`和`<span class="hljs-built_in">Object</span>.values`等，此时编译会失败，同时VSCode会提示报错：
+</code></pre>
+<p>终端编译报错：TS2339: Property 'assign' does not exist on type 'ObjectConstructor'.<br>编辑器报错：[ts] 类型“ObjectConstructor”上不存在属性“assign”。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这是由于我们在`tsconfig.json`中指定的`target`是ES5，而TypeScript并没有相关的polyfill，因此我们无法使用ES2015中新增的方法。
+
+通过以上分析，我们可以使用如下方法解决：
+
+1. 可以使用lodash工具集中的相关方法，安装时需要安装`lodash.assign`和`@types/lodash.assign`。并且`lodash.assign`是一个CMD规范的包，需要通过`import _assign = require(&#39;lodash.assing&#39;);`方式引入。
+
+2. 我们可以使用rest写法，例如`let a = {...b};`，也能够达到一级浅拷贝的效果，具体效果如下：
+
+   ![image.png](https://user-gold-cdn.xitu.io/2018/7/24/164cb3c419a9f512?w=245&amp;h=152&amp;f=png&amp;s=11291)
+
+### ES2015新增的数据结构Map初始化报错
+
+将ES2015的代码改造成为TypeScript代码时，如果你使用了ES2015新增的Map类型，那在编辑器还是终端编译中编译时都会报错：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+这是由于我们在<span class="hljs-code">`tsconfig.json`</span>中指定的<span class="hljs-code">`target`</span>是ES5，而TypeScript并没有相关的polyfill，因此我们无法使用ES2015中新增的方法。
+
+通过以上分析，我们可以使用如下方法解决：
+
+<span class="hljs-bullet">1. </span>可以使用lodash工具集中的相关方法，安装时需要安装<span class="hljs-code">`lodash.assign`</span>和<span class="hljs-code">`@types/lodash.assign`</span>。并且<span class="hljs-code">`lodash.assign`</span>是一个CMD规范的包，需要通过<span class="hljs-code">`import _assign = require('lodash.assing');`</span>方式引入。
+
+<span class="hljs-bullet">2. </span>我们可以使用rest写法，例如<span class="hljs-code">`let a = {...b};`</span>，也能够达到一级浅拷贝的效果，具体效果如下：
+
+   ![<span class="hljs-string">image.png</span>](<span class="hljs-link">https://user-gold-cdn.xitu.io/2018/7/24/164cb3c419a9f512?w=245&amp;h=152&amp;f=png&amp;s=11291</span>)
+
+<span class="hljs-section">### ES2015新增的数据结构Map初始化报错</span>
+
+将ES2015的代码改造成为TypeScript代码时，如果你使用了ES2015新增的Map类型，那在编辑器还是终端编译中编译时都会报错：
+</code></pre>
+<p>终端编译报错：TS2693: 'Map' only refers to a type, but is being used as a value here.<br>编辑器报错报错：[ts] “Map”仅表示类型，但在此处却作为值使用。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这是由于TypeScript并没有提供相关的数据类型，也没有对应的polyfill。
+
+因此，我们解决这个问题的思路有三种：
+
+1. 将`tsconfig.json`配置中的`target`属性改为`es6`，即输出符合ES2015规范的代码。因为ES2015存在全局的Promise对象，因此编译和编辑器都不会报错。该方法优点为配置简单，无需改动代码，缺点为需要高级浏览器的支持或者Babel全家桶的支持。
+2. 舍弃Map类型，改用Object进行替代。这种改造比较费时费力，适用于工作量较小和不愿意引入其他文件的场景。
+3. 自行实现或者安装一个Map包。这种方法改造成本较小，缺点就是会引入额外的代码或者包，并且代码效率无法保证。例如`ts-map`和`typescript-map`，这两个包的查找效率都是o(n)，低于原生类型的Map。因此推荐自己使用Object实现一个简单的Map，具体实现方式可以去网上找相关的Map原理分析与实践（大致原理为使用多个Object，存储不同类型元素时使用不同容器，避免类型转换问题）。
+
+### ES2015新增的Promise使用报错
+
+将ES2015的代码改造成为TypeScript代码时，如果你使用了ES2015的新增的Promise类型，那在编辑器还是终端编译编译时都会报错：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>
+这是由于TypeScript并没有提供相关的数据类型，也没有对应的polyfill。
+
+因此，我们解决这个问题的思路有三种：
+
+<span class="hljs-number">1.</span> 将<span class="hljs-string">`tsconfig.json`</span>配置中的<span class="hljs-string">`target`</span>属性改为<span class="hljs-string">`es6`</span>，即输出符合ES2015规范的代码。因为ES2015存在全局的<span class="hljs-built_in">Promise</span>对象，因此编译和编辑器都不会报错。该方法优点为配置简单，无需改动代码，缺点为需要高级浏览器的支持或者Babel全家桶的支持。
+<span class="hljs-number">2.</span> 舍弃Map类型，改用<span class="hljs-built_in">Object</span>进行替代。这种改造比较费时费力，适用于工作量较小和不愿意引入其他文件的场景。
+<span class="hljs-number">3.</span> 自行实现或者安装一个Map包。这种方法改造成本较小，缺点就是会引入额外的代码或者包，并且代码效率无法保证。例如<span class="hljs-string">`ts-map`</span>和<span class="hljs-string">`typescript-map`</span>，这两个包的查找效率都是o(n)，低于原生类型的Map。因此推荐自己使用<span class="hljs-built_in">Object</span>实现一个简单的Map，具体实现方式可以去网上找相关的Map原理分析与实践（大致原理为使用多个<span class="hljs-built_in">Object</span>，存储不同类型元素时使用不同容器，避免类型转换问题）。
+
+### ES2015新增的<span class="hljs-built_in">Promise</span>使用报错
+
+将ES2015的代码改造成为TypeScript代码时，如果你使用了ES2015的新增的<span class="hljs-built_in">Promise</span>类型，那在编辑器还是终端编译编译时都会报错：
+</code></pre>
+<p>终端编译报错： TS2693: 'Promise' only refers to a type, but is being used as a value here.<br>编辑器报错：[ts] “Promise”仅表示类型，但在此处却作为值使用。</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这是由于TypeScript并没有提供Promise数据类型，也没有对应的polyfill。
+
+因此，我们解决这个问题的思路仍然有三种：
+
+1. 将`tsconfig.json`配置文件配置中的`target`属性改为`es6`，即输出符合ES2015规范的代码。因为ES2015存在全局的Promise对象，因此编译和编辑器都不会报错。该方法优点为配置简单，无需改动代码，缺点为需要高级浏览器的支持或者Babel全家桶的支持。
+
+2. 引入一个Promise库，如bluebird等比较知名的Promise库。在安装bluebird时需要同时安装@types/bluebird声明文件。缺点就是引入的Promise库较大，而且如果你的库作为一个基础库时，可能会与其他的调用方的Promise库产生冲突。
+
+3. 在`tsconfig.json`配置文件中增加lib。此方法的原理是让TypeScript编译时引用外部的Promise对象，因此在编译时不会报错。此方式优点是不会引入任何其他代码，但是缺点是一定要保证在引用此库的前提下，一定存在Promise对象。具体配置如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>
+这是由于TypeScript并没有提供<span class="hljs-built_in">Promise</span>数据类型，也没有对应的polyfill。
+
+因此，我们解决这个问题的思路仍然有三种：
+
+<span class="hljs-number">1.</span> 将<span class="hljs-string">`tsconfig.json`</span>配置文件配置中的<span class="hljs-string">`target`</span>属性改为<span class="hljs-string">`es6`</span>，即输出符合ES2015规范的代码。因为ES2015存在全局的<span class="hljs-built_in">Promise</span>对象，因此编译和编辑器都不会报错。该方法优点为配置简单，无需改动代码，缺点为需要高级浏览器的支持或者Babel全家桶的支持。
+
+<span class="hljs-number">2.</span> 引入一个<span class="hljs-built_in">Promise</span>库，如bluebird等比较知名的<span class="hljs-built_in">Promise</span>库。在安装bluebird时需要同时安装<span class="hljs-meta">@types</span>/bluebird声明文件。缺点就是引入的<span class="hljs-built_in">Promise</span>库较大，而且如果你的库作为一个基础库时，可能会与其他的调用方的<span class="hljs-built_in">Promise</span>库产生冲突。
+
+<span class="hljs-number">3.</span> 在<span class="hljs-string">`tsconfig.json`</span>配置文件中增加lib。此方法的原理是让TypeScript编译时引用外部的<span class="hljs-built_in">Promise</span>对象，因此在编译时不会报错。此方式优点是不会引入任何其他代码，但是缺点是一定要保证在引用此库的前提下，一定存在<span class="hljs-built_in">Promise</span>对象。具体配置如下：
+</code></pre>
+<p>"compilerOptions": {</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="   &quot;lib&quot;: [&quot;es2015.promise&quot;]" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs objectivec"><code style="word-break: break-word; white-space: initial;">   <span class="hljs-string">"lib"</span>: [<span class="hljs-string">"es2015.promise"</span>]</code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+### SetTimeout使用报错
+
+将ES2015代码改造成TypeScript代码时，如果使用了setTimeout和setInterval函数时，可能会出现无法找到该函数的报错：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs shell"><code><span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-comment">## SetTimeout使用报错</span></span>
+
+将ES2015代码改造成TypeScript代码时，如果使用了setTimeout和setInterval函数时，可能会出现无法找到该函数的报错：
+</code></pre>
+<p>终端编译报错：TS2304: Cannot find name 'setTimeout'.<br>编辑器报错：[ts] 找不到名称“setTimeout”。</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这是由于编辑器和编译时不知道当前代码运行环境导致的。
+
+因此，我们解决这个问题的思路有两种：
+
+1. 在`tsconfig.json`配置文件中增加lib。让TypeScript能够知道当前的代码容器。具体示例如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+这是由于编辑器和编译时不知道当前代码运行环境导致的。
+
+因此，我们解决这个问题的思路有两种：
+
+<span class="hljs-bullet">1. </span>在<span class="hljs-code">`tsconfig.json`</span>配置文件中增加lib。让TypeScript能够知道当前的代码容器。具体示例如下：
+</code></pre>
+<p>"compilerOptions": {</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="   &quot;lib&quot;: [&quot;dom&quot;]" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs objectivec"><code style="word-break: break-word; white-space: initial;">   <span class="hljs-string">"lib"</span>: [<span class="hljs-string">"dom"</span>]</code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+2. 安装`@types/node`。该方法适用于node环境下或者采用webpack打包时可以引入node代码。该方法直接通过`npm install @types/node`即可安装完成，解决报错问题。
+
+### 模块引用和导出报错
+
+在ES2015的代码中，我们可以通过`@babel/plugin-proposal-export-default-from`插件来直接导出引入的文件，具体示例如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs sql"><code>
+2. 安装`@types/node`。该方法适用于node环境下或者采用webpack打包时可以引入node代码。该方法直接通过`npm <span class="hljs-keyword">install</span> @types/node<span class="hljs-string">`即可安装完成，解决报错问题。
+
+### 模块引用和导出报错
+
+在ES2015的代码中，我们可以通过`</span>@babel/<span class="hljs-keyword">plugin</span>-proposal-<span class="hljs-keyword">export</span>-<span class="hljs-keyword">default</span>-<span class="hljs-keyword">from</span><span class="hljs-string">`插件来直接导出引入的文件，具体示例如下：
+</span></code></pre>
+<p>export Session from './session'; // 报错<br>export * from '_models/read-item'; // 不报错</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+而在TypeScript中，这种写法是会报错的：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs"><code>
+而在TypeScript中，这种写法是会报错的：
+</code></pre>
+<p>终端编译报错：TS1128: Declaration or statement expected.<br>编辑器报错：[ts] 应为声明或语句。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这是由于两者的模块语法不一样导致的。
+
+因此，我们解决这个问题只需要用下面这一种方法：
+
+1. 将上面的`export from`的语法稍加调整来适配TypeScript语法。具体改造如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+这是由于两者的模块语法不一样导致的。
+
+因此，我们解决这个问题只需要用下面这一种方法：
+
+<span class="hljs-bullet">1. </span>将上面的<span class="hljs-code">`export from`</span>的语法稍加调整来适配TypeScript语法。具体改造如下：
+</code></pre>
+<p>export {default as Session} from '_models/session'; //调整后不报错<br>   export * from '_models/read-item';// 之前不报错不需要调整</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+### 泛型定义
+
+我们在项目中经常会遇到这种情况，我们需要保证传入的属性类型的同时，还需要保证其与某个函数的参数一致，如：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs shell"><code><span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-comment">## 泛型定义</span></span>
+
+我们在项目中经常会遇到这种情况，我们需要保证传入的属性类型的同时，还需要保证其与某个函数的参数一致，如：
+</code></pre>
+<p>interface props {</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="value: number | string, 
+onChange: (v: string | number) =&gt; void // 参数类型值需要与value一致" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>value: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span>, 
+onChange: <span class="hljs-function">(<span class="hljs-params">v: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span> <span class="hljs-comment">// 参数类型值需要与value一致</span></code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+为了解决这个问题，我们需要用到泛型定义：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs"><code>
+为了解决这个问题，我们需要用到泛型定义：
+</code></pre>
+<p>interface Props&lt;T extends string | number&gt; {</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="value: T,
+onChange: (v: T) =&gt; void" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs groovy"><code><span class="hljs-string">value:</span> T,
+<span class="hljs-string">onChange:</span> (<span class="hljs-string">v:</span> T) =&gt; <span class="hljs-keyword">void</span></code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+此时，当value的类型确定时，参数的类型也就变得和value一样确定了。
+
+## 模块引用
+
+当我们使用TypeScript时，经常会出现引用其他模块甚至是JavaScript其他包的情况。在TypeScript中，有多重不同的导出方式，不同的导出方式也对应着不同的引用方式。
+
+目前我在项目改造中，遇到的模块有这么几种方式：
+
+1. CMD规范。
+2. ES2015 Module规范。
+
+而对于这几种模块，我们也有不同的导入方式：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+此时，当value的类型确定时，参数的类型也就变得和value一样确定了。
+
+<span class="hljs-section">## 模块引用</span>
+
+当我们使用TypeScript时，经常会出现引用其他模块甚至是JavaScript其他包的情况。在TypeScript中，有多重不同的导出方式，不同的导出方式也对应着不同的引用方式。
+
+目前我在项目改造中，遇到的模块有这么几种方式：
+
+<span class="hljs-bullet">1. </span>CMD规范。
+<span class="hljs-bullet">2. </span>ES2015 Module规范。
+
+而对于这几种模块，我们也有不同的导入方式：
+</code></pre>
+<p>import _assign = require('lodash.assign'); //CMD规范<br>import constant from './constant'; // ES2015 Module规范</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+如果你引入的文件是一个非TypeScript而是JavaScript文件时，你可能还需要增加声明文件。我们可以通过如下方法来添加声明文件：
+
+1. 增加@types文件。这个方式针对于一些比较出名的类库可以使用此方法。
+
+2. 在.d.ts文件中增加声明，这个声明全局有效。具体方式如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+如果你引入的文件是一个非TypeScript而是JavaScript文件时，你可能还需要增加声明文件。我们可以通过如下方法来添加声明文件：
+
+<span class="hljs-bullet">1. </span>增加@types文件。这个方式针对于一些比较出名的类库可以使用此方法。
+
+<span class="hljs-bullet">2. </span>在.d.ts文件中增加声明，这个声明全局有效。具体方式如下：
+</code></pre>
+<p>declare module 'promiz';</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+对于JSON文件，你也需要采用这种声明方式，具体方式如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>
+对于<span class="hljs-built_in">JSON</span>文件，你也需要采用这种声明方式，具体方式如下：
+</code></pre>
+<p>declare module "*.json" {</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="   const value: any;
+   export const version: string;
+   export default value;" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>   <span class="hljs-keyword">const</span> value: <span class="hljs-built_in">any</span>;
+   <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> version: <span class="hljs-built_in">string</span>;
+   <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> value;</code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+通过以上方法，我们就可以应对不同模块的规范和不同类型的文件。
+
+## TypeScript局部替换
+
+在进行重构改造的时候，我们在最开始可能只能逐个模块进行替换。我们需要新的TypeScript文件和旧的JavaScript文件能够和平共存进行编译运行。
+
+针对这种需求，我们只需要在webpack编译的loader中增加相关ts文件的配置，并且在extension中增加`.ts`后缀的支持。相关配置如下：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs markdown"><code>
+通过以上方法，我们就可以应对不同模块的规范和不同类型的文件。
+
+<span class="hljs-section">## TypeScript局部替换</span>
+
+在进行重构改造的时候，我们在最开始可能只能逐个模块进行替换。我们需要新的TypeScript文件和旧的JavaScript文件能够和平共存进行编译运行。
+
+针对这种需求，我们只需要在webpack编译的loader中增加相关ts文件的配置，并且在extension中增加<span class="hljs-code">`.ts`</span>后缀的支持。相关配置如下：
+</code></pre>
+<p>{</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="module: {
+    rules: [
+        {
+            test: /ts$/,
+            use: [{
+                loader: &#39;ts-loader&#39;,
+                options: {
+                    silent: process.env.env === &#39;production&#39; ? true : false
+                }
+            }]
+        }
+    ]
+},
+extensions: [&#39;.ts&#39;, &#39;.js&#39;]" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code><span class="hljs-keyword">module</span>: {
+    rules: [
+        {
+            test: <span class="hljs-regexp">/ts$/</span>,
+            use: [{
+                loader: <span class="hljs-string">'ts-loader'</span>,
+                options: {
+                    silent: process.env.env === <span class="hljs-string">'production'</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>
+                }
+            }]
+        }
+    ]
+},
+extensions: [<span class="hljs-string">'.ts'</span>, <span class="hljs-string">'.js'</span>]</code></pre>
+<p>}</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+然后，我们只需要在JavaScript中文件引入时，带上`.ts`后缀即可，如下例所示：
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code>
+然后，我们只需要在JavaScript中文件引入时，带上<span class="hljs-string">`.ts`</span>后缀即可，如下例所示：
+</code></pre>
+<p>// 本人之前使用的是CMD规范，因此引入ES2015模块需要访问default<br>var EventEmitter = require('eventemitter3');<br>var Session = require('./session.ts').default;</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="
+这样，我们就可以逐步的进行模块替换和改造，而不需要进行大规模的文件替换和改名。
+
+# 总结
+" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs objectivec"><code>
+这样，我们就可以逐步的进行模块替换和改造，而不需要进行大规模的文件替换和改名。
+
+<span class="hljs-meta"># 总结</span>
+</code></pre>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+                    <ul class="article-operation list-inline pull-left mt15"><li><a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img class="mb5" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/creativecommons-cc.svg" height="20"></a></li><li class="dropdown js__content-ops hidden-xs" data-module="article" data-id="1190000015747038" data-typetext="文章"><a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="https://segmentfault.com/a/1190000015747038#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li></ul></li></ul>
+                    <div class="pull-right mt-10 hidden-xs">
+                        <div class="widget-share__full" data-text="旧项目TypeScript改造问题与解决方案记" data-url="https://segmentfault.com/a/1190000015747038" data-shorturl="http://sfau.lt/b5beeGE"><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/a/1190000015747038" data-shorturl="http://sfau.lt/b5beeGE"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+
+                    </div>
+                </div>
+                <div class="mt10 text-center mb30"><button type="button" id="mainLike" data-id="1190000015747038" class="btn btn-success btn-lg mr15 "><span id="mainLikeText">赞</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;
+                                <span id="mainLikeNum">15 </span></button><button type="button" id="mainBookmark" data-type="article" data-id="1190000015747038" class="btn btn-default btn-lg "><span id="mainBookmarkText">收藏</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;<span id="mainBookmarkNum">12</span></button></div>                
+                                <script type="text/javascript">
+                    OA_show(3);
+                </script>
+
+                <h4 class="pt20 mb15 mt0 border-top">你可能感兴趣的</h4>
+
+                
+                <div class="mb15 block">
+                    <script type="text/javascript">
+                        OA_show(4);
+                    </script>
+                </div>
+
+                                <div id="paradigm-article-related"><div class="recommend-post mb30"><ul class="widget-links"><li><a href="http://segmentfault.com/a/1190000013514680" title="理解 Typescript 配置文件" target="_blank">理解 Typescript 配置文件</a><span class="text-muted">mingzhong</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/typescript">typescript</a></li><li><a href="http://segmentfault.com/a/1190000015609356" title="利用TypeScript构建优雅的React Native项目" target="_blank">利用TypeScript构建优雅的React Native项目</a><span class="text-muted">Quan</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/typescript">typescript</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a></li><li><a href="http://segmentfault.com/a/1190000015440788" title="webpack3从零开始配置过程" target="_blank">webpack3从零开始配置过程</a><span class="text-muted">贾东雷</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/webpack">webpack</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a></li><li><a href="http://segmentfault.com/a/1190000014185806" title="webpack - TypeScript配置" target="_blank">webpack - TypeScript配置</a><span class="text-muted">charsandrew</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/typescript">typescript</a></li><li><a href="http://segmentfault.com/a/1190000013715200" title="keystonejs富文本问题及思考过程" target="_blank">keystonejs富文本问题及思考过程</a><span class="text-muted">正月初五</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/node.js">node.js</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/html">html</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/mongodb">mongodb</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/cms">cms</a></li><li><a href="http://segmentfault.com/a/1190000015079684" title="awesome-typescript-loader报watchRun问题" target="_blank">awesome-typescript-loader报watchRun问题</a><span class="text-muted">耗子</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/typescript">typescript</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a></li><li><a href="http://segmentfault.com/a/1190000013307868" title="提高开发效率之VS Code基础配置篇" target="_blank">提高开发效率之VS Code基础配置篇</a><span class="text-muted">hjava</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/visual-studio-code">visual-studio-code</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/css">css</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/html">html</a></li><li><a href="http://segmentfault.com/a/1190000015568039" title="记 vscode 搭建 Typescript+React+Dva 开发环境" target="_blank">记 vscode 搭建 Typescript+React+Dva 开发环境</a><span class="text-muted">崩崩</span><a class="tag" taget="_blank" href="https://segmentfault.com/t/windows">windows</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/react.js">react.js</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/typescript">typescript</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/node.js">node.js</a><a class="tag" taget="_blank" href="https://segmentfault.com/t/javascript">javascript</a></li></ul></div></div>
+
+                
+        <div class="comments--news comments--default comments--article 
+    " data-id="1190000015747038" data-user-id="" data-author-id="1030000003942013 " data-is-admin="null" id="goToReplyArea">
+                    <div class="mb10 clearfix">
+                <strong class="comments-stat pull-left mr10">评论</strong>
+
+                                                    <div class="btn-group btn-group-xs pull-right comments-sort btn-group-menu" role="menu">
+                        <a href="javascript:;" class="btn btn-default active" data-sort="default">默认排序</a>
+                        <a href="javascript:;" class="btn btn-default" data-sort="desc">时间排序</a>
+                    </div>
+                            </div>
+                <div class="comments-container">
+                                <div class="comments-list">
+            </div>
+    <div class="comments-loading hide">载入中...</div>
+        <div class="comments-more hide"><a href="javascript:;">显示更多评论</a></div>
+    
+
+                                    <div class="comments-box" id="goToReplyEditor">
+                <div class="pull-left">
+                    <img class="avatar-32 " src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/user-128.png" alt="">
+                </div>
+                <div class="comments-box-content">
+                    <form action="https://segmentfault.com/api/article/1190000015747038/comments/add">
+                        <div class="form-group mb0">
+                            <textarea name="text" rows="3" class="form-control" placeholder="文明社会，理性评论"></textarea>
+                            <div class="mt15 text-right">
+                                <button type="button" class="hide"></button>
+                                <button class=" btn btn-primary" type="button">发布评论</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                                                        </div>
+    </div>
+
+
+                                    
+                
+                
+
+            </div><!-- /.main -->
+
+
+            <div class="col-md-3 side hidden-sm hidden-xs mt30" style="height: 8387px;">
+                                                
+                <div class="mb25 hidden-md hidden-sm hidden-xs">
+    <img src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/20190201.png" alt="Planets" usemap="#gridsMap" width="255" height="136">
+    <map name="gridsMap" id="gridsMap"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000017822729)" coords="221,0,255,34" href="https://www.3tee.cn/index.html?source=segmentfault" stitle="快速实现视频通讯，兼容WebRTC，浙江大华股份等都在用"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000017845377)" coords="68,34,170,51" href="https://uniapp.dcloud.io/?hmsr=sf&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" stitle="开发一次，同时生成 App、H5、微信、百度、支付宝等小程序"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018025967)" coords="102,68,153,85" href="https://www.fundebug.com/?utm_source=sf_lattice_ad" stitle="Debug就用Fundebug！"></map>
+    <div style="text-align: center;"><a style="text-align:center; color:#9E9E9E; font-size:12px" href="https://segmentfault.com/sponsor">想在上方展示你的广告？</a></div>
+            <script async="" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/20190201.js"></script>
+    </div>
+
+                                <style>
+                    .job-recommend-area a:not(:last-of-type) {margin-bottom:10px; display: block}
+                    .job-recommend-area a:hover {text-decoration: none;}
+                </style>
+                <div class="hidden-md">
+                    <div class="job-recommend">
+                      <h3 class="job-title">推广链接</h3>
+                      <div class="job-recommend-area">
+                                                <script type="text/javascript">
+                            OA_show(7);
+                            OA_show(9);
+                            OA_show(10);
+                            OA_show(15);
+                            OA_show(16);
+                        </script>
+                      </div>
+                    </div>
+                    <style>
+                    .job-recommend {margin-bottom: 30px;}
+                    .job-title {
+                        font-size: 14px;
+                        color: #017E66;
+                        font-weight: 500;
+                        background: #BFE6D7;
+                        margin: 0;
+                        padding-top: 6px;
+                        padding-bottom: 6px;
+                        text-align: center;
+                    }
+                    .job-recommend-area {
+                      padding: 13px;
+                      border: 3px solid #EBF7F3;
+                      border-top: none;
+                    }
+                    </style>
+                    
+                                    </div>
+
+                                
+                <div class="hidden-md ad-should-be-fixed stuckMenu isStuck" style="position: fixed; top: 10px; display: block;">
+                    <div class="mb25 block">
+                        <script type="text/javascript">
+                            OA_show(1);
+                        </script>
+                    </div>
+                </div>
+                <div class="post-nav hidden-xs side-outline hidden-sm" style="display: block; position: sticky; top: 238px; margin-top: 0px;">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="overflow: scroll; top: 0px; height: 669px;">
+                                <div class="highlight-title" style="display: block; top: 0px; height: 27px;"></div>
+                                <ul class="articleIndex"><li class="active"><a href="https://segmentfault.com/a/1190000015747038#articleHeader0">概述</a></li><li class=""><a href="https://segmentfault.com/a/1190000015747038#articleHeader1">改造问题记录与分析</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000015747038#articleHeader2">VSCode相关</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000015747038#articleHeader3">“无法找到相关模块”报错</a></li></ul></li></ul></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000015747038#articleHeader4">TypeScript相关</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000015747038#articleHeader5">对象属性赋值报错</a></li></ul></li></ul></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/a/1190000015747038" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal widget-seo" id="seo" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+            </div>
+            <div class="modal-body">
+                <form id="seoForm">
+                    <!-- 后台返回信息 -->
+                    <p class="alert alert-warning" data-model="returnMsg" style="display: none;"></p>
+                    <div data-role="base">
+                        <div class="form-group">
+                            <label>SEO标题：</label><textarea style="min-height: 35px; width: 100%; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="title" class="form-control" rows="1" placeholder="请输入SEO标题"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>SEO描述：</label><textarea style="min-height: 35px; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="desc" class="form-control" rows="1" placeholder="请输入SEO描述"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>SEO keywords：</label><textarea style="min-height: 35px; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="keywords" class="form-control" rows="1" placeholder="请输入SEO keywords"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div id="loginBanner" class="hidden-sm hidden-xs loginBanner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-7">
+                <h1 class="title">在 SegmentFault，学习技能、解决问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-1">
+                <form class="register-form clearfix" action="https://segmentfault.com/api/user/phone/register">
+
+                    
+                    <a href="https://segmentfault.com/user/register" class="SFLogin btn btn-lg btn-primary mr15">免费注册</a>
+                    <a href="https://segmentfault.com/user/login" class="SFRegister btn btn-lg btn-primary">立即登录</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>产品</dt>
+                
+                <dd><a href="https://segmentfault.com/questions/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E9%97%AE%E7%AD%94">热门问答</a></dd>
+                <dd><a href="https://segmentfault.com/blogs/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E4%B8%93%E6%A0%8F">热门专栏</a></dd>
+                <dd><a href="https://segmentfault.com/lives?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E8%AE%B2%E5%A0%82">热门讲堂</a></dd>
+                <dd><a href="https://segmentfault.com/events?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%9C%80%E6%96%B0%E6%B4%BB%E5%8A%A8">最新活动</a></dd>
+                <dd><a href="https://segmentfault.com/groups?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E5%9C%88%E5%AD%90">圈子</a></dd>
+                <dd><a href="https://segmentfault.com/jobs?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%89%BE%E5%B7%A5%E4%BD%9C">找工作</a></dd>
+                <dd><a href="https://segmentfault.com/app?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=app">移动客户端</a></dd>
+                
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>资源</dt>
+                <dd><a href="https://segmentfault.com/weekly?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-weekly&amp;utm_term=%E6%AF%8F%E5%91%A8%E7%B2%BE%E9%80%89">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/users?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-users&amp;utm_term=%E7%94%A8%E6%88%B7%E6%8E%92%E8%A1%8C%E6%A6%9C">用户排行榜</a></dd>
+                <dd><a href="https://segmentfault.com/badges?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-badges&amp;utm_term=%E5%BE%BD%E7%AB%A0">徽章</a></dd>
+                <dd><a href="https://segmentfault.com/faq?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-faq&amp;utm_term=%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%BF%83">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-repu&amp;utm_term=%E5%A3%B0%E6%9C%9B%E4%B8%8E%E6%9D%83%E9%99%90">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/community?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-community&amp;utm_term=%E7%A4%BE%E5%8C%BA%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83">社区服务中心</a></dd>
+                <dd><a href="https://docs.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-docs&amp;utm_term=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C">开发手册</a></dd>
+
+   
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>商务</dt>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-rencai&amp;utm_term=%E4%BA%BA%E6%89%8D%E6%9C%8D%E5%8A%A1" target="_blank">人才服务</a></dd>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-qiyeneixun&amp;utm_term=%E4%BC%81%E4%B8%9A%E6%9C%8D%E5%8A%A1" target="_blank">企业培训</a></dd>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-huodongcehua&amp;utm_term=%E6%B4%BB%E5%8A%A8%E7%AD%96%E5%88%92" target="_blank">活动策划</a></dd>
+                <dd><a href="https://business.segmentfault.com/ads?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-ads&amp;utm_term=%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE" target="_blank">广告投放</a></dd>
+                <dd><a href="https://business.segmentfault.com/bc?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-bc&amp;utm_term=%E5%8C%BA%E5%9D%97%E9%93%BE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" target="_blank">区块链解决方案</a></dd>
+                <dd><a href="https://business.segmentfault.com/contact?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-contact&amp;utm_term=%E5%90%88%E4%BD%9C%E8%81%94%E7%B3%BB" target="_blank">合作联系</a></dd>
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>关于</dt>
+                <dd><a href="https://about.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-index&amp;utm_term=%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC">关于我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/careers.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-careers&amp;utm_term=%E5%8A%A0%E5%85%A5%E6%88%91%E4%BB%AC">加入我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/contact.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-contact&amp;utm_term=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">联系我们</a></dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>关注</dt>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                <dd>
+                    <ul class="sn-inline">
+                        <li>
+                            <a class="entypo-wechart icon-sn-weixin weixin-popover-qrcode" data-toggle="popover" data-placement="top" data-content="" data-original-title="" title="">微信</a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/segmentfault" target="_blank" class="entypo-weibo icon-sn-weibo">新浪微博</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/SegmentFault" target="_blank" class="entypo-facebook icon-sn-github">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/segment_fault" target="_blank" class="entypo-twitter icon-sn-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link" id="license">
+                <dt>条款</dt>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">内容许可</a></dd>
+                <dd>
+                    <a href="https://segmentfault.com/app" class="clearfix mt10 block"><img src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/appQrcode.png" class="app-qrcode"></a>
+                    <div class="app-download-desc">
+                        <p>扫一扫下载 App</p>
+                    </div>
+                    
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2019 SegmentFault. 当前呈现版本 17.06.16<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+            <p class="mt30">CDN 存储服务由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 赞助提供 </p>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="border-bottom hidden" href="https://segmentfault.com/a/1190000015747038#">回顶部</a>
+</div>
+
+    <script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/login" method="POST" role="form" class="mt15">
+                <div class="form-group hidden">
+                                        <input type="text" class="form-control" name="remember" value="1"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" tabindex="1" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot" tabindex="4">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" tabindex="2" required placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <a
+                            
+                                                    href="/user/phoneLogin"
+                            class="phoneLogin"
+                                            >手机验证码登录</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+    <script id="registerModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            
+            <form action="/api/user/register" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="name" class="control-label">你的名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mail" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" id="login-name" name="mail" required placeholder="11 位手机号 或 Email">
+                </div>
+                
+                <input type="text" class="hidden" name="register_type" value="mail">
+
+                <div class="form-group">
+                    <div class="captchaInput mb10">
+                        <input type="text" class="form-control" name="cap" placeholder="右侧的验证码" style="width:50%; display: inline; margin-right: 15px;">
+                        <span class="mt10">
+                                <a id="loginReloadCaptcha" href="javascript:void(0)">
+                                <img src="/user/captcha?w=135&h=34" class="cap" width="135" height="34"/></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="phone-register-only hidden">
+                        <div class="input-group">
+                            <input name="code" type="text" class="form-control js-user-login__phone-code-value" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default js-user-login__phone-vaild-btn" style="width:96px;" type="button">
+                                获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位的密码">
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+                                <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFRegister
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    已有账号登录
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>            </form>
+        </div>
+    </div>
+</script>
+    <script id="phoneLoginModal" type="text/template">
+
+    <div class="row bg-white login-modal phonelogin-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/phonelogin" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="phone" class="control-label required">手机号</label>
+                    <input type="text" class="form-control phonelogin--phone" name="phone" tabindex="1" required placeholder="11 位手机号"
+                           autocomplete="off">
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="authCode" class="control-label required">验证码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control bindphone--code" name="authCode" placeholder="短信验证码">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                        </span>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+                <div class="form-group">
+                    <a 
+                                                            href="/user/login"
+                                class="SFRegister"
+                                                >密码登录（手机号或 Email）</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="bg-white bindphone-model">
+        <div class="alert alert-warning" role="alert">
+            为了保证账号安全，请先绑定手机
+        </div>
+        <div>
+            <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                <div class="form-group ">
+                    <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
+
+
+<script>
+    window.serverTime = 1548995083000;
+</script>
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://cdn.segmentfault.com/v-5c4ec07f"
+        };
+        w.SF.token = (function () {
+    var _MzyFu = '5'//'xuO'
++//'6'
+'af1'+//'pH'
+'3a1'+'432'//'rtx'
++//'Ovx'
+'ae'+/* '8O4'//'8O4' */''+//'i'
+'7'+//'lUd'
+'3'+//'mof'
+'mof'+//'h3c'
+'h3c'+//'2'
+'d'+//'9c'
+'b53'+//'cx3'
+'46f'+'6f7'//'FB'
++//'tSA'
+'3'+'425'//'i'
++'73'//'pP'
++//'1S'
+'1S'+''///*'o'*/'o'
++//'z'
+'4'+//'z'
+'a', _1yVyV = [[14,17],[14,17],[30,32]];
+
+    for (var i = 0; i < _1yVyV.length; i ++) {
+        _MzyFu = _MzyFu.substring(0, _1yVyV[i][0]) + _MzyFu.substring(_1yVyV[i][1]);
+    }
+
+    return _MzyFu;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+
+        var ddosMode = false;
+    
+        (function (currentUrl) {
+        if (typeof URL != 'undefined') {
+            var baseUrl = new URL('https://segmentfault.com');
+
+            if (baseUrl.protocol != currentUrl.protocol
+                || baseUrl.host != currentUrl.host) {
+                window.location.href = baseUrl.protocol + '//' + baseUrl.host
+                    + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+            }
+        }
+    })(window.location);
+    </script>
+
+             <script crossorigin="" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/assets.js"></script>
+                 
+        <script crossorigin="" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/post.min.js"></script>
+            
+
+<script>
+if (!!navigator.userAgent.match(/MicroMessenger/i)) {
+    require.config({
+        paths: { weixin_jsapi: '//res.wx.qq.com/open/js/jweixin-1.2.0' }
+    });
+
+    require(['weixin_jsapi'], function (wx) {
+        var share = {"title":"\u65e7\u9879\u76eeTypeScript\u6539\u9020\u95ee\u9898\u4e0e\u89e3\u51b3\u65b9\u6848\u8bb0","desc":"\u7531\u4e8e\u672c\u6b21\u6539\u9020\u7684\u9879\u76ee\u4e3a\u4e00\u4e2a\u901a\u8fc7NPM\u8fdb\u884c\u53d1\u5e03\u7684\u57fa\u7840\u670d\u52a1\u5305\uff0c\u56e0\u6b64\u672c\u6b21\u91c7\u7528TypeScript\u8fdb\u884c\u6539\u9020\u7684\u76ee\u6807\u662f\u79fb\u9664Babel\u5168\u5bb6\u6876\uff0c\u51cf\u5c0f\u5305\u4f53\u79ef\uff0c\u540c\u65f6\u589e\u52a0\u5f3a\u7c7b\u578b\u7ea6\u675f\u4ece\u800c\u907f\u514d\u4eca\u540e\u5f00\u53d1\u65f6\u53ef\u80fd\u7684\u95ee\u9898\u3002","link":"https:\/\/segmentfault.com\/a\/1190000015747038","imgUrl":"https:\/\/avatar-static.segmentfault.com\/339\/538\/33953861-5a79118f575bd_huge256"};
+        share.title += ' - SegmentFault 思否';
+
+        $.getJSON('/api/util/weixin/jsapi', function (o) {
+            methods = o.data.jsApiList.slice();
+
+            wx.config(o.data);
+            wx.error(console.error);
+            wx.ready(function () {
+                methods.forEach(function (method) {
+                    wx[method](share);
+                });
+            });
+        });
+    });
+}
+</script>
+
+<script src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/ads.min.js" type="text/javascript"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                
+        
+
+                
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1548995083,
+        'allowLinker'
+    : true });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['docs.segmentfault.com'] );
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+        if(document.getElementById('UGTKzPZbRoOS')){
+        UGTKzPZbRoOS='No';
+    } else {
+        UGTKzPZbRoOS='Yes';
+    }
+
+    if(typeof ga !=='undefined'){
+        ga('send','event','Blocking Ads',UGTKzPZbRoOS,{'nonInteraction':1});
+    } else if(typeof _gaq !=='undefined'){
+        _gaq.push(['_trackEvent','Blocking Ads',UGTKzPZbRoOS,undefined,undefined,true]);
+    }
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+<iframe id="p_analyse_iframe" src="./旧项目TypeScript改造问题与解决方案记 - 个人文章 - SegmentFault 思否_files/saved_resource.html" style="display: none;"></iframe><div id="atwho-container"><div id="atwho-ground-8fd105691548995087832"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div></body><div style="display: block; opacity: 1;"></div></html>
