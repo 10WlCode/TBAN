@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/q/1010000008881292 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://cdn.segmentfault.com/v-5c8723e6/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否</title><meta name="description" content="用vuejs的webpack模板生成的项目中，router/index.js里面有一句： {代码...} 这里路径前面的“@”符号表示什么意思？"><meta name="keywords" content="javascript,vue.js"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://cdn.segmentfault.com/v-5c8723e6/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://cdn.segmentfault.com/v-5c8723e6/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://cdn.segmentfault.com/v-5c8723e6/global/img/touch-icon.png"><meta name="baidu_union_verify" content="bcf7fd80dca60d53d46d5b46e1b990ca"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/global.css"><link rel="stylesheet" href="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/qa.css"><link rel="stylesheet" href="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/responsive.css"><script src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/hm.js"></script><script async="" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/analytics.js"></script><script type="text/javascript" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/spcjs.php"></script><script charset="utf-8" id="ParadigmSDK" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/ParadigmSDK_v2.js" data="325" defsi="586"></script><script>
+    ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
+    ParadigmSDK.trackDetailPageShow();
+</script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://cdn.segmentfault.com/v-5c8723e6/3rd/highlightjs/highlight.pack.js" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/highlight.pack.js"></script></head><!-- 推荐引擎 --><body data-mod="qa" class="qa-question "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://cdn.segmentfault.com/v-5c8723e6/global/img/touch-icon-512.png"><div id="gridMapHoverBox" style="position: absolute; border: 1px solid rgb(0, 154, 97); z-index: 99; font-size: 10px; background: rgb(255, 255, 255); display: none; left: 1299px; top: 220px;">Sunny-Ngrok内网穿透本地调试工具，微信支付宝异步回调调试</div><div class="global-nav sf-header sf-header--index"><div class="bottom-nav visible-xs visible-sm hidden"><div class="opts"><a class="opts-group " href="https://segmentfault.com/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group active" href="https://segmentfault.com/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group " href="https://segmentfault.com/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="https://segmentfault.com/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="https://segmentfault.com/jobs">职位</a></li><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li></ul></div></div></div></div><nav class="container nav"><div class="visible-xs visible-sm header-response"><a href="https://segmentfault.com/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="https://segmentfault.com/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="https://segmentfault.com/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a></div><script>
+mobileScroll(
+    function(direction) { 
+        try {
+            if (direction === 'down') {
+                document.querySelector('.bottom-nav').classList.add('hidden')
+            } else {
+                document.querySelector('.bottom-nav').classList.remove('hidden')
+            }
+        } catch(err) {}
+    }
+);    
+function mobileScroll( fn ) {
+    var beforeScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+        fn = fn || function() {};
+    window.addEventListener("scroll", function() {
+        var afterScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+            delta = afterScrollTop - beforeScrollTop;
+        if( delta === 0 ) return false;
+        fn( delta > 0 ? "down" : "up" );
+        beforeScrollTop = afterScrollTop;
+    }, false);
+}
+</script><div class="row hidden-xs hidden-sm"><div class="col-sm-8 col-md-9 col-lg-9"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/" class="">首页</a></li><li class="menu__item"><a href="https://segmentfault.com/questions" class="active-nav">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs" class="">专栏</a></li><li class="menu__item"><a class=" " href="https://segmentfault.com/lives">讲堂</a></li><li class="menu__item"><a href="https://segmentfault.com/groups" class="">圈子</a></li><li class="menu__item menu__item--more dropdown"><a href="https://segmentfault.com/q/1010000008881292##" class="dropdown-toggle dropdownBtn" data-toggle="dropdown">
+                                        发现<i class="fa fa-caret-down" style="font-size: 14px;margin-left: 5px;" aria-hidden="true"></i></a><div class="dropdown-block hidden"><ul class="dropdown-content-menu"><li><a href="https://segmentfault.com/events">活动</a></li><li><a href="https://segmentfault.com/tags">标签</a></li><li><a href="https://segmentfault.com/jobs">找工作</a></li><li><a href="https://segmentfault.com/users">排行榜</a></li><li><a href="https://segmentfault.com/badges">徽章</a></li><li><a href="https://segmentfault.com/notes">笔记</a></li><li><a href="https://docs.segmentfault.com/" target="_blank">开发手册<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li><li><a href="https://business.segmentfault.com/ads?utm_source=sf-header" target="_blank">广告投放<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li></ul></div></li><li class="menu__item visible-sm-inline-block"><a href="https://segmentfault.com/search"><span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span></a></li></ul><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs pull-right"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="搜索问题或关键字" class="form-control" value=""></form></div></div><div class="col-sm-4 col-md-3 col-lg-3 text-right"><ul class="opts list-inline hidden-xs"><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFRegister btn-signin" style="margin-bottom:2px;">立即登录</a><a href="https://segmentfault.com/user/register" class="SFLogin ml10 btn-signup" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">免费注册</a></li></ul></div></div><div class="sub-head hidden-xs hidden-sm"><span class="tag-nav__item btn-all-tag"><a href="https://segmentfault.com/tags" class="text-secondNav">热门标签</a></span><div class="tag-container-outer"><span class="tag-nav__item mr20 active"><a class="active" href="https://segmentfault.com/questions">全部</a></span><div class="tag-container"><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/javascript">javascript</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/php">php</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/python">python</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/java">java</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/mysql">mysql</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/ios">ios</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/android">android</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/node.js">node.js</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/html5">html5</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/linux">linux</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/c%2B%2B">c++</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/css3">css3</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/git">git</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/golang">golang</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/ruby">ruby</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/vim">vim</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/docker">docker</a></span><span class="tag-nav__item mr20"><a class="text-secondNav" href="https://segmentfault.com/t/mongodb">mongodb</a></span></div></div><div class="gradient-block"></div></div></nav></div><div class="wrap">
+    
+    <div class="text-center block hidden-xs">
+        <script type="text/javascript">
+            OA_show(2);
+        </script>
+    </div>
+
+    <div class="post-topheader">
+        <div class="container">
+                        <ol class="breadcrumb mb15">
+                <li><a href="https://segmentfault.com/questions">问答</a></li>
+                                <li class="active">问答详情</li>
+            </ol>
+
+            
+        </div>
+    </div>
+    <!-- end .post-topheader -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main">
+                <div class="visible-lg">
+                    <div class="side-widget">
+                        <i class="fa fa-bookmark item " id="side-widget-bookmarks-btn"></i>
+                        <i class="fa fa-weibo item"></i>
+                        <i class="fa fa-weixin item" data-toggle="popover" data-placement="right" data-original-title="" title=""></i>
+                        <i class="fa fa-twitter item"></i>
+                        <i class="fa fa-facebook item"></i>
+                        <i class="fa fa-arrow-up item hidden"></i>
+                    </div>
+                </div>
+                
+                <div class="block-for-right-border">
+                    <div class="post-topheader__info mb15">
+                        <h1 class="h2 post-topheader__info--title" id="questionTitle" data-id="1010000008881292">
+                            <a href="https://segmentfault.com/q/1010000008881292">vuejs webpack模板里import路径中@符号是什么意思</a>
+                        </h1>
+
+                        <ul class="taglist--inline inline-block question__title--tag mr10">
+                                                            <li class="tagPopup mb5">
+                                    <a class="tag" href="https://segmentfault.com/t/javascript" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/195/823/1958237468-1040000000089436_huge256" data-placement="top" data-original-title="javascript" data-id="1040000000089436">
+                                                                                javascript
+                                    </a>
+                                </li>
+                                                            <li class="tagPopup mb5">
+                                    <a class="tag" href="https://segmentfault.com/t/vue.js" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/256/038/2560380373-565be73e6fe13_huge256" data-placement="top" data-original-title="vue.js" data-id="1040000004003243">
+                                                                                vue.js
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                        <span>9.7k</span> 次浏览
+                    </div>
+                </div>
+
+                <article class="widget-question__item">
+                    <div class="post-col">
+                        <div class="widget-vote  btn btn-default   ">
+                            <button type="button" class="like" data-id="1010000008881292" data-type="question" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="问题对人有帮助，内容完整，我也想知道答案">
+                                <span class="sr-only">问题对人有帮助，内容完整，我也想知道答案</span>
+                            </button>
+                                                        <span class="count">4</span>
+                            <button type="button" class="hate" data-id="1010000008881292" data-type="question" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="问题没有实际价值，缺少关键内容，没有改进余地">
+                                <span class="sr-only">问题没有实际价值，缺少关键内容，没有改进余地</span>
+                            </button>
+                        </div>
+                        <!-- end .widget-vote -->
+                    </div>
+
+                    <div class="post-offset">
+                        <div class="question fmt" data-id="1010000008881292">
+                                                            
+<p>用vuejs的<a href="https://github.com/vuejs-templates/webpack/blob/master/template/src/router/index.js" rel="nofollow noreferrer" target="_blank">webpack模板</a>生成的项目中，router/index.js里面有一句：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="import Hello from &#39;@/components/Hello&#39;" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="hljs typescript"><code style="word-break: break-word; white-space: initial;"><span class="hljs-keyword">import</span> Hello <span class="hljs-keyword">from</span> <span class="hljs-string">'@/components/Hello'</span></code></pre>
+<p>这里路径前面的“@”符号表示什么意思？</p>
+
+                            
+                        </div>
+
+
+                                                                                                                                                
+                        
+                        <div class="row">
+                            <div class="post-opt col-md-8">
+                                <ul class="list-inline mb0"><li><button type="button" id="sideFollow" class="btn btn-success btn-xs" data-id="1010000008881292" data-do="follow" data-type="question" data-original-title="" title="">关注&nbsp;<span class="vertical-bar">|</span>&nbsp;5                                            </button></li><li class="mr10"><button type="button" id="sideBookmark" class="btn btn-default btn-xs" data-id="1010000008881292" data-type="question">收藏&nbsp;<span class="vertical-bar">|</span>&nbsp;18                                            </button></li><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1010000008881292" data-target="#comment-1010000008881292"><i class="fa fa-commenting mr4" aria-hidden="true"></i> 评论</a></li><li class="edit-btn js__rank-check pl0 pr15" data-toggle="tooltip" data-placement="top" title="" data-original-title="声望需要达到 15"><a class="  " href="javascript:;" data-title="vuejs webpack模板里import路径中@符号是什么意思" data-url="http://sfau.lt/bNLqAO" data-id="1010000008881292">邀请回答</a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li><li class="pl0 pr15"><a href="javascript:;" class="translate" data-canclick="1" data-type="question" data-target="en">Translate</a></li><li class="dropdown js__content-ops pl0 pr15" data-module="question" data-typetext="问题" data-id="1010000008881292"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="https://segmentfault.com/q/1010000008881292#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li><li><a href="https://segmentfault.com/q/1010000008881292/revision">历史版本</a></li></ul></li></ul>                            </div>
+
+                            <div class="question__author col-md-4" style="display:flex">
+                                <a href="https://segmentfault.com/u/wangqi060934"><img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/3039107252-1030000000161244_big64" class="avatar-40 mr10 " data-toggle="popover" data-slug="wangqi060934" data-id="1030000000161244"></a>
+                                <div style="display:flex; flex-direction:column">
+                                    <div class="mb3"> 
+                                        <a href="https://segmentfault.com/u/wangqi060934" class="mr5"><strong>wangqi060934</strong></a>
+                                                                                <img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/rp.svg">
+                                        <span style="color:#BF7158">23</span>
+                                    </div>
+                                    <span style="font-size:13px; color:#999">2017-03-29 提问</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="widget-comments hidden" id="comment-1010000008881292" data-id="1010000008881292"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1010000008881292"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1010000008881292" data-id="1010000008881292" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1010000008881292">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+                    </div>
+                    <!-- end .post-offset -->
+                </article>
+
+                    <div class="widget-answers" id="goToReplyArea">
+        <div class="btn-group pull-right" role="group">
+            <a href="https://segmentfault.com/q/1010000008881292#answers-title" id="sortby-rank" class="btn btn-default btn-xs active">默认排序</a>
+            <a href="https://segmentfault.com/q/1010000008881292?sort=created#answers-title" id="sortby-created" class="btn btn-default btn-xs">时间排序</a>
+        </div>
+
+        <div class="title h3 mt30 mb20 post-title pb0" id="answers-title">
+            <div class="pb15">2 个回答</div>
+
+            
+            <div class="block text-center">
+                <script type="text/javascript">
+                    OA_show(3);
+                </script>
+            </div>
+        </div>
+
+                                                            
+    
+            
+
+
+    <article class="clearfix widget-answers__item accepted" id="a-1020000008883565">
+        <div class="post-col">
+            <div class="widget-vote btn btn-default  ">
+                <button type="button" class="like" data-id="1020000008883565" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">3</span>
+                <button type="button" class="hate" data-id="1020000008883565" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+              <!-- 该答案被采纳 -->
+            <div class="text-center accepted-check cancel-cursor-pointer mt15" data-id="1020000008883565" data-do="accept/cancel" data-type="answer" style="white-space:nowrap" ;="">
+                <i class="fa fa-check-circle accepted-check-icon" aria-hidden="true"></i><br>
+                <span class="fontsize13">已采纳</span>
+            </div>
+
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000008883565">
+                                    
+<p>@ 等价于 /src 这个目录，免得你写麻烦又易错的相对路径</p>
+<p>参见本人知乎专栏文章：<a href="https://zhuanlan.zhihu.com/p/25829687" rel="nofollow noreferrer" target="_blank">学习 Vue 你需要知道的 webpack 知识（一）</a></p>
+
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0 ml0"><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000008883565" data-target="#comment-1020000008883565"><i class="fa fa-commenting mr4" aria-hidden="true"></i> 评论&nbsp;·&nbsp;4</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000008883565"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li class="pl0 pr15"><a href="javascript:;" class="translate" data-canclick="1" data-type="answer" data-target="en">Translate</a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                
+                <div class="col-md-4 col-sm-4 hidden-xs answer__info--author">
+                    <div class="answer__info--author-avatar">
+                        <a class="mr10 inline-block" href="https://segmentfault.com/u/kingmario"><img class="avatar-40 prestige-exceed-1000" data-toggle="popover" data-slug="kingmario" data-id="1030000000697129" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/168908076-58dc9c679473b_big64" alt="" data-original-title="" title=""></a>
+                    </div>
+                    <div class=" answer__info--author-warp" style="display:flex; flex-direction:column">
+                        <div class="mb5">
+                            <a class="answer__info--author-name mr5" title="KingMario" href="https://segmentfault.com/u/kingmario">KingMario</a>
+                                                        <img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/rp.svg">
+                            <span class="answer__info--author-rank">6.9k</span>
+                        </div>
+
+                        <div class="answer__info--date">
+                                                        
+                                                            <a href="https://segmentfault.com/q/1010000008881292/a-1020000008883565" data-toggle="tooltip" data-placement="top" title="" data-original-title="2017-03-30  发布">2017-03-30 更新</a>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000008883565" data-id="1020000008883565"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000008883565"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000008883565" data-id="1020000008883565" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000008883565">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+        
+                    
+    
+            
+
+
+    <article class="clearfix widget-answers__item" id="a-1020000008883630">
+        <div class="post-col">
+            <div class="widget-vote btn btn-default  ">
+                <button type="button" class="like" data-id="1020000008883630" data-type="answer" data-do="like" data-toggle="tooltip" data-placement="top" title="" data-original-title="答案对人有帮助，有参考价值">
+                    <span class="sr-only">答案对人有帮助，有参考价值</span>
+                </button>
+                                <span class="count">10</span>
+                <button type="button" class="hate" data-id="1020000008883630" data-type="answer" data-do="hate" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="答案没帮助，是错误的答案，答非所问">
+                    <span class="sr-only">答案没帮助，是错误的答案，答非所问</span>
+                </button>
+
+            </div>
+            
+            
+                        
+        </div>
+
+        <div class="post-offset">
+            <div class="answer fmt" data-id="1020000008883630">
+                                    
+<p>没事儿就去看看<code>vue</code>模板的代码，里面都有，这是<code>webpack</code>的路径别名，相关定义在这里：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="resolve: {
+    // 自动补全的扩展名
+    extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],
+    // 默认路径代理
+    // 例如 import Vue from &#39;vue&#39;，会自动到 &#39;vue/dist/vue.common.js&#39;中寻找
+    alias: {
+        &#39;@&#39;: resolve(&#39;src&#39;),
+        &#39;@config&#39;: resolve(&#39;config&#39;),
+        &#39;vue$&#39;: &#39;vue/dist/vue.common.js&#39;
+    }
+}" title="" data-original-title="复制"></span>
+      </div>
+      </div><pre class="javascript hljs"><code class="JavaScript">resolve: {
+    <span class="hljs-comment">// 自动补全的扩展名</span>
+    extensions: [<span class="hljs-string">'.js'</span>, <span class="hljs-string">'.vue'</span>, <span class="hljs-string">'.json'</span>],
+    <span class="hljs-comment">// 默认路径代理</span>
+    <span class="hljs-comment">// 例如 import Vue from 'vue'，会自动到 'vue/dist/vue.common.js'中寻找</span>
+    alias: {
+        <span class="hljs-string">'@'</span>: resolve(<span class="hljs-string">'src'</span>),
+        <span class="hljs-string">'@config'</span>: resolve(<span class="hljs-string">'config'</span>),
+        <span class="hljs-string">'vue$'</span>: <span class="hljs-string">'vue/dist/vue.common.js'</span>
+    }
+}</code></pre>
+
+                            </div>
+
+            
+                        
+            <div class="row answer__info--row">
+                <div class="post-opt col-md-8 col-sm-8 col-xs-10">
+                    <ul class="list-inline mb0 ml0"><li class="pl0 pr15"><a href="javascript:void(0);" class="comments" data-id="1020000008883630" data-target="#comment-1020000008883630"><i class="fa fa-commenting mr4" aria-hidden="true"></i> 评论&nbsp;·&nbsp;1</a></li><li class="pl0 pr15"><a href="javascript:;" class="answer__reward-btn" data-id="1020000008883630"><i class="fa fa-jpy mr4" aria-hidden="true"></i><span>赞赏</span></a></li><li class="pl0 pr15"><a href="javascript:;" class="translate" data-canclick="1" data-type="answer" data-target="en">Translate</a></li><li data-toggle="tooltip" data-placement="top" title="" class="edit-btn js__rank-check pl0 pr15" data-original-title="声望需要达到 200"><a href="javascript:;">编辑</a></li></ul>                </div>
+
+                
+                <div class="col-md-4 col-sm-4 hidden-xs answer__info--author">
+                    <div class="answer__info--author-avatar">
+                        <a class="mr10 inline-block" href="https://segmentfault.com/u/xiaoboost"><img class="avatar-40 " data-toggle="popover" data-slug="xiaoboost" data-id="1030000005606088" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/user-64.png" alt=""></a>
+                    </div>
+                    <div class=" answer__info--author-warp" style="display:flex; flex-direction:column">
+                        <div class="mb5">
+                            <a class="answer__info--author-name mr5" title="xiaoboost" href="https://segmentfault.com/u/xiaoboost">xiaoboost</a>
+                                                        <img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/rp.svg">
+                            <span class="answer__info--author-rank">7.5k</span>
+                        </div>
+
+                        <div class="answer__info--date">
+                                                        
+                                                            <a href="https://segmentfault.com/q/1010000008881292/a-1020000008883630"> 2017-03-30 回答</a>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="widget-comments hidden" id="comment-1020000008883630" data-id="1020000008883630"><div class="widget-comments__form row"><form class="clearfix SFLogin" method="POST"><div class="form-group mb0 widget-comments__form--input"><input name="id" type="hidden" value="1020000008883630"><textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1020000008883630" data-id="1020000008883630" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题"></textarea></div><div class="widget-comments__btn"><div class="pull-right"><button type="submit" class="btn btn-default postComment" data-id="1020000008883630">提交评论
+                            </button><span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示"><i class="fa fa-question-circle"></i></a></span></div></div></form><div class="col-md-12"><div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="display:none;" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code><code>_italic_</code><code>[link](http://example.com)</code><code>&gt; 引用</code><code>`code`</code><code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div></div></div><!-- /.widget-comments__form --></div><!-- /.widget-comments -->
+
+
+        </div>
+            </article><!-- /article -->
+
+        
+        
+        
+        <div class="text-center">
+            
+        </div>
+    </div><!-- /.widget-answers -->
+
+
+            
+
+                                <div id="goToReplyEditor">
+                <h4>撰写答案</h4>
+                <input type="hidden" id="draftId" value="">
+                <input type="hidden" value="1010000008881292" id="questionId">
+                <form action="https://segmentfault.com/question/1010000008881292/answers/add" method="post" class="editor-wrap">
+                    <div class="editor" id="questionText">
+                        <textarea id="answerEditor" name="text" class="form-control" rows="4" placeholder="撰写答案..."></textarea>
+                    </div>
+                    <div id="answerSubmit" class="hide mt15 clearfix">
+                        <div class="checkbox pull-left">
+                            <label><input type="checkbox" class="" id="shareToWeibo">
+                                同步到新浪微博</label>
+                        </div>
+                        <div class="pull-right">
+                        <span id="editorStatus" class="hidden text-muted">
+
+                        </span>
+                            <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                            <button type="submit" id="answerIt" data-id="1010000008881292" class="btn btn-lg btn-primary ml20">提交回答
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                                <div class="answer-preview hidden">
+                    <h4>预览</h4>
+                    <div class="answer-preview-content fmt">
+                    </div>
+                </div>
+            </div>
+            
+                    
+                
+                <h4 class="pt20 border-top mb15 mt30">你可能感兴趣的</h4>
+
+                
+                <div class="mt15 block">
+                    <script type="text/javascript">
+                        OA_show(4);
+                    </script>
+                </div>
+            </div>
+            <!-- /.main -->
+
+
+            
+<div class="col-xs-12 col-md-3 side" style="height: 1124px;">
+
+    <div class="widget-box widget_lives pt0 hidden" style="border-top: none" id="live-recommend-wrapper">
+        <h2 class="widget-box__title">
+            讲堂推荐
+            <i class="fa fa-youtube-play fa-sm" aria-hidden="true"></i>
+            <a href="https://segmentfault.com/lives" class="pull-right more">更多</a>
+        </h2>
+        <div id="live-recommend" class="mb20"></div>
+    </div>
+
+    <div class="mb25 hidden-md hidden-sm hidden-xs">
+    <img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/20190313.png" alt="Planets" usemap="#gridsMap" width="255" height="136">
+    <map name="gridsMap" id="gridsMap"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018316599)" coords="221,0,255,34" href="https://www.3tee.cn/index.html?source=segmentfault" stitle="纯浏览器视频通讯（WebRTC），快速嵌入，浙江大华股份等都在用"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018316831)" coords="102,68,153,85" href="https://www.fundebug.com/?utm_source=sf_lattice_ad" stitle="一行代码搞定BUG监控"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018404262)" coords="119,34,136,51" href="https://github.com/d2-projects/d2-admin" stitle="开源中台前端脚手架"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018405894)" coords="17,17,85,34" href="https://segmentfault.com/g/1570000018311706/d/1560000018440542" stitle="初创FinTech公司招聘全栈工程师 最好有混合式App开发经验"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018407655)" coords="17,51,51,85" href="https://enhancer.io/" stitle="写SQL就能完成系统开发，简单，快速，强大！"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018414920)" coords="68,102,119,119" href="https://fapiao.easyapi.com/" stitle="EasyAPI发票管理，让您的产品网站、电商平台立支持开具电子发票功能"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018441330)" coords="221,34,255,68" href="https://www.ngrok.cc/" stitle="Sunny-Ngrok内网穿透本地调试工具，微信支付宝异步回调调试"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018445266)" coords="0,119,51,136" href="https://hiapp.net/fromsegmentfault" stitle="iOS企业证书签名 150元每月 免费重签和更新"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000018473522)" coords="0,102,51,119" href="http://www.h5ds.com/" stitle="手机H5页面自动生成工具，可导出HTML代码"></map>
+    <div style="text-align: center;"><a style="text-align:center; color:#9E9E9E; font-size:12px" href="https://segmentfault.com/sponsor">想在上方展示你的广告？</a></div>
+            <script async="" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/20190313.js"></script>
+    </div>
+
+        <style>
+        .job-recommend-area a:not(:last-of-type) {margin-bottom:10px; display: block}
+        .job-recommend-area a:hover {text-decoration: none;}
+    </style>
+    <div class="job-recommend">
+      <h3 class="job-title">推广链接</h3>
+      <div class="job-recommend-area">
+                
+        <div class="block">
+            <script type="text/javascript">
+                OA_show(7);
+                OA_show(9);
+                OA_show(10);
+                OA_show(15);
+                OA_show(16);
+            </script>
+        </div>
+      </div>
+    </div>
+    <style>
+    .job-recommend {margin-bottom: 30px;}
+    .job-title {
+        font-size: 14px;
+        color: #017E66;
+        font-weight: 500;
+        background: #BFE6D7;
+        margin: 0;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        text-align: center;
+    }
+    .job-recommend-area {
+      padding: 13px;
+      border: 3px solid #EBF7F3;
+      border-top: none;
+    }
+    </style>
+    
+    <!--     <div data-api="/api/news/hottest">
+        <script type="text/template">
+            <div class="widget_headline widget-box mt20 mb30">
+                <h2 class="h4 widget-box__title">热门头条</h2>
+                <ul class="taglist--block pl20" >
+                    <% _.each(data,function(d){ %>
+                    <li class="">
+                        <a href="<%- d.url %>" data-id="<%- d.id %>"
+                           data-original-title="<%= d.name %>"><%= d.title %></a>
+                        <p class=""><span class="mr5 color_F5A623"><%- d.VotesWord %> 赞</span> | <span class="ml5"><%- d.comments %> 评论</span></p>
+                    </li>
+                    <% }) %>
+                    <a href="/news" target="_blank" class="f12" >更多头条内容→</a>
+                </ul>
+
+            </div>
+        </script>
+    </div>
+ -->
+    
+    <div style="position:sticky; top:15px">
+            
+        <div class="mb30 block">
+            <script type="text/javascript">
+                OA_show(1);
+            </script>
+        </div>
+
+                    <!--     <div data-type="widget" data-api="/api/bookmarkArchive/hots" data-api-overwrite="/api/bookmarkArchive/1010000008881292/related">
+        <script type="text/template">
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right"
+                                                          href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    <% _.each(data,function(d){ %>
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-<%= d.id%19 %> mr10" src="https://cdn.segmentfault.com/v-5c8723e6/global/img/pattern/<%= d.id%10 ? d.id%10 : 10 %>.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="<%- d.url %>"><%= d.name %></a>
+                            <p class="mb0">
+                                <span><%- d.num %></span> 个条目 <span class="division">|</span> <span><%- d.followers %></span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </script>
+    </div>
+ -->
+            <div id="paradigm-question-related"><div class="recommend-post widget-box no-border"><h4 class="h4 widget-box__title">相似问题</h4><ul class="widget-links"><li><a href="http://segmentfault.com/q/1010000008922848" title="angular的ui-router的$stateChangeStart事件没有触发。是写法有问题吗" target="_blank">angular的ui-router的$stateChangeStart事件没有触发。是写法有问题吗</a></li><li><a href="http://segmentfault.com/q/1010000008709916/a-1020000008712079" title="后端响应头有Set-Cookie，但fetch并没设置cookies？" target="_blank">后端响应头有Set-Cookie，但fetch并没设置cookies？</a></li><li><a href="http://segmentfault.com/q/1010000010173024" title="vue中如何获取url传递的参数" target="_blank">vue中如何获取url传递的参数</a></li><li><a href="http://segmentfault.com/q/1010000007833807/a-1020000011799193" title="macOS -bash: vue: command not found" target="_blank">macOS -bash: vue: command not found</a></li><li><a href="http://segmentfault.com/q/1010000004149131" title="js的回调函数一般都用来做什么" target="_blank">js的回调函数一般都用来做什么</a></li><li>找不到问题？可以 <a href="https://segmentfault.com/ask" target="_blank">创建新问题</a></li></ul></div></div>
+
+            
+            <div class="widget-share__full" data-text="vuejs webpack模板里import路径中@符号是什么意思" data-url="https://segmentfault.com/q/1010000008881292" data-shorturl="http://sfau.lt/bNLqAO"><div style="margin-bottom:10px;">分享扩散：</div><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/q/1010000008881292" data-shorturl="http://sfau.lt/bNLqAO"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+
+
+            
+            
+            </div>
+</div><!-- /.side -->
+
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/q/1010000008881292" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.config = {"like_question":[1,5,"\u95ee\u9898\u88ab\u6295\u8d5e\u540c\u7968"],"hate_question":[2,-2,"\u95ee\u9898\u88ab\u6295\u53cd\u5bf9\u7968"],"like_answer":[5,10,"\u56de\u7b54\u88ab\u6295\u8d5e\u540c\u7968"],"hate_answer":[6,-2,"\u56de\u7b54\u88ab\u6295\u53cd\u5bf9\u7968"],"answer_question":[7,1,"\u56de\u7b54\u95ee\u9898"],"like_comment":[8,0,"\u8bc4\u8bba\u88ab\u8d5e\u540c"],"bookmark_question":[11,1,"\u95ee\u9898\u88ab\u6536\u85cf"],"accept_answer":[13,15,"\u56de\u7b54\u88ab\u91c7\u7eb3"],"delete_answer":[14,-5,"\u56de\u7b54\u88ab\u5220\u9664\uff08\u5305\u62ec\u81ea\u5df1\u5220\u9664\uff09"],"ignore_answer":[15,-1,"\u56de\u7b54\u88ab\u5ffd\u7565"],"question_answer":[16,0,"\u95ee\u9898\u88ab\u4ed6\u4eba\u56de\u7b54"],"invite_user":[17,0,"\u9080\u8bf7\u7528\u6237"],"like_article":[18,5,"\u6587\u7ae0\u88ab\u70b9\u8d5e"],"write_article":[20,0,"\u53d1\u5e03\u65b0\u6587\u7ae0"],"bookmark_article":[21,3,"\u6587\u7ae0\u88ab\u6536\u85cf"],"oppose_answer":[24,-1,"\u53cd\u5bf9\u4ed6\u4eba\u7b54\u6848"],"accept_answer_reward":[25,2,"\u91c7\u7eb3\u4ed6\u4eba\u7b54\u6848"],"user_register":[26,1,"\u65b0\u7528\u6237\u6fc0\u6d3b"],"report":[27,-100,"\u5185\u5bb9\u88ab\u6210\u529f\u4e3e\u62a5 6 \u6b21"],"like_share":[28,0,"\u5934\u6761\u88ab\u70b9\u8d5e"],"sign_live":[29,1,"\u4ed8\u8d39\u62a5\u540d\u8bb2\u5ea7"],"live_sign":[30,1,"\u8bb2\u5ea7\u88ab\u62a5\u540d"],"publish_live":[31,5,"\u53d1\u5e03\u8bb2\u5ea7"],"finish_live":[32,10,"\u8bb2\u5ea7\u5982\u671f\u5f00\u64ad\uff0c\u5e76\u5df2\u7ed3\u675f"],"like_question_payment":[33,5,"\u95ee\u9898\u88ab\u6295\u8d5e\u540c\u7968"],"hate_question_payment":[34,-2,"\u95ee\u9898\u88ab\u6295\u53cd\u5bf9\u7968"],"like_grapevine":[35,0,"\u5c0f\u9053\u6d88\u606f\u88ab\u70b9\u8d5e"],"like_live_score":[36,0,"\u8bc4\u5206\u70b9\u8d5e"],"sign_live_series":[37,1,"\u4ed8\u8d39\u62a5\u540d\u7cfb\u5217\u8bb2\u5ea7"],"live_series_sign":[38,1,"\u7cfb\u5217\u8bb2\u5ea7\u88ab\u62a5\u540d"]}
+</script>
+
+<div id="delete-modal" class="modal widget-911" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title radio-del question-close-only">关闭<span class="type-911">问题</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del question-delete-only">删除<span class="type-911">问题</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del answer-delete-only">删除<span class="type-911">回答</span>（请谨慎操作）</h4>
+                <h4 class="modal-title radio-del answer-ignore-only">忽略<span class="type-911">回答</span></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong class="required radio-del question-close-only">关闭理由：</strong>
+                    <strong class="required radio-del question-delete-only answer-delete-only">删除理由：</strong>
+                    <strong class="required radio-del answer-ignore-only">忽略理由：</strong>
+                </p>
+                <div id="reportDescription">
+                    <div class="radio-del radio all">
+                        <label>
+                            <input type="radio" name="descRadio" value="推广（招聘、广告、SEO 等）方面的内容">
+                            推广（招聘、广告、SEO 等）方面的内容
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="与已有问题重复">
+                            与已有问题重复（请编辑该提问指向已有相同问题）
+                        </label>
+                    </div>
+                    <div class="radio-del radio answer-ignore-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="答非所问，不符合答题要求">
+                            答非所问，不符合答题要求
+                        </label>
+                    </div>
+                    <div class="radio-del radio answer-ignore-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="宜作评论而非答案">
+                            宜作评论而非答案
+                        </label>
+                    </div>
+                    <div class="radio-del radio all">
+                        <label>
+                            <input type="radio" name="descRadio" value="带有人身攻击、辱骂、仇恨等违反条款的内容">
+                            带有人身攻击、辱骂、仇恨等违反条款的内容
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="无法获得确切结果的问题">
+                            无法获得确切结果的问题
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="非开发直接相关的问题">
+                            非开发直接相关的问题
+                        </label>
+                    </div>
+                    <div class="radio-del radio question-close-only question-delete-only">
+                        <label>
+                            <input type="radio" name="descRadio" value="非技术提问的讨论型问题">
+                            非技术提问的讨论型问题
+                        </label>
+                    </div>
+
+                    <div class="radio-del radio all btwRadio">
+                        <label>
+                            <input type="radio" name="descRadio" value="">
+                            其他原因（请补充说明）
+                        </label>
+                    </div>
+                    <div class="btw" style="display:none;">
+                        <p class="mt20"><strong>补充说明：</strong></p>
+                        <textarea class="form-control" rows="3" name="description" id="deleteDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="submit-delete">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    <div id="loginBanner" class="hidden-sm hidden-xs loginBanner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-7">
+                <h1 class="title">在 SegmentFault，学习技能、解决问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-1">
+                <form class="register-form clearfix" action="https://segmentfault.com/api/user/phone/register">
+
+                    
+                    <a href="https://segmentfault.com/user/register" class="SFLogin btn btn-lg btn-primary mr15">免费注册</a>
+                    <a href="https://segmentfault.com/user/login" class="SFRegister btn btn-lg btn-primary">立即登录</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>产品</dt>
+                
+                <dd><a href="https://segmentfault.com/questions/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E9%97%AE%E7%AD%94">热门问答</a></dd>
+                <dd><a href="https://segmentfault.com/blogs/hottest?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E4%B8%93%E6%A0%8F">热门专栏</a></dd>
+                <dd><a href="https://segmentfault.com/lives?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E7%83%AD%E9%97%A8%E8%AE%B2%E5%A0%82">热门讲堂</a></dd>
+                <dd><a href="https://segmentfault.com/events?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%9C%80%E6%96%B0%E6%B4%BB%E5%8A%A8">最新活动</a></dd>
+                <dd><a href="https://segmentfault.com/groups?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E5%9C%88%E5%AD%90">圈子</a></dd>
+                <dd><a href="https://segmentfault.com/jobs?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=%E6%89%BE%E5%B7%A5%E4%BD%9C">找工作</a></dd>
+                <dd><a href="https://segmentfault.com/app?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=product&amp;utm_content=footer-links-hottest-questions&amp;utm_term=app">移动客户端</a></dd>
+                
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>资源</dt>
+                <dd><a href="https://segmentfault.com/weekly?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-weekly&amp;utm_term=%E6%AF%8F%E5%91%A8%E7%B2%BE%E9%80%89">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/users?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-users&amp;utm_term=%E7%94%A8%E6%88%B7%E6%8E%92%E8%A1%8C%E6%A6%9C">用户排行榜</a></dd>
+                <dd><a href="https://segmentfault.com/badges?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-badges&amp;utm_term=%E5%BE%BD%E7%AB%A0">徽章</a></dd>
+                <dd><a href="https://segmentfault.com/faq?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-faq&amp;utm_term=%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%BF%83">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-repu&amp;utm_term=%E5%A3%B0%E6%9C%9B%E4%B8%8E%E6%9D%83%E9%99%90">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/community?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-community&amp;utm_term=%E7%A4%BE%E5%8C%BA%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83">社区服务中心</a></dd>
+                <dd><a href="https://docs.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=resource&amp;utm_content=footer-links-docs&amp;utm_term=%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C">开发手册</a></dd>
+
+   
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>商务</dt>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-rencai&amp;utm_term=%E4%BA%BA%E6%89%8D%E6%9C%8D%E5%8A%A1" target="_blank">人才服务</a></dd>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-qiyeneixun&amp;utm_term=%E4%BC%81%E4%B8%9A%E6%9C%8D%E5%8A%A1" target="_blank">企业培训</a></dd>
+                <dd><a href="https://business.segmentfault.com/services?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-services-huodongcehua&amp;utm_term=%E6%B4%BB%E5%8A%A8%E7%AD%96%E5%88%92" target="_blank">活动策划</a></dd>
+                <dd><a href="https://business.segmentfault.com/ads?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-ads&amp;utm_term=%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE" target="_blank">广告投放</a></dd>
+                <dd><a href="https://business.segmentfault.com/bc?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-bc&amp;utm_term=%E5%8C%BA%E5%9D%97%E9%93%BE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" target="_blank">区块链解决方案</a></dd>
+                <dd><a href="https://business.segmentfault.com/contact?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=business&amp;utm_content=footer-links-contact&amp;utm_term=%E5%90%88%E4%BD%9C%E8%81%94%E7%B3%BB" target="_blank">合作联系</a></dd>
+            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>关于</dt>
+                <dd><a href="https://about.segmentfault.com/?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-index&amp;utm_term=%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC">关于我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/careers.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-careers&amp;utm_term=%E5%8A%A0%E5%85%A5%E6%88%91%E4%BB%AC">加入我们</a></dd>
+                <dd><a href="https://about.segmentfault.com/contact.html?utm_source=sf-footer&amp;utm_medium=footer-nav&amp;utm_campaign=about&amp;utm_content=about-contact&amp;utm_term=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">联系我们</a></dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>关注</dt>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                <dd>
+                    <ul class="sn-inline">
+                        <li>
+                            <a class="entypo-wechart icon-sn-weixin weixin-popover-qrcode" data-toggle="popover" data-placement="top" data-content="" data-original-title="" title="">微信</a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/segmentfault" target="_blank" class="entypo-weibo icon-sn-weibo">新浪微博</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/SegmentFault" target="_blank" class="entypo-facebook icon-sn-github">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/segment_fault" target="_blank" class="entypo-twitter icon-sn-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link" id="license">
+                <dt>条款</dt>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">内容许可</a></dd>
+                <dd>
+                    <a href="https://segmentfault.com/app" class="clearfix mt10 block"><img src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/appQrcode.png" class="app-qrcode"></a>
+                    <div class="app-download-desc">
+                        <p>扫一扫下载 App</p>
+                    </div>
+                    
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2019 SegmentFault. 当前呈现版本 19.02.27<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+            <p class="mt30">CDN 存储服务由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 赞助提供 </p>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="hidden border-bottom" href="https://segmentfault.com/q/1010000008881292#">回顶部</a>
+</div>
+
+    <script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/login" method="POST" role="form" class="mt15">
+                <div class="form-group hidden">
+                                        <input type="text" class="form-control" name="remember" value="1"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" tabindex="1" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot" tabindex="4">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" tabindex="2" required placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <a
+                            
+                                                    href="/user/phoneLogin"
+                            class="phoneLogin"
+                                            >手机验证码登录</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+    <script id="registerModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            
+            <form action="/api/user/register" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="name" class="control-label">你的名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mail" class="control-label">手机号</label>
+                    <input type="text" class="form-control" id="login-name" name="mail" required placeholder="11 位手机号">
+                </div>
+                
+                <input type="text" class="hidden" name="register_type" value="mail">
+
+                <div class="form-group">
+                    <div class="captchaInput mb10">
+                        <input type="text" class="form-control" name="cap" placeholder="右侧的验证码" style="width:50%; display: inline; margin-right: 15px;">
+                        <span class="mt10">
+                                <a id="loginReloadCaptcha" href="javascript:void(0)">
+                                <img src="/user/captcha?w=135&h=34" class="cap" width="135" height="34"/></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="phone-register-only hidden">
+                        <div class="input-group">
+                            <input name="code" type="text" class="form-control js-user-login__phone-code-value" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default js-user-login__phone-vaild-btn" style="width:96px;" type="button">
+                                获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位的密码">
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+                                <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFRegister
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    已有账号登录
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>            </form>
+        </div>
+    </div>
+</script>
+    <script id="phoneLoginModal" type="text/template">
+
+    <div class="row bg-white login-modal phonelogin-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/phonelogin" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="phone" class="control-label required">手机号</label>
+                    <input type="text" class="form-control phonelogin--phone" name="phone" tabindex="1" required placeholder="11 位手机号"
+                           autocomplete="off">
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="authCode" class="control-label required">验证码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control bindphone--code" name="authCode" placeholder="短信验证码">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                        </span>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+                <div class="form-group">
+                    <a 
+                                                            href="/user/login"
+                                class="SFRegister"
+                                                >密码登录（手机号或 Email）</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="bg-white bindphone-model">
+        <div class="alert alert-warning" role="alert">
+            为了保证账号安全，请先绑定手机
+        </div>
+        <div>
+            <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                <div class="form-group ">
+                    <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
+
+
+<script>
+    window.serverTime = 1552443266000;
+</script>
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://cdn.segmentfault.com/v-5c8723e6"
+        };
+        w.SF.token = (function () {
+    var _wQj0nNa = //'NY'
+'1'+//'w'
+'0'+/* 'Zr'//'Zr' */''+'6u'//'6u'
++//'I'
+'0d'+'a87'//'3RN'
++//'M'
+'fa7'+'rl'//'rl'
++'f'//'S'
++'1f'//'C'
++//'V'
+'480'+''///*'ZV'*/'ZV'
++/* 'HV'//'HV' */''+/* '0e'//'0e' */''+//'fFv'
+'c8f'+'f'//'u3'
++'1'//'tN'
++'9'//'7'
++'d65'//'ct'
++'99'//'H'
++'34'//'9V'
++//'Mw'
+'4'+//'C1B'
+'4'+'7'//'SE'
+, _CnkGvZ = [[2,4],[10,12]];
+
+    for (var i = 0; i < _CnkGvZ.length; i ++) {
+        _wQj0nNa = _wQj0nNa.substring(0, _CnkGvZ[i][0]) + _wQj0nNa.substring(_CnkGvZ[i][1]);
+    }
+
+    return _wQj0nNa;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+
+        var ddosMode = false;
+    
+        (function (currentUrl) {
+        if (typeof URL != 'undefined') {
+            var baseUrl = new URL('https://segmentfault.com');
+
+            if (baseUrl.protocol != currentUrl.protocol
+                || baseUrl.host != currentUrl.host) {
+                window.location.href = baseUrl.protocol + '//' + baseUrl.host
+                    + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+            }
+        }
+    })(window.location);
+    </script>
+
+             <script crossorigin="" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/assets.js"></script>
+                 
+        <script crossorigin="" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/question.min.js"></script>
+            
+
+<script>
+if (!!navigator.userAgent.match(/MicroMessenger/i)) {
+    require.config({
+        paths: { weixin_jsapi: '//res.wx.qq.com/open/js/jweixin-1.2.0' }
+    });
+
+    require(['weixin_jsapi'], function (wx) {
+        var share = {"title":"vuejs webpack\u6a21\u677f\u91ccimport\u8def\u5f84\u4e2d@\u7b26\u53f7\u662f\u4ec0\u4e48\u610f\u601d","desc":"\u7528vuejs\u7684webpack\u6a21\u677f\u751f\u6210\u7684\u9879\u76ee\u4e2d\uff0crouter\/index.js\u91cc\u9762\u6709\u4e00\u53e5\uff1a {\u4ee3\u7801...} \u8fd9\u91cc\u8def\u5f84\u524d\u9762\u7684\u201c@\u201d\u7b26\u53f7\u8868\u793a\u4ec0\u4e48\u610f\u601d\uff1f","link":"https:\/\/segmentfault.com\/q\/1010000008881292","imgUrl":"https:\/\/avatar-static.segmentfault.com\/303\/910\/3039107252-1030000000161244_huge256"};
+        share.title += ' - SegmentFault 思否';
+
+        $.getJSON('/api/util/weixin/jsapi', function (o) {
+            methods = o.data.jsApiList.slice();
+
+            wx.config(o.data);
+            wx.error(console.error);
+            wx.ready(function () {
+                methods.forEach(function (method) {
+                    wx[method](share);
+                });
+            });
+        });
+    });
+}
+</script>
+
+<script src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/ads.min.js" type="text/javascript"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                
+        
+
+                
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1552443266,
+        'allowLinker'
+    : true });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['docs.segmentfault.com'] );
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+        if(document.getElementById('UGTKzPZbRoOS')){
+        UGTKzPZbRoOS='No';
+    } else {
+        UGTKzPZbRoOS='Yes';
+    }
+
+    if(typeof ga !=='undefined'){
+        ga('send','event','Blocking Ads',UGTKzPZbRoOS,{'nonInteraction':1});
+    } else if(typeof _gaq !=='undefined'){
+        _gaq.push(['_trackEvent','Blocking Ads',UGTKzPZbRoOS,undefined,undefined,true]);
+    }
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+<iframe id="p_analyse_iframe" src="./javascript - vuejs webpack模板里import路径中@符号是什么意思 - SegmentFault 思否_files/saved_resource.html" style="display: none;"></iframe></body></html>
