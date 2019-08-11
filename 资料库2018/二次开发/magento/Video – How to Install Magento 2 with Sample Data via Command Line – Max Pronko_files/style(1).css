@@ -1,0 +1,399 @@
+/*
+Theme Name: Maestro Child
+Theme URI: http://promo-theme.com/maestro-wp/
+Author: Promo Theme
+Author URI: https://themeforest.net/user/ypromo
+Template: maestro
+Description: Maestro is the awesome creative business WP theme. Everyone can find a suitable page for itself. We have tried to create the big set of components and styles for your unique website. Some of photo galleries, blogs, and also personal pages can make various your new website.
+Version: 1.2.2
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: maestro-child
+*/
+
+
+.banner .item{ background-position:50% center !important;}
+
+@media ( max-width:600px){
+    .banner .item{ background-position:70% center !important;}
+}
+/*Start 27-06-2018*/
+.wp_rp_wrap .wp_rp_content ul.related_post li{width: 32% !important; border: 1px solid #e2e2e2; border-radius: 5px; padding: 20px !important;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li a{font-size: 24px !important; font-weight: bold;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li i{margin-right: 10px; color: #8a8a8a;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li .wp_rp_publish_date{color: #8a8a8a;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li .wp_rp_comments_count{color: #8a8a8a;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li.iconfont-speech-bubble{margin-left: 10px;}
+
+.wp_rp_wrap .wp_rp_content ul.related_post li img{width: 100% !important; height: auto !important;}
+
+
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li{ margin: 10px 2% 10px 0px !important; padding: 0px !important;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li:last-child{ margin-right: 0px !important; }
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li a.wp_rp_title{ font-size: 16px !important; line-height:2em !important;min-height: 100px;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li i{ font-size: 14px; margin-left: 3%;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li small{ margin-right: 10px; font-size: 13px;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li i.iconfont-speech-bubble{ margin-right: 3px; margin-top: 4px; display: inline-block; vertical-align: top;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li small.wp_rp_excerpt{ margin:20px 4%; display: inline-block; font-size: 13px; line-height: 20px;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li .read_more_lnk a{ margin: 0 !important; border-top: 1px solid #e2e2e2; background: #f5f5f5; color: #8e8e8e; font-size: 12px; padding:7px 4%; text-transform: uppercase; font-size: 12px !important; border-radius: 0 0 5px 5px;}
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li > a{ margin:5% !important; }
+.wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li .read_more_lnk a i.iconfont-next{ margin-top: 3px !important; display: inline-block; vertical-align: top; }
+.single-sfwd-courses .post-head .fl, .single-sfwd-lessons .post-head .fl, .single-sfwd-topic  .post-head .fl{ max-width: 100%; }
+
+
+@media (max-width: 991px){
+
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li{ width: 48% !important;margin-right: 4% !important;}
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li:last-child{ margin-right: 4% !important; }
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li:nth-child(2){ margin-right: 0px !important; }
+
+}
+
+
+@media (max-width: 568px){
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li{ width: 100% !important; margin-right: 0px !important; }
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li:last-child{ margin-right: 0% !important; }
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li:nth-child(2){ margin-right: 0px !important; }
+}
+
+@media (max-width: 480px){
+    .wp_rp_wrap.wp_rp_vertical .wp_rp_content ul.related_post li a:nth-child(1){ float: none !important; }
+}
+/*End 27-06-2018*/
+.um input[type=submit].um-button, .um input[type=submit].um-button:focus, .um a.um-button, .um a.um-button.um-disabled:hover, .um a.um-button.um-disabled:focus, .um a.um-button.um-disabled:active{background:#000;}
+.um input[type=submit].um-button:hover, .um a.um-button:hover{background:#000;color:#fff;}
+ .um .um-button.um-alt:hover, .um input[type=submit].um-button.um-alt:hover{background:#000;color:#fff;}
+ 
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form h1.form-title{
+    font-size: 35px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+@media only all and (min-width: 1024px){
+    .post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form .form-contect{
+        font-size: 20px;
+            margin-top: 0;
+    text-align: center;
+        margin: 1.7rem 0;
+    }
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form .form-contect{
+        font-size: 20px;
+            margin-top: 0;
+    text-align: center;
+        margin: 1.7rem 0;
+    }
+.post-template-default.single.single-post .post.type-post section.main-section{
+    overflow: hidden;
+    background-color: #f6f8f8;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form #mc_embed_signup form{
+     max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form #mc_embed_signup{
+    background: unset;
+    clear: unset;
+    font: unset;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form{
+    padding: 20px;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form #mc_embed_signup input.button{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: unset;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form #mc_embed_signup input{
+    padding: 10px;
+    display: block;
+    position: relative;
+    height: 40px;
+    margin-bottom:unset;
+}
+.post-template-default.single.single-post .post.type-post section.main-section .col-sm-8.form #mc_embed_signup .mc-field-group{
+    width: 100%;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg{
+    overflow: hidden;
+    background-color: #f6f8f8;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form #mc_embed_signup form{
+     max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form #mc_embed_signup{
+    background: unset;
+    clear: unset;
+    font: unset;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form{
+    padding: 20px;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form #mc_embed_signup input.button{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: unset;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form #mc_embed_signup input{
+    padding: 10px;
+    display: block;
+    position: relative;
+    height: 40px;
+    margin-bottom:unset;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg .col-sm-8.form #mc_embed_signup .mc-field-group{
+    width: 100%;
+}
+.page-template-default section.building-payment-integration-in-magento-sec-pg #mc_embed_signup .mc-field-group{
+    padding-bottom:unset;
+}
+
+/* MailChimp Form Embed Code - Classic - 12/17/2015 v10.7 */
+#mc_embed_signup form{display:block; position:relative; text-align:left; padding:10px 0 10px 3%}
+#mc_embed_signup h2{font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;}
+#mc_embed_signup input{border: 1px solid #ABB0B2; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+#mc_embed_signup input[type=checkbox]{-webkit-appearance:checkbox;}
+#mc_embed_signup input[type=radio]{-webkit-appearance:radio;}
+#mc_embed_signup input:focus{border-color:#333;}
+#mc_embed_signup .button{clear:both; background-color: #aaa; border: 0 none; border-radius:4px; transition: all 0.23s ease-in-out 0s; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: normal; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding: 0 22px; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;}
+#mc_embed_signup .button:hover{background-color:#777;}
+#mc_embed_signup .small-meta{font-size: 11px;}
+#mc_embed_signup .nowrap{white-space:nowrap;}
+
+#mc_embed_signup .mc-field-group{clear:left; position:relative; width:96%; padding-bottom:3%; min-height:50px;}
+#mc_embed_signup .size1of2{clear:none; float:left; display:inline-block; width:46%; margin-right:4%;}
+* html #mc_embed_signup .size1of2{margin-right:2%; /* Fix for IE6 double margins. */}
+#mc_embed_signup .mc-field-group label{display:block; margin-bottom:3px;}
+#mc_embed_signup .mc-field-group input{display:block; width:100%; padding:8px 0; text-indent:2%;}
+#mc_embed_signup .mc-field-group select{display:inline-block; width:99%; padding:5px 0; margin-bottom:2px;}
+
+#mc_embed_signup .datefield, #mc_embed_signup .phonefield-us{padding:5px 0;}
+#mc_embed_signup .datefield input, #mc_embed_signup .phonefield-us input{display:inline; width:60px; margin:0 2px; letter-spacing:1px; text-align:center; padding:5px 0 2px 0;}
+#mc_embed_signup .phonefield-us .phonearea input, #mc_embed_signup .phonefield-us .phonedetail1 input{width:40px;}
+#mc_embed_signup .datefield .monthfield input, #mc_embed_signup .datefield .dayfield input{width:30px;}
+#mc_embed_signup .datefield label, #mc_embed_signup .phonefield-us label{display:none;}
+
+#mc_embed_signup .indicates-required{text-align:right; font-size:11px; margin-right:4%;}
+#mc_embed_signup .asterisk{color:#e85c41; font-size:150%; font-weight:normal; position:relative; top:5px;}     
+#mc_embed_signup .clear{clear:both;}
+
+#mc_embed_signup .mc-field-group.input-group ul{margin:0; padding:5px 0; list-style:none;}
+#mc_embed_signup .mc-field-group.input-group ul li{display:block; padding:3px 0; margin:0;}
+#mc_embed_signup .mc-field-group.input-group label{display:inline;}
+#mc_embed_signup .mc-field-group.input-group input{display:inline; width:auto; border:none;}
+
+#mc_embed_signup div#mce-responses{float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%; margin: 0 5%; clear: both;}
+#mc_embed_signup div.response{margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;}
+#mc_embed_signup #mce-error-response{display:none;}
+#mc_embed_signup #mce-success-response{color:#529214; display:none;}
+#mc_embed_signup label.error{display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
+
+#mc-embedded-subscribe{clear:both; width:auto; display:block; margin:1em 0 1em 5%;}
+#mc_embed_signup #num-subscribers{font-size:1.1em;}
+#mc_embed_signup #num-subscribers span{padding:.5em; border:1px solid #ccc; margin-right:.5em; font-weight:bold;}
+
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error{display:inline-block; margin:2px 0 1em 0; padding:5px 10px; background-color:rgba(255,255,255,0.85); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
+#mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error{border:2px solid #e85c41;}
+
+.home.page-template  #mc_embed_signup input{border: 2px solid #cbcbcb;border-radius: 5px;}
+.home.page-template #mc_embed_signup .button{
+    background-color: #fff;
+    border-radius: 7px;
+    cursor: pointer;
+    line-height: 0px;
+    padding: 32px 80px;
+    font-weight: bold;
+    color: #252a31;
+}
+.post_text_banner { 
+    background-image: url('/wp-content/uploads/banners/banner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 398px;
+    margin-bottom: 30px;
+    background-position: center;
+}
+.post_text_banner p.main_title {
+    width: auto;
+    margin: 0 auto;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    font-family:  'Montserrat SemiBold', sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 7px;
+}
+.post_text_banner p.main_title_part2 {
+    width: auto;
+    margin: 0 auto;
+    font-size: 3em;
+    text-transform: uppercase;
+    font-family: 'Montserrat SemiBold', sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    padding-bottom: 17px;
+}
+.post_text_banner p.main_title_date {
+    width: auto;
+    margin: 0 auto;
+    font-size: 22px;
+    font-family: 'Montserrat Medium', sans-serif;
+    font-weight: normal;
+    color: #FFFFFF;
+    text-align: center;
+    padding-bottom: 47px;
+}
+.post_text_banner p.main_title_button {
+    width: auto;
+    margin: 0 auto;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+.post_text_banner .button {
+    background: #FFFFFF;
+    color: #005B99;;
+    padding: 16px 100px 16px 100px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+@media (max-width: 992px){
+.home.page-template .blog-items .article-item2 .wrap{
+    padding: 20px 30px;} 
+ }
+@media (max-width: 767px){
+    .home.page-template  #mc_embed_signup .button{    width:100%;}
+    .header{ top: unset !important; }
+    .post_text_banner .button {
+        padding: 16px 50px 16px 50px;
+    }
+    .post_text_banner p.main_title {
+        padding-top: 48px;
+    }
+}
+ 
+
+ .page-template-template-landing section.contact-sec{
+    overflow: hidden;
+    background-color: #f6f8f8;
+        color: #000;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form #mc_embed_signup form{
+     max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form #mc_embed_signup{
+    background: unset;
+    clear: unset;
+    font: unset;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form{
+    padding: 20px;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form #mc_embed_signup input.button{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: unset;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form #mc_embed_signup input{
+    padding: 10px;
+    display: block;
+    position: relative;
+    height: 40px;
+    margin-bottom:unset;
+}
+.page-template-template-landing section.contact-sec .col-sm-8.form #mc_embed_signup .mc-field-group{
+    width: 100%;
+}
+.page-template-template-landing section.contact-sec #mc_embed_signup .mc-field-group{
+    padding-bottom:unset;
+}
+.page-template-template-landing section.contact-sec div.form h1.form-title{
+    font-size: 35px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 0;
+    color: #000;
+}
+.page-template-template-landing section.contact-sec div.form p.form-contect{
+    text-align: center;
+}
+.post .wp_rp_wrap .related_post_title{
+    margin: 20px 0 !important;
+    font-size: 1.9em;
+}
+.page-template.page-template-template-landing #blog-page-pg-sec-def .article-item2-col div.wrap{
+    margin-bottom: 20px;
+}
+.page-template.page-template-template-landing #blog-page-pg-sec-def .article-item2-col div.wrap h5{
+    font-size: 16px;
+    min-height: 100px;
+    line-height: 2em;
+}
+.home.page-template.page-template-template-landing .blog-items article.article-item2-col div.wrap h5{
+    font-size: 16px;
+    min-height: 70px;
+    line-height: 2em;
+}
+.home.page-template.page-template-template-landing .blog-items article.article-item2-col div.wrap{
+    margin-bottom: 20px;
+}
+
+.fr .navigation > ul > li:not(:last-of-type){ margin-right: 35px;}
+.fr .navigation > ul > li > a{font-size: 1.1em;max-width:110px;}
+.home.page-template #mc_embed_signup .button:hover{border: 2px solid #cbcbcb; border-radius: 7px;background: none;color: #fff;}
+.textwidget .p-text14{font-weight:400;}
+.footer h6{font-size:1.2em;}
+.fw-col-md-3 .footer-widget{ margin-top: 0px;}
+.textwidget .contact-row.contact-row{margin:20px 0;}
+.heading-decor.line .h2{font-size: 2.8em;}
+.textwidget .footer .social-buttons{margin: 40px 0 15px;font-size: 1.1em;}
+@media (max-width: 1199px){
+    .fr .navigation > ul > li > a{max-width:100%;}
+    .footer .fw-col-sm-6 .footer-logo{font-size:25px;}
+}
+@media (max-width: 991px){
+    .fw-col-sm-6 .gallery-module{margin: 0px 60px 30px 0px;}
+}
+.heading-decor.line .h2{font-size:1.4em;}
+.heading-decor.line .h3{ font-size: 2em;}
+.page h1{font-size:2.5em;}
+.page h2{font-size:2em;}
+.page h3{font-size:1.5em;}
+.page h4{font-size: 1.3em;}
+.page h5{font-size:1em;}
+.page h6{font-size:1em;}
+.single h1{font-size:2.5em;}
+.single h2{font-size:2em;}
+.single h3{font-size:1.5em;}
+.single h4{font-size: 1.3em;}
+.single h5{font-size:1em;}
+.single h6{font-size:1em;}
+.type-sfwd-lessons .site-content ul li::before{display:none;}
+.single-sfwd-topic #content-wrap .fw-container .fr.post-nav, .single-sfwd-lessons #content-wrap .fw-container .fr.post-nav, .single-sfwd-courses #content-wrap .fw-container .fr.post-nav {display: none;}
+.single-sfwd-lessons #content-wrap .fw-container #learndash_next_prev_link a.prev-link, .single-sfwd-courses #content-wrap .fw-container #learndash_next_prev_link a.prev-link, .single-sfwd-topic #content-wrap .fw-container #learndash_next_prev_link a.prev-link{float: none;}
