@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://fiddle.jshell.net/isherwood/pQZ8f/593/show/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>UL/LI autogrow</title>
+  
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="./mootools-core-full-nocompat.js.下载"></script>
+    <link rel="stylesheet" type="text/css" href="./normalize.css">
+
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+
+
+  <style id="compiled-css" type="text/css">
+      ul {
+    overflow: hidden;
+    border: 1px solid black;
+    float: left;
+}
+li {
+    float:left;
+    width:100px;
+    background: red;
+    padding-bottom: 10000px;
+    margin-bottom: -10000px;
+}
+li + li {
+    border-left: 1px solid black;
+}
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    window.addEvent('load', function() {
+      
+
+
+    });
+
+  //]]></script>
+
+</head>
+<body>
+    <ul>
+    <li>Test</li>
+    <li>Test Test Test Test</li>
+</ul>
+
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "pQZ8f"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+      <div class="xl-chrome-ext-bar__logo"></div>
+
+      <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+      <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+    </div></body></html>
